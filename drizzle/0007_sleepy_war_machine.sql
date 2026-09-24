@@ -1,0 +1,1 @@
+ALTER TABLE `official_service_snapshot` ADD `application_method` text DEFAULT '' NOT NULL;

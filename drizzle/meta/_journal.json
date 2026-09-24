@@ -1,0 +1,97 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1789395011922,
+      "tag": "0000_wild_lila_cheney",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1789875828223,
+      "tag": "0001_blushing_wind_dancer",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1789876545942,
+      "tag": "0002_military_nick_fury",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1789886904229,
+      "tag": "0003_reflective_greymalkin",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1789892967631,
+      "tag": "0004_restart_official_sync",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1789895468007,
+      "tag": "0005_retry_official_sync",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1789896754154,
+      "tag": "0006_refresh_official_taxonomy",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1789908430024,
+      "tag": "0007_sleepy_war_machine",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1790060400000,
+      "tag": "0008_official_search_acceleration",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1790146800000,
+      "tag": "0009_refresh_chungbuk_dataset",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "6",
+      "when": 1790233200000,
+      "tag": "0010_refresh_national_dataset",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "6",
+      "when": 1790319600000,
+      "tag": "0011_wiki_edit",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "6",
+      "when": 1790406000000,
+      "tag": "0012_dataset_response_cache",
+      "breakpoints": true
+    }
+  ]
+}

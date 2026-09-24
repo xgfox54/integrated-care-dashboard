@@ -1,0 +1,255 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { ExternalLink, LoaderCircle } from "lucide-react";
+
+import { WikiSourceCard, type WikiSource } from "@/components/wiki/wiki-source-card";
+import type { ServiceRow } from "@/lib/dataset";
+import { createWikiArticle } from "@/lib/wiki-article";
+import { applyWikiEdit, EDIT_FIELDS, type PublicWikiEdit, type WikiEditValues } from "@/lib/wiki-edits";
+import { getVerifiedWikiSupplement } from "@/lib/wiki-verified-supplements";
+
+interface LoadedEdit {
+  readonly serviceId: string;
+  readonly edit: PublicWikiEdit | null;
+}
+
+function publicEdit(payload: unknown): PublicWikiEdit | null {
+  if (typeof payload !== "object" || payload === null || !("edit" in payload)) return null;
+  const edit = payload.edit;
+  if (typeof edit !== "object" || edit === null) return null;
+  const record = edit as Record<string, unknown>;
+  const values = Object.fromEntries(
+    EDIT_FIELDS.map((field) => {
+      const value = record[field];
+      return [field, typeof value === "string" && value.trim() ? value : null];
+    }),
+  ) as WikiEditValues;
+  return { ...values, updatedAt: typeof record.updatedAt === "number" ? record.updatedAt : 0 };
+}
+
+function wikiSource(payload: unknown): WikiSource | null {
+  if (typeof payload !== "object" || payload === null || !("source" in payload)) {
+    return null;
+  }
+  const source = payload.source;
+  if (
+    typeof source !== "object" ||
+    source === null ||
+    !("tier" in source) ||
+    (source.tier !== "bokjiro" && source.tier !== "local") ||
+    !("label" in source) || typeof source.label !== "string" ||
+    !("title" in source) || typeof source.title !== "string" ||
+    !("summary" in source) || typeof source.summary !== "string" ||
+    !("publisher" in source) || typeof source.publisher !== "string" ||
+    !("url" in source) || typeof source.url !== "string" ||
+    !("matchedTerm" in source) || typeof source.matchedTerm !== "string"
+  ) {
+    return null;
+  }
+  return {
+    tier: source.tier,
+    label: source.label,
+    title: source.title,
+    summary: source.summary,
+    publisher: source.publisher,
+    url: source.url,
+    matchedTerm: source.matchedTerm,
+    sectionId: "sectionId" in source && typeof source.sectionId === "string"
+      ? source.sectionId
+      : undefined,
+    heading: "heading" in source && typeof source.heading === "string"
+      ? source.heading
+      : undefined,
+    startLine: "startLine" in source && typeof source.startLine === "number"
+      ? source.startLine
+      : undefined,
+    endLine: "endLine" in source && typeof source.endLine === "number"
+      ? source.endLine
+      : undefined,
+    sourceSha256: "sourceSha256" in source && typeof source.sourceSha256 === "string"
+      ? source.sourceSha256
+      : undefined,
+    sourceDatabaseSha256:
+      "sourceDatabaseSha256" in source && typeof source.sourceDatabaseSha256 === "string"
+        ? source.sourceDatabaseSha256
+        : undefined,
+  };
+}
+
+export function ServiceDetails({ row }: { readonly row: ServiceRow }) {
+  const [source, setSource] = useState<WikiSource | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [loadedEdit, setLoadedEdit] = useState<LoadedEdit | null>(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const serviceId = row.serviceId;
+    void fetch("/api/wiki/edit?serviceId=" + encodeURIComponent(serviceId), {
+      cache: "no-store",
+      signal: controller.signal,
+    })
+      .then(async (response) => (response.ok ? publicEdit(await response.json()) : null))
+      .then((edit) => {
+        if (!controller.signal.aborted) setLoadedEdit({ serviceId, edit });
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) setLoadedEdit({ serviceId, edit: null });
+      });
+    return () => controller.abort();
+  }, [row.serviceId]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const params = new URLSearchParams({
+      name: row.name,
+      sido: row.sido,
+      sigungu: row.sigungu,
+    });
+    void fetch(`/api/wiki?${params.toString()}`, {
+      cache: "no-store",
+      signal: controller.signal,
+    })
+      .then(async (response) => {
+        if (!response.ok) throw new Error("설명 출처를 불러오지 못했습니다.");
+        const payload: unknown = await response.json();
+        return wikiSource(payload);
+      })
+      .then((nextSource) => {
+        if (!controller.signal.aborted) setSource(nextSource);
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) setSource(null);
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setLoading(false);
+      });
+    return () => controller.abort();
+  }, [row]);
+
+  const verifiedSupplement = getVerifiedWikiSupplement(row.serviceId);
+  const adminEdit = loadedEdit?.serviceId === row.serviceId ? loadedEdit.edit : null;
+  const displayRow = applyWikiEdit(row, adminEdit ?? undefined);
+  const article = createWikiArticle(row, {
+    exactMatchSummary: source?.summary,
+    verifiedSupplement,
+    adminEdit,
+  });
+  const statusLabel = article.contentStatus === "admin-edited"
+    ? "관리자 보완"
+    : article.contentStatus === "verified-supplement"
+      ? "공식 보완자료 포함"
+      : "보건복지부 원자료 기준";
+
+  return (
+    <article className="space-y-4" aria-labelledby="wiki-service-name">
+      <header className="rounded-lg border border-border bg-card p-5">
+        <p className="text-sm font-medium text-primary">
+          {[row.sido, row.sigungu].filter(Boolean).join(" · ") || "전국"}
+        </p>
+        <h1 id="wiki-service-name" className="mt-1 text-2xl font-bold leading-tight">{row.name}</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          {[row.category, row.subcategory, row.type].filter(Boolean).join(" · ")}
+        </p>
+      </header>
+
+      <section className="rounded-lg border border-border bg-card p-5" aria-labelledby="official-description-heading">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h2 id="official-description-heading" className="font-semibold">사업 설명</h2>
+          <span className="rounded-full bg-[var(--care-green)]/10 px-2.5 py-1 text-xs font-semibold text-[var(--accent-foreground)] ring-1 ring-[var(--care-green)]/30">
+            {statusLabel}
+          </span>
+        </div>
+        <dl className="mt-4 grid gap-5 text-sm">
+          <div>
+            <dt className="font-semibold text-muted-foreground">사업명</dt>
+            <dd className="mt-1 text-base font-semibold">{article.name}</dd>
+          </div>
+          <div>
+            <dt className="font-semibold text-muted-foreground">사업개요</dt>
+            <dd className="mt-1 leading-relaxed">{article.overview}</dd>
+          </div>
+          <div>
+            <dt className="font-semibold text-muted-foreground">사업내용</dt>
+            <dd className="mt-1 whitespace-pre-line leading-relaxed">{article.content}</dd>
+          </div>
+          {article.applicationConditions ? (
+            <div>
+              <dt className="font-semibold text-muted-foreground">신청조건</dt>
+              <dd className="mt-1 whitespace-pre-line leading-relaxed">{article.applicationConditions}</dd>
+              <p className="mt-1 text-xs text-muted-foreground">{article.conditionsBasis}</p>
+            </div>
+          ) : null}
+          {displayRow.applicationMethod ? (
+            <div>
+              <dt className="font-semibold text-muted-foreground">신청방법</dt>
+              <dd className="mt-1 whitespace-pre-line leading-relaxed">{displayRow.applicationMethod}</dd>
+            </div>
+          ) : null}
+        </dl>
+        <div className="mt-5 grid gap-3 border-t border-border pt-4 text-sm sm:grid-cols-2">
+          <div>
+            <p className="font-semibold text-muted-foreground">제공기관</p>
+            <p className="mt-1 whitespace-pre-line">{displayRow.provider || "원자료에 별도 기재 없음"}</p>
+          </div>
+          <div>
+            <p className="font-semibold text-muted-foreground">자료 기준</p>
+            <p className="mt-1">{row.updatedDate || "보건복지부 최신 수집본"}</p>
+          </div>
+        </div>
+        {row.detailUrl ? (
+          <a
+            href={row.detailUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary underline underline-offset-4"
+          >
+            이 사업이 수록된 보건복지부 원문 확인
+            <ExternalLink className="size-4" aria-hidden="true" />
+          </a>
+        ) : null}
+        {article.supplement ? (
+          <div className="mt-4 rounded-md bg-secondary p-3 text-sm">
+            <p className="font-semibold">상세내용 보완 출처</p>
+            <p className="mt-1 text-muted-foreground">
+              {article.supplement.publisher} · {article.supplement.sourceTitle}
+            </p>
+            <a
+              href={article.supplement.url}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex items-center gap-1 font-semibold text-primary underline underline-offset-4"
+            >
+              공식 보완자료 원문 확인
+              <ExternalLink className="size-4" aria-hidden="true" />
+            </a>
+          </div>
+        ) : null}
+        {article.adminSource ? (
+          <div className="mt-4 rounded-md bg-secondary p-3 text-sm">
+            <p className="font-semibold">관리자 보완 출처</p>
+            <p className="mt-1 text-muted-foreground">{article.adminSource.title}</p>
+            <a
+              href={article.adminSource.url}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex items-center gap-1 font-semibold text-primary underline underline-offset-4"
+            >
+              보완 출처 원문 확인
+              <ExternalLink className="size-4" aria-hidden="true" />
+            </a>
+          </div>
+        ) : null}
+      </section>
+
+      {loading ? (
+        <p className="flex items-center rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+          <LoaderCircle className="mr-2 size-4 animate-spin" aria-hidden="true" />
+          사업명이 정확히 일치하는 보완 설명을 확인하고 있습니다.
+        </p>
+      ) : source ? (
+        <WikiSourceCard source={source} />
+      ) : null}
+    </article>
+  );
+}
