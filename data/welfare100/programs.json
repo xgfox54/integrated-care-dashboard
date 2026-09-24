@@ -1,0 +1,1511 @@
+[
+ {
+  "no": 1,
+  "slug": "livelihood-benefit",
+  "name": "국민기초생활보장 생계급여",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년",
+   "노년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 2,
+  "slug": "medical-aid",
+  "name": "의료급여",
+  "topic": "신체건강",
+  "topics": [
+   "신체건강"
+  ],
+  "lifecycle": [],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 3,
+  "slug": "housing-benefit",
+  "name": "주거급여",
+  "topic": "주거",
+  "topics": [
+   "주거"
+  ],
+  "lifecycle": [],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 4,
+  "slug": "education-benefit",
+  "name": "교육급여",
+  "topic": "교육",
+  "topics": [
+   "교육"
+  ],
+  "lifecycle": [
+   "아동",
+   "청소년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 5,
+  "slug": "birth-funeral-benefit",
+  "name": "해산급여·장제급여",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원",
+   "임신·출산"
+  ],
+  "lifecycle": [],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 6,
+  "slug": "emergency-welfare",
+  "name": "긴급복지지원",
+  "topic": "안전·위기",
+  "topics": [
+   "안전·위기",
+   "생활지원"
+  ],
+  "lifecycle": [],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 7,
+  "slug": "basic-pension",
+  "name": "기초연금",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원"
+  ],
+  "lifecycle": [
+   "노년"
+  ],
+  "household": []
+ },
+ {
+  "no": 8,
+  "slug": "near-poverty-certificate",
+  "name": "차상위계층 확인",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원"
+  ],
+  "lifecycle": [],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 9,
+  "slug": "near-poverty-copay-reduction",
+  "name": "차상위 본인부담경감",
+  "topic": "신체건강",
+  "topics": [
+   "신체건강"
+  ],
+  "lifecycle": [],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 10,
+  "slug": "self-sufficiency-work",
+  "name": "자활근로",
+  "topic": "일자리",
+  "topics": [
+   "일자리"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 11,
+  "slug": "hope-savings",
+  "name": "희망저축계좌(Ⅰ·Ⅱ)",
+  "topic": "서민금융",
+  "topics": [
+   "서민금융"
+  ],
+  "lifecycle": [
+   "중장년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 12,
+  "slug": "youth-tomorrow-savings",
+  "name": "청년내일저축계좌",
+  "topic": "서민금융",
+  "topics": [
+   "서민금융",
+   "일자리"
+  ],
+  "lifecycle": [
+   "청년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 13,
+  "slug": "youth-rent-support",
+  "name": "청년월세 지원",
+  "topic": "주거",
+  "topics": [
+   "주거"
+  ],
+  "lifecycle": [
+   "청년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 14,
+  "slug": "energy-voucher",
+  "name": "에너지바우처",
+  "topic": "에너지",
+  "topics": [
+   "에너지"
+  ],
+  "lifecycle": [
+   "노년",
+   "영유아"
+  ],
+  "household": [
+   "저소득",
+   "장애인"
+  ]
+ },
+ {
+  "no": 15,
+  "slug": "recipient-fee-reduction",
+  "name": "기초생활수급자 요금감면",
+  "topic": "에너지",
+  "topics": [
+   "에너지",
+   "생활지원"
+  ],
+  "lifecycle": [],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 16,
+  "slug": "catastrophic-medical-expense",
+  "name": "재난적의료비 지원",
+  "topic": "신체건강",
+  "topics": [
+   "신체건강",
+   "안전·위기"
+  ],
+  "lifecycle": [],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 17,
+  "slug": "food-bank",
+  "name": "기부식품 등 제공사업(푸드뱅크)",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원"
+  ],
+  "lifecycle": [],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 18,
+  "slug": "just-give-food",
+  "name": "그냥드림",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원",
+   "안전·위기"
+  ],
+  "lifecycle": [],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 19,
+  "slug": "integrated-case-management",
+  "name": "통합사례관리(희망복지지원단)",
+  "topic": "안전·위기",
+  "topics": [
+   "안전·위기",
+   "보호·돌봄"
+  ],
+  "lifecycle": [],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 20,
+  "slug": "outreach-welfare",
+  "name": "찾아가는 보건복지서비스",
+  "topic": "안전·위기",
+  "topics": [
+   "안전·위기",
+   "보호·돌봄"
+  ],
+  "lifecycle": [],
+  "household": []
+ },
+ {
+  "no": 21,
+  "slug": "lonely-death-prevention",
+  "name": "고독사 예방·관리",
+  "topic": "안전·위기",
+  "topics": [
+   "안전·위기",
+   "정신건강"
+  ],
+  "lifecycle": [
+   "중장년",
+   "노년"
+  ],
+  "household": []
+ },
+ {
+  "no": 22,
+  "slug": "homeless-support",
+  "name": "노숙인 등 복지지원",
+  "topic": "주거",
+  "topics": [
+   "주거",
+   "안전·위기"
+  ],
+  "lifecycle": [
+   "중장년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 23,
+  "slug": "housework-nursing",
+  "name": "가사·간병 방문지원",
+  "topic": "보호·돌봄",
+  "topics": [
+   "보호·돌봄"
+  ],
+  "lifecycle": [
+   "중장년",
+   "노년"
+  ],
+  "household": [
+   "저소득",
+   "장애인",
+   "한부모·조손"
+  ]
+ },
+ {
+  "no": 24,
+  "slug": "daily-care",
+  "name": "일상돌봄 서비스",
+  "topic": "보호·돌봄",
+  "topics": [
+   "보호·돌봄"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년"
+  ],
+  "household": []
+ },
+ {
+  "no": 25,
+  "slug": "emergency-care",
+  "name": "긴급돌봄 지원",
+  "topic": "보호·돌봄",
+  "topics": [
+   "보호·돌봄",
+   "안전·위기"
+  ],
+  "lifecycle": [],
+  "household": []
+ },
+ {
+  "no": 26,
+  "slug": "elderly-customized-care",
+  "name": "노인맞춤돌봄서비스",
+  "topic": "보호·돌봄",
+  "topics": [
+   "보호·돌봄"
+  ],
+  "lifecycle": [
+   "노년"
+  ],
+  "household": []
+ },
+ {
+  "no": 27,
+  "slug": "emergency-safety-alert",
+  "name": "응급안전안심서비스",
+  "topic": "안전·위기",
+  "topics": [
+   "안전·위기",
+   "보호·돌봄"
+  ],
+  "lifecycle": [
+   "노년"
+  ],
+  "household": [
+   "장애인"
+  ]
+ },
+ {
+  "no": 28,
+  "slug": "integrated-community-care",
+  "name": "의료·요양 통합돌봄",
+  "topic": "보호·돌봄",
+  "topics": [
+   "보호·돌봄",
+   "신체건강"
+  ],
+  "lifecycle": [
+   "노년"
+  ],
+  "household": [
+   "장애인"
+  ]
+ },
+ {
+  "no": 29,
+  "slug": "community-service-investment",
+  "name": "지역사회서비스 투자사업",
+  "topic": "보호·돌봄",
+  "topics": [
+   "보호·돌봄"
+  ],
+  "lifecycle": [
+   "아동",
+   "청년",
+   "중장년",
+   "노년"
+  ],
+  "household": []
+ },
+ {
+  "no": 30,
+  "slug": "disability-registration",
+  "name": "장애인 등록·장애정도 심사",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원"
+  ],
+  "lifecycle": [],
+  "household": [
+   "장애인"
+  ]
+ },
+ {
+  "no": 31,
+  "slug": "disability-pension",
+  "name": "장애인연금",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년",
+   "노년"
+  ],
+  "household": [
+   "장애인",
+   "저소득"
+  ]
+ },
+ {
+  "no": 32,
+  "slug": "disability-allowance",
+  "name": "장애수당",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원"
+  ],
+  "lifecycle": [],
+  "household": [
+   "장애인",
+   "저소득"
+  ]
+ },
+ {
+  "no": 33,
+  "slug": "disabled-child-allowance",
+  "name": "장애아동수당",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원"
+  ],
+  "lifecycle": [
+   "아동",
+   "청소년"
+  ],
+  "household": [
+   "장애인",
+   "저소득"
+  ]
+ },
+ {
+  "no": 34,
+  "slug": "disability-activity-support",
+  "name": "장애인활동지원",
+  "topic": "보호·돌봄",
+  "topics": [
+   "보호·돌봄"
+  ],
+  "lifecycle": [
+   "아동",
+   "청년",
+   "중장년"
+  ],
+  "household": [
+   "장애인"
+  ]
+ },
+ {
+  "no": 35,
+  "slug": "developmental-rehab",
+  "name": "발달재활서비스",
+  "topic": "신체건강",
+  "topics": [
+   "신체건강",
+   "교육"
+  ],
+  "lifecycle": [
+   "영유아",
+   "아동",
+   "청소년"
+  ],
+  "household": [
+   "장애인"
+  ]
+ },
+ {
+  "no": 36,
+  "slug": "language-development",
+  "name": "언어발달지원",
+  "topic": "교육",
+  "topics": [
+   "교육"
+  ],
+  "lifecycle": [
+   "영유아",
+   "아동"
+  ],
+  "household": [
+   "장애인"
+  ]
+ },
+ {
+  "no": 37,
+  "slug": "disabled-family-childcare",
+  "name": "장애아가족 양육지원",
+  "topic": "보호·돌봄",
+  "topics": [
+   "보호·돌봄"
+  ],
+  "lifecycle": [
+   "아동",
+   "청소년"
+  ],
+  "household": [
+   "장애인"
+  ]
+ },
+ {
+  "no": 38,
+  "slug": "adult-dd-day-activity",
+  "name": "성인 발달장애인 주간활동서비스",
+  "topic": "보호·돌봄",
+  "topics": [
+   "보호·돌봄"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년"
+  ],
+  "household": [
+   "장애인"
+  ]
+ },
+ {
+  "no": 39,
+  "slug": "youth-dd-after-school",
+  "name": "청소년 발달장애학생 방과후활동서비스",
+  "topic": "보호·돌봄",
+  "topics": [
+   "보호·돌봄",
+   "교육"
+  ],
+  "lifecycle": [
+   "청소년"
+  ],
+  "household": [
+   "장애인"
+  ]
+ },
+ {
+  "no": 40,
+  "slug": "dd-public-guardianship",
+  "name": "발달장애인 공공후견",
+  "topic": "법률",
+  "topics": [
+   "법률",
+   "보호·돌봄"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년"
+  ],
+  "household": [
+   "장애인"
+  ]
+ },
+ {
+  "no": 41,
+  "slug": "disability-jobs",
+  "name": "장애인 일자리 지원",
+  "topic": "일자리",
+  "topics": [
+   "일자리"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년"
+  ],
+  "household": [
+   "장애인"
+  ]
+ },
+ {
+  "no": 42,
+  "slug": "assistive-devices",
+  "name": "장애인 보조기기 교부",
+  "topic": "신체건강",
+  "topics": [
+   "신체건강"
+  ],
+  "lifecycle": [],
+  "household": [
+   "장애인",
+   "저소득"
+  ]
+ },
+ {
+  "no": 43,
+  "slug": "disability-self-reliance-loan",
+  "name": "장애인 자립자금 대여",
+  "topic": "서민금융",
+  "topics": [
+   "서민금융",
+   "일자리"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년"
+  ],
+  "household": [
+   "장애인",
+   "저소득"
+  ]
+ },
+ {
+  "no": 44,
+  "slug": "disabled-women-birth",
+  "name": "여성장애인 출산비용 지원",
+  "topic": "임신·출산",
+  "topics": [
+   "임신·출산"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년"
+  ],
+  "household": [
+   "장애인"
+  ]
+ },
+ {
+  "no": 45,
+  "slug": "disability-primary-doctor",
+  "name": "장애인 건강주치의",
+  "topic": "신체건강",
+  "topics": [
+   "신체건강"
+  ],
+  "lifecycle": [],
+  "household": [
+   "장애인"
+  ]
+ },
+ {
+  "no": 46,
+  "slug": "senior-jobs",
+  "name": "노인일자리 및 사회활동 지원",
+  "topic": "일자리",
+  "topics": [
+   "일자리",
+   "문화·여가"
+  ],
+  "lifecycle": [
+   "노년"
+  ],
+  "household": []
+ },
+ {
+  "no": 47,
+  "slug": "long-term-care-insurance",
+  "name": "노인장기요양보험",
+  "topic": "보호·돌봄",
+  "topics": [
+   "보호·돌봄",
+   "신체건강"
+  ],
+  "lifecycle": [
+   "노년"
+  ],
+  "household": []
+ },
+ {
+  "no": 48,
+  "slug": "dementia-screening-treatment",
+  "name": "치매검진·치매치료관리비 지원",
+  "topic": "신체건강",
+  "topics": [
+   "신체건강"
+  ],
+  "lifecycle": [
+   "노년"
+  ],
+  "household": []
+ },
+ {
+  "no": 49,
+  "slug": "dementia-public-guardianship",
+  "name": "치매공공후견",
+  "topic": "법률",
+  "topics": [
+   "법률",
+   "보호·돌봄"
+  ],
+  "lifecycle": [
+   "노년"
+  ],
+  "household": []
+ },
+ {
+  "no": 50,
+  "slug": "senior-eye-surgery",
+  "name": "노인 안검진·개안수술",
+  "topic": "신체건강",
+  "topics": [
+   "신체건강"
+  ],
+  "lifecycle": [
+   "노년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 51,
+  "slug": "senior-knee-surgery",
+  "name": "노인 무릎인공관절 수술 지원",
+  "topic": "신체건강",
+  "topics": [
+   "신체건강"
+  ],
+  "lifecycle": [
+   "노년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 52,
+  "slug": "parent-benefit",
+  "name": "부모급여",
+  "topic": "보육",
+  "topics": [
+   "보육",
+   "생활지원"
+  ],
+  "lifecycle": [
+   "영유아"
+  ],
+  "household": []
+ },
+ {
+  "no": 53,
+  "slug": "child-allowance",
+  "name": "아동수당",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원",
+   "보육"
+  ],
+  "lifecycle": [
+   "영유아",
+   "아동"
+  ],
+  "household": []
+ },
+ {
+  "no": 54,
+  "slug": "first-meeting-voucher",
+  "name": "첫만남이용권",
+  "topic": "임신·출산",
+  "topics": [
+   "임신·출산",
+   "생활지원"
+  ],
+  "lifecycle": [
+   "영유아"
+  ],
+  "household": []
+ },
+ {
+  "no": 55,
+  "slug": "childcare-fee",
+  "name": "보육료 지원",
+  "topic": "보육",
+  "topics": [
+   "보육"
+  ],
+  "lifecycle": [
+   "영유아"
+  ],
+  "household": []
+ },
+ {
+  "no": 56,
+  "slug": "home-childcare-allowance",
+  "name": "가정양육수당",
+  "topic": "보육",
+  "topics": [
+   "보육"
+  ],
+  "lifecycle": [
+   "영유아"
+  ],
+  "household": []
+ },
+ {
+  "no": 57,
+  "slug": "hourly-childcare",
+  "name": "시간제보육",
+  "topic": "보육",
+  "topics": [
+   "보육"
+  ],
+  "lifecycle": [
+   "영유아"
+  ],
+  "household": []
+ },
+ {
+  "no": 58,
+  "slug": "together-care",
+  "name": "다함께돌봄",
+  "topic": "보호·돌봄",
+  "topics": [
+   "보호·돌봄",
+   "보육"
+  ],
+  "lifecycle": [
+   "아동"
+  ],
+  "household": []
+ },
+ {
+  "no": 59,
+  "slug": "local-children-center",
+  "name": "지역아동센터",
+  "topic": "보호·돌봄",
+  "topics": [
+   "보호·돌봄",
+   "교육"
+  ],
+  "lifecycle": [
+   "아동"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 60,
+  "slug": "dream-start",
+  "name": "드림스타트",
+  "topic": "보호·돌봄",
+  "topics": [
+   "보호·돌봄"
+  ],
+  "lifecycle": [
+   "영유아",
+   "아동"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 61,
+  "slug": "child-meal-support",
+  "name": "아동급식 지원",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원"
+  ],
+  "lifecycle": [
+   "아동",
+   "청소년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 62,
+  "slug": "foster-care",
+  "name": "가정위탁 보호",
+  "topic": "입양·위탁",
+  "topics": [
+   "입양·위탁",
+   "보호·돌봄"
+  ],
+  "lifecycle": [
+   "아동",
+   "청소년"
+  ],
+  "household": [
+   "한부모·조손"
+  ]
+ },
+ {
+  "no": 63,
+  "slug": "adoption",
+  "name": "입양 지원",
+  "topic": "입양·위탁",
+  "topics": [
+   "입양·위탁"
+  ],
+  "lifecycle": [
+   "영유아",
+   "아동"
+  ],
+  "household": []
+ },
+ {
+  "no": 64,
+  "slug": "independence-allowance",
+  "name": "자립준비청년 자립수당",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원"
+  ],
+  "lifecycle": [
+   "청년"
+  ],
+  "household": []
+ },
+ {
+  "no": 65,
+  "slug": "didim-seed-account",
+  "name": "디딤씨앗통장",
+  "topic": "서민금융",
+  "topics": [
+   "서민금융"
+  ],
+  "lifecycle": [
+   "아동",
+   "청소년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 66,
+  "slug": "child-abuse-protection",
+  "name": "아동학대 피해아동 보호",
+  "topic": "안전·위기",
+  "topics": [
+   "안전·위기",
+   "보호·돌봄"
+  ],
+  "lifecycle": [
+   "영유아",
+   "아동",
+   "청소년"
+  ],
+  "household": []
+ },
+ {
+  "no": 67,
+  "slug": "maternal-newborn-care",
+  "name": "산모·신생아 건강관리 지원",
+  "topic": "임신·출산",
+  "topics": [
+   "임신·출산"
+  ],
+  "lifecycle": [
+   "임신·출산",
+   "영유아"
+  ],
+  "household": []
+ },
+ {
+  "no": 68,
+  "slug": "preconception-health",
+  "name": "임신 사전건강관리 지원",
+  "topic": "임신·출산",
+  "topics": [
+   "임신·출산",
+   "신체건강"
+  ],
+  "lifecycle": [
+   "임신·출산",
+   "청년"
+  ],
+  "household": []
+ },
+ {
+  "no": 69,
+  "slug": "infertility-treatment",
+  "name": "난임부부 시술비 지원",
+  "topic": "임신·출산",
+  "topics": [
+   "임신·출산",
+   "신체건강"
+  ],
+  "lifecycle": [
+   "임신·출산",
+   "청년"
+  ],
+  "household": []
+ },
+ {
+  "no": 70,
+  "slug": "crisis-pregnancy-protected-birth",
+  "name": "위기임신 상담·보호출산",
+  "topic": "임신·출산",
+  "topics": [
+   "임신·출산",
+   "안전·위기"
+  ],
+  "lifecycle": [
+   "임신·출산"
+  ],
+  "household": [
+   "한부모·조손"
+  ]
+ },
+ {
+  "no": 71,
+  "slug": "nutrition-plus",
+  "name": "영양플러스",
+  "topic": "신체건강",
+  "topics": [
+   "신체건강",
+   "임신·출산"
+  ],
+  "lifecycle": [
+   "임신·출산",
+   "영유아"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 72,
+  "slug": "diaper-formula",
+  "name": "저소득층 기저귀·조제분유 지원",
+  "topic": "보육",
+  "topics": [
+   "보육",
+   "생활지원"
+  ],
+  "lifecycle": [
+   "영유아"
+  ],
+  "household": [
+   "저소득",
+   "장애인",
+   "한부모·조손",
+   "다자녀"
+  ]
+ },
+ {
+  "no": 73,
+  "slug": "high-risk-pregnancy",
+  "name": "고위험 임산부 의료비 지원",
+  "topic": "임신·출산",
+  "topics": [
+   "임신·출산",
+   "신체건강"
+  ],
+  "lifecycle": [
+   "임신·출산"
+  ],
+  "household": []
+ },
+ {
+  "no": 74,
+  "slug": "preterm-infant-medical",
+  "name": "미숙아·선천성이상아 의료비 지원",
+  "topic": "신체건강",
+  "topics": [
+   "신체건강",
+   "임신·출산"
+  ],
+  "lifecycle": [
+   "영유아"
+  ],
+  "household": []
+ },
+ {
+  "no": 75,
+  "slug": "suicide-prevention",
+  "name": "자살예방(자살시도자 사후관리)",
+  "topic": "정신건강",
+  "topics": [
+   "정신건강",
+   "안전·위기"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년",
+   "노년"
+  ],
+  "household": []
+ },
+ {
+  "no": 76,
+  "slug": "mental-health-center",
+  "name": "정신건강복지센터",
+  "topic": "정신건강",
+  "topics": [
+   "정신건강"
+  ],
+  "lifecycle": [
+   "청소년",
+   "청년",
+   "중장년",
+   "노년"
+  ],
+  "household": []
+ },
+ {
+  "no": 77,
+  "slug": "mind-investment-voucher",
+  "name": "전국민 마음투자 지원사업",
+  "topic": "정신건강",
+  "topics": [
+   "정신건강"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년"
+  ],
+  "household": []
+ },
+ {
+  "no": 78,
+  "slug": "psychiatric-treatment-cost",
+  "name": "정신질환자 치료비 지원",
+  "topic": "정신건강",
+  "topics": [
+   "정신건강",
+   "신체건강"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 79,
+  "slug": "visiting-health-care",
+  "name": "방문건강관리",
+  "topic": "신체건강",
+  "topics": [
+   "신체건강",
+   "보호·돌봄"
+  ],
+  "lifecycle": [
+   "노년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 80,
+  "slug": "jeju-value-care",
+  "name": "제주가치돌봄",
+  "topic": "보호·돌봄",
+  "topics": [
+   "보호·돌봄"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년",
+   "노년"
+  ],
+  "household": []
+ },
+ {
+  "no": 81,
+  "slug": "seogwipo-warm-store",
+  "name": "서귀포 온정가게",
+  "topic": "안전·위기",
+  "topics": [
+   "안전·위기",
+   "생활지원"
+  ],
+  "lifecycle": [],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 82,
+  "slug": "jeju-citizen-safety-insurance",
+  "name": "도민안전보험",
+  "topic": "안전·위기",
+  "topics": [
+   "안전·위기"
+  ],
+  "lifecycle": [],
+  "household": []
+ },
+ {
+  "no": 83,
+  "slug": "vulnerable-fire-support",
+  "name": "취약계층 화재발생 긴급지원",
+  "topic": "주거",
+  "topics": [
+   "주거",
+   "안전·위기"
+  ],
+  "lifecycle": [],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 84,
+  "slug": "unclaimed-funeral",
+  "name": "무연고 사망자 장례지원",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원",
+   "안전·위기"
+  ],
+  "lifecycle": [
+   "노년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 85,
+  "slug": "memorial-cemetery",
+  "name": "충혼묘지 안장",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원"
+  ],
+  "lifecycle": [],
+  "household": [
+   "보훈대상자"
+  ]
+ },
+ {
+  "no": 86,
+  "slug": "culture-nuri-card",
+  "name": "통합문화이용권(문화누리카드)",
+  "topic": "문화·여가",
+  "topics": [
+   "문화·여가"
+  ],
+  "lifecycle": [
+   "아동",
+   "청소년",
+   "청년",
+   "중장년",
+   "노년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 87,
+  "slug": "sports-voucher",
+  "name": "스포츠강좌이용권",
+  "topic": "문화·여가",
+  "topics": [
+   "문화·여가"
+  ],
+  "lifecycle": [
+   "아동",
+   "청소년"
+  ],
+  "household": [
+   "저소득",
+   "장애인",
+   "한부모·조손"
+  ]
+ },
+ {
+  "no": 88,
+  "slug": "senior-center",
+  "name": "경로당 운영 지원",
+  "topic": "문화·여가",
+  "topics": [
+   "문화·여가"
+  ],
+  "lifecycle": [
+   "노년"
+  ],
+  "household": []
+ },
+ {
+  "no": 89,
+  "slug": "lifelong-learning-voucher",
+  "name": "평생교육이용권",
+  "topic": "교육",
+  "topics": [
+   "교육",
+   "문화·여가"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년",
+   "노년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 90,
+  "slug": "unemployment-benefit",
+  "name": "실업급여",
+  "topic": "일자리",
+  "topics": [
+   "일자리",
+   "생활지원"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년"
+  ],
+  "household": []
+ },
+ {
+  "no": 91,
+  "slug": "national-employment-support",
+  "name": "국민취업지원제도",
+  "topic": "일자리",
+  "topics": [
+   "일자리"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 92,
+  "slug": "earned-income-tax-credit",
+  "name": "근로장려금",
+  "topic": "서민금융",
+  "topics": [
+   "서민금융",
+   "일자리"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년",
+   "노년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 93,
+  "slug": "legal-aid",
+  "name": "법률구조 제도",
+  "topic": "법률",
+  "topics": [
+   "법률"
+  ],
+  "lifecycle": [],
+  "household": [
+   "저소득",
+   "장애인",
+   "한부모·조손",
+   "다문화·탈북민",
+   "보훈대상자"
+  ]
+ },
+ {
+  "no": 94,
+  "slug": "single-parent-child-support",
+  "name": "한부모가족 아동양육비 지원",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원",
+   "보육"
+  ],
+  "lifecycle": [
+   "영유아",
+   "아동",
+   "청소년"
+  ],
+  "household": [
+   "한부모·조손",
+   "저소득"
+  ]
+ },
+ {
+  "no": 95,
+  "slug": "multicultural-language",
+  "name": "다문화가족 자녀 언어발달 지원",
+  "topic": "교육",
+  "topics": [
+   "교육"
+  ],
+  "lifecycle": [
+   "영유아",
+   "아동"
+  ],
+  "household": [
+   "다문화·탈북민"
+  ]
+ },
+ {
+  "no": 96,
+  "slug": "defector-settlement",
+  "name": "북향민 정착금 지원",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원",
+   "주거"
+  ],
+  "lifecycle": [],
+  "household": [
+   "다문화·탈북민"
+  ]
+ },
+ {
+  "no": 97,
+  "slug": "veteran-compensation",
+  "name": "국가유공자 등 보상금",
+  "topic": "생활지원",
+  "topics": [
+   "생활지원"
+  ],
+  "lifecycle": [],
+  "household": [
+   "보훈대상자"
+  ]
+ },
+ {
+  "no": 98,
+  "slug": "lpg-facility-improvement",
+  "name": "LPG용기 사용가구 시설개선",
+  "topic": "에너지",
+  "topics": [
+   "에너지",
+   "주거",
+   "안전·위기"
+  ],
+  "lifecycle": [],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 99,
+  "slug": "purchased-rental-housing",
+  "name": "매입임대주택",
+  "topic": "주거",
+  "topics": [
+   "주거"
+  ],
+  "lifecycle": [
+   "청년",
+   "중장년"
+  ],
+  "household": [
+   "저소득"
+  ]
+ },
+ {
+  "no": 100,
+  "slug": "violence-victim-support",
+  "name": "가정폭력·성폭력 피해자 지원",
+  "topic": "안전·위기",
+  "topics": [
+   "안전·위기",
+   "법률"
+  ],
+  "lifecycle": [],
+  "household": [
+   "한부모·조손"
+  ]
+ }
+]

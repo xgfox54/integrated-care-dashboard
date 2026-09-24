@@ -1,0 +1,551 @@
+{
+ "livelihood-benefit": {
+  "merge": [
+   "WLF00001132"
+  ],
+  "related": []
+ },
+ "medical-aid": {
+  "merge": [
+   "WLF00000102"
+  ],
+  "related": [
+   "WLF00003171",
+   "WLF00000056",
+   "WLF00003202",
+   "WLF00003273",
+   "WLF00001169",
+   "WLF00000923",
+   "WLF00003218",
+   "WLF00003190",
+   "WLF00000061",
+   "WLF00000067",
+   "WLF00003228",
+   "WLF00003238",
+   "WLF00001185"
+  ]
+ },
+ "housing-benefit": {
+  "merge": [
+   "WLF00003201"
+  ],
+  "related": []
+ },
+ "education-benefit": {
+  "merge": [
+   "WLF00001089"
+  ],
+  "related": []
+ },
+ "birth-funeral-benefit": {
+  "merge": [
+   "WLF00001135",
+   "WLF00003267"
+  ],
+  "related": []
+ },
+ "emergency-welfare": {
+  "merge": [],
+  "related": [
+   "WLF00003180",
+   "WLF00003179",
+   "WLF00000917",
+   "WLF00001112",
+   "WLF00001162",
+   "WLF00003229",
+   "WLF00003178",
+   "WLF00000892"
+  ]
+ },
+ "basic-pension": {
+  "merge": [
+   "WLF00001164"
+  ],
+  "related": []
+ },
+ "near-poverty-certificate": {
+  "merge": [],
+  "related": []
+ },
+ "near-poverty-copay-reduction": {
+  "merge": [
+   "WLF00001119"
+  ],
+  "related": []
+ },
+ "self-sufficiency-work": {
+  "merge": [
+   "WLF00001138"
+  ],
+  "related": []
+ },
+ "hope-savings": {
+  "merge": [
+   "WLF00000100"
+  ],
+  "related": []
+ },
+ "youth-tomorrow-savings": {
+  "merge": [
+   "WLF00000060"
+  ],
+  "related": []
+ },
+ "youth-rent-support": {
+  "merge": [
+   "WLF00004661"
+  ],
+  "related": []
+ },
+ "energy-voucher": {
+  "merge": [
+   "WLF00000072"
+  ],
+  "related": []
+ },
+ "recipient-fee-reduction": {
+  "merge": [],
+  "related": [
+   "WLF00004639",
+   "WLF00004638",
+   "WLF00003257",
+   "WLF00006227",
+   "WLF00006224",
+   "WLF00006226",
+   "WLF00006225",
+   "WLF00000074"
+  ]
+ },
+ "catastrophic-medical-expense": {
+  "merge": [
+   "WLF00003247"
+  ],
+  "related": []
+ },
+ "integrated-case-management": {
+  "merge": [
+   "WLF00000059"
+  ],
+  "related": []
+ },
+ "homeless-support": {
+  "merge": [
+   "WLF00001152"
+  ],
+  "related": []
+ },
+ "housework-nursing": {
+  "merge": [
+   "WLF00001087"
+  ],
+  "related": []
+ },
+ "daily-care": {
+  "merge": [
+   "WLF00005411"
+  ],
+  "related": []
+ },
+ "emergency-care": {
+  "merge": [
+   "WLF00005442"
+  ],
+  "related": []
+ },
+ "elderly-customized-care": {
+  "merge": [
+   "WLF00003191"
+  ],
+  "related": []
+ },
+ "emergency-safety-alert": {
+  "merge": [
+   "WLF00001093"
+  ],
+  "related": []
+ },
+ "community-service-investment": {
+  "merge": [
+   "WLF00001061"
+  ],
+  "related": []
+ },
+ "disability-registration": {
+  "merge": [
+   "WLF00006294"
+  ],
+  "related": []
+ },
+ "disability-pension": {
+  "merge": [
+   "WLF00003249"
+  ],
+  "related": []
+ },
+ "disability-allowance": {
+  "merge": [
+   "WLF00003265"
+  ],
+  "related": []
+ },
+ "disabled-child-allowance": {
+  "merge": [
+   "WLF00003198"
+  ],
+  "related": []
+ },
+ "disability-activity-support": {
+  "merge": [
+   "WLF00003260"
+  ],
+  "related": []
+ },
+ "developmental-rehab": {
+  "merge": [
+   "WLF00003195"
+  ],
+  "related": []
+ },
+ "language-development": {
+  "merge": [
+   "WLF00003279"
+  ],
+  "related": []
+ },
+ "disabled-family-childcare": {
+  "merge": [
+   "WLF00003262"
+  ],
+  "related": []
+ },
+ "adult-dd-day-activity": {
+  "merge": [
+   "WLF00001165"
+  ],
+  "related": []
+ },
+ "youth-dd-after-school": {
+  "merge": [
+   "WLF00001178"
+  ],
+  "related": []
+ },
+ "dd-public-guardianship": {
+  "merge": [
+   "WLF00000065"
+  ],
+  "related": []
+ },
+ "disability-jobs": {
+  "merge": [
+   "WLF00000025"
+  ],
+  "related": []
+ },
+ "assistive-devices": {
+  "merge": [
+   "WLF00003211"
+  ],
+  "related": []
+ },
+ "disability-self-reliance-loan": {
+  "merge": [
+   "WLF00000026"
+  ],
+  "related": []
+ },
+ "disabled-women-birth": {
+  "merge": [
+   "WLF00003278"
+  ],
+  "related": []
+ },
+ "disability-primary-doctor": {
+  "merge": [
+   "WLF00005034"
+  ],
+  "related": []
+ },
+ "senior-jobs": {
+  "merge": [
+   "WLF00001155"
+  ],
+  "related": []
+ },
+ "long-term-care-insurance": {
+  "merge": [
+   "WLF00001170"
+  ],
+  "related": [
+   "WLF00001177",
+   "WLF00000103"
+  ]
+ },
+ "dementia-screening-treatment": {
+  "merge": [],
+  "related": [
+   "WLF00005004"
+  ]
+ },
+ "senior-eye-surgery": {
+  "merge": [
+   "WLF00001115"
+  ],
+  "related": []
+ },
+ "senior-knee-surgery": {
+  "merge": [
+   "WLF00001179"
+  ],
+  "related": []
+ },
+ "parent-benefit": {
+  "merge": [
+   "WLF00004657"
+  ],
+  "related": []
+ },
+ "child-allowance": {
+  "merge": [
+   "WLF00001171"
+  ],
+  "related": []
+ },
+ "first-meeting-voucher": {
+  "merge": [
+   "WLF00004656"
+  ],
+  "related": []
+ },
+ "childcare-fee": {
+  "merge": [
+   "WLF00003250"
+  ],
+  "related": [
+   "WLF00001140",
+   "WLF00001067",
+   "WLF00001147",
+   "WLF00001183"
+  ]
+ },
+ "home-childcare-allowance": {
+  "merge": [
+   "WLF00003253"
+  ],
+  "related": []
+ },
+ "hourly-childcare": {
+  "merge": [
+   "WLF00000037"
+  ],
+  "related": []
+ },
+ "together-care": {
+  "merge": [
+   "WLF00000089"
+  ],
+  "related": []
+ },
+ "local-children-center": {
+  "merge": [
+   "WLF00001107"
+  ],
+  "related": []
+ },
+ "dream-start": {
+  "merge": [
+   "WLF00003283"
+  ],
+  "related": []
+ },
+ "foster-care": {
+  "merge": [],
+  "related": [
+   "WLF00003268",
+   "WLF00003270"
+  ]
+ },
+ "adoption": {
+  "merge": [],
+  "related": [
+   "WLF00001116",
+   "WLF00003235",
+   "WLF00001121",
+   "WLF00001021",
+   "WLF00000807",
+   "WLF00003270"
+  ]
+ },
+ "independence-allowance": {
+  "merge": [
+   "WLF00001175"
+  ],
+  "related": []
+ },
+ "didim-seed-account": {
+  "merge": [
+   "WLF00003258"
+  ],
+  "related": []
+ },
+ "child-abuse-protection": {
+  "merge": [],
+  "related": [
+   "WLF00001180"
+  ]
+ },
+ "maternal-newborn-care": {
+  "merge": [
+   "WLF00001188"
+  ],
+  "related": []
+ },
+ "preconception-health": {
+  "merge": [
+   "WLF00005858"
+  ],
+  "related": []
+ },
+ "crisis-pregnancy-protected-birth": {
+  "merge": [
+   "WLF00006289"
+  ],
+  "related": []
+ },
+ "nutrition-plus": {
+  "merge": [
+   "WLF00006239"
+  ],
+  "related": []
+ },
+ "diaper-formula": {
+  "merge": [
+   "WLF00000092"
+  ],
+  "related": []
+ },
+ "high-risk-pregnancy": {
+  "merge": [
+   "WLF00001088"
+  ],
+  "related": []
+ },
+ "preterm-infant-medical": {
+  "merge": [
+   "WLF00003237"
+  ],
+  "related": []
+ },
+ "suicide-prevention": {
+  "merge": [],
+  "related": [
+   "WLF00006331"
+  ]
+ },
+ "mental-health-center": {
+  "merge": [
+   "WLF00003169"
+  ],
+  "related": []
+ },
+ "mind-investment-voucher": {
+  "merge": [],
+  "related": [
+   "WLF00005567"
+  ]
+ },
+ "psychiatric-treatment-cost": {
+  "merge": [
+   "WLF00006241"
+  ],
+  "related": []
+ },
+ "unclaimed-funeral": {
+  "merge": [],
+  "related": [
+   "WLF00003912"
+  ]
+ },
+ "culture-nuri-card": {
+  "merge": [
+   "WLF00000055"
+  ],
+  "related": []
+ },
+ "sports-voucher": {
+  "merge": [
+   "WLF00000076"
+  ],
+  "related": []
+ },
+ "lifelong-learning-voucher": {
+  "merge": [
+   "WLF00003240"
+  ],
+  "related": []
+ },
+ "national-employment-support": {
+  "merge": [
+   "WLF00003245"
+  ],
+  "related": []
+ },
+ "earned-income-tax-credit": {
+  "merge": [
+   "WLF00001148"
+  ],
+  "related": []
+ },
+ "legal-aid": {
+  "merge": [
+   "WLF00006309"
+  ],
+  "related": []
+ },
+ "single-parent-child-support": {
+  "merge": [
+   "WLF00001068"
+  ],
+  "related": []
+ },
+ "multicultural-language": {
+  "merge": [
+   "WLF00003282"
+  ],
+  "related": []
+ },
+ "defector-settlement": {
+  "merge": [
+   "WLF00003172"
+  ],
+  "related": []
+ },
+ "veteran-compensation": {
+  "merge": [
+   "WLF00000043"
+  ],
+  "related": []
+ },
+ "lpg-facility-improvement": {
+  "merge": [
+   "WLF00006279"
+  ],
+  "related": []
+ },
+ "purchased-rental-housing": {
+  "merge": [
+   "WLF00000062"
+  ],
+  "related": []
+ },
+ "violence-victim-support": {
+  "merge": [],
+  "related": [
+   "WLF00001166",
+   "WLF00001105",
+   "WLF00001101",
+   "WLF00001072",
+   "WLF00001077"
+  ]
+ }
+}
