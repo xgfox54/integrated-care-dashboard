@@ -27,6 +27,21 @@ export interface BokjiroLaw {
   url?: string;
 }
 
+/** 복지로 원자료가 지난 내용일 때, 확인한 최신 자료로 고친 기록(data/welfare100/bokjiro-edits.json). */
+export interface BokjiroEdit {
+  /** 최신 자료를 확인한 날 */
+  checkedAt: string;
+  /** 복지로에 등록된 원래 사업명(이름을 바꾼 경우) */
+  previousName?: string;
+  /** 무엇을 어떤 자료로 고쳤는지 */
+  note: string;
+  /** 최신 자료로 덮어쓴 복지로 필드 이름 */
+  fields?: string[];
+  sources: { label: string; url: string }[];
+  /** 현장에서 더 확인할 사항 */
+  verify?: string[];
+}
+
 /** 복지로 복지서비스 상세를 정리한 원자료. */
 export interface BokjiroRaw {
   id: string;
@@ -62,6 +77,7 @@ export interface BokjiroRaw {
   household: string[];
   talkRefs: TalkRef[];
   priority: number;
+  edit?: BokjiroEdit;
 }
 
 export interface RelatedService {

@@ -1,6 +1,7 @@
 import { after } from "next/server";
 
 import { getD1 } from "./d1";
+import { logServerError } from "./errors";
 import { readLatestRun } from "./official-query";
 import { cachedWikiEdits } from "./wiki-edit-store";
 import type { WikiEdit } from "./wiki-edits";
@@ -26,7 +27,7 @@ function storeUsable(): boolean {
 
 function disableStore(error: unknown): void {
   disabledUntil = Date.now() + 60_000;
-  console.error("dataset response cache unavailable", error);
+  logServerError(error, { path: "dataset-cache/read", status: 500 });
 }
 
 export function wikiEditsVersion(edits: ReadonlyMap<string, WikiEdit>): string {
@@ -86,7 +87,9 @@ export async function writeStoredEntries(
 }
 
 function storeLater(task: () => Promise<void>): void {
-  const guarded = () => task().catch((error: unknown) => console.error("dataset response cache store failed", error));
+  const guarded = () => task().catch((error: unknown) => {
+    logServerError(error, { path: "dataset-cache/write", status: 500 });
+  });
   try {
     after(guarded);
   } catch {
@@ -143,6 +146,6 @@ export async function clearDatasetCache(): Promise<void> {
   try {
     await getD1().prepare("DELETE FROM dataset_response_cache").run();
   } catch (error) {
-    console.error("dataset response cache clear failed", error);
+    logServerError(error, { path: "dataset-cache/clear", status: 500 });
   }
 }

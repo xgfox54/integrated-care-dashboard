@@ -1,6 +1,6 @@
 import { after } from "next/server";
 
-import { describeError } from "@/lib/errors";
+import { errorResponse } from "@/lib/errors";
 import { SHARED_CACHE_HEADER, withSharedCache } from "@/lib/edge-cache";
 import {
   beginOfficialSync,
@@ -35,12 +35,11 @@ async function buildDatasetResponse(request: Request): Promise<Response> {
       }
     }
 
-    const lastFailure =
-      status.latestAttempt?.status === "failed" ? status.latestAttempt.error : "";
+    const lastFailure = status.latestAttempt?.status === "failed";
     const message = status.running || syncStarted
       ? "보건복지부 통합돌봄 사업안내 원문을 수집하고 있습니다. 공공 API는 보완 자료로 확인합니다."
       : lastFailure
-        ? `최근 현행화 실패: ${lastFailure}`
+        ? "최근 공식자료 현행화에 실패했습니다. 마지막 성공 자료를 표시합니다."
         : status.stale
           ? "최신 공식자료 현행화를 시작했습니다. 현재 화면에는 마지막 성공 자료가 표시됩니다."
           : "";
@@ -64,18 +63,12 @@ async function buildDatasetResponse(request: Request): Promise<Response> {
       },
     );
   } catch (error) {
-    return Response.json(
-      {
-        state: "failed",
-        sourceLabel: "보건복지부 통합돌봄 사업안내",
-        sourceUrl: MOHW_INTEGRATED_CARE_URL,
-        fetchedAt: "",
-        dataAsOf: "",
-        message: `공식자료 저장소를 읽지 못했습니다: ${describeError(error)}`,
-        rows: [],
-      },
-      { status: 500, headers: { "cache-control": "no-store" } },
-    );
+    return errorResponse(error, {
+      code: "DATASET_READ_FAILED",
+      message: "공식자료 저장소를 읽지 못했습니다.",
+      status: 500,
+      path: "/api/dataset",
+    });
   }
 }
 

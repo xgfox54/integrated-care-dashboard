@@ -57,69 +57,9 @@ export function visitorSidoFromCf(cf: VisitorCf | undefined): string | null {
   return REGION_NAME_PATTERNS.find(([pattern]) => pattern.test(name))?.[1] ?? null;
 }
 
-const LOOKUP_TIMEOUT_MS = 1500;
-const LOOKUP_CACHE_LIMIT = 2000;
-const lookupCache = new Map<string, string | null>();
-
-async function getJson(url: string): Promise<Record<string, unknown> | null> {
-  const response = await fetch(url, {
-    headers: { accept: "application/json" },
-    signal: AbortSignal.timeout(LOOKUP_TIMEOUT_MS),
-  });
-  if (!response.ok) return null;
-  return (await response.json()) as Record<string, unknown>;
-}
-
-const text = (value: unknown) => (typeof value === "string" ? value : "");
-
-// Public IP geolocation services, tried in order when Cloudflare has no region.
-const IP_LOOKUPS: readonly (readonly [string, (ip: string) => Promise<VisitorCf | null>])[] = [
-  ["ip-api.com", async (ip) => {
-    const data = await getJson(`http://ip-api.com/json/${encodeURIComponent(ip)}?fields=status,countryCode,region,regionName`);
-    if (!data || data.status !== "success") return null;
-    return { country: text(data.countryCode), regionCode: text(data.region), region: text(data.regionName) };
-  }],
-  ["ipwho.is", async (ip) => {
-    const data = await getJson(`https://ipwho.is/${encodeURIComponent(ip)}?fields=success,country_code,region,region_code`);
-    if (!data || data.success === false) return null;
-    return { country: text(data.country_code), regionCode: text(data.region_code), region: text(data.region) };
-  }],
-  ["freeipapi.com", async (ip) => {
-    const data = await getJson(`https://free.freeipapi.com/api/json/${encodeURIComponent(ip)}`);
-    if (!data) return null;
-    return { country: text(data.countryCode), region: text(data.regionName) };
-  }],
-];
-
-async function lookupIp(ip: string, attempts: string[]): Promise<string | null> {
-  if (lookupCache.has(ip)) return lookupCache.get(ip) ?? null;
-  for (const [name, lookup] of IP_LOOKUPS) {
-    try {
-      const found = await lookup(ip);
-      attempts.push(`${name}: ${found ? `${found.country ?? ""} ${found.regionCode ?? ""} ${found.region ?? ""}` : "no answer"}`);
-      if (!found) continue;
-      const sido = visitorSidoFromCf(found);
-      if (sido || (found.country && found.country !== "KR")) {
-        if (lookupCache.size >= LOOKUP_CACHE_LIMIT) lookupCache.clear();
-        lookupCache.set(ip, sido);
-        return sido;
-      }
-    } catch (error) {
-      attempts.push(`${name}: ${error instanceof Error ? error.name : "error"}`);
-    }
-  }
-  return null;
-}
-
 export async function resolveVisitorSido(
   cf: VisitorCf | undefined,
-  ip: string,
-  country: string,
-): Promise<{ sido: string | null; source: "cloudflare" | "ip-lookup" | "none"; attempts: string[] }> {
-  const attempts: string[] = [];
+): Promise<{ readonly sido: string | null; readonly source: "edge" | "none" }> {
   const fromCf = visitorSidoFromCf(cf);
-  if (fromCf) return { sido: fromCf, source: "cloudflare", attempts };
-  if (!ip || (country && country !== "KR")) return { sido: null, source: "none", attempts: [`skipped: ip=${ip ? "yes" : "no"} country=${country}`] };
-  const fromIp = await lookupIp(ip, attempts);
-  return { sido: fromIp, source: fromIp ? "ip-lookup" : "none", attempts };
+  return fromCf ? { sido: fromCf, source: "edge" } : { sido: null, source: "none" };
 }

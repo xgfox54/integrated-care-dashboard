@@ -1,21 +1,21 @@
-import { Mail } from "lucide-react";
+import { MailIcon } from "@/components/ui/jeju-icons";
 
 const REPORT_EMAIL = "xgfox54@gmail.com";
 const REPORT_HREF = `mailto:${REPORT_EMAIL}?subject=${encodeURIComponent("[통합돌봄 대시보드] 오류 제보")}`;
 
 export function SiteFooter() {
   return (
-    <footer className="mt-10 border-t border-border bg-card">
-      <div className="mx-auto max-w-[1400px] space-y-2 px-4 py-6 text-sm text-muted-foreground sm:px-6">
-        <p className="flex items-start gap-2 rounded-md bg-secondary px-3 py-2 text-foreground">
-          <Mail className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
+    <footer className="mt-10 border-t border-(--jeju-shell-border) bg-card">
+      <div className="mx-auto max-w-(--jeju-main-max-wide) space-y-2 px-4 py-6 text-(length:--jeju-text-sm) text-muted-foreground sm:px-6">
+        <p className="flex items-start gap-2 rounded-(--jeju-radius) border border-border bg-(--jeju-surface-inset) px-3 py-2.5 text-(--jeju-text-body) print:hidden">
+          <MailIcon className="mt-0.5 text-primary" />
           <span>
-            <strong className="font-semibold">오류 제보</strong>
-            <span className="mx-1.5 text-muted-foreground" aria-hidden="true">|</span>
+            <strong className="font-bold text-(--jeju-text-strong)">오류 제보</strong>
+            <span className="mx-1.5 text-(--jeju-text-faint)" aria-hidden="true">|</span>
             사이트 버그나 사업 정보 오류를 발견하시면{" "}
             <a
               href={REPORT_HREF}
-              className="font-semibold text-primary underline underline-offset-2 hover:text-primary/80"
+              className="font-bold text-primary underline underline-offset-2 hover:text-(--jeju-primary-hover)"
             >
               {REPORT_EMAIL}
             </a>
@@ -30,6 +30,11 @@ export function SiteFooter() {
         <p>
           사업 수는 수혜자 수, 예산 규모, 서비스 공급량을 의미하지 않습니다. 데이터 원 출처와
           이용 근거는 데이터 출처 화면에서 확인할 수 있습니다.
+        </p>
+        <p className="print:hidden">
+          <a href="/usage-policy" className="text-(--jeju-text-body) underline underline-offset-2 hover:text-primary">
+            이용통계 수집 안내
+          </a>
         </p>
       </div>
     </footer>

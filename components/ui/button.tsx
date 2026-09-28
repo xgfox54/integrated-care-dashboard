@@ -4,31 +4,35 @@ import { Slot } from "radix-ui"
 
 import { cn } from "@/lib/utils"
 
+// shadcn 공식 button + 제주 토큰. 변형 이름은 Tier 1(.jeju-btn--*)과 같다.
+// secondary = Green 역할색(strong), accent = Orange 역할색(strong). 치수는 프로필 토큰을 따른다.
 const buttonVariants = cva(
-  "inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-(length:--jeju-control-font) font-bold whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:shadow-(--jeju-focus-ring) active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:border-(--jeju-disabled-border) disabled:bg-(--jeju-disabled-bg) disabled:text-(--jeju-disabled-text) disabled:shadow-none aria-disabled:pointer-events-none aria-disabled:border-(--jeju-disabled-border) aria-disabled:bg-(--jeju-disabled-bg) aria-disabled:text-(--jeju-disabled-text) aria-disabled:shadow-none aria-invalid:border-destructive [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-(--jeju-icon)",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:bg-destructive/60 dark:focus-visible:ring-destructive/40",
-        outline:
-          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
+        default:
+          "bg-primary text-primary-foreground shadow-(--jeju-shadow-primary) hover:bg-(--jeju-primary-hover) active:bg-(--jeju-primary-active)",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "bg-(--jeju-secondary-strong) text-(--jeju-on-fill) hover:bg-(--jeju-green-deep)",
+        accent:
+          "bg-(--jeju-accent-strong) text-(--jeju-on-fill) hover:bg-(--jeju-orange-deep)",
+        outline:
+          "border-input bg-card text-foreground hover:bg-muted aria-expanded:bg-muted",
         ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+          "text-(--jeju-text-body) hover:bg-muted hover:text-foreground aria-expanded:bg-muted",
+        destructive: "bg-destructive text-(--jeju-on-fill)",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-9 px-4 py-2 has-[>svg]:px-3",
-        xs: "h-6 gap-1 rounded-md px-2 text-xs has-[>svg]:px-1.5 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-        icon: "size-9",
-        "icon-xs": "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
-        "icon-sm": "size-8",
-        "icon-lg": "size-10",
+        default: "h-(--jeju-control-h) gap-1.5 px-3.5",
+        xs: "h-6 gap-1 rounded-md px-2 text-(length:--jeju-text-xs)",
+        sm: "h-(--jeju-control-h-sm) gap-1.5 px-3 text-(length:--jeju-control-font-sm)",
+        lg: "h-(--jeju-control-h-lg) gap-2 px-4.5 text-(length:--jeju-control-font-lg)",
+        icon: "size-(--jeju-control-h)",
+        "icon-xs": "size-6 rounded-md",
+        "icon-sm": "size-(--jeju-control-h-sm)",
+        "icon-lg": "size-(--jeju-control-h-lg)",
       },
     },
     defaultVariants: {

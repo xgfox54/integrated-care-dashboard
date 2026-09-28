@@ -1,4 +1,5 @@
 import { getD1 } from "./d1";
+import { logServerError } from "./errors";
 import { normalizeRows, type ServiceRow } from "./dataset";
 import { memoizeForTtl } from "./memo";
 import { repairKnownExtractionFragments } from "./official-correction";
@@ -120,7 +121,7 @@ async function loadWikiEditMap(): Promise<ReadonlyMap<string, WikiEdit>> {
     const edits = await listWikiEdits();
     return new Map(edits.map((edit) => [edit.serviceId, edit]));
   } catch (error) {
-    console.error("wiki edit overlay unavailable", error);
+    logServerError(error, { path: "wiki-edit/overlay", status: 500 });
     return new Map();
   }
 }

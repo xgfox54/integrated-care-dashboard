@@ -3,6 +3,7 @@
 import { useState } from "react";
 import InstitutionSwitcher from "./InstitutionSwitcher";
 import ProcessExplorer from "./ProcessExplorer";
+import WelfareSearchBar from "./WelfareSearchBar";
 import { buildProcessLaneGroups } from "@/lib/welfare100/process-layout.mjs";
 import { formatProcessWarnings } from "@/lib/welfare100/process-warnings.mjs";
 import { bokjiroUrl, talkSourceCount } from "@/lib/welfare100/bokjiro";
@@ -61,7 +62,11 @@ export default function InstitutionDetailView({
 
   return (
     <div className={styles.detail}>
-      <InstitutionSwitcher currentSlug={institution.slug} entries={group.entries} groupLabel={group.label} />
+      {/* 왼쪽: 전체 복지제도 통합검색, 오른쪽: 이 제도가 속한 묶음(지자체·중앙부처·주요 제도) 안에서 옮겨 다니기 */}
+      <div className={styles.toolbar}>
+        <WelfareSearchBar catalog={catalog} />
+        <InstitutionSwitcher currentSlug={institution.slug} entries={group.entries} groupLabel={group.label} />
+      </div>
 
       <section className={styles.titleBand}>
         <div className={styles.titleTop}>
@@ -82,6 +87,12 @@ export default function InstitutionDetailView({
                   복지로 원문{talkCount > 0 ? " · 복지톡 DB " + talkCount + "건" : ""}
                 </span>
               )}
+              {primaryBokjiro?.edit && !curated ? (
+                <span className={styles.verificationBadge} data-tone="verified">
+                  <i aria-hidden="true" />
+                  최신 자료 반영 {primaryBokjiro.edit.checkedAt}
+                </span>
+              ) : null}
             </div>
             <h1>{institution.name}</h1>
             <p>{institution.oneLiner}</p>
@@ -393,6 +404,24 @@ function BokjiroBlock({ raw, institution }: { raw: BokjiroRaw; institution: Welf
                   {site.name}
                 </a>
               ))}
+            </dd>
+          </div>
+        )}
+        {raw.edit && !curated && (
+          <div>
+            <dt>최신 자료 반영</dt>
+            <dd>
+              {raw.edit.checkedAt} 확인. {raw.edit.note}
+              {raw.edit.previousName ? " (복지로 등록 사업명: " + raw.edit.previousName + ")" : ""}
+              <ul className={styles.editSources}>
+                {raw.edit.sources.map((source, index) => (
+                  <li key={source.url + index}>
+                    <a href={source.url} target="_blank" rel="noreferrer">
+                      {source.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </dd>
           </div>
         )}

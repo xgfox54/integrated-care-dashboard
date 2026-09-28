@@ -1,6 +1,7 @@
-import { describeError } from "@/lib/errors";
-import { bundleBodyJson, parseBundleRequest } from "@/lib/dataset-responses";
+import { parseBundleRequest } from "@/lib/dataset-bundle-request";
+import { bundleBodyJson } from "@/lib/dataset-responses";
 import { SHARED_CACHE_HEADER, withSharedCache } from "@/lib/edge-cache";
+import { errorResponse } from "@/lib/errors";
 
 export const dynamic = "force-dynamic";
 
@@ -20,10 +21,12 @@ async function buildBundleResponse(request: Request): Promise<Response> {
       },
     });
   } catch (error) {
-    return Response.json(
-      { error: `지역 묶음을 읽지 못했습니다: ${describeError(error)}`, entries: [] },
-      { status: 500, headers: { "cache-control": "no-store" } },
-    );
+    return errorResponse(error, {
+      code: "DATASET_BUNDLE_FAILED",
+      message: "지역 묶음을 읽지 못했습니다.",
+      status: 500,
+      path: "/api/dataset/bundle",
+    });
   }
 }
 

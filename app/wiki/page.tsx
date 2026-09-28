@@ -12,7 +12,7 @@ export default function WikiPage() {
   return (
     <Suspense
       fallback={(
-        <main className="mx-auto max-w-[1400px] px-4 py-6 text-sm text-muted-foreground sm:px-6">
+        <main className="mx-auto max-w-(--jeju-main-max-wide) px-4 py-6 text-(length:--jeju-text-sm) text-muted-foreground sm:px-6">
           통합돌봄 WIKI를 불러오는 중입니다.
         </main>
       )}

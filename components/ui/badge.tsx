@@ -4,20 +4,24 @@ import { Slot } from "radix-ui"
 
 import { cn } from "@/lib/utils"
 
+// 상태 배지는 항상 문구와 함께 쓴다. 색만으로 상태를 전달하지 않는다.
+// info/success/warning/danger/neutral은 Tier 1 .jeju-badge--*와 같은 역할색이다.
 const badgeVariants = cva(
-  "inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3",
+  "group/badge inline-flex min-h-6 w-fit shrink-0 items-center justify-center gap-1.25 overflow-hidden rounded-4xl border border-transparent px-2 py-0.75 text-(length:--jeju-text-xs) leading-none font-extrabold whitespace-nowrap transition-all focus-visible:border-ring focus-visible:shadow-(--jeju-focus-ring) [&>svg]:pointer-events-none [&>svg]:size-3!",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground [a&]:hover:bg-primary/90",
-        secondary:
-          "bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90",
-        destructive:
-          "bg-destructive text-white focus-visible:ring-destructive/20 dark:bg-destructive/60 dark:focus-visible:ring-destructive/40 [a&]:hover:bg-destructive/90",
-        outline:
-          "border-border text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
-        ghost: "[a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 [a&]:hover:underline",
+        default: "bg-primary text-primary-foreground [a]:hover:bg-(--jeju-primary-hover)",
+        secondary: "bg-secondary text-secondary-foreground",
+        destructive: "bg-(--jeju-danger-tint) text-(--jeju-danger)",
+        outline: "border-border text-foreground [a]:hover:bg-muted",
+        ghost: "hover:bg-muted hover:text-muted-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+        info: "bg-(--jeju-info-tint) text-(--jeju-info)",
+        success: "bg-(--jeju-success-tint) text-(--jeju-success)",
+        warning: "bg-(--jeju-warning-tint) text-(--jeju-warning)",
+        danger: "bg-(--jeju-danger-tint) text-(--jeju-danger)",
+        neutral: "bg-(--jeju-control-bg) text-(--jeju-text-muted)",
       },
     },
     defaultVariants: {

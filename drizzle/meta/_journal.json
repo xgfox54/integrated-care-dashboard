@@ -92,6 +92,20 @@
       "when": 1790406000000,
       "tag": "0012_dataset_response_cache",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "6",
+      "when": 1790492400000,
+      "tag": "0013_usage_statistics",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "6",
+      "when": 1790578800000,
+      "tag": "0014_api_rate_limit",
+      "breakpoints": true
     }
   ]
 }

@@ -1,136 +1,160 @@
-# 전국 통합돌봄 사업 총괄 대시보드 Design System
+# 전국 통합돌봄 사업 총괄 대시보드 디자인 기준
 
-## 1. Atmosphere & Identity
+이 사이트는 **제주특별자치도 디자인 시스템 v0.6.0**(이하 제주 디자인)을 따른다. 색·글꼴·간격·모서리·포커스는 모두 제주 토큰(`--jeju-*`)에서 가져오고, 이 문서는 대시보드에 맞춘 적용 규칙만 적는다. 토큰 값 자체는 `styles/jeju-tokens.css`가 기준이다.
 
-공공 업무용 통계 화면답게 차분하고 명확한 인상을 유지한다. 흰색 데이터 표면과 옅은 청회색 배경을 경계선으로 구분하고, 짙은 행정 블루를 선택·강조 상태에만 사용한다. 대표 시각 요소는 복잡한 장식 없이 전국의 지역별 차이를 빠르게 비교하게 하는 데이터 밀도다.
+## 1. 기준 파일과 갱신 방법
 
-## 2. Color
+| 파일 | 역할 | 규칙 |
+|---|---|---|
+| `styles/jeju-tokens.css` | 제주 디자인 토큰 정본 사본 | 직접 고치지 않는다. 정본(`jeju-design-system/design/jeju-tokens.css`)과 파일 내용이 같아야 한다. |
+| `app/globals.css` | shadcn 테마 변수 → 제주 토큰 연결, 지도 단계색, 인쇄 규칙 | 새 색이 필요하면 먼저 제주 토큰에서 찾고, 없으면 `color-mix`로 토큰을 섞는다. |
+| `components/ui/*` 16개 | 제주판 shadcn 컴포넌트 | button, input, label, native-select, sheet, table, tabs, textarea, badge, chip, spinner, skeleton, empty, card, alert, jeju-icons. 갱신은 정본 저장소에서 복사하거나 `npx shadcn add @jeju/<이름> -o`로 한다. |
+| `components/jeju-detail-panel.tsx` | 오른쪽 상세 패널(DetailPanel, DetailList) | 대시보드 사업 상세에 쓴다. |
+| `components.json` | `@jeju` 레지스트리 등록 | 디자인 검사(S6·S7)가 이 등록을 보고 동작한다. |
 
-### Palette
+변경 후에는 제주 디자인 검사를 통과해야 한다.
 
-| Role | Token | Light | Usage |
+```powershell
+python <jeju-design-system>/design/check_design.py --gate .
+```
+
+검사 규칙 S1~S8 가운데 특히 다음을 지킨다.
+
+- 컴포넌트와 CSS에 색 리터럴(hex, rgb, Tailwind 기본 팔레트)을 쓰지 않는다. 모든 색은 `var(--jeju-*)` 또는 그것을 쓰는 shadcn 변수로 쓴다.
+- 외부 CDN 스크립트(unpkg 등)를 넣지 않는다. 개발 도구 스크립트도 마찬가지다.
+- 아이콘은 `components/ui/jeju-icons.tsx`에서 가져온다. ui 폴더 밖에서 lucide를 직접 쓰지 않는다.
+
+## 2. 색 역할
+
+| 역할 | 토큰 | 값 | 쓰는 곳 |
 |---|---|---|---|
-| Page surface | `--background` | `#f1f4f9` | 전체 배경 |
-| Primary text | `--foreground` | `#16212f` | 본문, 제목 |
-| Panel surface | `--card` | `#ffffff` | 카드, 패널, 헤더 |
-| Brand/action | `--primary`, `--care-blue` | `#0173bc` | 주요 버튼, 수치, 지도·바로선택 호버 및 선택 상태 |
-| Brand/action text | `--primary-foreground` | `#ffffff` | 강조 표면 위 텍스트 |
-| Positive/data | `--care-green` | `#009f74` | 보조 데이터, 지도 포커스 상태 |
-| Attention | `--care-orange` | `#f08101` | 순위 포인트, 데이터 강도 보조 강조 |
-| Map ramp | `--map-region-empty` … `--map-region-high` | `#f8fbfc` → `#fde5c8` | 지역별 사업 수 강도 |
-| Map outline | `--map-region-border` | `#6f8b9b` | SVG 행정경계 외곽선 |
-| Map panel wash | `--map-panel-blue-wash`, `--map-panel-green-wash` | `#f4fbff`, `#f0fbf7` | 지도 패널의 옅은 브랜드 그라데이션 |
-| KPI wash | `--kpi-blue-wash`, `--kpi-green-wash`, `--kpi-orange-wash` | `#eef8ff`, `#effbf7`, `#fff7ed` | 핵심 현황 카드의 옅은 데이터 그라데이션 |
-| Attention text | `--attention-foreground` | `#924b00` | 주황색 상태 표면 위 텍스트 |
-| Secondary surface | `--secondary` | `#e7edf6` | 보조 버튼, 선택 전 상태 |
-| Muted surface | `--muted` | `#eef2f7` | 비활성·낮은 강도 데이터 |
-| Muted text | `--muted-foreground` | `#566577` | 설명, 메타데이터 |
-| Border | `--border` | `#d7dfea` | 카드와 구획 경계 |
-| Input border | `--input` | `#c8d3e2` | 입력·선택 필드 |
-| Focus | `--ring` | `#2f6fb5` | 키보드 포커스 |
-| Error | `--destructive` | `#c02626` | 오류·삭제 |
-| Chart ramp | `--chart-1` … `--chart-5` | `#12467f` → `#a7cfe2` | 차트와 지역별 데이터 강도 |
+| 페이지 배경 | `--jeju-bg` (`--background`) | #f2f5f7 | 전체 배경 |
+| 패널 표면 | `--jeju-surface` (`--card`) | #ffffff | 카드, 패널, 헤더, 푸터 |
+| 안쪽 표면 | `--jeju-surface-inset` | #f7f9fa | 지도 틀, 보조 정보 상자 |
+| 본문 글자 | `--jeju-text` / `--jeju-text-body` | #1f2933 / #344354 | 본문, 설명 |
+| 제목 글자 | `--jeju-text-strong` | #151b23 | 화면 제목, 강조 수치 |
+| 보조 글자 | `--jeju-text-muted` | #4e5f70 | 메타데이터, 캡션 |
+| 경계선 | `--jeju-border` / `--jeju-border-strong` | #e1e7eb / #cfd8df | 카드 경계 / 입력 경계 |
+| 주요 동작 | `--jeju-primary` (제주 Blue) | #0173bc | 주요 버튼, 선택 상태, 링크, 차트 막대, 지도 선택 지역 |
+| 주요 동작 옅은 면 | `--jeju-primary-tint` | 제주 Blue 옅은 면 | 호버, 선택 전 강조, 비교 선반 |
+| 현재 메뉴 | `--jeju-secondary-strong` | #008762 | 상단 메뉴의 현재 화면 표시(흰 글자 대비 4.52:1) |
+| 상태색 | `--jeju-success`, `--jeju-warning`, `--jeju-danger`, `--jeju-info` | #008762, #a45500, #c43131, #0173bc | Badge, Alert, 오류 상태 |
 
-### Rules
+규칙:
 
-- 페이지·패널·입력·경계·강조 색상은 위 CSS 토큰만 사용한다.
-- `--primary`는 선택과 실제 동작을 나타내는 곳에 사용한다.
-- 지역별 강도는 `--primary`의 투명도 단계로 표현하며, 색상만으로 상태를 전달하지 않고 지역명과 건수를 항상 함께 표시한다.
+- 버튼·선택 상태처럼 채워진 강조는 제주 Blue 하나로 한다. 파랑·초록·주황 3색 조합은 사이트 정체성으로 로고, 헤더 띠, 전국 지도 단계색, 상위 5개 지역 막대, 분야별 막대에 쓴다. 초록은 상단 메뉴의 현재 화면 표시와 WIKI 메뉴의 점에도 쓴다.
+- 제주 Green 원색(#00a074)은 흰 글자와 대비가 3.34:1이라 글자 배경으로 쓰지 않는다. 채움에는 `--jeju-secondary-strong`을 쓴다.
+- 상태는 색만으로 전달하지 않는다. Badge에는 항상 글자를 함께 쓴다.
+- 그림자는 `--jeju-shadow`(작은 카드), `--jeju-shadow-pop`(대화상자) 또는 `--jeju-text-strong`을 `color-mix`로 옅게 섞은 색을 쓴다. 대화상자 뒤 가림막은 `--jeju-overlay`다. 채워진 면 위의 흰 반투명은 `--jeju-on-fill`을 섞는다.
+- 복지제도100의 분야 점과 업무구조도 레인 머리 띠는 분야·기관을 구분하는 범주색이다. 이 경우에만 제주 토큰 안의 여러 색을 함께 쓴다.
 
-## 3. Typography
+### 지도와 차트
 
-### Font Stack
+| 토큰 | 연결 | 뜻 |
+|---|---|---|
+| `--map-region-empty` | `--jeju-surface-inset` | 사업 0건 |
+| `--map-region-low` | 옅은 파랑(`--jeju-blue-light`와 `--jeju-blue-light-strong`의 중간) | 최댓값의 34% 미만 |
+| `--map-region-medium` | 옅은 초록 `--jeju-green-light-strong` | 34~67% |
+| `--map-region-high` | 옅은 주황 `--jeju-orange-light-strong` | 67% 이상 |
+| `--map-region-border` | `--jeju-text-faint` | 행정경계 외곽선 |
+| `--series-1` … `--series-3` | `--jeju-blue`, `--jeju-green`, `--jeju-orange` | 순위·분류 막대 |
+| `--series-1-strong` … `--series-3-strong` | `--jeju-blue`, `--jeju-green-dark`, `--jeju-orange-dark` | 흰 숫자를 올리는 순위 원 |
+| `--chart-1` … `--chart-5` | primary, secondary-strong, accent-strong, blue-deep, text-subtle | 여러 계열이 꼭 필요한 차트 |
 
-- Primary: `Pretendard`, `Apple SD Gothic Neo`, `Malgun Gothic`, `system-ui`, `sans-serif`
-- Mono: `ui-monospace`, `SFMono-Regular`, `Menlo`, `Monaco`, `Consolas`, monospace
+- 지도 단계색은 적음 옅은 파랑, 중간 옅은 초록, 많음 옅은 주황의 3색 조합이다. 선택된 지역은 제주 Blue로 채우고 파란 그림자를 준다. 키보드로 포커스된 지역은 진한 초록(`--jeju-green-dark`) 외곽선이다.
+- 상위 5개 지역 막대는 파랑·초록·주황·파랑·초록 순서, 분야별 막대는 파랑·초록·주황을 반복한다. 막대 옆에 지역명·분야명과 건수를 항상 적어, 색을 구분하지 못해도 내용을 읽을 수 있다.
+- 순위 원의 흰 숫자는 대비 4.5:1이 필요하므로 순위 원에는 `--series-*-strong`을 쓴다. 막대는 글자가 없으므로 원색을 쓴다.
 
-### Scale
+## 3. 글자
 
-| Level | Size | Weight | Line Height | Usage |
-|---|---|---|---|---|
-| Page title | 18–20px | 700 | 1.4 | 사이트 제목 |
-| Section title | 16px | 600–700 | 1.5 | 카드·패널 제목 |
-| KPI | 24px | 700 | 1.35 | 주요 수치 |
-| Body | 16px | 400 | 1.6 | 기본 본문과 입력 |
-| Body/sm | 14px | 400–600 | 1.5 | 레이블, 설명, 버튼 |
-| Caption | 12px | 500–600 | 1.4 | 지도 타일 보조 정보 |
+- 글꼴: `--jeju-font`(Pretendard GOV, Pretendard, Noto Sans KR, Malgun Gothic 순), 숫자·코드: `--jeju-font-mono`.
+- 크기: 본문 `--jeju-text-base` 14px, 보조 `--jeju-text-sm` 13px, 캡션 `--jeju-text-xs` 12px. 제목은 제주 제목 크기를 따른다.
+- **12px 아래 글자는 쓰지 않는다.** 복지제도100 업무구조도처럼 밀도가 높은 화면도 같다.
+- 한국어는 `word-break: keep-all`을 기본으로 한다.
+- 화면마다 h1은 하나다. 대시보드는 지도 제목, 복지제도100 목록은 보조기술용 제목(`sr-only`)이 h1이다.
 
-한국어는 `word-break: keep-all`을 기본으로 하며 의미 단위가 어색하게 분리되지 않게 한다. 본문은 14px 아래로 내리지 않는다.
+## 4. 간격과 배치
 
-## 4. Spacing & Layout
+- 간격은 `--jeju-space-1`(4px)부터 쓰는 4px 단위다.
+- 모서리: 기본 `--jeju-radius` 10px, 큰 패널 `--jeju-radius-lg` 14px, 알약형 `--jeju-radius-pill`.
+- 컨트롤 높이는 `--jeju-control-h`, 터치 영역은 `--jeju-target-min`(44px) 이상이다.
+- 문서 전체가 세로 스크롤을 가진다. 지도·필터·표 안에 불필요한 세로 스크롤을 만들지 않는다.
+- body는 세로 배치이고 본문 영역이 남는 높이를 채운다. 내용이 짧은 화면에서도 푸터는 화면 아래에 붙는다.
+- 390px 폭에서 페이지 가로 넘침이 없어야 한다. 가로로 넘기는 칩 목록과 업무구조도는 자기 영역 안에서만 가로 스크롤한다.
 
-- Base unit: 4px.
-- Page width: 최대 1400px, 좌우 여백 16px(모바일) / 24px(sm 이상).
-- Page rhythm: 16px(`space-y-4`).
-- Panel padding: 16px.
-- Card gap: 12px.
-- Radius: `--radius` 8px, 입력과 버튼은 6–8px 계열을 따른다.
-- Breakpoints: `sm` 640px, `md` 768px, `lg` 1024px, `xl` 1280px.
-- 문서 전체가 세로 스크롤을 소유한다. 지도·필터·표 안에 불필요한 중첩 세로 스크롤을 만들지 않는다.
-- 375px에서는 주요 콘텐츠가 한 열로 재배치되고 가로 스크롤이 생기지 않아야 한다.
+## 5. 컴포넌트 적용
 
-## 5. Components
+### 셸(헤더·메뉴·푸터)
 
-### Button
+- 헤더와 푸터는 흰 표면에 `--jeju-shell-border` 경계를 쓴다. 헤더 아래 파랑·초록·주황 띠와 로고는 사이트 정체성으로 유지한다.
+- 상단 메뉴는 현재 화면에 `aria-current="page"`를 달고 `--jeju-secondary-strong`으로 채운다. 복지제도 상세(`/welfare100/…`)도 복지제도100 메뉴를 현재 화면으로 본다.
+- 상단 메뉴 이름 앞의 작은 점은 헤더 띠의 포인트 색을 따른다: 대시보드 `--jeju-orange`, 통합돌봄 WIKI `--jeju-green`, 복지제도100 `--jeju-blue`(데이터 출처는 점 없음). 점은 꾸밈(`aria-hidden`)이고, 현재 화면 탭에서는 초록 채움 위 흰 점(`--jeju-on-fill`)이 된다.
+- 인쇄할 때 메뉴는 숨긴다.
 
-- **Structure**: 아이콘 선택 + 짧은 동사형 레이블.
-- **Variants**: primary, outline, secondary, ghost, link, destructive.
-- **States**: default, hover, focus-visible, active, disabled.
-- **Accessibility**: 실제 `button`; 모든 아이콘은 장식이면 `aria-hidden`; 포커스 링은 `--ring`.
-- **Motion**: 색상·그림자 전환만 사용한다.
+### 대시보드
 
-### Form control
+- **핵심 현황(KPI)**: 흰 카드 5개(전체 사업, 수록 시·도, 수록 시·군·구, 사업 분야, 현재 검색 결과). "현재 검색 결과" 카드만 primary 경계와 primary-tint 면으로 강조한다.
+- **데이터 상태**: 수집 상태는 Badge(성공·주의·오류)와 글자로 표시한다.
+- **검색 조건**: `Label` + `Input`/`NativeSelect`. 빠른 검색어는 Chip으로 표시한다. 순서는 광역시·도, 기초시·군·구, 사업 분류다.
+- **검색 지역 칩**: 지역이 걸려 있으면 검색 조건 패널에 「검색 지역」 RemovableChip을 둔다. 접속 위치로 자동 선택된 지역이면 칩에 「· 접속 위치로 자동 선택」을 붙이고, 칩을 지우면 전국으로 찾는다. 검색어의 지역어 때문에 자동 지역을 뺐을 때는 패널 안내문으로 알린다.
+- **전국 건수 띠**: 지역이 걸린 검색 결과 제목 아래에 「{지역}에서 N건 · 전국 M건」 글자와 outline 작은 버튼 「전국 결과 보기」를 둔다.
+- **정렬 선택**: 결과 표 머리에 `NativeSelect`(관련도순·지역순·사업명순). 검색어가 없으면 관련도순을 숨긴다.
+- **전국 지도**: 제목 "대한민국 광역시·도 사업 현황"이 화면의 h1이다. 16개 광역단위(광주·전남은 한 단위) 바로선택 버튼과 SVG 지도 두 조작면을 둔다. 둘 다 실제 버튼(`aria-pressed`)이며 이름에 지역명과 건수를 넣는다. 바로선택 버튼은 호버 때 primary-tint 면과 primary 글자, 선택 때 primary 채움과 흰 글자를 쓴다. 지도에서 포커스된 지역은 굵은 진한 초록 외곽선, 선택된 지역은 primary 채움과 파란 그림자다.
+- **결과 표·카드**: 상태는 Badge로, 쪽 번호 버튼에는 "N페이지" 접근성 이름을 준다. 쪽 이동은 인쇄 때 숨긴다.
+- **사업 상세**: 오른쪽 `DetailPanel`에 `DetailList`로 항목을 나열한다. 닫으면 연 버튼으로 포커스가 돌아온다.
+- **불러오기와 오류**: 불러오는 중에는 Spinner와 `role="status"`, 오류는 `role="alert"`를 쓴다.
+- **0건 화면**: 제목과 설명 아래 버튼 줄(필터 초기화·키워드 제거·지역이 걸려 있으면 「전국으로 검색 · N건」) 다음에 `ZeroResultHelp`를 둔다. 오타 제안은 「혹시 [「치매」](으)로 찾으셨나요? N건이 있습니다.」 문장 속 outline 작은 버튼이고, 「단어를 빼고 찾기」와 「다른 곳에서 찾기」(복지제도100·통합돌봄 사업) 줄도 outline 작은 버튼(링크는 `<a>`에 같은 모양)이다. 건수가 0인 제안은 보이지 않는다.
+- **인쇄**: 현재 검색 조건 한 줄을 인쇄물 머리에 넣는다.
 
-- **Structure**: `Label` + `Input` 또는 `NativeSelect`.
-- **States**: default, focus-visible, disabled, invalid, populated.
-- **Accessibility**: `htmlFor`/`id` 연결, 네이티브 키보드 조작 유지.
-- **Layout**: 검색 조건은 모바일 1열, sm 2열, lg 3열 그리드. 순서는 광역시·도, 기초시·군·구, 사업 분류를 따른다.
+### 통합돌봄 WIKI·데이터 출처
 
-### Data panel
+- WIKI 검색은 보이는 라벨과 `role="search"`를 쓴다. 목록 항목은 흰 카드이고, 선택된 항목은 `aria-current="page"`와 primary 경계·primary-tint 면으로 표시한다.
+- WIKI 검색 상자는 검색어 아래에 `Label` + `NativeSelect` 세 개를 둔다. 광역시·도와 기초시·군·구는 두 칸 나란히, 사업 분류는 한 줄 전체다. 검색어나 조건이 있으면 outline 작은 버튼 「조건 초기화」를 보인다.
+- WIKI 목록 끝의 「더 보기」 outline 버튼은 스크롤로 불러오기를 못 쓰는 키보드·화면낭독기 이용자를 위해 늘 둔다. 받는 중에는 「불러오는 중」(비활성), 실패하면 「목록을 더 불러오지 못했습니다 · 다시 시도」다. 사업을 바꾸면 보이지 않는 알림(`aria-live`)으로 「○○ 설명을 표시했습니다.」를 읽어 준다.
+- WIKI 목록의 0건 상자에도 같은 `ZeroResultHelp`와 복지제도100 링크를 둔다.
+- 사업명 제목은 h2(화면 h1은 "통합돌봄 WIKI")이고, 상태는 Badge로 표시한다.
+- 출처 화면의 링크는 제주 Blue 밑줄 링크다.
 
-- **Structure**: 의미 있는 `section` + 제목/설명 + 데이터 본문.
-- **Variants**: KPI card, status panel, chart, table, map.
-- **Spacing**: 12–16px 내부 여백, 12–16px 패널 간격.
-- **States**: loading, ready, empty, error.
-- **Depth**: 카드 표면 + 1px `--border`; 입력·팝오버에만 기존 `shadow-xs` 허용.
-- **Progressive loading**: 첫 문서에서는 헤더와 패널 골격을 즉시 표시한다. 이후 100KB 이하의 전국 요약, 현재 조건의 검색 페이지, 사용자가 연 비교·CSV 데이터 순서로 불러온다. 지연 패널은 높이가 안정된 `role="status"` 표면을 사용해 레이아웃 이동을 줄인다.
-- **WIKI selected-first loading**: 대시보드에서 사업을 선택해 진입하면 해당 사업 1건을 가장 먼저 조회해 상세내용을 표시한다. 왼쪽 WIKI 목록은 상세내용이 준비된 뒤 30건 단위로 지연 조회하며, WIKI 화면에서 전국 전체 데이터 파일을 내려받지 않는다. 사용자가 검색어를 입력하면 해당 검색 페이지를 우선 갱신한다.
+### 복지제도100
 
-### Regional status map
+- 강조색은 제주 Blue다. 정렬, 보기 전환, 레인 넘김, "복지로에서 보기" 같은 채워진 컨트롤은 primary 채움과 흰 글자다.
+- 비교 선반은 primary-tint 막대에 primary 경계 칩을 쓴다. 칩의 삭제 버튼은 호버 때 primary-hover 글자다.
+- 기관 상세의 제목 띠는 밝은 안쪽 표면(`--jeju-surface-inset`)이다.
+- 제도 목록 정렬 버튼은 검색어가 있으면 관련도순·기본순·가나다, 없으면 기본순·가나다다. 0건이면 대시보드와 같은 `ZeroResultHelp`와 「통합돌봄 사업에서 N건」 링크를 둔다.
+- 기관 상세 위쪽 막대: 왼쪽은 전체 복지제도 통합검색(광역시·도, 기초시·군·구, 검색어 + primary 채움 「검색」 버튼, 검색 상자 전체에 포커스 링)이고, 오른쪽은 같은 묶음(지자체·중앙부처·주요 제도) 제도 선택과 이전·다음이다. 폭이 모자라면 오른쪽 묶음이 다음 줄 오른쪽으로 내려가고, 900px 이하에서는 지역 2칸 → 검색창 → 제도 선택 순서로 쌓는다. 검색하면 `/welfare100?sido=…&sigungu=…&q=…#institutions`(목록 결과)로 옮겨 간다.
+- 업무구조도의 연결선은 카드 위치를 재서 그리므로(ResizeObserver) 글자 크기를 바꿔도 선이 따라간다.
+- 포커스 표시는 제주 포커스 링을 쓴다.
 
-- **Structure**: 제목·설명, 화면 왼쪽 상단의 16개 광역단위 선택 목록, 실제 대한민국 행정경계를 따르는 17개 SVG 경로, 16개 통계 단위(광주·전남은 한 단위), 데이터 강도 범례, 상위 지역 요약.
-- **States**: loading/zero, default, hover, focus-visible, selected.
-- **Accessibility**: 선택 목록은 최소 44px 터치 영역을 가진 실제 `button` 16개로 제공한다. 각 SVG 지역 그룹도 키보드 포커스가 가능한 `role="button"`이며, 두 조작면 모두 전체 명칭과 사업 건수를 접근성 이름으로 제공하고 `aria-pressed`로 선택 상태를 표현한다.
-- **Interaction**: 포인터 또는 키보드 포커스가 위치한 지역은 `--care-blue`로 강조하고 나머지 지역은 낮은 불투명도로 후퇴시킨다. 바로선택 버튼도 호버 시 `--care-blue` 표면과 흰색 텍스트를 사용한다. 선택 목록과 지도에서 선택된 지역은 포인터·포커스 상태와 관계없이 같은 파란색 채움을 유지한다. 장식 레이어는 `pointer-events: none`으로 조작면을 가리지 않는다. 두 조작면 모두 기존 시·도 필터를 갱신하고 시·군·구 선택을 비운다. 선택된 지역을 다시 누르면 전국 상태로 돌아간다.
-- **Layout**: 선택 목록은 왼쪽 지도 열의 맨 위에 배치하고 375px에서는 4열, 768px 이상에서는 8열로 재배치한다. 모바일은 지도와 요약을 세로 배치하고, lg 이상에서는 유동형 본문 + 좁은 요약의 sidebar 패턴을 쓴다. 지도는 자체 가로 스크롤 없이 축소된다.
+### 관리자
 
-### Tabs and data table
+- 알림은 제주 Alert(성공·주의·오류 tint)를 쓰고, 아이콘은 jeju-icons에서 가져온다.
+- 「이용자 통계」(`/admin/usage`)는 흰 카드 패널에 제주 Tabs로 6개 보기를 나눈다. 차트는 외부 라이브러리 없이 SVG 막대로 그리고 막대색은 `--jeju-primary`, 일부만 수집한 날은 `--jeju-blue-light-strong`, 수집 전·중지 날은 `--jeju-border` 짧은 표시다. 모든 차트 아래에 같은 값의 표(「표로 보기」)를 두고, 증감은 ▲·▼와 글자로 적어 색에만 기대지 않는다.
 
-- **States**: default, hover, focus-visible, active, empty.
-- **Accessibility**: Radix 탭의 역할·키보드 동작을 유지하고 표 머리글과 페이지 조작에 명확한 레이블을 둔다.
+### 이용통계 안내
 
-## 6. Motion & Interaction
+- 공개 화면에는 동의 창·안내 띠·팝업을 띄우지 않는다. 푸터에는 글자 링크 「이용통계 수집 안내」(`/usage-policy`)만 둔다.
+- `/usage-policy` 제목 아래에 inset 면(`--jeju-surface-inset`) 상자로 이 브라우저의 상태 문구와 outline 버튼 하나(「이 브라우저 이용을 통계에서 빼기」 ↔ 「다시 포함하기」)를 둔다. 바꾼 결과는 `role="status"` 문구(`--jeju-success`)로 알린다. 추적 거부 신호를 보내는 브라우저에는 버튼 없이 상태만 적는다.
+- 관리자 화면(`/admin…`)에서는 수집하지 않는다.
 
-- Micro: 150ms ease-out, 버튼과 지도 경로의 채움·외곽선·그림자·불투명도 변화.
-- Standard: 200–300ms ease-in-out, 시트·탭 전환.
-- 상단 지도 또는 바로선택으로 지역을 고르면 `공식자료 현행화` 패널을 화면 상단에 맞춰 부드럽게 이동한다. `prefers-reduced-motion`에서는 즉시 이동한다.
-- 애니메이션은 상태와 조작 가능성을 설명할 때만 사용한다.
-- `prefers-reduced-motion` 환경에서는 지도 경로를 포함한 비필수 전환을 제거한다.
+## 6. 움직임
 
-## 7. Depth & Surface
+- 버튼과 지도 경로의 채움·외곽선·불투명도 전환은 150ms ease-out이다.
+- 시트와 탭 전환은 200~300ms다.
+- 지도나 바로선택으로 지역을 고르면 "공식자료 현행화" 패널로 부드럽게 이동한다. `prefers-reduced-motion`에서는 즉시 이동하고 비필수 전환을 끈다.
 
-전략은 **mixed, border-led**다. 기본 계층은 배경의 톤 차이와 1px 경계로 만든다. 작은 입력과 활성 탭에는 기존의 매우 얕은 그림자만 허용한다. 새 데이터 패널과 지도 타일에는 큰 그림자나 유리 효과를 추가하지 않는다.
+## 7. 불러오기 순서
 
-## 8. Accessibility Constraints & Accepted Debt
+- 첫 문서에서 헤더와 패널 골격을 바로 보여 준다. 이어서 100KB 이하 전국 요약, 현재 조건의 검색 쪽, 사용자가 연 비교·CSV 데이터 순서로 불러온다.
+- IP·GPS로 찾은 지역을 먼저 불러오고, 나머지 지역은 미리받기로 채운다.
+- WIKI는 선택한 사업 1건을 먼저 조회하고, 왼쪽 목록은 50건씩 차례로 100건까지 받은 뒤 멈춘다. 목록을 80% 이상 내리면 50건씩 더 받는다(데이터 절약 모드는 20건씩, 미리 채우지 않음). WIKI 화면에서 전국 전체 데이터 파일을 받지 않는다.
 
-### Constraints
+## 8. 접근성 기준
 
-- WCAG 2.2 AA를 목표로 하며 본문 대비 4.5:1, 큰 텍스트·UI 경계 3:1 이상을 유지한다.
-- 모든 조작 요소는 키보드로 접근 가능하고 포커스가 명확해야 한다.
-- 지역 현황은 색상 외에 지역명과 숫자로도 전달한다.
-- 한국어 레이블은 잘리거나 한 글자만 고립되지 않아야 한다.
-- 375px, 768px, 1280px에서 주요 정보와 조작이 가려지지 않아야 한다.
+- WCAG 2.2 AA를 목표로 한다. 본문 대비 4.5:1, 큰 글자와 UI 경계 3:1 이상이다.
+- 모든 조작은 키보드로 할 수 있어야 한다. 시트·패널을 닫으면 연 요소로 포커스를 돌려준다.
+- 지역 현황은 색 외에 지역명과 숫자로도 전달한다.
+- 고대비 모드(`forced-colors`)에서 현재 메뉴와 선택 지역은 테두리나 시스템 강조색으로 구분된다.
 
-### Accepted Debt
+### 알려진 과제
 
-현재 승인된 접근성 부채는 없다.
+- 제주 토큰의 기본 포커스 링(`--jeju-focus-ring`, 제주 Blue 22% 농도 3px)은 흰 배경에서 대비가 3:1보다 낮다. 정본 토큰에서 고칠 사항이라 사이트 사본은 그대로 둔다. 제주 디자인 다음 판에서 진한 포커스 링으로 바꾸면 사본을 갱신한다.

@@ -80,20 +80,20 @@ export function KoreaVectorMap({
   };
 
   return (
-    <figure className="relative flex h-full min-h-[30rem] flex-col overflow-hidden rounded-2xl border border-white/80 bg-white/55 p-3 shadow-inner sm:p-5">
-      <div className="relative z-10 flex min-h-16 flex-wrap items-center justify-between gap-2 rounded-xl border border-white/90 bg-white/85 px-3 py-2 shadow-sm backdrop-blur-sm">
+    <figure className="relative flex h-full min-h-[30rem] flex-col overflow-hidden rounded-xl border border-border bg-(--jeju-surface-inset) p-3 sm:p-5">
+      <div className="relative z-10 flex min-h-16 flex-wrap items-center justify-between gap-2 rounded-lg border border-border bg-card px-3 py-2">
         <div>
-          <p className="text-xs font-semibold text-muted-foreground">
+          <p className="text-(length:--jeju-text-xs) font-bold text-muted-foreground">
             {highlightedRegion ? "현재 지역" : "지도 사용법"}
           </p>
-          <p className="font-bold text-secondary-foreground">
+          <p className="font-extrabold text-(--jeju-text-strong)">
             {highlightedRegion
               ? highlightedRegion.fullName
               : "원하는 지역을 클릭해서 현황을 확인하세요."}
           </p>
         </div>
         {highlightedRegion ? (
-          <p className="rounded-full bg-[var(--secondary)] px-3 py-1 text-sm font-bold tabular-nums text-[var(--care-blue)]">
+          <p className="rounded-full bg-(--jeju-primary-tint) px-3 py-1 text-(length:--jeju-text-sm) font-extrabold tabular-nums text-primary">
             {NUMBER_FORMAT.format(highlightedRegion.count)}건
           </p>
         ) : null}
@@ -153,10 +153,10 @@ export function KoreaVectorMap({
                     regionTone(region.count, maximum),
                     muted && "opacity-35",
                     selected &&
-                      "fill-[var(--care-blue)] stroke-white [filter:drop-shadow(0_7px_8px_rgb(1_115_188_/_0.3))] [stroke-width:2.25]",
+                      "fill-(--jeju-primary) stroke-(--jeju-surface) [filter:drop-shadow(0_7px_8px_color-mix(in_srgb,var(--jeju-primary)_30%,transparent))] [stroke-width:2.25]",
                     highlighted && !selected &&
-                      "fill-[var(--care-blue)] stroke-white opacity-100 [filter:drop-shadow(0_8px_10px_rgb(1_115_188_/_0.32))] [stroke-width:2.75]",
-                    focused && "stroke-[var(--care-green)] [stroke-width:3.5]",
+                      "fill-(--jeju-primary) stroke-(--jeju-surface) opacity-100 [filter:drop-shadow(0_8px_10px_color-mix(in_srgb,var(--jeju-primary)_32%,transparent))] [stroke-width:2.75]",
+                    focused && "stroke-(--jeju-green-dark) [stroke-width:3.5]",
                   )}
                 />
               ))}
@@ -165,19 +165,19 @@ export function KoreaVectorMap({
         })}
       </svg>
 
-      <figcaption className="relative z-10 mt-auto flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
+      <figcaption className="relative z-10 mt-auto flex flex-wrap items-center justify-between gap-2 text-(length:--jeju-text-xs) text-muted-foreground">
         <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <span>파란색: 현재 가리키거나 선택한 지역</span>
           <span className="inline-flex items-center gap-1" aria-label="기본 지도 색상은 사업 수가 적음에서 많음 순서입니다">
             <span>사업 수</span>
-            <span className="size-3 rounded-sm bg-[var(--map-region-low)]" aria-hidden="true" />
-            <span className="size-3 rounded-sm bg-[var(--map-region-medium)]" aria-hidden="true" />
-            <span className="size-3 rounded-sm bg-[var(--map-region-high)]" aria-hidden="true" />
+            <span className="size-3 rounded-sm border border-(--map-region-border) bg-[var(--map-region-low)]" aria-hidden="true" />
+            <span className="size-3 rounded-sm border border-(--map-region-border) bg-[var(--map-region-medium)]" aria-hidden="true" />
+            <span className="size-3 rounded-sm border border-(--map-region-border) bg-[var(--map-region-high)]" aria-hidden="true" />
             <span>적음→많음</span>
           </span>
         </span>
         <a
-          className="underline decoration-slate-300 underline-offset-2 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]"
+          className="underline decoration-(--jeju-border-strong) underline-offset-2 hover:text-foreground focus-visible:rounded-(--jeju-radius-xs) focus-visible:shadow-(--jeju-focus-ring) focus-visible:outline-none"
           href="https://github.com/VictorCazanave/svg-maps/tree/master/packages/south-korea"
           rel="noreferrer"
           target="_blank"

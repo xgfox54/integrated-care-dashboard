@@ -1,4 +1,6 @@
-import { after } from "next/server";
+import { after } from "next/server.js";
+
+import { hasOnlyUniqueQueryKeys } from "./query-boundary.ts";
 
 type CacheStorageWithDefault = CacheStorage & { readonly default?: Cache };
 
@@ -24,6 +26,32 @@ const memory = new Map<string, MemoryEntry>();
 let memoryBytes = 0;
 let lastEdgeOutcome = "untried";
 let edgeUsable = true;
+
+const CACHE_PARAMETERS: Readonly<Record<string, readonly string[]>> = {
+  "/api/dataset": [],
+  "/api/dataset/summary": [],
+  "/api/dataset/search": ["sido", "sigungu", "category", "subcategory", "type", "sort", "page", "size"],
+  "/api/dataset/export": ["sido", "sigungu", "category", "subcategory", "type", "sort"],
+  "/api/dataset/service": ["service"],
+  "/api/dataset/bundle": ["scope", "part", "per", "size", "category"],
+  "/api/wiki": ["name", "sido", "sigungu"],
+};
+
+export function sharedCacheKey(request: Request): string | null {
+  if (request.method !== "GET") return null;
+  const url = new URL(request.url);
+  if (url.searchParams.has("q")) return null;
+  const allowed = CACHE_PARAMETERS[url.pathname];
+  if (!allowed) return null;
+  if (!hasOnlyUniqueQueryKeys(url.searchParams, allowed)) return null;
+  const canonical = new URL(url.origin + url.pathname);
+  for (const name of allowed) {
+    const value = url.searchParams.get(name);
+    if (value) canonical.searchParams.set(name, value.trim());
+  }
+  canonical.searchParams.sort();
+  return canonical.toString();
+}
 
 function sharedCache(): Cache | null {
   if (!edgeUsable) return null;
@@ -119,9 +147,13 @@ export async function withSharedCache(
   request: Request,
   build: () => Promise<Response>,
 ): Promise<Response> {
-  if (request.method !== "GET") return build();
-
-  const key = new URL(request.url).toString();
+  const key = sharedCacheKey(request);
+  if (!key) {
+    const response = await build();
+    response.headers.set("cache-control", "private, no-store");
+    response.headers.set("x-shared-cache", "bypass");
+    return response;
+  }
   const cached = readMemory(key, Date.now());
   if (cached) return toResponse(cached, "memory");
 

@@ -289,9 +289,9 @@ export default function PortraitProcessBoard({
                 height={svgSize.height}
               >
                 <defs>
-                  <PortraitArrowMarker id="portrait-arr-sequence" color="#55685e" />
-                  <PortraitArrowMarker id="portrait-arr-message" color="#0d8a63" />
-                  <PortraitArrowMarker id="portrait-arr-loop" color="#2563eb" />
+                  <PortraitArrowMarker id="portrait-arr-sequence" color="var(--jeju-text-muted)" />
+                  <PortraitArrowMarker id="portrait-arr-message" color="var(--jeju-green-dark)" />
+                  <PortraitArrowMarker id="portrait-arr-loop" color="var(--jeju-blue-dark)" />
                 </defs>
                 {edgePaths.map(({ edge, path }) => {
                   const color = edgeColor(edge.type);
@@ -312,7 +312,7 @@ export default function PortraitProcessBoard({
                       <path
                         d={path}
                         fill="none"
-                        stroke="#ffffff"
+                        stroke="var(--jeju-surface)"
                         strokeWidth={strokeWidth + 3.2}
                         strokeDasharray={edgeDash(edge.type)}
                         strokeLinecap="round"
@@ -355,7 +355,7 @@ export default function PortraitProcessBoard({
                         width={labelWidth}
                         height={19}
                         rx={4}
-                        fill="#ffffff"
+                        fill="var(--jeju-surface)"
                         stroke={color}
                         strokeWidth={0.7}
                       />
@@ -363,7 +363,7 @@ export default function PortraitProcessBoard({
                         x={labelX}
                         y={labelY + 5}
                         textAnchor="middle"
-                        fontSize={10}
+                        fontSize={12}
                         fontWeight={650}
                         fill={color}
                       >
@@ -500,7 +500,7 @@ function PortraitArrowMarker({ id, color }: { id: string; color: string }) {
       <path
         d="M1,1 L13,5.5 L1,10 Z"
         fill={color}
-        stroke="#ffffff"
+        stroke="var(--jeju-surface)"
         strokeWidth={1}
         strokeLinejoin="round"
       />
@@ -618,7 +618,7 @@ function relativeRect(element: HTMLElement, boardRect: DOMRect): Rect {
 }
 
 function fallbackGroups(lanes: string[]): ProcessLaneGroup[] {
-  const accents = ["#0f9f72", "#3b82f6", "#c78116", "#0891b2"];
+  const accents = ["var(--jeju-primary)", "var(--jeju-blue-dark)", "var(--jeju-warning)", "var(--jeju-blue-dark)"];
   const groupCount = Math.min(4, lanes.length);
   const sizes = Array.from(
     { length: groupCount },
@@ -642,9 +642,9 @@ function fallbackGroups(lanes: string[]): ProcessLaneGroup[] {
 }
 
 function edgeColor(type: ProcessEdge["type"]) {
-  if (type === "loop") return "#2563eb";
-  if (type === "message") return "#0d8a63";
-  return "#55685e";
+  if (type === "loop") return "var(--jeju-blue-dark)";
+  if (type === "message") return "var(--jeju-green-dark)";
+  return "var(--jeju-text-muted)";
 }
 
 function edgeDash(type: ProcessEdge["type"]) {

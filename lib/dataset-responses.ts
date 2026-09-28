@@ -1,4 +1,5 @@
 import type { FilterState } from "./dataset";
+import type { BundleRequest } from "./dataset-bundle-request";
 import {
   cachedDatasetJson,
   type DatasetJson,
@@ -19,15 +20,14 @@ import {
   bundlePerPart,
   bundleQueryString,
   districtTargets,
-  MAX_BUNDLE_PER,
   planRegionBundles,
   provinceTargets,
   sigunguBundleTargets,
-  type BundleScope,
 } from "./region-load-order";
 import { searchQueryString } from "./search-query";
 import { searchResponseBody } from "./search-response";
 import { cachedWikiEdits } from "./wiki-edit-store";
+import { logServerError } from "./errors";
 
 export type SummaryDataset = Awaited<ReturnType<typeof readOfficialDatasetSummary>>;
 
@@ -62,32 +62,6 @@ export async function searchBodyJson(filters: FilterState, page: number, request
   const compute = async () => JSON.stringify(searchResponseBody(await searchOfficialServices(filters, page, pageSize)));
   if (!(await isStorableSearch(filters, page))) return { body: await compute(), stored: false };
   return cachedDatasetJson("search?" + searchQueryString(filters, 1, pageSize), compute);
-}
-
-export interface BundleRequest {
-  readonly scope: BundleScope;
-  readonly part: number;
-  readonly per: number;
-  readonly pageSize: number;
-  readonly category: string;
-}
-
-function integerParam(value: string | null): number | null {
-  if (value === null || value.trim() === "") return null;
-  const parsed = Number(value);
-  return Number.isInteger(parsed) ? parsed : null;
-}
-
-export function parseBundleRequest(params: URLSearchParams): BundleRequest | null {
-  const scope = params.get("scope");
-  if (scope !== "sido" && scope !== "sigungu") return null;
-  const pageSize = normalizeSearchPageSize(integerParam(params.get("size")) ?? undefined);
-  const category = params.get("category") ?? "";
-  if (scope === "sido") return { scope, part: 0, per: 0, pageSize, category };
-  const part = integerParam(params.get("part"));
-  if (part === null || part < 0 || part > 1000) return null;
-  const per = Math.min(Math.max(integerParam(params.get("per")) ?? bundlePerPart(pageSize), 1), MAX_BUNDLE_PER);
-  return { scope, part, per, pageSize, category };
 }
 
 interface BundleBody {
@@ -143,7 +117,7 @@ export async function warmDatasetCache(): Promise<void> {
   try {
     fresh = await listFreshKeys(run.id, version);
   } catch (error) {
-    console.error("dataset cache warm skipped", error);
+    logServerError(error, { path: "dataset-cache/warm", status: 500 });
     return;
   }
   const summary = await readOfficialDatasetSummary();

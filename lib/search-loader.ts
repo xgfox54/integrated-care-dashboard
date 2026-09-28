@@ -1,5 +1,6 @@
 import { normalizeRows, type DataState, type ServiceRow } from "./dataset";
-import type { SearchAggregates } from "./official-query";
+import type { SearchAggregates, SearchNameMatch } from "./official-query";
+import type { SearchHelp } from "./search-terms";
 
 export interface LoadedSearch {
   readonly state: DataState;
@@ -13,6 +14,10 @@ export interface LoadedSearch {
   readonly regionCounts: Readonly<Record<string, number>>;
   readonly categoryCounts: Readonly<Record<string, number>>;
   readonly regionSummary: SearchAggregates;
+  /** 검색어가 있을 때만: 검색 범위 안 사업명과 정확히 일치하는지(이용통계용). */
+  readonly nameMatch?: SearchNameMatch;
+  /** 검색어가 있는데 0건일 때만: 오타 제안, 단어를 하나씩 뺀 결과 수. */
+  readonly searchHelp?: SearchHelp;
 }
 
 interface SearchPayload extends Omit<LoadedSearch, "rows"> {

@@ -237,7 +237,9 @@ function buildAutoProcess(raw: BokjiroRaw): { process: ProcessModel; generic: bo
 }
 
 function fieldChecks(raw: BokjiroRaw, generic: boolean): string[] {
-  const checks = ["복지로 수정일(" + (raw.updatedAt ?? "미표기") + ") 이후 지침·조례 개정 여부"];
+  const checks = raw.edit
+    ? [...(raw.edit.verify ?? []), "최신 자료 확인일(" + raw.edit.checkedAt + ") 이후 지침·조례 개정 여부"]
+    : ["복지로 수정일(" + (raw.updatedAt ?? "미표기") + ") 이후 지침·조례 개정 여부"];
   if (!raw.selection) checks.push("선정기준(소득·재산·거주 요건 등) 세부 내용");
   if (!/\d/.test(raw.benefit ?? "")) checks.push("지원 금액·횟수·기간");
   if (raw.laws.length === 0) checks.push("근거 법령·조례");
@@ -268,6 +270,7 @@ export function expandBokjiro(raw: BokjiroRaw): WelfareInstitution {
   const applicants = raw.applicants.length > 0 ? raw.applicants.join("·") : "본인";
   const contact = raw.contacts.map((item) => (item.name ? item.name + " " : "") + item.value).join(" · ");
   const sources = ["복지로 복지서비스 정보 " + raw.id + (raw.updatedAt ? " (복지로 수정일 " + raw.updatedAt + ")" : "")];
+  for (const source of raw.edit?.sources ?? []) if (!sources.includes(source.label)) sources.push(source.label);
   for (const ref of raw.talkRefs) {
     const label = "[" + ref.key + "] " + ref.title;
     if (!sources.includes(label)) sources.push(label);
@@ -286,7 +289,11 @@ export function expandBokjiro(raw: BokjiroRaw): WelfareInstitution {
       : "복지톡 DB에서 이 제도명과 이어지는 원문은 찾지 못했습니다. ") +
     (generic
       ? "복지로에 처리절차가 등록되지 않아 업무구조도는 제공유형에 따른 일반 흐름으로 그렸습니다."
-      : "업무구조도는 복지로 처리절차에 등록된 단계별 담당기관을 기준으로 그렸습니다.");
+      : "업무구조도는 복지로 처리절차에 등록된 단계별 담당기관을 기준으로 그렸습니다.") +
+    (raw.edit
+      ? " 복지로 내용이 지난 자료여서 " + raw.edit.checkedAt + "에 확인한 최신 자료로 고쳤습니다: " + raw.edit.note +
+        (raw.edit.previousName ? " (복지로 등록 사업명: " + raw.edit.previousName + ")" : "")
+      : "");
 
   const provisionText = raw.provision.length > 0 ? raw.provision.join("·") : "기타";
   return {
@@ -310,7 +317,7 @@ export function expandBokjiro(raw: BokjiroRaw): WelfareInstitution {
         "제공유형 " + provisionText + ". " + (MONEY_FLOW[raw.provision[0] ?? "기타"] ?? MONEY_FLOW["기타"]) + (raw.cycle.length > 0 ? " (지원주기: " + raw.cycle.join("·") + ")" : ""),
       docsFlow:
         raw.forms.length > 0
-          ? "복지로 등록 서식·자료: " + raw.forms.join(", ")
+          ? (raw.edit?.fields?.includes("forms") ? "서식·자료(최신 자료 기준): " : "복지로 등록 서식·자료: ") + raw.forms.join(", ")
           : "복지로에 등록된 서식·자료가 없습니다. 신청방법의 구비서류 안내를 따릅니다.",
       bottlenecks: [],
       reformPoints: [],
@@ -319,8 +326,8 @@ export function expandBokjiro(raw: BokjiroRaw): WelfareInstitution {
     fieldVerification: fieldChecks(raw, generic),
     verification: {
       status: "source-linked",
-      verifiedAt: raw.updatedAt ?? BOKJIRO_AS_OF,
-      method: "복지로 복지서비스 상세 원문",
+      verifiedAt: raw.edit?.checkedAt ?? raw.updatedAt ?? BOKJIRO_AS_OF,
+      method: raw.edit ? "복지로 복지서비스 상세 원문 + 최신 자료 대조" : "복지로 복지서비스 상세 원문",
       scope,
       sources: legalSources,
     },
@@ -332,7 +339,11 @@ export function expandBokjiro(raw: BokjiroRaw): WelfareInstitution {
       target: raw.target ?? "",
       selection: raw.selection,
       benefit: raw.benefit ?? "",
-      apply: raw.applyText ?? "신청방법: " + raw.applyMethods.join("·"),
+      apply:
+        raw.applyText ??
+        (raw.applyMethods.length > 0
+          ? "신청방법: " + raw.applyMethods.join("·")
+          : "복지로에 신청방법이 등록되어 있지 않습니다. 문의처로 확인하세요."),
       contact: contact || fullDept(raw),
     },
     sources,

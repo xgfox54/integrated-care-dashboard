@@ -1,18 +1,25 @@
-import { describeError } from "@/lib/errors";
-import { filtersFromSearchParams, positiveInteger } from "@/lib/dataset-request";
+import { parseDatasetSearchRequest } from "@/lib/dataset-request";
 import { searchBodyJson } from "@/lib/dataset-responses";
 import { SHARED_CACHE_HEADER, withSharedCache } from "@/lib/edge-cache";
-import { MOHW_INTEGRATED_CARE_URL } from "@/lib/official-source";
+import { errorResponse } from "@/lib/errors";
 
 export const dynamic = "force-dynamic";
 
 async function buildSearchResponse(request: Request): Promise<Response> {
   const params = new URL(request.url).searchParams;
+  const parsed = parseDatasetSearchRequest(params);
+  if (!parsed.success) {
+    return Response.json(
+      { error: "INVALID_REQUEST", message: parsed.message },
+      { status: 400, headers: { "cache-control": "no-store" } },
+    );
+  }
   try {
+    const { filters, page, pageSize } = parsed.data;
     const { body, stored } = await searchBodyJson(
-      filtersFromSearchParams(params),
-      positiveInteger(params.get("page"), 1),
-      positiveInteger(params.get("size"), 30),
+      filters,
+      page,
+      pageSize,
     );
     return new Response(body, {
       headers: {
@@ -22,25 +29,12 @@ async function buildSearchResponse(request: Request): Promise<Response> {
       },
     });
   } catch (error) {
-    return Response.json(
-      {
-        state: "failed",
-        sourceLabel: "보건복지부 통합돌봄 사업안내",
-        sourceUrl: MOHW_INTEGRATED_CARE_URL,
-        fetchedAt: "",
-        dataAsOf: "",
-        message: `검색 자료를 읽지 못했습니다: ${describeError(error)}`,
-        rows: [],
-        totalCount: 0,
-        page: 1,
-        pageSize: 30,
-        pageCount: 1,
-        regionCounts: {},
-        categoryCounts: {},
-        regionSummary: { rowCount: 0, categoryCounts: {}, typeCounts: {} },
-      },
-      { status: 500, headers: { "cache-control": "no-store" } },
-    );
+    return errorResponse(error, {
+      code: "DATA_SEARCH_FAILED",
+      message: "검색 자료를 읽지 못했습니다.",
+      status: 500,
+      path: "/api/dataset/search",
+    });
   }
 }
 

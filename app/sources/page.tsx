@@ -1,3 +1,4 @@
+import { PageUsage } from "@/components/usage/page-usage";
 import { readOfficialSyncStatus } from "@/lib/official-sync-status";
 import { MOHW_INTEGRATED_CARE_URL } from "@/lib/official-source";
 
@@ -7,12 +8,14 @@ const PUBLIC_DATA_PORTAL = "https://www.data.go.kr";
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-lg border border-border bg-card p-5">
-      <h2 className="text-base font-semibold">{title}</h2>
-      <div className="mt-2 space-y-2 text-base leading-relaxed">{children}</div>
+    <section className="rounded-xl border border-border bg-card p-5">
+      <h2 className="text-(length:--jeju-h2-size) font-extrabold text-(--jeju-text-strong)">{title}</h2>
+      <div className="mt-2 space-y-2 text-(length:--jeju-text-base) leading-relaxed text-(--jeju-text-body)">{children}</div>
     </section>
   );
 }
+
+const LINK_CLASS = "font-bold text-primary underline underline-offset-4 hover:text-(--jeju-primary-hover)";
 
 function formatMoment(value: string): string {
   if (!value) return "아직 성공한 수집 없음";
@@ -33,9 +36,10 @@ export default async function SourcesPage() {
 
   return (
     <main className="mx-auto max-w-[900px] space-y-4 px-4 py-6 sm:px-6">
+      <PageUsage page="sources" tab="sources" />
       <div>
-        <h1 className="text-xl font-bold">데이터 출처 및 현행화 방식</h1>
-        <p className="mt-1 text-base text-muted-foreground">
+        <h1 className="text-(length:--jeju-h1-size) leading-(--jeju-leading-tight) font-extrabold text-(--jeju-text-strong)">데이터 출처 및 현행화 방식</h1>
+        <p className="mt-2 text-(length:--jeju-text-base) text-muted-foreground">
           저장소 파일에 의존하지 않고 공식 홈페이지와 공공 API에서 직접 수집합니다.
         </p>
       </div>
@@ -48,8 +52,9 @@ export default async function SourcesPage() {
           사업구분을 구조화합니다. 지도는 현행 16개 광역단위에 맞춰 합산합니다.
         </p>
         <p>
-          <a href={MOHW_INTEGRATED_CARE_URL} target="_blank" rel="noreferrer" className="text-primary underline">
+          <a href={MOHW_INTEGRATED_CARE_URL} target="_blank" rel="noreferrer" className={LINK_CLASS}>
             보건복지부 의료·요양 등 지역돌봄 통합지원
+            <span className="sr-only">(새 창)</span>
           </a>
         </p>
       </Section>
@@ -62,8 +67,9 @@ export default async function SourcesPage() {
           지원대상, 제공기관을 보완하는 데 사용합니다.
         </p>
         <p>
-          <a href={PUBLIC_DATA_PORTAL} target="_blank" rel="noreferrer" className="text-primary underline">
+          <a href={PUBLIC_DATA_PORTAL} target="_blank" rel="noreferrer" className={LINK_CLASS}>
             공공데이터포털
+            <span className="sr-only">(새 창)</span>
           </a>
         </p>
       </Section>
@@ -82,18 +88,18 @@ export default async function SourcesPage() {
           일치율·주요 필드 채움률·분류값 검증을 모두 통과한 경우에만 화면을 교체합니다. 중간
           실패는 기존 정상 자료를 덮어쓰지 않습니다.
         </p>
-        <dl className="rounded-md bg-secondary px-3 py-2 text-sm">
+        <dl className="grid gap-1 rounded-lg border border-border bg-(--jeju-surface-inset) px-3 py-2.5 text-(length:--jeju-text-sm)">
           <div>
             <dt className="inline text-muted-foreground">마지막 성공 </dt>
-            <dd className="inline font-semibold">{formatMoment(success?.completedAt ?? "")}</dd>
+            <dd className="inline font-bold text-(--jeju-text-strong)">{formatMoment(success?.completedAt ?? "")}</dd>
           </div>
           <div>
             <dt className="inline text-muted-foreground">수록 사업 </dt>
-            <dd className="inline font-semibold">{success?.serviceCount.toLocaleString("ko-KR") ?? "0"}건</dd>
+            <dd className="inline font-bold tabular-nums text-(--jeju-text-strong)">{success?.serviceCount.toLocaleString("ko-KR") ?? "0"}건</dd>
           </div>
           <div>
             <dt className="inline text-muted-foreground">공식 원문 </dt>
-            <dd className="inline font-semibold">{success?.documentCount.toLocaleString("ko-KR") ?? "0"}건</dd>
+            <dd className="inline font-bold tabular-nums text-(--jeju-text-strong)">{success?.documentCount.toLocaleString("ko-KR") ?? "0"}건</dd>
           </div>
         </dl>
       </Section>

@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ExternalLink, LoaderCircle } from "lucide-react";
 
+import { Badge } from "@/components/ui/badge";
+import { ExternalLinkIcon } from "@/components/ui/jeju-icons";
+import { Spinner } from "@/components/ui/spinner";
 import { WikiSourceCard, type WikiSource } from "@/components/wiki/wiki-source-card";
 import type { ServiceRow } from "@/lib/dataset";
 import { createWikiArticle } from "@/lib/wiki-article";
@@ -135,65 +137,64 @@ export function ServiceDetails({ row }: { readonly row: ServiceRow }) {
     verifiedSupplement,
     adminEdit,
   });
-  const statusLabel = article.contentStatus === "admin-edited"
-    ? "관리자 보완"
+  const status = article.contentStatus === "admin-edited"
+    ? { label: "관리자 보완", variant: "neutral" as const }
     : article.contentStatus === "verified-supplement"
-      ? "공식 보완자료 포함"
-      : "보건복지부 원자료 기준";
+      ? { label: "공식 보완자료 포함", variant: "info" as const }
+      : { label: "보건복지부 원자료 기준", variant: "success" as const };
+  const linkClass = "inline-flex items-center gap-1 font-bold text-primary underline underline-offset-4";
 
   return (
     <article className="space-y-4" aria-labelledby="wiki-service-name">
-      <header className="rounded-lg border border-border bg-card p-5">
-        <p className="text-sm font-medium text-primary">
+      <header className="rounded-xl border border-border bg-card p-5">
+        <p className="text-(length:--jeju-text-sm) font-bold text-primary">
           {[row.sido, row.sigungu].filter(Boolean).join(" · ") || "전국"}
         </p>
-        <h1 id="wiki-service-name" className="mt-1 text-2xl font-bold leading-tight">{row.name}</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <h2 id="wiki-service-name" className="mt-1 text-(length:--jeju-h1-size) leading-(--jeju-leading-tight) font-extrabold text-(--jeju-text-strong)">{row.name}</h2>
+        <p className="mt-2 text-(length:--jeju-text-sm) text-muted-foreground">
           {[row.category, row.subcategory, row.type].filter(Boolean).join(" · ")}
         </p>
       </header>
 
-      <section className="rounded-lg border border-border bg-card p-5" aria-labelledby="official-description-heading">
+      <section className="rounded-xl border border-border bg-card p-5" aria-labelledby="official-description-heading">
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <h2 id="official-description-heading" className="font-semibold">사업 설명</h2>
-          <span className="rounded-full bg-[var(--care-green)]/10 px-2.5 py-1 text-xs font-semibold text-[var(--accent-foreground)] ring-1 ring-[var(--care-green)]/30">
-            {statusLabel}
-          </span>
+          <h3 id="official-description-heading" className="text-(length:--jeju-h3-size) font-extrabold text-(--jeju-text-strong)">사업 설명</h3>
+          <Badge variant={status.variant}>{status.label}</Badge>
         </div>
-        <dl className="mt-4 grid gap-5 text-sm">
+        <dl className="mt-4 grid gap-5 text-(length:--jeju-text-base)">
           <div>
-            <dt className="font-semibold text-muted-foreground">사업명</dt>
-            <dd className="mt-1 text-base font-semibold">{article.name}</dd>
+            <dt className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">사업명</dt>
+            <dd className="mt-1 text-(length:--jeju-text-md) font-extrabold text-(--jeju-text-strong)">{article.name}</dd>
           </div>
           <div>
-            <dt className="font-semibold text-muted-foreground">사업개요</dt>
+            <dt className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">사업개요</dt>
             <dd className="mt-1 leading-relaxed">{article.overview}</dd>
           </div>
           <div>
-            <dt className="font-semibold text-muted-foreground">사업내용</dt>
+            <dt className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">사업내용</dt>
             <dd className="mt-1 whitespace-pre-line leading-relaxed">{article.content}</dd>
           </div>
           {article.applicationConditions ? (
             <div>
-              <dt className="font-semibold text-muted-foreground">신청조건</dt>
+              <dt className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">신청조건</dt>
               <dd className="mt-1 whitespace-pre-line leading-relaxed">{article.applicationConditions}</dd>
-              <p className="mt-1 text-xs text-muted-foreground">{article.conditionsBasis}</p>
+              <p className="mt-1 text-(length:--jeju-text-xs) text-muted-foreground">{article.conditionsBasis}</p>
             </div>
           ) : null}
           {displayRow.applicationMethod ? (
             <div>
-              <dt className="font-semibold text-muted-foreground">신청방법</dt>
+              <dt className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">신청방법</dt>
               <dd className="mt-1 whitespace-pre-line leading-relaxed">{displayRow.applicationMethod}</dd>
             </div>
           ) : null}
         </dl>
-        <div className="mt-5 grid gap-3 border-t border-border pt-4 text-sm sm:grid-cols-2">
+        <div className="mt-5 grid gap-3 border-t border-(--jeju-hairline) pt-4 text-(length:--jeju-text-sm) sm:grid-cols-2">
           <div>
-            <p className="font-semibold text-muted-foreground">제공기관</p>
+            <p className="font-bold text-muted-foreground">제공기관</p>
             <p className="mt-1 whitespace-pre-line">{displayRow.provider || "원자료에 별도 기재 없음"}</p>
           </div>
           <div>
-            <p className="font-semibold text-muted-foreground">자료 기준</p>
+            <p className="font-bold text-muted-foreground">자료 기준</p>
             <p className="mt-1">{row.updatedDate || "보건복지부 최신 수집본"}</p>
           </div>
         </div>
@@ -202,15 +203,16 @@ export function ServiceDetails({ row }: { readonly row: ServiceRow }) {
             href={row.detailUrl}
             target="_blank"
             rel="noreferrer"
-            className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary underline underline-offset-4"
+            className={`mt-4 text-(length:--jeju-text-sm) ${linkClass}`}
           >
             이 사업이 수록된 보건복지부 원문 확인
-            <ExternalLink className="size-4" aria-hidden="true" />
+            <ExternalLinkIcon />
+            <span className="sr-only">(새 창)</span>
           </a>
         ) : null}
         {article.supplement ? (
-          <div className="mt-4 rounded-md bg-secondary p-3 text-sm">
-            <p className="font-semibold">상세내용 보완 출처</p>
+          <div className="mt-4 rounded-lg border border-border bg-(--jeju-surface-inset) p-3 text-(length:--jeju-text-sm)">
+            <p className="font-extrabold text-(--jeju-text-strong)">상세내용 보완 출처</p>
             <p className="mt-1 text-muted-foreground">
               {article.supplement.publisher} · {article.supplement.sourceTitle}
             </p>
@@ -218,33 +220,35 @@ export function ServiceDetails({ row }: { readonly row: ServiceRow }) {
               href={article.supplement.url}
               target="_blank"
               rel="noreferrer"
-              className="mt-2 inline-flex items-center gap-1 font-semibold text-primary underline underline-offset-4"
+              className={`mt-2 ${linkClass}`}
             >
               공식 보완자료 원문 확인
-              <ExternalLink className="size-4" aria-hidden="true" />
+              <ExternalLinkIcon />
+              <span className="sr-only">(새 창)</span>
             </a>
           </div>
         ) : null}
         {article.adminSource ? (
-          <div className="mt-4 rounded-md bg-secondary p-3 text-sm">
-            <p className="font-semibold">관리자 보완 출처</p>
+          <div className="mt-4 rounded-lg border border-border bg-(--jeju-surface-inset) p-3 text-(length:--jeju-text-sm)">
+            <p className="font-extrabold text-(--jeju-text-strong)">관리자 보완 출처</p>
             <p className="mt-1 text-muted-foreground">{article.adminSource.title}</p>
             <a
               href={article.adminSource.url}
               target="_blank"
               rel="noreferrer"
-              className="mt-2 inline-flex items-center gap-1 font-semibold text-primary underline underline-offset-4"
+              className={`mt-2 ${linkClass}`}
             >
               보완 출처 원문 확인
-              <ExternalLink className="size-4" aria-hidden="true" />
+              <ExternalLinkIcon />
+              <span className="sr-only">(새 창)</span>
             </a>
           </div>
         ) : null}
       </section>
 
       {loading ? (
-        <p className="flex items-center rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
-          <LoaderCircle className="mr-2 size-4 animate-spin" aria-hidden="true" />
+        <p className="flex items-center gap-2 rounded-xl border border-border bg-card p-4 text-(length:--jeju-text-sm) text-muted-foreground">
+          <Spinner label="보완 설명을 확인하는 중" />
           사업명이 정확히 일치하는 보완 설명을 확인하고 있습니다.
         </p>
       ) : source ? (

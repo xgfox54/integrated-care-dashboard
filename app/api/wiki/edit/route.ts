@@ -1,4 +1,4 @@
-import { describeError } from "@/lib/errors";
+import { errorResponse } from "@/lib/errors";
 import { readWikiEdit } from "@/lib/wiki-edit-store";
 import { publicWikiEdit } from "@/lib/wiki-edits";
 
@@ -13,6 +13,11 @@ export async function GET(request: Request) {
     const edit = await readWikiEdit(serviceId);
     return Response.json({ edit: edit ? publicWikiEdit(edit) : null }, { headers: NO_STORE });
   } catch (error) {
-    return Response.json({ edit: null, error: describeError(error) }, { status: 500, headers: NO_STORE });
+    return errorResponse(error, {
+      code: "WIKI_EDIT_READ_FAILED",
+      message: "편집 정보를 읽지 못했습니다.",
+      status: 500,
+      path: "/api/wiki/edit",
+    });
   }
 }

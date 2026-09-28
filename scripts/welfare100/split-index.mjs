@@ -9,22 +9,27 @@ import { pathToFileURL } from "node:url";
 
 export const LITE_FIELDS = ["s", "n", "o", "no", "g", "a", "sd", "sg", "c", "t", "l", "h", "pv", "p", "k"];
 export const EXTRA_FIELDS = ["s", "d", "y", "cy", "ln", "gw", "lw", "b", "on", "laws"];
+/** 서버 전용 이용통계 등록부(data/welfare100/usage-registry.json): 제도 ID 검증과 관리자 화면 이름 표시에 쓴다. */
+export const USAGE_REGISTRY_FIELDS = ["s", "n", "g", "sd", "sg", "c", "pv"];
 
 export function splitCatalogIndex(index) {
   const pack = (fields) => index.items.map((row) => fields.map((field) => row[field]));
   return {
     lite: { asOf: index.asOf, source: index.source, total: index.total, fields: LITE_FIELDS, items: pack(LITE_FIELDS) },
     extra: { asOf: index.asOf, total: index.total, fields: EXTRA_FIELDS, items: pack(EXTRA_FIELDS) },
+    registry: { asOf: index.asOf, total: index.total, fields: USAGE_REGISTRY_FIELDS, items: pack(USAGE_REGISTRY_FIELDS) },
   };
 }
 
 export function writeSplitIndex(outDir, index) {
-  const { lite, extra } = splitCatalogIndex(index);
+  const { lite, extra, registry } = splitCatalogIndex(index);
   const liteJson = JSON.stringify(lite);
   const extraJson = JSON.stringify(extra);
+  const registryJson = JSON.stringify(registry);
   fs.writeFileSync(path.join(outDir, "index-lite.json"), liteJson);
   fs.writeFileSync(path.join(outDir, "index-extra.json"), extraJson);
-  return { liteBytes: Buffer.byteLength(liteJson), extraBytes: Buffer.byteLength(extraJson) };
+  fs.writeFileSync(path.resolve(outDir, "../../../data/welfare100/usage-registry.json"), registryJson);
+  return { liteBytes: Buffer.byteLength(liteJson), extraBytes: Buffer.byteLength(extraJson), registryBytes: Buffer.byteLength(registryJson) };
 }
 
 // 단독 실행: 이미 만든 index.json에서 두 파일을 다시 만든다.

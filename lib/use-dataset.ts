@@ -7,9 +7,12 @@ import { DEFAULT_SEARCH_PAGE_SIZE, type DatasetSummary } from "./dataset-summary
 import { versionedDataUrl } from "./data-versions";
 import { prefersDataSaving } from "./network-preferences";
 import type { SearchAggregates } from "./official-query";
+import type { SearchNameMatch } from "./official-query";
 import { bundleQueryString, planRegionBundles, type RegionTarget } from "./region-load-order";
 import { bundleTask, getServerProgress, searchLoader, searchTask, type LoadProgress } from "./search-loader";
 import { searchQueryString } from "./search-query";
+import type { SearchHelp } from "./search-terms";
+import { usagePerf } from "./usage/track";
 
 export interface DatasetMeta {
   state: DataState;
@@ -43,6 +46,8 @@ export interface SearchState {
   readonly regionCounts: Readonly<Record<string, number>>;
   readonly categoryCounts: Readonly<Record<string, number>>;
   readonly regionSummary: SearchAggregates;
+  readonly nameMatch?: SearchNameMatch;
+  readonly searchHelp?: SearchHelp;
 }
 
 const EMPTY_SUMMARY: DatasetSummary = {
@@ -187,11 +192,14 @@ export function useDataset(filters: FilterState, page: number, pageSize: number,
     let cancelled = false;
     const typing = lastKeyword.current !== filters.keyword;
     lastKeyword.current = filters.keyword;
+    const keywordSearch = filters.keyword.trim() !== "";
     const timer = window.setTimeout(() => {
+      const started = performance.now();
       searchLoader
         .load(query)
         .then(() => {
           if (!cancelled) setFailedQuery("");
+          if (keywordSearch) usagePerf("search_care", performance.now() - started);
         })
         .catch(() => {
           if (!cancelled) setFailedQuery(query);

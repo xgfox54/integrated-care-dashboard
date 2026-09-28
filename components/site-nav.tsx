@@ -2,12 +2,14 @@
 
 import { usePathname } from "next/navigation";
 
+import { markUsageNavigation } from "@/lib/usage/track";
 import { cn } from "@/lib/utils";
 
-const NAV_ITEMS = [
-  { href: "/", label: "대시보드" },
-  { href: "/wiki", label: "통합돌봄 WIKI" },
-  { href: "/welfare100", label: "복지제도100" },
+// 점 색은 헤더 아래 띠(파랑·초록·주황)의 포인트 색과 같다. 현재 화면 탭은 초록 채움 위에 흰 점으로 바뀐다.
+const NAV_ITEMS: readonly { href: string; label: string; dot?: string }[] = [
+  { href: "/", label: "대시보드", dot: "bg-(--jeju-orange)" },
+  { href: "/wiki", label: "통합돌봄 WIKI", dot: "bg-(--jeju-green)" },
+  { href: "/welfare100", label: "복지제도100", dot: "bg-(--jeju-blue)" },
   { href: "/sources", label: "데이터 출처" },
 ];
 
@@ -22,26 +24,27 @@ export function SiteNav() {
   const pathname = usePathname() ?? "";
 
   return (
-    <nav aria-label="주요 메뉴">
+    <nav aria-label="주요 메뉴" className="print:hidden">
       <ul className="flex flex-wrap items-center gap-1">
-        {NAV_ITEMS.map((item, index) => {
+        {NAV_ITEMS.map((item) => {
           const current = isCurrentPage(pathname, item.href);
           return (
             <li key={item.href}>
               <a
                 href={item.href}
                 aria-current={current ? "page" : undefined}
+                onClick={() => markUsageNavigation(item.href, current)}
                 className={cn(
-                  "inline-flex min-h-9 items-center rounded-full px-3 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0173bc]",
-                  // 현재 화면은 포인트 색 초록(--care-green)으로 채워 한눈에 구분한다.
+                  "inline-flex min-h-(--jeju-control-h) items-center rounded-(--jeju-radius) px-3 text-(length:--jeju-text-base) font-bold no-underline outline-none transition-colors focus-visible:shadow-(--jeju-focus-ring)",
+                  // 현재 화면은 초록으로 채워 한눈에 구분한다. 흰 글자와 대비 4.5:1을 넘는 제주 접근성 초록(--jeju-secondary-strong)을 쓴다.
                   current
-                    ? "bg-[var(--care-green)] font-bold text-white shadow-sm"
-                    : "font-semibold text-foreground hover:bg-[#0173bc]/8 hover:text-[#0173bc]",
+                    ? "bg-(--jeju-secondary-strong) text-(--jeju-on-fill) forced-colors:border forced-colors:border-[CanvasText]"
+                    : "text-(--jeju-text-body) hover:bg-(--jeju-primary-tint) hover:text-primary",
                 )}
               >
-                {index === 1 ? (
+                {item.dot ? (
                   <span
-                    className={cn("mr-1.5 size-1.5 rounded-full", current ? "bg-white" : "bg-[var(--care-green)]")}
+                    className={cn("mr-1.5 size-1.5 shrink-0 rounded-full", current ? "bg-(--jeju-on-fill)" : item.dot)}
                     aria-hidden="true"
                   />
                 ) : null}

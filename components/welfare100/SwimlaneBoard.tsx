@@ -44,12 +44,12 @@ const LOOP_BELOW = 68;
 
 // ── Status styles ─────────────────────────────────────────────────────────────
 const SS: Record<string, { bg: string; border: string; dot: string; label: string; ink: string; sub: string }> = {
-  done:    { bg: "#f0fdf6", border: "#0f9f72", dot: "#0f9f72", label: "선행",  ink: "#0b3d28", sub: "#1a7a52" },
-  current: { bg: "#0f9f72", border: "#0f9f72", dot: "#fff",    label: "핵심", ink: "#ffffff", sub: "rgba(255,255,255,.8)" },
-  waiting: { bg: "#f5f7f6", border: "#dde5df", dot: "#bdcbc4", label: "후속",  ink: "#111714", sub: "#5d6b63" },
-  risk:    { bg: "#fffbf0", border: "#d97706", dot: "#d97706", label: "병목",  ink: "#92400e", sub: "#d97706" },
-  loop:    { bg: "#eff6ff", border: "#2563eb", dot: "#2563eb", label: "회귀",  ink: "#1e3a8a", sub: "#2563eb" },
-  gateway: { bg: "#f5f7f6", border: "#c4cfc8", dot: "#5d6b63", label: "판단",  ink: "#111714", sub: "#5d6b63" },
+  done:    { bg: "var(--jeju-success-tint)", border: "var(--jeju-primary)", dot: "var(--jeju-primary)", label: "선행",  ink: "var(--jeju-green-deep)", sub: "var(--jeju-green-dark)" },
+  current: { bg: "var(--jeju-primary)", border: "var(--jeju-primary)", dot: "var(--jeju-on-fill)",    label: "핵심", ink: "var(--jeju-on-fill)", sub: "color-mix(in srgb, var(--jeju-on-fill) 80%, transparent)" },
+  waiting: { bg: "var(--jeju-surface-inset)", border: "var(--jeju-border)", dot: "var(--jeju-border-strong)", label: "후속",  ink: "var(--jeju-text)", sub: "var(--jeju-text-muted)" },
+  risk:    { bg: "var(--jeju-warning-tint)", border: "var(--jeju-orange-dark)", dot: "var(--jeju-orange-dark)", label: "병목",  ink: "var(--jeju-orange-deep)", sub: "var(--jeju-orange-dark)" },
+  loop:    { bg: "var(--jeju-info-tint)", border: "var(--jeju-blue-dark)", dot: "var(--jeju-blue-dark)", label: "회귀",  ink: "var(--jeju-blue-deep)", sub: "var(--jeju-blue-dark)" },
+  gateway: { bg: "var(--jeju-surface-inset)", border: "var(--jeju-border-strong)", dot: "var(--jeju-text-muted)", label: "판단",  ink: "var(--jeju-text)", sub: "var(--jeju-text-muted)" },
 };
 function ss(status: string) { return SS[status] ?? SS.waiting; }
 
@@ -93,11 +93,11 @@ function GateTimeline({
           const isLast = i === stages.length - 1;
           const [code, ...rest] = stage.split(" ");
           const dotBg =
-            st === "done" || st === "current" ? "#0f9f72" : st === "risk" ? "#d97706" : "transparent";
+            st === "done" || st === "current" ? "var(--jeju-primary)" : st === "risk" ? "var(--jeju-orange-dark)" : "transparent";
           const dotBorder =
-            st === "done" || st === "current" ? "#0f9f72" : st === "risk" ? "#d97706" : "#bdcbc4";
+            st === "done" || st === "current" ? "var(--jeju-primary)" : st === "risk" ? "var(--jeju-orange-dark)" : "var(--jeju-border-strong)";
           const labelColor =
-            st === "current" || st === "done" ? "#0f9f72" : st === "risk" ? "#d97706" : "#5d6b63";
+            st === "current" || st === "done" ? "var(--jeju-primary)" : st === "risk" ? "var(--jeju-orange-dark)" : "var(--jeju-text-muted)";
 
           return (
             <div
@@ -135,7 +135,7 @@ function GateTimeline({
                       background: dotBg,
                       border: `2px solid ${dotBorder}`,
                       boxShadow:
-                        st === "current" ? "0 0 0 3px rgba(15,159,114,.2)" : "none",
+                        st === "current" ? "0 0 0 3px color-mix(in srgb, var(--jeju-primary) 20%, transparent)" : "none",
                       transition:
                         "background-color 180ms var(--ease-in-out), border-color 180ms var(--ease-in-out), box-shadow 180ms var(--ease-in-out)",
                     }}
@@ -144,14 +144,14 @@ function GateTimeline({
                 <div style={{ textAlign: "center" }}>
                   <span
                     className="mono"
-                    style={{ color: labelColor, display: "block", fontSize: 11 }}
+                    style={{ color: labelColor, display: "block", fontSize: 12 }}
                   >
                     {code}
                   </span>
                   <span
                     style={{
-                      fontSize: 10,
-                      color: st === "current" ? "#111714" : "#5d6b63",
+                      fontSize: 12,
+                      color: st === "current" ? "var(--jeju-text)" : "var(--jeju-text-muted)",
                       lineHeight: 1.25,
                       fontWeight: st === "current" ? 600 : 400,
                       display: "block",
@@ -172,7 +172,7 @@ function GateTimeline({
                     width: "calc(100% - 16px)",
                     height: 2,
                     background:
-                      st === "done" || st === "current" ? "#0f9f72" : "#dde5df",
+                      st === "done" || st === "current" ? "var(--jeju-primary)" : "var(--jeju-border)",
                     transition:
                       "background-color 180ms var(--ease-in-out)",
                     zIndex: 1,
@@ -262,15 +262,16 @@ export function SwimlaneNodeCard({
       style={{
         "--node-card-border": c.border,
         "--node-card-shadow": isCurrent
-          ? "0 0 0 3px rgba(15,159,114,.18), 0 2px 8px rgba(11,20,16,.06)"
+          ? "0 0 0 3px color-mix(in srgb, var(--jeju-primary) 18%, transparent), 0 2px 8px color-mix(in srgb, var(--jeju-text-strong) 6%, transparent)"
           : highlighted
-          ? "0 4px 16px rgba(11,20,16,.12)"
-          : "0 1px 3px rgba(11,20,16,.05)",
+          ? "0 4px 16px color-mix(in srgb, var(--jeju-text-strong) 12%, transparent)"
+          : "0 1px 3px color-mix(in srgb, var(--jeju-text-strong) 5%, transparent)",
         display: "flex",
         flexDirection: "column",
         width: "100%",
         maxWidth: 148,
-        height: node.blocker ? 132 : 112,
+        // 글자 하한(12px) 때문에 제목이 두 줄이 되어도 잘리지 않도록 최소 높이만 둔다. 연결선은 카드 위치를 다시 재서 그린다.
+        minHeight: node.blocker ? 132 : 112,
         textAlign: "left",
         padding: "8px 9px",
         background: c.bg,
@@ -291,22 +292,22 @@ export function SwimlaneNodeCard({
             borderRadius: "50%",
             background: c.dot,
             flexShrink: 0,
-            boxShadow: isCurrent ? "0 0 0 2px rgba(255,255,255,.5)" : "none",
+            boxShadow: isCurrent ? "0 0 0 2px color-mix(in srgb, var(--jeju-on-fill) 50%, transparent)" : "none",
           }}
         />
         {isGateway && (
-          <span style={{ fontSize: 9, color: c.sub, fontWeight: 700 }}>◇</span>
+          <span style={{ fontSize: 12, color: c.sub, fontWeight: 700 }}>◇</span>
         )}
         {isLoop && (
-          <span style={{ fontSize: 10, color: c.sub }}>↩</span>
+          <span style={{ fontSize: 12, color: c.sub }}>↩</span>
         )}
         {isRisk && (
-          <span style={{ fontSize: 9, color: c.sub }}>⚠</span>
+          <span style={{ fontSize: 12, color: c.sub }}>⚠</span>
         )}
         <span
           className="mono"
           style={{
-            fontSize: 9,
+            fontSize: 12,
             color: c.sub,
             marginLeft: "auto",
             letterSpacing: "0.03em",
@@ -319,7 +320,7 @@ export function SwimlaneNodeCard({
       {/* name — 2-line clamp */}
       <div
         style={{
-          fontSize: 10.5,
+          fontSize: 12,
           fontWeight: 620,
           color: c.ink,
           lineHeight: 1.3,
@@ -335,7 +336,7 @@ export function SwimlaneNodeCard({
       {/* actor */}
       <div
         style={{
-          fontSize: 9,
+          fontSize: 12,
           color: c.sub,
           marginTop: 2,
           overflow: "hidden",
@@ -350,8 +351,8 @@ export function SwimlaneNodeCard({
       {compactLegal(node.legal_basis) && (
         <div
           style={{
-            fontSize: 8.5,
-            color: isCurrent ? "rgba(255,255,255,.72)" : "#68766f",
+            fontSize: 12,
+            color: isCurrent ? "color-mix(in srgb, var(--jeju-on-fill) 72%, transparent)" : "var(--jeju-text-subtle)",
             marginTop: 2,
             overflow: "hidden",
             textOverflow: "ellipsis",
@@ -368,8 +369,8 @@ export function SwimlaneNodeCard({
         <div
           style={{
             marginTop: 4,
-            fontSize: 9,
-            color: isCurrent ? "#fff0c2" : "#b86409",
+            fontSize: 12,
+            color: isCurrent ? "var(--jeju-on-fill)" : "var(--jeju-orange-dark)",
             fontWeight: 600,
             overflow: "hidden",
             textOverflow: "ellipsis",
@@ -398,10 +399,10 @@ export function SwimlaneNodeCard({
               minHeight: 16,
               padding: "1px 4px",
               borderRadius: 4,
-              border: `1px solid ${isCurrent ? "rgba(255,255,255,.42)" : "#ead19b"}`,
-              color: isCurrent ? "#ffffff" : "#9a650f",
-              background: isCurrent ? "rgba(255,255,255,.14)" : "#fef6e7",
-              fontSize: 8.5,
+              border: `1px solid ${isCurrent ? "color-mix(in srgb, var(--jeju-on-fill) 42%, transparent)" : "var(--jeju-orange-light-strong)"}`,
+              color: isCurrent ? "var(--jeju-on-fill)" : "var(--jeju-warning)",
+              background: isCurrent ? "color-mix(in srgb, var(--jeju-on-fill) 14%, transparent)" : "var(--jeju-warning-tint)",
+              fontSize: 12,
               fontWeight: 700,
               lineHeight: 1.4,
               whiteSpace: "nowrap",
@@ -716,7 +717,7 @@ export function NodeDrawer({
         onClick={() => requestClose()}
         style={{
           position: "fixed", inset: 0,
-          background: "rgba(11,20,16,.35)",
+          background: "var(--jeju-overlay)",
           zIndex: 100,
         }}
         aria-hidden="true"
@@ -731,26 +732,26 @@ export function NodeDrawer({
         style={{
           position: "fixed", top: 0, right: 0, bottom: 0,
           width: "min(480px, 100vw)",
-          background: "#fff",
-          borderLeft: "1px solid #dde5df",
+          background: "var(--jeju-surface)",
+          borderLeft: "1px solid var(--jeju-border)",
           zIndex: 101,
           overflowY: "auto",
           padding: 28,
-          boxShadow: "-8px 0 48px rgba(11,20,16,.12)",
+          boxShadow: "-8px 0 48px color-mix(in srgb, var(--jeju-text-strong) 12%, transparent)",
         }}
       >
         {/* header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
           <div>
             <div style={{ display: "flex", gap: 6, marginBottom: 6 }}>
-              <span className="mono" style={{ color: "#5d6b63" }}>{node.id}</span>
+              <span className="mono" style={{ color: "var(--jeju-text-muted)" }}>{node.id}</span>
               <span style={{
                 fontSize: 12, fontWeight: 600, padding: "2px 8px",
                 borderRadius: 4, background: c.bg, color: c.sub,
                 border: `1px solid ${c.border}`,
               }}>{c.label}</span>
             </div>
-            <h2 style={{ fontSize: 20, fontWeight: 680, color: "#111714", lineHeight: 1.3, margin: 0 }}>
+            <h2 style={{ fontSize: 20, fontWeight: 680, color: "var(--jeju-text)", lineHeight: 1.3, margin: 0 }}>
               {node.name}
             </h2>
           </div>
@@ -761,7 +762,7 @@ export function NodeDrawer({
             aria-label="닫기"
             style={{
               background: "none", border: "none", cursor: "pointer",
-              color: "#5d6b63", fontSize: 22, lineHeight: 1,
+              color: "var(--jeju-text-muted)", fontSize: 22, lineHeight: 1,
               padding: 4, flexShrink: 0, marginLeft: 16,
             }}
           >×</button>
@@ -769,9 +770,9 @@ export function NodeDrawer({
 
         {lowConf && (
           <div style={{
-            padding: "10px 14px", background: "#fef6e7",
-            borderRadius: 8, border: "1px solid rgba(199,129,22,.25)",
-            fontSize: 13, color: "#c78116", fontWeight: 600, marginBottom: 16,
+            padding: "10px 14px", background: "var(--jeju-warning-tint)",
+            borderRadius: 8, border: "1px solid color-mix(in srgb, var(--jeju-orange) 25%, transparent)",
+            fontSize: 13, color: "var(--jeju-warning)", fontWeight: 600, marginBottom: 16,
           }}>
             ⚠ 현장 검증 필요 — 법령 근거 확신도 {Math.round((node.confidence ?? 0) * 100)}%
           </div>
@@ -786,15 +787,15 @@ export function NodeDrawer({
 
         {node.deadline && (
           <DrawerSection title="기한">
-            <p style={{ fontSize: 14, color: "#111714", margin: 0 }}>{node.deadline}</p>
+            <p style={{ fontSize: 14, color: "var(--jeju-text)", margin: 0 }}>{node.deadline}</p>
           </DrawerSection>
         )}
 
         {node.blocker && (
           <DrawerSection title="병목">
             <div style={{
-              padding: "10px 12px", background: "#fef6e7",
-              borderRadius: 8, fontSize: 14, color: "#c78116", fontWeight: 500,
+              padding: "10px 12px", background: "var(--jeju-warning-tint)",
+              borderRadius: 8, fontSize: 14, color: "var(--jeju-warning)", fontWeight: 500,
             }}>{node.blocker}</div>
           </DrawerSection>
         )}
@@ -804,11 +805,11 @@ export function NodeDrawer({
             <ul style={{ margin: 0, paddingLeft: 0, listStyle: "none" }}>
               {node.output_documents.map((doc, i) => (
                 <li key={i} style={{
-                  fontSize: 14, color: "#111714", padding: "4px 0",
-                  borderBottom: i < (node.output_documents?.length ?? 0) - 1 ? "1px solid #dde5df" : "none",
+                  fontSize: 14, color: "var(--jeju-text)", padding: "4px 0",
+                  borderBottom: i < (node.output_documents?.length ?? 0) - 1 ? "1px solid var(--jeju-border)" : "none",
                   display: "flex", gap: 6, alignItems: "center",
                 }}>
-                  <span style={{ color: "#0f9f72", flexShrink: 0 }}>▸</span>
+                  <span style={{ color: "var(--jeju-primary)", flexShrink: 0 }}>▸</span>
                   {doc}
                 </li>
               ))}
@@ -826,8 +827,8 @@ export function NodeDrawer({
           <DrawerSection title="회귀 루프">
             {loopEdges.map((e) => (
               <div key={e.id} style={{
-                padding: "8px 12px", background: "#eff6ff",
-                borderRadius: 8, fontSize: 13, color: "#2563eb",
+                padding: "8px 12px", background: "var(--jeju-info-tint)",
+                borderRadius: 8, fontSize: 13, color: "var(--jeju-blue-dark)",
                 marginBottom: 6, display: "flex", gap: 6, alignItems: "center",
               }}>
                 <span>↩</span>
@@ -841,11 +842,11 @@ export function NodeDrawer({
           <DrawerSection title="정보 흐름">
             {msgEdges.map((e) => (
               <div key={e.id} style={{
-                padding: "8px 12px", background: "#f5f7f6",
-                borderRadius: 8, fontSize: 13, color: "#5d6b63",
+                padding: "8px 12px", background: "var(--jeju-surface-inset)",
+                borderRadius: 8, fontSize: 13, color: "var(--jeju-text-muted)",
                 marginBottom: 6, display: "flex", gap: 6, alignItems: "center",
               }}>
-                <span style={{ color: "#0f9f72" }}>→</span>
+                <span style={{ color: "var(--jeju-primary)" }}>→</span>
                 <span>{e.label} ({e.source} → {e.target})</span>
               </div>
             ))}
@@ -880,10 +881,10 @@ function keepFocusInDrawer(event: KeyboardEvent, drawer: HTMLElement | null) {
 function MetaItem({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#5d6b63", marginBottom: 3 }}>
+      <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--jeju-text-muted)", marginBottom: 3 }}>
         {label}
       </div>
-      <div style={{ fontSize: 13, color: "#111714", fontWeight: 500 }}>{value}</div>
+      <div style={{ fontSize: 13, color: "var(--jeju-text)", fontWeight: 500 }}>{value}</div>
     </div>
   );
 }
@@ -892,9 +893,9 @@ function DrawerSection({ title, children }: { title: string; children: React.Rea
   return (
     <div style={{ marginBottom: 20 }}>
       <div style={{
-        fontSize: 11, fontWeight: 700, letterSpacing: "0.07em",
-        textTransform: "uppercase", color: "#5d6b63",
-        marginBottom: 8, paddingBottom: 6, borderBottom: "1px solid #dde5df",
+        fontSize: 12, fontWeight: 700, letterSpacing: "0.07em",
+        textTransform: "uppercase", color: "var(--jeju-text-muted)",
+        marginBottom: 8, paddingBottom: 6, borderBottom: "1px solid var(--jeju-border)",
       }}>{title}</div>
       {children}
     </div>
@@ -912,9 +913,9 @@ export function Legend() {
   ] as const;
 
   const edgeItems = [
-    { color: "#55685e", dash: "", label: "순서 흐름" },
-    { color: "#0d8a63", dash: "6 4", label: "정보 전달" },
-    { color: "#2563eb", dash: "4 3", label: "회귀 루프" },
+    { color: "var(--jeju-text-muted)", dash: "", label: "순서 흐름" },
+    { color: "var(--jeju-green-dark)", dash: "6 4", label: "정보 전달" },
+    { color: "var(--jeju-blue-dark)", dash: "4 3", label: "회귀 루프" },
   ];
 
   return (
@@ -1065,11 +1066,11 @@ function buildEdgePaths(
 }
 
 // ── Edge color / style helpers ────────────────────────────────────────────────
-// 화살표 시인성: 옅은 회녹색(#bdcbc4)은 격자 위에서 묻힌다 — 진한 색 + 굵은 선
+// 화살표 시인성: 옅은 회녹색(var(--jeju-border-strong))은 격자 위에서 묻힌다 — 진한 색 + 굵은 선
 function edgeColor(type: string) {
-  if (type === "loop")    return "#2563eb";
-  if (type === "message") return "#0d8a63";
-  return "#55685e";
+  if (type === "loop")    return "var(--jeju-blue-dark)";
+  if (type === "message") return "var(--jeju-green-dark)";
+  return "var(--jeju-text-muted)";
 }
 function edgeDash(type: string) {
   if (type === "message") return "6 4";
@@ -1195,17 +1196,17 @@ export default function SwimlaneBoard({
   // Stage status for header color
   function stageHeaderColor(stage: string): string {
     const st = stageStatus(stage, nodes);
-    if (st === "current") return "#0f9f72";
-    if (st === "done")    return "#dff5eb";
-    if (st === "risk")    return "#fef3c7";
-    return "#f5f7f6";
+    if (st === "current") return "var(--jeju-primary)";
+    if (st === "done")    return "var(--jeju-blue-light-strong)";
+    if (st === "risk")    return "var(--jeju-warning-tint)";
+    return "var(--jeju-surface-inset)";
   }
   function stageHeaderBorderColor(stage: string): string {
     const st = stageStatus(stage, nodes);
-    if (st === "current") return "#0f9f72";
-    if (st === "done")    return "#0f9f72";
-    if (st === "risk")    return "#d97706";
-    return "#dde5df";
+    if (st === "current") return "var(--jeju-primary)";
+    if (st === "done")    return "var(--jeju-primary)";
+    if (st === "risk")    return "var(--jeju-orange-dark)";
+    return "var(--jeju-border)";
   }
 
   return (
@@ -1295,7 +1296,7 @@ export default function SwimlaneBoard({
                   orient="auto"
                   markerUnits="userSpaceOnUse"
                 >
-                  <path d="M0,0.5 L0,8.5 L10,4.5 z" fill="#55685e" />
+                  <path d="M0,0.5 L0,8.5 L10,4.5 z" fill="var(--jeju-text-muted)" />
                 </marker>
                 {/* message arrowhead */}
                 <marker
@@ -1305,7 +1306,7 @@ export default function SwimlaneBoard({
                   orient="auto"
                   markerUnits="userSpaceOnUse"
                 >
-                  <path d="M0,0.5 L0,8.5 L10,4.5 z" fill="#0d8a63" />
+                  <path d="M0,0.5 L0,8.5 L10,4.5 z" fill="var(--jeju-green-dark)" />
                 </marker>
                 {/* loop arrowhead */}
                 <marker
@@ -1315,7 +1316,7 @@ export default function SwimlaneBoard({
                   orient="auto"
                   markerUnits="userSpaceOnUse"
                 >
-                  <path d="M0,0.5 L0,8.5 L10,4.5 z" fill="#2563eb" />
+                  <path d="M0,0.5 L0,8.5 L10,4.5 z" fill="var(--jeju-blue-dark)" />
                 </marker>
                 {/* loop-reverse arrowhead (entering from right) */}
                 <marker
@@ -1325,7 +1326,7 @@ export default function SwimlaneBoard({
                   orient="auto"
                   markerUnits="userSpaceOnUse"
                 >
-                  <path d="M10,0.5 L10,8.5 L0,4.5 z" fill="#2563eb" />
+                  <path d="M10,0.5 L10,8.5 L0,4.5 z" fill="var(--jeju-blue-dark)" />
                 </marker>
               </defs>
 
@@ -1378,7 +1379,7 @@ export default function SwimlaneBoard({
                         <text
                           x={labelX} y={labelY + 5}
                           textAnchor="middle"
-                          fontSize={10}
+                          fontSize={12}
                           fill={color}
                           fontWeight={600}
                           fontFamily="var(--font-sans)"
@@ -1399,9 +1400,9 @@ export default function SwimlaneBoard({
             style={{
               gridColumn: 1, gridRow: 1,
               position: "sticky", top: 0, left: 0, zIndex: 21,
-              background: "#f5f7f6",
-              borderRight: "2px solid #dde5df",
-              borderBottom: "1px solid #dde5df",
+              background: "var(--jeju-surface-inset)",
+              borderRight: "2px solid var(--jeju-border)",
+              borderBottom: "1px solid var(--jeju-border)",
             }}
           />
 
@@ -1418,27 +1419,27 @@ export default function SwimlaneBoard({
                   position: "sticky", top: 0, zIndex: 10,
                   background: stageHeaderColor(stage),
                   borderBottom: `2px solid ${stageHeaderBorderColor(stage)}`,
-                  borderRight: "1px solid #dde5df",
+                  borderRight: "1px solid var(--jeju-border)",
                   padding: "8px 10px",
                   display: "flex", alignItems: "center", gap: 7,
                 }}
               >
                 <span className="mono" style={{
-                  fontSize: 11,
+                  fontSize: 12,
                   // current는 배경이 accent 초록이므로 글자는 흰색 (초록-위-초록 방지)
-                  color: st === "current" ? "rgba(255,255,255,.85)"
-                       : st === "done"    ? "#087452"
-                       : st === "risk"    ? "#d97706"
-                       : "#5d6b63",
+                  color: st === "current" ? "color-mix(in srgb, var(--jeju-on-fill) 85%, transparent)"
+                       : st === "done"    ? "var(--jeju-primary-hover)"
+                       : st === "risk"    ? "var(--jeju-orange-dark)"
+                       : "var(--jeju-text-muted)",
                   flexShrink: 0,
                 }}>
                   {code}
                 </span>
                 <span style={{
-                  fontSize: 11, fontWeight: 600,
-                  color: st === "current" ? "#ffffff"
-                       : st === "done"    ? "#5d6b63"
-                       : "#5d6b63",
+                  fontSize: 12, fontWeight: 600,
+                  color: st === "current" ? "var(--jeju-on-fill)"
+                       : st === "done"    ? "var(--jeju-text-muted)"
+                       : "var(--jeju-text-muted)",
                   lineHeight: 1.25,
                   overflow: "hidden", display: "-webkit-box",
                   WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
@@ -1462,9 +1463,9 @@ export default function SwimlaneBoard({
                 style={{
                   gridColumn: 1, gridRow: rowIdx,
                   position: "sticky", left: 0, zIndex: 9,
-                  background: "#f5f7f6",
-                  borderRight: "2px solid #dde5df",
-                  borderBottom: "1px solid #e8ece9",
+                  background: "var(--jeju-surface-inset)",
+                  borderRight: "2px solid var(--jeju-border)",
+                  borderBottom: "1px solid var(--jeju-hairline)",
                   padding: "10px 8px",
                   display: "flex", alignItems: "flex-start",
                   justifyContent: "flex-start",
@@ -1472,7 +1473,7 @@ export default function SwimlaneBoard({
                 }}
               >
                 <span style={{
-                  fontSize: 10, fontWeight: 600, color: "#5d6b63",
+                  fontSize: 12, fontWeight: 600, color: "var(--jeju-text-muted)",
                   lineHeight: 1.3, wordBreak: "keep-all",
                 }}>
                   {lane}
@@ -1495,12 +1496,12 @@ export default function SwimlaneBoard({
                     className="swimlane-stage-cell"
                     style={{
                       gridColumn: si + 2, gridRow: rowIdx,
-                      borderRight: "1px solid #e8ece9",
-                      borderBottom: "1px solid #e8ece9",
+                      borderRight: "1px solid var(--jeju-hairline)",
+                      borderBottom: "1px solid var(--jeju-hairline)",
                       // 레인 밴딩은 노드 있는 셀에도 유지, current 게이트 컬럼은 옅은 accent
                       background: isCurrentStageCol
-                        ? "#eef8f3"
-                        : isEven ? "#fafbfa" : "#f6f8f7",
+                        ? "var(--jeju-primary-tint)"
+                        : isEven ? "var(--jeju-surface-inset)" : "var(--jeju-surface-inset)",
                       // 카드는 작게, 칸 사이 여백은 넉넉하게
                       padding: isEmpty ? 0 : "18px 14px",
                       display: "flex",

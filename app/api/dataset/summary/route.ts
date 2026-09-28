@@ -1,6 +1,6 @@
 import { after } from "next/server";
 
-import { describeError } from "@/lib/errors";
+import { errorResponse } from "@/lib/errors";
 import { readSummaryDataset } from "@/lib/dataset-responses";
 import { SHARED_CACHE_HEADER, withSharedCache } from "@/lib/edge-cache";
 import {
@@ -29,7 +29,7 @@ async function buildSummaryResponse(): Promise<Response> {
     const message = status.running || syncStarted
       ? "보건복지부 통합돌봄 사업안내 원문을 백그라운드에서 현행화하고 있습니다."
       : status.latestAttempt?.status === "failed"
-        ? `최근 현행화 실패: ${status.latestAttempt.error}`
+        ? "최근 공식자료 현행화에 실패했습니다. 마지막 성공 자료를 표시합니다."
         : "";
     return Response.json(
       {
@@ -44,18 +44,12 @@ async function buildSummaryResponse(): Promise<Response> {
       { headers: { "cache-control": SHARED_CACHE_HEADER } },
     );
   } catch (error) {
-    return Response.json(
-      {
-        state: "failed",
-        sourceLabel: "보건복지부 통합돌봄 사업안내",
-        sourceUrl: MOHW_INTEGRATED_CARE_URL,
-        fetchedAt: "",
-        dataAsOf: "",
-        message: `요약 자료를 읽지 못했습니다: ${describeError(error)}`,
-        summary: null,
-      },
-      { status: 500, headers: { "cache-control": "no-store" } },
-    );
+    return errorResponse(error, {
+      code: "DATASET_SUMMARY_FAILED",
+      message: "요약 자료를 읽지 못했습니다.",
+      status: 500,
+      path: "/api/dataset/summary",
+    });
   }
 }
 

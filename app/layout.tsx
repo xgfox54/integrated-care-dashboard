@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import "./globals.css";
 import { ServiceWorkerRegistrar } from "@/components/service-worker-registrar";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { UsageRoot } from "@/components/usage/usage-root";
 
 export const metadata: Metadata = {
   title: "전국 통합돌봄 사업 총괄 대시보드",
@@ -23,33 +23,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const enableDevTools =
-    process.env.NODE_ENV === "development" &&
-    process.env.NEXT_PUBLIC_DISABLE_REACT_DEVTOOLS !== "1";
-
+  // 외부 CDN 스크립트(개발용 react-grab · react-scan)는 망분리·보안 기준(제주 디자인 S2)에 맞춰 넣지 않는다.
   return (
     <html lang="ko">
-      <head>
-        {enableDevTools ? (
-          <>
-            <Script
-              src="https://unpkg.com/react-grab/dist/index.global.js"
-              crossOrigin="anonymous"
-              strategy="beforeInteractive"
-            />
-            <Script
-              src="https://unpkg.com/react-scan/dist/auto.global.js"
-              crossOrigin="anonymous"
-              strategy="beforeInteractive"
-            />
-          </>
-        ) : null}
-      </head>
-      <body className="antialiased">
+      <body className="flex min-h-svh flex-col antialiased">
         <SiteHeader />
-        {children}
+        <div className="flex-1">{children}</div>
         <SiteFooter />
         <ServiceWorkerRegistrar />
+        <UsageRoot />
       </body>
     </html>
   );

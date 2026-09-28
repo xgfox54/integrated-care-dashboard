@@ -4,9 +4,9 @@ const NUMBER_FORMAT = new Intl.NumberFormat("ko-KR");
 
 function StatCard({ label, value }: { readonly label: string; readonly value: string }) {
   return (
-    <div className="rounded-md border border-border px-3 py-2">
-      <dt className="text-sm text-muted-foreground">{label}</dt>
-      <dd className="mt-1 text-xl font-bold text-primary">{value}</dd>
+    <div className="rounded-lg border border-border bg-(--jeju-surface-inset) px-3 py-2.5">
+      <dt className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">{label}</dt>
+      <dd className="mt-1 text-(length:--jeju-text-xl) font-extrabold tabular-nums text-(--jeju-text-strong)">{value}</dd>
     </div>
   );
 }
@@ -21,14 +21,14 @@ function Pills({
   if (entries.length === 0) return null;
   return (
     <div>
-      <h3 className="text-sm font-semibold">{title}</h3>
-      <ul className="mt-1 flex flex-wrap gap-1.5">
+      <h3 className="text-(length:--jeju-text-sm) font-extrabold text-(--jeju-text-strong)">{title}</h3>
+      <ul className="mt-1.5 flex flex-wrap gap-1.5">
         {entries.map(([label, value]) => (
           <li
             key={label}
-            className="rounded-full bg-secondary px-2.5 py-1 text-sm text-secondary-foreground"
+            className="rounded-full border border-border bg-(--jeju-surface-inset) px-2.5 py-1 text-(length:--jeju-text-sm) text-(--jeju-text-body)"
           >
-            {label} <strong className="font-semibold">{NUMBER_FORMAT.format(value)}</strong>
+            {label} <strong className="font-extrabold tabular-nums text-(--jeju-text-strong)">{NUMBER_FORMAT.format(value)}</strong>
           </li>
         ))}
       </ul>
@@ -50,8 +50,8 @@ export function RegionSummaryPanel({
   const title = `${regionName} 요약`;
 
   return (
-    <section aria-label={title} className="rounded-lg border border-border bg-card p-4">
-      <h2 className="text-base font-semibold">{title}</h2>
+    <section aria-label={title} className="rounded-xl border border-border bg-card p-4">
+      <h2 className="text-(length:--jeju-h3-size) font-extrabold text-(--jeju-text-strong)">{title}</h2>
 
       <dl className="mt-3 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatCard label="등록 사업" value={`${NUMBER_FORMAT.format(summary.rowCount)}건`} />

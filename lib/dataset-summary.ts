@@ -3,6 +3,17 @@ import { SERVICE_CATEGORY_ORDER, type ServiceRow, sortedUnique } from "./dataset
 export const SEARCH_PAGE_SIZES = [20, 30, 50, 100] as const;
 export const DEFAULT_SEARCH_PAGE_SIZE = 30;
 
+/**
+ * 시·군·구(기초자치단체)가 없는 광역자치단체. 세종은 단층제이고, 제주의 제주시·서귀포시는 자치권이 없는 행정시다.
+ * 원자료는 이 두 곳 사업의 시·군·구 칸에 광역 이름을 넣으므로, 「수록 시·군·구」 수에서는 뺀다(목록·필터에는 그대로 둔다).
+ */
+export const SINGLE_TIER_SIDO: readonly string[] = ["세종특별자치시", "제주특별자치도"];
+
+/** 기초자치단체로 세는 시·군·구인지. */
+export function isMunicipality(sido: string, sigungu: string): boolean {
+  return Boolean(sido && sigungu) && !SINGLE_TIER_SIDO.includes(sido);
+}
+
 export interface DatasetSummary {
   readonly totalCount: number;
   readonly sidoCount: number;
@@ -40,7 +51,7 @@ export function buildDatasetSummary(rows: readonly SummaryRow[]): DatasetSummary
     increment(regionCounts, row.sido);
     increment(categoryCounts, row.category);
     if (row.sido && row.sigungu) {
-      municipalities.add(`${row.sido}|${row.sigungu}`);
+      if (isMunicipality(row.sido, row.sigungu)) municipalities.add(`${row.sido}|${row.sigungu}`);
       const values = sigunguSets.get(row.sido) ?? new Set<string>();
       values.add(row.sigungu);
       sigunguSets.set(row.sido, values);

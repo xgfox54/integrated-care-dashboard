@@ -267,7 +267,15 @@ for (const [id, item] of listItems) {
   const websites = detail.dtl
     .filter((entry) => entry.cd === "020" && /^https?:/i.test(String(entry.cn ?? "").trim()))
     .map((entry) => ({ name: String(entry.nm ?? "").trim() || "관련 웹사이트", url: String(entry.cn).trim() }));
-  const forms = [...new Set(detail.dtl.filter((entry) => entry.cd === "040").map((entry) => String(entry.nm ?? entry.file ?? "").trim()).filter(Boolean))];
+  // 복지로는 서식이 없을 때 「첨부파일없음.hwp」 같은 빈 자리 파일을 올려 두므로 서식으로 치지 않는다.
+  const forms = [
+    ...new Set(
+      detail.dtl
+        .filter((entry) => entry.cd === "040")
+        .map((entry) => String(entry.nm ?? entry.file ?? "").trim())
+        .filter((name) => name && !/^(첨부\s*파일|서식|해당)?\s*없음(\.[a-z0-9]+)?$/i.test(name)),
+    ),
+  ];
   const laws = [];
   for (const row of detail.dtl.filter((entry) => entry.cd === "030")) {
     const law = parseLaw(row);
@@ -317,6 +325,37 @@ for (const [id, item] of listItems) {
   });
 }
 if (missing.length > 0) console.warn("상세 미수집", missing.length, missing.slice(0, 10).join(","));
+
+// ---------------------------------------------------------------- 최신 자료 반영(data/welfare100/bokjiro-edits.json)
+// 복지로 원자료가 지난 내용일 때 확인한 최신 자료로 고치거나 지운다. 복지로 자료를 다시 받아도 이 파일이 다시 적용된다.
+const EDITABLE_FIELDS = new Set(["name", "summary", "target", "selection", "benefit", "applyText", "contacts", "websites", "forms", "applyMethods", "startDate", "endDate"]);
+const bokjiroEdits = readJson(path.join(DATA, "bokjiro-edits.json"));
+for (const entry of bokjiroEdits.remove ?? []) {
+  if (!rawById.delete(entry.id)) console.warn("삭제 대상이 복지로 목록에 없음", entry.id, entry.name);
+}
+for (const [id, entry] of Object.entries(bokjiroEdits.edit ?? {})) {
+  const raw = rawById.get(id);
+  if (!raw) {
+    console.warn("수정 대상이 복지로 목록에 없음", id);
+    continue;
+  }
+  if (!entry.checkedAt || !entry.note || !Array.isArray(entry.sources) || entry.sources.length === 0) {
+    throw new Error("bokjiro-edits.json " + id + ": checkedAt·note·sources가 필요합니다.");
+  }
+  const previousName = raw.name;
+  for (const [key, value] of Object.entries(entry.set ?? {})) {
+    if (!EDITABLE_FIELDS.has(key)) throw new Error("bokjiro-edits.json " + id + ": 고칠 수 없는 필드 " + key);
+    raw[key] = value;
+  }
+  raw.edit = {
+    checkedAt: entry.checkedAt,
+    ...(raw.name !== previousName ? { previousName } : {}),
+    note: entry.note,
+    fields: Object.keys(entry.set ?? {}),
+    sources: entry.sources.map((source) => ({ label: String(source.label), url: String(source.url) })),
+    ...(entry.verify?.length ? { verify: entry.verify } : {}),
+  };
+}
 
 // ---------------------------------------------------------------- curated 100
 const manualTitles = readJson(path.join(DATA, "manuals.json"));
@@ -391,7 +430,8 @@ class AhoCorasick {
   }
 }
 const matchNames = new Map();
-for (const raw of rawById.values()) matchNames.set(raw.id, [raw.name]);
+// 복지톡 DB 원문은 최신 이름과 복지로에 등록된 원래 이름 모두로 찾는다.
+for (const raw of rawById.values()) matchNames.set(raw.id, raw.edit?.previousName ? [raw.name, raw.edit.previousName] : [raw.name]);
 for (const program of programs) {
   const names = [program.name];
   for (const id of curatedMap[program.slug]?.merge ?? []) if (rawById.has(id)) names.push(rawById.get(id).name);

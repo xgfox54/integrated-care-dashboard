@@ -147,3 +147,13 @@ export const datasetResponseCache = sqliteTable("dataset_response_cache", {
   body: text("body").notNull(),
   createdAt: integer("created_at").notNull(),
 });
+
+export const apiRateLimit = sqliteTable(
+  "api_rate_limit",
+  {
+    bucketKey: text("bucket_key").primaryKey(),
+    requestCount: integer("request_count").notNull(),
+    expiresAt: integer("expires_at").notNull(),
+  },
+  (table) => [index("api_rate_limit_expires_at_idx").on(table.expiresAt)],
+);

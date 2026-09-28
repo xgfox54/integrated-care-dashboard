@@ -30,33 +30,33 @@ const STATE_STYLE: Record<
 > = {
   "article-verified": {
     icon: "✓",
-    color: "#087452",
-    background: "#e7f7ef",
-    border: "#a9ddc8",
+    color: "var(--jeju-primary-hover)",
+    background: "var(--jeju-success-tint)",
+    border: "var(--jeju-green-light-strong)",
   },
   "source-linked": {
     icon: "↗",
-    color: "#315a78",
-    background: "#edf5fa",
-    border: "#bfd5e3",
+    color: "var(--jeju-blue-deep)",
+    background: "var(--jeju-info-tint)",
+    border: "var(--jeju-blue-light-strong)",
   },
   "scope-limited": {
     icon: "!",
-    color: "#9a650f",
-    background: "#fef6e7",
-    border: "#ead19b",
+    color: "var(--jeju-warning)",
+    background: "var(--jeju-warning-tint)",
+    border: "var(--jeju-orange-light-strong)",
   },
   "needs-review": {
     icon: "!",
-    color: "#a33a2b",
-    background: "#fff1ef",
-    border: "#edc0b8",
+    color: "var(--jeju-danger)",
+    background: "var(--jeju-danger-tint)",
+    border: "color-mix(in srgb, var(--jeju-danger) 30%, var(--jeju-surface))",
   },
   "not-cited": {
     icon: "-",
-    color: "#68766f",
-    background: "#f5f7f6",
-    border: "#d3ddd7",
+    color: "var(--jeju-text-subtle)",
+    background: "var(--jeju-surface-inset)",
+    border: "var(--jeju-border)",
   },
 };
 
@@ -114,13 +114,13 @@ export function VerificationMark({
           alignItems: "center",
           gap: 3,
           maxWidth: "100%",
-          minHeight: compact ? 16 : 20,
-          padding: compact ? "1px 5px" : "2px 7px",
+          minHeight: compact ? 18 : 20,
+          padding: compact ? "1px 6px" : "2px 7px",
           borderRadius: 4,
-          border: `1px solid ${inverse ? "rgba(255,255,255,.42)" : visual.border}`,
-          background: inverse ? "rgba(255,255,255,.14)" : visual.background,
-          color: inverse ? "#ffffff" : visual.color,
-          fontSize: compact ? 8.5 : 11,
+          border: `1px solid ${inverse ? "color-mix(in srgb, var(--jeju-on-fill) 42%, transparent)" : visual.border}`,
+          background: inverse ? "color-mix(in srgb, var(--jeju-on-fill) 14%, transparent)" : visual.background,
+          color: inverse ? "var(--jeju-on-fill)" : visual.color,
+          fontSize: 12,
           fontWeight: 700,
           lineHeight: 1.2,
           whiteSpace: "nowrap",
@@ -397,7 +397,7 @@ export function NodeLegalVerification({
         }}
       >
         <VerificationMark result={result} />
-        <p style={{ margin: 0, color: "#5d6b63", fontSize: 12, lineHeight: 1.55 }}>
+        <p style={{ margin: 0, color: "var(--jeju-text-muted)", fontSize: 12, lineHeight: 1.55 }}>
           {result.detail}
         </p>
       </div>
@@ -407,7 +407,7 @@ export function NodeLegalVerification({
           key={`${basis.law}:${basis.article}:${index}`}
           style={{
             padding: "11px 0",
-            borderTop: "1px solid #dde5df",
+            borderTop: "1px solid var(--jeju-border)",
           }}
         >
           <div
@@ -419,15 +419,15 @@ export function NodeLegalVerification({
               marginBottom: 3,
             }}
           >
-            <strong style={{ fontSize: 13, color: "#111714", lineHeight: 1.4 }}>
+            <strong style={{ fontSize: 13, color: "var(--jeju-text)", lineHeight: 1.4 }}>
               {basis.law}
             </strong>
             {hasExplicitArticle && result.state === "article-verified" && (
               <span
                 style={{
                   flexShrink: 0,
-                  color: "#087452",
-                  fontSize: 10,
+                  color: "var(--jeju-primary-hover)",
+                  fontSize: 12,
                   fontWeight: 700,
                 }}
               >
@@ -437,7 +437,7 @@ export function NodeLegalVerification({
           </div>
           <div
             style={{
-              color: "#5d6b63",
+              color: "var(--jeju-text-muted)",
               fontFamily: "var(--font-mono)",
               fontSize: 12,
               lineHeight: 1.5,
@@ -446,7 +446,7 @@ export function NodeLegalVerification({
             {basis.article}
           </div>
           {basis.text && (
-            <p style={{ margin: "5px 0 0", color: "#5d6b63", fontSize: 12, lineHeight: 1.55 }}>
+            <p style={{ margin: "5px 0 0", color: "var(--jeju-text-muted)", fontSize: 12, lineHeight: 1.55 }}>
               {basis.text}
             </p>
           )}
@@ -463,8 +463,8 @@ export function NodeLegalVerification({
                 gap: 4,
                 marginTop: 7,
                 marginRight: 10,
-                color: "#315a78",
-                fontSize: 11,
+                color: "var(--jeju-blue-deep)",
+                fontSize: 12,
                 fontWeight: 650,
                 textDecoration: "none",
               }}
@@ -481,21 +481,21 @@ export function NodeLegalVerification({
               style={{
                 marginTop: 8,
                 paddingLeft: 9,
-                borderLeft: "2px solid #c78116",
-                color: "#7b5415",
-                fontSize: 11,
+                borderLeft: "2px solid var(--jeju-warning)",
+                color: "var(--jeju-orange-deep)",
+                fontSize: 12,
                 lineHeight: 1.55,
               }}
             >
               <strong>{unresolvedReasonLabels[item.reasonCode]}</strong> · {item.law}
-              <span style={{ display: "block", color: "#5d6b63" }}>
+              <span style={{ display: "block", color: "var(--jeju-text-muted)" }}>
                 다음 확인: {item.nextStep}
               </span>
             </div>
           ))}
 
           {verification && sources.length === 0 && unresolved.length === 0 && (
-            <div style={{ marginTop: 7, color: "#5d6b63", fontSize: 11 }}>
+            <div style={{ marginTop: 7, color: "var(--jeju-text-muted)", fontSize: 12 }}>
               기관 단위 검증 결과에 포함 · 개별 출처명 직접 매칭 필요
             </div>
           )}
@@ -507,9 +507,9 @@ export function NodeLegalVerification({
           style={{
             margin: "9px 0 0",
             paddingTop: 9,
-            borderTop: "1px solid #dde5df",
-            color: "#5d6b63",
-            fontSize: 10.5,
+            borderTop: "1px solid var(--jeju-border)",
+            color: "var(--jeju-text-muted)",
+            fontSize: 12,
             lineHeight: 1.5,
           }}
         >

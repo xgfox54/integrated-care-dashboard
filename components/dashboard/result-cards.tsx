@@ -1,49 +1,51 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { serviceWikiHref, type ServiceRow } from "@/lib/dataset";
 
 export function ResultCards({
   rows,
   onSelect,
+  onWikiOpen,
 }: {
   rows: readonly ServiceRow[];
   onSelect: (row: ServiceRow) => void;
+  onWikiOpen?: (row: ServiceRow) => void;
 }) {
   return (
-    <div className="space-y-2 lg:hidden">
+    <div className="space-y-2 lg:hidden print:hidden">
       {rows.map((row) => (
-        <article key={row.id} className="rounded-lg border border-border bg-card p-3">
+        <article key={row.id} className="rounded-xl border border-border bg-card p-3.5">
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-(length:--jeju-text-sm) text-muted-foreground">
                 {[row.sido, row.sigungu].filter(Boolean).join(" · ")}
               </p>
-              <h3 className="mt-1 text-balance break-keep font-semibold leading-snug">
+              <h3 className="mt-1 text-balance break-keep leading-snug font-bold">
                 <a
                   href={serviceWikiHref(row)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary underline decoration-primary/35 underline-offset-4 hover:decoration-primary"
+                  onClick={() => onWikiOpen?.(row)}
+                  className="text-primary underline decoration-(--jeju-blue-light-strong) underline-offset-4 hover:decoration-primary focus-visible:rounded-(--jeju-radius-xs) focus-visible:shadow-(--jeju-focus-ring) focus-visible:outline-none"
                   aria-label={`${row.name || "사업"} 통합돌봄 WIKI 설명 새 창에서 보기`}
                 >
                   {row.name || "사업명 없음"}
                 </a>
               </h3>
             </div>
-            <span className="shrink-0 rounded-full bg-secondary px-2 py-0.5 text-sm text-secondary-foreground">
-              {row.type || "미분류"}
-            </span>
+            <Badge variant="neutral" className="whitespace-normal">{row.type || "미분류"}</Badge>
           </div>
-          <p className="mt-2 text-sm">
-            <span className="font-medium">{row.category || "미분류"}</span>
+          <p className="mt-2 text-(length:--jeju-text-sm)">
+            <span className="font-bold text-(--jeju-text-body)">{row.category || "미분류"}</span>
             {row.subcategory ? (
               <span className="text-muted-foreground"> · {row.subcategory}</span>
             ) : null}
           </p>
-          {row.provider ? <p className="mt-1 text-sm text-muted-foreground">{row.provider}</p> : null}
+          {row.provider ? <p className="mt-1 text-(length:--jeju-text-sm) text-muted-foreground">{row.provider}</p> : null}
           {row.description ? (
-            <p className="mt-2 line-clamp-3 break-keep text-sm leading-relaxed">{row.description}</p>
+            <p className="mt-2 line-clamp-3 break-keep text-(length:--jeju-text-sm) leading-relaxed">{row.description}</p>
           ) : null}
           <div className="mt-3 flex justify-end">
             <Button

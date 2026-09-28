@@ -85,43 +85,41 @@ export function ComparePanel({ rows }: { rows: ServiceRow[] }) {
   }, [groups]);
 
   return (
-    <section aria-label="지자체 비교" className="rounded-lg border border-border bg-card p-4">
-      <h2 className="text-base font-semibold">지자체 비교</h2>
-      <p className="mt-1 text-sm text-muted-foreground">
+    <section aria-label="지자체 비교" className="rounded-xl border border-border bg-card p-4">
+      <h2 className="text-(length:--jeju-h3-size) font-extrabold text-(--jeju-text-strong)">지자체 비교</h2>
+      <p className="mt-1 text-(length:--jeju-text-sm) text-muted-foreground">
         최대 {SLOT_COUNT}개 시·군·구를 골라 사업 수와 분야 구성을 비교합니다.
       </p>
 
       <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
         {Array.from({ length: SLOT_COUNT }, (_, index) => (
-          <div key={index} className="min-w-0">
-            <Label htmlFor={`compare-${index}`} className="mb-1 text-sm">
+          <div key={index} className="grid min-w-0 gap-1.5">
+            <Label htmlFor={`compare-${index}`}>
               비교 대상 {index + 1}
             </Label>
-            <div className="[&>div]:w-full">
-              <NativeSelect
-                id={`compare-${index}`}
-                value={selection[index]}
-                className="text-sm"
-                onChange={(event) =>
-                  setSelection((current) =>
-                    current.map((value, slot) => (slot === index ? event.target.value : value)),
-                  )
-                }
-              >
-                <NativeSelectOption value="">선택 안 함</NativeSelectOption>
-                {optionKeys.map((key) => (
-                  <NativeSelectOption key={key} value={key}>
-                    {municipalityLabel(key)}
-                  </NativeSelectOption>
-                ))}
-              </NativeSelect>
-            </div>
+            <NativeSelect
+              id={`compare-${index}`}
+              value={selection[index]}
+              className="w-full"
+              onChange={(event) =>
+                setSelection((current) =>
+                  current.map((value, slot) => (slot === index ? event.target.value : value)),
+                )
+              }
+            >
+              <NativeSelectOption value="">선택 안 함</NativeSelectOption>
+              {optionKeys.map((key) => (
+                <NativeSelectOption key={key} value={key}>
+                  {municipalityLabel(key)}
+                </NativeSelectOption>
+              ))}
+            </NativeSelect>
           </div>
         ))}
       </div>
 
       {groups.length === 0 ? (
-        <p className="mt-4 rounded-md border border-dashed border-border px-4 py-6 text-center text-sm text-muted-foreground">
+        <p className="mt-4 rounded-lg border border-dashed border-(--jeju-border-strong) px-4 py-6 text-center text-(length:--jeju-text-sm) text-muted-foreground">
           비교할 지자체를 선택하세요.
         </p>
       ) : (
@@ -130,13 +128,13 @@ export function ComparePanel({ rows }: { rows: ServiceRow[] }) {
             {groups.map((group) => {
               const categories = countBy(group.rows, (row) => row.category);
               return (
-                <div key={group.key} className="rounded-md border border-border px-3 py-2">
-                  <p className="font-semibold">{group.label}</p>
-                  <p className="mt-1 text-2xl font-bold text-primary">
+                <div key={group.key} className="rounded-lg border border-border bg-(--jeju-surface-inset) px-3 py-2.5">
+                  <p className="font-extrabold text-(--jeju-text-strong)">{group.label}</p>
+                  <p className="mt-1 text-(length:--jeju-text-2xl) font-extrabold tabular-nums text-primary">
                     {NUMBER_FORMAT.format(group.rows.length)}
-                    <span className="ml-1 text-base font-medium text-foreground">건</span>
+                    <span className="ml-1 text-(length:--jeju-text-base) font-bold text-(--jeju-text-body)">건</span>
                   </p>
-                  <p className="mt-1 text-sm text-muted-foreground">
+                  <p className="mt-1 text-(length:--jeju-text-sm) text-muted-foreground">
                     분야 {categories.length}개 · 최다 {categories[0]?.[0] ?? "-"}{" "}
                     {NUMBER_FORMAT.format(categories[0]?.[1] ?? 0)}건
                   </p>
@@ -145,7 +143,7 @@ export function ComparePanel({ rows }: { rows: ServiceRow[] }) {
             })}
           </div>
 
-          <div className="overflow-x-auto rounded-md border border-border">
+          <div>
             <Table>
               <TableHeader>
                 <TableRow>
@@ -160,7 +158,7 @@ export function ComparePanel({ rows }: { rows: ServiceRow[] }) {
               <TableBody>
                 {matrixCategories.map((category) => (
                   <TableRow key={category}>
-                    <TableCell className="font-medium">{category}</TableCell>
+                    <TableCell className="font-bold">{category}</TableCell>
                     {groups.map((group) => (
                       <TableCell key={group.key} className="text-right tabular-nums">
                         {NUMBER_FORMAT.format(
@@ -176,21 +174,21 @@ export function ComparePanel({ rows }: { rows: ServiceRow[] }) {
 
           {groups.length >= 2 ? (
             <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
-              <div className="rounded-md border border-border p-3">
-                <h3 className="text-sm font-semibold">사업명이 완전히 일치하는 사업</h3>
-                <p className="mt-1 text-sm text-muted-foreground">
+              <div className="rounded-lg border border-border p-3">
+                <h3 className="text-(length:--jeju-text-sm) font-extrabold text-(--jeju-text-strong)">사업명이 완전히 일치하는 사업</h3>
+                <p className="mt-1 text-(length:--jeju-text-sm) text-muted-foreground">
                   선택한 모든 지자체에 같은 사업명이 있는 경우입니다. {sharedNames.length}건.
                 </p>
                 {sharedNames.length > 0 ? (
-                  <ul className="mt-2 max-h-56 space-y-1 overflow-y-auto text-sm">
+                  <ul className="mt-2 max-h-56 space-y-1 overflow-y-auto text-(length:--jeju-text-sm)">
                     {sharedNames.map((name) => (
                       <li key={name}>{name}</li>
                     ))}
                   </ul>
                 ) : null}
               </div>
-              <div className="rounded-md border border-border p-3">
-                <h3 className="text-sm font-semibold">해당 지자체에만 있는 사업명</h3>
+              <div className="rounded-lg border border-border p-3">
+                <h3 className="text-(length:--jeju-text-sm) font-extrabold text-(--jeju-text-strong)">해당 지자체에만 있는 사업명</h3>
                 <div className="mt-2 space-y-3">
                   {groups.map((group) => {
                     const others = groups.filter((entry) => entry.key !== group.key);
@@ -202,10 +200,10 @@ export function ComparePanel({ rows }: { rows: ServiceRow[] }) {
                     );
                     return (
                       <div key={group.key}>
-                        <p className="text-sm font-medium">
+                        <p className="text-(length:--jeju-text-sm) font-bold">
                           {group.label} · {unique.length}건
                         </p>
-                        <ul className="mt-1 max-h-32 space-y-1 overflow-y-auto text-sm text-muted-foreground">
+                        <ul className="mt-1 max-h-32 space-y-1 overflow-y-auto text-(length:--jeju-text-sm) text-muted-foreground">
                           {unique.slice(0, 30).map((name) => (
                             <li key={name}>{name}</li>
                           ))}
@@ -218,7 +216,7 @@ export function ComparePanel({ rows }: { rows: ServiceRow[] }) {
             </div>
           ) : null}
 
-          <p className="text-sm text-muted-foreground">
+          <p className="text-(length:--jeju-text-sm) text-muted-foreground">
             사업명이 정확히 같은 경우만 공통으로 집계합니다. 이름이 비슷하다는 이유로 동일 사업으로
             판단하지 않으며, 사업 수는 수혜자 수나 예산 규모를 의미하지 않습니다.
           </p>

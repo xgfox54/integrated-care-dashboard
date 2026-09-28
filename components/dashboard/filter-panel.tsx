@@ -1,9 +1,9 @@
 "use client";
 
-import { RotateCcw, Search, X } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
+import { Chip, ChipSet, RemovableChip } from "@/components/ui/chip";
 import { Input } from "@/components/ui/input";
+import { CloseIcon, RefreshIcon, SearchIcon } from "@/components/ui/jeju-icons";
 import { Label } from "@/components/ui/label";
 import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select";
 import {
@@ -25,7 +25,10 @@ interface FilterPanelProps {
   summary: DatasetSummary;
   filters: FilterState;
   disabled: boolean;
+  /** 지금 걸린 지역 조건. auto면 접속 위치로 자동으로 고른 지역이다. */
+  region: { readonly label: string; readonly auto: boolean } | null;
   onChange: (next: Partial<FilterState>) => void;
+  onClearRegion: () => void;
   onReset: () => void;
 }
 
@@ -56,26 +59,22 @@ function SelectField({
   onChange: (value: string) => void;
 }) {
   return (
-    <div className="min-w-0">
-      <Label htmlFor={id} className="mb-1 text-sm">
-        {label}
-      </Label>
-      <div className="[&>div]:w-full">
-        <NativeSelect
-          id={id}
-          value={value}
-          disabled={disabled}
-          onChange={(event) => onChange(event.target.value)}
-          className="text-sm"
-        >
-          <NativeSelectOption value="">{placeholder}</NativeSelectOption>
-          {options.map((option) => (
-            <NativeSelectOption key={option.value} value={option.value}>
-              {option.label}
-            </NativeSelectOption>
-          ))}
-        </NativeSelect>
-      </div>
+    <div className="grid min-w-0 gap-1.5">
+      <Label htmlFor={id}>{label}</Label>
+      <NativeSelect
+        id={id}
+        value={value}
+        disabled={disabled}
+        onChange={(event) => onChange(event.target.value)}
+        className="w-full"
+      >
+        <NativeSelectOption value="">{placeholder}</NativeSelectOption>
+        {options.map((option) => (
+          <NativeSelectOption key={option.value} value={option.value}>
+            {option.label}
+          </NativeSelectOption>
+        ))}
+      </NativeSelect>
     </div>
   );
 }
@@ -84,7 +83,9 @@ export function FilterPanel({
   summary,
   filters,
   disabled,
+  region,
   onChange,
+  onClearRegion,
   onReset,
 }: FilterPanelProps) {
   const sidoOptions = Object.keys(summary.regionCounts).sort((left, right) => left.localeCompare(right, "ko"));
@@ -95,57 +96,76 @@ export function FilterPanel({
   const categoryOptions = SERVICE_CATEGORY_ORDER.filter((category) => availableCategories.has(category));
 
   return (
-    <section aria-label="검색 조건" className="rounded-lg border border-border bg-card p-4">
+    <section aria-label="검색 조건" className="rounded-xl border border-border bg-card p-4 print:hidden">
       <div className="flex flex-wrap items-end gap-3">
-        <div className="min-w-0 flex-1 basis-72">
-          <Label htmlFor="keyword" className="mb-1 text-sm">
-            통합검색
-          </Label>
+        <div className="grid min-w-0 flex-1 basis-72 gap-1.5">
+          <Label htmlFor="keyword">통합검색</Label>
           <div className="relative">
-            <Search
-              aria-hidden="true"
-              className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground"
-            />
+            <SearchIcon className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-muted-foreground" />
             <Input
               id="keyword"
+              type="search"
+              aria-describedby="keyword-privacy-note"
               value={filters.keyword}
               disabled={disabled}
               placeholder="사업명, 서비스, 지원대상 또는 지역을 검색하세요"
               onChange={(event) => onChange({ keyword: event.target.value })}
-              className="pr-10 pl-9 text-base"
+              className="pr-10 pl-9 [&::-webkit-search-cancel-button]:hidden"
             />
             {filters.keyword ? (
               <button
                 type="button"
                 aria-label="검색어 지우기"
                 onClick={() => onChange({ keyword: "" })}
-                className="absolute top-1/2 right-2 inline-flex size-7 -translate-y-1/2 items-center justify-center rounded-md text-muted-foreground hover:bg-secondary focus-visible:outline-2 focus-visible:outline-ring"
+                className="absolute top-1/2 right-1.5 inline-flex size-7 -translate-y-1/2 cursor-pointer items-center justify-center rounded-(--jeju-radius-sm) border-0 bg-transparent text-muted-foreground outline-none hover:bg-muted hover:text-(--jeju-text-strong) focus-visible:shadow-(--jeju-focus-ring)"
               >
-                <X aria-hidden="true" className="size-4" />
+                <CloseIcon />
               </button>
             ) : null}
           </div>
+          <p id="keyword-privacy-note" className="mt-1.5 text-xs text-muted-foreground">
+            대상자 이름, 주민등록번호, 전화번호 등 개인정보는 입력하지 마세요.
+          </p>
         </div>
         <Button type="button" variant="outline" onClick={onReset} disabled={disabled}>
-          <RotateCcw aria-hidden="true" />
+          <RefreshIcon />
           전체조건 초기화
         </Button>
       </div>
 
-      <div className="mt-3 flex flex-wrap items-center gap-2">
-        <span className="text-sm text-muted-foreground">빠른 검색</span>
-        {QUICK_KEYWORDS.map((keyword) => (
-          <Button
-            key={keyword}
-            type="button"
-            variant={filters.keyword === keyword ? "default" : "secondary"}
-            size="sm"
-            disabled={disabled}
-            onClick={() => onChange({ keyword })}
+      {region ? (
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          <span className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">검색 지역</span>
+          <RemovableChip
+            removeLabel={region.label + " 지역 조건 지우고 전국에서 찾기"}
+            onRemove={onClearRegion}
+            className="border-primary bg-(--jeju-primary-tint) text-primary"
           >
-            {keyword}
-          </Button>
-        ))}
+            {region.label}
+            {region.auto ? <span className="font-medium text-(--jeju-text-body)">· 접속 위치로 자동 선택</span> : null}
+          </RemovableChip>
+          <span className="text-(length:--jeju-text-sm) text-muted-foreground">
+            {region.auto ? "지우면 전국에서 찾습니다. 검색어에 지역을 넣어도 됩니다(예: 부산 방문진료)." : "지우면 전국에서 찾습니다."}
+          </span>
+        </div>
+      ) : null}
+
+      <div className="mt-3 flex flex-wrap items-center gap-2">
+        <span id="quick-keyword-label" className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">
+          빠른 검색
+        </span>
+        <ChipSet role="group" aria-labelledby="quick-keyword-label">
+          {QUICK_KEYWORDS.map((keyword) => (
+            <Chip
+              key={keyword}
+              pressed={filters.keyword === keyword}
+              disabled={disabled}
+              onPressedChange={(pressed) => onChange({ keyword: pressed ? keyword : "" })}
+            >
+              {keyword}
+            </Chip>
+          ))}
+        </ChipSet>
       </div>
 
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -178,7 +198,7 @@ export function FilterPanel({
         />
       </div>
 
-      <p className="mt-2 text-sm text-muted-foreground">
+      <p className="mt-2 text-(length:--jeju-text-sm) text-muted-foreground">
         사업 분류는 보건복지부 공식 메뉴판의 대분류를 기준으로 표시하며, 표에 분류가 없는
         경우에만 사업명과 내용을 기준으로 보완합니다.
       </p>

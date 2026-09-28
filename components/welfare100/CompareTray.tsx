@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { CatalogEntry } from "@/lib/welfare100/payload";
+import { startUsageAction } from "@/lib/usage/track";
 import styles from "./RegistryCatalog.module.css";
 
 // Adapted from hosungseo/korea100 CompareTray (MIT License).
@@ -11,9 +12,11 @@ type InstitutionSummary = CatalogEntry;
 interface CompareTrayProps {
   selected: InstitutionSummary[];
   onRemove: (slug: string) => void;
+  /** 비교표에서 제도 상세로 옮겨 갈 때(이용통계 진입 경로). */
+  onOpenDetail?: (slug: string) => void;
 }
 
-export default function CompareTray({ selected, onRemove }: CompareTrayProps) {
+export default function CompareTray({ selected, onRemove, onOpenDetail }: CompareTrayProps) {
   const [open, setOpen] = useState(false);
   const canCompare = selected.length >= 2;
 
@@ -50,14 +53,18 @@ export default function CompareTray({ selected, onRemove }: CompareTrayProps) {
           type="button"
           className={styles.compareOpenButton}
           disabled={!canCompare}
-          onClick={() => setOpen(true)}
+          onClick={() => {
+            // 비교표는 선택한 제도의 목록 정보로 바로 그려지므로 연 순간을 성공으로 센다.
+            startUsageAction("welfare_compare").success();
+            setOpen(true);
+          }}
         >
           같은 기준으로 비교 <span aria-hidden="true">→</span>
         </button>
       </aside>
 
       {open && canCompare && (
-        <CompareDialog selected={selected} onClose={() => setOpen(false)} />
+        <CompareDialog selected={selected} onClose={() => setOpen(false)} onOpenDetail={onOpenDetail} />
       )}
     </>
   );
@@ -91,9 +98,11 @@ function trapFocus(event: KeyboardEvent, container: HTMLElement | null) {
 function CompareDialog({
   selected,
   onClose,
+  onOpenDetail,
 }: {
   selected: InstitutionSummary[];
   onClose: () => void;
+  onOpenDetail?: (slug: string) => void;
 }) {
   const closeRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLElement>(null);
@@ -164,7 +173,7 @@ function CompareDialog({
                 {selected.map((institution) => (
                   <th scope="col" key={institution.slug}>
                     <span>{institution.priority.toString().padStart(2, "0")}</span>
-                    <a href={`/welfare100/${institution.slug}`}>
+                    <a href={`/welfare100/${institution.slug}`} onClick={() => onOpenDetail?.(institution.slug)}>
                       {institution.name}
                     </a>
                   </th>

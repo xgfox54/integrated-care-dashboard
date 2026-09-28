@@ -1,3 +1,5 @@
+import { matchesSearch, parseSearch } from "./search-terms.ts";
+
 export interface ServiceRow {
   id: number;
   serviceId: string;
@@ -25,6 +27,8 @@ export interface FilterState {
   subcategory: string;
   type: string;
   keyword: string;
+  /** 결과 정렬. 비우면 검색어가 있을 때 관련도순, 없을 때 지역순(lib/search-terms.ts). */
+  sort?: string;
 }
 
 export const SERVICE_CATEGORY_ORDER = [
@@ -210,14 +214,14 @@ export function serviceWikiHref(
 }
 
 export function filterRows(rows: ServiceRow[], filters: FilterState): ServiceRow[] {
-  const keyword = collapse(filters.keyword);
+  const parsed = parseSearch(filters.keyword);
   return rows.filter((row) => {
     if (filters.sido && row.sido !== filters.sido) return false;
     if (filters.sigungu && row.sigungu !== filters.sigungu) return false;
     if (filters.category && row.category !== filters.category) return false;
     if (filters.subcategory && row.subcategory !== filters.subcategory) return false;
     if (filters.type && row.type !== filters.type) return false;
-    if (keyword && !row.searchIndex.includes(keyword)) return false;
+    if (!matchesSearch(row.searchIndex, parsed)) return false;
     return true;
   });
 }
@@ -236,39 +240,4 @@ export function countBy(
     counts.set(key, (counts.get(key) ?? 0) + 1);
   }
   return [...counts.entries()].sort((left, right) => right[1] - left[1]);
-}
-
-const CSV_COLUMNS: [string, keyof ServiceRow][] = [
-  ["시도", "sido"],
-  ["시군구", "sigungu"],
-  ["대분류", "category"],
-  ["중분류", "subcategory"],
-  ["사업명", "name"],
-  ["사업내용", "description"],
-  ["지원대상", "target"],
-  ["세부대상자", "detailTarget"],
-  ["제공기관", "provider"],
-  ["사업구분", "type"],
-];
-
-function csvCell(value: string): string {
-  return `"${value.replaceAll('"', '""')}"`;
-}
-
-export function toCsv(rows: ServiceRow[]): string {
-  const header = CSV_COLUMNS.map(([label]) => csvCell(label)).join(",");
-  const body = rows.map((row) =>
-    CSV_COLUMNS.map(([, field]) => csvCell(String(row[field] ?? ""))).join(","),
-  );
-  return `\uFEFF${[header, ...body].join("\r\n")}`;
-}
-
-export function csvFileName(filters: FilterState, today: Date): string {
-  const stamp = [
-    today.getFullYear(),
-    String(today.getMonth() + 1).padStart(2, "0"),
-    String(today.getDate()).padStart(2, "0"),
-  ].join("");
-  const scope = filters.sigungu || filters.sido || "전국";
-  return `전국통합돌봄_사업현황_${scope}_${stamp}.csv`;
 }

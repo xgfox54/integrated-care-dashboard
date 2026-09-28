@@ -2,9 +2,26 @@
 
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { useSearchParams } from "next/navigation";
+import { ZeroResultHelp } from "@/components/search/zero-result-help";
+import { careSearchHref, useCareMatchCount } from "@/lib/cross-search";
 import { prefersDataSaving } from "@/lib/network-preferences";
+import {
+  correctionFrom,
+  matchesSearch,
+  namesForSuggestion,
+  parseSearch,
+  rebuildQuery,
+  relevanceScore,
+  termMatches,
+  type ParsedSearch,
+  type SearchHelp,
+} from "@/lib/search-terms";
 import { trackEvent } from "@/lib/welfare100/client-events";
 import { loadCatalog, loadFullCatalog, type CatalogEntry } from "@/lib/welfare100/payload";
+import { catalogRegions } from "@/lib/welfare100/regions";
+import { normalizeName, type FilterKind } from "@/lib/usage/codes";
+import { markUsageInternalNavigation, setUsageHandoff, usageError, usageErrorCode, usageFilter, usagePage, usagePerf } from "@/lib/usage/track";
+import { useSearchUsage } from "@/lib/usage/use-search-usage";
 import { watchVisitorRegion, type VisitorRegion } from "@/lib/visitor-location";
 import CompareTray from "./CompareTray";
 import styles from "./RegistryCatalog.module.css";
@@ -17,7 +34,8 @@ interface RegistryCatalogProps {
   householdOrder: string[];
 }
 
-type SortMode = "priority" | "name";
+/** auto: 검색어가 있으면 관련도순, 없으면 기본순 */
+type SortMode = "auto" | "priority" | "name";
 type Scope = "전체" | "주요 제도" | "중앙부처" | "지자체";
 
 const PAGE_SIZE = 30;
@@ -27,28 +45,28 @@ const ALL_TYPES = "전체 제공유형";
 const ALL_SIDO = "전체 시도";
 const ALL_SIGUNGU = "시도 전체";
 const SCOPES: Scope[] = ["전체", "주요 제도", "중앙부처", "지자체"];
-const SCOPE_COLORS: Record<Scope, string> = { 전체: "#5d6b63", "주요 제도": "#0f9f72", 중앙부처: "#315a78", 지자체: "#b45309" };
+const SCOPE_COLORS: Record<Scope, string> = { 전체: "var(--jeju-text-muted)", "주요 제도": "var(--jeju-primary)", 중앙부처: "var(--jeju-blue-deep)", 지자체: "var(--jeju-warning)" };
 
 export const TOPIC_COLORS: Record<string, string> = {
-  생활지원: "#0f9f72",
-  신체건강: "#2563eb",
-  정신건강: "#7c3aed",
-  주거: "#8a5a2b",
-  일자리: "#b45309",
-  "문화·여가": "#db2777",
-  "안전·위기": "#be123c",
-  "임신·출산": "#e11d48",
-  보육: "#ea580c",
-  교육: "#0891b2",
-  "입양·위탁": "#9333ea",
-  "보호·돌봄": "#b54b7b",
-  서민금융: "#315a78",
-  법률: "#4b5563",
-  에너지: "#ca8a04",
+  생활지원: "var(--jeju-primary)",
+  신체건강: "var(--jeju-blue-dark)",
+  정신건강: "var(--jeju-blue-deep)",
+  주거: "var(--jeju-orange-deep)",
+  일자리: "var(--jeju-warning)",
+  "문화·여가": "var(--jeju-danger)",
+  "안전·위기": "var(--jeju-danger)",
+  "임신·출산": "var(--jeju-danger)",
+  보육: "var(--jeju-orange-dark)",
+  교육: "var(--jeju-blue-dark)",
+  "입양·위탁": "var(--jeju-blue-deep)",
+  "보호·돌봄": "var(--jeju-orange-deep)",
+  서민금융: "var(--jeju-blue-deep)",
+  법률: "var(--jeju-text-muted)",
+  에너지: "var(--jeju-orange-deep)",
 };
 
-const LIFECYCLE_COLORS = ["#e11d48", "#ea580c", "#ca8a04", "#16a34a", "#0891b2", "#2563eb", "#7c3aed"];
-const HOUSEHOLD_COLORS = ["#0f9f72", "#2563eb", "#b54b7b", "#ea580c", "#9333ea", "#4b5563"];
+const LIFECYCLE_COLORS = ["var(--jeju-danger)", "var(--jeju-orange-dark)", "var(--jeju-orange-deep)", "var(--jeju-green-dark)", "var(--jeju-blue-dark)", "var(--jeju-blue-dark)", "var(--jeju-blue-deep)"];
+const HOUSEHOLD_COLORS = ["var(--jeju-primary)", "var(--jeju-blue-dark)", "var(--jeju-orange-deep)", "var(--jeju-orange-dark)", "var(--jeju-blue-deep)", "var(--jeju-text-muted)"];
 
 interface Filters {
   query: string;
@@ -62,8 +80,9 @@ interface Filters {
 }
 
 type FacetKey = "scope" | "region" | "category" | "lifecycle" | "household" | "provision";
+const NO_SEARCH: ParsedSearch = parseSearch("");
 
-function matches(entry: CatalogEntry, filters: Filters, tokens: string[], skip?: FacetKey): boolean {
+function matches(entry: CatalogEntry, filters: Filters, parsed: ParsedSearch, skip?: FacetKey): boolean {
   if (skip !== "scope") {
     if (filters.scope === "주요 제도" && !entry.curated) return false;
     if (filters.scope === "중앙부처" && entry.org !== "중앙부처") return false;
@@ -77,14 +96,15 @@ function matches(entry: CatalogEntry, filters: Filters, tokens: string[], skip?:
   if (skip !== "lifecycle" && filters.lifecycle !== ALL && !entry.lifecycle.includes(filters.lifecycle)) return false;
   if (skip !== "household" && filters.household !== ALL && !entry.household.includes(filters.household)) return false;
   if (skip !== "provision" && filters.provision !== ALL_TYPES && !entry.provision.includes(filters.provision)) return false;
-  return tokens.every((token) => entry.searchText.includes(token));
+  // 중앙부처 제도는 전국 공통이라 검색어의 지역어를 따지지 않는다(지역 필터와 같은 뜻).
+  return matchesSearch(entry.searchText, parsed, { ignoreRegion: entry.org === "중앙부처" });
 }
 
-function countFacet(entries: CatalogEntry[], filters: Filters, tokens: string[], skip: FacetKey, keyOf: (entry: CatalogEntry) => string[]) {
+function countFacet(entries: CatalogEntry[], filters: Filters, parsed: ParsedSearch, skip: FacetKey, keyOf: (entry: CatalogEntry) => string[]) {
   const counts = new Map<string, number>();
   let total = 0;
   for (const entry of entries) {
-    if (!matches(entry, filters, tokens, skip)) continue;
+    if (!matches(entry, filters, parsed, skip)) continue;
     total++;
     for (const key of keyOf(entry)) counts.set(key, (counts.get(key) ?? 0) + 1);
   }
@@ -101,6 +121,7 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
 
   useEffect(() => {
     let alive = true;
+    const started = performance.now();
     loadCatalog()
       .then((catalog) => {
         if (!alive) return;
@@ -108,14 +129,21 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
         setEntries((current) => current ?? catalog.entries);
         setAsOf(catalog.asOf);
         setError(null);
+        usagePerf("welfare_catalog", performance.now() - started);
       })
       .catch((reason: unknown) => {
-        if (alive) setError(reason instanceof Error ? reason.message : "복지제도 목록을 불러오지 못했습니다.");
+        if (!alive) return;
+        setError(reason instanceof Error ? reason.message : "복지제도 목록을 불러오지 못했습니다.");
+        usageError("welfare_catalog", usageErrorCode(reason));
       });
     return () => {
       alive = false;
     };
   }, [attempt]);
+
+  useEffect(() => {
+    usagePage("welfare_list", "welfare100");
+  }, []);
 
   const param = (key: string, fallback: string) => searchParams.get(key) || fallback;
   const [filters, setFilters] = useState<Filters>(() => {
@@ -132,7 +160,10 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
       provision: param("type", ALL_TYPES),
     };
   });
-  const [sort, setSort] = useState<SortMode>(() => (searchParams.get("sort") === "name" ? "name" : "priority"));
+  const [sort, setSort] = useState<SortMode>(() => {
+    const value = searchParams.get("sort");
+    return value === "name" || value === "priority" ? value : "auto";
+  });
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [selectedSlugs, setSelectedSlugs] = useState(() =>
     (searchParams.get("compare") ?? "").split(",").filter(Boolean).slice(0, MAX_COMPARE),
@@ -173,7 +204,6 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
 
   useEffect(() => {
     if (searchParams.get("sido")) return;
-    // 모바일은 위치 동의 후 GPS, 동의하지 않거나 실패하면 접속 IP로 지역을 확인한다.
     return watchVisitorRegion((update) => {
       if (update.status === "resolved" && update.region) setVisitorRegion(update.region);
     });
@@ -182,6 +212,24 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
   function update(patch: Partial<Filters>) {
     setFilters((current) => ({ ...current, ...patch }));
     setVisibleCount(PAGE_SIZE);
+  }
+
+  /** 이용자가 직접 고른 분류·조회 대상 지역을 세고 적용한다('전체'로 되돌리기는 세지 않는다). */
+  function choose(patch: Partial<Filters>) {
+    const track = (filter: FilterKind, value: string | undefined, all: string) => {
+      if (value !== undefined && value !== all) usageFilter(filter, value);
+    };
+    track("welfare_topic", patch.category, ALL);
+    track("welfare_scope", patch.scope, "전체");
+    track("welfare_lifecycle", patch.lifecycle, ALL);
+    track("welfare_household", patch.household, ALL);
+    track("welfare_provision", patch.provision, ALL_TYPES);
+    if (patch.sigungu !== undefined && patch.sigungu !== ALL_SIGUNGU) {
+      usageFilter("welfare_region", (patch.sido ?? filters.sido) + "|" + patch.sigungu);
+    } else {
+      track("welfare_region", patch.sido, ALL_SIDO);
+    }
+    update(patch);
   }
 
   useEffect(() => {
@@ -194,33 +242,18 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
     updateUrlParam(url, "life", filters.lifecycle === ALL ? "" : filters.lifecycle);
     updateUrlParam(url, "household", filters.household === ALL ? "" : filters.household);
     updateUrlParam(url, "type", filters.provision === ALL_TYPES ? "" : filters.provision);
-    updateUrlParam(url, "sort", sort === "priority" ? "" : sort);
+    updateUrlParam(url, "sort", sort === "auto" ? "" : sort);
     updateUrlParam(url, "compare", selectedSlugs.join(","));
     window.history.replaceState(null, "", url.pathname + url.search + url.hash);
   }, [filters, selectedSlugs, sort]);
 
   const list = useMemo(() => entries ?? [], [entries]);
   const bySlug = useMemo(() => new Map(list.map((entry) => [entry.slug, entry])), [list]);
-  const tokens = useMemo(() => filters.query.trim().toLocaleLowerCase("ko").split(/\s+/).filter(Boolean), [filters.query]);
+  const parsed = useMemo(() => parseSearch(filters.query), [filters.query]);
+  const hasQuery = parsed.terms.length > 0;
+  const sortMode = sort === "auto" ? (hasQuery ? "relevance" : "priority") : sort;
 
-  const regions = useMemo(() => {
-    const sidoCounts = new Map<string, number>();
-    const sigunguBySido = new Map<string, Map<string, number>>();
-    for (const entry of list) {
-      if (entry.org !== "지자체" || !entry.sido) continue;
-      sidoCounts.set(entry.sido, (sidoCounts.get(entry.sido) ?? 0) + 1);
-      if (entry.sigungu) {
-        const map = sigunguBySido.get(entry.sido) ?? new Map<string, number>();
-        map.set(entry.sigungu, (map.get(entry.sigungu) ?? 0) + 1);
-        sigunguBySido.set(entry.sido, map);
-      }
-    }
-    const byName = (a: [string, number], b: [string, number]) => a[0].localeCompare(b[0], "ko");
-    return {
-      sidos: [...sidoCounts].sort(byName),
-      sigungus: (sido: string) => [...(sigunguBySido.get(sido) ?? new Map<string, number>())].sort(byName),
-    };
-  }, [list]);
+  const regions = useMemo(() => catalogRegions(list), [list]);
   const provisions = useMemo(() => {
     const counts = new Map<string, number>();
     for (const entry of list) for (const value of entry.provision) counts.set(value, (counts.get(value) ?? 0) + 1);
@@ -229,27 +262,89 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
 
   const facets = useMemo(
     () => ({
-      scope: countFacet(list, filters, tokens, "scope", (entry) => [entry.org, ...(entry.curated ? ["주요 제도"] : [])]),
-      category: countFacet(list, filters, tokens, "category", (entry) => entry.topics),
-      lifecycle: countFacet(list, filters, tokens, "lifecycle", (entry) => entry.lifecycle),
-      household: countFacet(list, filters, tokens, "household", (entry) => entry.household),
+      scope: countFacet(list, filters, parsed, "scope", (entry) => [entry.org, ...(entry.curated ? ["주요 제도"] : [])]),
+      category: countFacet(list, filters, parsed, "category", (entry) => entry.topics),
+      lifecycle: countFacet(list, filters, parsed, "lifecycle", (entry) => entry.lifecycle),
+      household: countFacet(list, filters, parsed, "household", (entry) => entry.household),
     }),
-    [filters, list, tokens],
+    [filters, list, parsed],
   );
 
-  const filtered = useMemo(
-    () =>
-      list
-        .filter((entry) => matches(entry, filters, tokens))
-        .sort((left, right) => {
-          if (sort === "name") return left.name.localeCompare(right.name, "ko");
-          if (filters.sido !== ALL_SIDO && left.org !== right.org) return left.org === "지자체" ? -1 : 1;
-          return left.priority - right.priority;
-        }),
-    [filters, list, sort, tokens],
-  );
+  const filtered = useMemo(() => {
+    const found = list.filter((entry) => matches(entry, filters, parsed));
+    const localFirst = filters.sido !== ALL_SIDO || parsed.hasRegion;
+    const byPriority = (left: CatalogEntry, right: CatalogEntry) => {
+      if (localFirst && left.org !== right.org) return left.org === "지자체" ? -1 : 1;
+      return left.priority - right.priority;
+    };
+    if (sortMode === "name") return found.sort((left, right) => left.name.localeCompare(right.name, "ko"));
+    if (sortMode === "priority") return found.sort(byPriority);
+    // 관련도순: 제도명 일치 > 분야 일치 > 그 밖의 일치. 같으면 기본순.
+    const scores = new Map(found.map((entry) => [entry.slug, relevanceScore({ name: entry.name, category: [entry.category, ...entry.topics].join(" ") }, parsed)]));
+    return found.sort((left, right) => (scores.get(right.slug) ?? 0) - (scores.get(left.slug) ?? 0) || byPriority(left, right));
+  }, [filters, list, parsed, sortMode]);
 
   const visible = filtered.slice(0, visibleCount);
+
+  // 0건일 때 도움말: 전체 대장에 없는 단어는 오타로 보고 고칠 말을, 두 단어 이상이면 하나씩 뺀 결과 수를 알려 준다.
+  const noResults = entries !== null && hasQuery && filtered.length === 0;
+  const zeroHelp = useMemo<SearchHelp | undefined>(() => {
+    if (!noResults) return undefined;
+    const countOf = (query: string) => list.filter((entry) => matches(entry, filters, parseSearch(query))).length;
+    const withoutTerm =
+      parsed.terms.length >= 2
+        ? parsed.terms.map((term, index) => {
+            const query = rebuildQuery(parsed, index);
+            return { term: term.text, query, count: countOf(query) };
+          })
+        : undefined;
+    let suggestion: { query: string; count: number } | undefined;
+    const unknown = parsed.terms
+      .map((term, index) => ({ term, index }))
+      .filter(({ term }) => !term.region && !list.some((entry) => termMatches(entry.searchText, term)));
+    if (unknown.length > 0) {
+      const names = namesForSuggestion(list.map((entry) => entry.name));
+      const words = parsed.terms.map((term) => term.text);
+      let changed = false;
+      for (const { term, index } of unknown) {
+        const fix = correctionFrom(term.key, names);
+        if (fix) {
+          words[index] = fix;
+          changed = true;
+        }
+      }
+      if (changed) {
+        const query = words.join(" ");
+        const count = countOf(query);
+        if (count > 0) suggestion = { query, count };
+      }
+    }
+    return suggestion || withoutTerm ? { ...(suggestion ? { suggestion } : {}), ...(withoutTerm ? { withoutTerm } : {}) } : undefined;
+  }, [filters, list, noResults, parsed]);
+  const careCount = useCareMatchCount(filters.query, noResults);
+
+  // 이용통계: 검색어가 현재 조건 안의 제도명 하나와 정확히 같을 때만 그 제도를 '검색 대상'으로 본다.
+  const nameMatch = useMemo(() => {
+    const target = normalizeName(filters.query);
+    if (!target || entries === null) return null;
+    const scoped = list.filter((entry) => normalizeName(entry.name) === target && matches(entry, { ...filters, query: "" }, NO_SEARCH));
+    if (scoped.length === 1) return { status: "matched" as const, key: scoped[0].slug };
+    return { status: scoped.length === 0 ? ("unmatched" as const) : ("ambiguous" as const) };
+  }, [entries, filters, list]);
+  const { confirm: confirmSearch } = useSearchUsage({
+    scope: "welfare_catalog",
+    keyword: filters.query,
+    conditions: [filters.scope, filters.sido, filters.sigungu, filters.category, filters.lifecycle, filters.household, filters.provision].join("|"),
+    settled: entries !== null,
+    failed: false,
+    count: filtered.length,
+    match: nameMatch,
+  });
+  const openDetail = (slug: string, route: "list" | "compare") => {
+    const searching = route === "list" && filters.query.trim() !== "";
+    setUsageHandoff("welfare_policy", slug, searching ? "search" : route, searching ? confirmSearch() : undefined);
+    markUsageInternalNavigation("welfare100");
+  };
   const selected = selectedSlugs.map((slug) => bySlug.get(slug)).filter((entry): entry is CatalogEntry => Boolean(entry));
   const stats = useMemo(
     () => ({
@@ -280,7 +375,11 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
   }
 
   return (
-    <section id="institutions" className={styles.registry}>
+    <section id="institutions" className={styles.registry} aria-labelledby="registry-title">
+      {/* 화면 제목(h1). 화면에는 검색·통계 띠가 제목 역할을 하므로 보조기술에만 읽힌다. */}
+      <h1 id="registry-title" className="sr-only">
+        복지제도100 · 복지제도 대장
+      </h1>
       <div className={styles.statBand}>
         <div className={styles.searchBox}>
           <label htmlFor="registry-search">검색</label>
@@ -313,7 +412,7 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
           <div className={styles.railGroups}>
             {[ALL, ...categoryOrder].map((category) => {
               const active = filters.category === category;
-              const color = category === ALL ? "#0b1410" : TOPIC_COLORS[category] ?? "#5d6b63";
+              const color = category === ALL ? "var(--jeju-text-strong)" : TOPIC_COLORS[category] ?? "var(--jeju-text-muted)";
               return (
                 <button
                   key={category}
@@ -321,7 +420,7 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
                   className={styles.railItem}
                   aria-pressed={active}
                   style={{ "--category-color": color } as CSSProperties}
-                  onClick={() => update({ category })}
+                  onClick={() => choose({ category })}
                 >
                   <span>
                     <i aria-hidden="true" />
@@ -342,7 +441,7 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
                 count={scope === "전체" ? facets.scope.total : facets.scope.counts.get(scope) ?? 0}
                 active={filters.scope === scope}
                 color={SCOPE_COLORS[scope]}
-                onClick={() => update({ scope })}
+                onClick={() => choose({ scope })}
               />
             ))}
           </fieldset>
@@ -352,7 +451,7 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
             <select
               aria-label="시도 선택"
               value={filters.sido}
-              onChange={(event) => update({ sido: event.target.value, sigungu: ALL_SIGUNGU })}
+              onChange={(event) => choose({ sido: event.target.value, sigungu: ALL_SIGUNGU })}
             >
               <option value={ALL_SIDO}>{ALL_SIDO}</option>
               {regions.sidos.map(([sido, count]) => (
@@ -365,7 +464,7 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
               aria-label="시군구 선택"
               value={filters.sigungu}
               disabled={filters.sido === ALL_SIDO}
-              onChange={(event) => update({ sigungu: event.target.value })}
+              onChange={(event) => choose({ sigungu: event.target.value })}
             >
               <option value={ALL_SIGUNGU}>{ALL_SIGUNGU}</option>
               {filters.sido !== ALL_SIDO &&
@@ -377,8 +476,8 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
             </select>
             {filters.sido !== ALL_SIDO && <small>중앙부처 서비스는 전국 공통이라 함께 보입니다.</small>}
             {filters.sido === ALL_SIDO && visitorSido && regions.sidos.some(([sido]) => sido === visitorSido) && (
-              <button type="button" className={styles.visitorRegion} onClick={() => update({ sido: visitorSido, sigungu: ALL_SIGUNGU })}>
-                {visitorRegion?.source === "gps" ? "내 위치(GPS)" : "접속 지역"} {visitorSido} 서비스 보기
+              <button type="button" className={styles.visitorRegion} onClick={() => choose({ sido: visitorSido, sigungu: ALL_SIGUNGU })}>
+                접속 지역 {visitorSido} 서비스 보기
               </button>
             )}
           </div>
@@ -391,8 +490,8 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
                 label={value}
                 count={value === ALL ? facets.lifecycle.total : facets.lifecycle.counts.get(value) ?? 0}
                 active={filters.lifecycle === value}
-                color={value === ALL ? "#5d6b63" : LIFECYCLE_COLORS[(index - 1) % LIFECYCLE_COLORS.length]}
-                onClick={() => update({ lifecycle: value })}
+                color={value === ALL ? "var(--jeju-text-muted)" : LIFECYCLE_COLORS[(index - 1) % LIFECYCLE_COLORS.length]}
+                onClick={() => choose({ lifecycle: value })}
               />
             ))}
           </fieldset>
@@ -405,15 +504,15 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
                 label={value}
                 count={value === ALL ? facets.household.total : facets.household.counts.get(value) ?? 0}
                 active={filters.household === value}
-                color={value === ALL ? "#5d6b63" : HOUSEHOLD_COLORS[(index - 1) % HOUSEHOLD_COLORS.length]}
-                onClick={() => update({ household: value })}
+                color={value === ALL ? "var(--jeju-text-muted)" : HOUSEHOLD_COLORS[(index - 1) % HOUSEHOLD_COLORS.length]}
+                onClick={() => choose({ household: value })}
               />
             ))}
           </fieldset>
 
           <label className={styles.typeFilter}>
             <span>제공유형</span>
-            <select value={filters.provision} onChange={(event) => update({ provision: event.target.value })}>
+            <select value={filters.provision} onChange={(event) => choose({ provision: event.target.value })}>
               <option>{ALL_TYPES}</option>
               {provisions.map((value) => (
                 <option key={value}>{value}</option>
@@ -429,12 +528,19 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
               <span> · {entries ? filtered.length.toLocaleString("ko-KR") + "개 결과" : "불러오는 중"}</span>
             </p>
             <div className={styles.sortControl} role="group" aria-label="정렬 방식">
-              <button type="button" aria-pressed={sort === "priority"} onClick={() => setSort("priority")}>
-                기본순
-              </button>
-              <button type="button" aria-pressed={sort === "name"} onClick={() => setSort("name")}>
-                가나다
-              </button>
+              {(hasQuery
+                ? ([["auto", "관련도순"], ["priority", "기본순"], ["name", "가나다"]] as const)
+                : ([["auto", "기본순"], ["name", "가나다"]] as const)
+              ).map(([value, label]) => (
+                <button
+                  key={value}
+                  type="button"
+                  aria-pressed={sort === value || (!hasQuery && value === "auto" && sort === "priority")}
+                  onClick={() => setSort(value)}
+                >
+                  {label}
+                </button>
+              ))}
             </div>
           </div>
 
@@ -454,6 +560,13 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
             <div className={styles.empty}>
               <strong>검색 결과가 없습니다.</strong>
               <span>검색어를 줄이거나 다른 분야·지역을 선택해 보세요.</span>
+              {hasQuery ? (
+                <ZeroResultHelp
+                  help={zeroHelp}
+                  onSearch={(query) => update({ query })}
+                  crossLinks={[{ label: "통합돌봄 사업에서", href: careSearchHref(filters.query), count: careCount }]}
+                />
+              ) : null}
             </div>
           ) : (
             <>
@@ -479,6 +592,7 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
                         selected={selectedSlugs.includes(entry.slug)}
                         disabled={selectedSlugs.length >= MAX_COMPARE && !selectedSlugs.includes(entry.slug)}
                         onToggle={() => toggleCompare(entry.slug)}
+                        onOpen={() => openDetail(entry.slug, "list")}
                       />
                     ))}
                   </tbody>
@@ -493,6 +607,7 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
                     selected={selectedSlugs.includes(entry.slug)}
                     disabled={selectedSlugs.length >= MAX_COMPARE && !selectedSlugs.includes(entry.slug)}
                     onToggle={() => toggleCompare(entry.slug)}
+                    onOpen={() => openDetail(entry.slug, "list")}
                   />
                 ))}
               </div>
@@ -516,7 +631,7 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
         </div>
       </div>
 
-      <CompareTray selected={selected} onRemove={(slug) => toggleCompare(slug)} />
+      <CompareTray selected={selected} onRemove={(slug) => toggleCompare(slug)} onOpenDetail={(slug) => openDetail(slug, "compare")} />
     </section>
   );
 }
@@ -588,18 +703,20 @@ function RegistryRow({
   selected,
   disabled,
   onToggle,
+  onOpen,
 }: {
   entry: CatalogEntry;
   selected: boolean;
   disabled: boolean;
   onToggle: () => void;
+  onOpen: () => void;
 }) {
-  const categoryColor = TOPIC_COLORS[entry.category] ?? "#5d6b63";
+  const categoryColor = TOPIC_COLORS[entry.category] ?? "var(--jeju-text-muted)";
   return (
     <tr style={{ "--category-color": categoryColor } as CSSProperties}>
       <td className={styles.numberCell}>{entry.priority.toString().padStart(2, "0")}</td>
       <td className={styles.nameCell}>
-        <a href={"/welfare100/" + entry.slug}>
+        <a href={"/welfare100/" + entry.slug} onClick={onOpen}>
           <strong>{entry.name}</strong>
           <span>{entry.oneLiner}</span>
         </a>
@@ -634,17 +751,19 @@ function MobileRegistryRow({
   selected,
   disabled,
   onToggle,
+  onOpen,
 }: {
   entry: CatalogEntry;
   selected: boolean;
   disabled: boolean;
   onToggle: () => void;
+  onOpen: () => void;
 }) {
   const tone = entry.curated ? "verified" : entry.sourceCount > 0 ? "linked" : "review";
   return (
     <article>
       <span className={styles.mobileNumber}>{entry.priority.toString().padStart(2, "0")}</span>
-      <a href={"/welfare100/" + entry.slug}>
+      <a href={"/welfare100/" + entry.slug} onClick={onOpen}>
         <span className={styles.mobileTitleLine}>
           <strong>{entry.name}</strong>
           <i data-tone={tone} aria-label={entry.curated ? "주요 제도" : entry.sourceCount > 0 ? "복지톡 DB 원문 연결" : "복지로 원문"} />

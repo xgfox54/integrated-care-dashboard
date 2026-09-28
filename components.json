@@ -17,5 +17,7 @@
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
-  "registries": {}
+  "registries": {
+    "@jeju": "http://127.0.0.1:8765/public/r/{name}.json"
+  }
 }

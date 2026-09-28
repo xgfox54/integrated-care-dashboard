@@ -3,11 +3,13 @@ import {
   type FilterState,
   type ServiceRow,
   collapse,
+  serviceWikiKey,
 } from "./dataset";
 import {
   type DatasetSummary,
   normalizeSearchPageSize,
   orderServiceCategories,
+  SINGLE_TIER_SIDO,
 } from "./dataset-summary";
 import { repairKnownExtractionFragments } from "./official-correction";
 import { SEARCH_TEXT_LOOKUP } from "./official-search-text";
@@ -15,11 +17,27 @@ import { repairExtractionSpacing } from "./official-spacing";
 import { cachedWikiEdits } from "./wiki-edit-store";
 import type { RegionTarget } from "./region-load-order";
 import { applyWikiEdits, type WikiEditValues } from "./wiki-edits";
+import { normalizeName, type MatchState } from "./usage/codes";
+import {
+  correctionFrom,
+  effectiveSort,
+  namesForSuggestion,
+  parseSearch,
+  rebuildQuery,
+  RELEVANCE,
+  type SearchHelp,
+  type SearchTerm,
+} from "./search-terms";
 
 const INTEGRATED_PROVINCE_NAME = "전남광주통합특별시";
 const INTEGRATED_PROVINCE_ALIASES = ["광주광역시", "전라남도"] as const;
 const CANONICAL_SIDO_SQL =
   "CASE WHEN sido IN ('광주광역시', '전라남도') THEN '전남광주통합특별시' ELSE sido END";
+/** 「수록 시·군·구」: 시·군·구 칸이 비었거나 기초자치단체가 없는 광역(세종·제주)의 행은 세지 않는다. */
+const MUNICIPALITY_KEY_SQL =
+  "CASE WHEN sigungu <> '' AND sido NOT IN (" +
+  SINGLE_TIER_SIDO.map((sido) => "'" + sido + "'").join(", ") +
+  ") THEN " + CANONICAL_SIDO_SQL + " || '|' || sigungu END";
 
 export interface LatestRun {
   readonly id: string;
@@ -48,6 +66,15 @@ export interface SearchAggregates {
   readonly typeCounts: Readonly<Record<string, number>>;
 }
 
+/**
+ * 검색어가 현재 검색 범위(지역·분류) 안의 사업명 하나와 정확히 같은지. 이용통계의 '명칭 검색' 집계에 쓴다.
+ * 검색어 자체는 담지 않고, 하나로 정해질 때만 그 사업의 WIKI 키를 담는다.
+ */
+export interface SearchNameMatch {
+  readonly status: MatchState;
+  readonly key?: string;
+}
+
 export interface OfficialSearchResult {
   readonly rows: readonly ServiceRow[];
   readonly totalCount: number;
@@ -60,6 +87,9 @@ export interface OfficialSearchResult {
   readonly dataAsOf: string;
   readonly completedAt: string;
   readonly documentCount: number;
+  readonly nameMatch?: SearchNameMatch;
+  /** 검색어가 있는데 결과가 0건일 때만: 오타 제안, 단어를 하나씩 뺀 결과 수. */
+  readonly searchHelp?: SearchHelp;
 }
 
 function iso(seconds: number): string {
@@ -141,12 +171,138 @@ function searchWhere(filters: FilterState, includeRegion = true): SearchWhere {
     parts.push("type = ?");
     values.push(filters.type);
   }
-  const keyword = collapse(filters.keyword);
-  if (keyword) {
-    parts.push(`INSTR(${SEARCH_TEXT_LOOKUP}, ?) > 0`);
-    values.push(keyword);
+  // 검색어의 단어마다 조건 하나(모든 단어가 들어 있어야 함). 지역어는 정식 이름 중 하나만 있어도 된다.
+  for (const term of parseSearch(filters.keyword).terms) {
+    const condition = termCondition(term);
+    parts.push(condition.sql);
+    values.push(...condition.values);
   }
   return { sql: parts.join(" AND "), values };
+}
+
+function termCondition(term: SearchTerm): SearchWhere {
+  return {
+    sql: "(" + term.alternatives.map(() => `INSTR(${SEARCH_TEXT_LOOKUP}, ?) > 0`).join(" OR ") + ")",
+    values: [...term.alternatives],
+  };
+}
+
+const NAME_KEY_SQL =
+  "LOWER(REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(name, ''), ' ', ''), char(9), ''), char(10), ''), char(13), ''))";
+const CATEGORY_KEY_SQL = "LOWER(REPLACE(COALESCE(category, '') || COALESCE(subcategory, ''), ' ', ''))";
+const REGION_ORDER_SQL = "sido, sigungu, name, id";
+
+function anyIn(column: string, alternatives: readonly string[]): string {
+  return "(" + alternatives.map(() => `INSTR(${column}, ?) > 0`).join(" OR ") + ")";
+}
+
+/** 결과 정렬. 관련도순은 lib/search-terms.ts의 relevanceScore와 같은 점수표를 SQL로 계산한다. */
+function orderBy(filters: FilterState): SearchWhere {
+  const sort = effectiveSort(filters.sort, filters.keyword);
+  if (sort === "name") return { sql: "name, sido, sigungu, id", values: [] };
+  const parsed = parseSearch(filters.keyword);
+  if (sort === "region" || parsed.terms.length === 0) return { sql: REGION_ORDER_SQL, values: [] };
+  const parts: string[] = [];
+  const values: unknown[] = [];
+  for (const term of parsed.terms) {
+    if (term.region) {
+      parts.push(`CASE WHEN ${anyIn(NAME_KEY_SQL, term.alternatives)} THEN ${RELEVANCE.nameRegionTerm} ELSE 0 END`);
+      values.push(...term.alternatives);
+    } else {
+      parts.push(
+        `CASE WHEN ${anyIn(NAME_KEY_SQL, term.alternatives)} THEN ${RELEVANCE.nameTerm}` +
+          ` WHEN ${anyIn(CATEGORY_KEY_SQL, term.alternatives)} THEN ${RELEVANCE.categoryTerm} ELSE 0 END`,
+      );
+      values.push(...term.alternatives, ...term.alternatives);
+    }
+  }
+  if (parsed.phrase) {
+    const multiple = parsed.terms.filter((term) => !term.region).length >= 2;
+    parts.push(
+      multiple
+        ? `CASE WHEN ${NAME_KEY_SQL} = ? THEN ${RELEVANCE.exactName} WHEN INSTR(${NAME_KEY_SQL}, ?) > 0 THEN ${RELEVANCE.namePhrase} ELSE 0 END`
+        : `CASE WHEN ${NAME_KEY_SQL} = ? THEN ${RELEVANCE.exactName} ELSE 0 END`,
+    );
+    values.push(parsed.phrase, ...(multiple ? [parsed.phrase] : []));
+  }
+  return { sql: `(${parts.join(" + ")}) DESC, ${REGION_ORDER_SQL}`, values };
+}
+
+// 오타 제안용 사업명 목록. 자료 수집 회차가 바뀔 때만 다시 읽는다.
+let suggestionNames: { readonly runId: string; readonly names: readonly string[] } | null = null;
+
+async function namesOfRun(runId: string): Promise<readonly string[]> {
+  if (suggestionNames?.runId === runId) return suggestionNames.names;
+  const rows = await bindAll<{ name: string | null }>(
+    "SELECT name FROM official_service_snapshot WHERE sync_run_id = ?",
+    [runId],
+  );
+  suggestionNames = { runId, names: namesForSuggestion(rows.map((row) => row.name ?? "")) };
+  return suggestionNames.names;
+}
+
+/** 결과가 0건일 때: 전국 자료에 없는 단어는 오타로 보고 고칠 말을, 두 단어 이상이면 하나씩 뺀 결과 수를 알려 준다. */
+async function computeSearchHelp(filters: FilterState, runId: string): Promise<SearchHelp | undefined> {
+  const parsed = parseSearch(filters.keyword);
+  if (parsed.terms.length === 0) return undefined;
+  const conditions = parsed.terms.map(termCondition);
+  const db = getD1();
+  const perTerm = await db
+    .prepare(
+      `SELECT ${conditions.map((condition, index) => `SUM(CASE WHEN ${condition.sql} THEN 1 ELSE 0 END) AS t${index}`).join(", ")}
+       FROM official_service_snapshot WHERE sync_run_id = ?`,
+    )
+    .bind(...conditions.flatMap((condition) => condition.values), runId)
+    .first<Record<string, number | null>>();
+
+  let withoutTerm: { term: string; query: string; count: number }[] | undefined;
+  if (parsed.terms.length >= 2) {
+    const base = searchWhere({ ...filters, keyword: "" });
+    const leaveOut = conditions.map((_, index) => {
+      const others = conditions.filter((__, other) => other !== index);
+      return {
+        sql: `SUM(CASE WHEN ${others.map((condition) => condition.sql).join(" AND ")} THEN 1 ELSE 0 END) AS w${index}`,
+        values: others.flatMap((condition) => condition.values),
+      };
+    });
+    const counts = await db
+      .prepare(`SELECT ${leaveOut.map((part) => part.sql).join(", ")} FROM official_service_snapshot WHERE ${base.sql}`)
+      .bind(...leaveOut.flatMap((part) => part.values), ...withRun(base, runId))
+      .first<Record<string, number | null>>();
+    withoutTerm = parsed.terms.map((term, index) => ({
+      term: term.text,
+      query: rebuildQuery(parsed, index),
+      count: Number(counts?.[`w${index}`] ?? 0),
+    }));
+  }
+
+  let suggestion: { query: string; count: number } | undefined;
+  const unknown = parsed.terms
+    .map((term, index) => ({ term, index }))
+    .filter(({ term, index }) => !term.region && Number(perTerm?.[`t${index}`] ?? 0) === 0);
+  if (unknown.length > 0) {
+    const names = await namesOfRun(runId);
+    const words = parsed.terms.map((term) => term.text);
+    let changed = false;
+    for (const { term, index } of unknown) {
+      const fix = correctionFrom(term.key, names);
+      if (fix) {
+        words[index] = fix;
+        changed = true;
+      }
+    }
+    if (changed) {
+      const query = words.join(" ");
+      const where = searchWhere({ ...filters, keyword: query });
+      const total = await db
+        .prepare(`SELECT COUNT(*) AS count FROM official_service_snapshot WHERE ${where.sql}`)
+        .bind(...withRun(where, runId))
+        .first<TotalRow>();
+      if ((total?.count ?? 0) > 0) suggestion = { query, count: total?.count ?? 0 };
+    }
+  }
+  if (!suggestion && !withoutTerm) return undefined;
+  return { ...(suggestion ? { suggestion } : {}), ...(withoutTerm ? { withoutTerm } : {}) };
 }
 
 function regionOnlyWhere(filters: FilterState): SearchWhere {
@@ -254,7 +410,7 @@ export async function readOfficialDatasetSummary(): Promise<{
     db.prepare(
       `SELECT COUNT(*) AS totalCount,
         COUNT(DISTINCT ${CANONICAL_SIDO_SQL}) AS sidoCount,
-        COUNT(DISTINCT ${CANONICAL_SIDO_SQL} || '|' || sigungu) AS sigunguCount,
+        COUNT(DISTINCT ${MUNICIPALITY_KEY_SQL}) AS sigunguCount,
         COUNT(DISTINCT category) AS categoryCount
        FROM official_service_snapshot WHERE sync_run_id = ?`,
     ).bind(run.id).first<{
@@ -328,12 +484,14 @@ export async function searchOfficialServices(
   const pageCount = Math.max(1, Math.ceil(totalCount / pageSize));
   const page = Math.min(Math.max(1, requestedPage), pageCount);
   const offset = (page - 1) * pageSize;
-  const [records, regionCounts, categoryCounts, regionCategories, regionTypes, edits] = await Promise.all([
+  const nameKey = normalizeName(filters.keyword);
+  const order = orderBy(filters);
+  const [records, regionCounts, categoryCounts, regionCategories, regionTypes, edits, nameRecords, searchHelp] = await Promise.all([
     bindAll<Record<string, unknown>>(
       `SELECT ${SELECT_COLUMNS} FROM official_service_snapshot
        WHERE ${where.sql}
-       ORDER BY sido, sigungu, name, id LIMIT ? OFFSET ?`,
-      [...withRun(where, run.id), pageSize, offset],
+       ORDER BY ${order.sql} LIMIT ? OFFSET ?`,
+      [...withRun(where, run.id), ...order.values, pageSize, offset],
     ),
     bindAll<CountRow>(
       `SELECT ${CANONICAL_SIDO_SQL} AS value, COUNT(*) AS count
@@ -360,6 +518,16 @@ export async function searchOfficialServices(
       withRun(regionWhere, run.id),
     ),
     cachedWikiEdits(),
+    nameKey
+      ? bindAll<Record<string, unknown>>(
+          `SELECT ${SELECT_COLUMNS} FROM official_service_snapshot
+           WHERE ${where.sql}
+             AND LOWER(REPLACE(REPLACE(REPLACE(REPLACE(name, ' ', ''), char(9), ''), char(10), ''), char(13), '')) = ?
+           ORDER BY sido, sigungu, name, id LIMIT 4`,
+          [...withRun(where, run.id), nameKey],
+        )
+      : Promise.resolve([] as readonly Record<string, unknown>[]),
+    totalCount === 0 && filters.keyword.trim() ? computeSearchHelp(filters, run.id) : Promise.resolve(undefined),
   ]);
   return {
     rows: normalizeServiceRows(records, edits, offset),
@@ -377,18 +545,27 @@ export async function searchOfficialServices(
     dataAsOf: run.dataAsOf,
     completedAt: iso(run.completedAt),
     documentCount: run.documentCount,
+    ...(nameKey ? { nameMatch: nameMatchOf(normalizeServiceRows(nameRecords, edits)) } : {}),
+    ...(searchHelp ? { searchHelp } : {}),
   };
+}
+
+function nameMatchOf(rows: readonly ServiceRow[]): SearchNameMatch {
+  const keys = [...new Set(rows.map((row) => serviceWikiKey(row)))];
+  if (keys.length === 1) return { status: "matched", key: keys[0] };
+  return { status: keys.length === 0 ? "unmatched" : "ambiguous" };
 }
 
 export async function exportOfficialServices(filters: FilterState): Promise<ServiceRow[]> {
   const run = await latestRun();
   if (!run) return [];
   const where = searchWhere(filters);
+  const order = orderBy(filters);
   const [records, edits] = await Promise.all([
     bindAll<Record<string, unknown>>(
       `SELECT ${SELECT_COLUMNS} FROM official_service_snapshot
-       WHERE ${where.sql} ORDER BY sido, sigungu, name, id`,
-      withRun(where, run.id),
+       WHERE ${where.sql} ORDER BY ${order.sql}`,
+      [...withRun(where, run.id), ...order.values],
     ),
     cachedWikiEdits(),
   ]);
