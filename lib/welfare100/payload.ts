@@ -1,6 +1,6 @@
 import manualTitles from "@/data/welfare100/manuals.json";
 import { versionedDataUrl } from "@/lib/data-versions";
-import { normalizeSearchText } from "@/lib/search-terms";
+import { searchableText } from "@/lib/search-terms";
 import { expandBokjiro } from "./bokjiro";
 import type { BokjiroRaw, CatalogRow, PackedCatalogIndex, WelfareOrg } from "./catalog-types";
 import { expandRecord, type CuratedExtra, type ProgramMeta, type WelfareInstitution, type WelfareRecord } from "./model";
@@ -38,7 +38,7 @@ export interface CatalogEntry {
   bottleneckCount: number;
   online: boolean;
   laws: string[];
-  /** 검색용 본문(띄어쓰기를 없앤 소문자). lib/search-terms.ts의 matchesSearch로 찾는다. */
+  /** 검색용 본문(lib/search-terms.ts의 searchableText). matchesSearch로 찾는다. */
   searchText: string;
   /** 담당·법령·구조 지표(index-extra.json)까지 채워졌는지. */
   complete: boolean;
@@ -77,9 +77,7 @@ export function decodeCatalogRow(row: LiteCatalogRow & Partial<ExtraCatalogRow>)
     bottleneckCount: full.b,
     online: full.on === 1,
     laws: full.laws,
-    searchText: normalizeSearchText(
-      [row.n, row.o, full.d, row.sd, row.sg, full.y, ...row.t, ...row.l, ...row.h, ...row.pv, ...full.laws, org].join(""),
-    ),
+    searchText: searchableText([row.n, row.o, full.d, row.sd, row.sg, full.y, ...row.t, ...row.l, ...row.h, ...row.pv, ...full.laws, org]),
     complete: row.d !== undefined,
   };
 }

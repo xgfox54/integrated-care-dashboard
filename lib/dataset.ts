@@ -1,4 +1,4 @@
-import { matchesSearch, parseSearch } from "./search-terms.ts";
+import { matchesSearch, parseSearch, searchableText } from "./search-terms.ts";
 
 export interface ServiceRow {
   id: number;
@@ -157,21 +157,19 @@ export function normalizeRows(payload: unknown): ServiceRow[] {
       searchIndex: "",
     };
     if (!row.sido && !row.sigungu && !row.name) return;
-    row.searchIndex = collapse(
-      [
-        row.sido,
-        row.sigungu,
-        row.category,
-        row.subcategory,
-        row.name,
-        row.description,
-        row.target,
-        row.detailTarget,
-        row.applicationMethod,
-        row.provider,
-        row.type,
-      ].join(" "),
-    );
+    row.searchIndex = searchableText([
+      row.sido,
+      row.sigungu,
+      row.category,
+      row.subcategory,
+      row.name,
+      row.description,
+      row.target,
+      row.detailTarget,
+      row.applicationMethod,
+      row.provider,
+      row.type,
+    ]);
     rows.push(row);
   });
   return rows;

@@ -2,7 +2,6 @@ import { getD1 } from "./d1";
 import {
   type FilterState,
   type ServiceRow,
-  collapse,
   serviceWikiKey,
 } from "./dataset";
 import {
@@ -12,7 +11,7 @@ import {
   SINGLE_TIER_SIDO,
 } from "./dataset-summary";
 import { repairKnownExtractionFragments } from "./official-correction";
-import { SEARCH_TEXT_LOOKUP } from "./official-search-text";
+import { CATEGORY_TEXT_SQL, NAME_TEXT_SQL, SEARCH_TEXT_LOOKUP, searchTermSql } from "./official-search-text";
 import { repairExtractionSpacing } from "./official-spacing";
 import { cachedWikiEdits } from "./wiki-edit-store";
 import type { RegionTarget } from "./region-load-order";
@@ -25,6 +24,7 @@ import {
   parseSearch,
   rebuildQuery,
   RELEVANCE,
+  searchableText,
   type SearchHelp,
   type SearchTerm,
 } from "./search-terms";
@@ -181,20 +181,12 @@ function searchWhere(filters: FilterState, includeRegion = true): SearchWhere {
 }
 
 function termCondition(term: SearchTerm): SearchWhere {
-  return {
-    sql: "(" + term.alternatives.map(() => `INSTR(${SEARCH_TEXT_LOOKUP}, ?) > 0`).join(" OR ") + ")",
-    values: [...term.alternatives],
-  };
+  return searchTermSql(term, SEARCH_TEXT_LOOKUP);
 }
 
 const NAME_KEY_SQL =
   "LOWER(REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(name, ''), ' ', ''), char(9), ''), char(10), ''), char(13), ''))";
-const CATEGORY_KEY_SQL = "LOWER(REPLACE(COALESCE(category, '') || COALESCE(subcategory, ''), ' ', ''))";
 const REGION_ORDER_SQL = "sido, sigungu, name, id";
-
-function anyIn(column: string, alternatives: readonly string[]): string {
-  return "(" + alternatives.map(() => `INSTR(${column}, ?) > 0`).join(" OR ") + ")";
-}
 
 /** 결과 정렬. 관련도순은 lib/search-terms.ts의 relevanceScore와 같은 점수표를 SQL로 계산한다. */
 function orderBy(filters: FilterState): SearchWhere {
@@ -205,15 +197,17 @@ function orderBy(filters: FilterState): SearchWhere {
   const parts: string[] = [];
   const values: unknown[] = [];
   for (const term of parsed.terms) {
+    const inName = searchTermSql(term, NAME_TEXT_SQL);
     if (term.region) {
-      parts.push(`CASE WHEN ${anyIn(NAME_KEY_SQL, term.alternatives)} THEN ${RELEVANCE.nameRegionTerm} ELSE 0 END`);
-      values.push(...term.alternatives);
+      parts.push(`CASE WHEN ${inName.sql} THEN ${RELEVANCE.nameRegionTerm} ELSE 0 END`);
+      values.push(...inName.values);
     } else {
+      const inCategory = searchTermSql(term, CATEGORY_TEXT_SQL);
       parts.push(
-        `CASE WHEN ${anyIn(NAME_KEY_SQL, term.alternatives)} THEN ${RELEVANCE.nameTerm}` +
-          ` WHEN ${anyIn(CATEGORY_KEY_SQL, term.alternatives)} THEN ${RELEVANCE.categoryTerm} ELSE 0 END`,
+        `CASE WHEN ${inName.sql} THEN ${RELEVANCE.nameTerm}` +
+          ` WHEN ${inCategory.sql} THEN ${RELEVANCE.categoryTerm} ELSE 0 END`,
       );
-      values.push(...term.alternatives, ...term.alternatives);
+      values.push(...inName.values, ...inCategory.values);
     }
   }
   if (parsed.phrase) {
@@ -347,7 +341,7 @@ function normalizeServiceRows(
   return corrected.map((row, index) => ({
     ...row,
     id: offset + index,
-    searchIndex: collapse([
+    searchIndex: searchableText([
       row.sido,
       row.sigungu,
       row.category,
@@ -356,10 +350,10 @@ function normalizeServiceRows(
       row.description,
       row.target,
       row.detailTarget,
-      row.applicationMethod ?? "",
+      row.applicationMethod,
       row.provider,
       row.type,
-    ].join(" ")),
+    ]),
     applicationMethod: row.applicationMethod ?? "",
   }));
 }

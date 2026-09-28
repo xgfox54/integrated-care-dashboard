@@ -1,5 +1,8 @@
 // 공통 검색어 해석기. 대시보드·통합돌봄 WIKI(서버 검색)와 복지제도100(브라우저 검색)이 같은 규칙으로 검색어를 읽는다.
-// - 띄어쓰기로 단어를 나누고, 모든 단어가 들어 있는 항목을 찾는다. 단어 순서와 단어 안의 띄어쓰기는 따지지 않는다.
+// - 띄어쓰기로 단어를 나누고, 모든 단어가 들어 있는 항목을 찾는다. 단어 순서는 따지지 않는다.
+// - 단어 안의 띄어쓰기는 나뉜 조각이 모두 두 글자 이상이거나 독립된 한 글자 단어일 때만 따지지 않는다.
+//   예: 방문진료 = 방문 진료, 퇴원후돌봄 = 퇴원 후 돌봄. 기동은 「집보기 동행」의 「기 동」과 맞지 않는다.
+// - 검색어는 사업명·설명 같은 항목의 경계를 넘어 맞지 않는다.
 // - 지역어는 정식 이름까지 함께 찾는다. 예: 경북 → 경상북도, 부산시 → 부산광역시, 해운대 → 해운대구
 // - 군더더기 말(후·및·관련·사업·서비스 등)은 빼고 찾는다. 모두 군더더기 말이면 그대로 찾는다.
 // - 관련도는 사업명 일치 > 분류 일치 > 그 밖의 일치 순이다.
@@ -41,7 +44,81 @@ export const MAX_SEARCH_TERMS = 6;
 const STOPWORDS = new Set(["후", "및", "관련", "위한", "대한", "등", "사업", "서비스", "지원사업"]);
 
 export function normalizeSearchText(value: string): string {
-  return value.replace(/\s+/g, "").toLowerCase();
+  return value.replace(/[\s\u0000-\u001f]+/g, "").toLowerCase();
+}
+
+// ---- 검색용 본문 ----
+
+/** 검색용 본문에서 항목(사업명·설명 등) 사이에 넣는 경계. 검색어는 이 경계를 넘어 맞지 않는다. */
+export const FIELD_BREAK = "\u001f";
+
+/**
+ * 검색용 본문: 소문자, 띄어쓰기는 한 칸으로 남기고 항목 사이에 경계를 넣는다.
+ * 앞뒤와 경계 양옆에 빈칸을 둬서 항목 처음·끝의 한 글자 단어도 독립된 단어로 알아본다.
+ * 서버 DB(lib/official-search-text.ts)도 같은 모양으로 저장한다.
+ */
+export function searchableText(parts: readonly (string | null | undefined)[]): string {
+  const joined = parts.map((part) => part ?? "").join(FIELD_BREAK).toLowerCase().replace(/\s+/g, " ");
+  return " " + joined.replaceAll(FIELD_BREAK, " " + FIELD_BREAK + " ") + " ";
+}
+
+/** 띄어쓰기를 넘어 맞출 때 나눌 수 있는 조각 수. 긴 단어일수록 줄여 서버 조건이 커지지 않게 한다. */
+export function maxSpacedPieces(key: string): number {
+  return key.length <= 10 ? 4 : key.length <= 20 ? 3 : 2;
+}
+
+/**
+ * 검색용 본문(searchableText)에 단어(key, 띄어쓰기 없음)가 있는지.
+ * 그대로 들어 있거나, 띄어쓰기로 나뉘어 있되 조각마다 두 글자 이상이거나 독립된 한 글자 단어일 때 맞는다.
+ */
+export function containsTerm(text: string, key: string): boolean {
+  if (!key) return false;
+  if (text.includes(key)) return true;
+  for (let start = text.indexOf(key[0]); start !== -1; start = text.indexOf(key[0], start + 1)) {
+    if (spacedMatchAt(text, key, start)) return true;
+  }
+  return false;
+}
+
+function spacedMatchAt(text: string, key: string, start: number): boolean {
+  let position = start;
+  const pieces = [0];
+  for (let index = 0; index < key.length; index++) {
+    if (index > 0 && text[position] === " ") {
+      pieces.push(0);
+      position++;
+    }
+    if (text[position] !== key[index]) return false;
+    pieces[pieces.length - 1]++;
+    position++;
+  }
+  if (pieces.length < 2 || pieces.length > maxSpacedPieces(key)) return false;
+  // 가운데 조각은 앞뒤가 띄어쓰기라 늘 독립된 단어다. 처음·끝 한 글자 조각만 단어의 일부인지 본다.
+  if (pieces[0] === 1 && text[start - 1] !== " ") return false;
+  if (pieces[pieces.length - 1] === 1 && text[position] !== " ") return false;
+  return true;
+}
+
+/**
+ * containsTerm이 맞다고 보는 모양을 모두 적은 목록(서버 SQL 조건용). 첫 항목은 단어 그대로다.
+ * 처음·끝 조각이 한 글자면 그 앞·뒤에 빈칸을 붙여 독립된 단어일 때만 맞게 한다.
+ */
+export function spacedVariants(key: string): string[] {
+  const variants = [key];
+  const limit = maxSpacedPieces(key);
+  const visit = (from: number, pieces: string[]) => {
+    if (from === key.length) {
+      if (pieces.length < 2) return;
+      const head = pieces[0].length === 1 ? " " : "";
+      const tail = pieces[pieces.length - 1].length === 1 ? " " : "";
+      variants.push(head + pieces.join(" ") + tail);
+      return;
+    }
+    if (pieces.length === limit) return;
+    for (let end = from + 1; end <= key.length; end++) visit(end, [...pieces, key.slice(from, end)]);
+  };
+  visit(0, []);
+  return variants;
 }
 
 // ---- 지역어 ----
@@ -137,11 +214,11 @@ export function parseSearch(query: string): ParsedSearch {
 }
 
 export function termMatches(text: string, term: SearchTerm): boolean {
-  return term.alternatives.some((alternative) => text.includes(alternative));
+  return term.alternatives.some((alternative) => containsTerm(text, alternative));
 }
 
 /**
- * 띄어쓰기를 없앤 소문자 본문(text)이 검색어의 모든 단어를 담는지.
+ * 검색용 본문(searchableText로 만든 text)이 검색어의 모든 단어를 담는지.
  * ignoreRegion: 전국 공통 제도처럼 지역과 관계없는 항목은 지역어를 따지지 않는다.
  */
 export function matchesSearch(text: string, parsed: ParsedSearch, options: { ignoreRegion?: boolean } = {}): boolean {
@@ -160,16 +237,17 @@ export const RELEVANCE = {
 
 /** 관련도 점수. 서버 정렬(SQL)도 같은 점수표를 쓴다. */
 export function relevanceScore(fields: { readonly name: string; readonly category?: string }, parsed: ParsedSearch): number {
-  const name = normalizeSearchText(fields.name);
-  const category = normalizeSearchText(fields.category ?? "");
+  const name = searchableText([fields.name]);
+  const category = searchableText([fields.category]);
+  const nameKey = normalizeSearchText(fields.name);
   let score = 0;
   for (const term of parsed.terms) {
     if (termMatches(name, term)) score += term.region ? RELEVANCE.nameRegionTerm : RELEVANCE.nameTerm;
     else if (!term.region && termMatches(category, term)) score += RELEVANCE.categoryTerm;
   }
   if (parsed.phrase) {
-    if (name === parsed.phrase) score += RELEVANCE.exactName;
-    else if (parsed.terms.filter((term) => !term.region).length >= 2 && name.includes(parsed.phrase)) score += RELEVANCE.namePhrase;
+    if (nameKey === parsed.phrase) score += RELEVANCE.exactName;
+    else if (parsed.terms.filter((term) => !term.region).length >= 2 && nameKey.includes(parsed.phrase)) score += RELEVANCE.namePhrase;
   }
   return score;
 }
