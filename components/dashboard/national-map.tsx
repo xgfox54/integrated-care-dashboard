@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 
 import { KoreaVectorMap } from "@/components/dashboard/korea-vector-map";
+import { KpiCards, type KpiSummary } from "@/components/dashboard/kpi-cards";
 import { RegionSelector } from "@/components/dashboard/region-selector";
 import { buildRegionStatisticsFromCounts } from "@/lib/region-statistics";
 
@@ -12,12 +13,13 @@ const RANK_SERIES = [1, 2, 3, 1, 2] as const;
 
 interface NationalMapProps {
   readonly regionCounts: Readonly<Record<string, number>>;
+  readonly kpis: KpiSummary;
   readonly selectedSido: string;
   readonly disabled: boolean;
   readonly onSelect: (sido: string) => void;
 }
 
-export function NationalMap({ regionCounts, selectedSido, disabled, onSelect }: NationalMapProps) {
+export function NationalMap({ regionCounts, kpis, selectedSido, disabled, onSelect }: NationalMapProps) {
   const statistics = useMemo(
     () => buildRegionStatisticsFromCounts(regionCounts),
     [regionCounts],
@@ -52,6 +54,10 @@ export function NationalMap({ regionCounts, selectedSido, disabled, onSelect }: 
             ? `${selectedRegion.fullName} ${NUMBER_FORMAT.format(selectedRegion.count)}건`
             : "전국 전체"}
         </p>
+      </div>
+
+      <div className="mt-4">
+        <KpiCards summary={kpis} />
       </div>
 
       <div className="mt-5 grid gap-5 lg:grid-cols-[minmax(25rem,0.95fr)_minmax(18rem,0.5fr)] lg:items-stretch">

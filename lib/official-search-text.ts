@@ -1,4 +1,4 @@
-import { spacedVariants, type SearchTerm } from "./search-terms.ts";
+import { spacedVariants, WILDCARD, wildcardLikePattern, type SearchTerm } from "./search-terms.ts";
 
 const SEARCH_TEXT_FIELDS = [
   { column: "sido", jsonKey: "sido" },
@@ -69,10 +69,27 @@ function commonCore(words: readonly string[]): string {
  */
 export function searchTermSql(term: SearchTerm, textSql: string): { sql: string; values: unknown[] } {
   const spacedPart = `SUBSTR(${textSql}, 1, INSTR(${textSql} || char(30), char(30)))`;
-  return {
-    sql:
+  const flatPart = `SUBSTR(${textSql}, INSTR(${textSql}, char(30)) + 1)`;
+  const plain = term.alternatives.filter((alternative) => !alternative.includes(WILDCARD));
+  const parts: string[] = [];
+  const values: unknown[] = [];
+  if (plain.length > 0) {
+    parts.push(
       `(INSTR(${textSql}, ?) > 0` +
-      ` AND EXISTS (SELECT 1 FROM json_each(?) AS form WHERE INSTR(${spacedPart}, form.value) > 0))`,
-    values: [commonCore(term.alternatives), JSON.stringify(term.alternatives.flatMap(spacedVariants))],
-  };
+        ` AND EXISTS (SELECT 1 FROM json_each(?) AS form WHERE INSTR(${spacedPart}, form.value) > 0))`,
+    );
+    values.push(commonCore(plain), JSON.stringify(plain.flatMap(spacedVariants)));
+  }
+  // * 검색어: 띄어쓰기를 뺀 본문(char(30) 뒤)에 조각들이 순서대로 있는지.
+  for (const alternative of term.alternatives.filter((value) => value.includes(WILDCARD))) {
+    parts.push(`${flatPart} LIKE ? ESCAPE '\\'`);
+    values.push(wildcardLikePattern(alternative));
+  }
+  return { sql: "(" + parts.join(" OR ") + ")", values };
+}
+
+/** 검색 조건 하나(제외어면 NOT). lib/search-terms.ts의 matchesSearch와 같은 규칙이다. */
+export function searchConditionSql(term: SearchTerm, textSql: string): { sql: string; values: unknown[] } {
+  const condition = searchTermSql(term, textSql);
+  return term.negated ? { sql: "NOT " + condition.sql, values: condition.values } : condition;
 }

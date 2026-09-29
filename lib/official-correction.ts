@@ -1,6 +1,9 @@
 import type { OfficialService } from "./official-source.ts";
 import { getVerifiedWikiSupplement } from "./wiki-verified-supplements.ts";
 
+/** 보건복지부 메뉴판의 구체적인 대분류. 원문이 이 가운데 하나면 기준 자료로 덮어쓰지 않는다. */
+const SPECIFIC_CATEGORIES = new Set(["일상생활돌봄", "건강관리예방", "보건의료", "주거복지", "요양", "장애지원"]);
+
 function identity(service: Pick<OfficialService, "sido" | "sigungu" | "name">): string {
   return [service.sido, service.sigungu, service.name]
     .map((value) => value.toLowerCase().replace(/[^0-9가-힣a-z]/g, ""))
@@ -308,7 +311,9 @@ export function correctFromRepositoryBaseline(
     if (!baseline) return service;
     return {
       ...service,
-      category: baseline.category.trim() || service.category,
+      category: SPECIFIC_CATEGORIES.has(service.category.trim())
+        ? service.category
+        : baseline.category.trim() || service.category,
       subcategory: baseline.subcategory.trim() || service.subcategory,
       name: preferCurrent(service.name, baseline.name),
       description: preferCurrent(service.description, baseline.description),

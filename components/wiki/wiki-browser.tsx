@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent } from "react";
 import { useSearchParams } from "next/navigation";
 
+import { SearchOperatorHelp } from "@/components/search/search-operator-help";
 import { ZeroResultHelp } from "@/components/search/zero-result-help";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -273,7 +274,10 @@ export function WikiBrowser() {
 
         <div className="grid gap-3" role="search" aria-label="WIKI 사업 검색">
           <div className="grid gap-1.5">
-            <Label htmlFor="wiki-search">WIKI 사업 검색</Label>
+            <div className="flex items-center gap-1">
+              <Label htmlFor="wiki-search">WIKI 사업 검색</Label>
+              <SearchOperatorHelp />
+            </div>
             <div className="relative">
               <SearchIcon className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-muted-foreground" />
               <Input

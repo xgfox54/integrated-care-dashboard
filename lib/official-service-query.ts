@@ -94,5 +94,10 @@ export async function findOfficialServiceByWikiKey(
     repairKnownExtractionFragments(officialServices(candidates)),
   );
   const rows = normalizeRows(corrected);
-  return rows.find((row) => serviceWikiKey(row) === key) ?? null;
+  const exact = rows.find((row) => serviceWikiKey(row) === key);
+  if (exact) return exact;
+  // 대분류가 바뀐 사업의 예전 주소도 연다(대분류만 다르고 나머지가 같은 사업이 하나일 때).
+  const withoutCategory = (value: string) => value.split("|").filter((_, index) => index !== 3).join("|");
+  const recategorized = rows.filter((row) => withoutCategory(serviceWikiKey(row)) === withoutCategory(key));
+  return recategorized.length === 1 ? recategorized[0] ?? null : null;
 }

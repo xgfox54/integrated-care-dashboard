@@ -15,6 +15,7 @@
 @source "../app";
 @source "../components/*.tsx";
 @source "../components/dashboard";
+@source "../components/search";
 @source "../components/usage";
 @source "../components/welfare100";
 @source "../components/wiki";

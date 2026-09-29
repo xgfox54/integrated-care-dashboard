@@ -1,0 +1,15 @@
+DROP TABLE IF EXISTS `official_category_fix`;
+--> statement-breakpoint
+CREATE TABLE `official_category_fix` AS SELECT json_extract(service.value, '$.serviceId') AS `service_id`, TRIM(json_extract(service.value, '$.category')) AS `category` FROM `official_document_service_cache` AS cache, json_each(cache.payload) AS service WHERE json_valid(cache.payload) AND TRIM(json_extract(service.value, '$.category')) IN ('일상생활돌봄', '건강관리예방', '보건의료', '주거복지', '요양', '장애지원');
+--> statement-breakpoint
+DELETE FROM `official_category_fix` WHERE `service_id` IN (SELECT `service_id` FROM `official_category_fix` GROUP BY `service_id` HAVING COUNT(DISTINCT `category`) > 1);
+--> statement-breakpoint
+CREATE INDEX `official_category_fix_service_idx` ON `official_category_fix` (`service_id`);
+--> statement-breakpoint
+UPDATE `official_service_snapshot` SET `category` = (SELECT fix.`category` FROM `official_category_fix` AS fix WHERE fix.`service_id` = `official_service_snapshot`.`service_id` LIMIT 1) WHERE `sync_run_id` = (SELECT `id` FROM `official_sync_run` WHERE `status` = 'succeeded' ORDER BY `completed_at` DESC LIMIT 1) AND EXISTS (SELECT 1 FROM `official_category_fix` AS fix WHERE fix.`service_id` = `official_service_snapshot`.`service_id` AND fix.`category` <> `official_service_snapshot`.`category`);
+--> statement-breakpoint
+UPDATE `official_service_snapshot` SET `search_text` = ' ' || REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(LOWER(COALESCE(sido, '') || char(31) || COALESCE(sigungu, '') || char(31) || COALESCE(category, '') || char(31) || COALESCE(subcategory, '') || char(31) || COALESCE(name, '') || char(31) || COALESCE(description, '') || char(31) || COALESCE(target, '') || char(31) || COALESCE(detail_target, '') || char(31) || COALESCE(application_method, '') || char(31) || COALESCE(provider, '') || char(31) || COALESCE(type, '')), char(9), ' '), char(10), ' '), char(11), ' '), char(12), ' '), char(13), ' '), char(160), ' '), char(12288), ' '), '  ', ' '), '  ', ' '), '  ', ' '), '  ', ' '), '  ', ' '), char(31), ' ' || char(31) || ' ') || ' ' || char(30) || REPLACE(' ' || REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(LOWER(COALESCE(sido, '') || char(31) || COALESCE(sigungu, '') || char(31) || COALESCE(category, '') || char(31) || COALESCE(subcategory, '') || char(31) || COALESCE(name, '') || char(31) || COALESCE(description, '') || char(31) || COALESCE(target, '') || char(31) || COALESCE(detail_target, '') || char(31) || COALESCE(application_method, '') || char(31) || COALESCE(provider, '') || char(31) || COALESCE(type, '')), char(9), ' '), char(10), ' '), char(11), ' '), char(12), ' '), char(13), ' '), char(160), ' '), char(12288), ' '), '  ', ' '), '  ', ' '), '  ', ' '), '  ', ' '), '  ', ' '), char(31), ' ' || char(31) || ' ') || ' ', ' ', '') WHERE `sync_run_id` = (SELECT `id` FROM `official_sync_run` WHERE `status` = 'succeeded' ORDER BY `completed_at` DESC LIMIT 1);
+--> statement-breakpoint
+DROP TABLE `official_category_fix`;
+--> statement-breakpoint
+DELETE FROM `dataset_response_cache`;

@@ -9,7 +9,7 @@ import {
 
 const FETCH_CONCURRENCY = 2;
 
-async function collectProvinceDocuments(province: string, mid: string): Promise<readonly OfficialDocument[]> {
+export async function collectProvinceDocuments(province: string, mid: string): Promise<readonly OfficialDocument[]> {
   const menuUrl = `${MOHW_BASE_URL}/menu.es?mid=${mid}`;
   const first = await fetchOfficialHtml(menuUrl);
   const firstPage = parseMohwBoardPage(first.text, province, first.finalUrl);

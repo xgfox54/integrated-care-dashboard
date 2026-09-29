@@ -5,7 +5,7 @@ import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } fro
 import { DataStatus } from "@/components/dashboard/data-status";
 import { DetailSheet } from "@/components/dashboard/detail-sheet";
 import { FilterPanel } from "@/components/dashboard/filter-panel";
-import { KpiCards } from "@/components/dashboard/kpi-cards";
+import type { KpiSummary } from "@/components/dashboard/kpi-cards";
 import { EmptyResults, ResultTable } from "@/components/dashboard/result-table";
 import { Button } from "@/components/ui/button";
 import {
@@ -78,7 +78,7 @@ export function Dashboard() {
   const [locationSource, setLocationSource] = useState<VisitorSource | null>(null);
   const [gpsPending, setGpsPending] = useState(false);
   const [gpsNotice, setGpsNotice] = useState("");
-  const dataStatusRef = useRef<HTMLDivElement>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
   const hydrated = useRef(false);
   const { summary, search, meta, summaryPhase, searchPhase, reload, prefetch } = useDataset(
     filters,
@@ -218,19 +218,23 @@ export function Dashboard() {
     );
   }, []);
 
+  const scrollToResults = useCallback(() => {
+    window.requestAnimationFrame(() => {
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      resultsRef.current?.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+        block: "start",
+      });
+    });
+  }, []);
+
   const selectTopRegion = useCallback(
     (sido: string) => {
       usageFilter("care_region", sido);
       updateFilters({ sido, sigungu: "" });
-      window.requestAnimationFrame(() => {
-        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        dataStatusRef.current?.scrollIntoView({
-          behavior: reduceMotion ? "auto" : "smooth",
-          block: "start",
-        });
-      });
+      scrollToResults();
     },
-    [updateFilters],
+    [scrollToResults, updateFilters],
   );
 
   const regionName = filters.sigungu || getRegionDisplayName(filters.sido);
@@ -259,12 +263,11 @@ export function Dashboard() {
     [search.categoryCounts],
   );
   const mapCounts = searchPhase === "ready" ? search.regionCounts : summary.regionCounts;
-  const kpis = {
+  const kpis: KpiSummary = {
     total: summary.totalCount,
     sidoCount: summary.sidoCount,
     sigunguCount: summary.sigunguCount,
     categoryCount: summary.categoryCount,
-    filtered: search.totalCount,
   };
 
   const downloadCsv = useCallback(async () => {
@@ -366,13 +369,14 @@ export function Dashboard() {
       <Suspense fallback={<DeferredPanel label="지역 현황 지도를 준비하고 있습니다." />}>
         <NationalMap
           regionCounts={mapCounts}
+          kpis={kpis}
           selectedSido={filters.sido}
           disabled={summaryLoading}
           onSelect={selectTopRegion}
         />
       </Suspense>
 
-      <div ref={dataStatusRef}>
+      <div>
         <DataStatus
           meta={meta}
           phase={summaryPhase}
@@ -401,7 +405,6 @@ export function Dashboard() {
           </p>
         ) : null}
       </div>
-      <KpiCards summary={kpis} />
       <FilterPanel
         summary={summary}
         filters={filters}
@@ -410,8 +413,10 @@ export function Dashboard() {
         onChange={changeFilters}
         onClearRegion={clearRegion}
         onReset={resetFilters}
+        onSubmit={scrollToResults}
       />
 
+      <div ref={resultsRef} className="scroll-mt-3">
       <Tabs value={activeTab} onValueChange={changeTab}>
         <TabsList className="print:hidden">
           <TabsTrigger value="search">검색 결과</TabsTrigger>
@@ -524,6 +529,7 @@ export function Dashboard() {
           </Suspense>
         </TabsContent>
       </Tabs>
+      </div>
 
       <DetailSheet
         row={selected}

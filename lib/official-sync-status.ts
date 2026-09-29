@@ -8,15 +8,18 @@ import type { OfficialService } from "./official-source";
 import { repairExtractionSpacing } from "./official-spacing";
 import { cachedWikiEdits } from "./wiki-edit-store";
 import { applyWikiEdits } from "./wiki-edits";
+import { claimSyncStep, RUN_STALL_SECONDS, type SyncStepClaim, type SyncTrigger } from "./official-sync-claim";
+import type { StepOutcome } from "./official-sync-steps";
 
 // 가벼운 수집 상태·조회 함수만 모은다. 수집 실행(official-sync.ts)은 기준 자료
 // 12MB를 품고 있어, 실제로 수집할 때만 동적으로 불러온다.
 
 export const SYNC_INTERVAL_SECONDS = 24 * 60 * 60;
-export const RUN_TIMEOUT_SECONDS = 30 * 60;
 const PUBLIC_STATUS_TTL_MS = 15_000;
+/** 서버 인스턴스마다 이 간격으로만 수집할 일이 있는지 확인한다(모든 요청마다 DB를 두드리지 않게). */
+const BACKGROUND_CHECK_INTERVAL_MS = 20_000;
 
-export type SyncTrigger = "automatic" | "manual";
+export type { SyncStepClaim, SyncTrigger };
 
 interface SyncRunRow {
   id: string;
@@ -46,11 +49,6 @@ export interface OfficialSyncStatus {
   nextAutomaticSyncAt: string;
   latestSuccess: SyncRunInfo | null;
   latestAttempt: SyncRunInfo | null;
-}
-
-export interface OfficialSyncStart {
-  started: boolean;
-  runId: string;
 }
 
 export interface OfficialDatasetSnapshot {
@@ -92,8 +90,8 @@ export async function readOfficialSyncStatus(): Promise<OfficialSyncStatus> {
       "SELECT id, trigger, status, started_at, completed_at, service_count, document_count, error FROM official_sync_run ORDER BY started_at DESC LIMIT 1",
     ).first<SyncRunRow>(),
     db.prepare(
-      "SELECT id, trigger, status, started_at, completed_at, service_count, document_count, error FROM official_sync_run WHERE status = 'running' AND started_at >= ? ORDER BY started_at DESC LIMIT 1",
-    ).bind(nowSeconds() - RUN_TIMEOUT_SECONDS).first<SyncRunRow>(),
+      "SELECT id, trigger, status, started_at, completed_at, service_count, document_count, error FROM official_sync_run WHERE status = 'running' AND advanced_at >= ? ORDER BY started_at DESC LIMIT 1",
+    ).bind(nowSeconds() - RUN_STALL_SECONDS).first<SyncRunRow>(),
   ]);
   const completedAt = latestSuccess?.completed_at ?? 0;
   return {
@@ -110,10 +108,9 @@ export const readPublicOfficialSyncStatus = memoizeForTtl(
   PUBLIC_STATUS_TTL_MS,
 );
 
-/** 자동 수집이 할 일이 있는지(기한이 지났거나 이어서 수집할 차례인지). */
+/** 자동 수집이 할 일이 있는지(기한이 지났거나 진행 중인 수집을 이어서 할 차례인지). */
 export function needsAutomaticSync(status: OfficialSyncStatus): boolean {
-  const continuing = status.latestAttempt?.error.startsWith("[계속 수집]") ?? false;
-  return status.stale || continuing;
+  return status.stale || status.running;
 }
 
 export async function readOfficialDataset(): Promise<OfficialDatasetSnapshot> {
@@ -145,31 +142,35 @@ export async function readOfficialDataset(): Promise<OfficialDatasetSnapshot> {
   };
 }
 
-export async function beginOfficialSync(trigger: SyncTrigger): Promise<OfficialSyncStart> {
-  const db = getD1();
-  const now = nowSeconds();
-  const runId = crypto.randomUUID();
-  const lock = await db.prepare(
-    "INSERT INTO official_sync_lock (id, run_id, expires_at) VALUES (1, ?, ?) ON CONFLICT(id) DO UPDATE SET run_id = excluded.run_id, expires_at = excluded.expires_at WHERE official_sync_lock.expires_at < ? RETURNING run_id",
-  ).bind(runId, now + RUN_TIMEOUT_SECONDS, now).first<{ run_id: string }>();
-  if (lock?.run_id !== runId) return { started: false, runId: "" };
-
-  try {
-    await db.prepare(
-      "UPDATE official_sync_run SET status = 'failed', completed_at = ?, error = '수집 제한 시간을 초과했습니다.' WHERE status = 'running' AND started_at < ?",
-    ).bind(now, now - RUN_TIMEOUT_SECONDS).run();
-    await db.prepare(
-      "INSERT INTO official_sync_run (id, trigger, status, started_at, completed_at, service_count, document_count, error) VALUES (?, ?, 'running', ?, NULL, 0, 0, '')",
-    ).bind(runId, trigger, now).run();
-    return { started: true, runId };
-  } catch (error) {
-    await db.prepare("DELETE FROM official_sync_lock WHERE id = 1 AND run_id = ?").bind(runId).run();
-    throw error;
-  }
+/** 수집 한 단계의 실행권을 얻는다. 할 일이 없거나 다른 요청이 실행 중이면 null. */
+export function claimOfficialSyncStep(trigger: SyncTrigger, status: OfficialSyncStatus): Promise<SyncStepClaim | null> {
+  return claimSyncStep(getD1(), {
+    trigger,
+    stale: status.stale,
+    now: nowSeconds(),
+    lease: crypto.randomUUID(),
+    newRunId: crypto.randomUUID(),
+  });
 }
 
-/** 수집 실행 모듈을 필요할 때만 불러와 이어서 실행한다. */
-export async function executeOfficialSyncLazily(runId: string): Promise<OfficialSyncStatus> {
-  const { executeOfficialSync } = await import("./official-sync");
-  return executeOfficialSync(runId);
+/** 수집 실행 모듈을 필요할 때만 불러와 한 단계를 이어서 한다. */
+export async function runOfficialSyncStepLazily(claim: SyncStepClaim): Promise<StepOutcome> {
+  const { runOfficialSyncStep } = await import("./official-sync");
+  return runOfficialSyncStep(claim);
+}
+
+let lastBackgroundCheckAt = 0;
+
+/**
+ * 요청 응답 뒤(waitUntil)에 부른다. 이 호스팅에서는 예약 작업이 돌지 않아, 방문 요청이 수집을 조금씩 잇는다.
+ * 기한이 지났거나 진행 중인 수집이 있을 때만 실행권을 얻어 한 단계를 한다.
+ */
+export async function advanceOfficialSyncInBackground(): Promise<void> {
+  const nowMs = Date.now();
+  if (nowMs - lastBackgroundCheckAt < BACKGROUND_CHECK_INTERVAL_MS) return;
+  lastBackgroundCheckAt = nowMs;
+  const status = await readPublicOfficialSyncStatus();
+  if (!needsAutomaticSync(status)) return;
+  const claim = await claimOfficialSyncStep("automatic", status);
+  if (claim) await runOfficialSyncStepLazily(claim);
 }

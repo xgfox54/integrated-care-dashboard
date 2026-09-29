@@ -11,7 +11,7 @@ import {
   SINGLE_TIER_SIDO,
 } from "./dataset-summary";
 import { repairKnownExtractionFragments } from "./official-correction";
-import { CATEGORY_TEXT_SQL, NAME_TEXT_SQL, SEARCH_TEXT_LOOKUP, searchTermSql } from "./official-search-text";
+import { CATEGORY_TEXT_SQL, NAME_TEXT_SQL, SEARCH_TEXT_LOOKUP, searchConditionSql, searchTermSql } from "./official-search-text";
 import { repairExtractionSpacing } from "./official-spacing";
 import { cachedWikiEdits } from "./wiki-edit-store";
 import type { RegionTarget } from "./region-load-order";
@@ -181,7 +181,7 @@ function searchWhere(filters: FilterState, includeRegion = true): SearchWhere {
 }
 
 function termCondition(term: SearchTerm): SearchWhere {
-  return searchTermSql(term, SEARCH_TEXT_LOOKUP);
+  return searchConditionSql(term, SEARCH_TEXT_LOOKUP);
 }
 
 const NAME_KEY_SQL =
@@ -197,6 +197,7 @@ function orderBy(filters: FilterState): SearchWhere {
   const parts: string[] = [];
   const values: unknown[] = [];
   for (const term of parsed.terms) {
+    if (term.negated) continue;
     const inName = searchTermSql(term, NAME_TEXT_SQL);
     if (term.region) {
       parts.push(`CASE WHEN ${inName.sql} THEN ${RELEVANCE.nameRegionTerm} ELSE 0 END`);
@@ -211,7 +212,7 @@ function orderBy(filters: FilterState): SearchWhere {
     }
   }
   if (parsed.phrase) {
-    const multiple = parsed.terms.filter((term) => !term.region).length >= 2;
+    const multiple = parsed.terms.filter((term) => !term.region && !term.negated).length >= 2;
     parts.push(
       multiple
         ? `CASE WHEN ${NAME_KEY_SQL} = ? THEN ${RELEVANCE.exactName} WHEN INSTR(${NAME_KEY_SQL}, ?) > 0 THEN ${RELEVANCE.namePhrase} ELSE 0 END`
@@ -273,7 +274,7 @@ async function computeSearchHelp(filters: FilterState, runId: string): Promise<S
   let suggestion: { query: string; count: number } | undefined;
   const unknown = parsed.terms
     .map((term, index) => ({ term, index }))
-    .filter(({ term, index }) => !term.region && Number(perTerm?.[`t${index}`] ?? 0) === 0);
+    .filter(({ term, index }) => !term.region && term.plain && Number(perTerm?.[`t${index}`] ?? 0) === 0);
   if (unknown.length > 0) {
     const names = await namesOfRun(runId);
     const words = parsed.terms.map((term) => term.text);

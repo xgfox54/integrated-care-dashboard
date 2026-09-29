@@ -1,10 +1,6 @@
-import { after } from "next/server";
-
 import { errorResponse } from "@/lib/errors";
 import { SHARED_CACHE_HEADER, withSharedCache } from "@/lib/edge-cache";
 import {
-  beginOfficialSync,
-  executeOfficialSyncLazily,
   readOfficialDataset,
   readPublicOfficialSyncStatus,
 } from "@/lib/official-sync-status";
@@ -24,19 +20,9 @@ async function buildDatasetResponse(request: Request): Promise<Response> {
       readPublicOfficialSyncStatus(),
     ]);
 
-    let syncStarted = false;
-    if (status.stale && !status.running) {
-      const start = await beginOfficialSync("automatic");
-      syncStarted = start.started;
-      if (start.started) {
-        after(async () => {
-          await executeOfficialSyncLazily(start.runId);
-        });
-      }
-    }
-
+    // 수집은 워커(worker/index.ts)가 요청 응답 뒤에 조금씩 잇는다. 여기서는 상태만 알린다.
     const lastFailure = status.latestAttempt?.status === "failed";
-    const message = status.running || syncStarted
+    const message = status.running
       ? "보건복지부 통합돌봄 사업안내 원문을 수집하고 있습니다. 공공 API는 보완 자료로 확인합니다."
       : lastFailure
         ? "최근 공식자료 현행화에 실패했습니다. 마지막 성공 자료를 표시합니다."

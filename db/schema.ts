@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { index, integer, primaryKey, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const appSetting = sqliteTable("app_setting", {
   key: text("key").primaryKey(),
@@ -35,8 +35,22 @@ export const officialSyncRun = sqliteTable(
     serviceCount: integer("service_count").notNull().default(0),
     documentCount: integer("document_count").notNull().default(0),
     error: text("error").notNull().default(""),
+    stage: text("stage").notNull().default(""),
+    progress: text("progress").notNull().default("{}"),
+    advancedAt: integer("advanced_at").notNull().default(0),
   },
   (table) => [index("official_sync_run_status_started_idx").on(table.status, table.startedAt)],
+);
+
+export const officialSyncApiPage = sqliteTable(
+  "official_sync_api_page",
+  {
+    runId: text("run_id").notNull(),
+    term: text("term").notNull(),
+    page: integer("page").notNull(),
+    payload: text("payload").notNull(),
+  },
+  (table) => [primaryKey({ columns: [table.runId, table.term, table.page] })],
 );
 
 export const officialSyncLock = sqliteTable("official_sync_lock", {

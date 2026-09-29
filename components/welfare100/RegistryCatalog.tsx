@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { useSearchParams } from "next/navigation";
+import { SearchOperatorHelp } from "@/components/search/search-operator-help";
 import { ZeroResultHelp } from "@/components/search/zero-result-help";
 import { careSearchHref, useCareMatchCount } from "@/lib/cross-search";
 import { prefersDataSaving } from "@/lib/network-preferences";
@@ -301,7 +302,7 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
     let suggestion: { query: string; count: number } | undefined;
     const unknown = parsed.terms
       .map((term, index) => ({ term, index }))
-      .filter(({ term }) => !term.region && !list.some((entry) => termMatches(entry.searchText, term)));
+      .filter(({ term }) => !term.region && term.plain && !list.some((entry) => termMatches(entry.searchText, term)));
     if (unknown.length > 0) {
       const names = namesForSuggestion(list.map((entry) => entry.name));
       const words = parsed.terms.map((term) => term.text);
@@ -390,6 +391,9 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
             placeholder="제도명 · 개요 · 담당기관 · 지역 · 법령"
             onChange={(event) => update({ query: event.target.value })}
           />
+          <div className="shrink-0 px-1">
+            <SearchOperatorHelp align="end" />
+          </div>
           {filters.query ? (
             <button type="button" aria-label="검색어 지우기" title="검색어 지우기" onClick={() => update({ query: "" })}>
               ×

@@ -4,7 +4,7 @@ import { enforceApiRateLimit, pruneExpiredRateLimits } from "../lib/api-rate-lim
 import { warmDatasetCache } from "../lib/dataset-responses";
 import { requestUrlIsTooLong, secureResponse } from "../lib/http-security";
 import { logServerError } from "../lib/errors";
-import { needsAutomaticSync, readOfficialSyncStatus } from "../lib/official-sync-status";
+import { advanceOfficialSyncInBackground, needsAutomaticSync, readOfficialSyncStatus } from "../lib/official-sync-status";
 import { resolveVisitorSido, type VisitorCf } from "../lib/visitor-region";
 
 // 매시 정각: 자동 수집이 필요할 때만 수집 모듈(기준 자료 12MB)을 불러오고,
@@ -43,6 +43,10 @@ const worker = {
     }
     const limited = await enforceApiRateLimit(request, workerEnv.DB);
     if (limited) return secureResponse(limited);
+    // 이 호스팅에서는 예약 작업이 돌지 않으므로, 응답 뒤 남는 시간에 공식자료 수집을 한 단계씩 잇는다.
+    context.waitUntil(advanceOfficialSyncInBackground().catch((error: unknown) => {
+      logServerError(error, { path: "background-sync", status: 500 });
+    }));
     if (url.pathname === "/api/geo") {
       const cf = (request as Request & { cf?: VisitorCf }).cf;
       const result = await resolveVisitorSido(cf);

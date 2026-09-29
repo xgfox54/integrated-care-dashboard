@@ -6,16 +6,22 @@
 // - 지역어는 정식 이름까지 함께 찾는다. 예: 경북 → 경상북도, 부산시 → 부산광역시, 해운대 → 해운대구
 // - 군더더기 말(후·및·관련·사업·서비스 등)은 빼고 찾는다. 모두 군더더기 말이면 그대로 찾는다.
 // - 관련도는 사업명 일치 > 분류 일치 > 그 밖의 일치 순이다.
+// - 연산자: & 또는 띄어쓰기 = 모두 포함, | 또는 글자 or = 하나라도 포함(&보다 먼저 묶임), ( ) = 묶음,
+//   * = 사이에 아무 글자나(순서 유지), 단어 앞 - 또는 ! = 제외. 예: 부산 or 울산 방문*진료 -요양
 
 export interface SearchTerm {
-  /** 이용자가 친 단어(화면 표시용) */
+  /** 이용자가 친 단어(화면 표시·검색어 다시 만들기용, 연산자 포함) */
   readonly text: string;
-  /** 띄어쓰기를 없앤 소문자 */
+  /** 띄어쓰기를 없앤 소문자(| 로 이은 선택지 포함) */
   readonly key: string;
-  /** 이 가운데 하나만 들어 있어도 일치로 본다. */
+  /** 이 가운데 하나만 들어 있어도 일치로 본다. * 가 든 것은 순서대로 이어 찾는 말이다. */
   readonly alternatives: readonly string[];
-  /** 광역시·도나 시·군·구 이름 */
+  /** 광역시·도나 시·군·구 이름(선택지가 모두 지역어일 때) */
   readonly region: boolean;
+  /** 제외할 단어(앞에 - 또는 !) */
+  readonly negated: boolean;
+  /** 연산자 없는 보통 단어(오타 고치기·사업명 일치 가산 대상) */
+  readonly plain: boolean;
 }
 
 export interface ParsedSearch {
@@ -192,37 +198,199 @@ function regionAlternatives(key: string): readonly string[] | null {
 // ---- 해석 ----
 
 const EDGE_PUNCTUATION = /^["'“”‘’()[\]{}<>「」『』]+|["'“”‘’()[\]{}<>「」『』.,!?]+$/g;
+/** D1의 LIKE 패턴 길이 한도(바이트). 이보다 긴 * 검색어는 * 없이 이어 붙인 말로 찾는다. */
+const LIKE_PATTERN_MAX_BYTES = 50;
+
+export const WILDCARD = "*";
+
+/** * 검색어를 LIKE 패턴으로(%·_·\ 는 \ 로 가린다). */
+export function wildcardLikePattern(alternative: string): string {
+  return "%" + alternative.split(WILDCARD).filter(Boolean).map((piece) => piece.replace(/[\\%_]/g, "\\$&")).join("%") + "%";
+}
+
+function cleanOption(option: string): string {
+  const key = normalizeSearchText(option).replace(EDGE_PUNCTUATION, "").replace(/\*+/g, WILDCARD).replace(/^\*|\*$/g, "");
+  if (!key.includes(WILDCARD)) return key;
+  return new TextEncoder().encode(wildcardLikePattern(key)).length <= LIKE_PATTERN_MAX_BYTES ? key : key.replaceAll(WILDCARD, "");
+}
+
+interface ParsedWord {
+  readonly text: string;
+  readonly key: string;
+  readonly options: readonly string[];
+  readonly negated: boolean;
+}
+
+type Token = { readonly kind: "word"; readonly raw: string } | { readonly kind: "or" | "not" | "open" | "close" };
+
+/** 검색어 묶음(절): 단어 가운데 하나라도 들면 맞는다. negated면 어느 단어도 들지 않아야 맞는다. */
+interface Clause {
+  readonly words: readonly string[];
+  readonly negated: boolean;
+}
+
+const WORD_SEPARATOR = /[\s,·/&]/u;
+/** 영문 or(대소문자 무관)는 | 와 같다. */
+const OR_WORD = /^or$/iu;
+/** 괄호 묶음을 풀 때(분배) 생기는 묶음 수 한도. 넘는 묶음은 버린다. */
+const MAX_CLAUSES = 24;
+
+function tokenize(query: string): Token[] {
+  const tokens: Token[] = [];
+  const chars = [...query];
+  let word = "";
+  const flush = () => {
+    if (word) tokens.push(OR_WORD.test(word) ? { kind: "or" } : { kind: "word", raw: word });
+    word = "";
+  };
+  chars.forEach((char, index) => {
+    const next = chars[index + 1];
+    if (WORD_SEPARATOR.test(char)) flush();
+    else if (char === "|") {
+      flush();
+      tokens.push({ kind: "or" });
+    } else if (char === "(" || char === ")") {
+      flush();
+      tokens.push({ kind: char === "(" ? "open" : "close" });
+    } else if ((char === "-" || char === "!") && word === "" && next !== undefined && !WORD_SEPARATOR.test(next)) {
+      tokens.push({ kind: "not" });
+    } else word += char;
+  });
+  flush();
+  return tokens;
+}
+
+/** (A 그리고 B) 또는 (C 그리고 D) = (A|C)(A|D)(B|C)(B|D). 한쪽이 비면 다른 쪽을 그대로 쓴다. */
+function distribute(left: readonly Clause[], right: readonly Clause[]): Clause[] {
+  if (left.length === 0) return [...right];
+  if (right.length === 0) return [...left];
+  return left
+    .flatMap((one) => right.map((other) => ({ words: [...one.words, ...other.words], negated: false })))
+    .slice(0, MAX_CLAUSES);
+}
+
+/** 제외는 묶음 하나에만 걸 수 있다. 여러 묶음을 빼라고 하면(-(A B)) 든 단어를 모두 뺀다. */
+function negate(clauses: readonly Clause[]): Clause[] {
+  if (clauses.length === 0) return [];
+  return [{ words: clauses.flatMap((clause) => clause.words), negated: !(clauses.length === 1 && clauses[0].negated) }];
+}
+
+/** 검색어를 「그리고로 이은 묶음들」로 푼다. 또는(| · or)이 그리고보다 먼저 묶이고, 괄호가 가장 먼저다. */
+function toClauses(tokens: readonly Token[]): Clause[] {
+  let at = 0;
+  const peek = () => tokens[at];
+  const primary = (): Clause[] => {
+    const token = peek();
+    if (token?.kind === "word") {
+      at++;
+      return [{ words: [token.raw], negated: false }];
+    }
+    if (token?.kind !== "open") return [];
+    at++;
+    const inner = sequence(true);
+    if (peek()?.kind === "close") at++;
+    return inner;
+  };
+  const alternatives = (): Clause[] => {
+    let negated = false;
+    while (peek()?.kind === "not") {
+      negated = true;
+      at++;
+    }
+    let result = primary();
+    while (peek()?.kind === "or") {
+      at++;
+      while (peek()?.kind === "not") at++;
+      result = distribute(result, primary());
+    }
+    return negated ? negate(result) : result;
+  };
+  const sequence = (inGroup: boolean): Clause[] => {
+    const clauses: Clause[] = [];
+    while (at < tokens.length) {
+      const kind = peek().kind;
+      if (kind === "close" && inGroup) break;
+      if (kind === "close" || kind === "or") {
+        at++;
+        continue;
+      }
+      clauses.push(...alternatives());
+    }
+    return clauses;
+  };
+  return sequence(false);
+}
+
+function toWord(clause: Clause): ParsedWord | null {
+  const kept = clause.words.map((raw) => ({ raw: raw.trim(), key: cleanOption(raw) })).filter((word) => word.key);
+  if (kept.length === 0) return null;
+  const options = [...new Set(kept.map((word) => word.key))];
+  const text = (clause.negated ? "-" : "") + [...new Set(kept.map((word) => word.raw))].join("|");
+  return { text, key: options.join("|"), options, negated: clause.negated };
+}
+
+/** 다른 묶음을 품은 또는-묶음은 뺀다. 예: (부산|방문진료) 그리고 방문진료 = 방문진료 */
+function withoutRedundant(words: readonly ParsedWord[]): ParsedWord[] {
+  return words.filter((word, index) =>
+    word.negated ||
+    !words.some((other, otherIndex) =>
+      otherIndex !== index &&
+      !other.negated &&
+      other.options.every((option) => word.options.includes(option)) &&
+      (other.options.length < word.options.length || otherIndex < index)));
+}
+
+function toTerm(word: ParsedWord): SearchTerm {
+  const expanded = word.options.map((option) => (option.includes(WILDCARD) ? null : regionAlternatives(option)));
+  const alternatives = word.options.flatMap((option, index) => expanded[index] ?? [option]);
+  const region = expanded.every((value) => value !== null);
+  const plain = !word.negated && word.options.length === 1 && !word.key.includes(WILDCARD);
+  return { text: word.text, key: word.key, alternatives: [...new Set(alternatives)], region, negated: word.negated, plain };
+}
 
 export function parseSearch(query: string): ParsedSearch {
-  const words = query
-    .split(/[\s,·/|]+/)
-    .map((word) => ({ text: word.trim(), key: normalizeSearchText(word).replace(EDGE_PUNCTUATION, "") }))
-    .filter((word) => word.key !== "");
-  const meaningful = words.filter((word) => !STOPWORDS.has(word.key));
-  const chosen = (meaningful.length > 0 ? meaningful : words).filter(
-    (word, index, list) => list.findIndex((other) => other.key === word.key) === index,
+  const words = withoutRedundant(
+    toClauses(tokenize(query))
+      .map(toWord)
+      .filter((word) => word !== null),
   );
-  const terms = chosen.slice(0, MAX_SEARCH_TERMS).map((word): SearchTerm => {
-    const region = regionAlternatives(word.key);
-    return { text: word.text, key: word.key, alternatives: region ?? [word.key], region: region !== null };
-  });
+  const meaningful = words.filter((word) => word.negated || !STOPWORDS.has(word.key));
+  const chosen = (meaningful.length > 0 ? meaningful : words).filter(
+    (word, index, list) => list.findIndex((other) => other.key === word.key && other.negated === word.negated) === index,
+  );
+  const terms = chosen.slice(0, MAX_SEARCH_TERMS).map(toTerm);
+  const positive = terms.filter((term) => !term.negated);
   return {
     terms,
-    phrase: terms.filter((term) => !term.region).map((term) => term.key).join(""),
-    hasRegion: terms.some((term) => term.region),
+    phrase: positive.every((term) => term.plain || term.region) ? positive.filter((term) => !term.region).map((term) => term.key).join("") : "",
+    hasRegion: positive.some((term) => term.region),
   };
 }
 
+/** * 검색어: 띄어쓰기를 뺀 본문에 조각들이 이 순서대로 들어 있는지(서버의 LIKE '%조각%조각%'과 같다). */
+function wildcardMatches(text: string, alternative: string): boolean {
+  const flat = text.replaceAll(" ", "");
+  let from = 0;
+  for (const piece of alternative.split(WILDCARD).filter(Boolean)) {
+    const index = flat.indexOf(piece, from);
+    if (index === -1) return false;
+    from = index + piece.length;
+  }
+  return true;
+}
+
 export function termMatches(text: string, term: SearchTerm): boolean {
-  return term.alternatives.some((alternative) => containsTerm(text, alternative));
+  return term.alternatives.some((alternative) =>
+    alternative.includes(WILDCARD) ? wildcardMatches(text, alternative) : containsTerm(text, alternative));
 }
 
 /**
- * 검색용 본문(searchableText로 만든 text)이 검색어의 모든 단어를 담는지.
+ * 검색용 본문(searchableText로 만든 text)이 검색어의 모든 단어를 담고, 제외어는 담지 않는지.
  * ignoreRegion: 전국 공통 제도처럼 지역과 관계없는 항목은 지역어를 따지지 않는다.
  */
 export function matchesSearch(text: string, parsed: ParsedSearch, options: { ignoreRegion?: boolean } = {}): boolean {
-  return parsed.terms.every((term) => (options.ignoreRegion && term.region) || termMatches(text, term));
+  return parsed.terms.every((term) =>
+    (options.ignoreRegion && term.region) || term.negated !== termMatches(text, term));
 }
 
 // ---- 관련도 ----
@@ -242,12 +410,13 @@ export function relevanceScore(fields: { readonly name: string; readonly categor
   const nameKey = normalizeSearchText(fields.name);
   let score = 0;
   for (const term of parsed.terms) {
+    if (term.negated) continue;
     if (termMatches(name, term)) score += term.region ? RELEVANCE.nameRegionTerm : RELEVANCE.nameTerm;
     else if (!term.region && termMatches(category, term)) score += RELEVANCE.categoryTerm;
   }
   if (parsed.phrase) {
     if (nameKey === parsed.phrase) score += RELEVANCE.exactName;
-    else if (parsed.terms.filter((term) => !term.region).length >= 2 && nameKey.includes(parsed.phrase)) score += RELEVANCE.namePhrase;
+    else if (parsed.terms.filter((term) => !term.region && !term.negated).length >= 2 && nameKey.includes(parsed.phrase)) score += RELEVANCE.namePhrase;
   }
   return score;
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { SearchOperatorHelp } from "@/components/search/search-operator-help";
 import { Button } from "@/components/ui/button";
 import { Chip, ChipSet, RemovableChip } from "@/components/ui/chip";
 import { Input } from "@/components/ui/input";
@@ -30,6 +31,8 @@ interface FilterPanelProps {
   onChange: (next: Partial<FilterState>) => void;
   onClearRegion: () => void;
   onReset: () => void;
+  /** 검색 버튼·Enter: 검색 결과로 화면을 내린다(검색은 입력하는 대로 이미 반영된다). */
+  onSubmit: () => void;
 }
 
 interface SelectOption {
@@ -87,6 +90,7 @@ export function FilterPanel({
   onChange,
   onClearRegion,
   onReset,
+  onSubmit,
 }: FilterPanelProps) {
   const sidoOptions = Object.keys(summary.regionCounts).sort((left, right) => left.localeCompare(right, "ko"));
   const sigunguOptions = filters.sido
@@ -97,41 +101,58 @@ export function FilterPanel({
 
   return (
     <section aria-label="검색 조건" className="rounded-xl border border-border bg-card p-4 print:hidden">
-      <div className="flex flex-wrap items-end gap-3">
-        <div className="grid min-w-0 flex-1 basis-72 gap-1.5">
-          <Label htmlFor="keyword">통합검색</Label>
-          <div className="relative">
-            <SearchIcon className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-muted-foreground" />
+      <form
+        role="search"
+        aria-label="통합검색"
+        onSubmit={(event) => {
+          event.preventDefault();
+          document.getElementById("keyword")?.blur();
+          onSubmit();
+        }}
+        className="rounded-(--jeju-radius-lg) border border-(--jeju-blue-light-strong) bg-(--jeju-primary-tint) p-4 sm:p-5"
+      >
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+          <SearchIcon className="size-(--jeju-icon-lg) text-primary" aria-hidden="true" />
+          <Label htmlFor="keyword" className="text-(length:--jeju-text-xl) font-extrabold text-(--jeju-text-strong)">
+            통합검색
+          </Label>
+          <SearchOperatorHelp />
+          <span className="text-(length:--jeju-text-sm) text-(--jeju-text-muted)">사업명·서비스·지원대상·지역을 한 번에 찾습니다</span>
+        </div>
+        <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+          <div className="relative min-w-0 flex-1">
+            <SearchIcon className="pointer-events-none absolute top-1/2 left-4 size-(--jeju-icon-lg) -translate-y-1/2 text-primary" aria-hidden="true" />
             <Input
               id="keyword"
               type="search"
+              enterKeyHint="search"
               aria-describedby="keyword-privacy-note"
               value={filters.keyword}
               disabled={disabled}
-              placeholder="사업명, 서비스, 지원대상 또는 지역을 검색하세요"
+              placeholder="검색어 입력 (예: 방문진료, 노인 or 장애인)"
               onChange={(event) => onChange({ keyword: event.target.value })}
-              className="pr-10 pl-9 [&::-webkit-search-cancel-button]:hidden"
+              className="h-14 rounded-(--jeju-radius) border-2 border-primary bg-card pr-12 pl-12 text-(length:--jeju-text-lg) font-bold shadow-(--jeju-shadow-primary) placeholder:font-normal not-disabled:not-read-only:hover:border-(--jeju-primary-hover) [&::-webkit-search-cancel-button]:hidden"
             />
             {filters.keyword ? (
               <button
                 type="button"
                 aria-label="검색어 지우기"
                 onClick={() => onChange({ keyword: "" })}
-                className="absolute top-1/2 right-1.5 inline-flex size-7 -translate-y-1/2 cursor-pointer items-center justify-center rounded-(--jeju-radius-sm) border-0 bg-transparent text-muted-foreground outline-none hover:bg-muted hover:text-(--jeju-text-strong) focus-visible:shadow-(--jeju-focus-ring)"
+                className="absolute top-1/2 right-2.5 inline-flex size-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-(--jeju-radius-sm) border-0 bg-transparent text-muted-foreground outline-none hover:bg-muted hover:text-(--jeju-text-strong) focus-visible:shadow-(--jeju-focus-ring)"
               >
                 <CloseIcon />
               </button>
             ) : null}
           </div>
-          <p id="keyword-privacy-note" className="mt-1.5 text-xs text-muted-foreground">
-            대상자 이름, 주민등록번호, 전화번호 등 개인정보는 입력하지 마세요.
-          </p>
+          <Button type="submit" size="lg" disabled={disabled} className="h-12 px-7 text-(length:--jeju-text-md) sm:h-14">
+            <SearchIcon className="size-(--jeju-icon-lg)" aria-hidden="true" />
+            검색
+          </Button>
         </div>
-        <Button type="button" variant="outline" onClick={onReset} disabled={disabled}>
-          <RefreshIcon />
-          전체조건 초기화
-        </Button>
-      </div>
+        <p id="keyword-privacy-note" className="mt-2 text-(length:--jeju-text-xs) text-(--jeju-text-muted)">
+          대상자 이름, 주민등록번호, 전화번호 등 개인정보는 입력하지 마세요.
+        </p>
+      </form>
 
       {region ? (
         <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -150,7 +171,7 @@ export function FilterPanel({
         </div>
       ) : null}
 
-      <div className="mt-3 flex flex-wrap items-center gap-2">
+      <div className="mt-4 flex flex-wrap items-center gap-2">
         <span id="quick-keyword-label" className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">
           빠른 검색
         </span>
@@ -166,6 +187,10 @@ export function FilterPanel({
             </Chip>
           ))}
         </ChipSet>
+        <Button type="button" variant="outline" onClick={onReset} disabled={disabled} className="ml-auto">
+          <RefreshIcon />
+          전체조건 초기화
+        </Button>
       </div>
 
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
