@@ -1,0 +1,9 @@
+INSERT OR REPLACE INTO fiscal_admin_unit VALUES ('admin:4811000:3', '창원시 의창구', 'ADMIN_DISTRICT', 'lofin:laf:4811000', '3', '경남', '경남 창원시 일반구(행정구). 창원시 세출의 부서코드 앞자리 3. 2026-10-03 공개 snapshot 대조: 3005005 인력운영비(의창구 행정과)·기본경비(의창구 총괄), 3015040 용지동정 운영(의창구 용지동). 부서코드 30xxxxx 210건. 구청 소관 부서 예산만 해당하며 시 본청 부서가 구 지역에 집행하는 사업은 포함되지 않는다.', 'VERIFIED');
+--> statement-breakpoint
+INSERT OR REPLACE INTO fiscal_admin_unit VALUES ('admin:4811000:4', '창원시 성산구', 'ADMIN_DISTRICT', 'lofin:laf:4811000', '4', '경남', '경남 창원시 일반구(행정구). 창원시 세출의 부서코드 앞자리 4. 2026-10-03 공개 snapshot 대조: 4005005 인력운영비(성산구 행정과), 4005010 민원지적과, 4005015 세무과, 4005020 사회복지과, 4005030 환경과. 부서코드 40xxxxx 190건. 구청 소관 부서 예산만 해당하며 시 본청 부서가 구 지역에 집행하는 사업은 포함되지 않는다.', 'VERIFIED');
+--> statement-breakpoint
+INSERT OR REPLACE INTO fiscal_admin_unit VALUES ('admin:4811000:5', '창원시 마산합포구', 'ADMIN_DISTRICT', 'lofin:laf:4811000', '5', '경남', '경남 창원시 일반구(행정구). 창원시 세출의 부서코드 앞자리 5. 2026-10-03 공개 snapshot 대조: 5005005 인력운영비(마산합포구 행정과), 5005010 민원지적과, 5005015 세무과, 5005020 사회복지과. 부서코드 50xxxxx 284건. 구청 소관 부서 예산만 해당하며 시 본청 부서가 구 지역에 집행하는 사업은 포함되지 않는다.', 'VERIFIED');
+--> statement-breakpoint
+INSERT OR REPLACE INTO fiscal_admin_unit VALUES ('admin:4811000:6', '창원시 마산회원구', 'ADMIN_DISTRICT', 'lofin:laf:4811000', '6', '경남', '경남 창원시 일반구(행정구). 창원시 세출의 부서코드 앞자리 6. 2026-10-03 공개 snapshot 대조: 6005005 인력운영비(마산회원구 행정과), 6005010 민원지적과, 6005015 세무과. 부서코드 60xxxxx 245건. 구청 소관 부서 예산만 해당하며 시 본청 부서가 구 지역에 집행하는 사업은 포함되지 않는다.', 'VERIFIED');
+--> statement-breakpoint
+INSERT OR REPLACE INTO fiscal_admin_unit VALUES ('admin:4811000:7', '창원시 진해구', 'ADMIN_DISTRICT', 'lofin:laf:4811000', '7', '경남', '경남 창원시 일반구(행정구). 창원시 세출의 부서코드 앞자리 7. 2026-10-03 공개 snapshot 대조: 7005005 인력운영비(진해구 행정과), 7005010 민원지적과, 7005015 세무과, 7005020 사회복지과, 7005030 환경과. 부서코드 70xxxxx 249건. 구청 소관 부서 예산만 해당하며 시 본청 부서가 구 지역에 집행하는 사업은 포함되지 않는다.', 'VERIFIED');
