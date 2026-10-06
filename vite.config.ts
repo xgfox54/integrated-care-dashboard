@@ -37,6 +37,9 @@ const localBindingConfig = {
       ]
     : [],
   triggers: { crons: ["0 * * * *"] },
+  // 요청 단위 자동 로그(invocation logs)는 요청 주소의 검색어·접속 IP·쿠키·로그인 사용자 헤더를 그대로 남기므로 끈다(작업지시서 v5 T22).
+  // 앱이 직접 남기는 오류 로그(경로·코드·요청 ID)는 Workers Logs에 그대로 남는다.
+  observability: { enabled: true, logs: { enabled: true, invocation_logs: false } },
 };
 
 export default defineConfig(async () => {

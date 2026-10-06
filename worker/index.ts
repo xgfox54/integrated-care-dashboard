@@ -5,6 +5,8 @@ import { warmDatasetCache } from "../lib/dataset-responses";
 import { requestUrlIsTooLong, secureResponse } from "../lib/http-security";
 import { logServerError } from "../lib/errors";
 import { advanceOfficialSyncInBackground, needsAutomaticSync, readOfficialSyncStatus } from "../lib/official-sync-status";
+import { advancePressInBackground } from "../lib/press/background";
+import { flagEnabled } from "../lib/platform/flags";
 import { resolveVisitorSido, type VisitorCf } from "../lib/visitor-region";
 
 // 매시 정각: 자동 수집이 필요할 때만 수집 모듈(기준 자료 12MB)을 불러오고,
@@ -16,8 +18,14 @@ async function scheduledWork(db: D1Database | undefined): Promise<void> {
     const { runOfficialSync } = await import("../lib/official-sync");
     await runOfficialSync("automatic");
   }
+  // 웹은 활성 통합 공개본의 실행을 읽으므로, 새 수집 뒤 공개본을 먼저 바꾸고 그 실행으로 캐시를 데운다.
+  const { advanceBundleInBackground } = await import("../lib/platform/background");
+  if (flagEnabled("RELEASE_BUNDLE_ENABLED")) await advanceBundleInBackground();
   await warmDatasetCache();
   await pruneExpiredRateLimits(db);
+  if (flagEnabled("NEWS_DISCOVERY_ENABLED")) await advancePressInBackground();
+  const { advanceFiscalInBackground } = await import("../lib/fiscal/background");
+  if (flagEnabled("FISCAL_INGEST_ENABLED")) await advanceFiscalInBackground();
 }
 
 /** 이용통계: 만료된 임시 상태(최대 24시간)와 24개월 지난 집계를 지우고, 사업·제도 통계 ID의 현재 목록 포함 여부를 갱신한다. */
@@ -43,10 +51,43 @@ const worker = {
     }
     const limited = await enforceApiRateLimit(request, workerEnv.DB);
     if (limited) return secureResponse(limited);
-    // 이 호스팅에서는 예약 작업이 돌지 않으므로, 응답 뒤 남는 시간에 공식자료 수집을 한 단계씩 잇는다.
-    context.waitUntil(advanceOfficialSyncInBackground().catch((error: unknown) => {
-      logServerError(error, { path: "background-sync", status: 500 });
-    }));
+    if (url.pathname === "/mcp") {
+      // 공개 MCP는 저장된 자료만 읽는다. 수집·동기화를 부수적으로 일으키지 않도록 배경 작업 트리거보다 먼저 처리한다.
+      const [{ handleMcpRequest }, { McpData }, { cachedWikiEdits }] = await Promise.all([
+        import("../lib/mcp/server"),
+        import("../lib/mcp/data"),
+        import("../lib/wiki-edit-store"),
+      ]);
+      if (!workerEnv.DB) return secureResponse(Response.json({ error: "MCP_UNAVAILABLE" }, { status: 503, headers: { "cache-control": "no-store" } }));
+      const response = await handleMcpRequest(request, new McpData(workerEnv.DB, cachedWikiEdits), (error, tool) => {
+        logServerError(error, { path: "/mcp:" + tool, status: 500 });
+      });
+      return secureResponse(response);
+    }
+    // 이 호스팅에서는 예약 작업이 돌지 않으므로, 응답 뒤 남는 시간에 수집을 한 단계씩 잇는다.
+    // 보도자료 수집(기관 누리집 요청, 7초×3회)을 먼저 단독으로 끝낸다. 예산 수집(20초 요청·대량 DB 쓰기)과 동시에 돌던 동안
+    // 평소 1~6초면 끝나던 보도자료 요청이 세 번 모두 7초를 넘겨 NETWORK_ERROR가 크게 늘었다(2026-10-04 16시 UTC 이후).
+    context.waitUntil((async () => {
+      if (flagEnabled("NEWS_DISCOVERY_ENABLED")) await advancePressInBackground().catch((error: unknown) => {
+        logServerError(error, { path: "background-press", status: 500 });
+      });
+      await Promise.all([
+        flagEnabled("OFFICIAL_SYNC_ENABLED") ? advanceOfficialSyncInBackground().catch((error: unknown) => {
+          logServerError(error, { path: "background-sync", status: 500 });
+        }) : undefined,
+        flagEnabled("FISCAL_INGEST_ENABLED") ? import("../lib/fiscal/background").then(({ advanceFiscalInBackground }) => advanceFiscalInBackground()).catch((error: unknown) => {
+          logServerError(error, { path: "background-fiscal", status: 500 });
+        }) : undefined,
+        // 외부 데이터 연계(법정동코드·장기요양기관·정부24·KOSIS): 때가 된 범위 하나를 한 단계씩 잇는다. 인증키가 없으면 요청하지 않는다.
+        flagEnabled("EXTERNAL_INGEST_ENABLED") ? import("../lib/integrations/background").then(({ advanceIntegrationsInBackground }) => advanceIntegrationsInBackground()).catch((error: unknown) => {
+          logServerError(error, { path: "background-integrations", status: 500 });
+        }) : undefined,
+        // 통합 공개본: 모듈이 바뀌었으면 새 공개본을 만들고 활성 포인터를 CAS로 바꾼다.
+        flagEnabled("RELEASE_BUNDLE_ENABLED") ? import("../lib/platform/background").then(({ advanceBundleInBackground }) => advanceBundleInBackground()).catch((error: unknown) => {
+          logServerError(error, { path: "background-bundle", status: 500 });
+        }) : undefined,
+      ]);
+    })());
     if (url.pathname === "/api/geo") {
       const cf = (request as Request & { cf?: VisitorCf }).cf;
       const result = await resolveVisitorSido(cf);

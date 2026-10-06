@@ -94,6 +94,7 @@ const genericFallbacks = allSupplementEvidence.filter((entry) =>
   entry.tier === "press" || entry.matchMode === "non-exact",
 );
 const allowedSupplementHosts = new Set([
+  "eminwon.brcn.go.kr",
   "gssw.or.kr",
   "paldal.suwon.go.kr",
   "seed.gb.go.kr",
@@ -103,6 +104,7 @@ const allowedSupplementHosts = new Set([
   "www.hira.or.kr",
   "m.gimpo.go.kr",
   "www.nhis.or.kr",
+  "kbmaeil.com",
 ]);
 const invalidVerifiedUrls = verifiedEvidence.filter((entry) =>
   !allowedSupplementHosts.has(new URL(entry.url).hostname),
@@ -146,7 +148,7 @@ const report = {
     nonExactMatches: nonExactMatches.length,
     genericPressReleaseFallbacks: genericFallbacks.length,
     invalidVerifiedUrls: invalidVerifiedUrls.length,
-    policy: "Bokjiro and Welfare Talk require exact normalized names; verified web supplements require exact service IDs and allowlisted official hosts.",
+    policy: "Bokjiro and Welfare Talk require exact normalized names; verified web supplements require exact service IDs and explicitly verified official or press-source hosts.",
     evidence: allSupplementEvidence,
   },
   verifiedWebSources: listVerifiedWikiSupplements().map((source) => ({
@@ -163,7 +165,7 @@ const report = {
 assert.equal(report.requiredFieldCoverage.name, rows.length);
 assert.equal(report.requiredFieldCoverage.overview, rows.length);
 assert.equal(report.requiredFieldCoverage.content, rows.length);
-assert.equal(report.dashboardWikiConsistency.mismatches, 0);
+assert.equal(report.dashboardWikiConsistency.mismatches, 0, JSON.stringify(displayMismatches));
 assert.equal(report.contentProvenance.unavailable, 0);
 assert.equal(report.officialSource.linkedRows, rows.length);
 assert.equal(report.officialSource.serviceDocumentIdentityMismatches, 0);

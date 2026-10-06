@@ -10,6 +10,7 @@ import {
 } from "../lib/official-correction.ts";
 import { repairExtractionSpacing } from "../lib/official-spacing.ts";
 import { REGION_DEFINITIONS } from "../lib/region-statistics.ts";
+import { applyWikiEdits } from "../lib/wiki-edits.ts";
 
 const STATE_ROOT = resolve(".wrangler/state");
 const SUMMARY_PATH = resolve("public/data/summary.json");
@@ -63,17 +64,19 @@ function openSnapshotDatabase() {
   return null;
 }
 
-const database = openSnapshotDatabase();
+const database = EXPLICIT_SOURCE_PATH ? null : openSnapshotDatabase();
 try {
   let services;
   let fetchedAt;
   let dataAsOf;
-  if (EXPLICIT_SOURCE_PATH && existsSync(EXPLICIT_SOURCE_PATH)) {
+  let fromDatabase = false;
+  if (EXPLICIT_SOURCE_PATH) {
     const legacy = JSON.parse(readFileSync(EXPLICIT_SOURCE_PATH, "utf8"));
     services = expandCompactRows(legacy);
     fetchedAt = legacy.fetchedAt ?? "";
     dataAsOf = legacy.dataAsOf ?? "";
   } else if (database) {
+    fromDatabase = true;
     const run = database
       .prepare(
         "SELECT id, completed_at FROM official_sync_run WHERE status = 'succeeded' ORDER BY completed_at DESC LIMIT 1",
@@ -98,12 +101,22 @@ try {
   } else {
     throw new Error("로컬 D1 또는 기존 공식 사업 스냅샷을 찾지 못했습니다.");
   }
-  const correctedRows = repairExtractionSpacing(
-    removeExtractedContinuationFragments(
-      repairKnownExtractionFragments(services),
-    ),
-  );
-  const rows = normalizeRows(correctedRows);
+  if (fetchedAt) {
+    const collected = Date.parse(fetchedAt);
+    if (!Number.isFinite(collected) || collected < Date.UTC(2000, 0, 1) || collected > Date.now() + 86_400_000) {
+      throw new Error("수집 시각이 유효하지 않습니다. 운영 공개 자료를 명시적으로 받아 스냅샷을 만들거나 수집 이력을 확인해 주세요.");
+    }
+  }
+  // 공개 API와 기존 공개 스냅샷에는 사람의 편집이 포함되므로 의미 보정을 재적용하지 않는다.
+  const correctedRows = fromDatabase
+    ? repairExtractionSpacing(removeExtractedContinuationFragments(repairKnownExtractionFragments(services)))
+    : services;
+  const edits = fromDatabase
+    ? new Map(database.prepare(
+      "SELECT service_id AS serviceId, description, target, detail_target AS detailTarget, provider, application_method AS applicationMethod FROM wiki_edit",
+    ).all().map((edit) => [edit.serviceId, edit]))
+    : new Map();
+  const rows = normalizeRows(applyWikiEdits(correctedRows, edits));
   if (rows.length !== 12_526) {
     throw new Error(`빠른 시작 스냅샷은 12,526건이어야 합니다. 현재 ${rows.length}건입니다.`);
   }
