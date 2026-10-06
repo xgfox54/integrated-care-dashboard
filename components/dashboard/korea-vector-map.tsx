@@ -36,6 +36,11 @@ interface KoreaVectorMapProps {
   readonly selectedSido: string;
   readonly disabled: boolean;
   readonly onSelect: (sido: string) => void;
+  /** 색 범례·설명에 쓸 값 이름. 기본은 대시보드의 "사업 수". */
+  readonly measureLabel?: string;
+  readonly title?: string;
+  readonly description?: string;
+  readonly fixedLayout?: boolean;
 }
 
 function regionTone(count: number, maximum: number): string {
@@ -52,6 +57,10 @@ export function KoreaVectorMap({
   selectedSido,
   disabled,
   onSelect,
+  measureLabel = "사업 수",
+  title = "대한민국 광역단위 사업 현황 지도",
+  description = "원하는 지역을 클릭하거나 키보드로 선택하면 해당 광역단위 현황이 대시보드 검색 조건에 반영됩니다.",
+  fixedLayout = false,
 }: KoreaVectorMapProps) {
   const [hoveredRegionId, setHoveredRegionId] = useState<RegionId | null>(null);
   const [focusedRegionId, setFocusedRegionId] = useState<RegionId | null>(null);
@@ -80,9 +89,9 @@ export function KoreaVectorMap({
   };
 
   return (
-    <figure className="relative flex h-full min-h-[30rem] flex-col overflow-hidden rounded-xl border border-border bg-(--jeju-surface-inset) p-3 sm:p-5">
-      <div className="relative z-10 flex min-h-16 flex-wrap items-center justify-between gap-2 rounded-lg border border-border bg-card px-3 py-2">
-        <div>
+    <figure className={cn("relative flex flex-col overflow-hidden rounded-xl border border-border bg-(--jeju-surface-inset) p-3 sm:p-5", fixedLayout ? "h-[35rem]" : "h-full min-h-[30rem]")}>
+      <div className={cn("relative z-10 flex items-center justify-between gap-2 rounded-lg border border-border bg-card px-3 py-2", fixedLayout ? "h-28 shrink-0 overflow-y-auto" : "min-h-16 flex-wrap")}>
+        <div className="min-w-0">
           <p className="text-(length:--jeju-text-xs) font-bold text-muted-foreground">
             {highlightedRegion ? "현재 지역" : "지도 사용법"}
           </p>
@@ -93,7 +102,7 @@ export function KoreaVectorMap({
           </p>
         </div>
         {highlightedRegion ? (
-          <p className="rounded-full bg-(--jeju-primary-tint) px-3 py-1 text-(length:--jeju-text-sm) font-extrabold tabular-nums text-primary">
+          <p className="shrink-0 rounded-full bg-(--jeju-primary-tint) px-3 py-1 text-(length:--jeju-text-sm) font-extrabold tabular-nums text-primary">
             {NUMBER_FORMAT.format(highlightedRegion.count)}건
           </p>
         ) : null}
@@ -101,15 +110,12 @@ export function KoreaVectorMap({
 
       <svg
         aria-labelledby="korea-vector-map-title korea-vector-map-description"
-        className="relative z-10 mx-auto my-3 h-auto max-h-[26rem] w-full max-w-[23rem] overflow-visible"
+        className={cn("relative z-10 mx-auto my-3 w-full max-w-[23rem] overflow-visible", fixedLayout ? "h-72 shrink-0" : "h-auto max-h-[26rem]")}
         preserveAspectRatio="xMidYMid meet"
         viewBox={southKorea.viewBox}
       >
-        <title id="korea-vector-map-title">대한민국 광역단위 사업 현황 지도</title>
-        <desc id="korea-vector-map-description">
-          원하는 지역을 클릭하거나 키보드로 선택하면 해당 광역단위 현황이 대시보드 검색
-          조건에 반영됩니다.
-        </desc>
+        <title id="korea-vector-map-title">{title}</title>
+        <desc id="korea-vector-map-description">{description}</desc>
         {MAP_REGION_SHAPES.map((shape) => {
           const region = statisticsById.get(shape.id);
           if (!region) return null;
@@ -168,8 +174,8 @@ export function KoreaVectorMap({
       <figcaption className="relative z-10 mt-auto flex flex-wrap items-center justify-between gap-2 text-(length:--jeju-text-xs) text-muted-foreground">
         <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <span>파란색: 현재 가리키거나 선택한 지역</span>
-          <span className="inline-flex items-center gap-1" aria-label="기본 지도 색상은 사업 수가 적음에서 많음 순서입니다">
-            <span>사업 수</span>
+          <span className="inline-flex items-center gap-1" aria-label={`기본 지도 색상은 ${measureLabel}가 적음에서 많음 순서입니다`}>
+            <span>{measureLabel}</span>
             <span className="size-3 rounded-sm border border-(--map-region-border) bg-[var(--map-region-low)]" aria-hidden="true" />
             <span className="size-3 rounded-sm border border-(--map-region-border) bg-[var(--map-region-medium)]" aria-hidden="true" />
             <span className="size-3 rounded-sm border border-(--map-region-border) bg-[var(--map-region-high)]" aria-hidden="true" />

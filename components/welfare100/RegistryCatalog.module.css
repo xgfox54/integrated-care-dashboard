@@ -29,7 +29,6 @@
   padding: 0 14px;
   border-right: 1px solid var(--jeju-border);
   color: var(--jeju-text-muted);
-  font-family: var(--font-mono);
   font-size: 13px;
 }
 
@@ -680,24 +679,27 @@
   inset: 0;
   z-index: 90;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
+  padding: var(--jeju-space-4);
   background: var(--jeju-overlay);
 }
 
 .compareDialog {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
   width: min(1040px, 100%);
-  max-height: 88svh;
-  overflow: auto;
-  border-top: 1px solid var(--jeju-border-strong);
+  max-height: calc(100dvh - 2 * var(--jeju-space-4));
+  overflow: hidden;
+  border: 1px solid var(--jeju-border-strong);
+  border-radius: var(--jeju-radius-lg);
   background: var(--jeju-surface);
-  box-shadow: 0 -8px 30px color-mix(in srgb, var(--jeju-text-strong) 22%, transparent);
+  box-shadow: var(--jeju-shadow-pop);
 }
 
 .compareDialog > header {
-  position: sticky;
-  top: 0;
-  z-index: 2;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -736,7 +738,9 @@
 }
 
 .compareTableScroll {
-  overflow-x: auto;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
 }
 
 .compareTableScroll table {
@@ -1122,10 +1126,6 @@
     margin-left: 0;
     padding: 7px 10px;
     font-size: 12px;
-  }
-
-  .compareDialog {
-    max-height: 92svh;
   }
 
   .compareDialog > header {

@@ -5,11 +5,19 @@ import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLinkIcon } from "@/components/ui/jeju-icons";
 import { Spinner } from "@/components/ui/spinner";
+import { PublicInfoPanel } from "@/components/wiki/public-info-panel";
+import { WikiContext } from "@/components/wiki/wiki-context";
 import { WikiSourceCard, type WikiSource } from "@/components/wiki/wiki-source-card";
-import type { ServiceRow } from "@/lib/dataset";
+import { serviceWikiKey, type ServiceRow } from "@/lib/dataset";
 import { createWikiArticle } from "@/lib/wiki-article";
+import { usageClick } from "@/lib/usage/track";
 import { applyWikiEdit, EDIT_FIELDS, type PublicWikiEdit, type WikiEditValues } from "@/lib/wiki-edits";
 import { getVerifiedWikiSupplement } from "@/lib/wiki-verified-supplements";
+
+interface Welfare100Link {
+  readonly serviceId: string;
+  readonly slug: string;
+}
 
 interface LoadedEdit {
   readonly serviceId: string;
@@ -28,6 +36,13 @@ function publicEdit(payload: unknown): PublicWikiEdit | null {
     }),
   ) as WikiEditValues;
   return { ...values, updatedAt: typeof record.updatedAt === "number" ? record.updatedAt : 0 };
+}
+
+function welfare100Slug(payload: unknown): string | null {
+  if (typeof payload !== "object" || payload === null || !("match" in payload)) return null;
+  const match = payload.match;
+  if (typeof match !== "object" || match === null || !("slug" in match) || typeof match.slug !== "string") return null;
+  return /^[A-Za-z0-9_-]+$/.test(match.slug) ? match.slug : null;
 }
 
 function wikiSource(payload: unknown): WikiSource | null {
@@ -83,6 +98,7 @@ export function ServiceDetails({ row }: { readonly row: ServiceRow }) {
   const [source, setSource] = useState<WikiSource | null>(null);
   const [loading, setLoading] = useState(true);
   const [loadedEdit, setLoadedEdit] = useState<LoadedEdit | null>(null);
+  const [welfareLink, setWelfareLink] = useState<Welfare100Link | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -129,6 +145,22 @@ export function ServiceDetails({ row }: { readonly row: ServiceRow }) {
     return () => controller.abort();
   }, [row]);
 
+  useEffect(() => {
+    const controller = new AbortController();
+    const serviceId = row.serviceId;
+    const params = new URLSearchParams({ name: row.name, sido: row.sido, sigungu: row.sigungu, type: row.type });
+    void fetch("/api/wiki/welfare100?" + params.toString(), { signal: controller.signal })
+      .then(async (response) => (response.ok ? welfare100Slug(await response.json()) : null))
+      .then((slug) => {
+        if (!controller.signal.aborted) setWelfareLink(slug ? { serviceId, slug } : null);
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) setWelfareLink(null);
+      });
+    return () => controller.abort();
+  }, [row.serviceId, row.name, row.sido, row.sigungu, row.type]);
+
+  const welfareSlug = welfareLink?.serviceId === row.serviceId ? welfareLink.slug : null;
   const verifiedSupplement = getVerifiedWikiSupplement(row.serviceId);
   const adminEdit = loadedEdit?.serviceId === row.serviceId ? loadedEdit.edit : null;
   const displayRow = applyWikiEdit(row, adminEdit ?? undefined);
@@ -174,6 +206,14 @@ export function ServiceDetails({ row }: { readonly row: ServiceRow }) {
             <dt className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">사업내용</dt>
             <dd className="mt-1 whitespace-pre-line leading-relaxed">{article.content}</dd>
           </div>
+          <div>
+            <dt className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">사업분야</dt>
+            <dd className="mt-1 leading-relaxed">{article.category || "원자료에 별도 기재 없음"}</dd>
+          </div>
+          <div>
+            <dt className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">사업구분</dt>
+            <dd className="mt-1 leading-relaxed">{article.type || "원자료에 별도 기재 없음"}</dd>
+          </div>
           {article.applicationConditions ? (
             <div>
               <dt className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">신청조건</dt>
@@ -210,6 +250,21 @@ export function ServiceDetails({ row }: { readonly row: ServiceRow }) {
             <span className="sr-only">(새 창)</span>
           </a>
         ) : null}
+        {welfareSlug ? (
+          <p className="mt-3 text-(length:--jeju-text-sm)">
+            <a
+              href={"/welfare100/" + encodeURIComponent(welfareSlug)}
+              target="_blank"
+              rel="noopener"
+              onClick={() => usageClick("wiki_welfare100")}
+              className={linkClass}
+            >
+              복지제도100에서 세부 내용 확인하기
+              <ExternalLinkIcon />
+              <span className="sr-only">(새 창)</span>
+            </a>
+          </p>
+        ) : null}
         {article.supplement ? (
           <div className="mt-4 rounded-lg border border-border bg-(--jeju-surface-inset) p-3 text-(length:--jeju-text-sm)">
             <p className="font-extrabold text-(--jeju-text-strong)">상세내용 보완 출처</p>
@@ -245,6 +300,9 @@ export function ServiceDetails({ row }: { readonly row: ServiceRow }) {
           </div>
         ) : null}
       </section>
+
+      <WikiContext implementationId={serviceWikiKey(row)} />
+      <PublicInfoPanel implementationId={serviceWikiKey(row)} />
 
       {loading ? (
         <p className="flex items-center gap-2 rounded-xl border border-border bg-card p-4 text-(length:--jeju-text-sm) text-muted-foreground">

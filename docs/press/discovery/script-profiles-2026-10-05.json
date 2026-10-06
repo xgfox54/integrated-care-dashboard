@@ -1,0 +1,133 @@
+{
+ "checked_at": "2026-10-05T02:52:58.248Z",
+ "rule": "자동 탐색과 같은 기준. 주소 틀은 목록 화면 JS 함수 정의에서 사람이 확인",
+ "results": [
+  {
+   "org": "org:강원특별자치도:속초시",
+   "endpoint": "https://www.sokcho.go.kr/sc/portal/sokchonews/pressrelease",
+   "basis": "<a class=goPage data-seq=번호>: 같은 주소 ?articleSeq=번호 GET 열람. 날짜는 목록 오른쪽 칸. 서버가 중간 인증서를 보내지 않아 scripts/press/ca/intermediates.pem으로 확인",
+   "status": "AUTO_VERIFIED",
+   "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 15건·날짜 15건 확인, 첫 게시물 원문 주소에서 제목 일치",
+   "profile": {
+    "link": "data-seq=\"(?<id>\\d+)\"",
+    "url": "https://www.sokcho.go.kr/sc/portal/sokchonews/pressrelease?articleSeq={id}",
+    "title": "<span[^>]*>\\s*([^<]+)",
+    "date": "color: #8d8d8d;\">\\s*([0-9-]+)"
+   },
+   "items": 15,
+   "latest": "2026-10-02",
+   "tries": []
+  },
+  {
+   "org": "org:강원특별자치도:인제군",
+   "endpoint": "https://m.inje.go.kr/portal/inje-news/inje-pr/briefing",
+   "basis": "href ?articleSeq=번호(일반 링크)이지만 </a> 없이 </td>로 칸이 끝나 tag=a-unclosed. 날짜는 skinTb-date 칸",
+   "status": "AUTO_VERIFIED",
+   "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 15건·날짜 15건 확인, 첫 게시물 원문 주소에서 제목 일치",
+   "profile": {
+    "link": "briefing\\?articleSeq=(?<id>\\d+)",
+    "url": "https://m.inje.go.kr/portal/inje-news/inje-pr/briefing?articleSeq={id}",
+    "title": "^\\s*([^<]*[가-힣][^<]*)",
+    "date": "skinTb-date[^\">]*\">\\s*([0-9-]+)",
+    "tag": "a-unclosed"
+   },
+   "items": 15,
+   "latest": "2026-10-02",
+   "tries": []
+  },
+  {
+   "org": "org:경기도:의정부시",
+   "endpoint": "https://www.ui4u.go.kr/portal/bbs/list.do?ptIdx=1709&mId=0301020000",
+   "basis": "onclick=boardView(site, form, writeId, public, bIdx, ptIdx, mId, page): board.js가 /portal/bbs/view.do?mId=&bIdx=&ptIdx= 로 보냄(GET 열람). 제목은 링크 title 속성",
+   "status": "AUTO_VERIFIED",
+   "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+   "profile": {
+    "link": "boardView\\('portal', 'listForm', '\\w+', '\\w', '(?<id>\\d+)', '1709'",
+    "url": "https://www.ui4u.go.kr/portal/bbs/view.do?mId=0301020000&bIdx={id}&ptIdx=1709",
+    "title": "attr:title",
+    "date": "작성일\\s*([0-9.]+)"
+   },
+   "items": 10,
+   "latest": "2026-10-02",
+   "tries": []
+  },
+  {
+   "org": "org:경상북도:문경시",
+   "endpoint": "https://www.gbmg.go.kr/portal/mayorForcus/list.do?mId=0302010000",
+   "basis": "onclick=goView(idx): unit/mayorForcus/list.js가 /portal/mayorForcus/view.do?idx=&mId= 로 보냄(GET 열람). robots.txt 금지 규칙은 Googlebot 전용",
+   "status": "AUTO_VERIFIED",
+   "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+   "profile": {
+    "link": "goView\\('(?<id>\\d+)'\\)",
+    "url": "https://www.gbmg.go.kr/portal/mayorForcus/view.do?idx={id}&mId=0302010000",
+    "title": "<span class=\"blog_tit\">\\s*([^<]+)",
+    "date": "작성일\\s*([0-9.-]+)"
+   },
+   "items": 10,
+   "latest": "2026-10-02",
+   "tries": []
+  },
+  {
+   "org": "org:경기도:광명시",
+   "endpoint": "https://news.gm.go.kr/bbs/list.html?table=bbs_12",
+   "basis": "자동 탐색이 http 주소로 확인했으나 수집기는 https 원문 주소만 받아 운영에서 PROFILE_INVALID. 같은 목록·원문(view.html?idxno=)이 https로 열려 https로 다시 확인",
+   "status": "AUTO_VERIFIED",
+   "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 20건·날짜 20건 확인, 첫 게시물 원문 주소에서 제목 일치",
+   "profile": {
+    "link": "view\\.html[^\"']*?[?&](?:amp;)?idxno=(?<id>\\d+)",
+    "url": "https://news.gm.go.kr/bbs/view.html?idxno={id}",
+    "title": "text"
+   },
+   "items": 20,
+   "latest": "2026-10-02",
+   "tries": []
+  },
+  {
+   "org": "org:강원특별자치도:춘천시",
+   "endpoint": "https://www.chuncheon.go.kr/mayor/newsroom/press-release/",
+   "basis": "링크 안 <p>가 제목, 그 뒤 ul.news-box-info(부서·담당자·전화·날짜)와 <span>(본문 요약). 제목은 첫 <p>만, 날짜는 정보 목록의 날짜 칸",
+   "status": "AUTO_VERIFIED",
+   "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 8건·날짜 8건 확인, 첫 게시물 원문 주소에서 제목 일치",
+   "profile": {
+    "link": "press-release/\\?bbsId=BBSMSTR_000000000335&(?:amp;)?nttId=(?<id>\\d+)",
+    "url": "https://www.chuncheon.go.kr/mayor/newsroom/press-release/?bbsId=BBSMSTR_000000000335&nttId={id}&flag=view",
+    "title": "<p>\\s*([^<]+)",
+    "date": "<li>\\s*(20\\d{2}-\\d{2}-\\d{2})\\s*</li>"
+   },
+   "items": 8,
+   "latest": "2026-10-02",
+   "tries": []
+  },
+  {
+   "org": "org:전북특별자치도:진안군",
+   "endpoint": "https://www.jinan.go.kr/board/list.jinan?boardId=BBS_0000034&menuCd=DOM_000000107002002000&contentsSid=187&cpath=",
+   "basis": "링크 안 <strong>이 제목, 뒤의 HTML 주석과 <p>는 본문 요약. 제목은 <strong>만",
+   "status": "AUTO_VERIFIED",
+   "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+   "profile": {
+    "link": "view\\.jinan[^\"']*?[?&](?:amp;)?dataSid=(?<id>\\d+)",
+    "url": "https://www.jinan.go.kr/board/view.jinan?boardId=BBS_0000034&menuCd=DOM_000000107002002000&orderBy=REGISTER_DATE+DESC&paging=ok&startPage=1&dataSid={id}",
+    "title": "<strong>\\s*([^<]+)"
+   },
+   "items": 10,
+   "latest": "2026-09-28",
+   "tries": []
+  },
+  {
+   "org": "org:전남광주통합특별시:목포시",
+   "endpoint": "https://www.mokpo.go.kr/www/mokpo_news/press_release",
+   "basis": "링크 안 div.title_box <h3>가 제목, 뒤의 <p>는 부제·본문 요약. 제목은 <h3>만, 날짜는 dd.date",
+   "status": "AUTO_VERIFIED",
+   "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 15건·날짜 15건 확인, 첫 게시물 원문 주소에서 제목 일치",
+   "profile": {
+    "link": "report_material\\?idx=(?<id>\\d+)&(?:amp;)?mode=view\" class=\"item_cont",
+    "url": "https://www.mokpo.go.kr/www/mokpo_news/press_release/report_material?idx={id}&mode=view",
+    "title": "<h3>\\s*([^<]+)",
+    "date": "class=\"date\">\\s*([0-9-]+)"
+   },
+   "items": 15,
+   "latest": "2026-10-02",
+   "tries": []
+  }
+ ]
+}

@@ -4,6 +4,7 @@ import { ServiceWorkerRegistrar } from "@/components/service-worker-registrar";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { UsageRoot } from "@/components/usage/usage-root";
+import { PageScrollControls } from "@/components/page-scroll-controls";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://integrated-care-national-dashboard.xgfox54.chatgpt.site"),
@@ -51,6 +52,7 @@ export default function RootLayout({
         <SiteHeader />
         <div className="flex-1">{children}</div>
         <SiteFooter />
+        <PageScrollControls />
         <ServiceWorkerRegistrar />
         <UsageRoot />
       </body>

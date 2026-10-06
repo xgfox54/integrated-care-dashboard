@@ -8,6 +8,7 @@ import { FilterPanel } from "@/components/dashboard/filter-panel";
 import type { KpiSummary } from "@/components/dashboard/kpi-cards";
 import { EmptyResults, ResultTable } from "@/components/dashboard/result-table";
 import { Button } from "@/components/ui/button";
+import { Chip, RemovableChip } from "@/components/ui/chip";
 import {
   dashboardCsvUrl,
   dashboardPagePath,
@@ -79,6 +80,8 @@ export function Dashboard() {
   const [gpsPending, setGpsPending] = useState(false);
   const [gpsNotice, setGpsNotice] = useState("");
   const resultsRef = useRef<HTMLDivElement>(null);
+  const linkedResultsRef = useRef<HTMLDivElement>(null);
+  const linkedResultsPending = useRef(false);
   const hydrated = useRef(false);
   const { summary, search, meta, summaryPhase, searchPhase, reload, prefetch } = useDataset(
     filters,
@@ -127,19 +130,21 @@ export function Dashboard() {
   useEffect(() => {
     const fromUrl = readDashboardFilters(window.location.search);
     const hasRegion = Boolean(fromUrl.sido || fromUrl.sigungu);
+    const hasRequestedFilters = hasRegion || Boolean(fromUrl.category || fromUrl.subcategory || fromUrl.type || fromUrl.keyword) || window.location.hash === "#search-results";
+    linkedResultsPending.current = window.location.hash === "#search-results";
     const apply = (next: FilterState) => {
       setFilters(next);
       hydrated.current = true;
       setRegionReady(true);
       if (process.env.NODE_ENV !== "production") performance.mark("dashboard-shell-mounted");
     };
-    const frame = hasRegion ? window.requestAnimationFrame(() => apply(fromUrl)) : 0;
+    const frame = hasRequestedFilters ? window.requestAnimationFrame(() => apply(fromUrl)) : 0;
     const stop = watchVisitorRegion((update) => {
       if (!("region" in update)) return;
       const sido = update.region?.sido ?? null;
       setLocationSource(update.region?.source ?? null);
       setVisitorSido(sido);
-      if (hasRegion) return;
+      if (hasRequestedFilters) return;
       setAutoSido(sido ?? "");
       apply({ ...fromUrl, sido: sido ?? "" });
     });
@@ -150,8 +155,17 @@ export function Dashboard() {
   }, []);
 
   useEffect(() => {
+    if (!linkedResultsPending.current || !regionReady || searchPhase === "loading") return;
+    const frame = window.requestAnimationFrame(() => {
+      linkedResultsRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
+      linkedResultsPending.current = false;
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [regionReady, searchPhase]);
+
+  useEffect(() => {
     if (hydrated.current) {
-      window.history.replaceState(null, "", dashboardPagePath(window.location.pathname, filters));
+      window.history.replaceState(null, "", dashboardPagePath(window.location.pathname, filters, window.location.hash));
     }
   }, [filters]);
 
@@ -302,7 +316,7 @@ export function Dashboard() {
   }, [filters, search.totalCount]);
 
   const shareConditions = useCallback(async () => {
-    const url = dashboardShareUrl(window.location.origin, window.location.pathname, filters);
+    const url = dashboardShareUrl(window.location.origin, window.location.pathname, filters, window.location.hash);
     const op = startUsageAction("care_share");
     try {
       await navigator.clipboard.writeText(url);
@@ -433,7 +447,7 @@ export function Dashboard() {
             />
           </Suspense>
 
-          <div className="space-y-3">
+          <div id="search-results" ref={linkedResultsRef} className="scroll-mt-3 space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <h2 className="text-(length:--jeju-h2-size) font-extrabold text-(--jeju-text-strong)">
                 검색 결과 {NUMBER_FORMAT.format(search.totalCount)}건
@@ -448,6 +462,23 @@ export function Dashboard() {
                 </Button>
               </div>
             </div>
+
+            {filters.category || filters.subcategory || filters.type ? (
+              <div aria-label="적용된 사업 분류" className="flex flex-wrap items-center gap-2 text-(length:--jeju-text-sm)">
+                <span className="font-bold">적용 조건</span>
+                {filters.category ? <Chip>{filters.category}</Chip> : null}
+                {filters.subcategory ? (
+                  <RemovableChip removeLabel={`${filters.subcategory} 중분류 조건 해제`} onRemove={() => updateFilters({ subcategory: "" })}>
+                    중분류: {filters.subcategory}
+                  </RemovableChip>
+                ) : null}
+                {filters.type ? (
+                  <RemovableChip removeLabel={`${filters.type} 사업구분 조건 해제`} onRemove={() => updateFilters({ type: "" })}>
+                    사업구분: {filters.type}
+                  </RemovableChip>
+                ) : null}
+              </div>
+            ) : null}
 
             {showNationwide ? (
               <p className="flex flex-wrap items-center gap-2 rounded-lg border border-(--jeju-blue-light-strong) bg-(--jeju-primary-tint) px-3 py-2 text-(length:--jeju-text-sm) text-(--jeju-text-body) print:hidden">

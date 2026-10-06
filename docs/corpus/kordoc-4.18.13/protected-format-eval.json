@@ -1,0 +1,157 @@
+{
+ "generated_at": "2026-10-05T11:40:46.157Z",
+ "source": "https://github.com/edwardkim/rhwp",
+ "commit": "680111ec7bea2fe11110de18c3676ba5a1cf7847",
+ "license": "MIT (Copyright (c) 2025-2026 Edward Kim)",
+ "password_used": false,
+ "results": [
+  {
+   "file": "HWP3-password-123456.hwp",
+   "note": "HWP3 암호 문서",
+   "extension": "hwp",
+   "head_hex": "48575020446f6375",
+   "ok": true,
+   "status": "REQUIRES_AUTHORIZED_COPY",
+   "error_code": null,
+   "detected_format": "hwp3",
+   "file_type": "hwp3",
+   "adapter_version": "welfare-doc-adapter-2.0.0",
+   "upstream_error_code": "ENCRYPTED",
+   "reasons": [
+    "파서 실패: ENCRYPTED"
+   ],
+   "blocks": null,
+   "tables": null
+  },
+  {
+   "file": "hwp3-sample16-hwp5-2024-password-123456.hwp",
+   "note": "HWP5 암호 문서",
+   "extension": "hwp",
+   "head_hex": "d0cf11e0a1b11ae1",
+   "ok": true,
+   "status": "REQUIRES_AUTHORIZED_COPY",
+   "error_code": null,
+   "detected_format": "hwp",
+   "file_type": "hwp",
+   "adapter_version": "welfare-doc-adapter-2.0.0",
+   "upstream_error_code": "ENCRYPTED",
+   "reasons": [
+    "파서 실패: ENCRYPTED"
+   ],
+   "blocks": null,
+   "tables": null
+  },
+  {
+   "file": "HWP5-password-123456.hwpx",
+   "note": "HWPX 암호 문서",
+   "extension": "hwpx",
+   "head_hex": "504b030414000000",
+   "ok": true,
+   "status": "REQUIRES_AUTHORIZED_COPY",
+   "error_code": null,
+   "detected_format": "hwpx",
+   "file_type": "hwpx",
+   "adapter_version": "welfare-doc-adapter-2.0.0",
+   "upstream_error_code": "ENCRYPTED",
+   "reasons": [
+    "파서 실패: ENCRYPTED"
+   ],
+   "blocks": null,
+   "tables": null
+  },
+  {
+   "file": "HWP5-nopassword-123456.hwp",
+   "note": "HWP5 비보호 대조",
+   "extension": "hwp",
+   "head_hex": "d0cf11e0a1b11ae1",
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "detected_format": "hwp",
+   "file_type": "hwp",
+   "adapter_version": "welfare-doc-adapter-2.0.0",
+   "upstream_error_code": null,
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "blocks": 356,
+   "tables": 2
+  },
+  {
+   "file": "hwp3-sample.hwp",
+   "note": "HWP3 일반",
+   "extension": "hwp",
+   "head_hex": "48575020446f6375",
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "detected_format": "hwp3",
+   "file_type": "hwp3",
+   "adapter_version": "welfare-doc-adapter-2.0.0",
+   "upstream_error_code": null,
+   "reasons": [
+    "HWP3 형식은 독립 정답으로 표 구조를 검증한 범위 밖이라 사람이 원문과 대조해야 합니다.",
+    "HWP 3.x 문서는 시험 단계(EXPERIMENTAL) 형식이라 사람이 원문과 대조해야 합니다."
+   ],
+   "blocks": 97,
+   "tables": 6
+  },
+  {
+   "file": "SO-SUEOP.hwp",
+   "note": "HWP3 일반",
+   "extension": "hwp",
+   "head_hex": "48575020446f6375",
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "detected_format": "hwp3",
+   "file_type": "hwp3",
+   "adapter_version": "welfare-doc-adapter-2.0.0",
+   "upstream_error_code": null,
+   "reasons": [
+    "HWP3 형식은 독립 정답으로 표 구조를 검증한 범위 밖이라 사람이 원문과 대조해야 합니다.",
+    "HWP 3.x 문서는 시험 단계(EXPERIMENTAL) 형식이라 사람이 원문과 대조해야 합니다."
+   ],
+   "blocks": 939,
+   "tables": 3
+  },
+  {
+   "file": "hwp3-table-caption.hwp",
+   "note": "HWP3 표",
+   "extension": "hwp",
+   "head_hex": "48575020446f6375",
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "detected_format": "hwp3",
+   "file_type": "hwp3",
+   "adapter_version": "welfare-doc-adapter-2.0.0",
+   "upstream_error_code": null,
+   "reasons": [
+    "HWP3 형식은 독립 정답으로 표 구조를 검증한 범위 밖이라 사람이 원문과 대조해야 합니다.",
+    "HWP 3.x 문서는 시험 단계(EXPERIMENTAL) 형식이라 사람이 원문과 대조해야 합니다."
+   ],
+   "blocks": 2,
+   "tables": 1
+  },
+  {
+   "file": "blank_hwpx.hwp",
+   "note": "확장자 .hwp 표본(실제 형식은 바이트로 판별)",
+   "extension": "hwp",
+   "head_hex": "d0cf11e0a1b11ae1",
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "detected_format": "hwp",
+   "file_type": "hwp",
+   "adapter_version": "welfare-doc-adapter-2.0.0",
+   "upstream_error_code": null,
+   "reasons": [
+    "본문·표가 비어 있습니다. 보호 문서·이미지 문서일 수 있어 빈 정상 문서로 보지 않습니다."
+   ],
+   "blocks": 0,
+   "tables": 0
+  }
+ ],
+ "parser_version": "4.18.13"
+}

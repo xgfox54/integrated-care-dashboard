@@ -1,0 +1,268 @@
+{
+  "org:강원특별자치도:동해시": {
+    "profile": {
+      "link": "selectBbsNttView\\.do[^\"']*?[?&](?:amp;)?nttNo=(?<id>\\d+)",
+      "url": "https://www.dh.go.kr/www/selectBbsNttView.do?bbsNo=95&key=489&nttNo={id}",
+      "title": "text"
+    },
+    "basis": "공식 보도/해명자료 메뉴와 목록 href. 세션 ID 제거.",
+    "press_confirmed": true
+  },
+  "org:경기도:평택시": {
+    "profile": {
+      "link": "data-req-get-p-idx=\"(?<id>\\d+)\"",
+      "url": "https://www.pyeongtaek.go.kr/pyeongtaek/board/post/view.do?bcIdx=90&mid=0402010000&idx={id}",
+      "title": "<span class=\"list_title\">\\s*([^<]+)",
+      "date": "<span class=\"list_data\">[\\s\\S]*?(20\\d{2}[.-]\\d{2}[.-]\\d{2})"
+    },
+    "basis": "보도자료 목록 viewForm action과 data-req-get-p-idx; list_txt 요약 제외.",
+    "press_confirmed": true
+  },
+  "org:경상북도:봉화군": {
+    "profile": {
+      "link": "data-req-get-p-idx=\"(?<id>\\d+)\"",
+      "url": "https://www.bonghwa.go.kr/portal/board/post/view.do?bcIdx=519&mid=0201090000&idx={id}",
+      "title": "<span class=\"tit\">\\s*([^<]+)",
+      "date": "<span class=\"date\">[\\s\\S]*?(20\\d{2}[.-]\\d{2}[.-]\\d{2})"
+    },
+    "basis": "공식 언론보도 목록 viewForm action과 제목/날짜 요소; 원문 발행 주체 추가 검토.",
+    "press_confirmed": false
+  },
+  "org:서울특별시:광진구": {
+    "profile": {
+      "link": "B0000002/view\\.do[^\"']*?nttId=(?<id>\\d+)",
+      "url": "https://www.gwangjin.go.kr/portal/bbs/B0000002/view.do?nttId={id}&menuNo=200191",
+      "title": "<span class=\"tit\">\\s*([\\s\\S]*?)</span>",
+      "date": "<span class=\"date\">\\s*([0-9.-]+)"
+    },
+    "basis": "보도자료 메뉴 B0000002 상세 href. 공통 메뉴의 B0000075 제외.",
+    "press_confirmed": true
+  },
+  "org:서울특별시:용산구": {
+    "profile": {
+      "link": "B0000043/view\\.do[^\"']*?nttId=(?<id>\\d+)",
+      "url": "https://www.yongsan.go.kr/portal/bbs/B0000043/view.do?nttId={id}&menuNo=200230",
+      "title": "attr:title"
+    },
+    "basis": "보도자료 목록 실제 view.do 링크. 자동 탐색의 첨부파일 다운로드 주소 제외.",
+    "press_confirmed": true
+  },
+  "org:서울특별시:양천구": {
+    "profile": {
+      "link": "doBbsFView\\('290','(?<id>\\d+)'",
+      "url": "https://www.yangcheon.go.kr/site/yangcheon/ex/bbs/View.do.YCWEB_servlet_engine3?cbIdx=290&bcIdx={id}",
+      "title": "^\\s*([^<]+)"
+    },
+    "basis": "공식 목록의 doBbsFView 함수가 지정한 원문 경로.",
+    "press_confirmed": true
+  },
+  "org:서울특별시:종로구": {
+    "profile": {
+      "link": "viewMove\\('(?<id>\\d+)'",
+      "url": "https://www.jongno.go.kr/portal/bbs/selectBoardArticle.do?bbsId=BBSMSTR_000000001618&menuNo=388338&menuId=388338&nttId={id}",
+      "title": "text"
+    },
+    "basis": "공식 보도자료 목록 viewMove 함수의 frm.action.",
+    "press_confirmed": true
+  },
+  "org:전남광주통합특별시:서구": {
+    "profile": {
+      "link": "board\\.es[^\"']*?list_no=(?<id>\\d+)",
+      "url": "https://www.seogu.gwangju.kr/board.es?mid=c50501000000&bid=0154&act=view&list_no={id}",
+      "title": "^\\s*([^<]+)",
+      "date": "aria-label=\"등록일\">\\s*([0-9/.-]+)"
+    },
+    "basis": "보도자료 목록 href; 새글 장식 제외.",
+    "press_confirmed": true
+  },
+  "org:전북특별자치도:남원시": {
+    "profile": {
+      "link": "view\\.do[^\"']*?postUid=(?<id>[\\w-]+)",
+      "url": "https://www.namwon.go.kr/board/post/view.do?boardUid=ff8080818ea1fec5018ea24651660037&menuUid=ff8080818e3beff0018e407936b40088&postUid={id}",
+      "title": "attr:title"
+    },
+    "basis": "공식 보도자료 링크 title 속성. 장식/요약 제외.",
+    "press_confirmed": true
+  },
+  "org:충청남도:금산군": {
+    "profile": {
+      "link": "href=[\"'][^\"']*?[?&](?:amp;)?nes_dta_key=(?<id>[\\w-]+)",
+      "url": "https://www.geumsan.go.kr/kr/html/sub03/030301.html?mode=V&nes_dta_key={id}",
+      "title": "<strong[^>]*>\\s*([^<]+)"
+    },
+    "basis": "공식 보도/해명 메뉴, 제목 strong 요소.",
+    "press_confirmed": true
+  },
+  "org:충청남도:논산시": {
+    "profile": {
+      "link": "href=[\"'][^\"']*?[?&](?:amp;)?no=(?<id>[\\w-]+)",
+      "url": "https://www.nonsan.go.kr/kor/html/sub03/030106.html?mode=V&no={id}",
+      "title": "<h2[^>]*>\\s*([\\s\\S]*?)</h2>",
+      "date": "class=['\"]date['\"]>\\s*([0-9.-]+)"
+    },
+    "basis": "공식 보도자료 목록 mode=V 링크와 h2 제목.",
+    "press_confirmed": true
+  },
+  "org:충청남도:서산시": {
+    "profile": {
+      "link": "selectBbsNttView\\.do[^\"']*?nttNo=(?<id>\\d+)",
+      "url": "https://www.seosan.go.kr/www/selectBbsNttView.do?key=1260&bbsNo=101&nttNo={id}",
+      "title": "text"
+    },
+    "basis": "보도자료 목록 selectBbsNttView 링크.",
+    "press_confirmed": true
+  },
+  "org:충청남도:서천군": {
+    "profile": {
+      "link": "data-ntt-id=\"(?<id>\\w+)\"",
+      "tag": "button",
+      "url": "https://www.seocheon.go.kr/bbs/BBSMSTR_000000000270/view.do?nttId={id}",
+      "title": "<strong class=\"bbs__title\">\\s*([^<]+)",
+      "date": "class=\"regDate\">[\\s\\S]*?(20\\d{2}-\\d{2}-\\d{2})"
+    },
+    "basis": "보도자료 button data-ntt-id와 fn_search_detail 경로. bbs__txt-desc 요약 제외.",
+    "press_confirmed": true
+  },
+  "org:경기도:남양주시": {
+    "profile": {
+      "link": "selectBbsNttView\\.do[^\"']*?bbsNo=320[^\"']*?nttNo=(?<id>\\d+)",
+      "url": "https://www.nyj.go.kr/www/selectBbsNttView.do?key=2498&bbsNo=320&nttNo={id}",
+      "title": "<em class=\"p-media__heading-text\">\\s*([^<]+)",
+      "date": "<time class=\"p-split\">\\s*([0-9.-]+)"
+    },
+    "basis": "현재 공식 보도자료 목록의 p-media 제목만 추출. 이전 contents.do 메뉴 오탐 제외.",
+    "press_confirmed": true
+  },
+  "org:세종특별자치시": {
+    "endpoint": "https://www.sejong.go.kr/bbs/R0079/list.do",
+    "basis": "공식 보도자료 메뉴 R0079의 상세 href. 이전 R0071 공지사항 제외.",
+    "profile": {
+      "link": "/bbs/R0079/view\\.do\\?nttId=(?<id>\\w+)",
+      "url": "https://www.sejong.go.kr/bbs/R0079/view.do?nttId={id}&mno=sub02_0401",
+      "title": "text",
+      "date": "data-cell-header=\"등록일\">\\s*([0-9.-]+)"
+    },
+    "press_confirmed": true
+  },
+  "org:충청북도": {
+    "endpoint": "https://www.chungbuk.go.kr/www/selectBbsNttList.do?bbsNo=65&key=429",
+    "basis": "공식 첫 화면 보도자료 메뉴 bbsNo=65. 이전 bbsNo=7 제외.",
+    "profile": {
+      "link": "selectBbsNttView\\.do[^\"']*?nttNo=(?<id>\\d+)",
+      "url": "https://www.chungbuk.go.kr/www/selectBbsNttView.do?bbsNo=65&key=429&nttNo={id}",
+      "title": "^\\s*([^<]+)"
+    },
+    "press_confirmed": true
+  },
+  "org:경기도:오산시": {
+    "profile": {
+      "link": "goTo\\.view\\('list','(?<id>\\d+)'",
+      "url": "https://www.osan.go.kr/portal/bbs/view.do?mId=0301080000&bIdx={id}&ptIdx=588",
+      "title": "text",
+      "date": "<td class=\"list_date\">\\s*([0-9.-]+)"
+    },
+    "basis": "공식 pageMove.js view 함수와 목록 onclick.",
+    "press_confirmed": true
+  },
+  "org:울산광역시:울주군": {
+    "profile": {
+      "link": "goTo\\.view\\('list','(?<id>\\d+)'",
+      "url": "https://www.ulju.ulsan.kr/ulju/bbs/view.do?mId=0404020000&bIdx={id}&ptIdx=146",
+      "title": "attr:title",
+      "date": "<td class=\"list_date\">\\s*([0-9.-]+)"
+    },
+    "basis": "공식 pageMove.js view 함수와 목록 onclick.",
+    "press_confirmed": true
+  },
+  "org:경기도:의왕시": {
+    "profile": {
+      "link": "/UWKORINFO0201/(?<id>\\d+)/",
+      "url": "https://www.uiwang.go.kr/UWKORINFO0201/{id}/",
+      "title": "^\\s*([^<]+)"
+    },
+    "basis": "보도자료 목록의 경로형 상세 href.",
+    "press_confirmed": true
+  },
+  "org:서울특별시:강서구": {
+    "profile": {
+      "link": "/gs040201/(?<id>\\d+)",
+      "url": "https://www.gangseo.seoul.kr/gs040201/{id}",
+      "title": "text"
+    },
+    "basis": "보도자료 메뉴 gs040201의 경로형 상세 href; 언론기사 gs040203 제외.",
+    "press_confirmed": true
+  },
+  "org:서울특별시:마포구": {
+    "profile": {
+      "link": "/site/main/board/press/(?<id>\\d+)",
+      "url": "https://www.mapo.go.kr/site/main/board/press/{id}",
+      "title": "text"
+    },
+    "basis": "공식 보도자료 목록의 경로형 상세 href.",
+    "press_confirmed": true
+  },
+  "org:경상북도:안동시": {
+    "profile": {
+      "link": "data-action=\"/portal/bbs/view\\.do\\?bIdx=(?<id>\\d+)",
+      "url": "https://www.andong.go.kr/portal/bbs/view.do?bIdx={id}&ptIdx=104&mId=0403010000",
+      "title": "text",
+      "date": "<td class=\"list_date\">\\s*([0-9.-]+)"
+    },
+    "basis": "공식 목록 data-action에 게시된 상세 주소.",
+    "press_confirmed": true
+  },
+  "org:대구광역시:서구": {
+    "profile": {
+      "link": "/portal/board/post/view\\.do[^\"']*?idx=(?<id>\\d+)",
+      "url": "https://www.dgs.go.kr/portal/board/post/view.do?bcIdx=526&mid=0601080000&idx={id}",
+      "title": "text",
+      "date": "<td class=\"list_date\">\\s*([0-9.-]+)"
+    },
+    "basis": "공식 보도자료 목록 실제 href.",
+    "press_confirmed": true
+  },
+  "org:경상북도:성주군": {
+    "profile": {
+      "link": "page\\.do[^\"']*?bod_uid=(?<id>\\d+)",
+      "url": "https://www.sj.go.kr/page.do?mnu_uid=3546&bod_uid={id}&cmd=2",
+      "title": "text",
+      "date": "<td class=\"list_date\">\\s*([0-9.-]+)"
+    },
+    "basis": "공식 보도자료/해명자료 목록 href.",
+    "press_confirmed": true
+  },
+  "org:부산광역시:강서구": {
+    "endpoint": "https://www.bsgangseo.go.kr/portal/board/post/list.do?bcIdx=526&mid=0501050000",
+    "basis": "공식 첫 화면의 두 번째 보도자료 더보기 및 보도자료 메뉴. 첫 번째 더보기는 고시공고 오연결."
+  },
+  "org:부산광역시:남구": {
+    "endpoint": "https://eminwon.bsnamgu.go.kr/emwp/jsp/ofr/OfrNewsEpctLSub.jsp?news_epct_no=1,2",
+    "basis": "공식 보도자료 페이지의 iframe src 직접 확인."
+  },
+  "org:전남광주통합특별시:남구": {
+    "endpoint": "https://eminwon.namgu.gwangju.kr/emwp/jsp/ofr/OfrNewsEpctLSub.jsp?news_epct_yn=1&jndinm=OfrNotAncmtEJB&context=NTIS&method=selectListOfrNotAncmt&methodnm=selectListOfrNotAncmtHomepage&ofr_pageSize=10&homepage_pbs_yn=Y&subCheck=Y",
+    "basis": "공식 보도자료 페이지의 iframe src 직접 확인."
+  },
+  "org:전남광주통합특별시:북구": {
+    "endpoint": "https://eminwon.bukgu.gwangju.kr/emwp/jsp/ofr/OfrNewsEpctLSub.jsp?news_epct_yn=1&jndinm=OfrNotAncmtEJB&context=NTIS&method=selectListOfrNotAncmt&methodnm=selectListOfrNotAncmtHomepage&ofr_pageSize=10&homepage_pbs_yn=Y&subCheck=Y",
+    "basis": "공식 보도자료 페이지의 iframe src 직접 확인."
+  },
+  "org:경기도:여주시": {
+    "endpoint": "https://www.yeoju.go.kr/intro/intro.html",
+    "basis": "공식 웹 검색에서 확인한 시청 안내. 기존 homepage는 신청사 전용 사이트."
+  },
+  "org:경상남도:산청군": {
+    "endpoint": "https://www.sancheong.go.kr/news/sub.do?key=1825",
+    "basis": "공식 홈페이지 보도자료 더보기. 기존 bbsNo=313은 시설 프로그램."
+  },
+  "org:경상남도": {
+    "endpoint": "https://www.gyeongnam.go.kr/index.gyeong",
+    "basis": "공식 웹 검색으로 확인한 도청 대표 홈페이지; 기존 boardId는 과거 공지사항."
+  },
+  "org:충청북도:영동군": {
+    "explore": [
+      "https://www.yd21.go.kr/kr/html/sub02/020101.html"
+    ],
+    "basis": "기존 후보는 공지사항. 공식 메뉴에서 군정 보도자료를 재확인해야 함."
+  }
+}

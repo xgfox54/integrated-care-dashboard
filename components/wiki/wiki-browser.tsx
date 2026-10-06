@@ -7,7 +7,7 @@ import { SearchOperatorHelp } from "@/components/search/search-operator-help";
 import { ZeroResultHelp } from "@/components/search/zero-result-help";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FileIcon, RefreshIcon, SearchIcon } from "@/components/ui/jeju-icons";
+import { RefreshIcon, SearchIcon } from "@/components/ui/jeju-icons";
 import { Label } from "@/components/ui/label";
 import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select";
 import { Spinner } from "@/components/ui/spinner";
@@ -263,10 +263,7 @@ export function WikiBrowser() {
     <main className="mx-auto grid max-w-(--jeju-main-max-wide) gap-5 px-4 py-6 sm:px-6 lg:grid-cols-[360px_minmax(0,1fr)]">
       <aside className={`${hasSelection ? "order-2" : ""} space-y-4 lg:order-none lg:sticky lg:top-4 lg:self-start print:hidden`}>
         <div>
-          <div className="flex items-center gap-2">
-            <FileIcon className="size-(--jeju-icon-lg) text-primary" />
-            <h1 className="text-(length:--jeju-h1-size) leading-(--jeju-leading-tight) font-extrabold text-(--jeju-text-strong)">통합돌봄 WIKI</h1>
-          </div>
+          <h1 className="text-(length:--jeju-h1-size) leading-(--jeju-leading-tight) font-extrabold text-(--jeju-text-strong)">통합돌봄 WIKI</h1>
           <p className="mt-2 text-(length:--jeju-text-sm) leading-relaxed text-muted-foreground">
             보건복지부 원자료를 기준으로 작성하고, 사업명이 정확히 일치할 때만 보완 설명을 연결합니다.
           </p>
@@ -305,8 +302,8 @@ export function WikiBrowser() {
               label="기초시·군·구"
               value={filters.sigungu}
               values={sigunguValues}
-              placeholder="전체 기초시·군·구"
-              disabled={!options}
+              placeholder={filters.sido ? "전체 기초시·군·구" : "광역시·도를 먼저 고르세요"}
+              disabled={!options || !filters.sido}
               onChange={(value) => changeFilters({ sigungu: value })}
             />
             <SelectField
@@ -428,7 +425,7 @@ export function WikiBrowser() {
               {[
                 ["기준", "보건복지부", "해당 지자체 사업안내의 사업별 원문"],
                 ["보완 1", "복지로", "정확히 같은 사업명의 공식 서비스 설명"],
-                ["보완 2", "복지톡 DB", "정확히 같은 사업명의 2026년 사업안내 설명"],
+                ["보완 2", "복지톡 DB", "정확히 같은 사업명의 사업안내 설명 · 기준연도는 개별 출처 확인"],
               ].map(([step, title, body]) => (
                 <li key={step} className="rounded-lg border border-border bg-(--jeju-surface-inset) p-3 text-(length:--jeju-text-sm)">
                   <span className="font-extrabold text-primary">{step}</span>

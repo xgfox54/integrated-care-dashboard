@@ -1,0 +1,2498 @@
+{
+ "format": "welfare-semantic-golden-index-1",
+ "created_at": "2026-10-04",
+ "method": "HWPX 원본 XML(Contents/section*.xml)을 kordoc 없이 factory/corpus/hwpx-text.mjs로 문단·셀 단위로 읽고, 사람이 원문을 직접 읽어 값·소속 사업·근거 단위·원문 인용을 작성. 파서 결과·변환 PDF는 쓰지 않음.",
+ "scope": "정책브리핑 보건복지부 보도자료 첨부 HWPX(2026-09-23~10-02)",
+ "note": "원문 인용·값은 저장소에 두지 않는다(작업지시서 v5 §5 원문·근거 본문 Git 제외). 전체 정답은 로컬 var/welfare-factory/golden/golden-semantic-korea-kr.json. 여기의 해시로 같은 정답인지 확인한다.",
+ "full_file_sha256": "65c9204cfb977b27356495b2d2da9371b13cf89ff63295ad31b5966571a56ca6",
+ "fields": [
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p12",
+   "program_sha256": "f607a69bc1ef3566",
+   "quote_sha256": "5c703efd4f7c6d2310ff3eb9548bc9a8530e2e22c76f03345929b46879077124",
+   "quote_chars": 28
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p21",
+   "program_sha256": "f607a69bc1ef3566",
+   "quote_sha256": "c787971cc94964a53b50923ebddebc72d7d9ecac930a05ad9eea9ab027fbfe1b",
+   "quote_chars": 21
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p14",
+   "program_sha256": "f607a69bc1ef3566",
+   "quote_sha256": "7d709c6febad4281a8e841596368dd7b0530f1fa3d6cab4690a5f24645aa372f",
+   "quote_chars": 16
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:t1206238653:0,0",
+   "program_sha256": "f607a69bc1ef3566",
+   "quote_sha256": "eaccf6b1bd1f915f964d5972ec99f7a0cb2795b1f47bf2155a20275686a2dfaf",
+   "quote_chars": 16
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:t1206238653:0,0",
+   "program_sha256": "f607a69bc1ef3566",
+   "quote_sha256": "ac739e0b1dd596f0131a8d5f54f2f47a445cc5e3e9b2454bb9542581da874145",
+   "quote_chars": 9
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:t1206238653:0,0",
+   "program_sha256": "f607a69bc1ef3566",
+   "quote_sha256": "fab653f100b7748582d56d28d877296b857562e960ebd53f5287911e08567797",
+   "quote_chars": 12
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:t1206238653:0,0",
+   "program_sha256": "f607a69bc1ef3566",
+   "quote_sha256": "52d0ab08553fa82d0055abe063f707a3d31f93105e6dc3b91d7d606e57d76f31",
+   "quote_chars": 13
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1206238654:7,1",
+   "program_sha256": "f607a69bc1ef3566",
+   "quote_sha256": "cc35f71dcc4e626d408f4a4bcff6dde0a1d7b09e7cc1308b01671d8bc9f98bd4",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p36",
+   "program_sha256": "dcc6111b8d755888",
+   "quote_sha256": "dcc6111b8d755888e60c9067da574dcc0f06e45856809e8b7b99a8d5d248ed4d",
+   "quote_chars": 9
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p36",
+   "program_sha256": "dcc6111b8d755888",
+   "quote_sha256": "474ce09712b3627afcb322d8cb09b8967874e0234b74abc43a8b3bb432da0799",
+   "quote_chars": 14
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:t1206238651:0,0",
+   "program_sha256": "dcc6111b8d755888",
+   "quote_sha256": "8b1d53856dabc24a4c45083a3aad6d0108dfe0a61a4d8b07d87762f0ef20ab0e",
+   "quote_chars": 28
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1206238651:0,0",
+   "program_sha256": "dcc6111b8d755888",
+   "quote_sha256": "0b5463ea5e9fcb3781bf8d8de2e05904f54634bedf39574a9857476f258c7b65",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1206238651:0,0",
+   "program_sha256": "dcc6111b8d755888",
+   "quote_sha256": "446da48e9e6d92c8063c53ed0108b0e744e7e06a284273512efa38f2ca8f1cfe",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1206238651:0,0",
+   "program_sha256": "dcc6111b8d755888",
+   "quote_sha256": "88ac53f30e2765c178c2451d7c66963d569b2b1ffcab7e0c318d3231b4ef491a",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1206238651:0,0",
+   "program_sha256": "dcc6111b8d755888",
+   "quote_sha256": "639ca837d8cea104d0f4ca22f71aea8c94c034d409ad0da0b2a23400a1640ef9",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1206238651:0,0",
+   "program_sha256": "dcc6111b8d755888",
+   "quote_sha256": "2a1972a5d8b60cc63306a453ce6e1fd7748888578325e558dbe33666b9f84735",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1206238651:0,0",
+   "program_sha256": "dcc6111b8d755888",
+   "quote_sha256": "7c2bace33bddbc1461ea794963eb3ee2965d86935c799d23daab2adebc93a5e1",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1206238651:0,0",
+   "program_sha256": "dcc6111b8d755888",
+   "quote_sha256": "c60012d26ea67fb91662f0e89459e319448cf00e80f85c1146d38293548f6837",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1206238651:0,0",
+   "program_sha256": "dcc6111b8d755888",
+   "quote_sha256": "6f8aacbd88405e0b948139242b45321ee14faef9c23c2403ac7f283f0013f2de",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1206238654:4,1",
+   "program_sha256": "dcc6111b8d755888",
+   "quote_sha256": "a2a6eb1d573f9c3de3cc2a086872e57cdab9344c4b39b64bf7d4a4a742d4ed3d",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p27",
+   "program_sha256": "089cc30b4f40c96f",
+   "quote_sha256": "dd8c4c5a704c140db9b513075f3257c53d20cabb2b891fd2398511008332b712",
+   "quote_chars": 20
+  },
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1206238654:13,1",
+   "program_sha256": "089cc30b4f40c96f",
+   "quote_sha256": "24c117183a1b49c7f35e6e527aaadddc3ccda441204bbfd66a754ceabce66c40",
+   "quote_chars": 11
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p4",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "fc8ec504c2d7bebe4cf4e63995a3567c507d69bfbc9f42a29d6fa5009f18b84b",
+   "quote_chars": 8
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:t1199515099:1,2",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "d73dc3bf6c068c5d63be45366d421add7a3f9d58fb2174ed79d477c7c607e409",
+   "quote_chars": 17
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:t1199515099:1,3",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "2b5f3b5f4e61d926e7840b9757dea813ae03c19eb6be0b5ed0474dc0272e3173",
+   "quote_chars": 17
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:t1199515099:2,2",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "38a91cb4a25fbb423b51a798790cb7a874774a08763ed67ab159522382c978ca",
+   "quote_chars": 14
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:t1199515099:2,3",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "f0de7b6f9713c6092815241c19038bafbbddfd772a6f27eb592ba74eb9e598ea",
+   "quote_chars": 21
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:t1199515099:3,2",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "337ca77d557edfafe46a697f4ba7c6bf474abd0a39ea32e0a03720e9d987edb9",
+   "quote_chars": 10
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:t1199515099:3,3",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "b3a2e8115422902897d5d8473a9ae6fbcf98caa9ee1e00806e00140e827b474c",
+   "quote_chars": 22
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "amount",
+   "unit_id": "s0:t1199515099:4,2",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "24bf0998739ed6e8311097cc7360231a6964abf5bf5ee7cb38bf83f07521b2fa",
+   "quote_chars": 14
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "amount",
+   "unit_id": "s0:t1199515099:4,3",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "776748c500c61fdc398f8485acf515b95c4e7392d0afbb2ecfae127d2fe45f14",
+   "quote_chars": 14
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "amount",
+   "unit_id": "s0:t1199515099:5,2",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "47ebefc3a8606ac49dc28fdb09a4dc343d8a1f040008c9c0a32aeef95d1ae300",
+   "quote_chars": 9
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "amount",
+   "unit_id": "s0:t1199515099:6,2",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "af0d137249451395da461c73bdeccbfb250e629d652a3347a760990aec2c9974",
+   "quote_chars": 18
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "amount",
+   "unit_id": "s0:t1199515099:7,2",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "7bed22b072d19f1a9c0ce1219d373138c4c3b82db1f0eaa39373d82a1022450f",
+   "quote_chars": 11
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "amount",
+   "unit_id": "s0:t1199515099:7,3",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "3895a715722b33576be0be13e116165839b6c2993b37cf64223da8ef61332563",
+   "quote_chars": 9
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "amount",
+   "unit_id": "s0:t1199515099:8,2",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "88c16bba6b03ff0ad6876f12f6f91d0ce88ec50e929f2c6b0915b54b506b3746",
+   "quote_chars": 8
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:t1199515099:9,2",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "e7657c2da702ec225f1dac41e793f18441fd636e1e5369643fb9e31dc5074eb7",
+   "quote_chars": 38
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:t1199515099:10,2",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "dd7becbef1f963bf7d6c632ed44bce54379f37ea35e87b7656eb330e56012dc6",
+   "quote_chars": 29
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "exception",
+   "unit_id": "s0:p30",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "02e7a958aff81f4f7abd009330fbe1cbc34800e46efe04b921cd83e58e48011d",
+   "quote_chars": 22
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "exception",
+   "unit_id": "s0:p12",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "930c9de2592d47e97672324d4a82c95afa7d255d7cc839705660dcd39ef27503",
+   "quote_chars": 14
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "exception",
+   "unit_id": "s0:p14",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "33badfbbc14cf02a10b383b6f5eaf29e457ae25e62bfebb08ef751d4ce963180",
+   "quote_chars": 16
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p6",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "6c8fadc295101843a41efca490ff23114d5f6fbd7aa1880f181fec083a72d0f8",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p26",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "643b7527d267cf181c767404521061e201e5f600e1cc97990dfd433c386e0bb0",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1199515095:1,1",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "c90c217623402426287b3dbb32e83f4d68b3dac91016e421d8ef690e69eab6c1",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "agency",
+   "unit_id": "s0:p18",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "2887fca7c1dbc14eb9a03f78288e1d402e051c8ae75a52fab39c41130ee0bf0a",
+   "quote_chars": 16
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "application",
+   "unit_id": "s0:p8",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "28f03862d58113e6d2d15053e096b21f99fdb84120d9dc58a9a5ffcf66458b7f",
+   "quote_chars": 22
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "field": "scale",
+   "unit_id": "s0:p8",
+   "program_sha256": "fc8ec504c2d7bebe",
+   "quote_sha256": "612b5b23049660ed920b74fdc02e4081e2da2412f6d465aaa4183ba0d7b2b308",
+   "quote_chars": 10
+  },
+  {
+   "doc": "kr-156783674-198563260.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p6",
+   "program_sha256": "5f3a7df41c928054",
+   "quote_sha256": "a28dd86b78a5542f098e02c810ed6a128508a2c417cbd993beb68cedbf2564b1",
+   "quote_chars": 8
+  },
+  {
+   "doc": "kr-156783674-198563260.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1202124659:1,1",
+   "program_sha256": "5f3a7df41c928054",
+   "quote_sha256": "bcbc86bac329daa249b5f84f282ea7a98cac03b61cb3617bea245836dfc056c5",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156783674-198563260.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1202124659:4,1",
+   "program_sha256": "5f3a7df41c928054",
+   "quote_sha256": "a004d59415a99ab917902f71f14133957d19d2db7eb7c8a29cbf97ab917f5388",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156783674-198563260.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1202124659:9,1",
+   "program_sha256": "5f3a7df41c928054",
+   "quote_sha256": "329532a86197c5e88eecf7d15a2a582d0e8a8a57d306ec938df27f13c0340a17",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156783674-198563260.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p6",
+   "program_sha256": "3ef9b99a1aa18de8",
+   "quote_sha256": "07d9ba5bf91fb01cc98144a00f7de303fbab593cf07adcd6b57a1693938eb069",
+   "quote_chars": 8
+  },
+  {
+   "doc": "kr-156783674-198563260.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p10",
+   "program_sha256": "3ef9b99a1aa18de8",
+   "quote_sha256": "ec5b985260fa64bb82c4b1cbfe33db903c93f5937e6a51f4bd721f17b0ac4d4b",
+   "quote_chars": 18
+  },
+  {
+   "doc": "kr-156783674-198563260.hwpx",
+   "field": "scale",
+   "unit_id": "s0:p10",
+   "program_sha256": "3ef9b99a1aa18de8",
+   "quote_sha256": "ff487aef0d8b4fec73b2c6e6eac083d9b7c0a47f1ebe2aca22d3e6ad29be6dc8",
+   "quote_chars": 22
+  },
+  {
+   "doc": "kr-156783674-198563260.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p17",
+   "program_sha256": "2df59ada903a1fb1",
+   "quote_sha256": "877ac81e0cea7c2517cbd1d6639eb8bd08b5126ec4cc9dd74fc43520925b52e9",
+   "quote_chars": 9
+  },
+  {
+   "doc": "kr-156783674-198563260.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p17",
+   "program_sha256": "2df59ada903a1fb1",
+   "quote_sha256": "52918ad9e775ca35fe1cc5a3c8dc2d3ebf35be6a269b263a5fb3b5e2127ef6cc",
+   "quote_chars": 28
+  },
+  {
+   "doc": "kr-156783674-198563260.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p23",
+   "program_sha256": "3f020b9c41c7145c",
+   "quote_sha256": "f5c95606254e08ed361179cc3f9ab42661d02750b8b0dc04b9d3ec7f69ca437c",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156783674-198563260.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p23",
+   "program_sha256": "3f020b9c41c7145c",
+   "quote_sha256": "3d2f90a22508844555c59a40de86f597f44dba04dbf98e3c9db7dbf46d646914",
+   "quote_chars": 12
+  },
+  {
+   "doc": "kr-156783674-198563260.hwpx",
+   "field": "exception",
+   "unit_id": "s0:p23",
+   "program_sha256": "3f020b9c41c7145c",
+   "quote_sha256": "da0f4033f4f14616afdc524c9f81aa5b79f9662027fb1fa29c30b8b599e3082b",
+   "quote_chars": 21
+  },
+  {
+   "doc": "kr-156784179-198564817.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p15",
+   "program_sha256": "fa0e15bf6f8c8da6",
+   "quote_sha256": "fd446b219348efe5580e890c6a5ae9ae411fe8f348973541eeca0c43fa46a571",
+   "quote_chars": 16
+  },
+  {
+   "doc": "kr-156784179-198564817.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p15",
+   "program_sha256": "fa0e15bf6f8c8da6",
+   "quote_sha256": "d1c36dedea1d121052a70f41f821af584867e7b839a3738e9f4d81b6d8a910db",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156784179-198564817.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p15",
+   "program_sha256": "fa0e15bf6f8c8da6",
+   "quote_sha256": "178ecea3828349904ad741f9c83b73fc4a89618cb2d730d62056b566796a2a68",
+   "quote_chars": 26
+  },
+  {
+   "doc": "kr-156784179-198564817.hwpx",
+   "field": "region",
+   "unit_id": "s0:p15",
+   "program_sha256": "fa0e15bf6f8c8da6",
+   "quote_sha256": "059b7c19f976ff958659e3b5d04a878c869fdda1cbaca7d383f376f6926c6415",
+   "quote_chars": 35
+  },
+  {
+   "doc": "kr-156784179-198564817.hwpx",
+   "field": "exception",
+   "unit_id": "s0:p20",
+   "program_sha256": "fa0e15bf6f8c8da6",
+   "quote_sha256": "5a60d912d9dc689a00703659fe56c152a10e0ae3c67d3b96c834b11bc0e1b459",
+   "quote_chars": 17
+  },
+  {
+   "doc": "kr-156784179-198564817.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1174064978:1,1",
+   "program_sha256": "fa0e15bf6f8c8da6",
+   "quote_sha256": "132d180a9a3ae51231fa970024765b475f446460bba70b8d010b3353eba4d51f",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156784179-198564817.hwpx",
+   "field": "agency",
+   "unit_id": "s0:p11",
+   "program_sha256": "fa0e15bf6f8c8da6",
+   "quote_sha256": "84479bca8b162854aff7f9fbecf7a38fccfa089b82b4df27e53410835f99a2cd",
+   "quote_chars": 15
+  },
+  {
+   "doc": "kr-156783675-198562280.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p7",
+   "program_sha256": "34128e179c0a0ed0",
+   "quote_sha256": "b394f9a783e31dbae997e5eadfcc1512f664dc0b4b1b98f4900e21713ab2a88c",
+   "quote_chars": 14
+  },
+  {
+   "doc": "kr-156783675-198562280.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p7",
+   "program_sha256": "34128e179c0a0ed0",
+   "quote_sha256": "c9764b5d67f9281a815c3b6a05f228d472ff57f816ec78141d8a0a2c192f4740",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156783675-198562280.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p7",
+   "program_sha256": "34128e179c0a0ed0",
+   "quote_sha256": "13d6e57dfa78d55d97ea9a22f612337fd4d65776e39bee6de5a93592f51022ad",
+   "quote_chars": 30
+  },
+  {
+   "doc": "kr-156783675-198562280.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:p7",
+   "program_sha256": "34128e179c0a0ed0",
+   "quote_sha256": "25b82012f5e48808a2a04f9722476435d7042beef720cf61d80f6d419ddbb88a",
+   "quote_chars": 26
+  },
+  {
+   "doc": "kr-156783675-198562280.hwpx",
+   "field": "scale",
+   "unit_id": "s0:p7",
+   "program_sha256": "34128e179c0a0ed0",
+   "quote_sha256": "6feb453b4d8c24c38cd5994a4b11b0951b12931ec58a2a156b5e9b4014ace2b2",
+   "quote_chars": 9
+  },
+  {
+   "doc": "kr-156783675-198562280.hwpx",
+   "field": "scale",
+   "unit_id": "s0:p7",
+   "program_sha256": "34128e179c0a0ed0",
+   "quote_sha256": "0f9b81c66dd9ab9fbedf11d3a64289a28c1b4c5e5a9e98386328efc1ee444d81",
+   "quote_chars": 10
+  },
+  {
+   "doc": "kr-156783675-198562280.hwpx",
+   "field": "legal_basis",
+   "unit_id": "s0:p7",
+   "program_sha256": "34128e179c0a0ed0",
+   "quote_sha256": "099dc0c899b30ce90a5b0d7b1fc8bea1246f0cbacbffe8af3bac08a66fdee8da",
+   "quote_chars": 15
+  },
+  {
+   "doc": "kr-156783675-198562280.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1170934774:1,1",
+   "program_sha256": "34128e179c0a0ed0",
+   "quote_sha256": "613bddaffd324dd04735f5d4a957f7a048b2dd526074919edc5de492e4c2f1a0",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156783675-198562280.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1170934774:3,1",
+   "program_sha256": "34128e179c0a0ed0",
+   "quote_sha256": "4fdb39801f7c26d343fd9435ad87eb6f54c4e55f3e4bdbeaa7291cffa76c7f22",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156783988-198563752.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:t1207283143:0,2",
+   "program_sha256": "95b6907564c1db34",
+   "quote_sha256": "d60935859ae2a69c51e4b39c6f690aedb84f827773d2c0e99fead98289532bfe",
+   "quote_chars": 23
+  },
+  {
+   "doc": "kr-156783988-198563752.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p39",
+   "program_sha256": "95b6907564c1db34",
+   "quote_sha256": "dfb365716dce5b09f673a203ffe4190322fd511350b2ecf975fe3f714729611c",
+   "quote_chars": 47
+  },
+  {
+   "doc": "kr-156783988-198563752.hwpx",
+   "field": "scale",
+   "unit_id": "s0:p39",
+   "program_sha256": "95b6907564c1db34",
+   "quote_sha256": "cbf7aad648b4cd7ea0f795dcb366c56b525660ed88f97e1b56aef1a00a111296",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783988-198563752.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p41",
+   "program_sha256": "95b6907564c1db34",
+   "quote_sha256": "c37d5ff07c31f58771cb29da0868ef7c9be5d69c19324f81bcb20a8d5eb535d5",
+   "quote_chars": 24
+  },
+  {
+   "doc": "kr-156783988-198563752.hwpx",
+   "field": "region",
+   "unit_id": "s0:p41",
+   "program_sha256": "95b6907564c1db34",
+   "quote_sha256": "5b327210b2c766ca284bbc6ff339c0e6013486145f3c89616a4dc7e187531c97",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783988-198563752.hwpx",
+   "field": "scale",
+   "unit_id": "s0:p10",
+   "program_sha256": "95b6907564c1db34",
+   "quote_sha256": "118a92b635db74eb26b657e4299be46f5c8622a9a655c83dfc759a2725e76758",
+   "quote_chars": 17
+  },
+  {
+   "doc": "kr-156783988-198563752.hwpx",
+   "field": "agency",
+   "unit_id": "s0:p10",
+   "program_sha256": "95b6907564c1db34",
+   "quote_sha256": "cbe1e62ece30e2f1c68b6dca94aab406bd6817db920d41fd16b2a2d83f08c5da",
+   "quote_chars": 17
+  },
+  {
+   "doc": "kr-156783988-198563752.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1170934774:1,1",
+   "program_sha256": "95b6907564c1db34",
+   "quote_sha256": "6f3639dba1a983985168b49ec50f0d14390d6e6beffa6771accd2f11d6b03a33",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156783988-198563752.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p12",
+   "program_sha256": "a917c8e1dd8745f7",
+   "quote_sha256": "fc7ccd1242aacff3fde2d910fac5450dde517dd2a8a8d57e654bf5fa2804e9bb",
+   "quote_chars": 18
+  },
+  {
+   "doc": "kr-156783988-198563752.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p17",
+   "program_sha256": "a917c8e1dd8745f7",
+   "quote_sha256": "72401fdfc0780794ff48d23a6d49825f86a1e009142bd2d195e55a777161942a",
+   "quote_chars": 22
+  },
+  {
+   "doc": "kr-156783988-198563752.hwpx",
+   "field": "agency",
+   "unit_id": "s0:p17",
+   "program_sha256": "a917c8e1dd8745f7",
+   "quote_sha256": "cf8e8a8d06adb6d05d0b2394fa848a6ca8c6b8f7d9e5f000e47853687a809900",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:t1133983820:0,0",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "f13b01aacdb3984f7dd5f47921d9d2454bcd4a96f3e548146b1a42fe5ad45e2b",
+   "quote_chars": 12
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "legal_basis",
+   "unit_id": "s0:t1133983820:0,0",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "c26b47dedc5ea4e9a8f8baf8204f67374c8c598ca76a733f7bf8a2e461df4f0a",
+   "quote_chars": 23
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:t1133983820:0,0",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "6b081c6cea31bd66e7af895ae37e848a18108d3f87f5b7ae301151c0e200fa19",
+   "quote_chars": 14
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "amount",
+   "unit_id": "s0:t1133983823:0,0",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "93be5fc41e370f33a61ea4f2ef91b12ea36035fc12ac10600ef40361cd4aac73",
+   "quote_chars": 16
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "amount",
+   "unit_id": "s0:t1133983823:0,0",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "7f268ba66d240b94e4b555fcde52ad6e03427ca6ab5e7b89f744a1436b586f94",
+   "quote_chars": 16
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:t1133983823:0,0",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "6a359354c9a2edb6386090188b22c306a599a5c9617eafa27207cc9c53b48a0d",
+   "quote_chars": 26
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "application",
+   "unit_id": "s0:t1133983823:0,0",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "583b00596097d85a3a58eee6ba372080087c4a6beb39244477d71a68e770dbd3",
+   "quote_chars": 8
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "exception",
+   "unit_id": "s0:t1133983823:0,0",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "cd04db27a07e7b62734903eb63a162752f88c28b1b081864a37b7556dbb55024",
+   "quote_chars": 24
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:t1133983823:0,0",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "e8ad326a1b5c77c380fb966f53ae114f182dc8789a2a8dc5463782867e19073e",
+   "quote_chars": 11
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:t1133983823:0,0",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "f081132b5b1c2c43d76b19a3aee3825715e767ace5a6da3aa3f0714fd539b464",
+   "quote_chars": 20
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:t1133983823:0,0",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "b474859db37368b0b17379d82b0d4df2d5b9f67644bb93fe0e7ece4531e26df1",
+   "quote_chars": 26
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:t1133983823:0,0",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "9262b3264f98195be48c27c0f93fa86c365b0c9a7067b9a15eabbd477014eb7b",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:t1133983823:0,0",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "c16152e67f64278086a7136fe2b0cf462e3cc788f96a9d286857070a018e77df",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:t1133983823:0,0",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "0c27f7e40b95dbc2ca5cd6edfe4f5f504866611482362b91b761d51743ecae89",
+   "quote_chars": 24
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:t1133983824:0,0",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "9bbbe7e7d0d77a3e3e25d1112fd4864df9622655df99960ef834b0d767470180",
+   "quote_chars": 8
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:t1133983824:0,0",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "6707b9735d0b4b78759e02d4bf8494b3ed92f27cb5996c2be03f10ca26c5c9eb",
+   "quote_chars": 8
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "region",
+   "unit_id": "s0:p15",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "afae6acdab403d624d26a26d65cb7c938027e20070dbcef7389f8060be48a6a3",
+   "quote_chars": 10
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1170934774:1,1",
+   "program_sha256": "a99c22ca44d71081",
+   "quote_sha256": "c4c82819905d62ad86cb047acbfa4f6251f77360f8fc7175801c09415b2d25a1",
+   "quote_chars": 8
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:t1173245417:1,0",
+   "program_sha256": "d82e924c3748dfe0",
+   "quote_sha256": "c3cd277c3807884f673d3919281aaf8db476bbdd13a685e4b0ca39835753122a",
+   "quote_chars": 12
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p62",
+   "program_sha256": "d82e924c3748dfe0",
+   "quote_sha256": "51f7290af6b466e8039836a1f67c1091d86cd3e813d7ca774cdf0c59535e1376",
+   "quote_chars": 20
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "legal_basis",
+   "unit_id": "s0:p7",
+   "program_sha256": "d82e924c3748dfe0",
+   "quote_sha256": "297c57a2a992e4019f8c74ec64ce9cf6792d21c6b32e49548d886b6c2e6c4eae",
+   "quote_chars": 9
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1173293951:1,1",
+   "program_sha256": "d82e924c3748dfe0",
+   "quote_sha256": "9a6cc737598d4d3759a217e4862cbbc4a615ff13762fc06faa05b4db34138de2",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1173293951:3,1",
+   "program_sha256": "d82e924c3748dfe0",
+   "quote_sha256": "9d2f6b0e66a40d1ef212428e432d8f53b2fa60fdc3cdd88c31a75774b8847c72",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p24",
+   "program_sha256": "a7a08103f295fa26",
+   "quote_sha256": "970646bbe83b6b99cc75a904a50100c10af1e4bed4782ef965b8ce45599cb2c4",
+   "quote_chars": 26
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p27",
+   "program_sha256": "a7a08103f295fa26",
+   "quote_sha256": "7e63f5cbd15369a5ff1ca448a559b94daf25e1f6813c4dbf6ab968a97525e681",
+   "quote_chars": 18
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "exception",
+   "unit_id": "s0:p26",
+   "program_sha256": "a7a08103f295fa26",
+   "quote_sha256": "bd269144033ca3d740147b34d123d46b37b281d982a08c8de717a73631f50508",
+   "quote_chars": 42
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "exception",
+   "unit_id": "s0:p29",
+   "program_sha256": "a7a08103f295fa26",
+   "quote_sha256": "2c9e1a0b9fe26b0a6a282a3c309eb3be140ae2d1ec909ce5e74f0123e55a8d0d",
+   "quote_chars": 21
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1173293951:5,1",
+   "program_sha256": "a7a08103f295fa26",
+   "quote_sha256": "15a0b96efa0422214992e84f28f1e5b008a0b1160d52b1f3bfeae59c04e70f11",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p27",
+   "program_sha256": "580d2b8c2320334c",
+   "quote_sha256": "354282f2af87b310608d300f54545eeaded085884041910a6175dab2f242a789",
+   "quote_chars": 23
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1173293951:7,1",
+   "program_sha256": "580d2b8c2320334c",
+   "quote_sha256": "55d3e0935ed0034b30b176b3dc45ffe7ecff154ba1ae394c196aeea89c3e1ff4",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p37",
+   "program_sha256": "7a63d946fce69f92",
+   "quote_sha256": "14ce0a3d998c19014f1d774383e2a5e00f9e9c66eae9365d886f24a37201a9b2",
+   "quote_chars": 35
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "scale",
+   "unit_id": "s0:p44",
+   "program_sha256": "7a63d946fce69f92",
+   "quote_sha256": "94f16010675cec6a7272cf8051f0de58e32d2294a9dc3fefbf38b19ec1635eb4",
+   "quote_chars": 9
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p44",
+   "program_sha256": "7a63d946fce69f92",
+   "quote_sha256": "c0b06058d0be2b866295c136a38a27c89a39201a4968634df205eb2ea94bfc51",
+   "quote_chars": 11
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1173293951:9,1",
+   "program_sha256": "7a63d946fce69f92",
+   "quote_sha256": "4b5ab97d2e264642a43aa1168e9119ae077719049771a99932d7fe3c84fdf480",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p40",
+   "program_sha256": "c337d756c1f621de",
+   "quote_sha256": "f52e0d4be1708141b2ec6951bef5260db6fabe0499a59bc46fb8b56fc65742c8",
+   "quote_chars": 26
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p42",
+   "program_sha256": "c337d756c1f621de",
+   "quote_sha256": "a4d6631dc51e472db930096d1c095ba42f4525e9737ecdd7a922acfd3e8ec1f7",
+   "quote_chars": 17
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1173293951:11,1",
+   "program_sha256": "c337d756c1f621de",
+   "quote_sha256": "e42b4656dc0702100cc5e9344c58af873160de3c48c5d84466b15bfdd9c8b6c6",
+   "quote_chars": 8
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p53",
+   "program_sha256": "66ba29c9401b812f",
+   "quote_sha256": "4e812179bff16b7ee59a63dbe4541e98c00c194887d77d408128e1c0e1068814",
+   "quote_chars": 32
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "exception",
+   "unit_id": "s0:p53",
+   "program_sha256": "66ba29c9401b812f",
+   "quote_sha256": "7210d5d9cc52d9e6ff94594316465ac53b26d5c9af1154cd527e8d1f0815fe41",
+   "quote_chars": 26
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:p57",
+   "program_sha256": "66ba29c9401b812f",
+   "quote_sha256": "a248af9c33455e30e1b57ee3309adb6ad0b9b3452ecde65453a64042b6ac429a",
+   "quote_chars": 15
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:t1798973451:2,1",
+   "program_sha256": "5bce6900fccdfa4d",
+   "quote_sha256": "5494ab4c5c59d7d4a355b8d8f0d3557f0922461e07f050ebd826684748ebc105",
+   "quote_chars": 20
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p7",
+   "program_sha256": "5bce6900fccdfa4d",
+   "quote_sha256": "aa99c75b165d622851338502626a448ff28daa17b6f7f95ab7b8cdcc4bdcb08a",
+   "quote_chars": 12
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:p11",
+   "program_sha256": "5bce6900fccdfa4d",
+   "quote_sha256": "1bc7b57f3c1da342d57af879014b6899e08a88854d7d56ae98b12742b2ae848f",
+   "quote_chars": 12
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "amount",
+   "unit_id": "s0:p11",
+   "program_sha256": "5bce6900fccdfa4d",
+   "quote_sha256": "a5e57f78ea39657a41feccd5fcdd8ecfd48954b9e4d269fb5c2f0fbc72002d18",
+   "quote_chars": 9
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "amount",
+   "unit_id": "s0:p11",
+   "program_sha256": "5bce6900fccdfa4d",
+   "quote_sha256": "4bc3444a8abf9800fd0d32979ba678e26b255f0d6e21c88f42b4c87fe94a633c",
+   "quote_chars": 14
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "exception",
+   "unit_id": "s0:p11",
+   "program_sha256": "5bce6900fccdfa4d",
+   "quote_sha256": "9ecc87fcb208e4804263d39967fedf961bcf4d6b802363b0d7c5c3efc12ee817",
+   "quote_chars": 35
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "scope",
+   "unit_id": "s0:p13",
+   "program_sha256": "5bce6900fccdfa4d",
+   "quote_sha256": "a44a8aacb2a21dcdcd5c42f02948864af6dc38c66d3d6307050924488ca9882c",
+   "quote_chars": 36
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:t1798973451:3,1",
+   "program_sha256": "82ec6cbcd78b917c",
+   "quote_sha256": "1817cd733fa89598b3cb234a3a7940536d49ad21203eb6096f9c5aa6832dabcd",
+   "quote_chars": 18
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:p16",
+   "program_sha256": "82ec6cbcd78b917c",
+   "quote_sha256": "2de27c973febcfd949708d7aa62277adefcc61a0b024655824b62df8d3e6dec9",
+   "quote_chars": 14
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "amount",
+   "unit_id": "s0:p16",
+   "program_sha256": "82ec6cbcd78b917c",
+   "quote_sha256": "0a1330a2517933afca89c28d3a000f2f6dc67221a5a885deafd50bb17bcd77fd",
+   "quote_chars": 9
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "amount",
+   "unit_id": "s0:p18",
+   "program_sha256": "82ec6cbcd78b917c",
+   "quote_sha256": "bc1c207216a61f54ed1135043e36e7675b07204f0a96a654ef9ab7802c83132d",
+   "quote_chars": 15
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p22",
+   "program_sha256": "f723645b6b7e99dd",
+   "quote_sha256": "715247a345befc7ee3778fc2772e432b05addb5a1bb8de2c7bf89a7ae57af0b9",
+   "quote_chars": 10
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p24",
+   "program_sha256": "f723645b6b7e99dd",
+   "quote_sha256": "b70049e3b45f2cb64d4e458108cb2501208a3e61fb3d293f4ac42db5e0350508",
+   "quote_chars": 29
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "exception",
+   "unit_id": "s0:p24",
+   "program_sha256": "f723645b6b7e99dd",
+   "quote_sha256": "ad681db679575a6e4e7d001b1b87a584594450cd749413296ff0348f430eda13",
+   "quote_chars": 27
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p30",
+   "program_sha256": "aee9c51d62035b0d",
+   "quote_sha256": "f224ef812cb7feec4fa04d475914a031406398b25c35d8672a5361b541de345b",
+   "quote_chars": 14
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p33",
+   "program_sha256": "aee9c51d62035b0d",
+   "quote_sha256": "716ab2126b22dd968ea14332a4e1ddbb7ae292c76c7ab4a90c4bb54774b3428a",
+   "quote_chars": 24
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "application",
+   "unit_id": "s0:p33",
+   "program_sha256": "aee9c51d62035b0d",
+   "quote_sha256": "b24b99c14433f0c23c99892fbd94147db9608213383cb5327a99fa6dcba76e00",
+   "quote_chars": 19
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1173293952:3,1",
+   "program_sha256": "aee9c51d62035b0d",
+   "quote_sha256": "4b5ab97d2e264642a43aa1168e9119ae077719049771a99932d7fe3c84fdf480",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1173293952:1,1",
+   "program_sha256": "5bce6900fccdfa4d",
+   "quote_sha256": "1c87278101f4667091543281b30072d5b71ccb8b07be6bb7c485ca832a61b349",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156783932-198563505.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p5",
+   "program_sha256": "d13bfac53b7a5577",
+   "quote_sha256": "110dfef49a399ab82ef7a7ea4241472af90418be5843f5dda0e614ffb303bdb7",
+   "quote_chars": 11
+  },
+  {
+   "doc": "kr-156783932-198563505.hwpx",
+   "field": "exception",
+   "unit_id": "s0:p7",
+   "program_sha256": "d13bfac53b7a5577",
+   "quote_sha256": "379fa0249cff2f9bafd28e95b218cc689b6e7b97d45b791663871152e0d93184",
+   "quote_chars": 45
+  },
+  {
+   "doc": "kr-156783932-198563505.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:p5",
+   "program_sha256": "d13bfac53b7a5577",
+   "quote_sha256": "16f0b75542bebe7111e8b4cba58726b8fc54786cba048827484f9e261481d4e2",
+   "quote_chars": 17
+  },
+  {
+   "doc": "kr-156783932-198563505.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1170934774:1,1",
+   "program_sha256": "d13bfac53b7a5577",
+   "quote_sha256": "8626156dfa8f68c3e80bcc450e4483ee3c40451cba726a87b13f6f9af8282cbc",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p7",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "7dbd34d7f622ff9e9667587b6fc4330363b352175f2edca123194cc7ef15852f",
+   "quote_chars": 19
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p7",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "53477163f1158ccca0d6bfcee4d14b83dfbaa2b024e38d58599ad36ee90b74c7",
+   "quote_chars": 11
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p17",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "703789ef09129dc5f1a4a10e6380bb377676171df59d34176329997e69d76fb4",
+   "quote_chars": 8
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p13",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "87a538b462aae914167c56106f6e615725daaf8d6433be1061089f955d30dd87",
+   "quote_chars": 11
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "amount",
+   "unit_id": "s0:p13",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "b3f27ed0cdfaa55c23f0e467fbfbef075e33f962ae8b8188765b1c0bf8bc2ef7",
+   "quote_chars": 14
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:p15",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "f44ef151012d6b52296402cc27c7cb832b8e15aa1221bbe0ed3b32ada3f24741",
+   "quote_chars": 19
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "scale",
+   "unit_id": "s0:p9",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "40b20bd02f1fc95011337849616db4f3bd32ec249a524c37f73ccdf458e06670",
+   "quote_chars": 17
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "scale",
+   "unit_id": "s0:p9",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "ab6045fa8ba0971b45a9338e83d714a965d437a6045b1187474641997847d706",
+   "quote_chars": 11
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "scale",
+   "unit_id": "s0:p9",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "fad12b6eef48d8a5ccfd0c129dc283933f0df9a955201b6e9e77da1d32caf6fa",
+   "quote_chars": 12
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "amount",
+   "unit_id": "s0:p19",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "d76275dfb3872890ae3cb3b3a6e3802023d66657f3cf6e5fdd88ada79ec58d79",
+   "quote_chars": 17
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:p21",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "ffae4b01c213f57c4d187de809f621979fe6188adc2565d5ff9d7e33dfb06917",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1170934774:1,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "ce185b9b12433953ae8160b1697605cf56091f5a38b3c3ffb7eeadacb527d476",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:1,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "7ceb8e7e3d8544593906dc85cb56b32a69049cf303808867f9264cb2e051e2b9",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:1,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "9a029e23c099d238d723c615d1abe27249c7d49d294b011eed3d3a52e12e8785",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:2,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "dcf1ac2e11d7ca252ed50c10d909eb00b9cc9cab0c6c36e39b8b8cf46c2711d5",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:2,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "c701908031d828c8fd2747a5af50a0ed1acd213cd4f69c8c0c09eaa334bd249f",
+   "quote_chars": 8
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:3,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "3de4c5080f14380efc184d77f9fb168f884ba3c4a2389feba8f8ec06303b5d9a",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:3,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "dbfb817114bd900a012a458358df0cafc9efc27b37d2bcf71cfb1770369cd713",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:4,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "26e417141a683b5976043f13fa3f768f816d0210f1bbc227a1768ac7f773f72f",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:4,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "fc540d5bb8cafb59884c371985e16f8c701798b4be8b2f86402eb2528b20d4f1",
+   "quote_chars": 18
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:5,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "bf226eb859a07ed692d30e8d40a83e730d47fd278a4d9bf8e14c84b4e0bbac62",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:5,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "6126f3c537923c51c9f624857fa1ec6c1df9bfc87ebf4d47013a844a48163dba",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:6,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "31ccf278cc2acc4121fc865a59c6cf546e7c832c632b346c2977ccdf020cdb0e",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:6,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "e085a78533ccc2b964c596335848ae0034cb9ded92535a895ddd72a40f0ba2de",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:7,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "31ccf278cc2acc4121fc865a59c6cf546e7c832c632b346c2977ccdf020cdb0e",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:7,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "72287dd10e58821dce3bceaf9ebfe83483ec945302d956f289ece84935795b55",
+   "quote_chars": 4
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:8,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "9664c7f81444fd234738db3ad12653a0477e193b3472e337e625348f652cbd4d",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:8,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "f24db2d64db4d403b0043230cc37809d68cd4b9451c5d7b5c3377f9078252c72",
+   "quote_chars": 20
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:9,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "5afd7f32ca65185db3b36e23f3ce21bda8a4720adcec8cc6f79875ca087b5dfb",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:9,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "be0226c41a745ad848e9911f9ff47d25e40d17740f7f58c3e4014c33d886ac41",
+   "quote_chars": 20
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:10,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "db5b48041755190b220f2a4b395b754ede930170bc2be607d4f7aed1a6314cbc",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:10,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "337b700be4d30bf903902f7fc9f59e752bb436cbebebd5a8fc95966afa715629",
+   "quote_chars": 9
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:11,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "552443d0c5ef9e5e2f47b2d62afda605ce7d916835cc766327894061314b9072",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:11,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "c78b6e5a6ad5ae05cde880081e8eb75030d729ef9dd5a9510066dd624abed45b",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:12,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "92d95bf006977ce3dbead2d57bd76503faf6b731ab58aca7f8c9dba87b2633c9",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:12,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "e117b9439b2da4a3ddfafd8c22385b3de0fcc5a3b5cdc3d9524ffdd56b84d632",
+   "quote_chars": 20
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:13,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "9c4de5b03ba1cfa8c9a334b9ebf612608e2480bbf89d8f1502370637e02db416",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:13,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "93d7ca164df3dafcc08c4bd7f254b563c48f4c201fe1c080014d84d7f8f8c690",
+   "quote_chars": 11
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:14,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "3e8a90dd5b3cb39fee69a4aa6f7b97c048086ecad8784c030b1543db0e247350",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:14,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "6d9f05108598b2faaecee8ce0b8bf726f9d9626f731edb0ecf5f03374a051537",
+   "quote_chars": 19
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:15,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "9ad1c7a3d5d13cffa4d260663ea499c0be00b9406900680a052f0500280d02a6",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:15,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "d65806e2df684a86b4ba1b421870602edeba202114da84751cc00039a9fcf24d",
+   "quote_chars": 19
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:16,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "9ad1c7a3d5d13cffa4d260663ea499c0be00b9406900680a052f0500280d02a6",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:16,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "1e96108c43ae2c827f46ecc2fe1cf9f1100ae67e931ba76e3ae26e1a16a248eb",
+   "quote_chars": 20
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:17,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "446da48e9e6d92c8063c53ed0108b0e744e7e06a284273512efa38f2ca8f1cfe",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:17,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "3d0bf6be876d82e406cf57a655c0009c8b67caeef8eaf4f2542f2ca77fbeeff0",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:18,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "976c101162025f1b3fe9210df89110f038ed8b3a2326cb7f349f26ecfdaea644",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:18,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "9ac9796313478635121e5c828fa869b94a4461fc4fa6ab2948784d56b770859e",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:19,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "0cddb025bc4568a9e7fefe99150ca3d10fc418accefd6f2cfca08096d4f3c438",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:19,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "895f5b641802d81d585f645ad1f0c5f3b5b9e969e723c36e366e1a1a69bd3590",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "region",
+   "unit_id": "s0:t1200235303:20,1",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "b2e1aa888e19e5feef1264972b84f3530e706d6e25766e5f1eb2478a1e9b497f",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1200235303:20,2",
+   "program_sha256": "13515d43b304a20a",
+   "quote_sha256": "33c7c74bc7acd8112664875df3567306ea599a00b2dfc8b5e99c09cd209a5e87",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p5",
+   "program_sha256": "236f80df21913838",
+   "quote_sha256": "fe6d65994953100b5155682d872437e92ef395276025f51269f6905d24295c2d",
+   "quote_chars": 25
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p5",
+   "program_sha256": "236f80df21913838",
+   "quote_sha256": "a14f233e2ae568b995e224b905a3f0e90c71ea51c32977ad9a4d82caa116d1b3",
+   "quote_chars": 18
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "field": "legal_basis",
+   "unit_id": "s0:p7",
+   "program_sha256": "236f80df21913838",
+   "quote_sha256": "0150df36907b6df6baa721ca86fcab7fa24ac63628b21a891d4dc6939d9d3732",
+   "quote_chars": 13
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p9",
+   "program_sha256": "236f80df21913838",
+   "quote_sha256": "a32cf01daba943745dc85e39e254337c350a449a2b255d2b8ea3f97dbe12f8b7",
+   "quote_chars": 12
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "field": "agency",
+   "unit_id": "s0:p9",
+   "program_sha256": "236f80df21913838",
+   "quote_sha256": "674f2f0a4412bc7b595e7faa597e4ad12e1702543427775c44b10d17fbf1ae70",
+   "quote_chars": 23
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p45",
+   "program_sha256": "236f80df21913838",
+   "quote_sha256": "109a71d787187666b9e4de756173fd334cebe04045ae2df4a56b16342b8801d8",
+   "quote_chars": 27
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "field": "application",
+   "unit_id": "s0:p45",
+   "program_sha256": "236f80df21913838",
+   "quote_sha256": "c3fc6df1de7c2c8c22bffeff364032d126dca8e7155bc2b209078c9eede42de3",
+   "quote_chars": 23
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p49",
+   "program_sha256": "236f80df21913838",
+   "quote_sha256": "fb8fe8f5390bf6d9c00b22f199699d95289e7a4f19f7f0c167ccf26a65d8c9ef",
+   "quote_chars": 15
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p53",
+   "program_sha256": "236f80df21913838",
+   "quote_sha256": "114b4a17044cef4427fec1750e0c72f451c691643c653a17d57e7989ea17dce9",
+   "quote_chars": 16
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p66",
+   "program_sha256": "236f80df21913838",
+   "quote_sha256": "bfa4e1f637997376a83aa0b800ecb93f4ef2848fb81b24a971f4730a148b0b56",
+   "quote_chars": 12
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:p70",
+   "program_sha256": "236f80df21913838",
+   "quote_sha256": "c4fb3eabcd3aa6e6206b7a3b76ae0373a514536e5930931fdff6b4cdef2e9558",
+   "quote_chars": 31
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:p71",
+   "program_sha256": "236f80df21913838",
+   "quote_sha256": "23aa0c56f8e77e68524fa9f908c54298acb166b9f0265d33e897709061495c3a",
+   "quote_chars": 17
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:p69",
+   "program_sha256": "236f80df21913838",
+   "quote_sha256": "603b160a224798f4667ceb9f0e29fffab5932257b363356cf8378ea9dfa81115",
+   "quote_chars": 22
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "field": "exception",
+   "unit_id": "s0:p73",
+   "program_sha256": "236f80df21913838",
+   "quote_sha256": "42e5187fce4c258315451b9adccd5bb2435f253845bdd7c1cd8748d2bcb8f038",
+   "quote_chars": 16
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p80",
+   "program_sha256": "236f80df21913838",
+   "quote_sha256": "dcd3cda56533f419d728736f5ca3a7bb34507eafb9d97379e1b3ccb256dbbcdf",
+   "quote_chars": 19
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "field": "amount",
+   "unit_id": "s0:t1207173065:15,11",
+   "program_sha256": "236f80df21913838",
+   "quote_sha256": "7276b85abc4b3d245c0121adea0a0f372b7d9e7804be306581450fcd52d0b4c1",
+   "quote_chars": 6
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1170934774:1,1",
+   "program_sha256": "236f80df21913838",
+   "quote_sha256": "132d180a9a3ae51231fa970024765b475f446460bba70b8d010b3353eba4d51f",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156783898-198563366.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:t1173245448:0,2",
+   "program_sha256": "21bf8faea24b4a05",
+   "quote_sha256": "9f2041aee8ef2942da703dbfe14ab36f8d9a3157c81a843611639c0a015d71a3",
+   "quote_chars": 17
+  },
+  {
+   "doc": "kr-156783898-198563366.hwpx",
+   "field": "legal_basis",
+   "unit_id": "s0:t1666807368:1,1",
+   "program_sha256": "21bf8faea24b4a05",
+   "quote_sha256": "53d22bb6ee1cf69444913b47aeeb4e3514ef08c6999760882c72eff99f4485e7",
+   "quote_chars": 23
+  },
+  {
+   "doc": "kr-156783898-198563366.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:t1666807368:2,1",
+   "program_sha256": "21bf8faea24b4a05",
+   "quote_sha256": "c2feb523d010ef9a3e37420d0246cc9a317996da5f25414cdb490a64b237d1b7",
+   "quote_chars": 19
+  },
+  {
+   "doc": "kr-156783898-198563366.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p18",
+   "program_sha256": "21bf8faea24b4a05",
+   "quote_sha256": "ebbb0e8df4124090dfe618f9cdac0a6ab2f20bce0888a92753629ed151d1af5e",
+   "quote_chars": 35
+  },
+  {
+   "doc": "kr-156783898-198563366.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p7",
+   "program_sha256": "21bf8faea24b4a05",
+   "quote_sha256": "6a00b9ef79790106e67a39aceb7d7dbb58b27b6fb9dd133b526350dbc5257be0",
+   "quote_chars": 12
+  },
+  {
+   "doc": "kr-156783898-198563366.hwpx",
+   "field": "scale",
+   "unit_id": "s0:p7",
+   "program_sha256": "21bf8faea24b4a05",
+   "quote_sha256": "e6a4af75a1268e538a0bd9329239662c44375a787a3b2ad862b6207723a9a116",
+   "quote_chars": 43
+  },
+  {
+   "doc": "kr-156783898-198563366.hwpx",
+   "field": "exception",
+   "unit_id": "s0:p15",
+   "program_sha256": "21bf8faea24b4a05",
+   "quote_sha256": "9fa838a894deaee844bd6df5237ad686958eb3f6c30c7782b3bc57008c951c45",
+   "quote_chars": 16
+  },
+  {
+   "doc": "kr-156783898-198563366.hwpx",
+   "field": "scope",
+   "unit_id": "s0:p17",
+   "program_sha256": "21bf8faea24b4a05",
+   "quote_sha256": "56222baf06cb4b6b0ba94fa329e44bb20acf11b136a0dfb3147c30c2a57f5f11",
+   "quote_chars": 33
+  },
+  {
+   "doc": "kr-156783898-198563366.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1666807368:5,1",
+   "program_sha256": "21bf8faea24b4a05",
+   "quote_sha256": "a11722fa07c648657b2f95c6e4dd2be47f15687eacb92f56b7a9530c7d788286",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156783898-198563366.hwpx",
+   "field": "scale",
+   "unit_id": "s0:p52",
+   "program_sha256": "21bf8faea24b4a05",
+   "quote_sha256": "68852289a837784b6ec505caba25ba66672119a4b71e186d511fb02a6cf5404b",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156783898-198563366.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1170934774:1,1",
+   "program_sha256": "21bf8faea24b4a05",
+   "quote_sha256": "f40356ea941dece83b95f279d132c0a0d30b9195228aa1fb677e015c80851a91",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156783148-198559698.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p5",
+   "program_sha256": "101b7247e384dde0",
+   "quote_sha256": "101b7247e384dde01e97e6f3034096bfe84ed4779fb98009a3af7cd7205d71c9",
+   "quote_chars": 12
+  },
+  {
+   "doc": "kr-156783148-198559698.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p7",
+   "program_sha256": "101b7247e384dde0",
+   "quote_sha256": "561f7b4710a6c32f079a4a750a44aac2285ff4ca3bd704781ed321de1f596811",
+   "quote_chars": 18
+  },
+  {
+   "doc": "kr-156783148-198559698.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p15",
+   "program_sha256": "101b7247e384dde0",
+   "quote_sha256": "3485169a888534f82dc9daf5501460f6f39e856329254be62bc520a296ee7951",
+   "quote_chars": 16
+  },
+  {
+   "doc": "kr-156783148-198559698.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p7",
+   "program_sha256": "101b7247e384dde0",
+   "quote_sha256": "c27b0a2c3b81cd5ea9de0e19b3f259c1734f9248badd33b059af0c70c9c3c9c1",
+   "quote_chars": 19
+  },
+  {
+   "doc": "kr-156783148-198559698.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1137468016:1,1",
+   "program_sha256": "101b7247e384dde0",
+   "quote_sha256": "734d7b9a8c480baa162f5864d0d8688d72e570b3cc28dc8165e84df267273e7f",
+   "quote_chars": 15
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p8",
+   "program_sha256": "b86ca5f4c266f176",
+   "quote_sha256": "6b56e4ed087c295e99636bf2802fb5634a6d84911fe80af764265b5ee1ede961",
+   "quote_chars": 13
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p8",
+   "program_sha256": "b86ca5f4c266f176",
+   "quote_sha256": "6a827bb714df7cae2cbdade00d4a054c99074bbe810087c3928e6c434defe20e",
+   "quote_chars": 8
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p10",
+   "program_sha256": "b86ca5f4c266f176",
+   "quote_sha256": "1a3a45ba8685800cc0b5d4c6dd18ed61d7e80df21a7947ec5b177fdb22679ced",
+   "quote_chars": 22
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "field": "application",
+   "unit_id": "s0:p10",
+   "program_sha256": "b86ca5f4c266f176",
+   "quote_sha256": "5451419eb581d4f5a846e3f26b36d734e027486c9f0a5327caa965a789c6035e",
+   "quote_chars": 17
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p10",
+   "program_sha256": "b86ca5f4c266f176",
+   "quote_sha256": "5b0a93f6c9217394710ad449baba14b42f53d0ff60ea5b81e55bf33a94d91fe5",
+   "quote_chars": 12
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "field": "region",
+   "unit_id": "s0:p10",
+   "program_sha256": "b86ca5f4c266f176",
+   "quote_sha256": "37d771ab0535f0081b7ae271bfcb59a6be35c2e5cd004004dfb15c125eb9b5f9",
+   "quote_chars": 18
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "field": "scale",
+   "unit_id": "s0:p12",
+   "program_sha256": "b86ca5f4c266f176",
+   "quote_sha256": "847314640f212de1ddfba9ff1792146f58f9676b3ba8c4bab3dfe1f96c3ddfff",
+   "quote_chars": 11
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "field": "scale",
+   "unit_id": "s0:p14",
+   "program_sha256": "b86ca5f4c266f176",
+   "quote_sha256": "9ec6a223a5bfabfbcecdd2bf268164bd4587d2cb25e39ac2c8454a8e66b263b7",
+   "quote_chars": 13
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p14",
+   "program_sha256": "b86ca5f4c266f176",
+   "quote_sha256": "a3a0687b71f9282250ee78c05a284d798f78c3c167de35e0ff89ee22361d3858",
+   "quote_chars": 19
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "field": "scale",
+   "unit_id": "s0:p16",
+   "program_sha256": "b86ca5f4c266f176",
+   "quote_sha256": "00be087ae040957cc8fc785ed9f144d861ac8b6399f97ea12f9adb6abee866e3",
+   "quote_chars": 13
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t2129144478:1,1",
+   "program_sha256": "b86ca5f4c266f176",
+   "quote_sha256": "ea032588d90fbf325bfd14e1968bfc80da113b62a7a9daea7a9ce24a4aaa79e3",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t2129144478:3,1",
+   "program_sha256": "b86ca5f4c266f176",
+   "quote_sha256": "095133de7b6fd635739cd041543c26c60edcd47954d64a81f4dfb03483015ef5",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "field": "legal_basis",
+   "unit_id": "s1:p4",
+   "program_sha256": "055eb658f0c5ac46",
+   "quote_sha256": "411c044a91c864dd3c574854ad6c429111c57a37e346e80c900f6fa3cd552ae7",
+   "quote_chars": 19
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "field": "scale",
+   "unit_id": "s1:p22",
+   "program_sha256": "055eb658f0c5ac46",
+   "quote_sha256": "e5a747fcd245353f25e090e78981218f1e6386a586c43c592d12bedd497ecdf9",
+   "quote_chars": 15
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s1:p20",
+   "program_sha256": "055eb658f0c5ac46",
+   "quote_sha256": "60d87186770191eb0af9c49c88d317e02aa83f374dde56dd2e36b95d439e8132",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "field": "scope",
+   "unit_id": "s1:p26",
+   "program_sha256": "055eb658f0c5ac46",
+   "quote_sha256": "7abca7902c4762997e102f5ff5800400cea7911bb2d4c9ce64efd21dc6bd1eff",
+   "quote_chars": 13
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "field": "agency",
+   "unit_id": "s1:p32",
+   "program_sha256": "055eb658f0c5ac46",
+   "quote_sha256": "6f7c090c8c5f87b7d0eb06199920d4b483c41544c1e85c4320a2809d5503dbbf",
+   "quote_chars": 16
+  },
+  {
+   "doc": "kr-156783928-198563483.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p5",
+   "program_sha256": "2452af252f18866a",
+   "quote_sha256": "92ca94215e6c6c546fd6876ee8d3648714e72d896b6ddc5e93e477a464df6aba",
+   "quote_chars": 17
+  },
+  {
+   "doc": "kr-156783928-198563483.hwpx",
+   "field": "region",
+   "unit_id": "s0:p5",
+   "program_sha256": "2452af252f18866a",
+   "quote_sha256": "da07bd499d09e09b02b56ff77d8c589f83370a900e28ae92fb33d6179ae21f7f",
+   "quote_chars": 15
+  },
+  {
+   "doc": "kr-156783928-198563483.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p43",
+   "program_sha256": "2452af252f18866a",
+   "quote_sha256": "8b382698c5d0b2d0876f74efedf7587f83165bcaaf193119bc7cef08429d6ddc",
+   "quote_chars": 28
+  },
+  {
+   "doc": "kr-156783928-198563483.hwpx",
+   "field": "legal_basis",
+   "unit_id": "s0:p15",
+   "program_sha256": "2452af252f18866a",
+   "quote_sha256": "0adbc762b3e73042bf2b176707059fa9f43a24568e8f8c4c4850a8b6a370346b",
+   "quote_chars": 14
+  },
+  {
+   "doc": "kr-156783928-198563483.hwpx",
+   "field": "scale",
+   "unit_id": "s0:p47",
+   "program_sha256": "2452af252f18866a",
+   "quote_sha256": "6e15ebca07f8a1c1872eb5486dfeb82c5d7229e9b630e23a17a068bf1e834322",
+   "quote_chars": 40
+  },
+  {
+   "doc": "kr-156783928-198563483.hwpx",
+   "field": "exception",
+   "unit_id": "s0:p47",
+   "program_sha256": "2452af252f18866a",
+   "quote_sha256": "cd42c519fbb2177077642c7f7e9ffa2edda90f506bb9da47460fc654e1a4b3c0",
+   "quote_chars": 9
+  },
+  {
+   "doc": "kr-156783928-198563483.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:p45",
+   "program_sha256": "2452af252f18866a",
+   "quote_sha256": "5ce2d6eaf15c013ad7eb4fe03d01853729e84a794cb1228f5fb559ded6dcd96d",
+   "quote_chars": 15
+  },
+  {
+   "doc": "kr-156783928-198563483.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p45",
+   "program_sha256": "2452af252f18866a",
+   "quote_sha256": "db7866388dcb87f461092bde9fa254e95616d411497c3faa35db527535f1b65c",
+   "quote_chars": 20
+  },
+  {
+   "doc": "kr-156783928-198563483.hwpx",
+   "field": "scope",
+   "unit_id": "s0:t1208018103:4,2",
+   "program_sha256": "2452af252f18866a",
+   "quote_sha256": "fbd58121ca82500aa2277d42e8ac60548615199725622c0362c6c4de5d9371e6",
+   "quote_chars": 11
+  },
+  {
+   "doc": "kr-156783928-198563483.hwpx",
+   "field": "scope",
+   "unit_id": "s0:p25",
+   "program_sha256": "2452af252f18866a",
+   "quote_sha256": "024631199e531a58e5e248fa63a095b79ff16cf14cd51680afa2817a3af4a2f8",
+   "quote_chars": 21
+  },
+  {
+   "doc": "kr-156783928-198563483.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:p37",
+   "program_sha256": "2452af252f18866a",
+   "quote_sha256": "72e02d04e82e22959649573d5e0d6407a90a03f5d4c8d85c3c3dd041f49df469",
+   "quote_chars": 20
+  },
+  {
+   "doc": "kr-156783928-198563483.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p9",
+   "program_sha256": "2452af252f18866a",
+   "quote_sha256": "b2616b9836ad963cd3b7a8ec14645d5a6a4c9a8ae0176aecd3ce8501071a218c",
+   "quote_chars": 34
+  },
+  {
+   "doc": "kr-156783928-198563483.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1165267539:1,1",
+   "program_sha256": "2452af252f18866a",
+   "quote_sha256": "43118e14d600ab331f307771eaa968ff80260c5a1c858c6badcc1f0ece4b7864",
+   "quote_chars": 9
+  },
+  {
+   "doc": "kr-156783928-198563483.hwpx",
+   "field": "scope",
+   "unit_id": "s0:t1208018103:5,2",
+   "program_sha256": "2452af252f18866a",
+   "quote_sha256": "648a2fa23413931050aae17a35801eb6c32c84dee2593c86de557f496fe17c5c",
+   "quote_chars": 11
+  },
+  {
+   "doc": "kr-156783756-198562653.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p5",
+   "program_sha256": "52c086092b2845da",
+   "quote_sha256": "4bb0f7c0adbc8b374d8d2a88a176c99c99ac018d58007dd58df15775900b1fc5",
+   "quote_chars": 28
+  },
+  {
+   "doc": "kr-156783756-198562653.hwpx",
+   "field": "region",
+   "unit_id": "s0:p5",
+   "program_sha256": "52c086092b2845da",
+   "quote_sha256": "bceae956b180575701453e01e5793bdebfc3dc434c6586b628c9f851eaa9a7e3",
+   "quote_chars": 12
+  },
+  {
+   "doc": "kr-156783756-198562653.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:p9",
+   "program_sha256": "52c086092b2845da",
+   "quote_sha256": "a35c0595e6a902d52495bbdc4da40acb92530a2276c59118346d7f2116973adf",
+   "quote_chars": 27
+  },
+  {
+   "doc": "kr-156783756-198562653.hwpx",
+   "field": "benefit",
+   "unit_id": "s0:p15",
+   "program_sha256": "52c086092b2845da",
+   "quote_sha256": "5223566148d62e3811284ca94b673721e5ff70ad6e459effce848aa4ba7901b8",
+   "quote_chars": 14
+  },
+  {
+   "doc": "kr-156783756-198562653.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1173293952:2,1",
+   "program_sha256": "52c086092b2845da",
+   "quote_sha256": "bb1afd2935a583bf430319ac122ba94c4d1a897888a29b497ef034189d6f103d",
+   "quote_chars": 9
+  },
+  {
+   "doc": "kr-156783756-198562653.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1173293952:1,1",
+   "program_sha256": "52c086092b2845da",
+   "quote_sha256": "132d180a9a3ae51231fa970024765b475f446460bba70b8d010b3353eba4d51f",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156783756-198562653.hwpx",
+   "field": "agency",
+   "unit_id": "s0:p40",
+   "program_sha256": "52c086092b2845da",
+   "quote_sha256": "ae0cb2810bad965ddf8f83eb1f05c06c054b1ff653cecd7cb40c717618297e25",
+   "quote_chars": 15
+  },
+  {
+   "doc": "kr-156783755-198562729.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:t1173245448:0,2",
+   "program_sha256": "99acef589c3d6c20",
+   "quote_sha256": "0e13183594393481afbb18f1db06198c262ad60585dc3e3422bc8b873efc4c71",
+   "quote_chars": 26
+  },
+  {
+   "doc": "kr-156783755-198562729.hwpx",
+   "field": "scale",
+   "unit_id": "s0:p7",
+   "program_sha256": "99acef589c3d6c20",
+   "quote_sha256": "6231803390f249d6169010e3f74be38112cf5f573642c84d6826e5bc84fd7f76",
+   "quote_chars": 10
+  },
+  {
+   "doc": "kr-156783755-198562729.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p46",
+   "program_sha256": "99acef589c3d6c20",
+   "quote_sha256": "86cd739570b7ec5cee4c9ba7e668384e4904bb346af143dd0eb2d0060f4fdbe1",
+   "quote_chars": 12
+  },
+  {
+   "doc": "kr-156783755-198562729.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p52",
+   "program_sha256": "99acef589c3d6c20",
+   "quote_sha256": "c9f164a95fdf49ec5ae96c751fc76dc0f44647aad65212e71f684ddc3b9f0819",
+   "quote_chars": 9
+  },
+  {
+   "doc": "kr-156783755-198562729.hwpx",
+   "field": "exception",
+   "unit_id": "s0:p39",
+   "program_sha256": "99acef589c3d6c20",
+   "quote_sha256": "2d706c9bb5ac99af23f5a6b5536b8d0d9f0da7500f7e7a7d14c96edbff142758",
+   "quote_chars": 22
+  },
+  {
+   "doc": "kr-156783755-198562729.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1170934774:1,1",
+   "program_sha256": "99acef589c3d6c20",
+   "quote_sha256": "6a6bddfa594e475eb62e1b94be0a23acd0985457e54a07d58bc8f6faef75d542",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156783142-198559659.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p7",
+   "program_sha256": "62f94fbd96b6bbd3",
+   "quote_sha256": "6f30ce97d055fb5f05e2b96563e0d3e6f2b2fa16cf80726d4236a2e81a608b55",
+   "quote_chars": 19
+  },
+  {
+   "doc": "kr-156783142-198559659.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p7",
+   "program_sha256": "62f94fbd96b6bbd3",
+   "quote_sha256": "9fb8ab43f8a84f50406af3a6c7dda37cc70c3892d5f581c537712e34e27c2658",
+   "quote_chars": 12
+  },
+  {
+   "doc": "kr-156783142-198559659.hwpx",
+   "field": "agency",
+   "unit_id": "s0:p7",
+   "program_sha256": "62f94fbd96b6bbd3",
+   "quote_sha256": "9d0ac0bb2a81e26fa3c4f507cd22bd253dd85e647961c13dc393f50f154177c7",
+   "quote_chars": 34
+  },
+  {
+   "doc": "kr-156783142-198559659.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1170934774:1,1",
+   "program_sha256": "62f94fbd96b6bbd3",
+   "quote_sha256": "37844289092eddc68d0683a6e7c2352984d8114003855e229c0b5a0ab0e60cd0",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156783490-198562721.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p20",
+   "program_sha256": "4d55b78d835f8047",
+   "quote_sha256": "3bee758e8e0a0ee9bea995a8ba11278025d1ffc2f507bc32c202d8a27cffb322",
+   "quote_chars": 13
+  },
+  {
+   "doc": "kr-156783490-198562721.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p20",
+   "program_sha256": "4d55b78d835f8047",
+   "quote_sha256": "be92fe190a43cf99cf2ce91a7de5f03de13b5f1a310c69ac5715dbb03e13db2d",
+   "quote_chars": 9
+  },
+  {
+   "doc": "kr-156783490-198562721.hwpx",
+   "field": "agency",
+   "unit_id": "s0:p20",
+   "program_sha256": "4d55b78d835f8047",
+   "quote_sha256": "ce520e675819bc87d3667a400b2913778be6b6aa5b99a9ed5dbf4bd63dcc8a02",
+   "quote_chars": 17
+  },
+  {
+   "doc": "kr-156783490-198562721.hwpx",
+   "field": "legal_basis",
+   "unit_id": "s0:p8",
+   "program_sha256": "4d55b78d835f8047",
+   "quote_sha256": "51802034dfd9683342ae5e17f5ad9529c40eb2004df78871ed249eeec2bb3c34",
+   "quote_chars": 15
+  },
+  {
+   "doc": "kr-156783490-198562721.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1170934774:1,1",
+   "program_sha256": "4d55b78d835f8047",
+   "quote_sha256": "70df076c9a371ff40153bc76c769287a6f66ae076d4827ded3cdc5be7b2cd8f9",
+   "quote_chars": 7
+  },
+  {
+   "doc": "kr-156783348-198561434.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p5",
+   "program_sha256": "706a07926d6bccd2",
+   "quote_sha256": "0e1d73b802003afb9932ed5a2415b24ce0b15f76b608d31dc0fb97d32bbcfbc1",
+   "quote_chars": 19
+  },
+  {
+   "doc": "kr-156783348-198561434.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p5",
+   "program_sha256": "706a07926d6bccd2",
+   "quote_sha256": "2f437b8bb8946963ce2ca2d08a68ec951b312962010f2f99f7c98aab6e9e4132",
+   "quote_chars": 15
+  },
+  {
+   "doc": "kr-156783348-198561434.hwpx",
+   "field": "scope",
+   "unit_id": "s0:p7",
+   "program_sha256": "706a07926d6bccd2",
+   "quote_sha256": "6f866648d26458f0af0d466a12a60afc515893d5a16b8cdfe0e174da7f3a53f3",
+   "quote_chars": 22
+  },
+  {
+   "doc": "kr-156783348-198561434.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1197674105:1,1",
+   "program_sha256": "706a07926d6bccd2",
+   "quote_sha256": "bdf03f7b768ca57b6f39f5fa7c1b36ff4d3c5207cb4087430409ae0f5b25fb9e",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156783348-198561434.hwpx",
+   "field": "scope",
+   "unit_id": "s0:p11",
+   "program_sha256": "54fc8758e8619684",
+   "quote_sha256": "d42c03593250c5ae54b8eba9d89cfeabbbfe921180928b7fd1996a9f47798960",
+   "quote_chars": 12
+  },
+  {
+   "doc": "kr-156783348-198561434.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p11",
+   "program_sha256": "54fc8758e8619684",
+   "quote_sha256": "226c053b048789e78cb9143aaf790ea5bb4fb01b3e88e047750db52bf793a7aa",
+   "quote_chars": 19
+  },
+  {
+   "doc": "kr-156783735-198562540.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p7",
+   "program_sha256": "965620971377fefd",
+   "quote_sha256": "b089ff8e85560ce8527258b739bf13cc4a7bac5dd8a06458b68991d19eb8da93",
+   "quote_chars": 11
+  },
+  {
+   "doc": "kr-156783735-198562540.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:p7",
+   "program_sha256": "965620971377fefd",
+   "quote_sha256": "8fb62b6d308b5692b258a0c08ca4cb5445a1113c23538c6643b06a4fec070873",
+   "quote_chars": 16
+  },
+  {
+   "doc": "kr-156783735-198562540.hwpx",
+   "field": "application",
+   "unit_id": "s0:p21",
+   "program_sha256": "965620971377fefd",
+   "quote_sha256": "63de95fb40fdc97187dbed5bbcea9be15b04a516556d9d4363c7bc0e4288e976",
+   "quote_chars": 18
+  },
+  {
+   "doc": "kr-156783735-198562540.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1173293952:1,1",
+   "program_sha256": "965620971377fefd",
+   "quote_sha256": "128e59f542d72efbc792e7d9b5263c550c36226505c150971e4eb6cf043882bd",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156783735-198562540.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1173293952:3,1",
+   "program_sha256": "965620971377fefd",
+   "quote_sha256": "a55663e67c66dfb078fc15e1eebeb50e3b90f9cf340570e5c0db78cc474cdb0b",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156784002-198563861.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:t1173245417:0,0",
+   "program_sha256": "06d23ee2ad31ca0d",
+   "quote_sha256": "06d23ee2ad31ca0d5ac0aa297b09187dca2c48934b65af07557df806d8e8f4ff",
+   "quote_chars": 17
+  },
+  {
+   "doc": "kr-156784002-198563861.hwpx",
+   "field": "scale",
+   "unit_id": "s0:t1173245417:1,0",
+   "program_sha256": "06d23ee2ad31ca0d",
+   "quote_sha256": "96be0cb4ffbc750478b97e525a10f321de2ee00215c4f52da963a66c587a0c5c",
+   "quote_chars": 20
+  },
+  {
+   "doc": "kr-156784002-198563861.hwpx",
+   "field": "period_cycle",
+   "unit_id": "s0:t1173245417:1,0",
+   "program_sha256": "06d23ee2ad31ca0d",
+   "quote_sha256": "7ebcc685bc1855c995021d3f58d4f77ce40bf0de1d1282ac8bc49ebc6abac95d",
+   "quote_chars": 15
+  },
+  {
+   "doc": "kr-156784002-198563861.hwpx",
+   "field": "scope",
+   "unit_id": "s0:p9",
+   "program_sha256": "06d23ee2ad31ca0d",
+   "quote_sha256": "874eb36ac85e9096117066a3bd246cb95d72680f83db9e3cf943c47911e8d437",
+   "quote_chars": 36
+  },
+  {
+   "doc": "kr-156784002-198563861.hwpx",
+   "field": "application",
+   "unit_id": "s0:p21",
+   "program_sha256": "06d23ee2ad31ca0d",
+   "quote_sha256": "b3f4304a7cce6f845f7d0ce7d1fcdff6e06559183e011015de2e6c1af3129026",
+   "quote_chars": 8
+  },
+  {
+   "doc": "kr-156784002-198563861.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1208003403:1,1",
+   "program_sha256": "06d23ee2ad31ca0d",
+   "quote_sha256": "816f6bf8d18807b8697e722d1b7b1ca7352f72d5a9ae79fd7ef01e553b27d5d8",
+   "quote_chars": 19
+  },
+  {
+   "doc": "kr-156784002-198563861.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1208003403:3,1",
+   "program_sha256": "06d23ee2ad31ca0d",
+   "quote_sha256": "33e3f8b0357f289d60372496651be49a4f07d09787409d6faabf9d6b539282e2",
+   "quote_chars": 5
+  },
+  {
+   "doc": "kr-156783914-198563422.hwpx",
+   "field": "program_name",
+   "unit_id": "s0:p23",
+   "program_sha256": "b625ff4593fe6911",
+   "quote_sha256": "74c4191b65296f6669a5318b355f1c201a6413814e798fbf2da98be62d09115a",
+   "quote_chars": 36
+  },
+  {
+   "doc": "kr-156783914-198563422.hwpx",
+   "field": "effective_date",
+   "unit_id": "s0:p24",
+   "program_sha256": "b625ff4593fe6911",
+   "quote_sha256": "f8fa2143d8a60713c87eaed709d9ae42e4d502e185df70ab7b3ed9c1cdd5bba6",
+   "quote_chars": 27
+  },
+  {
+   "doc": "kr-156783914-198563422.hwpx",
+   "field": "region",
+   "unit_id": "s0:p25",
+   "program_sha256": "b625ff4593fe6911",
+   "quote_sha256": "25bb237253ce1cf5473f9035e7a0cca5fd2ba2ea94af9a9f932a878cfa3c2b62",
+   "quote_chars": 16
+  },
+  {
+   "doc": "kr-156783914-198563422.hwpx",
+   "field": "eligibility",
+   "unit_id": "s0:p26",
+   "program_sha256": "b625ff4593fe6911",
+   "quote_sha256": "3d1b3547d6eb1ec9cc8c82cee2dc3440b2666a28d9635cbedcacfcc2f6a2b596",
+   "quote_chars": 25
+  },
+  {
+   "doc": "kr-156783914-198563422.hwpx",
+   "field": "agency",
+   "unit_id": "s0:p27",
+   "program_sha256": "b625ff4593fe6911",
+   "quote_sha256": "865043c3cbae2319f2441de79c843b6fc0a2eea1dfacb9ba59fe6ec4327d4a5a",
+   "quote_chars": 23
+  },
+  {
+   "doc": "kr-156783914-198563422.hwpx",
+   "field": "agency",
+   "unit_id": "s0:t1233906897:0,1",
+   "program_sha256": "b625ff4593fe6911",
+   "quote_sha256": "d5ce70da77cd4a3a82b9e35092d7a8bc570580131bf89644042a43171f92683b",
+   "quote_chars": 14
+  }
+ ]
+}

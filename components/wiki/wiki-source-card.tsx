@@ -40,12 +40,6 @@ export function WikiSourceCard({ source }: { readonly source: WikiSource }) {
                 {source.heading} · {source.startLine}~{source.endLine}행
               </dd>
             </div>
-            <div>
-              <dt className="inline font-semibold">추적 정보 </dt>
-              <dd className="inline font-mono">
-                절 {source.sectionId} · 문서 {source.sourceSha256?.slice(0, 12)} · DB {source.sourceDatabaseSha256?.slice(0, 12)}
-              </dd>
-            </div>
           </dl>
         ) : null}
         {source.url ? (
@@ -59,7 +53,7 @@ export function WikiSourceCard({ source }: { readonly source: WikiSource }) {
             <span className="sr-only">(새 창)</span>
           </a>
         ) : (
-          <p className="mt-2 text-muted-foreground">로컬 복지톡 DB의 2026년 사업안내 원문에서 직접 인용</p>
+          <p className="mt-2 text-muted-foreground">복지톡 사업안내 원문에서 직접 인용</p>
         )}
       </div>
     </section>

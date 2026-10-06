@@ -49,15 +49,15 @@ export function DataStatus({
       <Badge variant={loading ? "info" : style.variant}>{loading ? "데이터 불러오는 중" : style.label}</Badge>
       <p>
         <span className="text-muted-foreground">자료 기준일</span>{" "}
-        <strong className="font-bold text-(--jeju-text-strong)">{meta.dataAsOf || "미설정"}</strong>
+        <strong className="font-bold text-(--jeju-text-strong)">{meta.dataAsOf || (loading ? "확인 중" : "원문에 기준일 없음")}</strong>
       </p>
       <p>
         <span className="text-muted-foreground">데이터 확인</span>{" "}
-        <strong className="font-bold text-(--jeju-text-strong)">{formatMoment(meta.fetchedAt)}</strong>
+        <strong className="font-bold text-(--jeju-text-strong)">{loading && !meta.fetchedAt ? "확인 중" : formatMoment(meta.fetchedAt)}</strong>
       </p>
       <p>
         <span className="text-muted-foreground">수록 사업</span>{" "}
-        <strong className="font-bold tabular-nums text-(--jeju-text-strong)">{rowCount.toLocaleString("ko-KR")}건</strong>
+        <strong className="font-bold tabular-nums text-(--jeju-text-strong)">{loading && !rowCount ? "확인 중" : `${rowCount.toLocaleString("ko-KR")}건`}</strong>
       </p>
       {meta.sourceLabel ? (
         <p className="text-muted-foreground">불러온 위치 {meta.sourceLabel}</p>
@@ -69,7 +69,7 @@ export function DataStatus({
       ) : null}
       {regionNote ? <p className="w-full text-muted-foreground">{regionNote}</p> : null}
       {meta.message ? <p className="w-full font-bold text-(--jeju-warning)">{meta.message}</p> : null}
-      {meta.dataAsOf ? null : (
+      {loading || meta.dataAsOf ? null : (
         <p className="w-full text-muted-foreground">
           공식 메뉴판 제목에서 자료 기준일을 확인할 수 없었습니다.
         </p>

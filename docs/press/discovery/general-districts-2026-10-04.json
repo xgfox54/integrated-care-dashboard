@@ -1,0 +1,1137 @@
+{
+ "checked_at": "2026-10-04T23:32:43.907Z",
+ "rule": "구청 누리집 첫 화면·사이트맵에 보도자료 메뉴가 없고 상위 시 게시판이 확인된 경우만 공용 게시판",
+ "results": {
+  "org:경기도:고양시:덕양구": {
+   "organization_id": "org:경기도:고양시:덕양구",
+   "parent_id": "org:경기도:고양시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.goyang.go.kr/news/user/bbs/BD_selectBbsList.do?q_bbsCode=1090&q_estnColumn1=All",
+   "checked_at": "2026-10-04T23:28:57.594Z",
+   "evidence": [
+    {
+     "url": "https://www.goyang.go.kr/www/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.goyang.go.kr/dygu/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.goyang.go.kr/www/www06/www06_7.jsp",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.goyang.go.kr/dygu/index.do",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://www.goyang.go.kr/news/user/bbs/BD_selectBbsList.do?q_bbsCode=1090&q_estnColumn1=Y"
+    },
+    {
+     "text": "보도자료",
+     "url": "https://www.goyang.go.kr/news/user/bbs/BD_selectBbsList.do?q_bbsCode=1090&q_estnColumn1=All"
+    }
+   ],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:고양시:일산동구": {
+   "organization_id": "org:경기도:고양시:일산동구",
+   "parent_id": "org:경기도:고양시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.goyang.go.kr/news/user/bbs/BD_selectBbsList.do?q_bbsCode=1090&q_estnColumn1=All",
+   "checked_at": "2026-10-04T23:29:04.025Z",
+   "evidence": [
+    {
+     "url": "https://www.goyang.go.kr/www/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.goyang.go.kr/ilsegu/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.goyang.go.kr/www/www06/www06_7.jsp",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.goyang.go.kr/ilsegu/index.do",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://www.goyang.go.kr/news/user/bbs/BD_selectBbsList.do?q_bbsCode=1090&q_estnColumn1=Y"
+    },
+    {
+     "text": "보도자료",
+     "url": "https://www.goyang.go.kr/news/user/bbs/BD_selectBbsList.do?q_bbsCode=1090&q_estnColumn1=All"
+    }
+   ],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:고양시:일산서구": {
+   "organization_id": "org:경기도:고양시:일산서구",
+   "parent_id": "org:경기도:고양시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.goyang.go.kr/news/user/bbs/BD_selectBbsList.do?q_bbsCode=1090&q_estnColumn1=All",
+   "checked_at": "2026-10-04T23:29:10.277Z",
+   "evidence": [
+    {
+     "url": "https://www.goyang.go.kr/www/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.goyang.go.kr/ilswgu/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.goyang.go.kr/www/www06/www06_7.jsp",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.goyang.go.kr/ilswgu/index.do",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://www.goyang.go.kr/news/user/bbs/BD_selectBbsList.do?q_bbsCode=1090&q_estnColumn1=Y"
+    },
+    {
+     "text": "보도자료",
+     "url": "https://www.goyang.go.kr/news/user/bbs/BD_selectBbsList.do?q_bbsCode=1090&q_estnColumn1=All"
+    }
+   ],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:부천시:원미구": {
+   "organization_id": "org:경기도:부천시:원미구",
+   "parent_id": "org:경기도:부천시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.bucheon.go.kr/site/program/board/basicboard/list?boardtypeid=26748&menuid=148002002001",
+   "checked_at": "2026-10-04T23:29:16.403Z",
+   "evidence": [
+    {
+     "url": "https://www.bucheon.go.kr/site/main/index148",
+     "result": "OK"
+    },
+    {
+     "url": "https://wonmi.bucheon.go.kr/site/main/index170",
+     "result": "OK"
+    },
+    {
+     "url": "https://wonmi.bucheon.go.kr/site/program/sitemap/list?menuid=170006001",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://wonmi.bucheon.go.kr/site/main/index170",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://wonmi.bucheon.go.kr/site/program/board/basicboard/list?boardtypeid=28108&menuid=170003002"
+    },
+    {
+     "text": "원미구 10월 2일 보도자료입니다. 2026-10-02",
+     "url": "https://wonmi.bucheon.go.kr/site/program/board/basicboard/view?boardtypeid=28108&menuid=170003002&boardid=1211009&pagesize=10"
+    },
+    {
+     "text": "원미구 9월 23일 보도자료입니다. 2026-09-23",
+     "url": "https://wonmi.bucheon.go.kr/site/program/board/basicboard/view?boardtypeid=28108&menuid=170003002&boardid=1210325&pagesize=10"
+    },
+    {
+     "text": "원미구 9월 22일 보도자료입니다. 2026-09-22",
+     "url": "https://wonmi.bucheon.go.kr/site/program/board/basicboard/view?boardtypeid=28108&menuid=170003002&boardid=1210123&pagesize=10"
+    }
+   ],
+   "verdict": "OWN_BOARD_CANDIDATE"
+  },
+  "org:경기도:부천시:소사구": {
+   "organization_id": "org:경기도:부천시:소사구",
+   "parent_id": "org:경기도:부천시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.bucheon.go.kr/site/program/board/basicboard/list?boardtypeid=26748&menuid=148002002001",
+   "checked_at": "2026-10-04T23:29:20.267Z",
+   "evidence": [
+    {
+     "url": "https://www.bucheon.go.kr/site/main/index148",
+     "result": "OK"
+    },
+    {
+     "url": "https://sosa.bucheon.go.kr/site/main/index171",
+     "result": "OK"
+    },
+    {
+     "url": "https://sosa.bucheon.go.kr/site/program/sitemap/list?menuid=171006001",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://sosa.bucheon.go.kr/site/main/index171",
+   "press_menus": [
+    {
+     "text": "소사구 10월 2일 보도자료입니다. 2026-10-02",
+     "url": "https://sosa.bucheon.go.kr/site/program/board/basicboard/view?boardtypeid=28356&menuid=171003002&boardid=1210987&pagesize=10"
+    },
+    {
+     "text": "소사구 10월 1일 보도자료입니다. 2026-10-01",
+     "url": "https://sosa.bucheon.go.kr/site/program/board/basicboard/view?boardtypeid=28356&menuid=171003002&boardid=1210772&pagesize=10"
+    },
+    {
+     "text": "소사구 9월 23일 보도자료입니다. 2026-09-23",
+     "url": "https://sosa.bucheon.go.kr/site/program/board/basicboard/view?boardtypeid=28356&menuid=171003002&boardid=1210271&pagesize=10"
+    },
+    {
+     "text": "소사구 9월 22일 보도자료입니다. 2026-09-22",
+     "url": "https://sosa.bucheon.go.kr/site/program/board/basicboard/view?boardtypeid=28356&menuid=171003002&boardid=1210113&pagesize=10"
+    }
+   ],
+   "verdict": "OWN_BOARD_CANDIDATE"
+  },
+  "org:경기도:부천시:오정구": {
+   "organization_id": "org:경기도:부천시:오정구",
+   "parent_id": "org:경기도:부천시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.bucheon.go.kr/site/program/board/basicboard/list?boardtypeid=26748&menuid=148002002001",
+   "checked_at": "2026-10-04T23:29:24.044Z",
+   "evidence": [
+    {
+     "url": "https://www.bucheon.go.kr/site/main/index148",
+     "result": "OK"
+    },
+    {
+     "url": "https://ojeong.bucheon.go.kr/site/main/index169",
+     "result": "OK"
+    },
+    {
+     "url": "https://ojeong.bucheon.go.kr/site/program/sitemap/list?menuid=169006001",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://ojeong.bucheon.go.kr/site/main/index169",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://ojeong.bucheon.go.kr/site/program/board/basicboard/list?boardtypeid=28012&menuid=169003002"
+    }
+   ],
+   "verdict": "OWN_BOARD_CANDIDATE"
+  },
+  "org:경기도:성남시:수정구": {
+   "organization_id": "org:경기도:성남시:수정구",
+   "parent_id": "org:경기도:성남시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.seongnam.go.kr/bbs010501",
+   "checked_at": "2026-10-04T23:29:27.928Z",
+   "evidence": [
+    {
+     "url": "https://www.seongnam.go.kr/index",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.sujeong-gu.go.kr/main/index.asp",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.sujeong-gu.go.kr/sub/content.asp?cIdx=153",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.sujeong-gu.go.kr/main/index.asp",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:성남시:중원구": {
+   "organization_id": "org:경기도:성남시:중원구",
+   "parent_id": "org:경기도:성남시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.seongnam.go.kr/bbs010501",
+   "checked_at": "2026-10-04T23:29:32.389Z",
+   "evidence": [
+    {
+     "url": "https://www.seongnam.go.kr/index",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.jungwongu.go.kr:10008/main/index.asp",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.jungwongu.go.kr:10008/sub/content.asp?cIdx=146",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.jungwongu.go.kr:10008/main/index.asp",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:성남시:분당구": {
+   "organization_id": "org:경기도:성남시:분당구",
+   "parent_id": "org:경기도:성남시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.seongnam.go.kr/bbs010501",
+   "checked_at": "2026-10-04T23:29:37.644Z",
+   "evidence": [
+    {
+     "url": "https://www.seongnam.go.kr/index",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.bundang-gu.go.kr:10009/main/index.asp",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.bundang-gu.go.kr:10009/sub/content.asp?cIdx=222",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.bundang-gu.go.kr:10009/main/index.asp",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:수원시:장안구": {
+   "organization_id": "org:경기도:수원시:장안구",
+   "parent_id": "org:경기도:수원시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.suwon.go.kr/web/board/BD_board.list.do?bbsCd=1043",
+   "checked_at": "2026-10-04T23:29:41.957Z",
+   "evidence": [
+    {
+     "url": "https://www.suwon.go.kr/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.suwon.go.kr/sw-www/deptHome/dep_city/city03/city03_15/city03_15_02.jsp",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.suwon.go.kr/sw-www/sw-www_09/sw-www_09_07.jsp",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.suwon.go.kr/sw-www/deptHome/dep_city/city03/city03_15/city03_15_02.jsp",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://www.suwon.go.kr/web/board/BD_board.list.do?bbsCd=1043"
+    },
+    {
+     "text": "보도자료",
+     "url": "https://www.suwon.go.kr/web/board/BD_board.list.do?bbsCd=1347"
+    },
+    {
+     "text": "보도자료",
+     "url": "http://www.suwon.go.kr/web/board/BD_board.list.do?bbsCd=1043"
+    }
+   ],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:수원시:권선구": {
+   "organization_id": "org:경기도:수원시:권선구",
+   "parent_id": "org:경기도:수원시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.suwon.go.kr/web/board/BD_board.list.do?bbsCd=1043",
+   "checked_at": "2026-10-04T23:29:47.652Z",
+   "evidence": [
+    {
+     "url": "https://www.suwon.go.kr/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.suwon.go.kr/sw-www/deptHome/dep_city/city03/city03_15/city03_15_03.jsp",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.suwon.go.kr/sw-www/sw-www_09/sw-www_09_07.jsp",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.suwon.go.kr/sw-www/deptHome/dep_city/city03/city03_15/city03_15_03.jsp",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://www.suwon.go.kr/web/board/BD_board.list.do?bbsCd=1043"
+    },
+    {
+     "text": "보도자료",
+     "url": "https://www.suwon.go.kr/web/board/BD_board.list.do?bbsCd=1347"
+    },
+    {
+     "text": "보도자료",
+     "url": "http://www.suwon.go.kr/web/board/BD_board.list.do?bbsCd=1043"
+    }
+   ],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:수원시:팔달구": {
+   "organization_id": "org:경기도:수원시:팔달구",
+   "parent_id": "org:경기도:수원시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.suwon.go.kr/web/board/BD_board.list.do?bbsCd=1043",
+   "checked_at": "2026-10-04T23:29:53.303Z",
+   "evidence": [
+    {
+     "url": "https://www.suwon.go.kr/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.suwon.go.kr/sw-www/deptHome/dep_city/city03/city03_15/city03_15_04.jsp",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.suwon.go.kr/sw-www/sw-www_09/sw-www_09_07.jsp",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.suwon.go.kr/sw-www/deptHome/dep_city/city03/city03_15/city03_15_04.jsp",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://www.suwon.go.kr/web/board/BD_board.list.do?bbsCd=1043"
+    },
+    {
+     "text": "보도자료",
+     "url": "https://www.suwon.go.kr/web/board/BD_board.list.do?bbsCd=1347"
+    },
+    {
+     "text": "보도자료",
+     "url": "http://www.suwon.go.kr/web/board/BD_board.list.do?bbsCd=1043"
+    }
+   ],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:수원시:영통구": {
+   "organization_id": "org:경기도:수원시:영통구",
+   "parent_id": "org:경기도:수원시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.suwon.go.kr/web/board/BD_board.list.do?bbsCd=1043",
+   "checked_at": "2026-10-04T23:29:58.952Z",
+   "evidence": [
+    {
+     "url": "https://www.suwon.go.kr/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.suwon.go.kr/sw-www/deptHome/dep_city/city03/city03_15/city03_15_05.jsp",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.suwon.go.kr/sw-www/sw-www_09/sw-www_09_07.jsp",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.suwon.go.kr/sw-www/deptHome/dep_city/city03/city03_15/city03_15_05.jsp",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://www.suwon.go.kr/web/board/BD_board.list.do?bbsCd=1043"
+    },
+    {
+     "text": "보도자료",
+     "url": "https://www.suwon.go.kr/web/board/BD_board.list.do?bbsCd=1347"
+    },
+    {
+     "text": "보도자료",
+     "url": "http://www.suwon.go.kr/web/board/BD_board.list.do?bbsCd=1043"
+    }
+   ],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:안산시:상록구": {
+   "organization_id": "org:경기도:안산시:상록구",
+   "parent_id": "org:경기도:안산시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.ansan.go.kr/www/common/bbs/selectPageListBbs.do?bbs_code=B0238",
+   "checked_at": "2026-10-04T23:30:04.532Z",
+   "evidence": [
+    {
+     "url": "https://www.ansan.go.kr/www/main/main.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.ansan.go.kr/sangnokgu/main/main.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.ansan.go.kr/sangnokgu/common/sitemap.do",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.ansan.go.kr/sangnokgu/main/main.do",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:안산시:단원구": {
+   "organization_id": "org:경기도:안산시:단원구",
+   "parent_id": "org:경기도:안산시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.ansan.go.kr/www/common/bbs/selectPageListBbs.do?bbs_code=B0238",
+   "checked_at": "2026-10-04T23:30:12.020Z",
+   "evidence": [
+    {
+     "url": "https://www.ansan.go.kr/www/main/main.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.ansan.go.kr/danwongu/main/main.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.ansan.go.kr/danwongu/common/sitemap.do",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.ansan.go.kr/danwongu/main/main.do",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:안양시:만안구": {
+   "organization_id": "org:경기도:안양시:만안구",
+   "parent_id": "org:경기도:안양시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.anyang.go.kr/main/selectPressReleaseList.do?key=4107&bbsNo=1687",
+   "checked_at": "2026-10-04T23:30:18.934Z",
+   "evidence": [
+    {
+     "url": "https://www.anyang.go.kr/main/selectBbsNttList.do?bbsNo=12&key=21",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.anyang.go.kr/manan/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.anyang.go.kr/manan/sitemap.do?key=2031",
+     "result": "OK"
+    }
+   ],
+   "district_homepage_basis": "제목 '만안구청 - 안양시'. 시 첫 화면에는 '만안구 행정복지센터' 등만 있고 '만안구청' 링크가 없음",
+   "district_homepage": "https://www.anyang.go.kr/manan/index.do",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:안양시:동안구": {
+   "organization_id": "org:경기도:안양시:동안구",
+   "parent_id": "org:경기도:안양시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.anyang.go.kr/main/selectPressReleaseList.do?key=4107&bbsNo=1687",
+   "checked_at": "2026-10-04T23:30:26.814Z",
+   "evidence": [
+    {
+     "url": "https://www.anyang.go.kr/main/selectBbsNttList.do?bbsNo=12&key=21",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.anyang.go.kr/main/contents.do?key=643",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.anyang.go.kr/main/sitemap.do?key=867",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.anyang.go.kr/main/contents.do?key=643",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://www.anyang.go.kr/main/emwsWebList.do?key=4107&searchGosiSe=new"
+    },
+    {
+     "text": "보도자료",
+     "url": "https://www.anyang.go.kr/main/selectPressReleaseList.do?key=4107&bbsNo=1687"
+    }
+   ],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:용인시:처인구": {
+   "organization_id": "org:경기도:용인시:처인구",
+   "parent_id": "org:경기도:용인시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.yongin.go.kr/user/bbs/BD_selectBbsList.do?q_bbsCode=1162",
+   "checked_at": "2026-10-04T23:30:33.551Z",
+   "evidence": [
+    {
+     "url": "https://www.yongin.go.kr/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.cheoingu.go.kr/home/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.cheoingu.go.kr/home/sitemap.do",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.cheoingu.go.kr/home/index.do",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:용인시:기흥구": {
+   "organization_id": "org:경기도:용인시:기흥구",
+   "parent_id": "org:경기도:용인시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.yongin.go.kr/user/bbs/BD_selectBbsList.do?q_bbsCode=1162",
+   "checked_at": "2026-10-04T23:30:42.318Z",
+   "evidence": [
+    {
+     "url": "https://www.yongin.go.kr/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.giheunggu.go.kr/index.asp",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.giheunggu.go.kr/_lmth/07_mem/sitemap.asp",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.giheunggu.go.kr/index.asp",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:용인시:수지구": {
+   "organization_id": "org:경기도:용인시:수지구",
+   "parent_id": "org:경기도:용인시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.yongin.go.kr/user/bbs/BD_selectBbsList.do?q_bbsCode=1162",
+   "checked_at": "2026-10-04T23:30:47.786Z",
+   "evidence": [
+    {
+     "url": "https://www.yongin.go.kr/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.sujigu.go.kr/index.asp",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.sujigu.go.kr/lmth/08sitemap.asp",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.sujigu.go.kr/index.asp",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:화성시:만세구": {
+   "organization_id": "org:경기도:화성시:만세구",
+   "parent_id": "org:경기도:화성시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.hscity.go.kr/www/user/bbs/BD_selectBbsList.do?q_bbsCode=1051",
+   "checked_at": "2026-10-04T23:30:54.223Z",
+   "evidence": [
+    {
+     "url": "https://www.hscity.go.kr/www/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.hscity.go.kr/manse/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.hscity.go.kr/manse/office/siteMap/manseguSiteMap.do",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.hscity.go.kr/manse/index.do",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:화성시:효행구": {
+   "organization_id": "org:경기도:화성시:효행구",
+   "parent_id": "org:경기도:화성시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.hscity.go.kr/www/user/bbs/BD_selectBbsList.do?q_bbsCode=1051",
+   "checked_at": "2026-10-04T23:30:59.600Z",
+   "evidence": [
+    {
+     "url": "https://www.hscity.go.kr/www/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.hscity.go.kr/hyohaeng/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.hscity.go.kr/manse/office/siteMap/manseguSiteMap.do",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.hscity.go.kr/hyohaeng/index.do",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:화성시:병점구": {
+   "organization_id": "org:경기도:화성시:병점구",
+   "parent_id": "org:경기도:화성시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.hscity.go.kr/www/user/bbs/BD_selectBbsList.do?q_bbsCode=1051",
+   "checked_at": "2026-10-04T23:31:04.859Z",
+   "evidence": [
+    {
+     "url": "https://www.hscity.go.kr/www/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.hscity.go.kr/byeongjeom/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.hscity.go.kr/manse/office/siteMap/manseguSiteMap.do",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.hscity.go.kr/byeongjeom/index.do",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경기도:화성시:동탄구": {
+   "organization_id": "org:경기도:화성시:동탄구",
+   "parent_id": "org:경기도:화성시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.hscity.go.kr/www/user/bbs/BD_selectBbsList.do?q_bbsCode=1051",
+   "checked_at": "2026-10-04T23:31:10.054Z",
+   "evidence": [
+    {
+     "url": "https://www.hscity.go.kr/www/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.hscity.go.kr/dongtan/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.hscity.go.kr/manse/office/siteMap/manseguSiteMap.do",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.hscity.go.kr/dongtan/index.do",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경상남도:창원시:의창구": {
+   "organization_id": "org:경상남도:창원시:의창구",
+   "parent_id": "org:경상남도:창원시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web",
+   "checked_at": "2026-10-04T23:31:15.315Z",
+   "evidence": [
+    {
+     "url": "https://www.changwon.go.kr/cwportal/main.web",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.changwon.go.kr/cwportal/10671/10672/10679.web",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.changwon.go.kr/cwportal/10783/10784.web",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.changwon.go.kr/cwportal/10671/10672/10679.web",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web"
+    },
+    {
+     "text": "보도해명자료",
+     "url": "https://www.changwon.go.kr/cwportal/10310/10429/10433.web"
+    }
+   ],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경상남도:창원시:성산구": {
+   "organization_id": "org:경상남도:창원시:성산구",
+   "parent_id": "org:경상남도:창원시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web",
+   "checked_at": "2026-10-04T23:31:21.525Z",
+   "evidence": [
+    {
+     "url": "https://www.changwon.go.kr/cwportal/main.web",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.changwon.go.kr/cwportal/10671/10672/10680.web",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.changwon.go.kr/cwportal/10783/10784.web",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.changwon.go.kr/cwportal/10671/10672/10680.web",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web"
+    },
+    {
+     "text": "보도해명자료",
+     "url": "https://www.changwon.go.kr/cwportal/10310/10429/10433.web"
+    }
+   ],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경상남도:창원시:마산합포구": {
+   "organization_id": "org:경상남도:창원시:마산합포구",
+   "parent_id": "org:경상남도:창원시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web",
+   "checked_at": "2026-10-04T23:31:27.609Z",
+   "evidence": [
+    {
+     "url": "https://www.changwon.go.kr/cwportal/main.web",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.changwon.go.kr/cwportal/10671/10672/10681.web",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.changwon.go.kr/cwportal/10783/10784.web",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.changwon.go.kr/cwportal/10671/10672/10681.web",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web"
+    },
+    {
+     "text": "보도해명자료",
+     "url": "https://www.changwon.go.kr/cwportal/10310/10429/10433.web"
+    }
+   ],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경상남도:창원시:마산회원구": {
+   "organization_id": "org:경상남도:창원시:마산회원구",
+   "parent_id": "org:경상남도:창원시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web",
+   "checked_at": "2026-10-04T23:31:33.741Z",
+   "evidence": [
+    {
+     "url": "https://www.changwon.go.kr/cwportal/main.web",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.changwon.go.kr/cwportal/10671/10672/10682.web",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.changwon.go.kr/cwportal/10783/10784.web",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.changwon.go.kr/cwportal/10671/10672/10682.web",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web"
+    },
+    {
+     "text": "보도해명자료",
+     "url": "https://www.changwon.go.kr/cwportal/10310/10429/10433.web"
+    }
+   ],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경상남도:창원시:진해구": {
+   "organization_id": "org:경상남도:창원시:진해구",
+   "parent_id": "org:경상남도:창원시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web",
+   "checked_at": "2026-10-04T23:31:39.784Z",
+   "evidence": [
+    {
+     "url": "https://www.changwon.go.kr/cwportal/main.web",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.changwon.go.kr/cwportal/10671/10672/10683.web",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.changwon.go.kr/cwportal/10783/10784.web",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.changwon.go.kr/cwportal/10671/10672/10683.web",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web"
+    },
+    {
+     "text": "보도해명자료",
+     "url": "https://www.changwon.go.kr/cwportal/10310/10429/10433.web"
+    }
+   ],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경상북도:포항시:남구": {
+   "organization_id": "org:경상북도:포항시:남구",
+   "parent_id": "org:경상북도:포항시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.pohang.go.kr/news/board/post/list.do?bcIdx=644&mid=0102000000",
+   "checked_at": "2026-10-04T23:31:45.806Z",
+   "evidence": [
+    {
+     "url": "https://www.pohang.go.kr/main.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.pohang.go.kr/gu/contents.do?mid=0103020000",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.pohang.go.kr/portal/guide/siteMap.do?mid=0601000000",
+     "result": "OK"
+    }
+   ],
+   "district_homepage_basis": "시 첫 화면 링크 '남구청 전화번호 안내'가 여는 시 누리집 /gu/ 구청 화면",
+   "district_homepage": "https://www.pohang.go.kr/gu/contents.do?mid=0103020000",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:경상북도:포항시:북구": {
+   "organization_id": "org:경상북도:포항시:북구",
+   "parent_id": "org:경상북도:포항시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.pohang.go.kr/news/board/post/list.do?bcIdx=644&mid=0102000000",
+   "checked_at": "2026-10-04T23:31:51.969Z",
+   "evidence": [
+    {
+     "url": "https://www.pohang.go.kr/main.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.pohang.go.kr/gu/contents.do?mid=0203020000",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.pohang.go.kr/portal/guide/siteMap.do?mid=0601000000",
+     "result": "OK"
+    }
+   ],
+   "district_homepage_basis": "시 첫 화면 링크 '북구청 전화번호 안내'가 여는 시 누리집 /gu/ 구청 화면",
+   "district_homepage": "https://www.pohang.go.kr/gu/contents.do?mid=0203020000",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:전북특별자치도:전주시:완산구": {
+   "organization_id": "org:전북특별자치도:전주시:완산구",
+   "parent_id": "org:전북특별자치도:전주시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.jeonju.go.kr/planweb/board/list.9is?contentUid=ff8080818990c349018b041a87fe3960&boardUid=ff8080818b5bc5cf018ba8ca7216641f&contentUid=ff8080818990c349018b041a87fe3960&subPath=",
+   "checked_at": "2026-10-04T23:31:58.264Z",
+   "evidence": [
+    {
+     "url": "https://www.jeonju.go.kr/",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.jeonju.go.kr/wansangu",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.jeonju.go.kr/index.9is?contentUid=ff8080818bb37ae9018bcce235bb1c8b",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.jeonju.go.kr/wansangu",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:전북특별자치도:전주시:덕진구": {
+   "organization_id": "org:전북특별자치도:전주시:덕진구",
+   "parent_id": "org:전북특별자치도:전주시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.jeonju.go.kr/planweb/board/list.9is?contentUid=ff8080818990c349018b041a87fe3960&boardUid=ff8080818b5bc5cf018ba8ca7216641f&contentUid=ff8080818990c349018b041a87fe3960&subPath=",
+   "checked_at": "2026-10-04T23:32:08.754Z",
+   "evidence": [
+    {
+     "url": "https://www.jeonju.go.kr/",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.jeonju.go.kr/deokjingu",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.jeonju.go.kr/index.9is?contentUid=ff8080818bb37ae9018bcd6ecbd61fc1",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.jeonju.go.kr/deokjingu",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:충청남도:천안시:동남구": {
+   "organization_id": "org:충청남도:천안시:동남구",
+   "parent_id": "org:충청남도:천안시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.cheonan.go.kr/bbs/BBSMSTR_000000000030/list.do",
+   "checked_at": "2026-10-04T23:32:19.122Z",
+   "evidence": [
+    {
+     "url": "https://www.cheonan.go.kr/kor.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.cheonan.go.kr/dongnam.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.cheonan.go.kr/dongnam/sitemap.do",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.cheonan.go.kr/dongnam.do",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:충청남도:천안시:서북구": {
+   "organization_id": "org:충청남도:천안시:서북구",
+   "parent_id": "org:충청남도:천안시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.cheonan.go.kr/bbs/BBSMSTR_000000000030/list.do",
+   "checked_at": "2026-10-04T23:32:24.103Z",
+   "evidence": [
+    {
+     "url": "https://www.cheonan.go.kr/kor.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.cheonan.go.kr/seobuk.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.cheonan.go.kr/seobuk/sitemap.do",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.cheonan.go.kr/seobuk.do",
+   "press_menus": [],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:충청북도:청주시:상당구": {
+   "organization_id": "org:충청북도:청주시:상당구",
+   "parent_id": "org:충청북도:청주시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.cheongju.go.kr/www/selectBbsNttList.do?bbsNo=40&key=23485",
+   "checked_at": "2026-10-04T23:32:29.013Z",
+   "evidence": [
+    {
+     "url": "https://www.cheongju.go.kr/www/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.cheongju.go.kr/www/contents.do?key=23129&integrDeptCode=000100186",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.cheongju.go.kr/www/contents.do?key=23129&integrDeptCode=000100186",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://www.cheongju.go.kr/www/selectBbsNttList.do?bbsNo=40&key=23485"
+    },
+    {
+     "text": "도정보도자료",
+     "url": "https://www.chungbuk.go.kr/www/selectBbsNttList.do?bbsNo=65&key=429"
+    }
+   ],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:충청북도:청주시:서원구": {
+   "organization_id": "org:충청북도:청주시:서원구",
+   "parent_id": "org:충청북도:청주시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.cheongju.go.kr/www/selectBbsNttList.do?bbsNo=40&key=23485",
+   "checked_at": "2026-10-04T23:32:32.866Z",
+   "evidence": [
+    {
+     "url": "https://www.cheongju.go.kr/www/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.cheongju.go.kr/www/contents.do?key=23130",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.cheongju.go.kr/www/contents.do?key=23130",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://www.cheongju.go.kr/www/selectBbsNttList.do?bbsNo=40&key=23485"
+    },
+    {
+     "text": "도정보도자료",
+     "url": "https://www.chungbuk.go.kr/www/selectBbsNttList.do?bbsNo=65&key=429"
+    }
+   ],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:충청북도:청주시:흥덕구": {
+   "organization_id": "org:충청북도:청주시:흥덕구",
+   "parent_id": "org:충청북도:청주시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.cheongju.go.kr/www/selectBbsNttList.do?bbsNo=40&key=23485",
+   "checked_at": "2026-10-04T23:32:36.552Z",
+   "evidence": [
+    {
+     "url": "https://www.cheongju.go.kr/www/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.cheongju.go.kr/www/contents.do?key=23135",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.cheongju.go.kr/www/contents.do?key=23135",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://www.cheongju.go.kr/www/selectBbsNttList.do?bbsNo=40&key=23485"
+    },
+    {
+     "text": "도정보도자료",
+     "url": "https://www.chungbuk.go.kr/www/selectBbsNttList.do?bbsNo=65&key=429"
+    }
+   ],
+   "verdict": "SHARED_PARENT_BOARD"
+  },
+  "org:충청북도:청주시:청원구": {
+   "organization_id": "org:충청북도:청주시:청원구",
+   "parent_id": "org:충청북도:청주시",
+   "parent_survey": "endpoint_confirmed",
+   "parent_endpoint": "https://www.cheongju.go.kr/www/selectBbsNttList.do?bbsNo=40&key=23485",
+   "checked_at": "2026-10-04T23:32:40.239Z",
+   "evidence": [
+    {
+     "url": "https://www.cheongju.go.kr/www/index.do",
+     "result": "OK"
+    },
+    {
+     "url": "https://www.cheongju.go.kr/www/contents.do?key=23136",
+     "result": "OK"
+    }
+   ],
+   "district_homepage": "https://www.cheongju.go.kr/www/contents.do?key=23136",
+   "press_menus": [
+    {
+     "text": "보도자료",
+     "url": "https://www.cheongju.go.kr/www/selectBbsNttList.do?bbsNo=40&key=23485"
+    },
+    {
+     "text": "도정보도자료",
+     "url": "https://www.chungbuk.go.kr/www/selectBbsNttList.do?bbsNo=65&key=429"
+    }
+   ],
+   "verdict": "SHARED_PARENT_BOARD"
+  }
+ }
+}

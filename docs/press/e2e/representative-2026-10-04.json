@@ -1,0 +1,562 @@
+{
+  "as_of": "2026-10-04",
+  "executed_at": "2026-10-03T19:01:43.033Z",
+  "runner": "로컬 PC(Node v24.18.0), 실제 공식 endpoint 호출, 임시 SQLite",
+  "note": "대표 12곳 표본의 실제 상태다. 전국 수집 성공률이 아니며, Cloudflare Workers 운영 환경의 접근 가능 여부(예: 전남광주 522)와 다를 수 있다.",
+  "succeeded": 9,
+  "results": [
+    {
+      "organization_id": "org:mohw",
+      "name": "보건복지부",
+      "organization_type": "CENTRAL",
+      "lifecycle": "ACTIVE",
+      "survey": {
+        "survey_category": "endpoint_confirmed",
+        "survey_detail": "ENDPOINT_VERIFIED",
+        "survey_reason": "보건복지부 공식 보도자료 RSS(robots Allow) 확인",
+        "endpoint_url": "https://www.mohw.go.kr/rss/board.es?mid=a10503000000&bid=0027&info"
+      },
+      "sources": [
+        {
+          "source_id": "src:mohw:press-rss",
+          "method": "RSS",
+          "adapter": "RSSAdapter",
+          "endpoint_url": "https://www.mohw.go.kr/rss/board.es?mid=a10503000000&bid=0027&info",
+          "verification_status": "ENDPOINT_VERIFIED",
+          "result": "succeeded",
+          "error_code": null,
+          "http_status": 200,
+          "elapsed_ms": 768,
+          "counts": {
+            "feedItems": 30,
+            "rejected": 0,
+            "created": 30,
+            "updated": 0,
+            "unchanged": 0,
+            "welfare": 24,
+            "review": 1,
+            "nonWelfare": 5
+          },
+          "latest_published_date": "2026-10-02",
+          "sample": [
+            {
+              "title": "공적입양체계 전환 후 결연 실적 9월 기준 122명, 제3차 입양정책위원회 개최",
+              "url": "https://www.mohw.go.kr/board.es?mid=a10503000000&bid=0027&list_no=1492135&act=view",
+              "date": "2026-10-02",
+              "public_status": "PUBLIC"
+            },
+            {
+              "title": "제30회 노인의 날 기념식 개최",
+              "url": "https://www.mohw.go.kr/board.es?mid=a10503000000&bid=0027&list_no=1492136&act=view",
+              "date": "2026-10-02",
+              "public_status": "PUBLIC"
+            },
+            {
+              "title": "삶의 마지막까지 익숙한 곳에서 보낼 수 있도록 재가 생애말기 의료·요양·돌봄 지원방안 모색",
+              "url": "https://www.mohw.go.kr/board.es?mid=a10503000000&bid=0027&list_no=1492142&act=view",
+              "date": "2026-10-02",
+              "public_status": "PUBLIC"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "organization_id": "org:서울특별시",
+      "name": "서울특별시",
+      "organization_type": "METROPOLITAN",
+      "lifecycle": "ACTIVE",
+      "survey": {
+        "survey_category": "endpoint_confirmed",
+        "survey_detail": "ENDPOINT_VERIFIED",
+        "survey_reason": "보도자료 목록(news_report.do, bbsNo=158). robots.txt가 /news 를 Allow. 원문 주소(nttNo) 열람 확인. 공식 RSS 서버(rss.seoul.go.kr)는 응답하지 않음.",
+        "endpoint_url": "https://www.seoul.go.kr/news/news_report.do"
+      },
+      "sources": [
+        {
+          "source_id": "src:seoul:press",
+          "method": "HTML",
+          "adapter": "HTMLBoardAdapter",
+          "endpoint_url": "https://www.seoul.go.kr/news/news_report.do",
+          "verification_status": "ENDPOINT_VERIFIED",
+          "result": "succeeded",
+          "error_code": null,
+          "http_status": 200,
+          "elapsed_ms": 193,
+          "counts": {
+            "feedItems": 10,
+            "rejected": 0,
+            "created": 10,
+            "updated": 0,
+            "unchanged": 0,
+            "welfare": 3,
+            "review": 0,
+            "nonWelfare": 7
+          },
+          "latest_published_date": "2026-10-03",
+          "sample": [
+            {
+              "title": "(자료제공) 서울시장 사후동정 - 오세훈 시장, 3일(토) 2026 강남페스티벌 참석",
+              "url": "https://www.seoul.go.kr/news/news_report.do?bbsNo=158&nttNo=467627",
+              "date": "2026-10-03",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "(석간) “외국인 창업가를 서울의 성장 동력으로”…서울시, 글로벌 창업 인재 발굴",
+              "url": "https://www.seoul.go.kr/news/news_report.do?bbsNo=158&nttNo=467511",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "(석간) 시민이 기부한 서울페이+ 잔액 2억 6천만 원, 위기가정·아이들 위한 나눔 됐다",
+              "url": "https://www.seoul.go.kr/news/news_report.do?bbsNo=158&nttNo=467512",
+              "date": "2026-10-02",
+              "public_status": "PUBLIC"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "organization_id": "org:전남광주통합특별시",
+      "name": "전남광주통합특별시",
+      "organization_type": "METROPOLITAN",
+      "lifecycle": "ACTIVE",
+      "survey": {
+        "survey_category": "endpoint_confirmed",
+        "survey_detail": "ENDPOINT_VERIFIED",
+        "survey_reason": "보도자료 목록(JG_0000000003). robots.txt가 Allow. 원문 주소(seq) 열람 확인.",
+        "endpoint_url": "https://www.jeonnam-gwangju.go.kr/boardList.do?boardId=JG_0000000003&pageId=jngj22"
+      },
+      "sources": [
+        {
+          "source_id": "src:jeonnam-gwangju:press",
+          "method": "HTML",
+          "adapter": "HTMLBoardAdapter",
+          "endpoint_url": "https://www.jeonnam-gwangju.go.kr/boardList.do?boardId=JG_0000000003&pageId=jngj22",
+          "verification_status": "ENDPOINT_VERIFIED",
+          "result": "succeeded",
+          "error_code": null,
+          "http_status": 200,
+          "elapsed_ms": 1147,
+          "counts": {
+            "feedItems": 10,
+            "rejected": 0,
+            "created": 10,
+            "updated": 0,
+            "unchanged": 0,
+            "welfare": 0,
+            "review": 2,
+            "nonWelfare": 8
+          },
+          "latest_published_date": "2026-10-03",
+          "sample": [
+            {
+              "title": "빛고을국민안전체험관 개관 5주년…16일 ‘안전동행 데이’ 운영",
+              "url": "https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&boardId=JG_0000000003&seq=868",
+              "date": "2026-10-03",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "전남광주통합특별시, 시민 곁으로 찾아가는 토요 문화공연",
+              "url": "https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&boardId=JG_0000000003&seq=859",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "전남광주소방, 다중이용업소 6곳 안전관리 우수업소 예정대상 선정",
+              "url": "https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&boardId=JG_0000000003&seq=860",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "organization_id": "org:인천광역시",
+      "name": "인천광역시",
+      "organization_type": "METROPOLITAN",
+      "lifecycle": "ACTIVE",
+      "survey": {
+        "survey_category": "endpoint_confirmed",
+        "survey_detail": "ENDPOINT_VERIFIED",
+        "survey_reason": "인천소식 > 보도/해명 > 보도자료. robots.txt 없음(404). 목록 링크 안 요약(.txt)은 읽지 않고 제목(strong.subject)만 읽음. 원문 주소 열람 확인.",
+        "endpoint_url": "https://www.incheon.go.kr/IC010205"
+      },
+      "sources": [
+        {
+          "source_id": "src:incheon:press",
+          "method": "HTML",
+          "adapter": "HTMLBoardAdapter",
+          "endpoint_url": "https://www.incheon.go.kr/IC010205",
+          "verification_status": "ENDPOINT_VERIFIED",
+          "result": "succeeded",
+          "error_code": null,
+          "http_status": 200,
+          "elapsed_ms": 1749,
+          "counts": {
+            "feedItems": 10,
+            "rejected": 0,
+            "created": 10,
+            "updated": 0,
+            "unchanged": 0,
+            "welfare": 2,
+            "review": 1,
+            "nonWelfare": 7
+          },
+          "latest_published_date": "2026-10-02",
+          "sample": [
+            {
+              "title": "인천시, 재난안전 담당자 현장 대응 역량 높인다",
+              "url": "https://www.incheon.go.kr/IC010205/view?repSeq=DOM_0000000015681044",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "인천시, 청년·신혼부부‘주택 임대차 중개보수’ 연말까지 최대 30만 원 지원",
+              "url": "https://www.incheon.go.kr/IC010205/view?repSeq=DOM_0000000015681046",
+              "date": "2026-10-02",
+              "public_status": "PUBLIC"
+            },
+            {
+              "title": "인천시,‘내가 만드는 인천 일자리사업’시민제안 공모, 현장 목소리 담는다",
+              "url": "https://www.incheon.go.kr/IC010205/view?repSeq=DOM_0000000015681050",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "organization_id": "org:경기도",
+      "name": "경기도",
+      "organization_type": "METROPOLITAN",
+      "lifecycle": "ACTIVE",
+      "survey": {
+        "survey_category": "endpoint_confirmed",
+        "survey_detail": "ENDPOINT_VERIFIED",
+        "survey_reason": "경기도 홈페이지 보도자료 메뉴가 연결하는 경기도뉴스포털 보도자료 목록. robots.txt가 Allow. 공식 보도자료 RSS는 인증키가 필요해 쓰지 않음. 원문 주소 열람 확인.",
+        "endpoint_url": "https://gnews.gg.go.kr/briefing/brief_gongbo.do"
+      },
+      "sources": [
+        {
+          "source_id": "src:gyeonggi:press",
+          "method": "HTML",
+          "adapter": "HTMLBoardAdapter",
+          "endpoint_url": "https://gnews.gg.go.kr/briefing/brief_gongbo.do",
+          "verification_status": "ENDPOINT_VERIFIED",
+          "result": "succeeded",
+          "error_code": null,
+          "http_status": 200,
+          "elapsed_ms": 781,
+          "counts": {
+            "feedItems": 10,
+            "rejected": 0,
+            "created": 10,
+            "updated": 0,
+            "unchanged": 0,
+            "welfare": 0,
+            "review": 1,
+            "nonWelfare": 9
+          },
+          "latest_published_date": "2026-10-02",
+          "sample": [
+            {
+              "title": "경기도 먹거리광장, ‘제철을 색으로, AI로 상상하다’ 10월 테이스티광장 참여자 모집",
+              "url": "https://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=s017&number=71612",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "경기도, 출렁다리·스카이워크 32곳 전수점검 완료…행락철 안전사고 예방 총력",
+              "url": "https://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=s017&number=71613",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "경기도, 입주민과 관리종사자 ‘함께 웃는’ 착한아파트 6곳 선정",
+              "url": "https://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=s017&number=71614",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "organization_id": "org:제주특별자치도",
+      "name": "제주특별자치도",
+      "organization_type": "METROPOLITAN",
+      "lifecycle": "ACTIVE",
+      "survey": {
+        "survey_category": "access_blocked",
+        "survey_detail": "BLOCKED_ROBOTS",
+        "survey_reason": "보도자료 RSS가 있으나 robots.txt가 Disallow: / 이고 /news 는 허용 목록에 없음.",
+        "endpoint_url": "https://www.jeju.go.kr/news/bodo/list.htm?act=rss"
+      },
+      "sources": [
+        {
+          "source_id": "src:jeju:press",
+          "method": "HTML",
+          "adapter": "NONE",
+          "endpoint_url": "https://www.jeju.go.kr/news/bodo/list.htm?act=rss",
+          "verification_status": "BLOCKED_ROBOTS",
+          "result": "NOT_RUN",
+          "reason": "endpoint 미확인·차단 Source는 수집하지 않음"
+        }
+      ]
+    },
+    {
+      "organization_id": "org:제주특별자치도:제주시",
+      "name": "제주시",
+      "organization_type": "ADMINISTRATIVE_CITY",
+      "lifecycle": "ACTIVE",
+      "survey": {
+        "survey_category": "endpoint_confirmed",
+        "survey_detail": "AUTO_VERIFIED",
+        "survey_reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치 (메뉴: 보도자료)",
+        "endpoint_url": "https://www.jejusi.go.kr/news/communite/report.do"
+      },
+      "sources": [
+        {
+          "source_id": "src:www.jejusi.go.kr:press",
+          "method": "HTML",
+          "adapter": "HTMLBoardAdapter",
+          "endpoint_url": "https://www.jejusi.go.kr/news/communite/report.do",
+          "verification_status": "ENDPOINT_VERIFIED",
+          "result": "succeeded",
+          "error_code": null,
+          "http_status": 200,
+          "elapsed_ms": 2930,
+          "counts": {
+            "feedItems": 10,
+            "rejected": 0,
+            "created": 10,
+            "updated": 0,
+            "unchanged": 0,
+            "welfare": 5,
+            "review": 0,
+            "nonWelfare": 5
+          },
+          "latest_published_date": "2026-10-02",
+          "sample": [
+            {
+              "title": "제주시, AX 동아리 대상‘AI 업무 혁신 전문가 워크숍’개최",
+              "url": "https://www.jejusi.go.kr/news/communite/report.do?mode=detail&notice_id=2be47cdbb45445f0849afca9f5a0aad8&currentPageNo=1",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "제주보건소,‘제21회 임산부의 날’기념행사 개최",
+              "url": "https://www.jejusi.go.kr/news/communite/report.do?mode=detail&notice_id=5b375f2fc030455c9e99c37b86901401&currentPageNo=1",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "제주시, 발달재활서비스 장기 미이용자 실태조사 추진",
+              "url": "https://www.jejusi.go.kr/news/communite/report.do?mode=detail&notice_id=621e54cd2c184a6eb3fda42e0c86601e&currentPageNo=1",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "organization_id": "org:제주특별자치도:서귀포시",
+      "name": "서귀포시",
+      "organization_type": "ADMINISTRATIVE_CITY",
+      "lifecycle": "ACTIVE",
+      "survey": {
+        "survey_category": "access_blocked",
+        "survey_detail": "BLOCKED_ROBOTS",
+        "survey_reason": "홈페이지를 robots.txt가 막음",
+        "endpoint_url": null
+      },
+      "sources": []
+    },
+    {
+      "organization_id": "org:경기도:화성시",
+      "name": "화성시",
+      "organization_type": "BASIC_CITY",
+      "lifecycle": "ACTIVE",
+      "survey": {
+        "survey_category": "endpoint_confirmed",
+        "survey_detail": "AUTO_VERIFIED",
+        "survey_reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치 (메뉴: 보도자료)",
+        "endpoint_url": "https://www.hscity.go.kr/www/user/bbs/BD_selectBbsList.do?q_bbsCode=1051"
+      },
+      "sources": [
+        {
+          "source_id": "src:www.hscity.go.kr:press",
+          "method": "HTML",
+          "adapter": "HTMLBoardAdapter",
+          "endpoint_url": "https://www.hscity.go.kr/www/user/bbs/BD_selectBbsList.do?q_bbsCode=1051",
+          "verification_status": "ENDPOINT_VERIFIED",
+          "result": "succeeded",
+          "error_code": null,
+          "http_status": 200,
+          "elapsed_ms": 328,
+          "counts": {
+            "feedItems": 10,
+            "rejected": 0,
+            "created": 10,
+            "updated": 0,
+            "unchanged": 0,
+            "welfare": 4,
+            "review": 3,
+            "nonWelfare": 3
+          },
+          "latest_published_date": "2026-10-02",
+          "sample": [
+            {
+              "title": "화성특례시, ‘경기 편하G버스’ 신규 노선 2개 10월 8일 개통",
+              "url": "https://www.hscity.go.kr/www/user/bbs/BD_selectBbs.do?q_bbsCode=1051&q_bbscttSn=20261002083915997&q_deptCode=55306620000",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "화성특례시, 궁평오솔로캠핑장 임시개장... 체류형 관광 기반 확대",
+              "url": "https://www.hscity.go.kr/www/user/bbs/BD_selectBbs.do?q_bbsCode=1051&q_bbscttSn=20261002145604010&q_deptCode=55306620000",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "화성특례시, 제30회 노인의 날 기념식 개최... 세대 간 존중과 화합 되새겨",
+              "url": "https://www.hscity.go.kr/www/user/bbs/BD_selectBbs.do?q_bbsCode=1051&q_bbscttSn=20260930140522992&q_deptCode=55306620000",
+              "date": "2026-09-30",
+              "public_status": "PUBLIC"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "organization_id": "org:경기도:화성시:동탄구",
+      "name": "동탄구",
+      "organization_type": "GENERAL_DISTRICT",
+      "lifecycle": "SEED_UNVERIFIED",
+      "survey": {
+        "survey_category": "unconfirmed",
+        "survey_detail": "SEED_UNVERIFIED",
+        "survey_reason": "작업지시서 첨부의 후보 일반구. 공식 행정구역 코드·누리집으로 아직 확인하지 않음",
+        "endpoint_url": null
+      },
+      "sources": []
+    },
+    {
+      "organization_id": "org:충청북도:청주시",
+      "name": "청주시",
+      "organization_type": "BASIC_CITY",
+      "lifecycle": "ACTIVE",
+      "survey": {
+        "survey_category": "endpoint_confirmed",
+        "survey_detail": "AUTO_VERIFIED",
+        "survey_reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치 (메뉴: 보도자료)",
+        "endpoint_url": "https://www.cheongju.go.kr/www/selectBbsNttList.do?bbsNo=40&key=23485"
+      },
+      "sources": [
+        {
+          "source_id": "src:www.cheongju.go.kr:press",
+          "method": "HTML",
+          "adapter": "HTMLBoardAdapter",
+          "endpoint_url": "https://www.cheongju.go.kr/www/selectBbsNttList.do?bbsNo=40&key=23485",
+          "verification_status": "ENDPOINT_VERIFIED",
+          "result": "succeeded",
+          "error_code": null,
+          "http_status": 200,
+          "elapsed_ms": 484,
+          "counts": {
+            "feedItems": 10,
+            "rejected": 0,
+            "created": 10,
+            "updated": 0,
+            "unchanged": 0,
+            "welfare": 2,
+            "review": 3,
+            "nonWelfare": 5
+          },
+          "latest_published_date": "2026-10-02",
+          "sample": [
+            {
+              "title": "청주시, ‘어르신 그냥해드림’ 출발! 읍면동 기동반 가동",
+              "url": "https://www.cheongju.go.kr/www/selectBbsNttView.do?key=23485&bbsNo=40&nttNo=272655&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+              "date": "2026-10-02",
+              "public_status": "PUBLIC"
+            },
+            {
+              "title": "청주시 청원생명축제, 제1호 입장객 맞으며 열흘 여정 시작",
+              "url": "https://www.cheongju.go.kr/www/selectBbsNttView.do?key=23485&bbsNo=40&nttNo=272656&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "청주시, 셀트리온과 2조원 투자협약… 바이오 생산거점 도약",
+              "url": "https://www.cheongju.go.kr/www/selectBbsNttView.do?key=23485&bbsNo=40&nttNo=272657&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "organization_id": "org:경상남도:창원시",
+      "name": "창원시",
+      "organization_type": "BASIC_CITY",
+      "lifecycle": "ACTIVE",
+      "survey": {
+        "survey_category": "endpoint_confirmed",
+        "survey_detail": "AUTO_VERIFIED",
+        "survey_reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치 (메뉴: 보도자료)",
+        "endpoint_url": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web"
+      },
+      "sources": [
+        {
+          "source_id": "src:www.changwon.go.kr:press",
+          "method": "HTML",
+          "adapter": "HTMLBoardAdapter",
+          "endpoint_url": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web",
+          "verification_status": "ENDPOINT_VERIFIED",
+          "result": "succeeded",
+          "error_code": null,
+          "http_status": 200,
+          "elapsed_ms": 1543,
+          "counts": {
+            "feedItems": 10,
+            "rejected": 0,
+            "created": 10,
+            "updated": 0,
+            "unchanged": 0,
+            "welfare": 0,
+            "review": 0,
+            "nonWelfare": 10
+          },
+          "latest_published_date": "2026-10-02",
+          "sample": [
+            {
+              "title": "시민 입장에서 행정 체질 바꾸고 막힌 현안도 하나씩 해결",
+              "url": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web?gcode=1011&idx=885179&amode=view",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "창원시, 국립현대미술관 창원관 유치를 향한 총력전",
+              "url": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web?gcode=1011&idx=885180&amode=view",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "창원시, 돝섬에서 가을 감성‘렉키의 수상한 피크닉’개최",
+              "url": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web?gcode=1011&idx=885181&amode=view",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

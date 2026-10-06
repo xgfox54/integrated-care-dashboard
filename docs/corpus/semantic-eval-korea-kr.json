@@ -1,0 +1,362 @@
+{
+ "generated_at": "2026-10-04T06:10:30.284Z",
+ "golden": {
+  "file": "var/welfare-factory/golden/golden-semantic-korea-kr.json",
+  "fields": 311,
+  "docs": 24
+ },
+ "evidence_trace": {
+  "found": 311,
+  "total": 311,
+  "rate_pct": 100,
+  "meaning": "정답 인용이 파서 결과 글자에 그대로 있는 비율(구조·글자 계층)"
+ },
+ "candidate_extraction": {
+  "candidates": 0,
+  "precision_pct": null,
+  "recall_pct": 0,
+  "meaning": "factory/release/candidates.mjs(공고문 항목 규칙) 후보의 정밀도·재현율. 보류·누락도 재현율 분모에 포함"
+ },
+ "press_candidate_extraction": {
+  "candidates": 1760,
+  "precision_pct": 14.3,
+  "recall_pct": 74.3,
+  "meaning": "extractPressCandidates(보도자료 문단·표 셀 신호 규칙) 후보의 정밀도·재현율. 필드 종류가 같고 정답 인용을 포함해야 맞은 것으로 셈. 검토 보조용이라 정밀도는 낮게 설계됨"
+ },
+ "target": "작업지시서 목표: 복지 필드 정밀도·재현율 각 98% 이상. 미달이면 자동 반영 비활성(현재 모든 후보는 사람 검토 후에만 공개)",
+ "by_field": {
+  "program_name": {
+   "golden": 29,
+   "evidence_found": 29,
+   "found_by_candidates": 0,
+   "found_by_press_rules": 18,
+   "press_candidates": 229
+  },
+  "effective_date": {
+   "golden": 27,
+   "evidence_found": 27,
+   "found_by_candidates": 0,
+   "found_by_press_rules": 11,
+   "press_candidates": 56
+  },
+  "eligibility": {
+   "golden": 30,
+   "evidence_found": 30,
+   "found_by_candidates": 0,
+   "found_by_press_rules": 16,
+   "press_candidates": 203
+  },
+  "benefit": {
+   "golden": 25,
+   "evidence_found": 25,
+   "found_by_candidates": 0,
+   "found_by_press_rules": 21,
+   "press_candidates": 274
+  },
+  "agency": {
+   "golden": 70,
+   "evidence_found": 70,
+   "found_by_candidates": 0,
+   "found_by_press_rules": 64,
+   "press_candidates": 269
+  },
+  "region": {
+   "golden": 35,
+   "evidence_found": 35,
+   "found_by_candidates": 0,
+   "found_by_press_rules": 31,
+   "press_candidates": 39
+  },
+  "legal_basis": {
+   "golden": 8,
+   "evidence_found": 8,
+   "found_by_candidates": 0,
+   "found_by_press_rules": 7,
+   "press_candidates": 115
+  },
+  "period_cycle": {
+   "golden": 20,
+   "evidence_found": 20,
+   "found_by_candidates": 0,
+   "found_by_press_rules": 17,
+   "press_candidates": 161
+  },
+  "exception": {
+   "golden": 16,
+   "evidence_found": 16,
+   "found_by_candidates": 0,
+   "found_by_press_rules": 7,
+   "press_candidates": 67
+  },
+  "scope": {
+   "golden": 9,
+   "evidence_found": 9,
+   "found_by_candidates": 0,
+   "found_by_press_rules": 4,
+   "press_candidates": 84
+  },
+  "scale": {
+   "golden": 19,
+   "evidence_found": 19,
+   "found_by_candidates": 0,
+   "found_by_press_rules": 17,
+   "press_candidates": 97
+  },
+  "amount": {
+   "golden": 16,
+   "evidence_found": 16,
+   "found_by_candidates": 0,
+   "found_by_press_rules": 13,
+   "press_candidates": 45
+  },
+  "application": {
+   "golden": 7,
+   "evidence_found": 7,
+   "found_by_candidates": 0,
+   "found_by_press_rules": 5,
+   "press_candidates": 121
+  }
+ },
+ "docs": [
+  {
+   "doc": "kr-156784011-198563916.hwpx",
+   "golden": 22,
+   "evidence_found": 22,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 84,
+   "golden_found_by_press_rules": 21
+  },
+  {
+   "doc": "kr-156783452-198561312.hwpx",
+   "golden": 25,
+   "evidence_found": 25,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 108,
+   "golden_found_by_press_rules": 17
+  },
+  {
+   "doc": "kr-156783674-198563260.hwpx",
+   "golden": 12,
+   "evidence_found": 12,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 53,
+   "golden_found_by_press_rules": 10
+  },
+  {
+   "doc": "kr-156784179-198564817.hwpx",
+   "golden": 7,
+   "evidence_found": 7,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 39,
+   "golden_found_by_press_rules": 4
+  },
+  {
+   "doc": "kr-156783675-198562280.hwpx",
+   "golden": 9,
+   "evidence_found": 9,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 32,
+   "golden_found_by_press_rules": 8
+  },
+  {
+   "doc": "kr-156783988-198563752.hwpx",
+   "golden": 11,
+   "evidence_found": 11,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 33,
+   "golden_found_by_press_rules": 8
+  },
+  {
+   "doc": "kr-156784228-198565084.hwpx",
+   "golden": 18,
+   "evidence_found": 18,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 36,
+   "golden_found_by_press_rules": 16
+  },
+  {
+   "doc": "kr-156784001-198563913.hwpx",
+   "golden": 22,
+   "evidence_found": 22,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 288,
+   "golden_found_by_press_rules": 19
+  },
+  {
+   "doc": "kr-156784000-198563857.hwpx",
+   "golden": 19,
+   "evidence_found": 19,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 111,
+   "golden_found_by_press_rules": 14
+  },
+  {
+   "doc": "kr-156783932-198563505.hwpx",
+   "golden": 4,
+   "evidence_found": 4,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 52,
+   "golden_found_by_press_rules": 2
+  },
+  {
+   "doc": "kr-156783299-198560527.hwpx",
+   "golden": 52,
+   "evidence_found": 52,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 219,
+   "golden_found_by_press_rules": 48
+  },
+  {
+   "doc": "kr-156783899-198563369.hwpx",
+   "golden": 17,
+   "evidence_found": 17,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 157,
+   "golden_found_by_press_rules": 12
+  },
+  {
+   "doc": "kr-156783898-198563366.hwpx",
+   "golden": 11,
+   "evidence_found": 11,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 93,
+   "golden_found_by_press_rules": 8
+  },
+  {
+   "doc": "kr-156783148-198559698.hwpx",
+   "golden": 5,
+   "evidence_found": 5,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 14,
+   "golden_found_by_press_rules": 1
+  },
+  {
+   "doc": "kr-156784137-198564491.hwpx",
+   "golden": 17,
+   "evidence_found": 17,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 89,
+   "golden_found_by_press_rules": 11
+  },
+  {
+   "doc": "kr-156783928-198563483.hwpx",
+   "golden": 14,
+   "evidence_found": 14,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 74,
+   "golden_found_by_press_rules": 6
+  },
+  {
+   "doc": "kr-156783756-198562653.hwpx",
+   "golden": 7,
+   "evidence_found": 7,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 66,
+   "golden_found_by_press_rules": 6
+  },
+  {
+   "doc": "kr-156783755-198562729.hwpx",
+   "golden": 6,
+   "evidence_found": 6,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 36,
+   "golden_found_by_press_rules": 4
+  },
+  {
+   "doc": "kr-156783142-198559659.hwpx",
+   "golden": 4,
+   "evidence_found": 4,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 20,
+   "golden_found_by_press_rules": 4
+  },
+  {
+   "doc": "kr-156783490-198562721.hwpx",
+   "golden": 5,
+   "evidence_found": 5,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 40,
+   "golden_found_by_press_rules": 3
+  },
+  {
+   "doc": "kr-156783348-198561434.hwpx",
+   "golden": 6,
+   "evidence_found": 6,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 28,
+   "golden_found_by_press_rules": 2
+  },
+  {
+   "doc": "kr-156783735-198562540.hwpx",
+   "golden": 5,
+   "evidence_found": 5,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 16,
+   "golden_found_by_press_rules": 3
+  },
+  {
+   "doc": "kr-156784002-198563861.hwpx",
+   "golden": 7,
+   "evidence_found": 7,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 34,
+   "golden_found_by_press_rules": 3
+  },
+  {
+   "doc": "kr-156783914-198563422.hwpx",
+   "golden": 6,
+   "evidence_found": 6,
+   "candidates": 0,
+   "candidates_matching_golden": 0,
+   "golden_found_by_candidates": 0,
+   "press_candidates": 38,
+   "golden_found_by_press_rules": 1
+  }
+ ]
+}

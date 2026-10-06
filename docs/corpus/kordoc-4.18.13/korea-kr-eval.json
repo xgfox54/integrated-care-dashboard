@@ -1,0 +1,3027 @@
+{
+ "generated_at": "2026-10-05T09:12:59.248Z",
+ "corpus": {
+  "source": "https://www.korea.kr/briefing/pressReleaseList.do",
+  "robots": "https://www.korea.kr/robots.txt (User-Agent: * Allow: /)",
+  "releases": 32,
+  "files": 71
+ },
+ "golden_method": "HWPX 원본 XML(Contents/section*.xml)의 hp:tbl·hp:tc·cellAddr·cellSpan·hp:t를 kordoc 없이 직접 읽어 표 구조 정답으로 사용. 의미 필드 정답은 별도.",
+ "totals": {
+  "files": 71,
+  "by_format": {
+   "hwpx:STRUCTURE_VALIDATED": 15,
+   "pdf:NEEDS_REVIEW": 36,
+   "hwpx:NEEDS_REVIEW": 19,
+   "zip:UNSUPPORTED_FORMAT": 1
+  },
+  "structure": {
+   "tables_golden": 399,
+   "tables_matched": 398,
+   "dims_ok": 398,
+   "cells_golden": 8498,
+   "cells_found": 8495,
+   "position_span_ok": 8495,
+   "text_ok": 8460,
+   "text_markup_only": 32,
+   "text_other": 3,
+   "nested_tables": 52,
+   "nested_matched": 52
+  },
+  "missing_flagged": 1
+ },
+ "docs": [
+  {
+   "news_id": "156784228",
+   "file": "kr-156784228-198565084.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 283234,
+   "ok": true,
+   "status": "STRUCTURE_VALIDATED",
+   "error_code": null,
+   "ms": 359,
+   "reused": false,
+   "tables": 10,
+   "cells": 31,
+   "nested_tables": 2,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 10,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 0,
+   "parse_id": "p_0063f9460f707392741d5f775ef2c704",
+   "performance": {
+    "elapsed_ms": 254,
+    "peak_rss_mb": 114,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [],
+   "structure": {
+    "tables_golden": 10,
+    "tables_matched": 10,
+    "dims_ok": 10,
+    "cells_golden": 31,
+    "cells_found": 31,
+    "position_span_ok": 31,
+    "text_ok": 30,
+    "text_markup_only": 1,
+    "text_other": 0,
+    "nested_tables": 2,
+    "nested_matched": 2,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156784228",
+   "file": "kr-156784228-198565085.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 407192,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 5136,
+   "reused": false,
+   "tables": 8,
+   "cells": 27,
+   "nested_tables": 2,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 5,
+   "parse_id": "p_c7bfd474e4f90e2f66a75aa1a510a32f",
+   "performance": {
+    "elapsed_ms": 4975,
+    "peak_rss_mb": 864,
+    "parse_passes": 2
+   },
+   "ocr": {
+    "requested": true,
+    "reason": "OCR_NEEDED",
+    "candidate_pages": 1,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 3,
+    "image_based": null,
+    "blocks": 20,
+    "text_chars": 541
+   }
+  },
+  {
+   "news_id": "156784179",
+   "file": "kr-156784179-198564817.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 136932,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 367,
+   "reused": false,
+   "tables": 5,
+   "cells": 24,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 5,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_27113dfc4dd3d4a9b69a29ee79bac284",
+   "performance": {
+    "elapsed_ms": 260,
+    "peak_rss_mb": 110,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 5,
+    "tables_matched": 5,
+    "dims_ok": 5,
+    "cells_golden": 24,
+    "cells_found": 24,
+    "position_span_ok": 24,
+    "text_ok": 24,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156784179",
+   "file": "kr-156784179-198564818.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 244951,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 607,
+   "reused": false,
+   "tables": 5,
+   "cells": 24,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_c4aa7074f9024df7ce399fca04684ada",
+   "performance": {
+    "elapsed_ms": 491,
+    "peak_rss_mb": 155,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 3,
+    "image_based": null,
+    "blocks": 33,
+    "text_chars": 1653
+   }
+  },
+  {
+   "news_id": "156784143",
+   "file": "kr-156784143-198564530.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 601373,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 6459,
+   "reused": false,
+   "tables": 13,
+   "cells": 125,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 7,
+   "parse_id": "p_ec760707c178b51e41c27a2967b48c29",
+   "performance": {
+    "elapsed_ms": 6304,
+    "peak_rss_mb": 898,
+    "parse_passes": 2
+   },
+   "ocr": {
+    "requested": true,
+    "reason": "OCR_NEEDED",
+    "candidate_pages": 2,
+    "applied_pages": 1
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다.",
+    "OCR로 읽은 쪽 1개(3)는 글자·숫자·금액·날짜를 원문과 대조해야 합니다. OCR 줄 신뢰도는 파서가 제공하지 않습니다."
+   ],
+   "pdf": {
+    "pages": 9,
+    "image_based": null,
+    "blocks": 99,
+    "text_chars": 3923
+   }
+  },
+  {
+   "news_id": "156784143",
+   "file": "kr-156784143-198564529.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 1092558,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 386,
+   "reused": false,
+   "tables": 14,
+   "cells": 126,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 14,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_7d88f647a080e420e5a8998bdb231929",
+   "performance": {
+    "elapsed_ms": 283,
+    "peak_rss_mb": 133,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 14,
+    "tables_matched": 14,
+    "dims_ok": 14,
+    "cells_golden": 126,
+    "cells_found": 126,
+    "position_span_ok": 126,
+    "text_ok": 126,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156784137",
+   "file": "kr-156784137-198564491.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 279786,
+   "ok": true,
+   "status": "STRUCTURE_VALIDATED",
+   "error_code": null,
+   "ms": 348,
+   "reused": false,
+   "tables": 10,
+   "cells": 141,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 10,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 0,
+   "parse_id": "p_b231670d5f57d8f6c2825e29b4563412",
+   "performance": {
+    "elapsed_ms": 247,
+    "peak_rss_mb": 120,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [],
+   "structure": {
+    "tables_golden": 10,
+    "tables_matched": 10,
+    "dims_ok": 10,
+    "cells_golden": 141,
+    "cells_found": 141,
+    "position_span_ok": 141,
+    "text_ok": 141,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156784137",
+   "file": "kr-156784137-198564492.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 347060,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 666,
+   "reused": false,
+   "tables": 9,
+   "cells": 138,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_4c222787df5aaaa4a870253f94f8dfb1",
+   "performance": {
+    "elapsed_ms": 548,
+    "peak_rss_mb": 177,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 5,
+    "image_based": null,
+    "blocks": 44,
+    "text_chars": 2111
+   }
+  },
+  {
+   "news_id": "156784011",
+   "file": "kr-156784011-198563916.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 121199,
+   "ok": true,
+   "status": "STRUCTURE_VALIDATED",
+   "error_code": null,
+   "ms": 351,
+   "reused": false,
+   "tables": 8,
+   "cells": 83,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 8,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 0,
+   "parse_id": "p_99a09f055719546db1a08dc99f8c3ef3",
+   "performance": {
+    "elapsed_ms": 247,
+    "peak_rss_mb": 118,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [],
+   "structure": {
+    "tables_golden": 8,
+    "tables_matched": 8,
+    "dims_ok": 8,
+    "cells_golden": 83,
+    "cells_found": 83,
+    "position_span_ok": 83,
+    "text_ok": 82,
+    "text_markup_only": 1,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156784011",
+   "file": "kr-156784011-198563917.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 228134,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 587,
+   "reused": false,
+   "tables": 7,
+   "cells": 80,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_1db34cc9d6d8d0c257b34d781265f97a",
+   "performance": {
+    "elapsed_ms": 472,
+    "peak_rss_mb": 154,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 4,
+    "image_based": null,
+    "blocks": 29,
+    "text_chars": 1560
+   }
+  },
+  {
+   "news_id": "156784002",
+   "file": "kr-156784002-198563861.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 266003,
+   "ok": true,
+   "status": "STRUCTURE_VALIDATED",
+   "error_code": null,
+   "ms": 331,
+   "reused": false,
+   "tables": 5,
+   "cells": 43,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 5,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 0,
+   "parse_id": "p_fb878bbefbb654bb54da74ad8c21f3f0",
+   "performance": {
+    "elapsed_ms": 229,
+    "peak_rss_mb": 107,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [],
+   "structure": {
+    "tables_golden": 5,
+    "tables_matched": 5,
+    "dims_ok": 5,
+    "cells_golden": 43,
+    "cells_found": 43,
+    "position_span_ok": 43,
+    "text_ok": 43,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156784002",
+   "file": "kr-156784002-198563862.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 170295,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 585,
+   "reused": false,
+   "tables": 4,
+   "cells": 40,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 1,
+   "parse_id": "p_8a46ba3524d5b6a3e55771a8bda64ddc",
+   "performance": {
+    "elapsed_ms": 477,
+    "peak_rss_mb": 160,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 2,
+    "image_based": null,
+    "blocks": 18,
+    "text_chars": 1237
+   }
+  },
+  {
+   "news_id": "156784001",
+   "file": "kr-156784001-198563913.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 2521982,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 389,
+   "reused": false,
+   "tables": 13,
+   "cells": 156,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 13,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_0870c7529ea595f33ee6deaad22baade",
+   "performance": {
+    "elapsed_ms": 283,
+    "peak_rss_mb": 134,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 13,
+    "tables_matched": 13,
+    "dims_ok": 13,
+    "cells_golden": 156,
+    "cells_found": 156,
+    "position_span_ok": 156,
+    "text_ok": 155,
+    "text_markup_only": 1,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156784001",
+   "file": "kr-156784001-198563914.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 905057,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 6976,
+   "reused": false,
+   "tables": 11,
+   "cells": 147,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 5,
+   "parse_id": "p_6073e19b3dabe912611ff5d2c79de679",
+   "performance": {
+    "elapsed_ms": 6822,
+    "peak_rss_mb": 921,
+    "parse_passes": 2
+   },
+   "ocr": {
+    "requested": true,
+    "reason": "OCR_NEEDED",
+    "candidate_pages": 1,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 9,
+    "image_based": null,
+    "blocks": 57,
+    "text_chars": 4050
+   }
+  },
+  {
+   "news_id": "156784001",
+   "file": "kr-156784001-198563915.zip",
+   "format_by_extension": "zip",
+   "bytes": 2193693,
+   "ok": false,
+   "status": null,
+   "error_code": "UNSUPPORTED_FORMAT",
+   "ms": 93,
+   "reused": false
+  },
+  {
+   "news_id": "156784000",
+   "file": "kr-156784000-198563857.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 175454,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 334,
+   "reused": false,
+   "tables": 6,
+   "cells": 76,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 6,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_a748c4b8fb8355cdd47b05ebc15857b1",
+   "performance": {
+    "elapsed_ms": 236,
+    "peak_rss_mb": 112,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 6,
+    "tables_matched": 6,
+    "dims_ok": 6,
+    "cells_golden": 76,
+    "cells_found": 76,
+    "position_span_ok": 76,
+    "text_ok": 75,
+    "text_markup_only": 1,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156784000",
+   "file": "kr-156784000-198563858.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 271873,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 612,
+   "reused": false,
+   "tables": 6,
+   "cells": 76,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_c3e4d3ee89ad5a28a581ea34592db68e",
+   "performance": {
+    "elapsed_ms": 508,
+    "peak_rss_mb": 159,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 4,
+    "image_based": null,
+    "blocks": 29,
+    "text_chars": 2260
+   }
+  },
+  {
+   "news_id": "156783999",
+   "file": "kr-156783999-198563855.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 164826,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 390,
+   "reused": false,
+   "tables": 6,
+   "cells": 263,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 6,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_5908d1e73f0407d6baaa8605fa095001",
+   "performance": {
+    "elapsed_ms": 282,
+    "peak_rss_mb": 136,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 6,
+    "tables_matched": 6,
+    "dims_ok": 6,
+    "cells_golden": 263,
+    "cells_found": 263,
+    "position_span_ok": 263,
+    "text_ok": 257,
+    "text_markup_only": 6,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783999",
+   "file": "kr-156783999-198563856.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 343408,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 694,
+   "reused": false,
+   "tables": 6,
+   "cells": 258,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_1216d7242cb0c813410923ed135af1e6",
+   "performance": {
+    "elapsed_ms": 580,
+    "peak_rss_mb": 165,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 10,
+    "image_based": null,
+    "blocks": 38,
+    "text_chars": 2933
+   }
+  },
+  {
+   "news_id": "156783988",
+   "file": "kr-156783988-198563752.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 110881,
+   "ok": true,
+   "status": "STRUCTURE_VALIDATED",
+   "error_code": null,
+   "ms": 334,
+   "reused": false,
+   "tables": 7,
+   "cells": 47,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 7,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 0,
+   "parse_id": "p_0db52f3d2800cd9b628f0ab6c8a58de8",
+   "performance": {
+    "elapsed_ms": 233,
+    "peak_rss_mb": 110,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [],
+   "structure": {
+    "tables_golden": 7,
+    "tables_matched": 7,
+    "dims_ok": 7,
+    "cells_golden": 47,
+    "cells_found": 47,
+    "position_span_ok": 47,
+    "text_ok": 47,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783988",
+   "file": "kr-156783988-198563753.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 249885,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 573,
+   "reused": false,
+   "tables": 6,
+   "cells": 44,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_ff010be8d95623debffd7175feadac4f",
+   "performance": {
+    "elapsed_ms": 465,
+    "peak_rss_mb": 154,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 3,
+    "image_based": null,
+    "blocks": 26,
+    "text_chars": 1433
+   }
+  },
+  {
+   "news_id": "156783987",
+   "file": "kr-156783987-198563750.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 137382,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 338,
+   "reused": false,
+   "tables": 8,
+   "cells": 81,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 8,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_156b1c4b6c1142496832faa17607b8c6",
+   "performance": {
+    "elapsed_ms": 242,
+    "peak_rss_mb": 119,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 8,
+    "tables_matched": 8,
+    "dims_ok": 8,
+    "cells_golden": 81,
+    "cells_found": 81,
+    "position_span_ok": 81,
+    "text_ok": 73,
+    "text_markup_only": 8,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783987",
+   "file": "kr-156783987-198563751.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 319897,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 610,
+   "reused": false,
+   "tables": 8,
+   "cells": 81,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_b8a300d8a648a01e5b0390565c119057",
+   "performance": {
+    "elapsed_ms": 501,
+    "peak_rss_mb": 161,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 4,
+    "image_based": null,
+    "blocks": 35,
+    "text_chars": 2013
+   }
+  },
+  {
+   "news_id": "156783956",
+   "file": "kr-156783956-198563618.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 177199,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 351,
+   "reused": false,
+   "tables": 10,
+   "cells": 66,
+   "nested_tables": 1,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 10,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_ead184f18ee7f62b3c5bbd9e9a02d4f5",
+   "performance": {
+    "elapsed_ms": 247,
+    "peak_rss_mb": 119,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 10,
+    "tables_matched": 10,
+    "dims_ok": 10,
+    "cells_golden": 66,
+    "cells_found": 66,
+    "position_span_ok": 66,
+    "text_ok": 65,
+    "text_markup_only": 1,
+    "text_other": 0,
+    "nested_tables": 1,
+    "nested_matched": 1,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783956",
+   "file": "kr-156783956-198563619.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 333971,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 3231,
+   "reused": false,
+   "tables": 9,
+   "cells": 65,
+   "nested_tables": 1,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 6,
+   "parse_id": "p_9cf746cbc53cb312ace27a593d4f3514",
+   "performance": {
+    "elapsed_ms": 3082,
+    "peak_rss_mb": 798,
+    "parse_passes": 2
+   },
+   "ocr": {
+    "requested": true,
+    "reason": "OCR_NEEDED",
+    "candidate_pages": 1,
+    "applied_pages": 1
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다.",
+    "OCR로 읽은 쪽 1개(5)는 글자·숫자·금액·날짜를 원문과 대조해야 합니다. OCR 줄 신뢰도는 파서가 제공하지 않습니다."
+   ],
+   "pdf": {
+    "pages": 7,
+    "image_based": null,
+    "blocks": 56,
+    "text_chars": 3602
+   }
+  },
+  {
+   "news_id": "156783956",
+   "file": "kr-156783956-198563620.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 2246402,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 564,
+   "reused": false,
+   "tables": 50,
+   "cells": 291,
+   "nested_tables": 1,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 50,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_a765586cfc64015ab6c6172826bcdcba",
+   "performance": {
+    "elapsed_ms": 448,
+    "peak_rss_mb": 223,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 50,
+    "tables_matched": 50,
+    "dims_ok": 50,
+    "cells_golden": 291,
+    "cells_found": 291,
+    "position_span_ok": 291,
+    "text_ok": 289,
+    "text_markup_only": 0,
+    "text_other": 2,
+    "nested_tables": 1,
+    "nested_matched": 1,
+    "text_mismatches": [
+     {
+      "table": "1206292910",
+      "at": [
+       0,
+       0
+      ],
+      "golden": "< 발제 주요 내용 >   ◦ (현황) 급속한 고령화로 의료수요와 국민의료비가 빠르게 증가하는 반면, 저출생",
+      "parsed": "< 발제 주요 내용 >\n\n◦ (현황) 급속한 고령화로 의료수요와 국민의료비가 빠르게 증가하는 반면, 저출생과"
+     },
+     {
+      "table": "1206292911",
+      "at": [
+       0,
+       0
+      ],
+      "golden": "< 발제 주요 내용 >  건강보험정책심의위원회 거버넌스 진단과 개편방안(나백주 위원)   ◦ (현황) 고령화",
+      "parsed": "< 발제 주요 내용 >\n\n1. 건강보험정책심의위원회 거버넌스 진단과 개편방안(나백주 위원)\n\n◦ (현황) 고"
+     }
+    ]
+   }
+  },
+  {
+   "news_id": "156783956",
+   "file": "kr-156783956-198563621.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 996350,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 11219,
+   "reused": false,
+   "tables": 46,
+   "cells": 324,
+   "nested_tables": 1,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 10,
+   "parse_id": "p_d201b875927b685c12b999d730fad157",
+   "performance": {
+    "elapsed_ms": 11058,
+    "peak_rss_mb": 1012,
+    "parse_passes": 2
+   },
+   "ocr": {
+    "requested": true,
+    "reason": "OCR_NEEDED",
+    "candidate_pages": 11,
+    "applied_pages": 1
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "표 구조 검증 실패(병합 범위·겹침 등)가 있습니다.",
+    "OCR로 읽은 쪽 1개(27)는 글자·숫자·금액·날짜를 원문과 대조해야 합니다. OCR 줄 신뢰도는 파서가 제공하지 않습니다."
+   ],
+   "pdf": {
+    "pages": 42,
+    "image_based": null,
+    "blocks": 381,
+    "text_chars": 17103
+   }
+  },
+  {
+   "news_id": "156783932",
+   "file": "kr-156783932-198563505.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 261232,
+   "ok": true,
+   "status": "STRUCTURE_VALIDATED",
+   "error_code": null,
+   "ms": 316,
+   "reused": false,
+   "tables": 6,
+   "cells": 34,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 6,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 0,
+   "parse_id": "p_96d8f4142a04b908fbbd181b492babf4",
+   "performance": {
+    "elapsed_ms": 218,
+    "peak_rss_mb": 106,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [],
+   "structure": {
+    "tables_golden": 6,
+    "tables_matched": 6,
+    "dims_ok": 6,
+    "cells_golden": 34,
+    "cells_found": 34,
+    "position_span_ok": 34,
+    "text_ok": 34,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783932",
+   "file": "kr-156783932-198563506.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 186984,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 2699,
+   "reused": false,
+   "tables": 5,
+   "cells": 31,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 6,
+   "parse_id": "p_e4f57ab8b7eb4af9563d4aba043f8ded",
+   "performance": {
+    "elapsed_ms": 2563,
+    "peak_rss_mb": 674,
+    "parse_passes": 2
+   },
+   "ocr": {
+    "requested": true,
+    "reason": "OCR_NEEDED",
+    "candidate_pages": 1,
+    "applied_pages": 1
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다.",
+    "OCR로 읽은 쪽 1개(3)는 글자·숫자·금액·날짜를 원문과 대조해야 합니다. OCR 줄 신뢰도는 파서가 제공하지 않습니다."
+   ],
+   "pdf": {
+    "pages": 3,
+    "image_based": null,
+    "blocks": 23,
+    "text_chars": 1261
+   }
+  },
+  {
+   "news_id": "156783928",
+   "file": "kr-156783928-198563483.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 113426,
+   "ok": true,
+   "status": "STRUCTURE_VALIDATED",
+   "error_code": null,
+   "ms": 329,
+   "reused": false,
+   "tables": 7,
+   "cells": 66,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 7,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 0,
+   "parse_id": "p_fe052ba622a96f818f817955771d3584",
+   "performance": {
+    "elapsed_ms": 228,
+    "peak_rss_mb": 111,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [],
+   "structure": {
+    "tables_golden": 7,
+    "tables_matched": 7,
+    "dims_ok": 7,
+    "cells_golden": 66,
+    "cells_found": 66,
+    "position_span_ok": 66,
+    "text_ok": 65,
+    "text_markup_only": 1,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783928",
+   "file": "kr-156783928-198563484.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 257850,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 662,
+   "reused": false,
+   "tables": 6,
+   "cells": 63,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_8a6dec9ed5119ed7ef01b488d4eb76fa",
+   "performance": {
+    "elapsed_ms": 538,
+    "peak_rss_mb": 163,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 6,
+    "image_based": null,
+    "blocks": 36,
+    "text_chars": 3347
+   }
+  },
+  {
+   "news_id": "156783914",
+   "file": "kr-156783914-198563422.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 262574,
+   "ok": true,
+   "status": "STRUCTURE_VALIDATED",
+   "error_code": null,
+   "ms": 334,
+   "reused": false,
+   "tables": 7,
+   "cells": 70,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 7,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 0,
+   "parse_id": "p_a80a4c6ebbe1f1e59e161681445ee099",
+   "performance": {
+    "elapsed_ms": 236,
+    "peak_rss_mb": 111,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [],
+   "structure": {
+    "tables_golden": 7,
+    "tables_matched": 7,
+    "dims_ok": 7,
+    "cells_golden": 70,
+    "cells_found": 70,
+    "position_span_ok": 70,
+    "text_ok": 70,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783914",
+   "file": "kr-156783914-198563423.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 279495,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 588,
+   "reused": false,
+   "tables": 6,
+   "cells": 67,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_386753edfc5072a2efc3313b0625c9cb",
+   "performance": {
+    "elapsed_ms": 482,
+    "peak_rss_mb": 162,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 3,
+    "image_based": null,
+    "blocks": 30,
+    "text_chars": 1495
+   }
+  },
+  {
+   "news_id": "156783913",
+   "file": "kr-156783913-198563420.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 360663,
+   "ok": true,
+   "status": "STRUCTURE_VALIDATED",
+   "error_code": null,
+   "ms": 338,
+   "reused": false,
+   "tables": 11,
+   "cells": 83,
+   "nested_tables": 4,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 11,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 0,
+   "parse_id": "p_3c827866ffd4e1f9286df1873d8342d0",
+   "performance": {
+    "elapsed_ms": 231,
+    "peak_rss_mb": 109,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [],
+   "structure": {
+    "tables_golden": 11,
+    "tables_matched": 11,
+    "dims_ok": 11,
+    "cells_golden": 83,
+    "cells_found": 83,
+    "position_span_ok": 83,
+    "text_ok": 83,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 4,
+    "nested_matched": 4,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783913",
+   "file": "kr-156783913-198563421.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 181968,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 590,
+   "reused": false,
+   "tables": 10,
+   "cells": 80,
+   "nested_tables": 4,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_fac1903ce5da8f83be7408141fbab598",
+   "performance": {
+    "elapsed_ms": 482,
+    "peak_rss_mb": 151,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 3,
+    "image_based": null,
+    "blocks": 18,
+    "text_chars": 668
+   }
+  },
+  {
+   "news_id": "156783899",
+   "file": "kr-156783899-198563368.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 466968,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 826,
+   "reused": false,
+   "tables": 13,
+   "cells": 158,
+   "nested_tables": 2,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_de5947aa76917e799496501f8f666c98",
+   "performance": {
+    "elapsed_ms": 708,
+    "peak_rss_mb": 203,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 11,
+    "image_based": null,
+    "blocks": 82,
+    "text_chars": 4955
+   }
+  },
+  {
+   "news_id": "156783899",
+   "file": "kr-156783899-198563369.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 123746,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 402,
+   "reused": false,
+   "tables": 14,
+   "cells": 159,
+   "nested_tables": 2,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 14,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_9f2c5177b5d165c9b1b5dd63e6690959",
+   "performance": {
+    "elapsed_ms": 291,
+    "peak_rss_mb": 127,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 14,
+    "tables_matched": 14,
+    "dims_ok": 14,
+    "cells_golden": 159,
+    "cells_found": 159,
+    "position_span_ok": 159,
+    "text_ok": 159,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 2,
+    "nested_matched": 2,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783898",
+   "file": "kr-156783898-198563366.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 141753,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 427,
+   "reused": false,
+   "tables": 13,
+   "cells": 84,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 13,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_c149197d2da05494939ce014989f22ae",
+   "performance": {
+    "elapsed_ms": 319,
+    "peak_rss_mb": 122,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 13,
+    "tables_matched": 13,
+    "dims_ok": 13,
+    "cells_golden": 84,
+    "cells_found": 84,
+    "position_span_ok": 84,
+    "text_ok": 83,
+    "text_markup_only": 1,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783898",
+   "file": "kr-156783898-198563367.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 333755,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 842,
+   "reused": false,
+   "tables": 12,
+   "cells": 83,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_d9b9f2fb29de8a9447807b22077fca68",
+   "performance": {
+    "elapsed_ms": 716,
+    "peak_rss_mb": 163,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 5,
+    "image_based": null,
+    "blocks": 43,
+    "text_chars": 1557
+   }
+  },
+  {
+   "news_id": "156783756",
+   "file": "kr-156783756-198562653.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 634399,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 376,
+   "reused": false,
+   "tables": 10,
+   "cells": 65,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 10,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_44e6390d58f0c95b23503e024cf652da",
+   "performance": {
+    "elapsed_ms": 263,
+    "peak_rss_mb": 124,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 10,
+    "tables_matched": 10,
+    "dims_ok": 10,
+    "cells_golden": 65,
+    "cells_found": 65,
+    "position_span_ok": 65,
+    "text_ok": 65,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783756",
+   "file": "kr-156783756-198562654.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 424914,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 6375,
+   "reused": false,
+   "tables": 9,
+   "cells": 64,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 8,
+   "parse_id": "p_b099b717b893094edbaaeb56de15f6bb",
+   "performance": {
+    "elapsed_ms": 6224,
+    "peak_rss_mb": 857,
+    "parse_passes": 2
+   },
+   "ocr": {
+    "requested": true,
+    "reason": "OCR_NEEDED",
+    "candidate_pages": 1,
+    "applied_pages": 2
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다.",
+    "OCR로 읽은 쪽 2개(2, 4)는 글자·숫자·금액·날짜를 원문과 대조해야 합니다. OCR 줄 신뢰도는 파서가 제공하지 않습니다."
+   ],
+   "pdf": {
+    "pages": 5,
+    "image_based": null,
+    "blocks": 73,
+    "text_chars": 2821
+   }
+  },
+  {
+   "news_id": "156783755",
+   "file": "kr-156783755-198562729.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 199654,
+   "ok": true,
+   "status": "STRUCTURE_VALIDATED",
+   "error_code": null,
+   "ms": 335,
+   "reused": false,
+   "tables": 7,
+   "cells": 38,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 7,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 0,
+   "parse_id": "p_63ed68fd66dfb21ee9beaa62d8eacc66",
+   "performance": {
+    "elapsed_ms": 237,
+    "peak_rss_mb": 111,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [],
+   "structure": {
+    "tables_golden": 7,
+    "tables_matched": 7,
+    "dims_ok": 7,
+    "cells_golden": 38,
+    "cells_found": 38,
+    "position_span_ok": 38,
+    "text_ok": 38,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783755",
+   "file": "kr-156783755-198562730.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 283092,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 570,
+   "reused": false,
+   "tables": 6,
+   "cells": 35,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_f8091841fd81294160d991ef8d30c4b9",
+   "performance": {
+    "elapsed_ms": 464,
+    "peak_rss_mb": 160,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 3,
+    "image_based": null,
+    "blocks": 27,
+    "text_chars": 1262
+   }
+  },
+  {
+   "news_id": "156783742",
+   "file": "kr-156783742-198562725.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 111555,
+   "ok": true,
+   "status": "STRUCTURE_VALIDATED",
+   "error_code": null,
+   "ms": 327,
+   "reused": false,
+   "tables": 7,
+   "cells": 42,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 7,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 0,
+   "parse_id": "p_1844ae3c8c7b5dd2f9004725c75d705f",
+   "performance": {
+    "elapsed_ms": 224,
+    "peak_rss_mb": 110,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [],
+   "structure": {
+    "tables_golden": 7,
+    "tables_matched": 7,
+    "dims_ok": 7,
+    "cells_golden": 42,
+    "cells_found": 42,
+    "position_span_ok": 42,
+    "text_ok": 42,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783742",
+   "file": "kr-156783742-198562726.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 300245,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 592,
+   "reused": false,
+   "tables": 6,
+   "cells": 39,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_119548ffca4821d5da895e42db528c1d",
+   "performance": {
+    "elapsed_ms": 481,
+    "peak_rss_mb": 160,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 3,
+    "image_based": null,
+    "blocks": 29,
+    "text_chars": 1481
+   }
+  },
+  {
+   "news_id": "156783742",
+   "file": "kr-156783742-198562727.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 3034570,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 1019,
+   "reused": false,
+   "tables": 23,
+   "cells": 101,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 1,
+   "parse_id": "p_dae59e4d10d1228f4449a084676d4f26",
+   "performance": {
+    "elapsed_ms": 910,
+    "peak_rss_mb": 231,
+    "parse_passes": 2
+   },
+   "ocr": {
+    "requested": true,
+    "reason": "OCR_NEEDED",
+    "candidate_pages": 3,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 22,
+    "image_based": null,
+    "blocks": 181,
+    "text_chars": 5039
+   }
+  },
+  {
+   "news_id": "156783742",
+   "file": "kr-156783742-198562728.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 975683,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 15109,
+   "reused": false,
+   "tables": 2,
+   "cells": 34,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 9,
+   "parse_id": "p_a7ba24caf6c80dba64450a5809cbf522",
+   "performance": {
+    "elapsed_ms": 14960,
+    "peak_rss_mb": 971,
+    "parse_passes": 2
+   },
+   "ocr": {
+    "requested": true,
+    "reason": "OCR_NEEDED",
+    "candidate_pages": 7,
+    "applied_pages": 6
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다.",
+    "OCR로 읽은 쪽 6개(2, 3, 9, 10, 11, 15)는 글자·숫자·금액·날짜를 원문과 대조해야 합니다. OCR 줄 신뢰도는 파서가 제공하지 않습니다."
+   ],
+   "pdf": {
+    "pages": 15,
+    "image_based": null,
+    "blocks": 372,
+    "text_chars": 7450
+   }
+  },
+  {
+   "news_id": "156783735",
+   "file": "kr-156783735-198562540.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 1392735,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 385,
+   "reused": false,
+   "tables": 5,
+   "cells": 36,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 5,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_b898927920dc3a3844643b3ce7051389",
+   "performance": {
+    "elapsed_ms": 288,
+    "peak_rss_mb": 154,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 5,
+    "tables_matched": 5,
+    "dims_ok": 5,
+    "cells_golden": 36,
+    "cells_found": 36,
+    "position_span_ok": 36,
+    "text_ok": 36,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783735",
+   "file": "kr-156783735-198562541.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 494131,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 4617,
+   "reused": false,
+   "tables": 6,
+   "cells": 70,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 7,
+   "parse_id": "p_ed78f1d8b016ca885ed66c5dadab726c",
+   "performance": {
+    "elapsed_ms": 4488,
+    "peak_rss_mb": 834,
+    "parse_passes": 2
+   },
+   "ocr": {
+    "requested": true,
+    "reason": "OCR_NEEDED",
+    "candidate_pages": 1,
+    "applied_pages": 2
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다.",
+    "OCR로 읽은 쪽 2개(3, 4)는 글자·숫자·금액·날짜를 원문과 대조해야 합니다. OCR 줄 신뢰도는 파서가 제공하지 않습니다."
+   ],
+   "pdf": {
+    "pages": 4,
+    "image_based": null,
+    "blocks": 39,
+    "text_chars": 2427
+   }
+  },
+  {
+   "news_id": "156783675",
+   "file": "kr-156783675-198562280.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 2370642,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 326,
+   "reused": false,
+   "tables": 8,
+   "cells": 42,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 8,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_dd44a68c2365aa0a64c59f9ccb88ff04",
+   "performance": {
+    "elapsed_ms": 225,
+    "peak_rss_mb": 115,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 8,
+    "tables_matched": 8,
+    "dims_ok": 8,
+    "cells_golden": 42,
+    "cells_found": 42,
+    "position_span_ok": 42,
+    "text_ok": 41,
+    "text_markup_only": 1,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783675",
+   "file": "kr-156783675-198562281.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 696718,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 10029,
+   "reused": false,
+   "tables": 8,
+   "cells": 42,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 9,
+   "parse_id": "p_a2b0cc13daee6769c90253757a563bb2",
+   "performance": {
+    "elapsed_ms": 9882,
+    "peak_rss_mb": 895,
+    "parse_passes": 2
+   },
+   "ocr": {
+    "requested": true,
+    "reason": "OCR_NEEDED",
+    "candidate_pages": 2,
+    "applied_pages": 1
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다.",
+    "OCR로 읽은 쪽 1개(2)는 글자·숫자·금액·날짜를 원문과 대조해야 합니다. OCR 줄 신뢰도는 파서가 제공하지 않습니다."
+   ],
+   "pdf": {
+    "pages": 4,
+    "image_based": null,
+    "blocks": 24,
+    "text_chars": 1254
+   }
+  },
+  {
+   "news_id": "156783674",
+   "file": "kr-156783674-198563260.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 106084,
+   "ok": true,
+   "status": "STRUCTURE_VALIDATED",
+   "error_code": null,
+   "ms": 336,
+   "reused": false,
+   "tables": 5,
+   "cells": 74,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 5,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 0,
+   "parse_id": "p_383711fd118f6c9d0fdda33af2e1ffb4",
+   "performance": {
+    "elapsed_ms": 231,
+    "peak_rss_mb": 106,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [],
+   "structure": {
+    "tables_golden": 5,
+    "tables_matched": 5,
+    "dims_ok": 5,
+    "cells_golden": 74,
+    "cells_found": 74,
+    "position_span_ok": 74,
+    "text_ok": 74,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783674",
+   "file": "kr-156783674-198563261.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 188259,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 575,
+   "reused": false,
+   "tables": 4,
+   "cells": 71,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_37fda93dba43eed9f6a2ec098e8cdad5",
+   "performance": {
+    "elapsed_ms": 465,
+    "peak_rss_mb": 154,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 3,
+    "image_based": null,
+    "blocks": 22,
+    "text_chars": 2031
+   }
+  },
+  {
+   "news_id": "156783490",
+   "file": "kr-156783490-198562721.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 1924711,
+   "ok": true,
+   "status": "STRUCTURE_VALIDATED",
+   "error_code": null,
+   "ms": 367,
+   "reused": false,
+   "tables": 13,
+   "cells": 65,
+   "nested_tables": 2,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 13,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 0,
+   "parse_id": "p_901e5bfda07f128b3a0925fa34769df5",
+   "performance": {
+    "elapsed_ms": 261,
+    "peak_rss_mb": 123,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [],
+   "structure": {
+    "tables_golden": 13,
+    "tables_matched": 13,
+    "dims_ok": 13,
+    "cells_golden": 65,
+    "cells_found": 65,
+    "position_span_ok": 65,
+    "text_ok": 65,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 2,
+    "nested_matched": 2,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783490",
+   "file": "kr-156783490-198562722.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 780124,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 4348,
+   "reused": false,
+   "tables": 8,
+   "cells": 58,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 5,
+   "parse_id": "p_be50e53a218b9e0fcfef4fb9b0e04091",
+   "performance": {
+    "elapsed_ms": 4194,
+    "peak_rss_mb": 968,
+    "parse_passes": 2
+   },
+   "ocr": {
+    "requested": true,
+    "reason": "OCR_NEEDED",
+    "candidate_pages": 1,
+    "applied_pages": 1
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다.",
+    "OCR로 읽은 쪽 1개(4)는 글자·숫자·금액·날짜를 원문과 대조해야 합니다. OCR 줄 신뢰도는 파서가 제공하지 않습니다."
+   ],
+   "pdf": {
+    "pages": 5,
+    "image_based": null,
+    "blocks": 51,
+    "text_chars": 2464
+   }
+  },
+  {
+   "news_id": "156783452",
+   "file": "kr-156783452-198561312.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 93887,
+   "ok": true,
+   "status": "STRUCTURE_VALIDATED",
+   "error_code": null,
+   "ms": 323,
+   "reused": false,
+   "tables": 6,
+   "cells": 54,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 6,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 0,
+   "parse_id": "p_dd5f7a63d9f4676d05410c2bc465ce67",
+   "performance": {
+    "elapsed_ms": 226,
+    "peak_rss_mb": 115,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [],
+   "structure": {
+    "tables_golden": 6,
+    "tables_matched": 6,
+    "dims_ok": 6,
+    "cells_golden": 54,
+    "cells_found": 54,
+    "position_span_ok": 54,
+    "text_ok": 52,
+    "text_markup_only": 2,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783452",
+   "file": "kr-156783452-198561313.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 276672,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 568,
+   "reused": false,
+   "tables": 6,
+   "cells": 54,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_ae7a41d9dace12590a558e53b6482601",
+   "performance": {
+    "elapsed_ms": 465,
+    "peak_rss_mb": 154,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 3,
+    "image_based": null,
+    "blocks": 26,
+    "text_chars": 1841
+   }
+  },
+  {
+   "news_id": "156783453",
+   "file": "kr-156783453-198562240.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 647597,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 9208,
+   "reused": false,
+   "tables": 27,
+   "cells": 1407,
+   "nested_tables": 1,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 6,
+   "parse_id": "p_6edbbc438bde654fa243fd88efa32261",
+   "performance": {
+    "elapsed_ms": 9050,
+    "peak_rss_mb": 966,
+    "parse_passes": 2
+   },
+   "ocr": {
+    "requested": true,
+    "reason": "OCR_NEEDED",
+    "candidate_pages": 3,
+    "applied_pages": 3
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다.",
+    "OCR로 읽은 쪽 3개(3, 4, 10)는 글자·숫자·금액·날짜를 원문과 대조해야 합니다. OCR 줄 신뢰도는 파서가 제공하지 않습니다."
+   ],
+   "pdf": {
+    "pages": 14,
+    "image_based": null,
+    "blocks": 209,
+    "text_chars": 5731
+   }
+  },
+  {
+   "news_id": "156783453",
+   "file": "kr-156783453-198562241.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 293176,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 737,
+   "reused": false,
+   "tables": 61,
+   "cells": 4276,
+   "nested_tables": 40,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 61,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_21c95aaa895a9804615e1b2f69b19173",
+   "performance": {
+    "elapsed_ms": 611,
+    "peak_rss_mb": 344,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 61,
+    "tables_matched": 61,
+    "dims_ok": 61,
+    "cells_golden": 4276,
+    "cells_found": 4276,
+    "position_span_ok": 4276,
+    "text_ok": 4276,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 40,
+    "nested_matched": 40,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783453",
+   "file": "kr-156783453-198562242.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 810821,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 1797,
+   "reused": false,
+   "tables": 60,
+   "cells": 4275,
+   "nested_tables": 40,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_faa679548d834070ab44594952112803",
+   "performance": {
+    "elapsed_ms": 1653,
+    "peak_rss_mb": 333,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 22,
+    "image_based": null,
+    "blocks": 68,
+    "text_chars": 392
+   }
+  },
+  {
+   "news_id": "156783453",
+   "file": "kr-156783453-198562239.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 666492,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 622,
+   "reused": false,
+   "tables": 28,
+   "cells": 1407,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 29,
+    "missing": 1,
+    "in_caption": 1
+   },
+   "warnings": 2,
+   "parse_id": "p_2ed03602521971774f5302104aec51a9",
+   "performance": {
+    "elapsed_ms": 493,
+    "peak_rss_mb": 285,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다.",
+    "원본 XML에 있는 표 1개가 파서 결과에 없습니다(캡션 안 표 1개). 그 부분은 원문으로 확인해야 합니다."
+   ],
+   "structure": {
+    "tables_golden": 29,
+    "tables_matched": 28,
+    "dims_ok": 28,
+    "cells_golden": 1410,
+    "cells_found": 1407,
+    "position_span_ok": 1407,
+    "text_ok": 1401,
+    "text_markup_only": 5,
+    "text_other": 1,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": [
+     {
+      "table": "1147507488",
+      "at": [
+       2,
+       0
+      ],
+      "golden": "󰊱 면허·자격 보유 대비 활동 현황   ○ (면허·자격자 수) ’13년 142.4만 → ’23년 232.4",
+      "parsed": "\n󰊱 면허·자격 보유 대비 활동 현황\n\n○ (면허·자격자 수) ’13년 142.4만 → ’23년 232.4"
+     }
+    ]
+   }
+  },
+  {
+   "news_id": "156783348",
+   "file": "kr-156783348-198561434.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 133630,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 343,
+   "reused": false,
+   "tables": 6,
+   "cells": 24,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 6,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_874db4aab87b440cba41fa1da552b032",
+   "performance": {
+    "elapsed_ms": 234,
+    "peak_rss_mb": 106,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 6,
+    "tables_matched": 6,
+    "dims_ok": 6,
+    "cells_golden": 24,
+    "cells_found": 24,
+    "position_span_ok": 24,
+    "text_ok": 24,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783348",
+   "file": "kr-156783348-198561435.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 307880,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 594,
+   "reused": false,
+   "tables": 5,
+   "cells": 23,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 2,
+   "parse_id": "p_6d625ac07a71aeedd1dc9e337553b245",
+   "performance": {
+    "elapsed_ms": 483,
+    "peak_rss_mb": 160,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 3,
+    "image_based": null,
+    "blocks": 32,
+    "text_chars": 1677
+   }
+  },
+  {
+   "news_id": "156783299",
+   "file": "kr-156783299-198560527.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 267791,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 375,
+   "reused": false,
+   "tables": 9,
+   "cells": 237,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 9,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_4e266860aceb65cd5a69e8b53bc230a1",
+   "performance": {
+    "elapsed_ms": 268,
+    "peak_rss_mb": 126,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 9,
+    "tables_matched": 9,
+    "dims_ok": 9,
+    "cells_golden": 237,
+    "cells_found": 237,
+    "position_span_ok": 237,
+    "text_ok": 237,
+    "text_markup_only": 0,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783299",
+   "file": "kr-156783299-198560528.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 294434,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 4367,
+   "reused": false,
+   "tables": 9,
+   "cells": 255,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 6,
+   "parse_id": "p_76ed9dcba4d92b53433587b820712eba",
+   "performance": {
+    "elapsed_ms": 4210,
+    "peak_rss_mb": 891,
+    "parse_passes": 2
+   },
+   "ocr": {
+    "requested": true,
+    "reason": "OCR_NEEDED",
+    "candidate_pages": 1,
+    "applied_pages": 1
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다.",
+    "OCR로 읽은 쪽 1개(4)는 글자·숫자·금액·날짜를 원문과 대조해야 합니다. OCR 줄 신뢰도는 파서가 제공하지 않습니다."
+   ],
+   "pdf": {
+    "pages": 8,
+    "image_based": null,
+    "blocks": 45,
+    "text_chars": 2087
+   }
+  },
+  {
+   "news_id": "156783269",
+   "file": "kr-156783269-198561432.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 4449055,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 406,
+   "reused": false,
+   "tables": 13,
+   "cells": 144,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 13,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_65af80d752873a291e7a2dda67a74ce5",
+   "performance": {
+    "elapsed_ms": 302,
+    "peak_rss_mb": 139,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 13,
+    "tables_matched": 13,
+    "dims_ok": 13,
+    "cells_golden": 144,
+    "cells_found": 144,
+    "position_span_ok": 144,
+    "text_ok": 143,
+    "text_markup_only": 1,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783269",
+   "file": "kr-156783269-198561433.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 651780,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 10297,
+   "reused": false,
+   "tables": 13,
+   "cells": 144,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 9,
+   "parse_id": "p_d2a17532819d8920a2ddaa66091ad874",
+   "performance": {
+    "elapsed_ms": 10143,
+    "peak_rss_mb": 972,
+    "parse_passes": 2
+   },
+   "ocr": {
+    "requested": true,
+    "reason": "OCR_NEEDED",
+    "candidate_pages": 3,
+    "applied_pages": 1
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다.",
+    "OCR로 읽은 쪽 1개(2)는 글자·숫자·금액·날짜를 원문과 대조해야 합니다. OCR 줄 신뢰도는 파서가 제공하지 않습니다."
+   ],
+   "pdf": {
+    "pages": 7,
+    "image_based": null,
+    "blocks": 45,
+    "text_chars": 1936
+   }
+  },
+  {
+   "news_id": "156783148",
+   "file": "kr-156783148-198559698.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 260893,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 307,
+   "reused": false,
+   "tables": 4,
+   "cells": 24,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 4,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 1,
+   "parse_id": "p_6fc90db4bb9a71045e5e44542949ecb6",
+   "performance": {
+    "elapsed_ms": 209,
+    "peak_rss_mb": 106,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "structure": {
+    "tables_golden": 4,
+    "tables_matched": 4,
+    "dims_ok": 4,
+    "cells_golden": 24,
+    "cells_found": 24,
+    "position_span_ok": 24,
+    "text_ok": 23,
+    "text_markup_only": 1,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783148",
+   "file": "kr-156783148-198559699.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 131489,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 519,
+   "reused": false,
+   "tables": 4,
+   "cells": 24,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 1,
+   "parse_id": "p_3891dbe1ed715b876535ce4b5a9d7cca",
+   "performance": {
+    "elapsed_ms": 418,
+    "peak_rss_mb": 145,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 2,
+    "image_based": null,
+    "blocks": 17,
+    "text_chars": 997
+   }
+  },
+  {
+   "news_id": "156783142",
+   "file": "kr-156783142-198559659.hwpx",
+   "format_by_extension": "hwpx",
+   "bytes": 145136,
+   "ok": true,
+   "status": "STRUCTURE_VALIDATED",
+   "error_code": null,
+   "ms": 327,
+   "reused": false,
+   "tables": 6,
+   "cells": 43,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": {
+    "source_tables": 6,
+    "missing": 0,
+    "in_caption": 0
+   },
+   "warnings": 0,
+   "parse_id": "p_f27897aec7a9fda8ed63fcad3daea6a9",
+   "performance": {
+    "elapsed_ms": 228,
+    "peak_rss_mb": 107,
+    "parse_passes": 1
+   },
+   "ocr": null,
+   "page_mode": "layout",
+   "reasons": [],
+   "structure": {
+    "tables_golden": 6,
+    "tables_matched": 6,
+    "dims_ok": 6,
+    "cells_golden": 43,
+    "cells_found": 43,
+    "position_span_ok": 43,
+    "text_ok": 42,
+    "text_markup_only": 1,
+    "text_other": 0,
+    "nested_tables": 0,
+    "nested_matched": 0,
+    "text_mismatches": []
+   }
+  },
+  {
+   "news_id": "156783142",
+   "file": "kr-156783142-198559660.pdf",
+   "format_by_extension": "pdf",
+   "bytes": 184545,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "ms": 549,
+   "reused": false,
+   "tables": 6,
+   "cells": 43,
+   "nested_tables": 0,
+   "network_attempts": 0,
+   "source_table_coverage": null,
+   "warnings": 1,
+   "parse_id": "p_d41c44e669ffca0e8aee014631cc8e7b",
+   "performance": {
+    "elapsed_ms": 447,
+    "peak_rss_mb": 149,
+    "parse_passes": 1
+   },
+   "ocr": {
+    "requested": false,
+    "reason": "TEXT_LAYER_SUFFICIENT",
+    "candidate_pages": 0,
+    "applied_pages": 0
+   },
+   "page_mode": "layout",
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ],
+   "pdf": {
+    "pages": 2,
+    "image_based": null,
+    "blocks": 25,
+    "text_chars": 824
+   }
+  }
+ ],
+ "parser_version": "4.18.13"
+}

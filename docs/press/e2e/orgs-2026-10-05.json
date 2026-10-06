@@ -1,0 +1,102 @@
+{
+  "as_of": "2026-10-05",
+  "executed_at": "2026-10-05T00:59:44.000Z",
+  "runner": "로컬 PC(Node v24.18.0), 실제 공식 endpoint 호출, 임시 SQLite",
+  "note": "대표 12곳 표본의 실제 상태다. 전국 수집 성공률이 아니며, Cloudflare Workers 운영 환경의 접근 가능 여부(예: 전남광주 522)와 다를 수 있다.",
+  "succeeded": 1,
+  "results": [
+    {
+      "organization_id": "org:경기도:광명시",
+      "name": "광명시",
+      "organization_type": "BASIC_CITY",
+      "lifecycle": "ACTIVE",
+      "survey": {
+        "survey_category": "endpoint_confirmed",
+        "survey_detail": "AUTO_VERIFIED",
+        "survey_reason": "개별 프로필(자동 탐색 실패 게시판): 목록 20건·날짜 20건 확인, 첫 게시물 원문 주소에서 제목 일치 (메뉴: 보도자료)",
+        "endpoint_url": "https://news.gm.go.kr/bbs/list.html?table=bbs_12"
+      },
+      "sources": [
+        {
+          "source_id": "src:news.gm.go.kr:press",
+          "method": "HTML",
+          "adapter": "HTMLBoardAdapter",
+          "endpoint_url": "https://news.gm.go.kr/bbs/list.html?table=bbs_12",
+          "verification_status": "ENDPOINT_VERIFIED",
+          "result": "succeeded",
+          "error_code": null,
+          "http_status": 200,
+          "elapsed_ms": 294,
+          "counts": {
+            "feedItems": 20,
+            "rejected": 0,
+            "created": 20,
+            "updated": 0,
+            "unchanged": 0,
+            "welfare": 2,
+            "review": 2,
+            "nonWelfare": 16
+          },
+          "latest_published_date": "2026-10-02",
+          "sample": [
+            {
+              "title": "광명시-SSG랜더스, 지역 야구 활성화 위해 ‘키스톤 플레이’",
+              "url": "https://news.gm.go.kr/bbs/view.html?idxno=8751",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "광명시 ‘소통 맛집’ 영업시간 연장! 박승원 광명시장, 퇴근길 시민 만난다",
+              "url": "https://news.gm.go.kr/bbs/view.html?idxno=8752",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "광명시, 학온역 환승역 만든다… 월곶판교선 열차 ‘학온역 정차’ 공식 추진",
+              "url": "https://news.gm.go.kr/bbs/view.html?idxno=8753",
+              "date": "2026-10-02",
+              "public_status": "HIDDEN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "organization_id": "org:서울특별시:도봉구",
+      "name": "도봉구",
+      "organization_type": "AUTONOMOUS_DISTRICT",
+      "lifecycle": "ACTIVE",
+      "survey": {
+        "survey_category": "access_blocked",
+        "survey_detail": "BLOCKED_ROBOTS",
+        "survey_reason": "홈페이지를 robots.txt가 막음",
+        "endpoint_url": null
+      },
+      "sources": [
+        {
+          "source_id": "src:www.dobong.go.kr:press",
+          "method": "HTML",
+          "adapter": "HTMLBoardAdapter",
+          "endpoint_url": "https://www.dobong.go.kr/bbs.asp?code=10008782",
+          "verification_status": "ENDPOINT_VERIFIED",
+          "result": "failed",
+          "error_code": "ROBOTS_DISALLOWED",
+          "http_status": 0,
+          "elapsed_ms": 70,
+          "counts": {
+            "feedItems": 0,
+            "created": 0,
+            "updated": 0,
+            "unchanged": 0,
+            "rejected": 0,
+            "welfare": 0,
+            "review": 0,
+            "nonWelfare": 0
+          },
+          "latest_published_date": null,
+          "sample": []
+        }
+      ]
+    }
+  ]
+}

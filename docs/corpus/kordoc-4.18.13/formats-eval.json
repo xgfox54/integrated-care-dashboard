@@ -1,0 +1,117 @@
+{
+ "generated_at": "2026-10-05T09:17:49.805Z",
+ "parser_version": "4.18.13",
+ "results": [
+  {
+   "file": "samples/lofin-LF3120202-2026-10-03.xlsx",
+   "origin": "행정안전부 지방재정365 세출 공개자료 내려받기(2026-10-03)",
+   "bytes": 7187,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "detected_format": "xlsx",
+   "kordoc_detected_format": "xlsx",
+   "tables": 1,
+   "cells": 28,
+   "performance": {
+    "elapsed_ms": 194,
+    "peak_rss_mb": 106,
+    "parse_passes": 1
+   },
+   "network_attempts": 0,
+   "reasons": [
+    "XLSX 형식은 독립 정답으로 표 구조를 검증한 범위 밖이라 사람이 원문과 대조해야 합니다."
+   ],
+   "xlsx_vs_source_xml": {
+    "truth_cells": 28,
+    "matched": 28,
+    "match_pct": 100,
+    "numeric_cells": 7,
+    "numeric_matched": 7,
+    "numeric_match_pct": 100,
+    "missing_numeric_refs": [],
+    "method": "셀 글자(공백·쉼표 제거)를 개수까지 맞춰 대조. 위치는 대조하지 않음"
+   }
+  },
+  {
+   "file": "real/mohw-1492120.hwpx",
+   "origin": "보건복지부 보도참고자료 첨부",
+   "bytes": 110881,
+   "ok": true,
+   "status": "STRUCTURE_VALIDATED",
+   "error_code": null,
+   "detected_format": "hwpx",
+   "kordoc_detected_format": "hwpx",
+   "tables": 7,
+   "cells": 47,
+   "performance": {
+    "elapsed_ms": 233,
+    "peak_rss_mb": 110,
+    "parse_passes": 1
+   },
+   "network_attempts": 0,
+   "reasons": []
+  },
+  {
+   "file": "real/mohw-1492126.hwpx",
+   "origin": "보건복지부 보도자료 첨부",
+   "bytes": 2521982,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "detected_format": "hwpx",
+   "kordoc_detected_format": "hwpx",
+   "tables": 13,
+   "cells": 156,
+   "performance": {
+    "elapsed_ms": 283,
+    "peak_rss_mb": 134,
+    "parse_passes": 1
+   },
+   "network_attempts": 0,
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ]
+  },
+  {
+   "file": "real/mohw-1492142.hwpx",
+   "origin": "보건복지부 보도자료 첨부",
+   "bytes": 136932,
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "detected_format": "hwpx",
+   "kordoc_detected_format": "hwpx",
+   "tables": 5,
+   "cells": 24,
+   "performance": {
+    "elapsed_ms": 260,
+    "peak_rss_mb": 110,
+    "parse_passes": 1
+   },
+   "network_attempts": 0,
+   "reasons": [
+    "검토가 필요한 경고가 있습니다."
+   ]
+  },
+  {
+   "file": "real/seogwipo-recycling-notice.hwp",
+   "origin": "서귀포시 공고문 첨부(HWP 5.x)",
+   "bytes": 124928,
+   "ok": true,
+   "status": "STRUCTURE_VALIDATED",
+   "error_code": null,
+   "detected_format": "hwp",
+   "kordoc_detected_format": "hwp",
+   "tables": 4,
+   "cells": 61,
+   "performance": {
+    "elapsed_ms": 177,
+    "peak_rss_mb": 87,
+    "parse_passes": 1
+   },
+   "network_attempts": 0,
+   "reasons": []
+  }
+ ]
+}

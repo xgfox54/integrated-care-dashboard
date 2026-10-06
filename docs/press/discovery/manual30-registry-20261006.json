@@ -1,0 +1,534 @@
+{
+  "registry_version": "registry-2026-10-06-manual30",
+  "scope": "Only the 30 CANDIDATE_NEEDS_REVIEW rows in the pinned input; no nationwide completeness claim",
+  "input_sha256": "2c3e2094404b26879b4a594ce44bdea2a776629fb16cf51d1007b74dd723ea8e",
+  "counts": {
+    "COMPLETE": 16,
+    "REVIEW_NEEDED": 14,
+    "BLOCKED": 0
+  },
+  "sources": [
+    {
+      "organization_id": "org:강원특별자치도:동해시",
+      "source_id": "src:www.dh.go.kr:press",
+      "endpoint_url": "https://www.dh.go.kr/www/selectBbsNttList.do?bbsNo=95&key=489",
+      "adapter_profile": {
+        "link": "selectBbsNttView\\.do[^\"']*?[?&](?:amp;)?nttNo=(?<id>\\d+)",
+        "url": "https://www.dh.go.kr/www/selectBbsNttView.do?bbsNo=95&key=489&nttNo={id}",
+        "title": "text"
+      },
+      "collect_via": "relay",
+      "approval_status": "PENDING_PERMISSION",
+      "enabled": 0,
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EA_B0_95_EC_9B_90_ED_8A_B9_EB_B3_84_EC_9E_90_EC_B9_98_EB_8F_84_3A_EB_8F_99_ED_95_B4_EC_8B_9C.json",
+      "metadata_count": 10
+    },
+    {
+      "organization_id": "org:경기도:오산시",
+      "source_id": "src:www.osan.go.kr:press",
+      "endpoint_url": "https://www.osan.go.kr/portal/bbs/list.do?ptIdx=588&mId=0301080000",
+      "adapter_profile": {
+        "link": "goTo\\.view\\('list','(?<id>\\d+)'",
+        "url": "https://www.osan.go.kr/portal/bbs/view.do?mId=0301080000&bIdx={id}&ptIdx=588",
+        "title": "text",
+        "date": "<td class=\"list_date\">\\s*([0-9.-]+)"
+      },
+      "collect_via": "relay",
+      "approval_status": "PENDING_PERMISSION",
+      "enabled": 0,
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EA_B2_BD_EA_B8_B0_EB_8F_84_3A_EC_98_A4_EC_82_B0_EC_8B_9C.json",
+      "metadata_count": 10
+    },
+    {
+      "organization_id": "org:경기도:의왕시",
+      "source_id": "src:www.uiwang.go.kr:press",
+      "endpoint_url": "https://www.uiwang.go.kr/UWKORINFO0201",
+      "adapter_profile": {
+        "link": "/UWKORINFO0201/(?<id>\\d+)/",
+        "url": "https://www.uiwang.go.kr/UWKORINFO0201/{id}/",
+        "title": "^\\s*([^<]+)"
+      },
+      "collect_via": "relay",
+      "approval_status": "PENDING_PERMISSION",
+      "enabled": 0,
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EA_B2_BD_EA_B8_B0_EB_8F_84_3A_EC_9D_98_EC_99_95_EC_8B_9C.json",
+      "metadata_count": 10
+    },
+    {
+      "organization_id": "org:경기도:평택시",
+      "source_id": "src:www.pyeongtaek.go.kr:press",
+      "endpoint_url": "https://www.pyeongtaek.go.kr/pyeongtaek/board/post/list.do?bcIdx=90&mid=0402010000",
+      "adapter_profile": {
+        "link": "data-req-get-p-idx=\"(?<id>\\d+)\"",
+        "url": "https://www.pyeongtaek.go.kr/pyeongtaek/board/post/view.do?bcIdx=90&mid=0402010000&idx={id}",
+        "title": "<span class=\"list_title\">\\s*([^<]+)",
+        "date": "<span class=\"list_data\">[\\s\\S]*?(20\\d{2}[.-]\\d{2}[.-]\\d{2})"
+      },
+      "collect_via": "relay",
+      "approval_status": "PENDING_PERMISSION",
+      "enabled": 0,
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EA_B2_BD_EA_B8_B0_EB_8F_84_3A_ED_8F_89_ED_83_9D_EC_8B_9C.json",
+      "metadata_count": 10
+    },
+    {
+      "organization_id": "org:경상북도:안동시",
+      "source_id": "src:www.andong.go.kr:press",
+      "endpoint_url": "https://www.andong.go.kr/portal/bbs/list.do?ptIdx=104&mId=0403010000",
+      "adapter_profile": {
+        "link": "data-action=\"/portal/bbs/view\\.do\\?bIdx=(?<id>\\d+)",
+        "url": "https://www.andong.go.kr/portal/bbs/view.do?bIdx={id}&ptIdx=104&mId=0403010000",
+        "title": "text",
+        "date": "<td class=\"list_date\">\\s*([0-9.-]+)"
+      },
+      "collect_via": "relay",
+      "approval_status": "PENDING_PERMISSION",
+      "enabled": 0,
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EA_B2_BD_EC_83_81_EB_B6_81_EB_8F_84_3A_EC_95_88_EB_8F_99_EC_8B_9C.json",
+      "metadata_count": 10
+    },
+    {
+      "organization_id": "org:대구광역시:서구",
+      "source_id": "src:www.dgs.go.kr:press",
+      "endpoint_url": "https://www.dgs.go.kr/portal/board/post/list.do?bcIdx=526&mid=0601080000",
+      "adapter_profile": {
+        "link": "/portal/board/post/view\\.do[^\"']*?idx=(?<id>\\d+)",
+        "url": "https://www.dgs.go.kr/portal/board/post/view.do?bcIdx=526&mid=0601080000&idx={id}",
+        "title": "text",
+        "date": "<td class=\"list_date\">\\s*([0-9.-]+)"
+      },
+      "collect_via": "relay",
+      "approval_status": "PENDING_PERMISSION",
+      "enabled": 0,
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EB_8C_80_EA_B5_AC_EA_B4_91_EC_97_AD_EC_8B_9C_3A_EC_84_9C_EA_B5_AC.json",
+      "metadata_count": 10
+    },
+    {
+      "organization_id": "org:서울특별시:강서구",
+      "source_id": "src:www.gangseo.seoul.kr:press",
+      "endpoint_url": "https://www.gangseo.seoul.kr/gs040201",
+      "adapter_profile": {
+        "link": "/gs040201/(?<id>\\d+)",
+        "url": "https://www.gangseo.seoul.kr/gs040201/{id}",
+        "title": "text"
+      },
+      "collect_via": "relay",
+      "approval_status": "PENDING_PERMISSION",
+      "enabled": 0,
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_84_9C_EC_9A_B8_ED_8A_B9_EB_B3_84_EC_8B_9C_3A_EA_B0_95_EC_84_9C_EA_B5_AC.json",
+      "metadata_count": 10
+    },
+    {
+      "organization_id": "org:서울특별시:광진구",
+      "source_id": "src:www.gwangjin.go.kr:press",
+      "endpoint_url": "https://www.gwangjin.go.kr/portal/bbs/B0000002/list.do?menuNo=200191",
+      "adapter_profile": {
+        "link": "B0000002/view\\.do[^\"']*?nttId=(?<id>\\d+)",
+        "url": "https://www.gwangjin.go.kr/portal/bbs/B0000002/view.do?nttId={id}&menuNo=200191",
+        "title": "<span class=\"tit\">\\s*([\\s\\S]*?)</span>",
+        "date": "<span class=\"date\">\\s*([0-9.-]+)"
+      },
+      "collect_via": "relay",
+      "approval_status": "PENDING_PERMISSION",
+      "enabled": 0,
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_84_9C_EC_9A_B8_ED_8A_B9_EB_B3_84_EC_8B_9C_3A_EA_B4_91_EC_A7_84_EA_B5_AC.json",
+      "metadata_count": 10
+    },
+    {
+      "organization_id": "org:서울특별시:마포구",
+      "source_id": "src:www.mapo.go.kr:press",
+      "endpoint_url": "https://www.mapo.go.kr/site/main/board/press/list",
+      "adapter_profile": {
+        "link": "/site/main/board/press/(?<id>\\d+)",
+        "url": "https://www.mapo.go.kr/site/main/board/press/{id}",
+        "title": "text"
+      },
+      "collect_via": "relay",
+      "approval_status": "PENDING_PERMISSION",
+      "enabled": 0,
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_84_9C_EC_9A_B8_ED_8A_B9_EB_B3_84_EC_8B_9C_3A_EB_A7_88_ED_8F_AC_EA_B5_AC.json",
+      "metadata_count": 10
+    },
+    {
+      "organization_id": "org:울산광역시:울주군",
+      "source_id": "src:www.ulju.ulsan.kr:press",
+      "endpoint_url": "https://www.ulju.ulsan.kr/ulju/bbs/list.do?ptIdx=146&mId=0404020000",
+      "adapter_profile": {
+        "link": "goTo\\.view\\('list','(?<id>\\d+)'",
+        "url": "https://www.ulju.ulsan.kr/ulju/bbs/view.do?mId=0404020000&bIdx={id}&ptIdx=146",
+        "title": "attr:title",
+        "date": "<td class=\"list_date\">\\s*([0-9.-]+)"
+      },
+      "collect_via": "relay",
+      "approval_status": "PENDING_PERMISSION",
+      "enabled": 0,
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_9A_B8_EC_82_B0_EA_B4_91_EC_97_AD_EC_8B_9C_3A_EC_9A_B8_EC_A3_BC_EA_B5_B0.json",
+      "metadata_count": 10
+    },
+    {
+      "organization_id": "org:전북특별자치도:남원시",
+      "source_id": "src:www.namwon.go.kr:press",
+      "endpoint_url": "https://www.namwon.go.kr/board/post/list.do?boardUid=ff8080818ea1fec5018ea24651660037&menuUid=ff8080818e3beff0018e407936b40088",
+      "adapter_profile": {
+        "link": "view\\.do[^\"']*?postUid=(?<id>[\\w-]+)",
+        "url": "https://www.namwon.go.kr/board/post/view.do?boardUid=ff8080818ea1fec5018ea24651660037&menuUid=ff8080818e3beff0018e407936b40088&postUid={id}",
+        "title": "attr:title"
+      },
+      "collect_via": "relay",
+      "approval_status": "PENDING_PERMISSION",
+      "enabled": 0,
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_A0_84_EB_B6_81_ED_8A_B9_EB_B3_84_EC_9E_90_EC_B9_98_EB_8F_84_3A_EB_82_A8_EC_9B_90_EC_8B_9C.json",
+      "metadata_count": 10
+    },
+    {
+      "organization_id": "org:충청남도:금산군",
+      "source_id": "src:www.geumsan.go.kr:press",
+      "endpoint_url": "https://www.geumsan.go.kr/kr/html/sub03/030301.html",
+      "adapter_profile": {
+        "link": "href=[\"'][^\"']*?[?&](?:amp;)?nes_dta_key=(?<id>[\\w-]+)",
+        "url": "https://www.geumsan.go.kr/kr/html/sub03/030301.html?mode=V&nes_dta_key={id}",
+        "title": "<strong[^>]*>\\s*([^<]+)"
+      },
+      "collect_via": "relay",
+      "approval_status": "PENDING_PERMISSION",
+      "enabled": 0,
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_B6_A9_EC_B2_AD_EB_82_A8_EB_8F_84_3A_EA_B8_88_EC_82_B0_EA_B5_B0.json",
+      "metadata_count": 15
+    },
+    {
+      "organization_id": "org:충청남도:논산시",
+      "source_id": "src:www.nonsan.go.kr:press",
+      "endpoint_url": "https://www.nonsan.go.kr/kor/html/sub03/030106.html",
+      "adapter_profile": {
+        "link": "href=[\"'][^\"']*?[?&](?:amp;)?no=(?<id>[\\w-]+)",
+        "url": "https://www.nonsan.go.kr/kor/html/sub03/030106.html?mode=V&no={id}",
+        "title": "<h2[^>]*>\\s*([\\s\\S]*?)</h2>",
+        "date": "class=['\"]date['\"]>\\s*([0-9.-]+)"
+      },
+      "collect_via": "relay",
+      "approval_status": "PENDING_PERMISSION",
+      "enabled": 0,
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_B6_A9_EC_B2_AD_EB_82_A8_EB_8F_84_3A_EB_85_BC_EC_82_B0_EC_8B_9C.json",
+      "metadata_count": 15
+    },
+    {
+      "organization_id": "org:충청남도:서산시",
+      "source_id": "src:www.seosan.go.kr:press",
+      "endpoint_url": "https://www.seosan.go.kr/www/selectBbsNttList.do?bbsNo=101&key=1260",
+      "adapter_profile": {
+        "link": "selectBbsNttView\\.do[^\"']*?nttNo=(?<id>\\d+)",
+        "url": "https://www.seosan.go.kr/www/selectBbsNttView.do?key=1260&bbsNo=101&nttNo={id}",
+        "title": "text"
+      },
+      "collect_via": "relay",
+      "approval_status": "PENDING_PERMISSION",
+      "enabled": 0,
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_B6_A9_EC_B2_AD_EB_82_A8_EB_8F_84_3A_EC_84_9C_EC_82_B0_EC_8B_9C.json",
+      "metadata_count": 10
+    },
+    {
+      "organization_id": "org:충청남도:서천군",
+      "source_id": "src:www.seocheon.go.kr:press",
+      "endpoint_url": "https://www.seocheon.go.kr/bbs/BBSMSTR_000000000270/list.do",
+      "adapter_profile": {
+        "link": "data-ntt-id=\"(?<id>\\w+)\"",
+        "tag": "button",
+        "url": "https://www.seocheon.go.kr/bbs/BBSMSTR_000000000270/view.do?nttId={id}",
+        "title": "<strong class=\"bbs__title\">\\s*([^<]+)",
+        "date": "class=\"regDate\">[\\s\\S]*?(20\\d{2}-\\d{2}-\\d{2})"
+      },
+      "collect_via": "relay",
+      "approval_status": "PENDING_PERMISSION",
+      "enabled": 0,
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_B6_A9_EC_B2_AD_EB_82_A8_EB_8F_84_3A_EC_84_9C_EC_B2_9C_EA_B5_B0.json",
+      "metadata_count": 12
+    },
+    {
+      "organization_id": "org:세종특별자치시",
+      "source_id": "src:sejong:press",
+      "endpoint_url": "https://www.sejong.go.kr/bbs/R0079/list.do",
+      "adapter_profile": {
+        "link": "/bbs/R0079/view\\.do\\?nttId=(?<id>\\w+)",
+        "url": "https://www.sejong.go.kr/bbs/R0079/view.do?nttId={id}&mno=sub02_0401",
+        "title": "text",
+        "date": "data-cell-header=\"등록일\">\\s*([0-9.-]+)"
+      },
+      "collect_via": "relay",
+      "approval_status": "PENDING_PERMISSION",
+      "enabled": 0,
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_84_B8_EC_A2_85_ED_8A_B9_EB_B3_84_EC_9E_90_EC_B9_98_EC_8B_9C.json",
+      "metadata_count": 10
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "org:강원특별자치도:동해시",
+      "name": "동해시",
+      "status": "COMPLETE",
+      "reason": "공식 보도자료 목록 메타데이터와 상세 원문 2건 제목 일치 확인",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EA_B0_95_EC_9B_90_ED_8A_B9_EB_B3_84_EC_9E_90_EC_B9_98_EB_8F_84_3A_EB_8F_99_ED_95_B4_EC_8B_9C.json",
+      "endpoint": "https://www.dh.go.kr/www/selectBbsNttList.do?bbsNo=95&key=489",
+      "metadata_count": 10
+    },
+    {
+      "id": "org:경기도:오산시",
+      "name": "오산시",
+      "status": "COMPLETE",
+      "reason": "공식 보도자료 목록 메타데이터와 상세 원문 2건 제목 일치 확인",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EA_B2_BD_EA_B8_B0_EB_8F_84_3A_EC_98_A4_EC_82_B0_EC_8B_9C.json",
+      "endpoint": "https://www.osan.go.kr/portal/bbs/list.do?ptIdx=588&mId=0301080000",
+      "metadata_count": 10
+    },
+    {
+      "id": "org:경기도:의왕시",
+      "name": "의왕시",
+      "status": "COMPLETE",
+      "reason": "공식 보도자료 목록 메타데이터와 상세 원문 2건 제목 일치 확인",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EA_B2_BD_EA_B8_B0_EB_8F_84_3A_EC_9D_98_EC_99_95_EC_8B_9C.json",
+      "endpoint": "https://www.uiwang.go.kr/UWKORINFO0201",
+      "metadata_count": 10
+    },
+    {
+      "id": "org:경기도:평택시",
+      "name": "평택시",
+      "status": "COMPLETE",
+      "reason": "공식 보도자료 목록 메타데이터와 상세 원문 2건 제목 일치 확인",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EA_B2_BD_EA_B8_B0_EB_8F_84_3A_ED_8F_89_ED_83_9D_EC_8B_9C.json",
+      "endpoint": "https://www.pyeongtaek.go.kr/pyeongtaek/board/post/list.do?bcIdx=90&mid=0402010000",
+      "metadata_count": 10
+    },
+    {
+      "id": "org:경상북도:봉화군",
+      "name": "봉화군",
+      "status": "REVIEW_NEEDED",
+      "reason": "언론보도 목록 9건과 원문 2건 제목 일치. 군 자체 보도자료와 언론기사 모음의 구분을 확정하지 않아 등록 보류.",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EA_B2_BD_EC_83_81_EB_B6_81_EB_8F_84_3A_EB_B4_89_ED_99_94_EA_B5_B0.json",
+      "endpoint": "https://www.bonghwa.go.kr/portal/board/post/list.do?bcIdx=519&mid=0201090000",
+      "metadata_count": 9
+    },
+    {
+      "id": "org:경상북도:성주군",
+      "name": "성주군",
+      "status": "REVIEW_NEEDED",
+      "reason": "목록 10건 날짜 확인. 원문 GET 2건에서 목록 제목 불일치(동적 상세 표시 가능).",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EA_B2_BD_EC_83_81_EB_B6_81_EB_8F_84_3A_EC_84_B1_EC_A3_BC_EA_B5_B0.json",
+      "endpoint": "https://www.sj.go.kr/page.do?mnu_uid=3546&",
+      "metadata_count": 10
+    },
+    {
+      "id": "org:경상북도:안동시",
+      "name": "안동시",
+      "status": "COMPLETE",
+      "reason": "공식 보도자료 목록 메타데이터와 상세 원문 2건 제목 일치 확인",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EA_B2_BD_EC_83_81_EB_B6_81_EB_8F_84_3A_EC_95_88_EB_8F_99_EC_8B_9C.json",
+      "endpoint": "https://www.andong.go.kr/portal/bbs/list.do?ptIdx=104&mId=0403010000",
+      "metadata_count": 10
+    },
+    {
+      "id": "org:대구광역시:달서구",
+      "name": "달서구",
+      "status": "REVIEW_NEEDED",
+      "reason": "언론보도자료 목록의 제목 링크가 fn_icms_navi_common 호출. 상세 주소와 기존 어댑터 프로필 미확정.",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EB_8C_80_EA_B5_AC_EA_B4_91_EC_97_AD_EC_8B_9C_3A_EB_8B_AC_EC_84_9C_EA_B5_AC.json",
+      "endpoint": "https://www.dalseo.daegu.kr/index.do?menu_id=20000566",
+      "metadata_count": 0
+    },
+    {
+      "id": "org:대구광역시:서구",
+      "name": "서구",
+      "status": "COMPLETE",
+      "reason": "공식 보도자료 목록 메타데이터와 상세 원문 2건 제목 일치 확인",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EB_8C_80_EA_B5_AC_EA_B4_91_EC_97_AD_EC_8B_9C_3A_EC_84_9C_EA_B5_AC.json",
+      "endpoint": "https://www.dgs.go.kr/portal/board/post/list.do?bcIdx=526&mid=0601080000",
+      "metadata_count": 10
+    },
+    {
+      "id": "org:부산광역시:강서구",
+      "name": "강서구",
+      "status": "REVIEW_NEEDED",
+      "reason": "기존 후보는 고시공고. 공식 첫 화면에서 bcIdx=526 보도자료 목록을 찾아 HTTP 200 확인, 상세 프로필 미확정.",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EB_B6_80_EC_82_B0_EA_B4_91_EC_97_AD_EC_8B_9C_3A_EA_B0_95_EC_84_9C_EA_B5_AC.json",
+      "endpoint": "https://www.bsgangseo.go.kr/portal/board/post/list.do?bcIdx=526&mid=0501050000",
+      "metadata_count": 0
+    },
+    {
+      "id": "org:부산광역시:남구",
+      "name": "남구",
+      "status": "REVIEW_NEEDED",
+      "reason": "공식 보도자료 iframe의 새올 목록 HTTP 200 확인. 별도 상세 이동 프로필 미확정.",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EB_B6_80_EC_82_B0_EA_B4_91_EC_97_AD_EC_8B_9C_3A_EB_82_A8_EA_B5_AC.json",
+      "endpoint": "https://eminwon.bsnamgu.go.kr/emwp/jsp/ofr/OfrNewsEpctLSub.jsp?news_epct_no=1,2",
+      "metadata_count": 0
+    },
+    {
+      "id": "org:서울특별시:강서구",
+      "name": "강서구",
+      "status": "COMPLETE",
+      "reason": "공식 보도자료 목록 메타데이터와 상세 원문 2건 제목 일치 확인",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_84_9C_EC_9A_B8_ED_8A_B9_EB_B3_84_EC_8B_9C_3A_EA_B0_95_EC_84_9C_EA_B5_AC.json",
+      "endpoint": "https://www.gangseo.seoul.kr/gs040201",
+      "metadata_count": 10
+    },
+    {
+      "id": "org:서울특별시:광진구",
+      "name": "광진구",
+      "status": "COMPLETE",
+      "reason": "공식 보도자료 목록 메타데이터와 상세 원문 2건 제목 일치 확인",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_84_9C_EC_9A_B8_ED_8A_B9_EB_B3_84_EC_8B_9C_3A_EA_B4_91_EC_A7_84_EA_B5_AC.json",
+      "endpoint": "https://www.gwangjin.go.kr/portal/bbs/B0000002/list.do?menuNo=200191",
+      "metadata_count": 10
+    },
+    {
+      "id": "org:서울특별시:마포구",
+      "name": "마포구",
+      "status": "COMPLETE",
+      "reason": "공식 보도자료 목록 메타데이터와 상세 원문 2건 제목 일치 확인",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_84_9C_EC_9A_B8_ED_8A_B9_EB_B3_84_EC_8B_9C_3A_EB_A7_88_ED_8F_AC_EA_B5_AC.json",
+      "endpoint": "https://www.mapo.go.kr/site/main/board/press/list",
+      "metadata_count": 10
+    },
+    {
+      "id": "org:서울특별시:양천구",
+      "name": "양천구",
+      "status": "REVIEW_NEEDED",
+      "reason": "목록 제목을 script로 출력하여 현재 선언형 프로필은 제목 0건. 이동 함수 주소는 확인했으나 수집 가능한 프로필 미확정.",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_84_9C_EC_9A_B8_ED_8A_B9_EB_B3_84_EC_8B_9C_3A_EC_96_91_EC_B2_9C_EA_B5_AC.json",
+      "endpoint": "https://www.yangcheon.go.kr/site/yangcheon/ex/bbs/List.do?cbIdx=290",
+      "metadata_count": 0
+    },
+    {
+      "id": "org:서울특별시:용산구",
+      "name": "용산구",
+      "status": "REVIEW_NEEDED",
+      "reason": "실제 원문 링크 10건 및 첫 2건 제목 일치. 1건 날짜가 어댑터 구간 상한 밖에 있어 날짜 9/10건, 등록 보류.",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_84_9C_EC_9A_B8_ED_8A_B9_EB_B3_84_EC_8B_9C_3A_EC_9A_A9_EC_82_B0_EA_B5_AC.json",
+      "endpoint": "https://www.yongsan.go.kr/portal/bbs/B0000043/list.do?menuNo=200230",
+      "metadata_count": 10
+    },
+    {
+      "id": "org:서울특별시:종로구",
+      "name": "종로구",
+      "status": "REVIEW_NEEDED",
+      "reason": "실제 원문 링크 20건 및 첫 2건 제목 일치. 날짜는 1/20건만 추출되어 등록 보류.",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_84_9C_EC_9A_B8_ED_8A_B9_EB_B3_84_EC_8B_9C_3A_EC_A2_85_EB_A1_9C_EA_B5_AC.json",
+      "endpoint": "https://www.jongno.go.kr/portal/bbs/selectBoardList.do?bbsId=BBSMSTR_000000001618&menuNo=388338&menuId=388338",
+      "metadata_count": 20
+    },
+    {
+      "id": "org:울산광역시:울주군",
+      "name": "울주군",
+      "status": "COMPLETE",
+      "reason": "공식 보도자료 목록 메타데이터와 상세 원문 2건 제목 일치 확인",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_9A_B8_EC_82_B0_EA_B4_91_EC_97_AD_EC_8B_9C_3A_EC_9A_B8_EC_A3_BC_EA_B5_B0.json",
+      "endpoint": "https://www.ulju.ulsan.kr/ulju/bbs/list.do?ptIdx=146&mId=0404020000",
+      "metadata_count": 10
+    },
+    {
+      "id": "org:전남광주통합특별시:남구",
+      "name": "남구",
+      "status": "REVIEW_NEEDED",
+      "reason": "공식 iframe의 새올 보도자료 목록 HTTP 200 확인. 상세 이동·날짜·제목 프로필 미확정.",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_A0_84_EB_82_A8_EA_B4_91_EC_A3_BC_ED_86_B5_ED_95_A9_ED_8A_B9_EB_B3_84_EC_8B_9C_3A_EB_82_A8_EA_B5_AC.json",
+      "endpoint": "https://eminwon.namgu.gwangju.kr/emwp/jsp/ofr/OfrNewsEpctLSub.jsp?news_epct_yn=1&jndinm=OfrNotAncmtEJB&context=NTIS&method=selectListOfrNotAncmt&methodnm=selectListOfrNotAncmtHomepage&ofr_pageSize=10&homepage_pbs_yn=Y&subCheck=Y",
+      "metadata_count": 0
+    },
+    {
+      "id": "org:전남광주통합특별시:북구",
+      "name": "북구",
+      "status": "REVIEW_NEEDED",
+      "reason": "공식 iframe의 새올 보도자료 목록 HTTP 200 확인. 상세 이동·날짜·제목 프로필 미확정.",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_A0_84_EB_82_A8_EA_B4_91_EC_A3_BC_ED_86_B5_ED_95_A9_ED_8A_B9_EB_B3_84_EC_8B_9C_3A_EB_B6_81_EA_B5_AC.json",
+      "endpoint": "https://eminwon.bukgu.gwangju.kr/emwp/jsp/ofr/OfrNewsEpctLSub.jsp?news_epct_yn=1&jndinm=OfrNotAncmtEJB&context=NTIS&method=selectListOfrNotAncmt&methodnm=selectListOfrNotAncmtHomepage&ofr_pageSize=10&homepage_pbs_yn=Y&subCheck=Y",
+      "metadata_count": 0
+    },
+    {
+      "id": "org:전남광주통합특별시:서구",
+      "name": "서구",
+      "status": "REVIEW_NEEDED",
+      "reason": "정상 JavaScript의 CAPTCHA 문자열을 차단으로 오인한 탐지기 결함 정정(동일 URL·응답 SHA-256 확인). 수정 후 재검증: 목록 10개 ID 중 제목 6건만 추출되어 검토필요. WAF 차단으로 확정하지 않음.",
+      "evidence": ".omo/evidence/press-manual-20261006/verify3-org_3A_EC_A0_84_EB_82_A8_EA_B4_91_EC_A3_BC_ED_86_B5_ED_95_A9_ED_8A_B9_EB_B3_84_EC_8B_9C_3A_EC_84_9C_EA_B5_AC.json",
+      "endpoint": "https://www.seogu.gwangju.kr/board.es?mid=c50501000000&bid=0154",
+      "metadata_count": 6
+    },
+    {
+      "id": "org:전북특별자치도:남원시",
+      "name": "남원시",
+      "status": "COMPLETE",
+      "reason": "공식 보도자료 목록 메타데이터와 상세 원문 2건 제목 일치 확인",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_A0_84_EB_B6_81_ED_8A_B9_EB_B3_84_EC_9E_90_EC_B9_98_EB_8F_84_3A_EB_82_A8_EC_9B_90_EC_8B_9C.json",
+      "endpoint": "https://www.namwon.go.kr/board/post/list.do?boardUid=ff8080818ea1fec5018ea24651660037&menuUid=ff8080818e3beff0018e407936b40088",
+      "metadata_count": 10
+    },
+    {
+      "id": "org:충청남도:금산군",
+      "name": "금산군",
+      "status": "COMPLETE",
+      "reason": "공식 보도자료 목록 메타데이터와 상세 원문 2건 제목 일치 확인",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_B6_A9_EC_B2_AD_EB_82_A8_EB_8F_84_3A_EA_B8_88_EC_82_B0_EA_B5_B0.json",
+      "endpoint": "https://www.geumsan.go.kr/kr/html/sub03/030301.html",
+      "metadata_count": 15
+    },
+    {
+      "id": "org:충청남도:논산시",
+      "name": "논산시",
+      "status": "COMPLETE",
+      "reason": "공식 보도자료 목록 메타데이터와 상세 원문 2건 제목 일치 확인",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_B6_A9_EC_B2_AD_EB_82_A8_EB_8F_84_3A_EB_85_BC_EC_82_B0_EC_8B_9C.json",
+      "endpoint": "https://www.nonsan.go.kr/kor/html/sub03/030106.html",
+      "metadata_count": 15
+    },
+    {
+      "id": "org:충청남도:서산시",
+      "name": "서산시",
+      "status": "COMPLETE",
+      "reason": "공식 보도자료 목록 메타데이터와 상세 원문 2건 제목 일치 확인",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_B6_A9_EC_B2_AD_EB_82_A8_EB_8F_84_3A_EC_84_9C_EC_82_B0_EC_8B_9C.json",
+      "endpoint": "https://www.seosan.go.kr/www/selectBbsNttList.do?bbsNo=101&key=1260",
+      "metadata_count": 10
+    },
+    {
+      "id": "org:충청남도:서천군",
+      "name": "서천군",
+      "status": "COMPLETE",
+      "reason": "공식 보도자료 목록 메타데이터와 상세 원문 2건 제목 일치 확인",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_B6_A9_EC_B2_AD_EB_82_A8_EB_8F_84_3A_EC_84_9C_EC_B2_9C_EA_B5_B0.json",
+      "endpoint": "https://www.seocheon.go.kr/bbs/BBSMSTR_000000000270/list.do",
+      "metadata_count": 12
+    },
+    {
+      "id": "org:충청북도:영동군",
+      "name": "영동군",
+      "status": "REVIEW_NEEDED",
+      "reason": "기존 후보는 공지사항. 공식 홈페이지·기존 목록·게시판 스크립트 범위에서 보도자료 경로 미확정.",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_B6_A9_EC_B2_AD_EB_B6_81_EB_8F_84_3A_EC_98_81_EB_8F_99_EA_B5_B0.json",
+      "endpoint": "https://www.yd21.go.kr/kr/html/sub02/020101.html",
+      "metadata_count": 0
+    },
+    {
+      "id": "org:세종특별자치시",
+      "name": "세종특별자치시",
+      "status": "COMPLETE",
+      "reason": "공식 보도자료 목록 메타데이터와 상세 원문 2건 제목 일치 확인",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_84_B8_EC_A2_85_ED_8A_B9_EB_B3_84_EC_9E_90_EC_B9_98_EC_8B_9C.json",
+      "endpoint": "https://www.sejong.go.kr/bbs/R0079/list.do",
+      "metadata_count": 10
+    },
+    {
+      "id": "org:충청북도",
+      "name": "충청북도",
+      "status": "REVIEW_NEEDED",
+      "reason": "공식 메뉴의 실제 bbsNo=65로 수정해 목록 열람. 제목 요소가 기존 프로필과 맞지 않아 추출 0건, 등록 보류.",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EC_B6_A9_EC_B2_AD_EB_B6_81_EB_8F_84.json",
+      "endpoint": "https://www.chungbuk.go.kr/www/selectBbsNttList.do?bbsNo=65&key=429",
+      "metadata_count": 0
+    },
+    {
+      "id": "org:경상남도",
+      "name": "경상남도",
+      "status": "REVIEW_NEEDED",
+      "reason": "기존 BBS_0000057은 2022년 공지사항 목록. 공식 도청 홈페이지까지 확인했으나 현 보도자료 상세 프로필 미확정.",
+      "evidence": ".omo/evidence/press-manual-20261006/verify2-org_3A_EA_B2_BD_EC_83_81_EB_82_A8_EB_8F_84.json",
+      "endpoint": "https://www.gyeongnam.go.kr/index.gyeong",
+      "metadata_count": 0
+    }
+  ]
+}

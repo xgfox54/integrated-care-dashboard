@@ -1,0 +1,54 @@
+{
+ "extractor_version": "budget-lines-1.2.0",
+ "parse_id": "p_a72f9adc5ff834d553c55ff2627afa60",
+ "amount_columns": [
+  "예산액|전년도예산액|비교증감"
+ ],
+ "summary": {
+  "lines": 1844,
+  "by_level": {
+   "department": 4,
+   "policy": 18,
+   "unit": 46,
+   "detail_project": 334,
+   "object_group": 406,
+   "object": 428,
+   "item": 556,
+   "sub_item": 52
+  },
+  "by_amount_basis": {
+   "source_cell": 1823,
+   "source_cell_split_by_formula": 21
+  },
+  "checks": {
+   "children_sum": {
+    "match": 1253
+   },
+   "side_columns": {
+    "match": 1236
+   },
+   "previous_children_sum": {
+    "match": 784,
+    "parent_includes_unlisted": 23,
+    "incomplete": 428
+   },
+   "funding_sum": {
+    "match": 818
+   },
+   "page_header": {
+    "match": 44,
+    "not_in_headers": 20
+   },
+   "formula": {
+    "match": 591
+   },
+   "name_continued": {
+    "next_row": 26
+   },
+   "name_fragment_rejoined": {
+    "supported_by_item_name": 2
+   }
+  },
+  "problems": {}
+ }
+}

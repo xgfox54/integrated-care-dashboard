@@ -460,6 +460,8 @@ function measureEdges(
 }
 
 
+const ARROW_LENGTH = 9;
+
 function roundedPath(points: number[][], radius: number) {
   if (points.length < 2) return "";
   let path = `M ${round(points[0][0])} ${round(points[0][1])}`;
@@ -469,7 +471,9 @@ function roundedPath(points: number[][], radius: number) {
     const [nextX, nextY] = points[index + 1];
     const incoming = Math.hypot(currentX - previousX, currentY - previousY);
     const outgoing = Math.hypot(nextX - currentX, nextY - currentY);
-    const cornerRadius = Math.min(radius, incoming / 2, outgoing / 2);
+    // 마지막 꺾임은 화살촉(8px) 뒤에서 끝나야 선이 화살촉 밑변 가운데로 곧게 들어간다.
+    const isLastCorner = index === points.length - 2;
+    const cornerRadius = Math.min(radius, incoming / 2, isLastCorner ? Math.max(0, outgoing - ARROW_LENGTH) : outgoing / 2);
     if (cornerRadius < 1) {
       path += ` L ${round(currentX)} ${round(currentY)}`;
       continue;

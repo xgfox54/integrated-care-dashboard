@@ -1,0 +1,4562 @@
+{
+  "schema": "budget-department-names-v1",
+  "rule": "Explicit same-page department header and confirmed original TOC start required; no cross-page carryforward; missing or ambiguous headers held. Same year/entity/account; whitespace-only normalized exact project name; exact positive KRW amount; unique on both sides across all 3 volumes; two independent project names; reject code conflicts. No source values overwritten.",
+  "mappings": [
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1003004",
+      "department_name": "건강위생과",
+      "status": "verified_exact",
+      "evidence_count": 39,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1010010",
+      "department_name": "지방노동위원회",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1012001",
+      "department_name": "성평등여성정책관",
+      "status": "verified_exact",
+      "evidence_count": 20,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1030010",
+      "department_name": "총무과",
+      "status": "verified_exact",
+      "evidence_count": 13,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1040053",
+      "department_name": "노동일자리과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1045010",
+      "department_name": "복지정책과",
+      "status": "verified_exact",
+      "evidence_count": 15,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1045020",
+      "department_name": "노인복지과",
+      "status": "verified_exact",
+      "evidence_count": 12,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1045030",
+      "department_name": "아동보육청소년과",
+      "status": "verified_exact",
+      "evidence_count": 21,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1045040",
+      "department_name": "보건정책과",
+      "status": "verified_exact",
+      "evidence_count": 30,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1045041",
+      "department_name": "장애인복지과",
+      "status": "verified_exact",
+      "evidence_count": 27,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1080030",
+      "department_name": "주택토지과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1105050",
+      "department_name": "보건환경연구원",
+      "status": "verified_exact",
+      "evidence_count": 38,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1105060",
+      "department_name": "보훈청",
+      "status": "verified_exact",
+      "evidence_count": 18,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1105100",
+      "department_name": "제주시보건행정과",
+      "status": "verified_exact",
+      "evidence_count": 18,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1105110",
+      "department_name": "서귀포시보건행정과",
+      "status": "verified_exact",
+      "evidence_count": 32,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1105120",
+      "department_name": "제주시서부보건소",
+      "status": "verified_exact",
+      "evidence_count": 36,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1105130",
+      "department_name": "서귀포시동부보건소",
+      "status": "verified_exact",
+      "evidence_count": 39,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "2105243",
+      "department_name": "설문대여성문화센터",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "2105261",
+      "department_name": "고용센터",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "3005110",
+      "department_name": "제주시주민복지과",
+      "status": "verified_exact",
+      "evidence_count": 26,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "3005120",
+      "department_name": "제주시여성가족과",
+      "status": "verified_exact",
+      "evidence_count": 56,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "3005130",
+      "department_name": "제주시위생관리과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "3005391",
+      "department_name": "제주시주택과",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "3005393",
+      "department_name": "제주시노인복지과",
+      "status": "verified_exact",
+      "evidence_count": 15,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "3005395",
+      "department_name": "제주시동부보건소",
+      "status": "verified_exact",
+      "evidence_count": 28,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "3005398",
+      "department_name": "제주시기초생활보장과",
+      "status": "verified_exact",
+      "evidence_count": 17,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "3005406",
+      "department_name": "제주시일자리에너지과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "3005407",
+      "department_name": "제주시장애인복지과",
+      "status": "verified_exact",
+      "evidence_count": 32,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "3005408",
+      "department_name": "제주시건강증진과",
+      "status": "verified_exact",
+      "evidence_count": 31,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "3005411",
+      "department_name": "제주시식품안전과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "3005413",
+      "department_name": "제주시감염예방의약과",
+      "status": "verified_exact",
+      "evidence_count": 15,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "3005415",
+      "department_name": "제주시주민복지과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "4005100",
+      "department_name": "서귀포시노인복지과",
+      "status": "verified_exact",
+      "evidence_count": 21,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "4005110",
+      "department_name": "서귀포시여성가족과",
+      "status": "verified_exact",
+      "evidence_count": 63,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "4005160",
+      "department_name": "서귀포시경제일자리과",
+      "status": "verified_exact",
+      "evidence_count": 20,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "4005281",
+      "department_name": "서귀포시주민복지과",
+      "status": "verified_exact",
+      "evidence_count": 16,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "4005284",
+      "department_name": "서귀포시서부보건소",
+      "status": "verified_exact",
+      "evidence_count": 37,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "4005293",
+      "department_name": "서귀포시건축과",
+      "status": "verified_exact",
+      "evidence_count": 12,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "4005295",
+      "department_name": "서귀포시위생관리과",
+      "status": "verified_exact",
+      "evidence_count": 15,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "4005298",
+      "department_name": "서귀포시장애인복지과",
+      "status": "verified_exact",
+      "evidence_count": 34,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "4005300",
+      "department_name": "서귀포시건강증진과",
+      "status": "verified_exact",
+      "evidence_count": 26,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-04",
+      "fiscal_entity_name": "제주본청",
+      "department_code": "4005301",
+      "department_name": "서귀포시주민복지과",
+      "status": "verified_exact",
+      "evidence_count": 6,
+      "source_urls": [
+        "https://www.jeju.go.kr/finance/budget/2015.htm?act=download&seq=2003239&no=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1020020",
+      "department_name": "복지정책과",
+      "status": "verified_exact",
+      "evidence_count": 32,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=8"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1033003",
+      "department_name": "노인복지과",
+      "status": "verified_exact",
+      "evidence_count": 16,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=8"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1033007",
+      "department_name": "아동보육과",
+      "status": "verified_exact",
+      "evidence_count": 57,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=8"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1033010",
+      "department_name": "장애인복지과",
+      "status": "verified_exact",
+      "evidence_count": 36,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=8"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1033011",
+      "department_name": "복지정책과",
+      "status": "verified_exact",
+      "evidence_count": 10,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=8"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1001003",
+      "department_name": "재산관리과",
+      "status": "verified_exact",
+      "evidence_count": 9,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=5"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1003002",
+      "department_name": "축산과",
+      "status": "verified_exact",
+      "evidence_count": 38,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=10"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1003003",
+      "department_name": "기업지원과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=9"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1003004",
+      "department_name": "민생경제과",
+      "status": "verified_exact",
+      "evidence_count": 13,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=9"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1004003",
+      "department_name": "자치분권과",
+      "status": "verified_exact",
+      "evidence_count": 13,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1004004",
+      "department_name": "관광과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=7"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1004005",
+      "department_name": "인사관리과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1010010",
+      "department_name": "감사관",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1011002",
+      "department_name": "시민소통관",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1012002",
+      "department_name": "법무과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1013001",
+      "department_name": "평생교육과",
+      "status": "verified_exact",
+      "evidence_count": 17,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=6"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1014001",
+      "department_name": "도시정비과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=11"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1014002",
+      "department_name": "도시기획단",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1014003",
+      "department_name": "미래도시과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=16"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1015010",
+      "department_name": "행정과",
+      "status": "verified_exact",
+      "evidence_count": 12,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1015020",
+      "department_name": "정책기획과",
+      "status": "verified_exact",
+      "evidence_count": 9,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1015040",
+      "department_name": "세정과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=5"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1015050",
+      "department_name": "정보통신과",
+      "status": "verified_exact",
+      "evidence_count": 9,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1015051",
+      "department_name": "예산과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1015052",
+      "department_name": "민원여권과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1018002",
+      "department_name": "청년정책과",
+      "status": "verified_exact",
+      "evidence_count": 12,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=6"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1020010",
+      "department_name": "문화예술과",
+      "status": "verified_exact",
+      "evidence_count": 65,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=7"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1020030",
+      "department_name": "여성가족과",
+      "status": "verified_exact",
+      "evidence_count": 32,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=6"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1020034",
+      "department_name": "체육진흥과",
+      "status": "verified_exact",
+      "evidence_count": 25,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=7"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1024005",
+      "department_name": "기업산단입지과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=16"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1025020",
+      "department_name": "농업정책과",
+      "status": "verified_exact",
+      "evidence_count": 49,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=10"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1025030",
+      "department_name": "환경정책과",
+      "status": "verified_exact",
+      "evidence_count": 17,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=17"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1025040",
+      "department_name": "자원순환과",
+      "status": "verified_exact",
+      "evidence_count": 10,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=17"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1025050",
+      "department_name": "교통정책과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=13"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1025051",
+      "department_name": "산림과",
+      "status": "verified_exact",
+      "evidence_count": 37,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=10"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1029001",
+      "department_name": "미래성장전략과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=16"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1029002",
+      "department_name": "반도체정책과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=15"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1029004",
+      "department_name": "4차산업융합과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=16"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1030030",
+      "department_name": "도시정책과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=11"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1030042",
+      "department_name": "공동주택과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=12"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1030044",
+      "department_name": "건축과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=12"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1030045",
+      "department_name": "토지정보과",
+      "status": "verified_exact",
+      "evidence_count": 10,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=11"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1030046",
+      "department_name": "공공건축과",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=12"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1030049",
+      "department_name": "주택정책과",
+      "status": "verified_exact",
+      "evidence_count": 10,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=12"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1031002",
+      "department_name": "생태하천과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=14"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1031007",
+      "department_name": "대중교통과",
+      "status": "verified_exact",
+      "evidence_count": 15,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=13"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1031008",
+      "department_name": "건설정책과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=14"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1031009",
+      "department_name": "도로건설과",
+      "status": "verified_exact",
+      "evidence_count": 14,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=14"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1031010",
+      "department_name": "물류화물과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=13"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1039001",
+      "department_name": "도로구조물과",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=14"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1045001",
+      "department_name": "재난대응담당관",
+      "status": "verified_exact",
+      "evidence_count": 12,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1048001",
+      "department_name": "안전정책관",
+      "status": "verified_exact",
+      "evidence_count": 21,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=2"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1105020",
+      "department_name": "기술지원과",
+      "status": "verified_exact",
+      "evidence_count": 21,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3767&resrceVer=1&fileSn=1"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1105022",
+      "department_name": "농촌테마과",
+      "status": "verified_exact",
+      "evidence_count": 13,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3767&resrceVer=1&fileSn=1"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1105023",
+      "department_name": "자원육성과",
+      "status": "verified_exact",
+      "evidence_count": 13,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3767&resrceVer=1&fileSn=1"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1121004",
+      "department_name": "일자리정책과",
+      "status": "verified_exact",
+      "evidence_count": 13,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=9"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1121006",
+      "department_name": "기후대기과",
+      "status": "verified_exact",
+      "evidence_count": 19,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=17"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "1121007",
+      "department_name": "위생과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=17"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "2005010",
+      "department_name": "의정담당관",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=1"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "2005011",
+      "department_name": "의사입법담당관",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=1"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "2104001",
+      "department_name": "동물보호과",
+      "status": "verified_exact",
+      "evidence_count": 16,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=10"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "2105020",
+      "department_name": "수도시설과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3767&resrceVer=1&fileSn=5"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "2106001",
+      "department_name": "동부공원관리과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3767&resrceVer=1&fileSn=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "2106002",
+      "department_name": "서부공원관리과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3767&resrceVer=1&fileSn=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "2110020",
+      "department_name": "공원조성과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3767&resrceVer=1&fileSn=4"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "2110021",
+      "department_name": "하수시설과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3767&resrceVer=1&fileSn=6"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "2110022",
+      "department_name": "하수운영과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3767&resrceVer=1&fileSn=6"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "2120010",
+      "department_name": "차량등록사업소",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3767&resrceVer=1&fileSn=7"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "2131003",
+      "department_name": "동부도서관",
+      "status": "verified_exact",
+      "evidence_count": 15,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3767&resrceVer=1&fileSn=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "2131004",
+      "department_name": "서부도서관",
+      "status": "verified_exact",
+      "evidence_count": 13,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3767&resrceVer=1&fileSn=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "2131005",
+      "department_name": "교육청소년과",
+      "status": "verified_exact",
+      "evidence_count": 31,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=6"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "2132001",
+      "department_name": "도서관정책과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3767&resrceVer=1&fileSn=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기용인시",
+      "department_code": "2132003",
+      "department_name": "중부도서관",
+      "status": "verified_exact",
+      "evidence_count": 12,
+      "source_urls": [
+        "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3767&resrceVer=1&fileSn=3"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1001002",
+      "department_name": "관광과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1002002",
+      "department_name": "건축과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1005010",
+      "department_name": "자치행정과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1005015",
+      "department_name": "세정과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1005025",
+      "department_name": "복지정책과",
+      "status": "verified_exact",
+      "evidence_count": 30,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1005030",
+      "department_name": "문화체육과",
+      "status": "verified_exact",
+      "evidence_count": 23,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1005035",
+      "department_name": "민원지적과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1005037",
+      "department_name": "일자리정책과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1005040",
+      "department_name": "환경과",
+      "status": "verified_exact",
+      "evidence_count": 24,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1005055",
+      "department_name": "건설과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1005065",
+      "department_name": "도시과",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1005096",
+      "department_name": "평생교육사업소",
+      "status": "verified_exact",
+      "evidence_count": 29,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1005102",
+      "department_name": "안전총괄과",
+      "status": "verified_exact",
+      "evidence_count": 22,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1005104",
+      "department_name": "허가과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1005108",
+      "department_name": "농업과",
+      "status": "verified_exact",
+      "evidence_count": 44,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1005110",
+      "department_name": "회계과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1005111",
+      "department_name": "사회복지과",
+      "status": "verified_exact",
+      "evidence_count": 90,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1005112",
+      "department_name": "교통과",
+      "status": "verified_exact",
+      "evidence_count": 6,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1005113",
+      "department_name": "감사담당관",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1009002",
+      "department_name": "축산과",
+      "status": "verified_exact",
+      "evidence_count": 31,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1009004",
+      "department_name": "소상공인지원과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1012004",
+      "department_name": "자원순환과",
+      "status": "verified_exact",
+      "evidence_count": 9,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1105005",
+      "department_name": "보건정책과",
+      "status": "verified_exact",
+      "evidence_count": 13,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1105015",
+      "department_name": "소득개발과",
+      "status": "verified_exact",
+      "evidence_count": 19,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1105016",
+      "department_name": "기술기획과",
+      "status": "verified_exact",
+      "evidence_count": 21,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "1106003",
+      "department_name": "건강증진과",
+      "status": "verified_exact",
+      "evidence_count": 22,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "2005005",
+      "department_name": "의회사무과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "2102003",
+      "department_name": "상수도사업소",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "2103001",
+      "department_name": "하수도사업소",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "3005015",
+      "department_name": "청평면",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "3005020",
+      "department_name": "상면",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기가평군",
+      "department_code": "3005030",
+      "department_name": "북면",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+        "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1001001",
+      "department_name": "여성가족과",
+      "status": "verified_exact",
+      "evidence_count": 51,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94804"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1001002",
+      "department_name": "문화체육과",
+      "status": "verified_exact",
+      "evidence_count": 24,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94797"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1001005",
+      "department_name": "반려산업과",
+      "status": "verified_exact",
+      "evidence_count": 12,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94799"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1002001",
+      "department_name": "농촌활력과",
+      "status": "verified_exact",
+      "evidence_count": 29,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94809"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1002002",
+      "department_name": "상하수도과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94813"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1003001",
+      "department_name": "청소위생과",
+      "status": "verified_exact",
+      "evidence_count": 13,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94806"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1005001",
+      "department_name": "기획감사실",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94794"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1005002",
+      "department_name": "행정지원실",
+      "status": "verified_exact",
+      "evidence_count": 30,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94795"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1005003",
+      "department_name": "재무과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94801"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1005004",
+      "department_name": "종합민원과",
+      "status": "verified_exact",
+      "evidence_count": 24,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94802"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1005005",
+      "department_name": "주민복지과",
+      "status": "verified_exact",
+      "evidence_count": 63,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94803"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1005007",
+      "department_name": "관광치즈과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94798"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1005008",
+      "department_name": "환경보호과",
+      "status": "verified_exact",
+      "evidence_count": 22,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94805"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1005009",
+      "department_name": "농업축산과",
+      "status": "verified_exact",
+      "evidence_count": 46,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94808"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1005010",
+      "department_name": "산림녹지과",
+      "status": "verified_exact",
+      "evidence_count": 33,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94807"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1005011",
+      "department_name": "건설과",
+      "status": "verified_exact",
+      "evidence_count": 12,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94811"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1005012",
+      "department_name": "안전관리과",
+      "status": "verified_exact",
+      "evidence_count": 20,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94812"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1005013",
+      "department_name": "경제교통과",
+      "status": "verified_exact",
+      "evidence_count": 27,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94810"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1005020",
+      "department_name": "홍보담당관",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94796"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1010010",
+      "department_name": "의회사무과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94793"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1105002",
+      "department_name": "농촌지원과",
+      "status": "verified_exact",
+      "evidence_count": 24,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94816"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1105005",
+      "department_name": "기술보급과",
+      "status": "verified_exact",
+      "evidence_count": 16,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94817"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "1110006",
+      "department_name": "시설사업소",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94818"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "3005001",
+      "department_name": "임실읍",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94819"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "3005003",
+      "department_name": "운암면",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94819"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "3005004",
+      "department_name": "신평면",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94819"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "3005005",
+      "department_name": "성수면",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94819"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "3005006",
+      "department_name": "오수면",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94819"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "3005008",
+      "department_name": "삼계면",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94819"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "3005009",
+      "department_name": "관촌면",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94819"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "3005010",
+      "department_name": "강진면",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94819"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "3005011",
+      "department_name": "덕치면",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94819"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "전북임실군",
+      "department_code": "3005012",
+      "department_name": "지사면",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94819"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1003002",
+      "department_name": "기후에너지과",
+      "status": "verified_exact",
+      "evidence_count": 15,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1006001",
+      "department_name": "미래산업과",
+      "status": "verified_exact",
+      "evidence_count": 15,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1006003",
+      "department_name": "기업혁신과",
+      "status": "verified_exact",
+      "evidence_count": 19,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1006004",
+      "department_name": "스마트도시과",
+      "status": "verified_exact",
+      "evidence_count": 10,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1006005",
+      "department_name": "AI반도체과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1006007",
+      "department_name": "국제협력과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1015010",
+      "department_name": "총무과",
+      "status": "verified_exact",
+      "evidence_count": 12,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1015020",
+      "department_name": "정책기획과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1015030",
+      "department_name": "자치행정과",
+      "status": "verified_exact",
+      "evidence_count": 28,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1015040",
+      "department_name": "정보통신과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1015043",
+      "department_name": "예산과",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1015047",
+      "department_name": "법무과",
+      "status": "verified_exact",
+      "evidence_count": 6,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1015048",
+      "department_name": "청년청소년과",
+      "status": "verified_exact",
+      "evidence_count": 13,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1020010",
+      "department_name": "지역경제상권과",
+      "status": "verified_exact",
+      "evidence_count": 17,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1020020",
+      "department_name": "세정과",
+      "status": "verified_exact",
+      "evidence_count": 10,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1020030",
+      "department_name": "회계과",
+      "status": "verified_exact",
+      "evidence_count": 10,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1020041",
+      "department_name": "고용과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1025010",
+      "department_name": "복지정책과",
+      "status": "verified_exact",
+      "evidence_count": 37,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1025020",
+      "department_name": "여성가족과",
+      "status": "verified_exact",
+      "evidence_count": 42,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1025030",
+      "department_name": "문화관광과",
+      "status": "verified_exact",
+      "evidence_count": 87,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1025040",
+      "department_name": "체육진흥과",
+      "status": "verified_exact",
+      "evidence_count": 51,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1025042",
+      "department_name": "노인복지과",
+      "status": "verified_exact",
+      "evidence_count": 25,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1025043",
+      "department_name": "장애인복지과",
+      "status": "verified_exact",
+      "evidence_count": 31,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1025046",
+      "department_name": "아동보육과",
+      "status": "verified_exact",
+      "evidence_count": 37,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1030010",
+      "department_name": "위생정책과",
+      "status": "verified_exact",
+      "evidence_count": 14,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1030020",
+      "department_name": "자원순환과",
+      "status": "verified_exact",
+      "evidence_count": 17,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1030030",
+      "department_name": "환경정책과",
+      "status": "verified_exact",
+      "evidence_count": 18,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1030046",
+      "department_name": "미래교육과",
+      "status": "verified_exact",
+      "evidence_count": 22,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1035020",
+      "department_name": "주택과",
+      "status": "verified_exact",
+      "evidence_count": 15,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1035032",
+      "department_name": "토지정보과",
+      "status": "verified_exact",
+      "evidence_count": 9,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1035033",
+      "department_name": "건축과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1035035",
+      "department_name": "공동주택과",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1035036",
+      "department_name": "건축안전관리과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1040020",
+      "department_name": "도로과",
+      "status": "verified_exact",
+      "evidence_count": 15,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1040040",
+      "department_name": "대중교통과",
+      "status": "verified_exact",
+      "evidence_count": 14,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1045001",
+      "department_name": "공공개발정책과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1105010",
+      "department_name": "수정구보건소보건행정과",
+      "status": "verified_exact",
+      "evidence_count": 12,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1105020",
+      "department_name": "중원구보건소보건행정과",
+      "status": "verified_exact",
+      "evidence_count": 12,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1105030",
+      "department_name": "분당구보건소보건행정과",
+      "status": "verified_exact",
+      "evidence_count": 6,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1105040",
+      "department_name": "농업기술센터",
+      "status": "verified_exact",
+      "evidence_count": 45,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1106002",
+      "department_name": "수정구보건소건강증진과",
+      "status": "verified_exact",
+      "evidence_count": 12,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1107002",
+      "department_name": "중원구가정복지과",
+      "status": "verified_exact",
+      "evidence_count": 21,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1107003",
+      "department_name": "중원구보건소건강증진과",
+      "status": "verified_exact",
+      "evidence_count": 9,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1108004",
+      "department_name": "분당구보건소건강증진과",
+      "status": "verified_exact",
+      "evidence_count": 14,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1108005",
+      "department_name": "분당구보건소감염병관리센터",
+      "status": "verified_exact",
+      "evidence_count": 6,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "2101001",
+      "department_name": "박물관사업소",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "2102002",
+      "department_name": "도시개발과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "2115026",
+      "department_name": "생태하천과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "2115042",
+      "department_name": "도서관지원과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "2115050",
+      "department_name": "차량등록사업소",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "2115060",
+      "department_name": "장례문화사업소",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "2115061",
+      "department_name": "녹지과",
+      "status": "verified_exact",
+      "evidence_count": 17,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3005010",
+      "department_name": "수정구총무과",
+      "status": "verified_exact",
+      "evidence_count": 10,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3005020",
+      "department_name": "수정구시민봉사과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3005030",
+      "department_name": "수정구세무과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3005040",
+      "department_name": "수정구사회복지과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3005050",
+      "department_name": "수정구환경위생과",
+      "status": "verified_exact",
+      "evidence_count": 6,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3005060",
+      "department_name": "수정구건설과",
+      "status": "verified_exact",
+      "evidence_count": 22,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3005074",
+      "department_name": "수정구경제교통과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3005075",
+      "department_name": "수정구가정복지과",
+      "status": "verified_exact",
+      "evidence_count": 20,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3005077",
+      "department_name": "수정구도시미관과",
+      "status": "verified_exact",
+      "evidence_count": 10,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4005010",
+      "department_name": "중원구총무과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4005020",
+      "department_name": "중원구시민봉사과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4005030",
+      "department_name": "중원구세무과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4005040",
+      "department_name": "중원구사회복지과",
+      "status": "verified_exact",
+      "evidence_count": 10,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4005050",
+      "department_name": "중원구환경위생과",
+      "status": "verified_exact",
+      "evidence_count": 6,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4005060",
+      "department_name": "중원구건설과",
+      "status": "verified_exact",
+      "evidence_count": 16,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4005074",
+      "department_name": "중원구경제교통과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4005076",
+      "department_name": "중원구도시미관과",
+      "status": "verified_exact",
+      "evidence_count": 10,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5005010",
+      "department_name": "분당구총무과",
+      "status": "verified_exact",
+      "evidence_count": 10,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5005020",
+      "department_name": "분당구시민봉사과",
+      "status": "verified_exact",
+      "evidence_count": 6,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5005030",
+      "department_name": "분당구세무1과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5005040",
+      "department_name": "분당구사회복지과",
+      "status": "verified_exact",
+      "evidence_count": 12,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5005050",
+      "department_name": "분당구환경자원과",
+      "status": "verified_exact",
+      "evidence_count": 9,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5005060",
+      "department_name": "분당구건설과",
+      "status": "verified_exact",
+      "evidence_count": 16,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5005084",
+      "department_name": "분당구경제교통과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5005085",
+      "department_name": "분당구세무2과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5005087",
+      "department_name": "분당구녹지공원과",
+      "status": "verified_exact",
+      "evidence_count": 6,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5005089",
+      "department_name": "분당구위생안전과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.seongnam.go.kr/humanframe/file/sncity/bgt/2026/11608_3.pdf"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1001002",
+      "department_name": "혁신민원과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1002002",
+      "department_name": "시민소통과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1006005",
+      "department_name": "AI전략과",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1015010",
+      "department_name": "행정지원과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1015020",
+      "department_name": "정책기획과",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1015030",
+      "department_name": "자치분권과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1015040",
+      "department_name": "디지털정책과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1015042",
+      "department_name": "예산재정과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1015044",
+      "department_name": "법무담당관",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1015045",
+      "department_name": "인적자원과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1017002",
+      "department_name": "마을자치과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1017004",
+      "department_name": "평생학습과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1017005",
+      "department_name": "교육청년청소년과",
+      "status": "verified_exact",
+      "evidence_count": 29,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1020010",
+      "department_name": "세정과",
+      "status": "verified_exact",
+      "evidence_count": 6,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1020020",
+      "department_name": "회계과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1020030",
+      "department_name": "지역경제과",
+      "status": "verified_exact",
+      "evidence_count": 13,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1020052",
+      "department_name": "경제자유구역추진단",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1020054",
+      "department_name": "생명산업과",
+      "status": "verified_exact",
+      "evidence_count": 32,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1020055",
+      "department_name": "노동일자리정책과",
+      "status": "verified_exact",
+      "evidence_count": 15,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1020056",
+      "department_name": "재산관리과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1025020",
+      "department_name": "복지정책과",
+      "status": "verified_exact",
+      "evidence_count": 12,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1025030",
+      "department_name": "여성정책과",
+      "status": "verified_exact",
+      "evidence_count": 28,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1025040",
+      "department_name": "문화예술과",
+      "status": "verified_exact",
+      "evidence_count": 61,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1025050",
+      "department_name": "체육진흥과",
+      "status": "verified_exact",
+      "evidence_count": 61,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1025051",
+      "department_name": "노인복지과",
+      "status": "verified_exact",
+      "evidence_count": 14,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1025052",
+      "department_name": "기업지원과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1025053",
+      "department_name": "아동돌봄과",
+      "status": "verified_exact",
+      "evidence_count": 29,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1025054",
+      "department_name": "장애인복지과",
+      "status": "verified_exact",
+      "evidence_count": 19,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1025055",
+      "department_name": "돌봄정책과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1025056",
+      "department_name": "이주민정책과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1030010",
+      "department_name": "청소자원과",
+      "status": "verified_exact",
+      "evidence_count": 10,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1030020",
+      "department_name": "환경정책과",
+      "status": "verified_exact",
+      "evidence_count": 10,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1030041",
+      "department_name": "위생정책과",
+      "status": "verified_exact",
+      "evidence_count": 15,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1030043",
+      "department_name": "기후에너지과",
+      "status": "verified_exact",
+      "evidence_count": 18,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1030045",
+      "department_name": "수질하천과",
+      "status": "verified_exact",
+      "evidence_count": 13,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1035010",
+      "department_name": "도시계획과",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1035020",
+      "department_name": "도시개발과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1035030",
+      "department_name": "공동주택과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1035041",
+      "department_name": "토지정보과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1035044",
+      "department_name": "시설공사과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1035048",
+      "department_name": "건축과",
+      "status": "verified_exact",
+      "evidence_count": 6,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1035050",
+      "department_name": "도시재생과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1035053",
+      "department_name": "스마트도시과",
+      "status": "verified_exact",
+      "evidence_count": 6,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1035054",
+      "department_name": "지구단위계획과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1040020",
+      "department_name": "안전정책과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1040040",
+      "department_name": "대중교통과",
+      "status": "verified_exact",
+      "evidence_count": 9,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1040051",
+      "department_name": "건설정책과",
+      "status": "verified_exact",
+      "evidence_count": 9,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1040056",
+      "department_name": "교통정책과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1040057",
+      "department_name": "재난대응과",
+      "status": "verified_exact",
+      "evidence_count": 20,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1042003",
+      "department_name": "학예전시과",
+      "status": "verified_exact",
+      "evidence_count": 9,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1042004",
+      "department_name": "관광과",
+      "status": "verified_exact",
+      "evidence_count": 13,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1045002",
+      "department_name": "그린도시추진단",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1050002",
+      "department_name": "가족정책과",
+      "status": "verified_exact",
+      "evidence_count": 20,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1105010",
+      "department_name": "장안구보건소보건행정과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1105020",
+      "department_name": "권선구보건소보건행정과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1105030",
+      "department_name": "팔달구보건소보건행정과",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1105040",
+      "department_name": "영통구보건소보건행정과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1105050",
+      "department_name": "농업기술과",
+      "status": "verified_exact",
+      "evidence_count": 18,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1105056",
+      "department_name": "장안구보건소건강관리과",
+      "status": "verified_exact",
+      "evidence_count": 26,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1105057",
+      "department_name": "권선구보건소건강관리과",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1105058",
+      "department_name": "팔달구보건소건강관리과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "1105059",
+      "department_name": "영통구보건소건강관리과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "2005013",
+      "department_name": "의사담당관",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "2015035",
+      "department_name": "문화유산관리과",
+      "status": "verified_exact",
+      "evidence_count": 12,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "2015040",
+      "department_name": "도서관정책과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "2015112",
+      "department_name": "생태공원과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "2015113",
+      "department_name": "녹지경관과",
+      "status": "verified_exact",
+      "evidence_count": 28,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "2015114",
+      "department_name": "공원관리과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "2015116",
+      "department_name": "문화유산복원과",
+      "status": "verified_exact",
+      "evidence_count": 6,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "2015117",
+      "department_name": "도시안전통합센터",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "2015126",
+      "department_name": "도로건설과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "2015128",
+      "department_name": "자동차등록과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "2015129",
+      "department_name": "자동차관리과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "2015131",
+      "department_name": "미술관정책과",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "2015136",
+      "department_name": "반려동물센터",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "2015137",
+      "department_name": "수목원과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "3005010",
+      "department_name": "장안구행정지원과",
+      "status": "verified_exact",
+      "evidence_count": 20,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "3005020",
+      "department_name": "장안구종합민원과",
+      "status": "verified_exact",
+      "evidence_count": 6,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "3005030",
+      "department_name": "장안구세무과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "3005040",
+      "department_name": "장안구사회복지과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "3005050",
+      "department_name": "장안구환경위생과",
+      "status": "verified_exact",
+      "evidence_count": 16,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "3005060",
+      "department_name": "장안구건축과",
+      "status": "verified_exact",
+      "evidence_count": 6,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "3005070",
+      "department_name": "장안구안전건설과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "3005071",
+      "department_name": "장안구경제교통과",
+      "status": "verified_exact",
+      "evidence_count": 6,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "3005075",
+      "department_name": "장안구가정복지과",
+      "status": "verified_exact",
+      "evidence_count": 10,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "3005077",
+      "department_name": "장안구공원녹지과",
+      "status": "verified_exact",
+      "evidence_count": 14,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "3005078",
+      "department_name": "장안구토지관리과",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "4005010",
+      "department_name": "권선구행정지원과",
+      "status": "verified_exact",
+      "evidence_count": 21,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "4005020",
+      "department_name": "권선구종합민원과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "4005030",
+      "department_name": "권선구세무과",
+      "status": "verified_exact",
+      "evidence_count": 2,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "4005040",
+      "department_name": "권선구사회복지과",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "4005050",
+      "department_name": "권선구환경위생과",
+      "status": "verified_exact",
+      "evidence_count": 14,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "4005060",
+      "department_name": "권선구건축과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "4005070",
+      "department_name": "권선구안전건설과",
+      "status": "verified_exact",
+      "evidence_count": 13,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "4005071",
+      "department_name": "권선구경제교통과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "4005075",
+      "department_name": "권선구가정복지과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "4005077",
+      "department_name": "권선구공원녹지과",
+      "status": "verified_exact",
+      "evidence_count": 15,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "4005078",
+      "department_name": "권선구토지관리과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "5005010",
+      "department_name": "팔달구행정지원과",
+      "status": "verified_exact",
+      "evidence_count": 19,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "5005020",
+      "department_name": "팔달구종합민원과",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "5005040",
+      "department_name": "팔달구사회복지과",
+      "status": "verified_exact",
+      "evidence_count": 6,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "5005050",
+      "department_name": "팔달구환경위생과",
+      "status": "verified_exact",
+      "evidence_count": 12,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "5005060",
+      "department_name": "팔달구건축과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "5005070",
+      "department_name": "팔달구안전건설과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "5005071",
+      "department_name": "팔달구경제교통과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "5005076",
+      "department_name": "팔달구가정복지과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "5005078",
+      "department_name": "팔달구공원녹지과",
+      "status": "verified_exact",
+      "evidence_count": 16,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "5005079",
+      "department_name": "팔달구토지관리과",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "6005010",
+      "department_name": "영통구행정지원과",
+      "status": "verified_exact",
+      "evidence_count": 23,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "6005020",
+      "department_name": "영통구종합민원과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "6005040",
+      "department_name": "영통구사회복지과",
+      "status": "verified_exact",
+      "evidence_count": 7,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "6005050",
+      "department_name": "영통구환경위생과",
+      "status": "verified_exact",
+      "evidence_count": 14,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "6005060",
+      "department_name": "영통구건축과",
+      "status": "verified_exact",
+      "evidence_count": 3,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "6005070",
+      "department_name": "영통구안전건설과",
+      "status": "verified_exact",
+      "evidence_count": 11,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "6005071",
+      "department_name": "영통구경제교통과",
+      "status": "verified_exact",
+      "evidence_count": 4,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "6005075",
+      "department_name": "영통구가정복지과",
+      "status": "verified_exact",
+      "evidence_count": 8,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "6005077",
+      "department_name": "영통구공원녹지과",
+      "status": "verified_exact",
+      "evidence_count": 17,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    },
+    {
+      "fiscal_year": "2026",
+      "reference_date": "2026-10-02",
+      "fiscal_entity_name": "경기수원시",
+      "department_code": "6005078",
+      "department_name": "영통구토지관리과",
+      "status": "verified_exact",
+      "evidence_count": 5,
+      "source_urls": [
+        "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c"
+      ]
+    }
+  ]
+}

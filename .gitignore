@@ -38,6 +38,11 @@ yarn-error.log*
 next-env.d.ts
 /dist/
 /.wrangler/
+
+# 로컬 HWP/HWPX 파싱 작업공간(원문·raw IR은 공개 저장소에 올리지 않음)
+/var/
+/factory/hwp-parser/node_modules/
+/factory/law-mcp/node_modules/
 # Checkout-local execution profile and tool state; never publish them.
 /.sites-runtime/
 /.agents/
@@ -45,3 +50,5 @@ next-env.d.ts
 /outputs/
 /work/
 *.tsbuildinfo
+__pycache__/
+*.pyc

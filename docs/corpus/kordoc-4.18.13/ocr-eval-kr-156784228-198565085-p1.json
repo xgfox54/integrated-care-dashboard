@@ -1,0 +1,265 @@
+{
+ "generated_at": "2026-10-05T09:15:43.045Z",
+ "parser_version": "4.18.13",
+ "method": "실제 공개 PDF 1쪽을 144dpi 그림으로 만든 파생 표본. 정답은 같은 쪽 텍스트층 파싱 결과(kordoc). 글자 일치율 = 1 - 편집거리/긴 쪽 길이(공백 제거). 실제 스캔 문서(기울기·잡음·도장) 검증을 대신하지 않는다.",
+ "source": {
+  "file": "kr-156784228-198565085.pdf",
+  "sha256": "d1949ee16de27ca5b1dede1e5646d9db757bef6e3a3e1eda0d27022ca84a38a7",
+  "news_id": "156784228",
+  "origin": "https://www.korea.kr/briefing/pressReleaseList.do",
+  "robots": "https://www.korea.kr/robots.txt (User-Agent: * Allow: /)",
+  "page": 1,
+  "render_scale": 2,
+  "dpi": 144
+ },
+ "truth_chars": 570,
+ "text_layer_run": {
+  "status": "NEEDS_REVIEW",
+  "performance": {
+   "elapsed_ms": 4975,
+   "peak_rss_mb": 864,
+   "parse_passes": 2
+  }
+ },
+ "results": [
+  {
+   "sample": "scan-like.pdf",
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "wall_ms": 1809,
+   "detected_format": "pdf",
+   "ocr": {
+    "requested": true,
+    "reason": "OCR_NEEDED",
+    "applied_pages": [
+     1
+    ],
+    "models": {
+     "engine": "PP-OCRv5 mobile det + korean rec (ONNX, onnxruntime-node CPU)",
+     "digest": "cefe5c08413001c22ec75f212c68968f5b0ecb0baa7df718a1b5c11bedfea58c"
+    }
+   },
+   "performance": {
+    "elapsed_ms": 1647,
+    "peak_rss_mb": 469,
+    "parse_passes": 2
+   },
+   "network_attempts": 0,
+   "page_methods": {
+    "1": [
+     "ocr_page"
+    ]
+   },
+   "ocr_marking": {
+    "blocks": 15,
+    "blocks_with_ocr_flag": 15,
+    "source_map_ocr_method": 27,
+    "source_map_entries": 27,
+    "line_confidence": [
+     "not_provided_by_parser"
+    ],
+    "low_confidence_lines_dropped": 1,
+    "amount_cells_marked_review": 0,
+    "quality_status": "NEEDS_REVIEW",
+    "review_reasons": [
+     "OCR로 읽은 쪽 1개(1)는 글자·숫자·금액·날짜를 원문과 대조해야 합니다. OCR 줄 신뢰도는 파서가 제공하지 않습니다."
+    ]
+   },
+   "vs_text_layer": {
+    "truth_chars": 570,
+    "ocr_chars": 528,
+    "edit_distance": 88,
+    "char_accuracy_pct": 84.6,
+    "tokens": {
+     "number": {
+      "truth": 15,
+      "found": 11,
+      "recall_pct": 73.3
+     },
+     "date": {
+      "truth": 1,
+      "found": 1,
+      "recall_pct": 100,
+      "missing_examples": []
+     },
+     "amount": {
+      "truth": 0,
+      "found": 0,
+      "recall_pct": null,
+      "missing_examples": []
+     },
+     "hangul_word": {
+      "truth": 99,
+      "found": 96,
+      "recall_pct": 97
+     }
+    },
+    "note": "파생 표본의 1쪽 = 원문 1쪽"
+   }
+  },
+  {
+   "sample": "mixed.pdf",
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "wall_ms": 1787,
+   "detected_format": "pdf",
+   "ocr": {
+    "requested": true,
+    "reason": "OCR_NEEDED",
+    "applied_pages": [
+     1
+    ],
+    "models": {
+     "engine": "PP-OCRv5 mobile det + korean rec (ONNX, onnxruntime-node CPU)",
+     "digest": "cefe5c08413001c22ec75f212c68968f5b0ecb0baa7df718a1b5c11bedfea58c"
+    }
+   },
+   "performance": {
+    "elapsed_ms": 1718,
+    "peak_rss_mb": 454,
+    "parse_passes": 2
+   },
+   "network_attempts": 0,
+   "page_methods": {
+    "1": [
+     "ocr_page"
+    ],
+    "2": [
+     "text_layer"
+    ]
+   },
+   "ocr_marking": {
+    "blocks": 18,
+    "blocks_with_ocr_flag": 15,
+    "source_map_ocr_method": 27,
+    "source_map_entries": 30,
+    "line_confidence": [
+     "not_provided_by_parser"
+    ],
+    "low_confidence_lines_dropped": 1,
+    "amount_cells_marked_review": 0,
+    "quality_status": "NEEDS_REVIEW",
+    "review_reasons": [
+     "OCR로 읽은 쪽 1개(1)는 글자·숫자·금액·날짜를 원문과 대조해야 합니다. OCR 줄 신뢰도는 파서가 제공하지 않습니다."
+    ]
+   },
+   "vs_text_layer": {
+    "truth_chars": 570,
+    "ocr_chars": 528,
+    "edit_distance": 88,
+    "char_accuracy_pct": 84.6,
+    "tokens": {
+     "number": {
+      "truth": 15,
+      "found": 11,
+      "recall_pct": 73.3
+     },
+     "date": {
+      "truth": 1,
+      "found": 1,
+      "recall_pct": 100,
+      "missing_examples": []
+     },
+     "amount": {
+      "truth": 0,
+      "found": 0,
+      "recall_pct": null,
+      "missing_examples": []
+     },
+     "hangul_word": {
+      "truth": 99,
+      "found": 96,
+      "recall_pct": 97
+     }
+    },
+    "note": "파생 표본의 1쪽 = 원문 1쪽"
+   },
+   "mixed_check": {
+    "text_page_lines_found": 4,
+    "text_page_lines": 4,
+    "text_page_duplicated": 0,
+    "ocr_pages": [
+     1
+    ]
+   }
+  },
+  {
+   "sample": "page1.png",
+   "ok": true,
+   "status": "NEEDS_REVIEW",
+   "error_code": null,
+   "wall_ms": 1443,
+   "detected_format": "image",
+   "ocr": {
+    "requested": true,
+    "reason": "IMAGE_INPUT",
+    "applied_pages": [
+     1
+    ],
+    "models": {
+     "engine": "PP-OCRv5 mobile det + korean rec (ONNX, onnxruntime-node CPU)",
+     "digest": "cefe5c08413001c22ec75f212c68968f5b0ecb0baa7df718a1b5c11bedfea58c"
+    }
+   },
+   "performance": {
+    "elapsed_ms": 1438,
+    "peak_rss_mb": 380,
+    "parse_passes": 1
+   },
+   "network_attempts": 0,
+   "page_methods": {
+    "1": [
+     "ocr_image"
+    ]
+   },
+   "ocr_marking": {
+    "blocks": 14,
+    "blocks_with_ocr_flag": 14,
+    "source_map_ocr_method": 26,
+    "source_map_entries": 26,
+    "line_confidence": [
+     "not_provided_by_parser"
+    ],
+    "low_confidence_lines_dropped": 1,
+    "amount_cells_marked_review": 0,
+    "quality_status": "NEEDS_REVIEW",
+    "review_reasons": [
+     "OCR로 읽은 쪽 1개(1)는 글자·숫자·금액·날짜를 원문과 대조해야 합니다. OCR 줄 신뢰도는 파서가 제공하지 않습니다."
+    ]
+   },
+   "vs_text_layer": {
+    "truth_chars": 570,
+    "ocr_chars": 523,
+    "edit_distance": 92,
+    "char_accuracy_pct": 83.9,
+    "tokens": {
+     "number": {
+      "truth": 15,
+      "found": 10,
+      "recall_pct": 66.7
+     },
+     "date": {
+      "truth": 1,
+      "found": 1,
+      "recall_pct": 100,
+      "missing_examples": []
+     },
+     "amount": {
+      "truth": 0,
+      "found": 0,
+      "recall_pct": null,
+      "missing_examples": []
+     },
+     "hangul_word": {
+      "truth": 99,
+      "found": 99,
+      "recall_pct": 100
+     }
+    },
+    "note": "파생 표본의 1쪽 = 원문 1쪽"
+   }
+  }
+ ]
+}

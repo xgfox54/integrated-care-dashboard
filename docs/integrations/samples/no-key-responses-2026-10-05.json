@@ -1,0 +1,69 @@
+{
+ "retrieved_at": "2026-10-05T07:10:00Z",
+ "note": "인증키 없이 또는 등록되지 않은 임의 값(INVALIDKEY0000)으로 실제 호출한 응답. 실제 인증키는 쓰지 않았다. 응답 분류기 시험의 원문 표본.",
+ "responses": [
+  {
+   "id": "datagokr-json-null",
+   "url": "https://apis.data.go.kr/1741000/StanReginCd/getStanReginCdList?pageNo=1&numOfRows=3&type=json",
+   "status": 401,
+   "contentType": "application/json",
+   "body": "{\n  \"OpenAPI_ServiceResponse\": {\n    \"cmmMsgHeader\": {\n      \"errMsg\": \"SERVICE_KEY_IS_NULL\",\n      \"returnAuthMsg\": \"서비스 접근거부\",\n      \"returnReasonCode\": \"20\"\n    }\n  }\n}"
+  },
+  {
+   "id": "datagokr-json-unregistered",
+   "url": "https://apis.data.go.kr/1741000/StanReginCd/getStanReginCdList?serviceKey=<invalid>&pageNo=1&numOfRows=3&type=json",
+   "status": 403,
+   "contentType": "application/json",
+   "body": "{\n  \"OpenAPI_ServiceResponse\": {\n    \"cmmMsgHeader\": {\n      \"errMsg\": \"SERVICE_KEY_IS_NOT_REGISTERED_ERROR\",\n      \"returnAuthMsg\": \"등록되지 않은 서비스키\",\n      \"returnReasonCode\": \"30\"\n    }\n  }\n}"
+  },
+  {
+   "id": "datagokr-xml-null",
+   "url": "https://apis.data.go.kr/B550928/searchLtcInsttService02/getLtcInsttSeachList02?siDoCd=11&pageNo=1&numOfRows=3",
+   "status": 401,
+   "contentType": "application/xml",
+   "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<OpenAPI_ServiceResponse>\n<cmmMsgHeader>\n  <errMsg>SERVICE_KEY_IS_NULL</errMsg>\n  <returnAuthMsg>서비스 접근거부</returnAuthMsg>\n  <returnReasonCode>20</returnReasonCode>\n</cmmMsgHeader>\n</OpenAPI_ServiceResponse>"
+  },
+  {
+   "id": "datagokr-xml-unregistered",
+   "url": "https://apis.data.go.kr/B550928/getLtcInsttDetailInfoService02/getConvInsttDetailInfoList02?serviceKey=<invalid>&longTermAdminSym=14139000308",
+   "status": 403,
+   "contentType": "application/xml",
+   "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<OpenAPI_ServiceResponse>\n<cmmMsgHeader>\n  <errMsg>SERVICE_KEY_IS_NOT_REGISTERED_ERROR</errMsg>\n  <returnAuthMsg>등록되지 않은 서비스키</returnAuthMsg>\n  <returnReasonCode>30</returnReasonCode>\n</cmmMsgHeader>\n</OpenAPI_ServiceResponse>"
+  },
+  {
+   "id": "odcloud-null",
+   "url": "https://api.odcloud.kr/api/gov24/v3/serviceList?page=1&perPage=2",
+   "status": 401,
+   "contentType": "application/json; charset=UTF-8",
+   "body": "{\"code\":-401,\"msg\":\"인증키는 필수 항목 입니다.\"}"
+  },
+  {
+   "id": "odcloud-unregistered",
+   "url": "https://api.odcloud.kr/api/gov24/v3/serviceList?page=1&perPage=2&serviceKey=<invalid>",
+   "status": 401,
+   "contentType": "application/json; charset=UTF-8",
+   "body": "{\"code\":-4,\"msg\":\"등록되지 않은 인증키 입니다.\"}"
+  },
+  {
+   "id": "kosis-null",
+   "url": "https://kosis.kr/openapi/Param/statisticsParameterData.do?method=getList&format=json&jsonVD=Y&orgId=101&tblId=DT_1B04005N&itmId=T2&objL1=ALL&prdSe=M&newEstPrdCnt=1",
+   "status": 200,
+   "contentType": "text/html;charset=UTF-8",
+   "body": "{\"err\":\"10\",\"errMsg\":\"인증 KEY값이 누락되었습니다.\"}"
+  },
+  {
+   "id": "kosis-invalid",
+   "url": "https://kosis.kr/openapi/Param/statisticsParameterData.do?method=getList&apiKey=<invalid>&format=json&jsonVD=Y&orgId=101&tblId=DT_1B04005N&itmId=T2&objL1=ALL&prdSe=M&newEstPrdCnt=1",
+   "status": 200,
+   "contentType": "text/html;charset=UTF-8",
+   "body": "{\"err\":\"11\",\"errMsg\":\"유효하지 않은 인증KEY입니다.\"}"
+  },
+  {
+   "id": "kosis-meta-invalid",
+   "url": "https://kosis.kr/openapi/statisticsData.do?method=getMeta&type=TBL&apiKey=<invalid>&format=json&jsonVD=Y&orgId=101&tblId=DT_1B04005N",
+   "status": 200,
+   "contentType": "text/html;charset=UTF-8",
+   "body": "{\"err\":\"11\",\"errMsg\":\"유효하지않은 인증KEY입니다.\"}"
+  }
+ ]
+}

@@ -14,11 +14,16 @@
     "audit:wiki": "node --experimental-strip-types scripts/audit-wiki-content.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "snapshot:dashboard": "node --experimental-strip-types scripts/build-dashboard-snapshot.mjs",
-    "snapshot:production": "node scripts/snapshot-from-production.mjs"
+    "snapshot:production": "node scripts/snapshot-from-production.mjs",
+    "press:discover": "node scripts/press/discover.mjs",
+    "press:registry": "node scripts/press/build-registry.mjs",
+    "press:e2e": "node scripts/press/e2e-representative.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
+    "@cfworker/json-schema": "4.1.1",
     "@hookform/resolvers": "^5.7.1",
+    "@modelcontextprotocol/sdk": "1.32.0",
     "@shadcn/react": "^0.3.0",
     "@svg-maps/south-korea": "2.0.0",
     "class-variance-authority": "0.7.1",
@@ -44,6 +49,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "fast-glob": "file:./shims/fast-glob",
     "@cloudflare/vite-plugin": "1.58.0",
     "@cloudflare/workers-types": "5.20260924.1",
     "@tailwindcss/postcss": "4.2.1",
@@ -64,7 +70,9 @@
     "wrangler": "4.137.0"
   },
   "overrides": {
-    "undici": "7.29.1"
+    "fast-glob": "$fast-glob",
+    "undici": "7.29.1",
+    "source-map-js": "1.2.2"
   },
   "type": "module"
 }

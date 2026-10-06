@@ -14,7 +14,11 @@
 
 @source "../app";
 @source "../components/*.tsx";
+@source "../components/budget";
+@source "../components/care";
 @source "../components/dashboard";
+@source "../components/mindmap";
+@source "../components/press";
 @source "../components/search";
 @source "../components/usage";
 @source "../components/welfare100";

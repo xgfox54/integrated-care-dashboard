@@ -1,0 +1,4306 @@
+{
+  "checked_at": "2026-10-05T00:58:30.234Z",
+  "boards": {
+    "org:강원특별자치도:동해시": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.dh.go.kr/",
+      "checked_at": "2026-10-03T18:07:38.607Z"
+    },
+    "org:강원특별자치도:영월군": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.yw.go.kr/",
+      "checked_at": "2026-10-03T18:07:38.654Z"
+    },
+    "org:강원특별자치도:춘천시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 8건·날짜 8건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "press-release/\\?bbsId=BBSMSTR_000000000335&(?:amp;)?nttId=(?<id>\\d+)",
+          "url": "https://www.chuncheon.go.kr/mayor/newsroom/press-release/?bbsId=BBSMSTR_000000000335&nttId={id}&flag=view",
+          "title": "<p>\\s*([^<]+)",
+          "date": "<li>\\s*(20\\d{2}-\\d{2}-\\d{2})\\s*</li>"
+        },
+        "basis": "링크 안 <p>가 제목, 그 뒤 ul.news-box-info(부서·담당자·전화·날짜)와 <span>(본문 요약). 제목은 첫 <p>만, 날짜는 정보 목록의 날짜 칸",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 8,
+      "latest": "2026-10-02",
+      "homepage": "https://www.chuncheon.go.kr/cityhall/",
+      "endpoint": "https://www.chuncheon.go.kr/mayor/newsroom/press-release/",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-05T02:52:50.550Z",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "목록 8건·날짜 8건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:강원특별자치도:횡성군": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.hsg.go.kr/",
+      "checked_at": "2026-10-03T18:07:42.232Z"
+    },
+    "org:경기도:김포시": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.gimpo.go.kr/",
+      "checked_at": "2026-10-03T18:07:49.127Z"
+    },
+    "org:경기도:남양주시": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.nyj.go.kr/",
+      "checked_at": "2026-10-03T18:07:49.223Z"
+    },
+    "org:경기도:양평군": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.yp21.go.kr/",
+      "checked_at": "2026-10-03T18:07:57.232Z"
+    },
+    "org:경기도:여주시": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.yeoju.go.kr/",
+      "checked_at": "2026-10-03T18:07:57.453Z"
+    },
+    "org:경기도:연천군": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.yeoncheon.go.kr/",
+      "checked_at": "2026-10-03T18:07:57.488Z"
+    },
+    "org:경기도:오산시": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.osan.go.kr/",
+      "checked_at": "2026-10-03T18:07:57.614Z"
+    },
+    "org:경기도:의왕시": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.uiwang.go.kr/",
+      "checked_at": "2026-10-03T18:07:57.806Z"
+    },
+    "org:경기도:평택시": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.pyeongtaek.go.kr/",
+      "checked_at": "2026-10-03T18:08:02.208Z"
+    },
+    "org:경기도:포천시": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.pocheon.go.kr/",
+      "checked_at": "2026-10-03T18:08:02.370Z"
+    },
+    "org:경상남도:산청군": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.sancheong.go.kr/",
+      "checked_at": "2026-10-03T18:08:15.490Z"
+    },
+    "org:경상북도:봉화군": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.bonghwa.go.kr/",
+      "checked_at": "2026-10-03T18:08:28.410Z"
+    },
+    "org:경상북도:영양군": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.yyg.go.kr/",
+      "checked_at": "2026-10-03T18:08:31.998Z"
+    },
+    "org:대구광역시:달서구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.dalseo.daegu.kr/",
+      "checked_at": "2026-10-03T18:08:41.279Z"
+    },
+    "org:부산광역시:강서구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.bsgangseo.go.kr/",
+      "checked_at": "2026-10-03T18:08:50.885Z"
+    },
+    "org:부산광역시:남구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.bsnamgu.go.kr/",
+      "checked_at": "2026-10-03T18:08:51.075Z"
+    },
+    "org:서울특별시:강서구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "후보 게시판 경로를 robots.txt가 막음",
+      "homepage": "https://www.gangseo.seoul.kr/index",
+      "endpoint": "https://www.gangseo.seoul.kr/gs040900",
+      "menu_text": "구정소식 알림 신청",
+      "checked_at": "2026-10-03T18:09:07.570Z"
+    },
+    "org:서울특별시:광진구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.gwangjin.go.kr/",
+      "checked_at": "2026-10-03T18:09:04.356Z"
+    },
+    "org:서울특별시:동작구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.dongjak.go.kr/",
+      "checked_at": "2026-10-03T18:09:07.727Z"
+    },
+    "org:서울특별시:마포구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.mapo.go.kr/",
+      "checked_at": "2026-10-03T18:09:07.895Z"
+    },
+    "org:서울특별시:양천구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.yangcheon.go.kr/",
+      "checked_at": "2026-10-03T18:09:10.659Z"
+    },
+    "org:서울특별시:용산구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.yongsan.go.kr/",
+      "checked_at": "2026-10-03T18:09:11.462Z"
+    },
+    "org:서울특별시:은평구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.ep.go.kr/",
+      "checked_at": "2026-10-03T18:09:11.584Z"
+    },
+    "org:서울특별시:종로구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.jongno.go.kr/",
+      "checked_at": "2026-10-03T18:09:11.672Z"
+    },
+    "org:인천광역시:강화군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "msg_seq",
+        "count": 10,
+        "profile": {
+          "link": "bbsMsgDetail\\.do[^\"']*?[?&](?:amp;)?msg_seq=(?<id>[\\w-]+)",
+          "url": "https://www.ganghwa.go.kr/open_content/main/bbs/bbsMsgDetail.do?msg_seq={id}&bcd=report",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.ganghwa.go.kr/open_content/main/bbs/bbsMsgDetail.do?msg_seq=23063&bcd=report",
+            "text": "대광위 이어 국회까지… 강화 M버스 ‘투 트랙’ 총력전"
+          },
+          {
+            "url": "https://www.ganghwa.go.kr/open_content/main/bbs/bbsMsgDetail.do?msg_seq=23062&bcd=report",
+            "text": "누리호 이어 ‘내 로켓’ 쏜다… 강화천문과학관 특별 프로그램"
+          },
+          {
+            "url": "https://www.ganghwa.go.kr/open_content/main/bbs/bbsMsgDetail.do?msg_seq=23061&bcd=report",
+            "text": "태양광 규제 풀고 군민 부담 덜고… 강화군, 개발행위 허가지침 개정"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-01",
+      "homepage": "https://www.ganghwa.go.kr/open_content/main/",
+      "endpoint": "https://www.ganghwa.go.kr/open_content/main/ganghwa/news/report.jsp",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:09:23.883Z"
+    },
+    "org:인천광역시:검단구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "msg_seq",
+        "count": 10,
+        "profile": {
+          "link": "bbsMsgDetail\\.do[^\"']*?[?&](?:amp;)?msg_seq=(?<id>[\\w-]+)",
+          "url": "https://www.geomdan.go.kr/main/bbs/bbsMsgDetail.do?msg_seq={id}&bcd=report",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.geomdan.go.kr/main/bbs/bbsMsgDetail.do?msg_seq=211&bcd=report",
+            "text": "인천 검단구·바르게살기운동 검단구협의회, 「탄소중립 & 자원순환 실천 캠페인」전개"
+          },
+          {
+            "url": "https://www.geomdan.go.kr/main/bbs/bbsMsgDetail.do?msg_seq=210&bcd=report",
+            "text": "검단구, 오는 12월까지 화재 취약 제조업소 밀집지역 건축물 실태점검 실시"
+          },
+          {
+            "url": "https://www.geomdan.go.kr/main/bbs/bbsMsgDetail.do?msg_seq=209&bcd=report",
+            "text": "검단구치매안심센터, 지역주민 대상 ‘찾아가는 치매검진사업’ 추진"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-09-30",
+      "homepage": "https://www.geomdan.go.kr/",
+      "endpoint": "https://www.geomdan.go.kr/main/community/news/report.jsp",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:09:20.812Z"
+    },
+    "org:인천광역시:계양구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "msg_seq",
+        "count": 10,
+        "profile": {
+          "link": "bbsMsgDetail\\.do[^\"']*?[?&](?:amp;)?msg_seq=(?<id>[\\w-]+)",
+          "url": "https://www.gyeyang.go.kr/open_content/main/bbs/bbsMsgDetail.do?msg_seq={id}&bcd=board_111",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.gyeyang.go.kr/open_content/main/bbs/bbsMsgDetail.do?msg_seq=16256&bcd=board_111",
+            "text": "동양도서관, 인공지능(AI) 활용 그림책, 책 소개 영상(북 트레일러) 성과 작품 전시회 개최"
+          },
+          {
+            "url": "https://www.gyeyang.go.kr/open_content/main/bbs/bbsMsgDetail.do?msg_seq=16255&bcd=board_111",
+            "text": "계양구 계양2동 보장협의체 자살예방분과, ‘생명사랑 밤길 걷기’ 캠페인 성료"
+          },
+          {
+            "url": "https://www.gyeyang.go.kr/open_content/main/bbs/bbsMsgDetail.do?msg_seq=16254&bcd=board_111",
+            "text": "계양구 작전2동 주민자치회, ‘여성, 청년을 위한 자동차 경정비 교실’ 참여자 모집"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.gyeyang.go.kr/open_content/main/",
+      "endpoint": "https://www.gyeyang.go.kr/open_content/main/open_info/admin/report.jsp",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:09:23.901Z"
+    },
+    "org:인천광역시:남동구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 20건·날짜 20건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "msg_seq",
+        "count": 20,
+        "profile": {
+          "link": "bbsMsgDetail\\.do[^\"']*?[?&](?:amp;)?msg_seq=(?<id>[\\w-]+)",
+          "url": "https://www.namdong.go.kr/main/bbs/bbsMsgDetail.do?msg_seq={id}&bcd=press_release",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.namdong.go.kr/main/bbs/bbsMsgDetail.do?msg_seq=29955&bcd=press_release",
+            "text": "소래포구에 펼쳐진 K뷰티의 향연…남동구 ‘뷰티페스티벌’ 개최"
+          },
+          {
+            "url": "https://www.namdong.go.kr/main/bbs/bbsMsgDetail.do?msg_seq=29954&bcd=press_release",
+            "text": "남동구, 인천 최초 학교 둘레길 보행로 조성…약산초 통학환경 개선"
+          },
+          {
+            "url": "https://www.namdong.go.kr/main/bbs/bbsMsgDetail.do?msg_seq=29953&bcd=press_release",
+            "text": "755명 함께 달렸다…남동구, 청년의 날 ‘남동런’ 개최"
+          }
+        ]
+      },
+      "items": 20,
+      "latest": "2026-09-28",
+      "homepage": "https://www.namdong.go.kr/",
+      "endpoint": "https://www.namdong.go.kr/main/news/report.jsp",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:09:24.910Z"
+    },
+    "org:인천광역시:부평구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.icbp.go.kr/",
+      "checked_at": "2026-10-03T18:09:23.931Z"
+    },
+    "org:인천광역시:서해구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "msg_seq",
+        "count": 10,
+        "profile": {
+          "link": "bbsMsgDetail\\.do[^\"']*?[?&](?:amp;)?msg_seq=(?<id>[\\w-]+)",
+          "url": "https://www.seohae.go.kr/open_content/main/bbs/bbsMsgDetail.do?msg_seq={id}&bcd=report",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.seohae.go.kr/open_content/main/bbs/bbsMsgDetail.do?msg_seq=19474&bcd=report",
+            "text": "연희동, 학교와 함께하는 금연캠페인 ‘NO담’ 전개"
+          },
+          {
+            "url": "https://www.seohae.go.kr/open_content/main/bbs/bbsMsgDetail.do?msg_seq=19473&bcd=report",
+            "text": "서해구, 공동주택 종이팩 별도 분리배출제 선제 시행...2027년부터 의무화"
+          },
+          {
+            "url": "https://www.seohae.go.kr/open_content/main/bbs/bbsMsgDetail.do?msg_seq=19472&bcd=report",
+            "text": "서해구 출범 축하 ‘전국노래자랑’ 31일 열려···예심 참가자 선착순 모집"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.seohae.go.kr/open_content/main/",
+      "endpoint": "https://www.seohae.go.kr/open_content/main/community/news/report.jsp",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:09:35.870Z"
+    },
+    "org:인천광역시:연수구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 15건·날짜 15건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "seq",
+        "count": 15,
+        "profile": {
+          "link": "report\\.asp[^\"']*?[?&](?:amp;)?seq=(?<id>[\\w-]+)",
+          "url": "https://www.yeonsu.go.kr/main/community/notify/report.asp?page=v&gotopage=1&seq={id}&keyfield=&keyword=&s_date=&e_date=&eminwon=&dept_idx=&head_idx=&se_dept_idx=&category=&head_idx_cateYN=&listCnt=",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.yeonsu.go.kr/main/community/notify/report.asp?page=v&gotopage=1&seq=29478&keyfield=&keyword=&s_date=&e_date=&eminwon=&dept_idx=&head_idx=&se_dept_idx=&category=&head_idx_cateYN=&listCnt=",
+            "text": "연수구, 9~10일 ‘제10회 사회복지 박람회’ 개최"
+          },
+          {
+            "url": "https://www.yeonsu.go.kr/main/community/notify/report.asp?page=v&gotopage=1&seq=29477&keyfield=&keyword=&s_date=&e_date=&eminwon=&dept_idx=&head_idx=&se_dept_idx=&category=&head_idx_cateYN=&listCnt=",
+            "text": "연수구, 유아숲체험원 ‘목재 체험’ 3천700여 명 참여"
+          },
+          {
+            "url": "https://www.yeonsu.go.kr/main/community/notify/report.asp?page=v&gotopage=1&seq=29476&keyfield=&keyword=&s_date=&e_date=&eminwon=&dept_idx=&head_idx=&se_dept_idx=&category=&head_idx_cateYN=&listCnt=",
+            "text": "연수구, 추석 연휴 전후 불법 유동 광고물 특별 정비"
+          }
+        ]
+      },
+      "items": 15,
+      "latest": "2026-10-02",
+      "homepage": "https://www.yeonsu.go.kr/main/",
+      "endpoint": "https://www.yeonsu.go.kr/main/community/notify/report.asp",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:09:32.236Z"
+    },
+    "org:인천광역시:제물포구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "msg_seq",
+        "count": 10,
+        "profile": {
+          "link": "bbsMsgDetail\\.do[^\"']*?[?&](?:amp;)?msg_seq=(?<id>[\\w-]+)",
+          "url": "https://www.jemulpo.go.kr/main/bbs/bbsMsgDetail.do?msg_seq={id}&bcd=press",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.jemulpo.go.kr/main/bbs/bbsMsgDetail.do?msg_seq=14233&bcd=press",
+            "text": "제물포구, 전 구민 대상 인플루엔자(독감) 무료 예방접종 조기 실시"
+          },
+          {
+            "url": "https://www.jemulpo.go.kr/main/bbs/bbsMsgDetail.do?msg_seq=14232&bcd=press",
+            "text": "제물포구, ‘2026 인천개항장 국가유산 야행’ 최종보고회 개최"
+          },
+          {
+            "url": "https://www.jemulpo.go.kr/main/bbs/bbsMsgDetail.do?msg_seq=14231&bcd=press",
+            "text": "제물포구, ‘2026년 치매극복의 날’ 행사 성황리 개최"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.jemulpo.go.kr/",
+      "endpoint": "https://www.jemulpo.go.kr/main/information/news/press.jsp",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:09:30.489Z"
+    },
+    "org:전남광주통합특별시:고흥군": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.goheung.go.kr/",
+      "checked_at": "2026-10-03T18:09:28.744Z"
+    },
+    "org:전남광주통합특별시:남구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.namgu.gwangju.kr/",
+      "checked_at": "2026-10-03T18:09:31.316Z"
+    },
+    "org:전남광주통합특별시:동구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.donggu.kr/",
+      "checked_at": "2026-10-03T18:09:32.385Z"
+    },
+    "org:전남광주통합특별시:목포시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 15건·날짜 15건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "report_material\\?idx=(?<id>\\d+)&(?:amp;)?mode=view\" class=\"item_cont",
+          "url": "https://www.mokpo.go.kr/www/mokpo_news/press_release/report_material?idx={id}&mode=view",
+          "title": "<h3>\\s*([^<]+)",
+          "date": "class=\"date\">\\s*([0-9-]+)"
+        },
+        "basis": "링크 안 div.title_box <h3>가 제목, 뒤의 <p>는 부제·본문 요약. 제목은 <h3>만, 날짜는 dd.date",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 15,
+      "latest": "2026-10-02",
+      "homepage": "https://www.mokpo.go.kr/www",
+      "endpoint": "https://www.mokpo.go.kr/www/mokpo_news/press_release",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-05T02:52:58.247Z",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "목록 15건·날짜 15건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:전남광주통합특별시:북구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://bukgu.gwangju.kr/",
+      "checked_at": "2026-10-03T18:09:36.009Z"
+    },
+    "org:전남광주통합특별시:서구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "상세 원문 경로를 robots.txt가 막음",
+      "pattern": {
+        "idParam": "list_no",
+        "count": 10,
+        "profile": {
+          "link": "board\\.es[^\"']*?[?&](?:amp;)?list_no=(?<id>[\\w-]+)",
+          "url": "https://www.seogu.gwangju.kr/board.es?mid=c50501000000&bid=0154&act=view&list_no={id}&tag=&nPage=1",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.seogu.gwangju.kr/board.es?mid=c50501000000&bid=0154&act=view&list_no=143844&tag=&nPage=1",
+            "text": "새글 서구, 아파트 공사·용역 ‘업체 선정까지’ 기술자문"
+          },
+          {
+            "url": "https://www.seogu.gwangju.kr/board.es?mid=c50501000000&bid=0154&act=view&list_no=143832&tag=&nPage=1",
+            "text": "새글 “7% 할인에 5% 더”…서구 ‘골목페이’ 쏜다"
+          },
+          {
+            "url": "https://www.seogu.gwangju.kr/board.es?mid=c50501000000&bid=0154&act=view&list_no=143831&tag=&nPage=1",
+            "text": "새글 김이강 서구청장, 지방정부협의회 상임회장 연임"
+          }
+        ]
+      },
+      "homepage": "https://www.seogu.gwangju.kr/",
+      "endpoint": "https://www.seogu.gwangju.kr/board.es?mid=c50501000000&bid=0154",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:09:47.788Z"
+    },
+    "org:전남광주통합특별시:여수시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 15건·날짜 15건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "idx",
+        "count": 15,
+        "profile": {
+          "link": "press[^\"']*?[?&](?:amp;)?idx=(?<id>[\\w-]+)",
+          "url": "https://www.yeosu.go.kr/www/govt/news/release/press?idx={id}&mode=view",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.yeosu.go.kr/www/govt/news/release/press?idx=582956&mode=view",
+            "text": "여수시청 요트팀 김창주·이경진, 아이치·나고야 아시안게임 은메달 쾌거 새로운글"
+          },
+          {
+            "url": "https://www.yeosu.go.kr/www/govt/news/release/press?idx=582930&mode=view",
+            "text": "여수시, ‘2026 여수 국가유산 야행’ 10월 8~11일 개최 새로운글"
+          },
+          {
+            "url": "https://www.yeosu.go.kr/www/govt/news/release/press?idx=582929&mode=view",
+            "text": "여수시, ‘2026 전남광주통합특별시 평생학습박람회’ 개최 새로운글"
+          }
+        ]
+      },
+      "items": 15,
+      "latest": "2026-10-02",
+      "homepage": "https://www.yeosu.go.kr/",
+      "endpoint": "https://www.yeosu.go.kr/www/govt/news/release/press",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:09:48.736Z"
+    },
+    "org:전북특별자치도:남원시": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.namwon.go.kr/",
+      "checked_at": "2026-10-03T18:09:55.787Z"
+    },
+    "org:전북특별자치도:익산시": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.iksan.go.kr/",
+      "checked_at": "2026-10-03T18:09:59.958Z"
+    },
+    "org:제주특별자치도:서귀포시": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.seogwipo.go.kr/",
+      "checked_at": "2026-10-03T18:10:11.148Z"
+    },
+    "org:충청남도:계룡시": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.gyeryong.go.kr/",
+      "checked_at": "2026-10-03T18:10:11.447Z"
+    },
+    "org:충청남도:금산군": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.geumsan.go.kr/",
+      "checked_at": "2026-10-03T18:10:12.904Z"
+    },
+    "org:충청남도:논산시": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.nonsan.go.kr/",
+      "checked_at": "2026-10-03T18:10:13.292Z"
+    },
+    "org:충청남도:보령시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "mgtno",
+        "count": 10,
+        "profile": {
+          "link": "view\\.do[^\"']*?[?&](?:amp;)?mgtno=(?<id>[\\w-]+)",
+          "url": "https://www.brcn.go.kr/prog/eminwon/kor/AA/sub04_02/view.do?mgtno={id}",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.brcn.go.kr/prog/eminwon/kor/AA/sub04_02/view.do?mgtno=16336",
+            "text": "보령시, 명천1지구 급경사지 정비사업 9월 재착공"
+          },
+          {
+            "url": "https://www.brcn.go.kr/prog/eminwon/kor/AA/sub04_02/view.do?mgtno=16335",
+            "text": "보령시, 2027년 고향사랑기금사업 아이디어 공모"
+          },
+          {
+            "url": "https://www.brcn.go.kr/prog/eminwon/kor/AA/sub04_02/view.do?mgtno=16334",
+            "text": "보령향교, 참여형 전통문화 축제 ‘인의예지 페스타’ 개최"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-09-28",
+      "homepage": "https://www.brcn.go.kr/",
+      "endpoint": "https://www.brcn.go.kr/prog/eminwon/kor/AA/sub04_02/list.do",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:10:19.354Z"
+    },
+    "org:충청남도:부여군": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.buyeo.go.kr/",
+      "checked_at": "2026-10-03T18:10:13.432Z"
+    },
+    "org:충청남도:서산시": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.seosan.go.kr/",
+      "checked_at": "2026-10-03T18:10:13.594Z"
+    },
+    "org:충청남도:서천군": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "후보 게시판 경로를 robots.txt가 막음",
+      "homepage": "https://www.seocheon.go.kr/kor.do",
+      "endpoint": "https://www.seocheon.go.kr/bbs/BBSMSTR_000000000270/list.do",
+      "menu_text": "보도자료 더보기",
+      "checked_at": "2026-10-03T18:10:17.109Z"
+    },
+    "org:충청남도:청양군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "nttId",
+        "count": 10,
+        "profile": {
+          "link": "selectBoardArticle\\.do[^\"']*?[?&](?:amp;)?nttId=(?<id>[\\w-]+)",
+          "url": "https://www.cheongyang.go.kr/cop/bbs/BBSMSTR_000000000064/selectBoardArticle.do?nttId={id}&pageIndex=1&searchCnd=&searchWrd=",
+          "title": "<strong[^>]*>\\s*([^<]+)"
+        },
+        "samples": [
+          {
+            "url": "https://www.cheongyang.go.kr/cop/bbs/BBSMSTR_000000000064/selectBoardArticle.do;jsessionid=rliD7F0MZFdjZxBtjpaJvjwTamqUrPiuDluiON6lP1xUyqXyTSD6IUvtD5R9CJ31.cy-was_servlet_engine1?nttId=211335&pageIndex=1&searchCnd=&searchWrd=",
+            "text": "청양군, 제78회 충청남도민체육대회 종합 11위 달성 지난해 보다 두 계단 상승... 총 17개 메달 획득청양군(군수 김홍열)이 당진시 일원에서"
+          },
+          {
+            "url": "https://www.cheongyang.go.kr/cop/bbs/BBSMSTR_000000000064/selectBoardArticle.do;jsessionid=rliD7F0MZFdjZxBtjpaJvjwTamqUrPiuDluiON6lP1xUyqXyTSD6IUvtD5R9CJ31.cy-was_servlet_engine1?nttId=211326&pageIndex=1&searchCnd=&searchWrd=",
+            "text": "청양군 품목농업인연구연합회, 공동과제포장 고구마 수확 및 생육 평가회 성황리 개최 임원 및 회원 30여 명 구슬땀 흘려 ‘호풍미’ 수확… 영농 "
+          },
+          {
+            "url": "https://www.cheongyang.go.kr/cop/bbs/BBSMSTR_000000000064/selectBoardArticle.do;jsessionid=rliD7F0MZFdjZxBtjpaJvjwTamqUrPiuDluiON6lP1xUyqXyTSD6IUvtD5R9CJ31.cy-was_servlet_engine1?nttId=211325&pageIndex=1&searchCnd=&searchWrd=",
+            "text": "청양군, ‘제4기 청양 탑클래스’ 연세대학교 탐방… 청소년들의 큰 꿈을 향한 첫걸음 연세대 재학생 멘토들과 함께한 캠퍼스 투어 및 1:1 맞춤형"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-09-07",
+      "homepage": "https://www.cheongyang.go.kr/kor.do",
+      "endpoint": "https://www.cheongyang.go.kr/cop/bbs/BBSMSTR_000000000064/selectBoardList.do",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-05T00:10:56.908Z"
+    },
+    "org:충청북도:영동군": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.yd21.go.kr/",
+      "checked_at": "2026-10-03T18:10:25.974Z"
+    },
+    "org:경기도:양주시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "number",
+        "count": 10,
+        "profile": {
+          "link": "brief_gongbo_view\\.do[^\"']*?[?&](?:amp;)?number=(?<id>[\\w-]+)",
+          "url": "https://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&number={id}",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&number=71638",
+            "text": "추미애, 국토부 장관 만나 ‘경기도형 주택공급 전략’ 제안 “일자리·주거 따로 놀아…물량 넘어 삶의 질까지 함께 설계해야”"
+          },
+          {
+            "url": "https://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&number=71635",
+            "text": "경기도, 제51주년 민방위대 창설기념행사 개최"
+          },
+          {
+            "url": "https://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=S017&number=71631",
+            "text": "청년이 데이터로 찾은 일자리 해법…경기도일자리재단 ‘일자리상황판’ 공모전 시상"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.yangju.go.kr/www/index.do",
+      "endpoint": "https://www.yangju.go.kr/www/selectGnewsList.do?key=207&bscode=S017",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:13:09.809Z"
+    },
+    "org:경기도:용인시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "q_bbscttSn",
+        "count": 10,
+        "profile": {
+          "link": "BD_selectBbs\\.do[^\"']*?[?&](?:amp;)?q_bbscttSn=(?<id>[\\w-]+)",
+          "url": "https://www.yongin.go.kr/user/bbs/BD_selectBbs.do?q_bbsCode=1162&q_bbscttSn={id}",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.yongin.go.kr/user/bbs/BD_selectBbs.do?q_bbsCode=1162&q_bbscttSn=20260814113326316",
+            "text": "이상일 용인특례시장, \"민선9기 땐 지방자치법 개정 통해 특..."
+          },
+          {
+            "url": "https://www.yongin.go.kr/user/bbs/BD_selectBbs.do?q_bbsCode=1162&q_bbscttSn=20260608152441378",
+            "text": "특례시 지원에 관한 특별법 공포…“이렇게 달라집니다”"
+          },
+          {
+            "url": "https://www.yongin.go.kr/user/bbs/BD_selectBbs.do?q_bbsCode=1162&q_bbscttSn=20260508162124145",
+            "text": "용인특례시, 광역시급 지방정부 도약 발판...특례시 지원 특..."
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-08-14",
+      "homepage": "https://www.yongin.go.kr/index.do",
+      "endpoint": "https://www.yongin.go.kr/user/bbs/BD_selectBbsList.do?q_bbsCode=1162",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:13:11.923Z"
+    },
+    "org:경상남도:의령군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 11건·날짜 11건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "dataSid",
+        "count": 11,
+        "profile": {
+          "link": "view\\.uiryeong[^\"']*?[?&](?:amp;)?dataSid=(?<id>[\\w-]+)",
+          "url": "https://www.uiryeong.go.kr/board/view.uiryeong?boardId=BBS_0000080&menuCd=DOM_000000203005001000&orderBy=REGISTER_DATE+DESC&paging=ok&startPage=1&dataSid={id}",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.uiryeong.go.kr/board/view.uiryeong?boardId=BBS_0000080&menuCd=DOM_000000203005001000&orderBy=REGISTER_DATE%20DESC&paging=ok&startPage=1&dataSid=407835",
+            "text": "뉴스미란다 원칙"
+          },
+          {
+            "url": "https://www.uiryeong.go.kr/board/view.uiryeong?boardId=BBS_0000080&menuCd=DOM_000000203005001000&orderBy=REGISTER_DATE%20DESC&paging=ok&startPage=1&dataSid=1115899",
+            "text": "“눈·귀·코·입·손을 깨워라”…의령서 깨운 ‘부자의 감각’"
+          },
+          {
+            "url": "https://www.uiryeong.go.kr/board/view.uiryeong?boardId=BBS_0000080&menuCd=DOM_000000203005001000&orderBy=REGISTER_DATE%20DESC&paging=ok&startPage=1&dataSid=1115880",
+            "text": "의령 솥바위, 사람들이 가장 많이 빈 소원은 ‘건강’"
+          }
+        ]
+      },
+      "items": 11,
+      "latest": "2026-10-03",
+      "homepage": "https://www.uiryeong.go.kr/index.uiryeong",
+      "endpoint": "https://www.uiryeong.go.kr/board/list.uiryeong;jsessionid=F6020D34F43D8680487EF1074F6553E6.urskoinfojvm?boardId=BBS_0000080&menuCd=DOM_000000203005001000&contentsSid=189",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:13:24.710Z"
+    },
+    "org:부산광역시:사상구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "dataSid",
+        "count": 10,
+        "profile": {
+          "link": "view\\.sasang[^\"']*?[?&](?:amp;)?dataSid=(?<id>[\\w-]+)",
+          "url": "https://www.sasang.go.kr/board/view.sasang?boardId=BBS_0000002&menuCd=DOM_000000104008002000&startPage=1&dataSid={id}",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.sasang.go.kr/board/view.sasang?boardId=BBS_0000002&menuCd=DOM_000000104008002000&startPage=1&dataSid=568270",
+            "text": "스포츠 의류브랜드 허그본, 추석 명절 이웃돕기 성품 컵라면 100박스 학장동에 기탁"
+          },
+          {
+            "url": "https://www.sasang.go.kr/board/view.sasang?boardId=BBS_0000002&menuCd=DOM_000000104008002000&startPage=1&dataSid=568269",
+            "text": "부산 사상구노인복지관, ‘추석맞이 한가위 정(情)나눔’으로 추석 명절 온정"
+          },
+          {
+            "url": "https://www.sasang.go.kr/board/view.sasang?boardId=BBS_0000002&menuCd=DOM_000000104008002000&startPage=1&dataSid=568268",
+            "text": "부산 사상구, 현업근로자 맞춤형 안전보건교육...‘안전이 최우선’"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-09-30",
+      "homepage": "https://www.sasang.go.kr/index.sasang",
+      "endpoint": "https://www.sasang.go.kr/board/list.sasang?boardId=BBS_0000002&menuCd=DOM_000000104008002000&contentsSid=2733&cpath=",
+      "menu_text": "보도자료 더보기",
+      "checked_at": "2026-10-03T18:14:03.792Z"
+    },
+    "org:서울특별시:도봉구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.dobong.go.kr/",
+      "checked_at": "2026-10-05T00:58:30.232Z"
+    },
+    "org:서울특별시:영등포구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "nttNo",
+        "count": 10,
+        "profile": {
+          "link": "selectBbsNttView\\.do[^\"']*?[?&](?:amp;)?nttNo=(?<id>[\\w-]+)",
+          "url": "https://www.ydp.go.kr/www/selectBbsNttView.do?bbsNo=45&nttNo={id}&pageUnit=10&key=2868&pageIndex=1",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.ydp.go.kr/www/selectBbsNttView.do?bbsNo=45&nttNo=419990&&pageUnit=10&key=2868&pageIndex=1",
+            "text": "영등포구, “병원 대신 정든 내 집에서!” … 맞춤형 ‘통합돌봄사업’ 적극 추진 NEW"
+          },
+          {
+            "url": "https://www.ydp.go.kr/www/selectBbsNttView.do?bbsNo=45&nttNo=419989&&pageUnit=10&key=2868&pageIndex=1",
+            "text": "영등포구, ‘합계출산율 1.0’ 향해 뛴다! … 10월 7일 제21회 ‘임산부의 날’ 기념행사 개최 NEW"
+          },
+          {
+            "url": "https://www.ydp.go.kr/www/selectBbsNttView.do?bbsNo=45&nttNo=419975&&pageUnit=10&key=2868&pageIndex=1",
+            "text": "영등포구, 금융 전문가‘존 리’초청 …‘자산관리 특별강연’ 연다"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-01",
+      "homepage": "https://www.ydp.go.kr/www/index.do",
+      "endpoint": "https://www.ydp.go.kr/www/selectBbsNttList.do?bbsNo=45&key=2868&",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:14:15.476Z"
+    },
+    "org:울산광역시:중구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "dataSid",
+        "count": 10,
+        "profile": {
+          "link": "view\\.ulsan[^\"']*?[?&](?:amp;)?dataSid=(?<id>[\\w-]+)",
+          "url": "https://www.junggu.ulsan.kr/board/view.ulsan?boardId=BBS_0000090&menuCd=DOM_000000102003002000&orderBy=TMP_FIELD4+DESC%2CREGISTER_DATE+DESC&paging=ok&startPage=1&dataSid={id}",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.junggu.ulsan.kr/board/view.ulsan?boardId=BBS_0000090&menuCd=DOM_000000102003002000&orderBy=TMP_FIELD4%20DESC,REGISTER_DATE%20DESC&paging=ok&startPage=1&dataSid=726501",
+            "text": "반구1동 새마을문고회, 성안경로식당에서 급식 봉사활동 실시"
+          },
+          {
+            "url": "https://www.junggu.ulsan.kr/board/view.ulsan?boardId=BBS_0000090&menuCd=DOM_000000102003002000&orderBy=TMP_FIELD4%20DESC,REGISTER_DATE%20DESC&paging=ok&startPage=1&dataSid=726500",
+            "text": "중구, 유해야생동물 피해방지단 대상 총기 안전교육 진행"
+          },
+          {
+            "url": "https://www.junggu.ulsan.kr/board/view.ulsan?boardId=BBS_0000090&menuCd=DOM_000000102003002000&orderBy=TMP_FIELD4%20DESC,REGISTER_DATE%20DESC&paging=ok&startPage=1&dataSid=726499",
+            "text": "중구명예구청장협의회, 경남 산청군 일대에서 역량강화 공동연수(워크숍) 진행"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.junggu.ulsan.kr/index.ulsan",
+      "endpoint": "https://www.junggu.ulsan.kr/board/list.ulsan?boardId=BBS_0000090&menuCd=DOM_000000102003002000&contentsSid=1123&cpath=",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:14:27.389Z"
+    },
+    "org:인천광역시:미추홀구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "sq",
+        "count": 10,
+        "profile": {
+          "link": "view\\.do[^\"']*?[?&](?:amp;)?sq=(?<id>[\\w-]+)",
+          "url": "https://www.michuhol.go.kr/main/board/view.do?sq={id}&board_code=news_item&search=eyJib2FyZF9jb2RlIjoibmV3c19pdGVtIn0%3D",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.michuhol.go.kr/main/board/view.do?sq=315802&board_code=news_item&search=eyJib2FyZF9jb2RlIjoibmV3c19pdGVtIn0=",
+            "text": "관교노인복지관, 경로의 달 맞아 &#039;제7회 승학골 경로잔치&#039; 개최"
+          },
+          {
+            "url": "https://www.michuhol.go.kr/main/board/view.do?sq=315801&board_code=news_item&search=eyJib2FyZF9jb2RlIjoibmV3c19pdGVtIn0=",
+            "text": "미추홀구, 드림스타트 가족과 함께한 에버랜드 나들이"
+          },
+          {
+            "url": "https://www.michuhol.go.kr/main/board/view.do?sq=315800&board_code=news_item&search=eyJib2FyZF9jb2RlIjoibmV3c19pdGVtIn0=",
+            "text": "용현3동, 착한가게 6곳 새롭게 동참... 지역 나눔문화 확산"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-01",
+      "homepage": "https://www.michuhol.go.kr/main/main.do",
+      "endpoint": "https://www.michuhol.go.kr/main/board/list.do?board_code=news_item",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:14:21.068Z"
+    },
+    "org:전남광주통합특별시:광산구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 12건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "seq",
+        "count": 10,
+        "profile": {
+          "link": "boardView\\.do[^\"']*?[?&](?:amp;)?seq=(?<id>[\\w-]+)",
+          "url": "https://www.gwangsan.go.kr/boardView.do?pageId=www16&boardId=REPORT_NEW&seq={id}&movePage=1",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.gwangsan.go.kr/boardView.do?pageId=www16&boardId=REPORT_NEW&seq=5714925&movePage=1",
+            "text": "광산구, 장애인 의료‧요양 통합돌봄 ‘순항’"
+          },
+          {
+            "url": "https://www.gwangsan.go.kr/boardView.do?pageId=www16&boardId=REPORT_NEW&seq=2569143&movePage=1",
+            "text": "광산구, 가축전염병 예방 거점 소독시설 운영"
+          },
+          {
+            "url": "https://www.gwangsan.go.kr/boardView.do?pageId=www16&boardId=REPORT_NEW&seq=3683203&movePage=1",
+            "text": "월곡2동 ‘와글와글 놀이터’, 마을 어울림·이웃살핌으로 확장"
+          }
+        ]
+      },
+      "items": 12,
+      "latest": "2026-10-02",
+      "homepage": "https://www.gwangsan.go.kr/",
+      "endpoint": "https://www.gwangsan.go.kr/boardList.do?boardId=REPORT_NEW&pageId=www16",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:14:24.068Z"
+    },
+    "org:전남광주통합특별시:나주시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "idx",
+        "count": 10,
+        "profile": {
+          "link": "coverage[^\"']*?[?&](?:amp;)?idx=(?<id>[\\w-]+)",
+          "url": "https://www.naju.go.kr/www/administration/reporting/coverage?idx={id}&mode=view",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.naju.go.kr/www/administration/reporting/coverage?idx=611895&mode=view",
+            "text": "나주시, ‘2026 대한민국 에너지 전문 JOB 박람회’ 성료"
+          },
+          {
+            "url": "https://www.naju.go.kr/www/administration/reporting/coverage?idx=611883&mode=view",
+            "text": "‘나주 글로벌 에너지포럼 2026’, 국내 핵융합 기술 한자리에"
+          },
+          {
+            "url": "https://www.naju.go.kr/www/administration/reporting/coverage?idx=611877&mode=view",
+            "text": "나주시 영산동, 중증암 환자 ‘영양 꾸러미 지원 사업’ 실시"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.naju.go.kr/",
+      "endpoint": "https://www.naju.go.kr/www/administration/reporting/coverage",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:14:26.382Z"
+    },
+    "org:전남광주통합특별시:화순군": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "최근 1년 안 게시물이 없음(가장 최근 2013-08-14). 지난 자료 보관 게시판일 수 있음",
+      "pattern": {
+        "idParam": "list_no",
+        "count": 10,
+        "profile": {
+          "link": "board\\.do[^\"']*?[?&](?:amp;)?list_no=(?<id>[\\w-]+)",
+          "url": "https://www.hwasun.go.kr/board.do?S=S01&M=020103000000&b_code=0000000059&act=view&list_no={id}&nPage=1&cg_code=",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.hwasun.go.kr/board.do?S=S01&M=020103000000&b_code=0000000059&act=view&list_no=10&nPage=1&cg_code=",
+            "text": "‘하니움체육관 음향설비 5억원대 수의계약 특혜의혹’ 제하의 .."
+          },
+          {
+            "url": "https://www.hwasun.go.kr/board.do?S=S01&M=020103000000&b_code=0000000059&act=view&list_no=9&nPage=1&cg_code=",
+            "text": "화순전통시장 관련 보도기사, 사실은 이렇습니다."
+          },
+          {
+            "url": "https://www.hwasun.go.kr/board.do?S=S01&M=020103000000&b_code=0000000059&act=view&list_no=8&nPage=1&cg_code=",
+            "text": "『조유송 의장 능주면에서 의정보고』제하의 기사 사실은 이렇습.."
+          }
+        ]
+      },
+      "items": 10,
+      "homepage": "https://www.hwasun.go.kr/intro.do?S=S01",
+      "endpoint": "https://www.hwasun.go.kr/board.do?S=S01&M=020103000000&b_code=0000000059",
+      "menu_text": "보도자료해명",
+      "checked_at": "2026-10-04T10:44:06.932Z"
+    },
+    "org:전북특별자치도:전주시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "dataUid",
+        "count": 10,
+        "profile": {
+          "link": "view\\.9is[^\"']*?[?&](?:amp;)?dataUid=(?<id>[\\w-]+)",
+          "url": "https://www.jeonju.go.kr/planweb/board/view.9is?dataUid={id}&contentUid=ff8080818990c349018b041a87fe3960&boardUid=ff8080818b5bc5cf018ba8ca7216641f&page=1&subPath=",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.jeonju.go.kr/planweb/board/view.9is?dataUid=9be517a8a0cba6ef01a0f12bbfd56c24&&contentUid=ff8080818990c349018b041a87fe3960&boardUid=ff8080818b5bc5cf018ba8ca7216641f&page=1&subPath=",
+            "text": "전주시 치매안심센터, 대한적십자사와 함께 ‘치매안심이웃+’ 온정 나눔"
+          },
+          {
+            "url": "https://www.jeonju.go.kr/planweb/board/view.9is?dataUid=9be517a8a0cba6ef01a0f12a9ff16bf1&&contentUid=ff8080818990c349018b041a87fe3960&boardUid=ff8080818b5bc5cf018ba8ca7216641f&page=1&subPath=",
+            "text": "희망나르미사회적협동조합·(유)미소택배, 전주시 주거취약계층 위한 후원금 전달"
+          },
+          {
+            "url": "https://www.jeonju.go.kr/planweb/board/view.9is?dataUid=9be517a8a0cba6ef01a0f129cab86bd8&&contentUid=ff8080818990c349018b041a87fe3960&boardUid=ff8080818b5bc5cf018ba8ca7216641f&page=1&subPath=",
+            "text": "전주시 가정어린이집 연합회, 건지산 숲 체험"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-09-30",
+      "homepage": "https://www.jeonju.go.kr/",
+      "endpoint": "https://www.jeonju.go.kr/planweb/board/list.9is?contentUid=ff8080818990c349018b041a87fe3960&boardUid=ff8080818b5bc5cf018ba8ca7216641f&contentUid=ff8080818990c349018b041a87fe3960&subPath=",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:14:59.764Z"
+    },
+    "org:강원특별자치도:원주시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "nttNo",
+        "count": 10,
+        "profile": {
+          "link": "selectBbsNttView\\.do[^\"']*?[?&](?:amp;)?nttNo=(?<id>[\\w-]+)",
+          "url": "https://www.wonju.go.kr/www/selectBbsNttView.do?key=222&bbsNo=145&nttNo={id}&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.wonju.go.kr/www/selectBbsNttView.do?key=222&bbsNo=145&nttNo=492982&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "원주시 시민서로돕기 천사운동본부, ‘2026 천사의 날’ 기념식 개최 NEW"
+          },
+          {
+            "url": "https://www.wonju.go.kr/www/selectBbsNttView.do?key=222&bbsNo=145&nttNo=492943&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "원주시, 내년도 국비 확보 총력…1일 이광재 예결위원장 면담 NEW"
+          },
+          {
+            "url": "https://www.wonju.go.kr/www/selectBbsNttView.do?key=222&bbsNo=145&nttNo=492942&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "원주의 가을, 예술로 물든다… ‘제62회 원주예술제’ 개최 NEW"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.wonju.go.kr/www/index.do",
+      "endpoint": "https://www.wonju.go.kr/www/selectBbsNttList.do?bbsNo=145&key=222&",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:18:11.867Z"
+    },
+    "org:강원특별자치도:태백시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "nttNo",
+        "count": 10,
+        "profile": {
+          "link": "selectBbsNttView\\.do[^\"']*?[?&](?:amp;)?nttNo=(?<id>[\\w-]+)",
+          "url": "https://www.taebaek.go.kr/www/selectBbsNttView.do?key=359&bbsNo=31&nttNo={id}&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.taebaek.go.kr/www/selectBbsNttView.do?key=359&bbsNo=31&nttNo=185738&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "태백시, 2026년 6월 기준 개별주택가격 공시 및 이의신청 접수"
+          },
+          {
+            "url": "https://www.taebaek.go.kr/www/selectBbsNttView.do?key=359&bbsNo=31&nttNo=185736&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "태백산봉사단, 문곡소도동 주거취약계층 집수리 봉사"
+          },
+          {
+            "url": "https://www.taebaek.go.kr/www/selectBbsNttView.do?key=359&bbsNo=31&nttNo=185675&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "태백시, 겨울철 결빙·야간 통행 취약구간 현장점검"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.taebaek.go.kr/www/index.do",
+      "endpoint": "https://www.taebaek.go.kr/www/selectBbsNttList.do?bbsNo=31&key=359",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:18:14.771Z"
+    },
+    "org:강원특별자치도:홍천군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "news_epct_no",
+        "count": 10,
+        "profile": {
+          "link": "selectEminwonNewsView\\.do[^\"']*?[?&](?:amp;)?news_epct_no=(?<id>[\\w-]+)",
+          "url": "https://www.hongcheon.go.kr/www/selectEminwonNewsView.do?pageUnit=10&pageIndex=1&searchCnd=all&key=283&news_epct_no={id}&ofr_pageSize=10",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.hongcheon.go.kr/www/selectEminwonNewsView.do?pageUnit=10&pageIndex=1&searchCnd=all&key=283&news_epct_no=21339&ofr_pageSize=10",
+            "text": "홍천군, 영농 부산물 안전 처리 지원사업 전국 최우수 기관 수상"
+          },
+          {
+            "url": "https://www.hongcheon.go.kr/www/selectEminwonNewsView.do?pageUnit=10&pageIndex=1&searchCnd=all&key=283&news_epct_no=21338&ofr_pageSize=10",
+            "text": "홍천 연호요양병원 『사전연명의료의향서 등록기관』 지정"
+          },
+          {
+            "url": "https://www.hongcheon.go.kr/www/selectEminwonNewsView.do?pageUnit=10&pageIndex=1&searchCnd=all&key=283&news_epct_no=21337&ofr_pageSize=10",
+            "text": "홍천군 이장가족 한자리에…주민과 행정을 잇는 화합의 장 펼친다"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-01",
+      "homepage": "https://www.hongcheon.go.kr/www/index.do",
+      "endpoint": "https://www.hongcheon.go.kr/www/selectEminwonNewsList.do?key=283&ofr_pageSize=10",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:18:14.191Z"
+    },
+    "org:경기도:가평군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 13건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "nttNo",
+        "count": 10,
+        "profile": {
+          "link": "selectBbsNttView\\.do[^\"']*?[?&](?:amp;)?nttNo=(?<id>[\\w-]+)",
+          "url": "https://www.gp.go.kr/portal/selectBbsNttView.do?key=787&bbsNo=127&nttNo={id}&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.gp.go.kr/portal/selectBbsNttView.do?key=787&bbsNo=127&nttNo=289649&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "가평군 보도자료(10월 2일자)"
+          },
+          {
+            "url": "https://www.gp.go.kr/portal/selectBbsNttView.do?key=787&bbsNo=127&nttNo=289587&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "가평군 보도자료(10월 1일자)"
+          },
+          {
+            "url": "https://www.gp.go.kr/portal/selectBbsNttView.do?key=787&bbsNo=127&nttNo=289562&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "가평군 보도자료(9월 30일자)"
+          }
+        ]
+      },
+      "items": 13,
+      "latest": "2026-10-02",
+      "homepage": "https://www.gp.go.kr/portal/selectBbsNttList.do?bbsNo=557&key=2311",
+      "endpoint": "https://www.gp.go.kr/portal/selectBbsNttList.do?bbsNo=127&key=787",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:18:22.980Z"
+    },
+    "org:경기도:광명시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 20건·날짜 20건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "view\\.html[^\"']*?[?&](?:amp;)?idxno=(?<id>\\d+)",
+          "url": "https://news.gm.go.kr/bbs/view.html?idxno={id}",
+          "title": "text"
+        },
+        "basis": "자동 탐색이 http 주소로 확인했으나 수집기는 https 원문 주소만 받아 운영에서 PROFILE_INVALID. 같은 목록·원문(view.html?idxno=)이 https로 열려 https로 다시 확인",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 20,
+      "latest": "2026-10-02",
+      "homepage": "https://www.gm.go.kr/pt/index.do",
+      "endpoint": "https://news.gm.go.kr/bbs/list.html?table=bbs_12",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-05T00:57:09.541Z",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "목록 20건·날짜 20건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:경기도:군포시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "nttNo",
+        "count": 10,
+        "profile": {
+          "link": "selectBbsNttView\\.do[^\"']*?[?&](?:amp;)?nttNo=(?<id>[\\w-]+)",
+          "url": "https://www.gunpo.go.kr/www/selectBbsNttView.do?key=3893&bbsNo=685&nttNo={id}&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.gunpo.go.kr/www/selectBbsNttView.do?key=3893&bbsNo=685&nttNo=326855&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "군포시, 민선 9기 첫 당정협의회 개최… 7대 현안 논의"
+          },
+          {
+            "url": "https://www.gunpo.go.kr/www/selectBbsNttView.do?key=3893&bbsNo=685&nttNo=326854&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "한대희 군포시장, 시의회와 소통간담회 개최… “대규모 조직개편 의결 협조 당부”"
+          },
+          {
+            "url": "https://www.gunpo.go.kr/www/selectBbsNttView.do?key=3893&bbsNo=685&nttNo=326853&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "군포시, 제4기 주민자치회 위원 공개 모집"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-01",
+      "homepage": "https://www.gunpo.go.kr/www/index.do",
+      "endpoint": "https://www.gunpo.go.kr/www/selectBbsNttList.do?bbsNo=685&key=3893",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:18:30.461Z"
+    },
+    "org:경상북도:성주군": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "상세 원문 경로를 robots.txt가 막음",
+      "pattern": {
+        "idParam": "bod_uid",
+        "count": 10,
+        "profile": {
+          "link": "page\\.do[^\"']*?[?&](?:amp;)?bod_uid=(?<id>[\\w-]+)",
+          "url": "https://www.sj.go.kr/page.do?srchEnable=1&srchSDate=&srchKwd=&srchColumn=&srchEDate=&mnu_uid=3546&srchBgpUid=&srchDept=&bod_uid={id}&pageNo=1&cmd=2",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.sj.go.kr/page.do?srchEnable=1&srchSDate=&srchKwd=&srchColumn=&srchEDate=&mnu_uid=3546&&srchBgpUid=&srchDept=&bod_uid=623632&pageNo=1&cmd=2",
+            "text": "성주군, 재미와 실속 다 잡은 2026년 청렴 교육 펼쳐"
+          },
+          {
+            "url": "https://www.sj.go.kr/page.do?srchEnable=1&srchSDate=&srchKwd=&srchColumn=&srchEDate=&mnu_uid=3546&&srchBgpUid=&srchDept=&bod_uid=623631&pageNo=1&cmd=2",
+            "text": "장태훈 재구 벽진면 향우회장, 고향사랑 기부금 100만 원 기탁"
+          },
+          {
+            "url": "https://www.sj.go.kr/page.do?srchEnable=1&srchSDate=&srchKwd=&srchColumn=&srchEDate=&mnu_uid=3546&&srchBgpUid=&srchDept=&bod_uid=623630&pageNo=1&cmd=2",
+            "text": "노인 일자리 ‘스마트 경로당 관리자’ 소양·직무 교육 실시"
+          }
+        ]
+      },
+      "homepage": "https://www.sj.go.kr/main.do",
+      "endpoint": "https://www.sj.go.kr/page.do?mnu_uid=3546&",
+      "menu_text": "보도자료/해명자료",
+      "checked_at": "2026-10-03T18:19:20.526Z"
+    },
+    "org:서울특별시:금천구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "nttNo",
+        "count": 10,
+        "profile": {
+          "link": "selectBbsNttView\\.do[^\"']*?[?&](?:amp;)?nttNo=(?<id>[\\w-]+)",
+          "url": "https://www.geumcheon.go.kr/portal/selectBbsNttView.do?key=297&id=&bbsNo=8&nttNo={id}&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=&searchDeptCode=",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.geumcheon.go.kr/portal/selectBbsNttView.do?key=297&id=&bbsNo=8&nttNo=271185&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=&searchDeptCode=",
+            "text": "빛과 음악으로 되살아나는 시흥행궁…금천구, ‘금천시흥행궁문화제’ 개최 새글"
+          },
+          {
+            "url": "https://www.geumcheon.go.kr/portal/selectBbsNttView.do?key=297&id=&bbsNo=8&nttNo=271184&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=&searchDeptCode=",
+            "text": "금천구, “상업용 저울 꼼꼼히 확인하세요” 새글"
+          },
+          {
+            "url": "https://www.geumcheon.go.kr/portal/selectBbsNttView.do?key=297&id=&bbsNo=8&nttNo=271183&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=&searchDeptCode=",
+            "text": "일상에 더 가까워지는 도서관, 열람공간 밤 11시까지 연장 운영 새글"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-09-30",
+      "homepage": "https://www.geumcheon.go.kr/portal/index.do",
+      "endpoint": "https://www.geumcheon.go.kr/portal/selectBbsNttList.do?bbsNo=8&key=297",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:20:14.221Z"
+    },
+    "org:서울특별시:동대문구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "nttNo",
+        "count": 10,
+        "profile": {
+          "link": "selectBbsNttView\\.do[^\"']*?[?&](?:amp;)?nttNo=(?<id>[\\w-]+)",
+          "url": "https://www.ddm.go.kr/www/selectBbsNttView.do?key=199&bbsNo=39&nttNo={id}&searchCtgry=&searchCnd=all&searchKrwd=&integrDeptCode=&pageIndex=1",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.ddm.go.kr/www/selectBbsNttView.do?key=199&bbsNo=39&nttNo=195061&searchCtgry=&searchCnd=all&searchKrwd=&integrDeptCode=&pageIndex=1",
+            "text": "동대문구, 추석 앞두고 전통시장 야간 환경순찰"
+          },
+          {
+            "url": "https://www.ddm.go.kr/www/selectBbsNttView.do?key=199&bbsNo=39&nttNo=195059&searchCtgry=&searchCnd=all&searchKrwd=&integrDeptCode=&pageIndex=1",
+            "text": "동대문구 곳곳에 번진 한가위 온정…이웃과 함께하는 따뜻한 추석"
+          },
+          {
+            "url": "https://www.ddm.go.kr/www/selectBbsNttView.do?key=199&bbsNo=39&nttNo=195058&searchCtgry=&searchCnd=all&searchKrwd=&integrDeptCode=&pageIndex=1",
+            "text": "동대문구, 정비사업 업무 사전 안내로 재개발·재건축 속도 높인다"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-09-28",
+      "homepage": "https://www.ddm.go.kr/www/index.do",
+      "endpoint": "https://www.ddm.go.kr/www/selectBbsNttList.do?bbsNo=39&key=199",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:20:22.056Z"
+    },
+    "org:서울특별시:서초구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 11건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "bcIdx",
+        "count": 11,
+        "profile": {
+          "link": "View\\.do[^\"']*?[?&](?:amp;)?bcIdx=(?<id>[\\w-]+)",
+          "url": "https://www.seocho.go.kr/site/seocho/ex/bbs/View.do?cbIdx=57&bcIdx={id}",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.seocho.go.kr/site/seocho/ex/bbs/View.do?cbIdx=57&bcIdx=399631",
+            "text": "「서리풀 커뮤니티 활성화 사업」 공지사항"
+          },
+          {
+            "url": "https://www.seocho.go.kr/site/seocho/ex/bbs/View.do?cbIdx=61&bcIdx=411653",
+            "text": "서초구 청소 퍼레이드, 300만 누리꾼 마음 움직이며 또다시 화제"
+          },
+          {
+            "url": "https://www.seocho.go.kr/site/seocho/ex/bbs/View.do?cbIdx=61&bcIdx=411652",
+            "text": "서초구, 노인의 날 기념 ‘행복한 노년, 서초애(愛) 산다’ 개최"
+          }
+        ]
+      },
+      "items": 11,
+      "latest": "2026-10-02",
+      "homepage": "https://www.seocho.go.kr/site/seocho/main.do",
+      "endpoint": "https://www.seocho.go.kr/site/seocho/ex/bbs/List.do?cbIdx=61",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:20:20.952Z"
+    },
+    "org:서울특별시:성북구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 12건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "nttNo",
+        "count": 10,
+        "profile": {
+          "link": "selectBbsNttView\\.do[^\"']*?[?&](?:amp;)?nttNo=(?<id>[\\w-]+)",
+          "url": "https://www.sb.go.kr/www/selectBbsNttView.do?key=6356&bbsNo=46&nttNo={id}&searchCtgry=&searchCnd=all&searchKrwd=&integrDeptCode=&startDate=&endDate=&pageIndex=1",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.sb.go.kr/www/selectBbsNttView.do?key=6356&bbsNo=46&nttNo=9584391&searchCtgry=&searchCnd=all&searchKrwd=&integrDeptCode=&startDate=&endDate=&pageIndex=1",
+            "text": "성북구 직원들 팔 걷었다..올해 두 번째 사랑의 헌혈운동"
+          },
+          {
+            "url": "https://www.sb.go.kr/www/selectBbsNttView.do?key=6356&bbsNo=46&nttNo=9584390&searchCtgry=&searchCnd=all&searchKrwd=&integrDeptCode=&startDate=&endDate=&pageIndex=1",
+            "text": "민선9기에도 행정의 답은 현장에! 성북구, 민선9기 현장구청장실 진행"
+          },
+          {
+            "url": "https://www.sb.go.kr/www/selectBbsNttView.do?key=6356&bbsNo=46&nttNo=9584389&searchCtgry=&searchCnd=all&searchKrwd=&integrDeptCode=&startDate=&endDate=&pageIndex=1",
+            "text": "10년 숙원 풀린다..성북구, 돈암초 앞 보도육교 이동편의시설 설치"
+          }
+        ]
+      },
+      "items": 12,
+      "latest": "2026-09-28",
+      "homepage": "https://www.sb.go.kr/www/index.do",
+      "endpoint": "https://www.sb.go.kr/www/selectBbsNttList.do?bbsNo=46&key=6356",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:20:22.684Z"
+    },
+    "org:서울특별시:중구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "cid",
+        "count": 10,
+        "profile": {
+          "link": "content\\.do[^\"']*?[?&](?:amp;)?cid=(?<id>[\\w-]+)",
+          "url": "https://www.junggu.seoul.kr/content.do?cmsid=14390&mode=view&cid={id}",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.junggu.seoul.kr/content.do?cmsid=14390&mode=view&cid=1478755008",
+            "text": "“학생부부터 내신？모평 성적까지 분석” 중구, 27학년도 대입 모의면접 참가자 모집"
+          },
+          {
+            "url": "https://www.junggu.seoul.kr/content.do?cmsid=14390&mode=view&cid=1478046713",
+            "text": "중구 역사의 산증인 찾는다…60년 이상 거주 '토박이' 모집"
+          },
+          {
+            "url": "https://www.junggu.seoul.kr/content.do?cmsid=14390&mode=view&cid=1477995767",
+            "text": "글로벌 관광지 남대문시장 확 바꾼 중구, ‘쓰레기 치우니 보행로가 활짝’"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.junggu.seoul.kr/main.do",
+      "endpoint": "https://www.junggu.seoul.kr/content.do?cmsid=14390",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:20:24.900Z"
+    },
+    "org:인천광역시:영종구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "pst_sn",
+        "count": 10,
+        "profile": {
+          "link": "view\\.do[^\"']*?[?&](?:amp;)?pst_sn=(?<id>[\\w-]+)",
+          "url": "https://www.yeongjong.go.kr/main/pst/view.do?pst_id=mn_news_yj&pst_sn={id}&search=c2xUTFRHb29DZVZtaUxhRGVtSk1XQT09",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.yeongjong.go.kr/main/pst/view.do?pst_id=mn_news_yj&pst_sn=334117&search=c2xUTFRHb29DZVZtaUxhRGVtSk1XQT09",
+            "text": "손화정 구청장 &ldquo;영종진 영령의 정신 받들어, 영종의 새 역사 개척할 것&rdquo;"
+          },
+          {
+            "url": "https://www.yeongjong.go.kr/main/pst/view.do?pst_id=mn_news_yj&pst_sn=334103&search=c2xUTFRHb29DZVZtaUxhRGVtSk1XQT09",
+            "text": "&ldquo;청년들과 함께 그릴 영종의 새 미래&rdquo; 영종구, 제1기 청년네트워크 발대"
+          },
+          {
+            "url": "https://www.yeongjong.go.kr/main/pst/view.do?pst_id=mn_news_yj&pst_sn=334102&search=c2xUTFRHb29DZVZtaUxhRGVtSk1XQT09",
+            "text": "손화정 구청장 &ldquo;역사를 디딤돌 삼아 영종의 미래로&rdquo; 2026 인문향연 성료"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.yeongjong.go.kr/main/main.do",
+      "endpoint": "https://www.yeongjong.go.kr/main/pst/list.do?pst_id=mn_news_yj",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:20:29.968Z"
+    },
+    "org:전남광주통합특별시:함평군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "seq",
+        "count": 10,
+        "profile": {
+          "link": "boardView\\.do[^\"']*?[?&](?:amp;)?seq=(?<id>[\\w-]+)",
+          "url": "https://www.hampyeong.go.kr/boardView.do?pageId=www275&boardId=NEWS&seq={id}&movePage=1&recordCnt=10",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.hampyeong.go.kr/boardView.do?pageId=www275&boardId=NEWS&seq=4536031&movePage=1&recordCnt=10",
+            "text": "“걸어오신 길에 존경을! 함께 할 날들에 행복을!”…함평군, 제30회 노인의 날 기념행사 ..."
+          },
+          {
+            "url": "https://www.hampyeong.go.kr/boardView.do?pageId=www275&boardId=NEWS&seq=5322448&movePage=1&recordCnt=10",
+            "text": "“소통으로 잇고 공감으로 하나 되다”…함평군 함평읍, 제14회 읍민의 날 행사 성료"
+          },
+          {
+            "url": "https://www.hampyeong.go.kr/boardView.do?pageId=www275&boardId=NEWS&seq=734921&movePage=1&recordCnt=10",
+            "text": "함평군, 농어촌 기본소득 사업 선정 총력…군민 결의대회 개최"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.hampyeong.go.kr/main.do",
+      "endpoint": "https://www.hampyeong.go.kr/boardList.do?pageId=www275&boardId=NEWS",
+      "menu_text": "보도자료 더보기",
+      "checked_at": "2026-10-03T18:20:57.980Z"
+    },
+    "org:전북특별자치도:정읍시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "dataSid",
+        "count": 10,
+        "profile": {
+          "link": "view\\.jeongeup[^\"']*?[?&](?:amp;)?dataSid=(?<id>[\\w-]+)",
+          "url": "https://www.jeongeup.go.kr/board/view.jeongeup?boardId=BBS_0000019&menuCd=DOM_000000101002001000&paging=ok&startPage=1&dataSid={id}",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.jeongeup.go.kr/board/view.jeongeup?boardId=BBS_0000019&menuCd=DOM_000000101002001000&paging=ok&startPage=1&dataSid=1420386",
+            "text": "정읍 농소동에 세 번째 다함께돌봄센터…운영 시작"
+          },
+          {
+            "url": "https://www.jeongeup.go.kr/board/view.jeongeup?boardId=BBS_0000019&menuCd=DOM_000000101002001000&paging=ok&startPage=1&dataSid=1420385",
+            "text": "민주평통 정읍시협의회, 세대가 함께하는 평화통일 걷기 행사"
+          },
+          {
+            "url": "https://www.jeongeup.go.kr/board/view.jeongeup?boardId=BBS_0000019&menuCd=DOM_000000101002001000&paging=ok&startPage=1&dataSid=1420384",
+            "text": "정읍시 영농부산물 파쇄지원단, 산불 예방 공로로 장관 표창"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.jeongeup.go.kr/index.jeongeup",
+      "endpoint": "https://www.jeongeup.go.kr/board/list.jeongeup?boardId=BBS_0000019&menuCd=DOM_000000101002001000&contentsSid=16&cpath=",
+      "menu_text": "보도자료방",
+      "checked_at": "2026-10-03T18:21:20.741Z"
+    },
+    "org:전북특별자치도:진안군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "view\\.jinan[^\"']*?[?&](?:amp;)?dataSid=(?<id>\\d+)",
+          "url": "https://www.jinan.go.kr/board/view.jinan?boardId=BBS_0000034&menuCd=DOM_000000107002002000&orderBy=REGISTER_DATE+DESC&paging=ok&startPage=1&dataSid={id}",
+          "title": "<strong>\\s*([^<]+)"
+        },
+        "basis": "링크 안 <strong>이 제목, 뒤의 HTML 주석과 <p>는 본문 요약. 제목은 <strong>만",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-09-28",
+      "homepage": "https://www.jinan.go.kr/index.jinan?contentsSid=1379",
+      "endpoint": "https://www.jinan.go.kr/board/list.jinan?boardId=BBS_0000034&menuCd=DOM_000000107002002000&contentsSid=187&cpath=",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-05T02:52:54.254Z",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:충청북도:옥천군": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "후보 게시판 경로를 robots.txt가 막음",
+      "homepage": "https://www.oc.go.kr/www/index.do",
+      "endpoint": "https://www.oc.go.kr/www/selectBbsNttList.do?bbsNo=36&key=232",
+      "menu_text": "군정소식",
+      "checked_at": "2026-10-03T18:21:28.806Z"
+    },
+    "org:강원특별자치도:삼척시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "idx",
+        "count": 10,
+        "profile": {
+          "link": "href=[\"'][^\"']*?[?&](?:amp;)?idx=(?<id>[\\w-]+)",
+          "url": "https://www.samcheok.go.kr/media/00084/00094.web?gcode=1006&idx={id}&amode=view",
+          "title": "<strong[^>]*>\\s*([^<]+)"
+        },
+        "samples": [
+          {
+            "url": "https://www.samcheok.go.kr/media/00084/00094.web?gcode=1006&idx=143678&amode=view&",
+            "text": "2026. 10. 2. 보도자료 새 글 ▷ 주요내용 삼척시정신건강복지센터, 정신건강의 날 기념 「마주해요」 캠페인 추진 ‘업사이클링 디자이너 양"
+          },
+          {
+            "url": "https://www.samcheok.go.kr/media/00084/00094.web?gcode=1006&idx=143643&amode=view&",
+            "text": "2026. 10. 1. 보도자료 새 글 ▷ 주요내용 지질·생태·역사 품은 삼척 지질유산, 국제학술지 게재로 세계에 알려 제12회 삼척시 보훈가족"
+          },
+          {
+            "url": "https://www.samcheok.go.kr/media/00084/00094.web?gcode=1006&idx=143584&amode=view&",
+            "text": "2026. 9. 30. 보도자료 ▷ 주요내용 삼척시, ‘제30회 노인의 날 기념식 및 제4회 삼척어르신 한마당 축제’ 개최 삼척시, 3분기 산업"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.samcheok.go.kr/main.web",
+      "endpoint": "https://www.samcheok.go.kr/media/00084/00094.web",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:35:11.615Z"
+    },
+    "org:경기도:화성시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "q_bbscttSn",
+        "count": 10,
+        "profile": {
+          "link": "BD_selectBbs\\.do[^\"']*?[?&](?:amp;)?q_bbscttSn=(?<id>[\\w-]+)",
+          "url": "https://www.hscity.go.kr/www/user/bbs/BD_selectBbs.do?q_bbsCode=1051&q_bbscttSn={id}&q_deptCode=55306620000",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.hscity.go.kr/www/user/bbs/BD_selectBbs.do?q_bbsCode=1051&q_bbscttSn=20261002145604010&q_deptCode=55306620000",
+            "text": "화성특례시, 궁평오솔로캠핑장 임시개장... 체류형 관광 기반 확대"
+          },
+          {
+            "url": "https://www.hscity.go.kr/www/user/bbs/BD_selectBbs.do?q_bbsCode=1051&q_bbscttSn=20261002083915997&q_deptCode=55306620000",
+            "text": "화성특례시, ‘경기 편하G버스’ 신규 노선 2개 10월 8일 개통"
+          },
+          {
+            "url": "https://www.hscity.go.kr/www/user/bbs/BD_selectBbs.do?q_bbsCode=1051&q_bbscttSn=20260930185405024&q_deptCode=55306620000",
+            "text": "정명근 화성특례시장, 민주당 경기 기초단체장 예산정책 간담회에서 2027년 국비 3,354억원 건의"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.hscity.go.kr/www/index.do",
+      "endpoint": "https://www.hscity.go.kr/www/user/bbs/BD_selectBbsList.do?q_bbsCode=1051",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:35:38.253Z"
+    },
+    "org:경상남도:거창군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "news_epct_no",
+        "count": 10,
+        "profile": {
+          "link": "href=[\"'][^\"']*?[?&](?:amp;)?news_epct_no=(?<id>[\\w-]+)",
+          "url": "https://www.geochang.go.kr/00445/00452.web?amode=view&news_epct_no={id}",
+          "title": "<strong[^>]*>\\s*([^<]+)"
+        },
+        "samples": [
+          {
+            "url": "https://www.geochang.go.kr/00445/00452.web?amode=view&news_epct_no=37764&",
+            "text": "거창군 4-H연합회, 공동과제포 고구마 수확 보도번호 : 37764 등록일 : 2026-10-02 작성부서 : 농업축산과"
+          },
+          {
+            "url": "https://www.geochang.go.kr/00445/00452.web?amode=view&news_epct_no=37763&",
+            "text": "한마당대축제에서 만나요, 거창의 사회연대경제! 보도번호 : 37763 등록일 : 2026-10-01 작성부서 : 경제기업과"
+          },
+          {
+            "url": "https://www.geochang.go.kr/00445/00452.web?amode=view&news_epct_no=37759&",
+            "text": "거창군, 휴폐업공장 리모델링사업 공모사업 선정 보도번호 : 37759 등록일 : 2026-10-01 작성부서 : 경제기업과"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.geochang.go.kr/main.web",
+      "endpoint": "https://www.geochang.go.kr/00445/00452.web",
+      "menu_text": "보도자료 더보기",
+      "checked_at": "2026-10-03T18:35:42.654Z"
+    },
+    "org:경상남도:사천시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "idx",
+        "count": 10,
+        "profile": {
+          "link": "href=[\"'][^\"']*?[?&](?:amp;)?idx=(?<id>[\\w-]+)",
+          "url": "https://www.sacheon.go.kr/news/00009/04236.web?gcode=2935&idx={id}&amode=view",
+          "title": "<strong[^>]*>\\s*([^<]+)"
+        },
+        "samples": [
+          {
+            "url": "https://www.sacheon.go.kr/news/00009/04236.web?gcode=2935&idx=2108988&amode=view&",
+            "text": "(10/2) 사천시, 2027년 주요업무계획 보고회 마무리 새 글 사천시, 2027년 주요업무계획 보고회 마무리... 민선 9기 시정 청사진 제"
+          },
+          {
+            "url": "https://www.sacheon.go.kr/news/00009/04236.web?gcode=2935&idx=2108982&amode=view&",
+            "text": "(10/2) 사천시 평생학습관, 2026 사천 북 페스티벌 개최 새 글 사천시, ‘2026 사천 북 페스티벌’ 개최 10월 17일 사천 우주항공"
+          },
+          {
+            "url": "https://www.sacheon.go.kr/news/00009/04236.web?gcode=2935&idx=2108981&amode=view&",
+            "text": "(10/2) 사천시, 2026년 경남 농업인 스마트경영 혁신 경진대회 최우수 수상 새 글 사천시, 경남 농업인 스마트경영 혁신 경진대회 ‘최우수"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.sacheon.go.kr/main.web",
+      "endpoint": "https://www.sacheon.go.kr/news/00009/04236.web",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:35:45.611Z"
+    },
+    "org:경상남도:진주시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "idx",
+        "count": 10,
+        "profile": {
+          "link": "href=[\"'][^\"']*?[?&](?:amp;)?idx=(?<id>[\\w-]+)",
+          "url": "https://www.jinju.go.kr/00130/02730/00138.web?gcode=1004&idx={id}&amode=view",
+          "title": "<strong[^>]*>\\s*([^<]+)"
+        },
+        "samples": [
+          {
+            "url": "https://www.jinju.go.kr/00130/02730/00138.web?gcode=1004&idx=39620958&amode=view&",
+            "text": "진주시, ‘경남과학고 UNIST 영재학교 전환’ 적극 협력 새 글 진주시, ‘경남과학고 UNIST 영재학교 전환’ 적극 협력 - 조규일 시장, "
+          },
+          {
+            "url": "https://www.jinju.go.kr/00130/02730/00138.web?gcode=1004&idx=39620956&amode=view&",
+            "text": "‘진주혁신도시 완성’, 장애인단체까지 동참…연대 확산 새 글 ‘진주혁신도시 완성’, 장애인단체까지 동참…연대 확산 - 이인우 진주시장애인총연합회"
+          },
+          {
+            "url": "https://www.jinju.go.kr/00130/02730/00138.web?gcode=1004&idx=39620955&amode=view&",
+            "text": "진주시, 간부 공무원 대상 ‘폭력 예방 통합교육’ 실시 새 글 진주시, 간부 공무원 대상 ‘폭력 예방 통합교육’ 실시 -‘존중과 배려’가 일상이"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.jinju.go.kr/main.web",
+      "endpoint": "https://www.jinju.go.kr/00130/02730/00138.web",
+      "menu_text": "보도자료더보기",
+      "checked_at": "2026-10-03T18:35:52.508Z"
+    },
+    "org:경상남도:창원시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "idx",
+        "count": 10,
+        "profile": {
+          "link": "href=[\"'][^\"']*?[?&](?:amp;)?idx=(?<id>[\\w-]+)",
+          "url": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web?gcode=1011&idx={id}&amode=view",
+          "title": "<strong[^>]*>\\s*([^<]+)"
+        },
+        "samples": [
+          {
+            "url": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web?gcode=1011&idx=885183&amode=view&",
+            "text": "창원특례시 산림휴양과, 가을소풍주간 어린이 특별프로그램 운영 새 글 창원특례시 푸른도시사업소 산림휴양과(과장 곽영주)는 진해목재문화체험장에서 오"
+          },
+          {
+            "url": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web?gcode=1011&idx=885182&amode=view&",
+            "text": "창원청년비전센터, 청년 참여 프로그램 ‘쾌유 합창단’ 운영 새 글 창원특례시(시장 강기윤)는 청년들의 정서적 환기와 관계 형성을 지원하기 위한 "
+          },
+          {
+            "url": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web?gcode=1011&idx=885181&amode=view&",
+            "text": "창원시, 돝섬에서 가을 감성‘렉키의 수상한 피크닉’개최 새 글 창원특례시(시장 강기윤)는 한국관광공사 부울경지사와 함께 오는 10월 17~18일"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.changwon.go.kr/cwportal/main.web",
+      "endpoint": "https://www.changwon.go.kr/cwportal/10310/10429/10432.web",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:35:50.894Z"
+    },
+    "org:경상남도:하동군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "idx",
+        "count": 10,
+        "profile": {
+          "link": "href=[\"'][^\"']*?[?&](?:amp;)?idx=(?<id>[\\w-]+)",
+          "url": "https://www.hadong.go.kr/media/00013/03607.web?gcode=4085&idx={id}&amode=view",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.hadong.go.kr/media/00013/03607.web?gcode=4085&idx=37812670&amode=view&",
+            "text": "제15회 옥종면민의 날 및 제18회 면민체육대회 개최 새 글"
+          },
+          {
+            "url": "https://www.hadong.go.kr/media/00013/03607.web?gcode=4085&idx=37812669&amode=view&",
+            "text": "하동읍민의 날·읍민 체육대회 성황리에 개최 새 글"
+          },
+          {
+            "url": "https://www.hadong.go.kr/media/00013/03607.web?gcode=4085&idx=37812668&amode=view&",
+            "text": "하동군, 별천지하동쇼핑몰 매출액 10억 원 달성 새 글"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.hadong.go.kr/main.web",
+      "endpoint": "https://www.hadong.go.kr/media/00013/03607.web",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:35:51.325Z"
+    },
+    "org:경상남도:합천군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "idx",
+        "count": 10,
+        "profile": {
+          "link": "href=[\"'][^\"']*?[?&](?:amp;)?idx=(?<id>[\\w-]+)",
+          "url": "https://www.hc.go.kr/04923/04924/04953.web?gcode=1017&idx={id}&amode=view",
+          "title": "<strong[^>]*>\\s*([^<]+)"
+        },
+        "samples": [
+          {
+            "url": "https://www.hc.go.kr/04923/04924/04953.web?gcode=1017&idx=29030179&amode=view&",
+            "text": "목수국과 은빛 억새의 조화로 인기 몰이 합천 황매산군립공원, 여름철 방문객 폭발적 증가… 목수국 명소로 우뚝 새 글 목수국과 은빛 억새의 조화로"
+          },
+          {
+            "url": "https://www.hc.go.kr/04923/04924/04953.web?gcode=1017&idx=29030178&amode=view&",
+            "text": "합천군 합천읍, 2026년 10월 이장회의 개최 새 글 합천군 합천읍, 2026년 10월 이장회의 개최 합천군 합천읍(읍장 박재홍)은 1일 오전"
+          },
+          {
+            "url": "https://www.hc.go.kr/04923/04924/04953.web?gcode=1017&idx=29030177&amode=view&",
+            "text": "합천군 청덕면, 인구증가 시책 홍보 위해 발로 뛴다 새 글 합천군 청덕면, 인구증가 시책 홍보 위해 발로 뛴다 - 합천동부농협청덕지점 방문,‘찾"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-01",
+      "homepage": "https://www.hc.go.kr/main.web",
+      "endpoint": "https://www.hc.go.kr/04923/04924/04953.web",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:36:00.022Z"
+    },
+    "org:경상북도:영주시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "parm_bod_uid",
+        "count": 10,
+        "profile": {
+          "link": "page\\.do[^\"']*?[?&](?:amp;)?parm_bod_uid=(?<id>[\\w-]+)",
+          "url": "https://www.yeongju.go.kr/open_content/main/page.do?pageNo=1&pagePrvNxt=1&pageRef=0&pageOrder=0&step=258&parm_bod_uid={id}&srchVoteType=-1&srchEnable=-1&srchBgpUid=-1&srchKeyword=&srchSDate=1990-01-01&srchColumn=&srchEDate=2100-01-01&mnu_uid=1524",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.yeongju.go.kr/open_content/main/page.do?pageNo=1&pagePrvNxt=1&pageRef=0&pageOrder=0&step=258&parm_bod_uid=1217569&srchVoteType=-1&srchEnable=-1&srchBgpUid=-1&srchKeyword=&srchSDate=1990-01-01&srchColumn=&srchEDate=2100-01-01&mnu_uid=1524&",
+            "text": "2026. 10. 2.(금) 보도자료..."
+          },
+          {
+            "url": "https://www.yeongju.go.kr/open_content/main/page.do?pageNo=1&pagePrvNxt=1&pageRef=0&pageOrder=0&step=258&parm_bod_uid=1217530&srchVoteType=-1&srchEnable=-1&srchBgpUid=-1&srchKeyword=&srchSDate=1990-01-01&srchColumn=&srchEDate=2100-01-01&mnu_uid=1524&",
+            "text": "2026. 10. 1.(목) 보도자료..."
+          },
+          {
+            "url": "https://www.yeongju.go.kr/open_content/main/page.do?pageNo=1&pagePrvNxt=1&pageRef=0&pageOrder=0&step=258&parm_bod_uid=1217529&srchVoteType=-1&srchEnable=-1&srchBgpUid=-1&srchKeyword=&srchSDate=1990-01-01&srchColumn=&srchEDate=2100-01-01&mnu_uid=1524&",
+            "text": "2026. 9. 30.(수) 보도자료..."
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.yeongju.go.kr/open_content/main/index.do",
+      "endpoint": "https://www.yeongju.go.kr/open_content/main/page.do?mnu_uid=1524&",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:36:07.364Z"
+    },
+    "org:경상북도:울진군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "dataSid",
+        "count": 10,
+        "profile": {
+          "link": "view\\.uljin[^\"']*?[?&](?:amp;)?dataSid=(?<id>[\\w-]+)",
+          "url": "https://www.uljin.go.kr/board/view.uljin?boardId=BBS_0000126&menuCd=DOM_000000103002013000&paging=ok&startPage=1&dataSid={id}",
+          "title": "<strong[^>]*>\\s*([^<]+)"
+        },
+        "samples": [
+          {
+            "url": "https://www.uljin.go.kr/board/view.uljin?boardId=BBS_0000126&menuCd=DOM_000000103002013000&paging=ok&startPage=1&dataSid=760428",
+            "text": "울진군 9월 10일 보도자료 2026. 9. 10. 울진군 보도자료 제공 현황 연번 주 요 내 용 해당부서 (담 당) 사진 여부 1 금강송이 무"
+          },
+          {
+            "url": "https://www.uljin.go.kr/board/view.uljin?boardId=BBS_0000126&menuCd=DOM_000000103002013000&paging=ok&startPage=1&dataSid=760427",
+            "text": "울진군 9월 9일 보도자료 2026. 9. 9 울진군 보도자료 제공 현황 연번 주 요 내 용 해당부서 (담 당) 사진 여부 1 울진대게컵 전국."
+          },
+          {
+            "url": "https://www.uljin.go.kr/board/view.uljin?boardId=BBS_0000126&menuCd=DOM_000000103002013000&paging=ok&startPage=1&dataSid=760416",
+            "text": "울진군 9월 8일 보도자료 2026. 9. 8. 울진군 보도자료 제공 현황 연번 주 요 내 용 해당부서 (담 당) 사진 여부 1 울진군, 책과."
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-09-10",
+      "homepage": "https://www.uljin.go.kr/index.uljin?contentsSid=1",
+      "endpoint": "https://www.uljin.go.kr/board/list.uljin;jsessionid=D70D0ABFACE4B310A0A14AD6E113C3E3.worker_was2?boardId=BBS_0000126&menuCd=DOM_000000103002013000&contentsSid=1688&cpath=",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:36:20.732Z"
+    },
+    "org:부산광역시:영도구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 12건·날짜 12건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "idx",
+        "count": 12,
+        "profile": {
+          "link": "href=[\"'][^\"']*?[?&](?:amp;)?idx=(?<id>[\\w-]+)",
+          "url": "https://www.yeongdo.go.kr/00000/00007/00011.web?gcode=1027&idx={id}&amode=view",
+          "title": "<strong[^>]*>\\s*([^<]+)"
+        },
+        "samples": [
+          {
+            "url": "https://www.yeongdo.go.kr/00000/00007/00011.web?gcode=1027&idx=334189&amode=view&",
+            "text": "영도구, 제51주년 민방위대 창설기념행사 개최 새 글 --> 2026-10-02 조회수 : 34"
+          },
+          {
+            "url": "https://www.yeongdo.go.kr/00000/00007/00011.web?gcode=1027&idx=334188&amode=view&",
+            "text": "김철훈 영도구청장, 추석 앞두고 환경공무직 휴게실 현장 방문, “현장 목소리 청취 및 근무환경 점검” 새 글 --> 2026-10-02 조회수 "
+          },
+          {
+            "url": "https://www.yeongdo.go.kr/00000/00007/00011.web?gcode=1027&idx=334187&amode=view&",
+            "text": "김철훈 영도구청장, 영도구 공무원노조와 함께하는 ‘출근길 청렴 캠페인’ 개최 새 글 --> 2026-10-02 조회수 : 35"
+          }
+        ]
+      },
+      "items": 12,
+      "latest": "2026-10-02",
+      "homepage": "https://www.yeongdo.go.kr/main.web",
+      "endpoint": "https://www.yeongdo.go.kr/00000/00007/00011.web",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:36:51.731Z"
+    },
+    "org:서울특별시:송파구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "후보 게시판 경로를 robots.txt가 막음",
+      "homepage": "https://www.songpa.go.kr/www/index.do",
+      "endpoint": "https://www.songpa.go.kr/www/selectBbsNttList.do?bbsNo=96&key=2781&",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:37:02.252Z"
+    },
+    "org:울산광역시:남구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "nttId",
+        "count": 10,
+        "profile": {
+          "link": "selectBoardArticle\\.do[^\"']*?[?&](?:amp;)?nttId=(?<id>[\\w-]+)",
+          "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=press&nttId={id}",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=press&nttId=535403",
+            "text": "신정장애인보호작업장, 개소 25주년 기념식 개최"
+          },
+          {
+            "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=press&nttId=535360",
+            "text": "남구시니어클럽, 노인 일자리 지원사업 평가 ‘최우수상’ 수상"
+          },
+          {
+            "url": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardArticle.do?bbsId=press&nttId=535034",
+            "text": "㈜코엔텍, 추석맞이 성금 2,000만 원 전달"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-09-29",
+      "homepage": "https://www.ulsannamgu.go.kr/fieldInfo/civilDefense0107.jsp",
+      "endpoint": "https://www.ulsannamgu.go.kr/cop/bbs/selectBoardList.do?bbsId=press",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:37:36.442Z"
+    },
+    "org:전남광주통합특별시:순천시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "seq",
+        "count": 10,
+        "profile": {
+          "link": "href=[\"'][^\"']*?[?&](?:amp;)?seq=(?<id>[\\w-]+)",
+          "url": "https://www.suncheon.go.kr/kr/news/0006/0001/?mode=view&seq={id}",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.suncheon.go.kr/kr/news/0006/0001/?mode=view&seq=72068",
+            "text": "순천시, 명예동물보호관 역량 강화 교육…현장대응력 높인다"
+          },
+          {
+            "url": "https://www.suncheon.go.kr/kr/news/0006/0001/?mode=view&seq=72064",
+            "text": "순천시, ‘임산부의 날’ 맞아 축하이벤트…축하 키트 500명 제공"
+          },
+          {
+            "url": "https://www.suncheon.go.kr/kr/news/0006/0001/?mode=view&seq=72051",
+            "text": "순천시, 신속 대응으로 체납세 6억 5천만 원 추가 징수"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.suncheon.go.kr/kr/",
+      "endpoint": "https://www.suncheon.go.kr/kr/news/0006/0001/",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:37:26.162Z"
+    },
+    "org:전북특별자치도:순창군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "postUid",
+        "count": 10,
+        "profile": {
+          "link": "view\\.do[^\"']*?[?&](?:amp;)?postUid=(?<id>[\\w-]+)",
+          "url": "https://www.sunchang.go.kr/board/post/view.do?boardUid=ff8080819a2f0e3b019a71a46284217a&menuUid=ff8080819a2f0e3b019a5d1bb7da1652&postUid={id}",
+          "title": "<strong[^>]*>\\s*([^<]+)"
+        },
+        "samples": [
+          {
+            "url": "https://www.sunchang.go.kr/board/post/view.do?boardUid=ff8080819a2f0e3b019a71a46284217a&menuUid=ff8080819a2f0e3b019a5d1bb7da1652&postUid=4028a6f09f4b44cb01a021f84f3d78ca",
+            "text": "순창군, 2026년 을지연습 실제훈련 실시 순창군은 지난 19일 국민체육센터에서 민&middot;관&middot;군&middot;경&middot"
+          },
+          {
+            "url": "https://www.sunchang.go.kr/board/post/view.do?boardUid=ff8080819a2f0e3b019a71a46284217a&menuUid=ff8080819a2f0e3b019a5d1bb7da1652&postUid=4028a6f09f4b44cb01a021f77da3787f",
+            "text": "순창군 농어촌기본소득, 지역경제 선순환·주민 삶의 질 향상 효과 뚜렷 순창군 농어촌기본소득 시범사업이 주민의 삶의 질 향상과 지역경제 활성화에 "
+          },
+          {
+            "url": "https://www.sunchang.go.kr/board/post/view.do?boardUid=ff8080819a2f0e3b019a71a46284217a&menuUid=ff8080819a2f0e3b019a5d1bb7da1652&postUid=4028a6f09f4b44cb01a021f5cae677f8",
+            "text": "최영일 순창군수, 주요 현안사업장 현장 방문 나서 최영일 순창군수가 지난 18일부터 19일까지 관내 주요 현안사업장을 잇따라 방문해 사업 추진상"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-08-21",
+      "homepage": "https://www.sunchang.go.kr/",
+      "endpoint": "https://www.sunchang.go.kr/board/post/list.do?boardUid=ff8080819a2f0e3b019a71a46284217a&menuUid=ff8080819a2f0e3b019a5d1bb7da1652",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:37:47.604Z"
+    },
+    "org:제주특별자치도:제주시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "notice_id",
+        "count": 10,
+        "profile": {
+          "link": "report\\.do[^\"']*?[?&](?:amp;)?notice_id=(?<id>[\\w-]+)",
+          "url": "https://www.jejusi.go.kr/news/communite/report.do?mode=detail&notice_id={id}&currentPageNo=1",
+          "title": "<h3[^>]*>\\s*([^<]+)"
+        },
+        "samples": [
+          {
+            "url": "https://www.jejusi.go.kr/news/communite/report.do?mode=detail&notice_id=5b375f2fc030455c9e99c37b86901401&currentPageNo=1",
+            "text": "제주보건소,‘제21회 임산부의 날’기념행사 개최 제주보건소,‘제21회 임산부의 날’기념행사 개최 2026-10-02"
+          },
+          {
+            "url": "https://www.jejusi.go.kr/news/communite/report.do?mode=detail&notice_id=c7a94f18a399432b8d8e7aef1b594a74&currentPageNo=1",
+            "text": "제주시, 취업준비 청년 대상 국내기업 견학 참가자 모집 제주시, 취업준비 청년 대상 국내기업 견학 참가자 모집 2026-10-02"
+          },
+          {
+            "url": "https://www.jejusi.go.kr/news/communite/report.do?mode=detail&notice_id=2be47cdbb45445f0849afca9f5a0aad8&currentPageNo=1",
+            "text": "제주시, AX 동아리 대상‘AI 업무 혁신 전문가 워크숍’개최 제주시, AX 동아리 대상‘AI 업무 혁신 전문가 워크숍’개최 2026-10-02"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.jejusi.go.kr/index.ac",
+      "endpoint": "https://www.jejusi.go.kr/news/communite/report.do",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:37:59.550Z"
+    },
+    "org:충청북도:보은군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 12건·날짜 12건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "nttNo",
+        "count": 12,
+        "profile": {
+          "link": "selectBbsNttView\\.do[^\"']*?[?&](?:amp;)?nttNo=(?<id>[\\w-]+)",
+          "url": "https://www.boeun.go.kr/www/selectBbsNttView.do?key=138&bbsNo=209&nttNo={id}&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+          "title": "<em[^>]*>\\s*([^<]+)"
+        },
+        "samples": [
+          {
+            "url": "https://www.boeun.go.kr/www/selectBbsNttView.do?key=138&bbsNo=209&nttNo=222198&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "--> --> (10.2.)보은군 회남면, 10월 10일 ‘농산물 축제’ 개최 2026-10-02 조회 : 15"
+          },
+          {
+            "url": "https://www.boeun.go.kr/www/selectBbsNttView.do?key=138&bbsNo=209&nttNo=222197&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "--> --> (10.2.)보은군, 대추·사과 본격 수확철 맞아 농기계 안전사고 예방 당부 2026-10-02 조회 : 14"
+          },
+          {
+            "url": "https://www.boeun.go.kr/www/selectBbsNttView.do?key=138&bbsNo=209&nttNo=222196&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "--> --> (10.2.)보은군, 안전한 보행환경 조성사업 주민설명회 개최 2026-10-02 조회 : 13"
+          }
+        ]
+      },
+      "items": 12,
+      "latest": "2026-10-02",
+      "homepage": "https://www.boeun.go.kr/www/index.do",
+      "endpoint": "https://www.boeun.go.kr/www/selectBbsNttList.do?bbsNo=209&key=138",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:38:07.133Z"
+    },
+    "org:충청북도:진천군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 15건·날짜 15건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "no",
+        "count": 30,
+        "profile": {
+          "link": "href=[\"'][^\"']*?[?&](?:amp;)?no=(?<id>[\\w-]+)",
+          "url": "https://www.jincheon.go.kr/home/sub.do?menukey=247&mode=view&no={id}",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.jincheon.go.kr/home/sub.do?menukey=247&mode=view&no=107788304",
+            "text": "10월 2일 보도자료"
+          },
+          {
+            "url": "https://www.jincheon.go.kr/home/sub.do?menukey=247&mode=view&no=107788304",
+            "text": "10월 2일 보도자료"
+          },
+          {
+            "url": "https://www.jincheon.go.kr/home/sub.do?menukey=247&mode=view&no=1076159188",
+            "text": "10월 1일 보도자료"
+          }
+        ]
+      },
+      "items": 15,
+      "latest": "2026-10-02",
+      "homepage": "https://www.jincheon.go.kr/home/main.do",
+      "endpoint": "https://www.jincheon.go.kr/home/sub.do?menukey=247",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:38:11.939Z"
+    },
+    "org:경상남도:김해시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "idx",
+        "count": 10,
+        "profile": {
+          "link": "href=[\"'][^\"']*?[?&](?:amp;)?idx=(?<id>[\\w-]+)",
+          "url": "https://www.gimhae.go.kr/03360/00023/00025.web?gcode=1172&idx={id}&amode=view",
+          "title": "<strong[^>]*>\\s*([^<]+)"
+        },
+        "samples": [
+          {
+            "url": "https://www.gimhae.go.kr/03360/00023/00025.web?gcode=1172&idx=2594525&amode=view&",
+            "text": "김해시, 어르신 주거 불편 돕는 ‘정성껏 해드림센터’ 운영 새 글 김해시, 어르신 주거 불편 돕는 ‘정성껏 해드림센터’ 운영 - 소규모 집수리부"
+          },
+          {
+            "url": "https://www.gimhae.go.kr/03360/00023/00025.web?gcode=1172&idx=2594523&amode=view&",
+            "text": "김해시, 제31회 가야사학술회의 개최 새 글 “잠든 오백년, 가야를 깨우다” 김해시, 제31회 가야사학술회의 개최 김해 양동리 고분군 가치와 위"
+          },
+          {
+            "url": "https://www.gimhae.go.kr/03360/00023/00025.web?gcode=1172&idx=2594521&amode=view&",
+            "text": "김해시 2026 인구위기대응 전략회의 개최 새 글 김해시 2026 인구위기대응 전략회의 개최 유관기관 참여 내년도 신규과제 28건 집중 논의 김"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.gimhae.go.kr/main.web",
+      "endpoint": "https://www.gimhae.go.kr/03360/00023/00025.web",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:41:46.042Z"
+    },
+    "org:충청북도:청주시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "nttNo",
+        "count": 10,
+        "profile": {
+          "link": "selectBbsNttView\\.do[^\"']*?[?&](?:amp;)?nttNo=(?<id>[\\w-]+)",
+          "url": "https://www.cheongju.go.kr/www/selectBbsNttView.do?key=23485&bbsNo=40&nttNo={id}&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.cheongju.go.kr/www/selectBbsNttView.do?key=23485&bbsNo=40&nttNo=272657&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "청주시, 셀트리온과 2조원 투자협약… 바이오 생산거점 도약"
+          },
+          {
+            "url": "https://www.cheongju.go.kr/www/selectBbsNttView.do?key=23485&bbsNo=40&nttNo=272656&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "청주시 청원생명축제, 제1호 입장객 맞으며 열흘 여정 시작"
+          },
+          {
+            "url": "https://www.cheongju.go.kr/www/selectBbsNttView.do?key=23485&bbsNo=40&nttNo=272655&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "청주시, ‘어르신 그냥해드림’ 출발! 읍면동 기동반 가동"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.cheongju.go.kr/www/index.do",
+      "endpoint": "https://www.cheongju.go.kr/www/selectBbsNttList.do?bbsNo=40&key=23485",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:58:27.627Z"
+    },
+    "org:경기도:고양시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.goyang.go.kr/www/index.do",
+      "endpoint": "https://www.goyang.go.kr/news/user/bbs/BD_selectBbsList.do?q_bbsCode=1090&q_estnColumn1=All",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:04:01.572Z",
+      "pattern": {
+        "profile": {
+          "link": "fnView\\('1090',\\s*'(?<id>\\d+)'",
+          "url": "https://www.goyang.go.kr/news/user/bbs/BD_selectBbs.do?q_bbsCode=1090&q_bbscttSn={id}&q_estnColumn1=All",
+          "title": "text"
+        },
+        "basis": "fnView(bbsCode, bbscttSn, …): /news/user/bbs/BD_selectBbs.do?q_bbsCode=&q_bbscttSn=",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-01",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(스크립트 링크): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:경기도:과천시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 20건·날짜 20건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.gccity.go.kr/main.do",
+      "endpoint": "https://www.gccity.go.kr/portal/newsList/list.do?mId=0301140000",
+      "menu_text": "보도자료 더보기",
+      "checked_at": "2026-10-04T10:28:40.470Z",
+      "pattern": {
+        "profile": {
+          "link": "fn_go_view\\(\\s*'?(?<id>\\d+)",
+          "url": "https://www.gccity.go.kr/portal/newsList/view.do?mId=0301140100&idx={id}",
+          "title": "text"
+        },
+        "basis": "fn_go_view(idx): /portal/newsList/view.do?mId=0301140100&idx=",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 20,
+      "latest": "2026-10-02",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(자동 탐색 실패 게시판): 목록 20건·날짜 20건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:경기도:광주시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.gjcity.go.kr/main.do",
+      "endpoint": "https://www.gjcity.go.kr/portal/bbs/list.do?ptIdx=22&mId=0203010000",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:04:41.475Z",
+      "pattern": {
+        "profile": {
+          "link": "goTo\\.view\\('list',\\s*'(?<id>\\d+)'",
+          "url": "https://www.gjcity.go.kr/portal/bbs/view.do?mId=0203010000&bIdx={id}&ptIdx=22",
+          "title": "text"
+        },
+        "basis": "goTo.view('list', bIdx, ptIdx, mId): 같은 CMS의 /portal/bbs/view.do(김천시는 data-action에도 같은 주소)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(스크립트 링크): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:경기도:수원시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.suwon.go.kr/index.do",
+      "endpoint": "https://www.suwon.go.kr/web/board/BD_board.list.do?bbsCd=1043",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:05:15.178Z",
+      "pattern": {
+        "profile": {
+          "link": "jsView\\('1043',\\s*'(?<id>\\d+)'",
+          "url": "https://www.suwon.go.kr/web/board/BD_board.view.do?bbsCd=1043&seq={id}",
+          "title": "text"
+        },
+        "basis": "jsView(bbsCd, seq, …): board.js의 BD_board.view.do",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(스크립트 링크): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:경기도:안성시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 5건·날짜 5건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.anseong.go.kr/main.do",
+      "endpoint": "https://www.anseong.go.kr/portal/saeol/newsList.do?mId=0502010100",
+      "menu_text": "시정뉴스",
+      "checked_at": "2026-10-04T07:04:05.272Z",
+      "pattern": {
+        "profile": {
+          "link": "boardView\\('\\d+',\\s*'(?<id>\\d+)'",
+          "url": "https://www.anseong.go.kr/portal/saeol/newsView.do?newsEpctNo={id}&mId=0502010100",
+          "title": "text"
+        },
+        "basis": "boardView(page, idx): /portal/saeol/newsView.do?newsEpctNo=",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 5,
+      "latest": "2026-09-23",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(스크립트 링크): 목록 5건·날짜 5건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:경기도:안양시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "nttNo",
+        "count": 10,
+        "profile": {
+          "link": "selectPressRelease\\.do[^\"']*?[?&](?:amp;)?nttNo=(?<id>[\\w-]+)",
+          "url": "https://www.anyang.go.kr/main/selectPressRelease.do?key=4107&nttNo={id}&bbsNo=1687",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.anyang.go.kr/main/selectPressRelease.do?key=4107&nttNo=459129&bbsNo=1687",
+            "text": "안양시, 제15기 주민자치대학 개강식 개최…주민자치 역량 강화"
+          },
+          {
+            "url": "https://www.anyang.go.kr/main/selectPressRelease.do?key=4107&nttNo=459267&bbsNo=1687",
+            "text": "안양시, ‘찾아가는 경기 기후 보험 청구의 날’ 운영…268명 청구 지원"
+          },
+          {
+            "url": "https://www.anyang.go.kr/main/selectPressRelease.do?key=4107&nttNo=459144&bbsNo=1687",
+            "text": "안양시, 민관협치 토론회 열어…시민이 함께 설계하는 인공지능 미래도시 안양"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.anyang.go.kr/main/selectBbsNttList.do?bbsNo=12&key=21",
+      "endpoint": "https://www.anyang.go.kr/main/selectPressReleaseList.do?key=4107&bbsNo=1687",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-03T18:59:08.127Z"
+    },
+    "org:경기도:파주시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.paju.go.kr/index.do",
+      "endpoint": "https://www.paju.go.kr/user/board/BD_board.list.do?bbsCd=1023&q_ctgCds=5226,5227,5229",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:05:39.569Z",
+      "pattern": {
+        "profile": {
+          "link": "jsView\\('1023',\\s*'(?<id>\\d+)'",
+          "url": "https://www.paju.go.kr/user/board/BD_board.view.do?bbsCd=1023&seq={id}",
+          "title": "^\\s*([^<]+)"
+        },
+        "basis": "jsView(bbsCd, seq, …): 수원시와 같은 CMS의 BD_board.view.do",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:경상남도:고성군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.goseong.go.kr/index.goseong",
+      "endpoint": "https://www.goseong.go.kr/board/list.goseong?boardId=BBS_0000196&menuCd=DOM_000000102002008000&contentsSid=365",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:05:52.960Z",
+      "pattern": {
+        "profile": {
+          "link": "view\\.goseong\\?boardId=BBS_0000196&amp;menuCd=[^\"']*?&amp;paging=ok[^\"']*?dataSid=(?<id>\\d+)",
+          "url": "https://www.goseong.go.kr/board/view.goseong?boardId=BBS_0000196&menuCd=DOM_000000102002008000&dataSid={id}",
+          "title": "attr:title",
+          "date": "<td class=\"(?:date|mobile_need)\">\\s*([0-9.\\-/]+)"
+        },
+        "basis": "href의 /board/view.goseong?boardId=BBS_0000196&dataSid= (내려받기·첨부 아이콘 링크 제외, 날짜 칸 class=date 또는 다음 칸)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:경상북도:김천시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "goTo\\.view\\('list',\\s*'(?<id>\\d+)'",
+          "url": "https://www.gc.go.kr/portal/bbs/view.do?mId=1203060000&bIdx={id}&ptIdx=1944",
+          "title": "<span class=\"tit\">\\s*([^<]+)"
+        },
+        "basis": "goTo.view('list', bIdx, ptIdx, mId): 같은 CMS의 /portal/bbs/view.do(김천시는 data-action에도 같은 주소)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "homepage": "https://www.gc.go.kr/main.do",
+      "endpoint": "https://www.gc.go.kr/portal/bbs/list.do?ptIdx=1944&mId=1203060000",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:04:48.289Z",
+      "items": 10,
+      "latest": "2026-09-30",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(스크립트 링크): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:경상북도:칠곡군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.chilgok.go.kr/main.do",
+      "endpoint": "https://www.chilgok.go.kr/portal/bbs/list.do?ptIdx=224&mId=0202010000",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:04:52.176Z",
+      "pattern": {
+        "profile": {
+          "link": "goTo\\.view\\('list',\\s*'(?<id>\\d+)'",
+          "url": "https://www.chilgok.go.kr/portal/bbs/view.do?mId=0202010000&bIdx={id}&ptIdx=224",
+          "title": "text"
+        },
+        "basis": "goTo.view('list', bIdx, ptIdx, mId): 같은 CMS의 /portal/bbs/view.do(김천시는 data-action에도 같은 주소)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-09-30",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(스크립트 링크): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:대구광역시:달성군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.dalseong.daegu.kr/",
+      "endpoint": "https://www.dalseong.daegu.kr/index.do?menu_id=00000195",
+      "menu_text": "보도/해명",
+      "checked_at": "2026-10-04T07:05:08.357Z",
+      "pattern": {
+        "profile": {
+          "link": "fn_icms_navi_common\\('view',\\s*'(?<id>\\d+)'",
+          "url": "https://www.dalseong.daegu.kr/index.do?menu_link=/icms/bbs/selectBoardArticle.do&menu_id=00000195&bbsId=BBS_00071&nttId={id}",
+          "title": "text"
+        },
+        "basis": "fn_icms_navi_common('view', nttId): icms.board.js getActionUrl → index.do?menu_link=/icms/bbs/selectBoardArticle.do + 폼의 menu_id·bbsId·nttId",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(스크립트 링크): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:대구광역시:수성구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.suseong.kr/",
+      "endpoint": "https://www.suseong.kr/index.do?menu_id=00000070",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:05:03.704Z",
+      "pattern": {
+        "profile": {
+          "link": "fn_icms_navi_common\\('view',\\s*'(?<id>\\d+)'",
+          "url": "https://www.suseong.kr/index.do?menu_link=/icms/bbs/selectBoardArticle.do&menu_id=00000070&bbsId=BBSMSTR_000000000019&nttId={id}",
+          "title": "text"
+        },
+        "basis": "fn_icms_navi_common('view', nttId): icms.board.js getActionUrl → index.do?menu_link=/icms/bbs/selectBoardArticle.do + 폼의 menu_id·bbsId·nttId",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(스크립트 링크): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:대전광역시:대덕구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "cmmBoardView\\.do\\?boardId=DPT_000001[^\"']*?ntatcSeq=(?<id>\\d+)",
+          "url": "https://www.daedeok.go.kr/dpt/dpt04/DPT040301_cmmBoardView.do?boardId=DPT_000001&ntatcSeq={id}",
+          "title": "</p>\\s*([^<]+)"
+        },
+        "basis": "href의 DPT040301_cmmBoardView.do?boardId=DPT_000001&ntatcSeq=. 모바일용 <p>(날짜·작성자) 뒤의 제목만 읽음",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "homepage": "https://www.daedeok.go.kr/dpt/DPT.do",
+      "endpoint": "https://www.daedeok.go.kr/dpt/dpt04/DPT040301_cmmBoardList.do",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:05:43.399Z",
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 원문에서 목록 제목을 찾지 못함(주소 틀 불일치 가능)"
+    },
+    "org:대전광역시:유성구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.yuseong.go.kr/kor/",
+      "endpoint": "https://www.yuseong.go.kr/bbs/BBSMSTR_000000000103/list.do",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:04:15.498Z",
+      "pattern": {
+        "profile": {
+          "link": "fn_search_detail\\('(?<id>[\\w]+)'\\)",
+          "url": "https://www.yuseong.go.kr/bbs/BBSMSTR_000000000103/view.do?nttId={id}",
+          "title": "text"
+        },
+        "basis": "fn_search_detail(nttId): /bbs/BBSMSTR_000000000103/view.do (nttId)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-09-14",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(스크립트 링크): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:대전광역시:중구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.djjunggu.go.kr/kr/index.do",
+      "endpoint": "https://www.djjunggu.go.kr/bbs/BBSMSTR_000000000137/list.do",
+      "menu_text": "보도/보도해명",
+      "checked_at": "2026-10-04T07:04:10.123Z",
+      "pattern": {
+        "profile": {
+          "link": "fn_search_detail\\('(?<id>[\\w]+)'\\)",
+          "url": "https://www.djjunggu.go.kr/bbs/BBSMSTR_000000000137/view.do?nttId={id}",
+          "title": "text"
+        },
+        "basis": "fn_search_detail(nttId): /bbs/BBSMSTR_000000000137/view.do (nttId)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-01",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(스크립트 링크): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:부산광역시:동구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "view\\.donggu\\?boardId=BBS_0000025&amp;menuCd=[^\"']*?&amp;paging=ok[^\"']*?dataSid=(?<id>\\d+)",
+          "url": "https://www.bsdonggu.go.kr/board/view.donggu?boardId=BBS_0000025&menuCd=DOM_000000103001006000&dataSid={id}",
+          "title": "attr:title",
+          "date": "<td class=\"(?:date|mobile_need)\">\\s*([0-9.\\-/]+)"
+        },
+        "basis": "href의 /board/view.donggu?boardId=BBS_0000025&dataSid= (내려받기·첨부 아이콘 링크 제외, 날짜 칸 class=date 또는 다음 칸)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "homepage": "https://www.bsdonggu.go.kr/index.donggu",
+      "endpoint": "https://www.bsdonggu.go.kr/board/list.donggu?boardId=BBS_0000025&menuCd=DOM_000000103001006000&contentsSid=278",
+      "menu_text": "보도/해명자료",
+      "checked_at": "2026-10-04T07:06:04.971Z",
+      "items": 10,
+      "latest": "2026-09-30",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "목록 항목 10건, 날짜 0건(기준 미달)"
+    },
+    "org:부산광역시:부산진구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.busanjin.go.kr/index.busanjin",
+      "endpoint": "https://www.busanjin.go.kr/board/list.busanjin?boardId=BBS_0000031&menuCd=DOM_000000110003000000&contentsSid=319",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:05:57.771Z",
+      "pattern": {
+        "profile": {
+          "link": "view\\.busanjin\\?boardId=BBS_0000031&amp;menuCd=[^\"']*?&amp;paging=ok[^\"']*?dataSid=(?<id>\\d+)",
+          "url": "https://www.busanjin.go.kr/board/view.busanjin?boardId=BBS_0000031&menuCd=DOM_000000110003000000&dataSid={id}",
+          "title": "attr:title",
+          "date": "<td class=\"(?:date|mobile_need)\">\\s*([0-9.\\-/]+)"
+        },
+        "basis": "href의 /board/view.busanjin?boardId=BBS_0000031&dataSid= (내려받기·첨부 아이콘 링크 제외, 날짜 칸 class=date 또는 다음 칸)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-09-29",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:부산광역시:연제구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "goTo\\.view\\('list',\\s*'(?<id>\\d+)'",
+          "url": "https://www.yeonje.go.kr/portal/bbs/view.do?mId=0206050000&bIdx={id}&ptIdx=12",
+          "title": "text"
+        },
+        "basis": "goTo.view('list', bIdx, ptIdx, mId): 같은 CMS의 /portal/bbs/view.do(김천시는 data-action에도 같은 주소)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "homepage": "https://www.yeonje.go.kr/main.do",
+      "endpoint": "https://www.yeonje.go.kr/portal/bbs/list.do?ptIdx=12&mId=0206050000",
+      "menu_text": "보도자료 더보기",
+      "checked_at": "2026-10-04T07:04:57.716Z",
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(스크립트 링크): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:서울특별시:관악구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.gwanak.go.kr/site/gwanak/main.do",
+      "endpoint": "https://www.gwanak.go.kr/site/gwanak/ex/bbs/List.do?cbIdx=295",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:05:20.209Z",
+      "pattern": {
+        "profile": {
+          "link": "doBbsFView\\('295',\\s*'(?<id>\\d+)'",
+          "url": "https://www.gwanak.go.kr/site/gwanak/ex/bbs/View.do?cbIdx=295&bcIdx={id}",
+          "title": "attr:title"
+        },
+        "basis": "doBbsFView(cbIdx, bcIdx, …): /site/gwanak/ex/bbs/View.do?cbIdx=&bcIdx=",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-01",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(스크립트 링크): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:서울특별시:서대문구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.sdm.go.kr/index.do",
+      "endpoint": "https://www.sdm.go.kr/news/news/masscom.do",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:05:23.759Z",
+      "pattern": {
+        "profile": {
+          "link": "goView\\('(?<id>\\d+)'\\)",
+          "url": "https://www.sdm.go.kr/news/news/masscom.do?mode=view&sdmBoardSeq={id}",
+          "title": "attr:title"
+        },
+        "basis": "goView(seq): 같은 주소에 mode=view, sdmBoardSeq",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(스크립트 링크): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:울산광역시:동구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "goBoardArticle\\('(?<id>\\d+)'\\)",
+          "url": "https://www.donggu.ulsan.kr/cop/bbs/selectBoardArticle.do?bbsId=BBSMSTR_000000000322&nttId={id}",
+          "title": "^\\s*([^<]*[가-힣][^<]*)"
+        },
+        "basis": "goBoardArticle(nttId): /cop/bbs/selectBoardArticle.do (nttId, bbsId). 번호 칸 링크는 건너뛰고 한글 제목 링크만 읽음",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "homepage": "https://www.donggu.ulsan.kr/",
+      "endpoint": "https://www.donggu.ulsan.kr/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000322",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:04:37.589Z",
+      "items": 10,
+      "latest": "2026-09-30",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(스크립트 링크): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:전남광주통합특별시:광양시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "bid=0057&(?:amp;)?act=view&(?:amp;)?list_no=(?<id>\\d+)",
+          "url": "https://gwangyang.go.kr/board.es?mid=a11007000000&bid=0057&act=view&list_no={id}",
+          "title": "(?:<span[^>]*>[^<]*</span>\\s*)?([^<\\s][^<]*)"
+        },
+        "basis": "href의 act=view&list_no (goView도 같은 주소). '새글' 표시는 제목에서 뺌",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "homepage": "https://gwangyang.go.kr/board.es?mid=a11001000000&bid=0001&act=view&list_no=155474",
+      "endpoint": "https://gwangyang.go.kr/board.es?mid=a11007000000&bid=0057",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:05:31.515Z",
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(스크립트 링크): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:충청남도:공주시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.gongju.go.kr/kr/index.do",
+      "endpoint": "https://www.gongju.go.kr/prog/saeolNews/sub04_02_01/list.do",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:04:27.169Z",
+      "pattern": {
+        "profile": {
+          "link": "fn_search_detail\\('(?<id>\\d+)'\\)",
+          "url": "https://www.gongju.go.kr/prog/saeolNews/sub04_02_01/view.do?newsEpctNo={id}",
+          "title": "text"
+        },
+        "basis": "fn_search_detail(newsEpctNo): /prog/saeolNews/sub04_02_01/view.do?newsEpctNo=",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-09-29",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(스크립트 링크): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:충청남도:홍성군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.hongseong.go.kr/kor/index.do",
+      "endpoint": "https://www.hongseong.go.kr/bbs/BBSMSTR_000000000842/list.do",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:04:22.932Z",
+      "pattern": {
+        "profile": {
+          "link": "fn_search_detail\\('(?<id>[\\w]+)'\\)",
+          "url": "https://www.hongseong.go.kr/bbs/BBSMSTR_000000000842/view.do?nttId={id}",
+          "title": "<strong class=\"tit\">\\s*([^<]+)"
+        },
+        "basis": "fn_search_detail(nttId): /bbs/BBSMSTR_000000000842/view.do (nttId). 카드형 목록이라 제목은 strong.tit만 읽음(요약 제외)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(스크립트 링크): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:강원특별자치도:강릉시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "nttNo",
+        "count": 10,
+        "profile": {
+          "link": "selectBbsNttView\\.do[^\"']*?[?&](?:amp;)?nttNo=(?<id>[\\w-]+)",
+          "url": "https://www.gn.go.kr/www/selectBbsNttView.do?key=277&bbsNo=23&nttNo={id}&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.gn.go.kr/www/selectBbsNttView.do?key=277&bbsNo=23&nttNo=236618&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "10.2.(금) 보도자료"
+          },
+          {
+            "url": "https://www.gn.go.kr/www/selectBbsNttView.do?key=277&bbsNo=23&nttNo=236367&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "10.1.(목) 보도자료"
+          },
+          {
+            "url": "https://www.gn.go.kr/www/selectBbsNttView.do?key=277&bbsNo=23&nttNo=235831&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
+            "text": "9.30.(수) 보도자료"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "homepage": "https://www.gn.go.kr/www/index.do",
+      "endpoint": "https://www.gn.go.kr/www/selectBbsNttList.do?bbsNo=23&key=277",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T07:31:29.753Z"
+    },
+    "org:강원특별자치도:양구군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 12건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "user_sub[^\"']*?[?&](?:amp;)?bk=(?<id>[\\w-]+)",
+          "url": "https://www.yanggu.go.kr/user_sub?gfnc=www&pg=1&bk={id}&mu_idx=232&bt=rd&pgsize=10&bcd=press",
+          "title": "text"
+        },
+        "basis": "자동 탐색 프로필 재검증(문장부호·엔티티 차이 무시)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "homepage": "https://www.yanggu.go.kr/",
+      "endpoint": "https://www.yanggu.go.kr/user_sub?gfnc=www&mu_idx=232",
+      "menu_text": "- 보도자료",
+      "checked_at": "2026-10-04T08:16:56.110Z",
+      "items": 12,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 원문에서 목록 제목을 찾지 못함(주소 틀 불일치 가능)"
+    },
+    "org:강원특별자치도:평창군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 15건·날짜 15건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.pc.go.kr/",
+      "checked_at": "2026-10-04T07:34:00.954Z",
+      "endpoint": "https://www.pc.go.kr/portal/government/government-press/government-press-press",
+      "pattern": {
+        "profile": {
+          "link": "government-press-press[^\"']*?[?&](?:amp;)?articleSeq=(?<id>\\d+)",
+          "url": "https://www.pc.go.kr/portal/government/government-press/government-press-press?articleSeq={id}",
+          "title": "text"
+        },
+        "basis": "첫 화면 메뉴가 스크립트라 /portal/sitemap.do에서 보도자료 메뉴를 찾음. 상세는 같은 주소 ?articleSeq=",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 15,
+      "latest": "2026-10-02",
+      "previous_status": "NO_BOARD_FOUND",
+      "previous_reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)"
+    },
+    "org:경기도:구리시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.guri.go.kr/www/index.do",
+      "endpoint": "https://www.guri.go.kr/www/selectBbsNttList.do?bbsNo=42&key=393",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T08:00:25.890Z",
+      "pattern": {
+        "profile": {
+          "link": "selectBbsNttView\\.do\\?key=393&(?:amp;)?bbsNo=42&(?:amp;)?nttNo=(?<id>\\d+)",
+          "url": "https://www.guri.go.kr/www/selectBbsNttView.do?key=393&bbsNo=42&nttNo={id}",
+          "title": "^\\s*([^<]*[가-힣][^<]*)"
+        },
+        "basis": "href의 selectBbsNttView.do?key=&bbsNo=&nttNo=",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:경기도:부천시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "view[^\"']*?[?&](?:amp;)?encid=(?<id>[\\w=+/-]+)",
+          "url": "https://www.bucheon.go.kr/site/program/board/basicboard/view?menuid=148002002001&pagesize=10&boardtypeid=26748&encid={id}",
+          "title": "text"
+        },
+        "basis": "자동 탐색 프로필 재검증(문장부호·엔티티 차이 무시)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "homepage": "https://www.bucheon.go.kr/site/main/index148",
+      "endpoint": "https://www.bucheon.go.kr/site/program/board/basicboard/list?boardtypeid=26748&menuid=148002002001",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T08:20:57.177Z",
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 원문에서 목록 제목을 찾지 못함(주소 틀 불일치 가능)"
+    },
+    "org:경기도:안산시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 16건·날짜 16건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.ansan.go.kr/www/main/main.do",
+      "endpoint": "https://www.ansan.go.kr/www/common/bbs/selectPageListBbs.do?bbs_code=B0238",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T08:00:46.724Z",
+      "pattern": {
+        "profile": {
+          "link": "fnGoDetail\\(\\s*(?<id>\\d+)",
+          "url": "https://www.ansan.go.kr/www/common/bbs/selectBbsDetail.do?bbs_code=B0238&bbs_seq={id}",
+          "title": "^\\s*([^<]*[가-힣][^<]*)"
+        },
+        "basis": "fnGoDetail(bbs_seq): GET /www/common/bbs/selectBbsDetail.do (bbs_code, bbs_seq)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 16,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:경기도:이천시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 9건·날짜 9건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.icheon.go.kr/main.do",
+      "endpoint": "https://www.icheon.go.kr/news/board/post/list.do?bcIdx=785&mid=0301000000",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T08:00:50.233Z",
+      "pattern": {
+        "profile": {
+          "link": "data-req-get-p-idx=\"(?<id>\\d+)\"",
+          "url": "https://www.icheon.go.kr/news/board/post/view.do?bcIdx=785&mid=0301000000&idx={id}",
+          "title": "<span class=\"tit\">\\s*([^<]+)"
+        },
+        "basis": "yhLib.inline.post: data-req-get-p-idx + viewForm action /news/board/post/view.do?bcIdx=785&mid=0301000000&idx=",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 9,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:경상남도:양산시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.yangsan.go.kr/main.do",
+      "endpoint": "https://www.yangsan.go.kr/portal/saeol/news/list.do?mid=0105010000",
+      "menu_text": "보도자료 더보기",
+      "checked_at": "2026-10-04T08:01:14.338Z",
+      "pattern": {
+        "profile": {
+          "link": "data-keyset=\"\\{'newsEpctNo':\\s*'(?<id>\\d+)'",
+          "url": "https://www.yangsan.go.kr/portal/saeol/news/view.do?newsEpctNo={id}&mid=0105010000",
+          "title": "text"
+        },
+        "basis": "req.post: data-action /portal/saeol/news/view.do + data-keyset newsEpctNo",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:경상남도:함양군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "href=[\"'][^\"']*?[?&](?:amp;)?idx=(?<id>[\\w-]+)",
+          "url": "https://www.hygn.go.kr/01997/02007.web?gcode=2001&idx={id}&amode=view",
+          "title": "<strong[^>]*>\\s*([^<]+)"
+        },
+        "basis": "자동 탐색 프로필 + 메뉴 사람 확인: 메뉴 '군정뉴스'(뉴스포털), '함양군, …' 형식의 군청 발표 글",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "homepage": "https://www.hygn.go.kr/main.web",
+      "endpoint": "https://www.hygn.go.kr/01997/02007.web",
+      "menu_text": "군정뉴스",
+      "checked_at": "2026-10-04T07:51:19.657Z",
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "메뉴명이 '보도자료'가 아님(군정뉴스). 민간 기사 모음일 수 있어 자동 확정하지 않음"
+    },
+    "org:경상북도:구미시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.gumi.go.kr/main.do",
+      "endpoint": "https://www.gumi.go.kr/portal/board/post/list.do?bcIdx=211&mid=0504020000",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T08:00:53.632Z",
+      "pattern": {
+        "profile": {
+          "link": "data-req-get-p-idx=\"(?<id>\\d+)\"",
+          "url": "https://www.gumi.go.kr/portal/board/post/view.do?bcIdx=211&mid=0504020000&idx={id}",
+          "title": "<span class=\"blind\">\\s*([^<]+?)\\s*게시글 상세보기"
+        },
+        "basis": "yhLib.inline.post: data-req-get-p-idx + viewForm action /portal/board/post/view.do?bcIdx=211&mid=0504020000 (idx)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:경상북도:예천군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "href=[\"'][^\"']*?[?&](?:amp;)?i=(?<id>[\\w-]+)",
+          "url": "https://www.ycg.kr/open.content/ko/administrative/news/headline/?i={id}",
+          "title": "text"
+        },
+        "basis": "자동 탐색 프로필 + 메뉴 사람 확인: 메뉴 '군정소식 > 주요뉴스', '예천군, …' 형식의 군청 발표 글",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "homepage": "https://www.ycg.kr/open.content/ko/",
+      "endpoint": "https://www.ycg.kr/open.content/ko/administrative/news/headline/",
+      "menu_text": "군정소식",
+      "checked_at": "2026-10-04T07:51:23.205Z",
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "메뉴명이 '보도자료'가 아님(군정소식). 민간 기사 모음일 수 있어 자동 확정하지 않음"
+    },
+    "org:경상북도:청송군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "href=[\"'][^\"']*?[?&](?:amp;)?idx=(?<id>[\\w-]+)",
+          "url": "https://www.cs.go.kr/news/00002679/00003478.web?gcode=1091&idx={id}&amode=view",
+          "title": "<strong[^>]*>\\s*([^<]+)"
+        },
+        "basis": "자동 탐색 프로필 + 메뉴 사람 확인: 메뉴 '보도·해명 자료', 게시물 제목이 'YYMMDD보도자료(…)'",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "homepage": "https://www.cs.go.kr/main.web",
+      "endpoint": "https://www.cs.go.kr/news/00002679/00003478.web",
+      "menu_text": "보도·해명 자료",
+      "checked_at": "2026-10-04T07:51:02.120Z",
+      "latest": "2026-09-23",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "메뉴명이 '보도자료'가 아님(보도·해명 자료). 민간 기사 모음일 수 있어 자동 확정하지 않음"
+    },
+    "org:대구광역시:동구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "data-keyset=\"\\{'newsEpctNo':\\s*'(?<id>\\d+)'",
+          "url": "https://www.dong.daegu.kr/portal/saeol/news/view.do?newsEpctNo={id}&mid=0201070000",
+          "title": "text"
+        },
+        "basis": "양산시와 같은 새올 보도자료 화면(req.post, data-keyset newsEpctNo). 자동 탐색은 메뉴 링크 묶음을 잘못 잡았음",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "homepage": "https://www.dong.daegu.kr/main.do",
+      "endpoint": "https://www.dong.daegu.kr/portal/saeol/news/list.do?mid=0201070000",
+      "menu_text": "보도자료 더보기",
+      "checked_at": "2026-10-04T08:23:47.576Z",
+      "items": 10,
+      "latest": "2026-10-01",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "목록 항목 100건, 날짜 0건(기준 미달)"
+    },
+    "org:대전광역시:서구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 20건·날짜 20건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.seogu.go.kr/kor.do",
+      "endpoint": "https://www.seogu.go.kr/bbs/BBSMSTR_000000000277/list.do",
+      "menu_text": "언론보도",
+      "checked_at": "2026-10-04T08:00:22.132Z",
+      "pattern": {
+        "profile": {
+          "link": "fn_search_detail\\('(?<id>\\w+)'\\)",
+          "url": "https://www.seogu.go.kr/bbs/BBSMSTR_000000000277/view.do?nttId={id}",
+          "title": "<strong class=\"bbs-subject-txt\">\\s*([^<]+)",
+          "tag": "button"
+        },
+        "basis": "<button onclick=fn_search_detail(nttId)>: /bbs/BBSMSTR_000000000277/view.do (nttId). 목록 행이 button이라 tag=button",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 20,
+      "latest": "2026-09-30",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:부산광역시:금정구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "view\\.geumj\\?boardId=BBS_0000005&amp;menuCd=[^\"']*?&amp;paging=ok[^\"']*?dataSid=(?<id>\\d+)",
+          "url": "https://www.geumjeong.go.kr/board/view.geumj?boardId=BBS_0000005&menuCd=DOM_000000124002002000&dataSid={id}",
+          "title": "attr:title"
+        },
+        "basis": "href의 /board/view.geumj?boardId=BBS_0000005&dataSid= (내려받기·첨부 아이콘 링크 제외, 날짜 칸 class=date 또는 다음 칸)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "homepage": "https://www.geumjeong.go.kr/index.geumj",
+      "endpoint": "https://www.geumjeong.go.kr/board/list.geumj?boardId=BBS_0000005&menuCd=DOM_000000124002002000&contentsSid=3856",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T10:25:20.236Z",
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "목록 항목 10건, 날짜 0건(기준 미달)"
+    },
+    "org:부산광역시:서구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "view\\.bsseogu[^\"']*?[?&](?:amp;)?dataSid=(?<id>[\\w-]+)",
+          "url": "https://www.bsseogu.go.kr/board/view.bsseogu?boardId=BBS_0000011&menuCd=DOM_000000103001015000&orderBy=REGISTER_DATE+DESC&paging=ok&startPage=1&dataSid={id}",
+          "title": "text"
+        },
+        "basis": "자동 탐색 프로필 + 메뉴 사람 확인: 메뉴 '보도/해명 자료'(서구소식), 구청 발표 글",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "homepage": "https://www.bsseogu.go.kr/index.bsseogu",
+      "endpoint": "https://www.bsseogu.go.kr/board/list.bsseogu?boardId=BBS_0000011&menuCd=DOM_000000103001015000&contentsSid=880",
+      "menu_text": "보도/해명 자료",
+      "checked_at": "2026-10-04T08:01:42.269Z",
+      "latest": "2026-10-02",
+      "previous_status": "AUTO_VERIFIED",
+      "previous_reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치"
+    },
+    "org:서울특별시:강남구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.gangnam.go.kr/main.do",
+      "endpoint": "https://www.gangnam.go.kr/board/B_000031/list.do?mid=ID01_0313",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T08:01:05.781Z",
+      "pattern": {
+        "profile": {
+          "link": "/board/B_000031/(?<id>\\d+)/view\\.do",
+          "url": "https://www.gangnam.go.kr/board/B_000031/{id}/view.do?mid=ID01_0313",
+          "title": "text"
+        },
+        "basis": "href의 /board/B_000031/<번호>/view.do (번호가 경로 안에 있어 자동 탐색의 쿼리 기준에 안 맞음)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:서울특별시:강동구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 20건·날짜 20건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.gangdong.go.kr/newportal/",
+      "endpoint": "https://www.gangdong.go.kr/web/newportal/press/list",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T08:01:09.710Z",
+      "pattern": {
+        "profile": {
+          "link": "/web/newportal/press/(?<id>\\d+)[\"']",
+          "url": "https://www.gangdong.go.kr/web/newportal/press/{id}",
+          "title": "text"
+        },
+        "basis": "href의 /web/newportal/press/<번호>",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 20,
+      "latest": "2026-10-01",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:서울특별시:구로구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "selectBbsNttView\\.do\\?bbsNo=665&(?:amp;)?nttNo=(?<id>\\d+)",
+          "url": "https://www.guro.go.kr/www/selectBbsNttView.do?bbsNo=665&nttNo={id}&key=1793",
+          "title": "^\\s*([^<]*[가-힣][^<]*)",
+          "date": "<time datetime=\"([0-9-]+)\""
+        },
+        "basis": "href의 selectBbsNttView.do?bbsNo=665&nttNo= (NEW 표시 제외, 날짜는 <time datetime>)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "homepage": "https://www.guro.go.kr/www/index.do",
+      "endpoint": "https://www.guro.go.kr/www/selectBbsNttList.do?bbsNo=665&key=1793",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T08:00:40.281Z",
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "목록 항목 5건, 날짜 1건(기준 미달)"
+    },
+    "org:서울특별시:노원구": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "q_bbscttSn=(?<id>\\d+)",
+          "url": "https://www.nowon.kr/www/user/bbs/BD_selectBbs.do?q_bbsCode=1027&q_bbscttSn={id}",
+          "title": "text"
+        },
+        "basis": "href의 BD_selectBbs.do?q_bbsCode=1027&q_bbscttSn=",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "homepage": "https://www.nowon.kr/www/index.do",
+      "endpoint": "https://www.nowon.kr/www/user/bbs/BD_selectBbsList.do?q_bbsCode=1027",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T10:28:27.145Z",
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 원문에서 목록 제목을 찾지 못함(주소 틀 불일치 가능)"
+    },
+    "org:인천광역시:옹진군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "bbsMsgDetail\\.do[^\"']*?[?&](?:amp;)?msg_seq=(?<id>[\\w-]+)",
+          "url": "https://www.ongjin.go.kr/open_content/main/bbs/bbsMsgDetail.do?msg_seq={id}&bcd=report",
+          "title": "text"
+        },
+        "basis": "자동 탐색 프로필 + 메뉴 사람 확인: 메뉴 '보도/해명', 군청 발표 글",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "homepage": "https://www.ongjin.go.kr/open_content/main/",
+      "endpoint": "https://www.ongjin.go.kr/open_content/main/community/board/report.jsp",
+      "menu_text": "보도/해명",
+      "checked_at": "2026-10-04T07:51:16.048Z",
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "메뉴명이 '보도자료'가 아님(보도/해명). 민간 기사 모음일 수 있어 자동 확정하지 않음"
+    },
+    "org:전남광주통합특별시:영암군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 15건·날짜 15건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.yeongam.go.kr/home/www",
+      "endpoint": "https://www.yeongam.go.kr/home/www/open_information/yeongam_news/bodo/yeongam.go",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T08:00:58.198Z",
+      "pattern": {
+        "profile": {
+          "link": "bodo/show/(?<id>[\\w-]+)",
+          "url": "https://www.yeongam.go.kr/home/www/open_information/yeongam_news/bodo/show/{id}",
+          "title": "<span class=\"title[^\"]*\">\\s*([^<]+)",
+          "date": "class=\"date\">[^<]*?(20\\d{2}-\\d{2}-\\d{2})"
+        },
+        "basis": "href의 bodo/show/<글 ID>. 사진 링크는 건너뛰고 span.title만 제목으로 읽음, 요약(memo)은 읽지 않음",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 15,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:전남광주통합특별시:장성군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 15건·날짜 15건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.jangseong.go.kr/home/www",
+      "endpoint": "https://www.jangseong.go.kr/home/www/news/jangseong/bodo",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T08:01:02.076Z",
+      "pattern": {
+        "profile": {
+          "link": "bodo/show/(?<id>\\d+)",
+          "url": "https://www.jangseong.go.kr/home/www/news/jangseong/bodo/show/{id}",
+          "title": "text"
+        },
+        "basis": "href의 bodo/show/<번호>",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 15,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:충청남도:예산군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 12건·날짜 12건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.yesan.go.kr/kor.do",
+      "endpoint": "https://www.yesan.go.kr/bbs/BBSMSTR_000000000047/list.do",
+      "menu_text": "보도/해명자료",
+      "checked_at": "2026-10-04T08:00:15.830Z",
+      "pattern": {
+        "profile": {
+          "link": "fn_search_detail\\('(?<id>\\w+)'\\)",
+          "url": "https://www.yesan.go.kr/bbs/BBSMSTR_000000000047/view.do?nttId={id}",
+          "title": "<strong class=\"bbs__title\">\\s*([^<]+)",
+          "tag": "button"
+        },
+        "basis": "<button onclick=fn_search_detail(nttId)>: /bbs/BBSMSTR_000000000047/view.do (nttId). 목록 행이 button이라 tag=button",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 12,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:충청남도:천안시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 12건·날짜 12건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.cheonan.go.kr/kor.do",
+      "endpoint": "https://www.cheonan.go.kr/bbs/BBSMSTR_000000000030/list.do",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T09:26:34.458Z",
+      "pattern": {
+        "profile": {
+          "link": "fn_search_detail\\('(?<id>\\w+)'\\)",
+          "url": "https://www.cheonan.go.kr/bbs/BBSMSTR_000000000030/view.do?nttId={id}",
+          "title": "<strong class=\"bbs__title\">\\s*([^<]+)",
+          "tag": "button"
+        },
+        "basis": "<button onclick=fn_search_detail(nttId)>: /bbs/BBSMSTR_000000000030/view.do (nttId). 목록 행이 button이라 tag=button",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 12,
+      "latest": "2026-09-23",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:충청남도:태안군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "nttId",
+        "count": 10,
+        "profile": {
+          "link": "selectBoardArticle\\.do[^\"']*?[?&](?:amp;)?nttId=(?<id>[\\w-]+)",
+          "url": "https://www.taean.go.kr/cop/bbs/BBSMSTR_000000000040/selectBoardArticle.do?nttId={id}&kind=&mno=sitemap_12&pageIndex=1&pageUnit=10&searchCnd=&searchWrd=",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.taean.go.kr/cop/bbs/BBSMSTR_000000000040/selectBoardArticle.do;jsessionid=6AF8BBAE1E7907613AB3AF0C3EBE6D3E?nttId=1514301591&kind=&mno=sitemap_12&pageIndex=1&pageUnit=10&searchCnd=&searchWrd=",
+            "text": "‘살아봐야 진짜 태안을 안다’ 태안군, 귀농․귀촌 1번지 비결 전수"
+          },
+          {
+            "url": "https://www.taean.go.kr/cop/bbs/BBSMSTR_000000000040/selectBoardArticle.do;jsessionid=6AF8BBAE1E7907613AB3AF0C3EBE6D3E?nttId=1514301590&kind=&mno=sitemap_12&pageIndex=1&pageUnit=10&searchCnd=&searchWrd=",
+            "text": "‘풍요로운 태안바다 지킨다’ 태안군, 가을철 불법어업 특별 지도·단속 출격"
+          },
+          {
+            "url": "https://www.taean.go.kr/cop/bbs/BBSMSTR_000000000040/selectBoardArticle.do;jsessionid=6AF8BBAE1E7907613AB3AF0C3EBE6D3E?nttId=1514301589&kind=&mno=sitemap_12&pageIndex=1&pageUnit=10&searchCnd=&searchWrd=",
+            "text": "‘미래가 모이고 사람이 머무는 미래 태안의 나침반’ 태안군, 지속가능발전 중장기 로드맵 시..."
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-01",
+      "homepage": "https://www.taean.go.kr/kor.do",
+      "endpoint": "https://www.taean.go.kr/cop/bbs/BBSMSTR_000000000040/selectBoardList.do",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-05T00:11:06.926Z"
+    },
+    "org:충청북도:음성군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.eumseong.go.kr/www/index.do",
+      "endpoint": "https://www.eumseong.go.kr/www/selectBbsNttList.do?bbsNo=27&key=353",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T08:00:35.656Z",
+      "pattern": {
+        "profile": {
+          "link": "selectBbsNttView\\.do\\?key=353&(?:amp;)?bbsNo=27&(?:amp;)?nttNo=(?<id>\\d+)",
+          "url": "https://www.eumseong.go.kr/www/selectBbsNttView.do?key=353&bbsNo=27&nttNo={id}",
+          "title": "^\\s*([^<]*[가-힣][^<]*)"
+        },
+        "basis": "href의 selectBbsNttView.do?key=&bbsNo=&nttNo=",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:충청북도:제천시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "selectBbsNttView\\.do[^\"']*?[?&](?:amp;)?nttNo=(?<id>[\\w-]+)",
+          "url": "https://www.jecheon.go.kr/www/selectBbsNttView.do?key=116&id=&bbsNo=13&nttNo={id}&searchCtgry=&searchCnd=&searchKrwd=&pageIndex=1&integrDeptCode=",
+          "title": "text"
+        },
+        "basis": "자동 탐색 프로필 + 메뉴 사람 확인: 메뉴 '보도해명', 시청 공식 입장·해명(게시 빈도 낮음)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "homepage": "https://www.jecheon.go.kr/www/index.do",
+      "endpoint": "https://www.jecheon.go.kr/www/selectBbsNttList.do?bbsNo=13&key=116",
+      "menu_text": "보도해명",
+      "checked_at": "2026-10-04T07:51:27.292Z",
+      "latest": "2025-01-23",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "메뉴명이 '보도자료'가 아님(보도해명). 민간 기사 모음일 수 있어 자동 확정하지 않음"
+    },
+    "org:경기도:부천시:원미구": {
+      "homepage": "https://wonmi.bucheon.go.kr/",
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "endpoint": "https://wonmi.bucheon.go.kr/site/program/board/basicboard/list?boardtypeid=28108&menuid=170003002",
+      "pattern": {
+        "profile": {
+          "link": "view\\?menuid=170003002[^\"']*?boardtypeid=28108[^\"']*?boardid=(?<id>\\d+)",
+          "url": "https://wonmi.bucheon.go.kr/site/program/board/basicboard/view?menuid=170003002&boardtypeid=28108&boardid={id}",
+          "title": "text"
+        },
+        "basis": "일반구 자체 보도자료 게시판(구청 누리집 wonmi.bucheon.go.kr, scripts/press/general-districts.mjs에서 발견). 상세는 view?boardid=",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": null,
+      "previous_reason": null,
+      "checked_at": "2026-10-04T08:56:58.479Z"
+    },
+    "org:경기도:부천시:소사구": {
+      "homepage": "https://sosa.bucheon.go.kr/",
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "endpoint": "https://sosa.bucheon.go.kr/site/program/board/basicboard/list?boardtypeid=28356&menuid=171003002",
+      "pattern": {
+        "profile": {
+          "link": "view\\?menuid=171003002[^\"']*?boardtypeid=28356[^\"']*?boardid=(?<id>\\d+)",
+          "url": "https://sosa.bucheon.go.kr/site/program/board/basicboard/view?menuid=171003002&boardtypeid=28356&boardid={id}",
+          "title": "text"
+        },
+        "basis": "일반구 자체 보도자료 게시판(구청 누리집 sosa.bucheon.go.kr, scripts/press/general-districts.mjs에서 발견). 상세는 view?boardid=",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": null,
+      "previous_reason": null,
+      "checked_at": "2026-10-04T08:57:01.984Z"
+    },
+    "org:경기도:부천시:오정구": {
+      "homepage": "https://ojeong.bucheon.go.kr/",
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "endpoint": "https://ojeong.bucheon.go.kr/site/program/board/basicboard/list?boardtypeid=28012&menuid=169003002",
+      "pattern": {
+        "profile": {
+          "link": "view\\?menuid=169003002[^\"']*?boardtypeid=28012[^\"']*?boardid=(?<id>\\d+)",
+          "url": "https://ojeong.bucheon.go.kr/site/program/board/basicboard/view?menuid=169003002&boardtypeid=28012&boardid={id}",
+          "title": "text"
+        },
+        "basis": "일반구 자체 보도자료 게시판(구청 누리집 ojeong.bucheon.go.kr, scripts/press/general-districts.mjs에서 발견). 상세는 view?boardid=",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": null,
+      "previous_reason": null,
+      "checked_at": "2026-10-04T08:57:05.444Z"
+    },
+    "org:강원특별자치도:고성군": {
+      "status": "ACCESS_ERROR",
+      "reason": "fetch failed",
+      "homepage": "https://www.gwgs.go.kr/",
+      "checked_at": "2026-10-04T10:40:05.887Z"
+    },
+    "org:강원특별자치도:속초시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 15건·날짜 15건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.sokcho.go.kr/sc/portal",
+      "endpoint": "https://www.sokcho.go.kr/sc/portal/sokchonews/pressrelease",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-05T00:08:20.773Z",
+      "pattern": {
+        "profile": {
+          "link": "data-seq=\"(?<id>\\d+)\"",
+          "url": "https://www.sokcho.go.kr/sc/portal/sokchonews/pressrelease?articleSeq={id}",
+          "title": "<span[^>]*>\\s*([^<]+)",
+          "date": "color: #8d8d8d;\">\\s*([0-9-]+)"
+        },
+        "basis": "<a class=goPage data-seq=번호>: 같은 주소 ?articleSeq=번호 GET 열람. 날짜는 목록 오른쪽 칸. 서버가 중간 인증서를 보내지 않아 scripts/press/ca/intermediates.pem으로 확인",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 15,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:강원특별자치도:양양군": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.yangyang.go.kr/",
+      "checked_at": "2026-10-04T10:40:05.504Z"
+    },
+    "org:강원특별자치도:인제군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 15건·날짜 15건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://m.inje.go.kr/portal/adm/notice?mode=read&amp;articleSeq=254181",
+      "endpoint": "https://m.inje.go.kr/portal/inje-news/inje-pr/briefing",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-05T00:08:24.481Z",
+      "pattern": {
+        "profile": {
+          "link": "briefing\\?articleSeq=(?<id>\\d+)",
+          "url": "https://m.inje.go.kr/portal/inje-news/inje-pr/briefing?articleSeq={id}",
+          "title": "^\\s*([^<]*[가-힣][^<]*)",
+          "date": "skinTb-date[^\">]*\">\\s*([0-9-]+)",
+          "tag": "a-unclosed"
+        },
+        "basis": "href ?articleSeq=번호(일반 링크)이지만 </a> 없이 </td>로 칸이 끝나 tag=a-unclosed. 날짜는 skinTb-date 칸",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 15,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:강원특별자치도:정선군": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)",
+      "homepage": "https://www.jeongseon.go.kr/portal",
+      "endpoint": "https://www.jeongseon.go.kr/",
+      "menu_text": "군정소식",
+      "checked_at": "2026-10-04T10:40:15.304Z"
+    },
+    "org:강원특별자치도:철원군": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)",
+      "homepage": "https://council.cwg.go.kr/www/selectBbsNttList.do?bbsNo=57&key=466",
+      "endpoint": "https://council.cwg.go.kr/www/selectBbsNttList.do?bbsNo=32&key=218",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T10:40:36.100Z"
+    },
+    "org:강원특별자치도:화천군": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.ihc.go.kr/www/index.do",
+      "checked_at": "2026-10-04T10:40:17.760Z"
+    },
+    "org:경기도:동두천시": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)",
+      "homepage": "https://www.ddc.go.kr/ddc/index.do",
+      "endpoint": "https://www.ddc.go.kr/ebook/selectEbookList.do?key=1410&siteclass=1010",
+      "menu_text": "시정소식지 동두천사랑",
+      "checked_at": "2026-10-04T10:40:09.379Z"
+    },
+    "org:경기도:성남시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.seongnam.go.kr/index",
+      "endpoint": "https://www.seongnam.go.kr/bbs010501",
+      "menu_text": "언론 보도",
+      "checked_at": "2026-10-04T23:09:26.324Z",
+      "pattern": {
+        "profile": {
+          "link": "fn_move_form\\('(?<id>\\d+)'\\)",
+          "url": "https://www.seongnam.go.kr/bbs010501/{id}",
+          "title": "^\\s*([^<]*[가-힣][^<]*)",
+          "date": "작성일</b></span>\\s*<span>([0-9-]+)"
+        },
+        "basis": "onclick=fn_move_form(pstSn): 폼 action /bbs010501/<pstSn>(같은 주소 GET도 원문 열람). 날짜는 썸네일 목록의 작성일 칸. 목록의 요약 본문(dd)은 읽지 않음",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:경기도:시흥시": {
+      "status": "ACCESS_ERROR",
+      "reason": "UND_ERR_CONNECT_TIMEOUT",
+      "homepage": "https://www.siheung.go.kr/",
+      "checked_at": "2026-10-04T10:40:29.455Z"
+    },
+    "org:경기도:의정부시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.ui4u.go.kr/main.do",
+      "endpoint": "https://www.ui4u.go.kr/portal/bbs/list.do?ptIdx=1709&mId=0301020000",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-05T00:08:35.121Z",
+      "pattern": {
+        "profile": {
+          "link": "boardView\\('portal', 'listForm', '\\w+', '\\w', '(?<id>\\d+)', '1709'",
+          "url": "https://www.ui4u.go.kr/portal/bbs/view.do?mId=0301020000&bIdx={id}&ptIdx=1709",
+          "title": "attr:title",
+          "date": "작성일\\s*([0-9.]+)"
+        },
+        "basis": "onclick=boardView(site, form, writeId, public, bIdx, ptIdx, mId, page): board.js가 /portal/bbs/view.do?mId=&bIdx=&ptIdx= 로 보냄(GET 열람). 제목은 링크 title 속성",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:경기도:하남시": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "메뉴명이 '보도자료'가 아님(시정소식). 민간 기사 모음일 수 있어 자동 확정하지 않음",
+      "pattern": {
+        "idParam": "nttNo",
+        "count": 10,
+        "profile": {
+          "link": "selectBbsNttView\\.do[^\"']*?[?&](?:amp;)?nttNo=(?<id>[\\w-]+)",
+          "url": "https://www.hanam.go.kr/sosik/selectBbsNttView.do?key=10051&bbsNo=30&nttNo={id}&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=&selectPageUnit=",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.hanam.go.kr/sosik/selectBbsNttView.do?key=10051&bbsNo=30&nttNo=503049&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=&selectPageUnit=",
+            "text": "<하남시 온세대 + 경기도 5070 일자리박람회> 개최 안내 핫이슈"
+          },
+          {
+            "url": "https://www.hanam.go.kr/sosik/selectBbsNttView.do?key=10051&bbsNo=30&nttNo=503034&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=&selectPageUnit=",
+            "text": "2027년 발전소주변지역 지원사업 수립지침 및 계획 안내"
+          },
+          {
+            "url": "https://www.hanam.go.kr/sosik/selectBbsNttView.do?key=10051&bbsNo=30&nttNo=503014&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=&selectPageUnit=",
+            "text": "2026년 4분기 지역사회서비스투자사업 이용자 모집 안내 핫이슈"
+          }
+        ]
+      },
+      "items": 10,
+      "homepage": "https://www.hanam.go.kr/intro_new.do",
+      "endpoint": "https://www.hanam.go.kr/sosik/selectBbsNttList.do?bbsNo=30&key=10051",
+      "menu_text": "시정소식",
+      "checked_at": "2026-10-04T10:40:13.765Z"
+    },
+    "org:경상남도:거제시": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.geoje.go.kr/index.geoje",
+      "checked_at": "2026-10-04T10:40:12.033Z"
+    },
+    "org:경상남도:남해군": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.namhae.go.kr/portal/sitemap/List.do?pageCd=WW0703000000&siteGubun=portal",
+      "checked_at": "2026-10-04T10:40:28.360Z"
+    },
+    "org:경상남도:밀양시": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "제목이 150자를 넘음(요약·본문이 섞였을 수 있어 자동 확정하지 않음)",
+      "pattern": {
+        "idParam": "nttId",
+        "count": 10,
+        "profile": {
+          "link": "selectBoardDetail\\.do[^\"']*?[?&](?:amp;)?nttId=(?<id>[\\w-]+)",
+          "url": "https://www.miryang.go.kr/web/bbs/selectBoardDetail.do?mnNo=20100000000&owd=&bbsId=BBSMSTR_000000000356&nttId={id}&searchCnd=&searchWrd=&pageIndex=1",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.miryang.go.kr/web/bbs/selectBoardDetail.do;jsessionid=ABB81144BD2943D7994B3F18F6AA200A.was1?mnNo=20100000000&owd=&bbsId=BBSMSTR_000000000356&nttId=198062&searchCnd=&searchWrd=&pageIndex=1",
+            "text": "밀양시새마을회, 새마을지도자 내고장 활력화 다짐대회 개최 밀양시새마을회(회장 이선동)는 2일 무안면 공설운동장에서 새마을지도자들의 결속을 다지고"
+          },
+          {
+            "url": "https://www.miryang.go.kr/web/bbs/selectBoardDetail.do;jsessionid=ABB81144BD2943D7994B3F18F6AA200A.was1?mnNo=20100000000&owd=&bbsId=BBSMSTR_000000000356&nttId=198061&searchCnd=&searchWrd=&pageIndex=1",
+            "text": "밀양시, 일본 선진농업 현장에서 2050 미래농업의 길 찾는다 - 농업 연구·정책기관부터 농업 현장까지…밀양형 미래농업 모델 발굴 - 경남 밀양"
+          },
+          {
+            "url": "https://www.miryang.go.kr/web/bbs/selectBoardDetail.do;jsessionid=ABB81144BD2943D7994B3F18F6AA200A.was1?mnNo=20100000000&owd=&bbsId=BBSMSTR_000000000356&nttId=198060&searchCnd=&searchWrd=&pageIndex=1",
+            "text": "밀양시, 10월 6일부터 택시부제 전면 해제 - 6개월간 시범운영 거쳐 최종 결정… 심야·출퇴근 시간대 택시 공급 확대 기대 - 경남 밀양시(시"
+          }
+        ]
+      },
+      "homepage": "https://www.miryang.go.kr/web/index.do",
+      "endpoint": "https://www.miryang.go.kr/web/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000356&mnNo=20100000000",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-05T00:11:19.177Z"
+    },
+    "org:경상남도:창녕군": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.cng.go.kr/00005/00588.web",
+      "checked_at": "2026-10-04T10:40:23.513Z"
+    },
+    "org:경상남도:통영시": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.tongyeong.go.kr/happytogether/",
+      "checked_at": "2026-10-04T10:40:20.073Z"
+    },
+    "org:경상남도:함안군": {
+      "status": "ACCESS_ERROR",
+      "reason": "fetch failed",
+      "homepage": "https://www.haman.go.kr/",
+      "checked_at": "2026-10-04T10:40:18.609Z"
+    },
+    "org:경상북도:경산시": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)",
+      "homepage": "https://www.gbgs.go.kr/open_content/ko/index.do",
+      "endpoint": "https://www.gbgs.go.kr/open_content/ko/page.do?mnu_uid=5904&",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T10:40:34.163Z"
+    },
+    "org:경상북도:경주시": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "메뉴명이 '보도자료'가 아님(시정소식). 민간 기사 모음일 수 있어 자동 확정하지 않음",
+      "pattern": {
+        "idParam": "parm_bod_uid",
+        "count": 17,
+        "profile": {
+          "link": "page\\.do[^\"']*?[?&](?:amp;)?parm_bod_uid=(?<id>[\\w-]+)",
+          "url": "https://www.gyeongju.go.kr/open_content/ko/page.do?pageNo=1&pagePrvNxt=1&pageRef=0&pageOrder=0&step=258&parm_bod_uid={id}&srchVoteType=-1&parm_mnu_uid=0&srchEnable=1&srchBgpUid=-1&srchKeyword=&srchSDate=1960-01-01&srchColumn=&srchEDate=9999-12-31&mnu_uid=2908",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.gyeongju.go.kr/open_content/ko/page.do?pageNo=1&pagePrvNxt=1&pageRef=0&pageOrder=0&step=258&parm_bod_uid=332638&srchVoteType=-1&parm_mnu_uid=0&srchEnable=1&srchBgpUid=-1&srchKeyword=&srchSDate=1960-01-01&srchColumn=&srchEDate=9999-12-31&mnu_uid=2908&",
+            "text": "2026년 추석연휴 문여는 의료기관 및 약국 명단 알림"
+          },
+          {
+            "url": "https://www.gyeongju.go.kr/open_content/ko/page.do?pageNo=1&pagePrvNxt=1&pageRef=0&pageOrder=0&step=258&parm_bod_uid=332369&srchVoteType=-1&parm_mnu_uid=0&srchEnable=1&srchBgpUid=-1&srchKeyword=&srchSDate=1960-01-01&srchColumn=&srchEDate=9999-12-31&mnu_uid=2908&",
+            "text": "경주시「근로자 산업안전 골든벨」 참가자 모집"
+          },
+          {
+            "url": "https://www.gyeongju.go.kr/open_content/ko/page.do?pageNo=1&pagePrvNxt=1&pageRef=0&pageOrder=0&step=258&parm_bod_uid=331854&srchVoteType=-1&parm_mnu_uid=0&srchEnable=1&srchBgpUid=-1&srchKeyword=&srchSDate=1960-01-01&srchColumn=&srchEDate=9999-12-31&mnu_uid=2908&",
+            "text": "2026년 경주성동시장(전통시장) 어린이 장보기 행사 시행(우리가족 전통시장 여행)"
+          }
+        ]
+      },
+      "items": 17,
+      "homepage": "https://www.gyeongju.go.kr/open_content/ko/index.do",
+      "endpoint": "https://www.gyeongju.go.kr/open_content/ko/page.do?mnu_uid=2908&",
+      "menu_text": "시정소식",
+      "checked_at": "2026-10-04T10:40:34.566Z"
+    },
+    "org:경상북도:고령군": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "후보 게시판(군정소식 IDX=151)은 월간 소식지 게시판이며 보도자료 게시판이 아님(2026-10-04 사람 확인)",
+      "homepage": "https://www.goryeong.go.kr/kor/index.do",
+      "endpoint": "https://www.goryeong.go.kr/kor/boardList.do?IDX=151&BRD_ID=1018",
+      "menu_text": "군정소식",
+      "checked_at": "2026-10-04T14:37:51.422Z",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:경상북도:문경시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "homepage": "https://www.gbmg.go.kr/main.do",
+      "endpoint": "https://www.gbmg.go.kr/portal/mayorForcus/list.do?mId=0302010000",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-05T00:08:38.812Z",
+      "pattern": {
+        "profile": {
+          "link": "goView\\('(?<id>\\d+)'\\)",
+          "url": "https://www.gbmg.go.kr/portal/mayorForcus/view.do?idx={id}&mId=0302010000",
+          "title": "<span class=\"blog_tit\">\\s*([^<]+)",
+          "date": "작성일\\s*([0-9.-]+)"
+        },
+        "basis": "onclick=goView(idx): unit/mayorForcus/list.js가 /portal/mayorForcus/view.do?idx=&mId= 로 보냄(GET 열람). robots.txt 금지 규칙은 Googlebot 전용",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:경상북도:상주시": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.sangju.go.kr/",
+      "checked_at": "2026-10-04T10:40:25.258Z"
+    },
+    "org:경상북도:안동시": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "후보 보도자료 목록 경로를 robots.txt가 막음(2026-10-04 사람 확인)",
+      "homepage": "https://www.andong.go.kr/main.do",
+      "endpoint": "https://www.andong.go.kr/portal/bbs/list.do?ptIdx=104&mId=0403010000",
+      "menu_text": "보도 자료",
+      "checked_at": "2026-10-04T14:37:51.422Z",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:경상북도:영덕군": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.yd.go.kr/",
+      "checked_at": "2026-10-04T10:40:27.168Z"
+    },
+    "org:경상북도:영천시": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)",
+      "homepage": "https://www.yc.go.kr/main.do",
+      "endpoint": "https://www.yc.go.kr/news/main.do",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T10:40:42.282Z"
+    },
+    "org:경상북도:울릉군": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 원문에서 목록 제목을 찾지 못함(주소 틀 불일치 가능)",
+      "pattern": {
+        "idParam": "bod_uid",
+        "count": 10,
+        "profile": {
+          "link": "href=[\"'][^\"']*?[?&](?:amp;)?bod_uid=(?<id>[\\w-]+)",
+          "url": "https://www.ulleung.go.kr/ko/page.do?srchVote=-1&srchBgpuid=-1&srchEnable=1&srchSDate=&srchKwd=&srchColumn=&listType=&srchEDate=&mnu_uid=574&bod_uid={id}&pageNo=1&cmd=2",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.ulleung.go.kr/ko/page.do?srchVote=-1&srchBgpuid=-1&srchEnable=1&srchSDate=&srchKwd=&srchColumn=&listType=&srchEDate=&mnu_uid=574&&bod_uid=49709&pageNo=1&cmd=2",
+            "text": "제57회 울릉군민체육대회 성황리 개최"
+          },
+          {
+            "url": "https://www.ulleung.go.kr/ko/page.do?srchVote=-1&srchBgpuid=-1&srchEnable=1&srchSDate=&srchKwd=&srchColumn=&listType=&srchEDate=&mnu_uid=574&&bod_uid=49708&pageNo=1&cmd=2",
+            "text": "울릉군, 오지마을 치매극복 인식개선 및 배회대처 모의훈..."
+          },
+          {
+            "url": "https://www.ulleung.go.kr/ko/page.do?srchVote=-1&srchBgpuid=-1&srchEnable=1&srchSDate=&srchKwd=&srchColumn=&listType=&srchEDate=&mnu_uid=574&&bod_uid=49707&pageNo=1&cmd=2",
+            "text": "‘SMILE for Ulleung ’친절 서약 선포식·..."
+          }
+        ]
+      },
+      "homepage": "https://www.ulleung.go.kr/ko/main.do",
+      "endpoint": "https://www.ulleung.go.kr/ko/page.do?mnu_uid=574&",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T10:40:38.221Z"
+    },
+    "org:경상북도:의성군": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 원문에서 목록 제목을 찾지 못함(주소 틀 불일치 가능)",
+      "pattern": {
+        "idParam": "bod_uid",
+        "count": 9,
+        "profile": {
+          "link": "page\\.do[^\"']*?[?&](?:amp;)?bod_uid=(?<id>[\\w-]+)",
+          "url": "https://www.usc.go.kr/ko/page.do?srchVote=-1&srchBgpUid=-1&srchEnable=1&srchSDate=&srchKwd=&srchColumn=&listType=&srchEDate=&mnu_uid=190&bod_uid={id}&pageNo=1&cmd=2",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.usc.go.kr/ko/page.do?srchVote=-1&srchBgpUid=-1&srchEnable=1&srchSDate=&srchKwd=&srchColumn=&listType=&srchEDate=&mnu_uid=190&bod_uid=149668&pageNo=1&cmd=2",
+            "text": "고운사, 천년의 역사를 다시 잇다 2026-09-29"
+          },
+          {
+            "url": "https://www.usc.go.kr/ko/page.do?srchVote=-1&srchBgpUid=-1&srchEnable=1&srchSDate=&srchKwd=&srchColumn=&listType=&srchEDate=&mnu_uid=190&bod_uid=149667&pageNo=1&cmd=2",
+            "text": "의성군, 주민자치회장 간담회 개최 2026-09-29"
+          },
+          {
+            "url": "https://www.usc.go.kr/ko/page.do?srchVote=-1&srchBgpUid=-1&srchEnable=1&srchSDate=&srchKwd=&srchColumn=&listType=&srchEDate=&mnu_uid=190&bod_uid=149665&pageNo=1&cmd=2",
+            "text": "의성군, 2027년 주요업무계획 보고회 개최 2026-09-29"
+          }
+        ]
+      },
+      "homepage": "https://www.usc.go.kr/ko/main.do",
+      "endpoint": "https://www.usc.go.kr/ko/page.do?mnu_uid=190&",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T10:40:46.566Z"
+    },
+    "org:경상북도:청도군": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.cheongdo.go.kr/",
+      "checked_at": "2026-10-04T10:40:31.022Z"
+    },
+    "org:경상북도:포항시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 12건·날짜 12건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "data-req-get-p-idx=\"(?<id>\\d+)\"",
+          "url": "https://www.pohang.go.kr/news/board/post/view.do?bcIdx=644&mid=0102000000&idx={id}",
+          "title": "<span class=\"tit\">\\s*([^<]+)",
+          "date": "<span class=\"date\">\\s*([0-9-]+)"
+        },
+        "basis": "포항시 누리집 뉴스 > 보도자료(포털 사이트맵에는 메뉴가 없고 /news/ 하위 사이트에 있음). yhLib.inline.post: data-req-get-p-idx + viewForm action /news/board/post/view.do?bcIdx=644&mid=0102000000 (idx)",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "homepage": "https://www.pohang.go.kr/main.do",
+      "endpoint": "https://www.pohang.go.kr/news/board/post/list.do?bcIdx=644&mid=0102000000",
+      "menu_text": "포켓포항(시정소식) 구독",
+      "checked_at": "2026-10-04T23:09:30.310Z",
+      "items": 12,
+      "latest": "2026-10-01",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "목록 항목 100건, 날짜 0건(기준 미달)"
+    },
+    "org:대구광역시:군위군": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 원문에서 목록 제목을 찾지 못함(주소 틀 불일치 가능)",
+      "pattern": {
+        "idParam": "bod_uid",
+        "count": 10,
+        "profile": {
+          "link": "href=[\"'][^\"']*?[?&](?:amp;)?bod_uid=(?<id>[\\w-]+)",
+          "url": "https://www.gunwi.go.kr/ko/page.do?srchVote=-1&srchOrder=&srchBgpUid=-1&srchEnable=1&srchSDate=&srchKwd=&srchColumn=&listType=&srchEDate=&mnu_uid=106&bod_uid={id}&pageNo=1&cmd=2",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.gunwi.go.kr/ko/page.do?srchVote=-1&srchOrder=&srchBgpUid=-1&srchEnable=1&srchSDate=&srchKwd=&srchColumn=&listType=&srchEDate=&mnu_uid=106&&bod_uid=141925&pageNo=1&cmd=2",
+            "text": "10월 2일 보도자료"
+          },
+          {
+            "url": "https://www.gunwi.go.kr/ko/page.do?srchVote=-1&srchOrder=&srchBgpUid=-1&srchEnable=1&srchSDate=&srchKwd=&srchColumn=&listType=&srchEDate=&mnu_uid=106&&bod_uid=141911&pageNo=1&cmd=2",
+            "text": "10월 1일 보도자료"
+          },
+          {
+            "url": "https://www.gunwi.go.kr/ko/page.do?srchVote=-1&srchOrder=&srchBgpUid=-1&srchEnable=1&srchSDate=&srchKwd=&srchColumn=&listType=&srchEDate=&mnu_uid=106&&bod_uid=141893&pageNo=1&cmd=2",
+            "text": "9월 30일 보도자료"
+          }
+        ]
+      },
+      "homepage": "https://www.gunwi.go.kr/ko/index.do",
+      "endpoint": "https://www.gunwi.go.kr/ko/page.do?mnu_uid=106",
+      "menu_text": "보도자료 더보기",
+      "checked_at": "2026-10-04T10:40:50.996Z"
+    },
+    "org:대구광역시:남구": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)",
+      "homepage": "https://www.nam.daegu.kr/",
+      "endpoint": "https://www.nam.daegu.kr/index.do?menu_id=00001325",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T10:40:40.421Z"
+    },
+    "org:대구광역시:북구": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)",
+      "homepage": "https://www.buk.daegu.kr/",
+      "endpoint": "https://www.buk.daegu.kr/index.do?menu_id=00000201",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T10:40:45.355Z"
+    },
+    "org:대구광역시:서구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "후보 보도자료 목록 경로를 robots.txt가 막음(2026-10-04 사람 확인)",
+      "homepage": "https://www.dgs.go.kr/main.do",
+      "endpoint": "https://www.dgs.go.kr/portal/board/post/list.do?bcIdx=526&mid=0601080000&token=1791110441629",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T14:37:51.422Z",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:대구광역시:중구": {
+      "status": "ACCESS_ERROR",
+      "reason": "HTTP_400",
+      "homepage": "https://www.jung.daegu.kr/",
+      "checked_at": "2026-10-04T10:40:40.877Z"
+    },
+    "org:대전광역시:동구": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.donggu.go.kr/",
+      "checked_at": "2026-10-04T10:40:41.498Z"
+    },
+    "org:부산광역시:기장군": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.gijang.go.kr/index.gijang",
+      "checked_at": "2026-10-04T10:40:44.539Z"
+    },
+    "org:부산광역시:동래구": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.dongnae.go.kr/index.dongnae",
+      "checked_at": "2026-10-04T10:40:44.116Z"
+    },
+    "org:부산광역시:북구": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.bsbukgu.go.kr/index.bsbukgu",
+      "checked_at": "2026-10-04T10:40:44.809Z"
+    },
+    "org:부산광역시:사하구": {
+      "status": "ACCESS_ERROR",
+      "reason": "HTTP_403",
+      "homepage": "https://www.saha.go.kr/",
+      "checked_at": "2026-10-04T10:40:43.945Z"
+    },
+    "org:부산광역시:수영구": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "최근 1년 안 게시물이 없음(가장 최근 2011-05-13). 지난 자료 보관 게시판일 수 있음",
+      "pattern": {
+        "idParam": "dataSid",
+        "count": 10,
+        "profile": {
+          "link": "view\\.suyeong[^\"']*?[?&](?:amp;)?dataSid=(?<id>[\\w-]+)",
+          "url": "https://www.suyeong.go.kr/board/view.suyeong?boardId=BBS_0000110&menuCd=DOM_000000103001006002&paging=ok&startPage=1&dataSid={id}",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.suyeong.go.kr/board/view.suyeong?boardId=BBS_0000110&menuCd=DOM_000000103001006002&paging=ok&startPage=1&dataSid=76972",
+            "text": "부산의 해수욕장 ''문화를 덧입다''"
+          },
+          {
+            "url": "https://www.suyeong.go.kr/board/view.suyeong?boardId=BBS_0000110&menuCd=DOM_000000103001006002&paging=ok&startPage=1&dataSid=76962",
+            "text": "수영강변대로 도로 확장(2차선에서 4차선으로)"
+          },
+          {
+            "url": "https://www.suyeong.go.kr/board/view.suyeong?boardId=BBS_0000110&menuCd=DOM_000000103001006002&paging=ok&startPage=1&dataSid=76961",
+            "text": "&#34;해수욕장 4계절 관광지로&#34; 부산시 말로만"
+          }
+        ]
+      },
+      "items": 10,
+      "homepage": "https://www.suyeong.go.kr/index.suyeong",
+      "endpoint": "https://www.suyeong.go.kr/board/list.suyeong?boardId=BBS_0000110&menuCd=DOM_000000103001006002&contentsSid=264",
+      "menu_text": "09.01.11이전 보도자료",
+      "checked_at": "2026-10-04T10:43:20.023Z"
+    },
+    "org:부산광역시:중구": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)",
+      "homepage": "https://www.bsjunggu.go.kr/index.junggu",
+      "endpoint": "https://eminwon.bsjunggu.go.kr/emwp/jsp/ofr/OfrNewsEpctLMiniSub.jsp?homepagetype=new",
+      "menu_text": "보도/해명",
+      "checked_at": "2026-10-04T10:40:51.208Z"
+    },
+    "org:부산광역시:해운대구": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)",
+      "homepage": "https://www.haeundae.go.kr/index.do",
+      "endpoint": "https://www.haeundae.go.kr/index.do?menuCd=DOM_000000104001003000",
+      "menu_text": "보도/해명",
+      "checked_at": "2026-10-04T10:40:55.324Z"
+    },
+    "org:서울특별시:강북구": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.gangbuk.go.kr/",
+      "checked_at": "2026-10-04T10:40:46.184Z"
+    },
+    "org:서울특별시:성동구": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "홈페이지를 robots.txt가 막음",
+      "homepage": "https://www.sd.go.kr/",
+      "checked_at": "2026-10-04T23:57:13.831Z"
+    },
+    "org:서울특별시:중랑구": {
+      "status": "ACCESS_ERROR",
+      "reason": "fetch failed",
+      "homepage": "https://www.jungnang.go.kr/",
+      "checked_at": "2026-10-04T10:40:47.090Z"
+    },
+    "org:울산광역시:북구": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "메뉴명이 '보도자료'가 아님(구정소식). 민간 기사 모음일 수 있어 자동 확정하지 않음",
+      "pattern": {
+        "idParam": "article_seq",
+        "count": 10,
+        "profile": {
+          "link": "view\\.do[^\"']*?[?&](?:amp;)?article_seq=(?<id>[\\w-]+)",
+          "url": "https://www.bukgu.ulsan.kr/lay1/bbs/S1T62C83/A/1/view.do?article_seq={id}&cpage=1&rows=10&condition=&keyword=",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.bukgu.ulsan.kr/lay1/bbs/S1T62C83/A/1/view.do?article_seq=315321&cpage=1&rows=10&condition=&keyword=",
+            "text": "농지 전수조사 안내 홍보자료"
+          },
+          {
+            "url": "https://www.bukgu.ulsan.kr/lay1/bbs/S1T62C83/A/1/view.do?article_seq=315289&cpage=1&rows=10&condition=&keyword=",
+            "text": "토지거래계약 허가사항 알림"
+          },
+          {
+            "url": "https://www.bukgu.ulsan.kr/lay1/bbs/S1T62C83/A/1/view.do?article_seq=315267&cpage=1&rows=10&condition=&keyword=",
+            "text": "< 10월 안전 한바퀴 > 축제장에서 이렇게 행동하세요"
+          }
+        ]
+      },
+      "items": 10,
+      "homepage": "https://www.bukgu.ulsan.kr/index.do",
+      "endpoint": "https://www.bukgu.ulsan.kr/lay1/bbs/S1T62C83/A/1/list.do;jsessionid=IFoqP13aJo6lhlsjL11MJ978OXjtwn68D6V7crekHO7p7m9fTAbulhhOpqzGa0Uz.www_ap_servlet_engine1",
+      "menu_text": "구정소식",
+      "checked_at": "2026-10-04T10:40:59.128Z"
+    },
+    "org:울산광역시:울주군": {
+      "status": "BLOCKED_ROBOTS",
+      "reason": "후보 보도자료 목록 경로를 robots.txt가 막음(2026-10-04 사람 확인)",
+      "homepage": "https://www.ulju.ulsan.kr/ulju/main.do",
+      "endpoint": "https://www.ulju.ulsan.kr/ulju/bbs/list.do?ptIdx=146&mId=0404020000&token=1791110452260",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T14:37:51.422Z",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:전남광주통합특별시:강진군": {
+      "status": "ACCESS_ERROR",
+      "reason": "UND_ERR_CONNECT_TIMEOUT",
+      "homepage": "https://www.gangjin.go.kr/",
+      "checked_at": "2026-10-04T10:41:10.534Z"
+    },
+    "org:전남광주통합특별시:곡성군": {
+      "status": "AUTO_VERIFIED",
+      "reason": "목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "idParam": "nttId",
+        "count": 10,
+        "profile": {
+          "link": "view\\.do[^\"']*?[?&](?:amp;)?nttId=(?<id>[\\w-]+)",
+          "url": "https://www.gokseong.go.kr/kr/board/view.do?bbsId=BBS_000000000000151&pageIndex=1&nttId={id}&menuNo=102001002000&searchCategory1=&searchCategory2=&searchCategory3=",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.gokseong.go.kr/kr/board/view.do;jsessionid=CF3ED1ACA19CB01EDCCC16D27A41FE9E?bbsId=BBS_000000000000151&pageIndex=1&nttId=113174&menuNo=102001002000&searchCategory1=&searchCategory2=&searchCategory3=",
+            "text": "곡성군미래교육재단, 평생학습 실무협의회 3분기 정기회의 개최"
+          },
+          {
+            "url": "https://www.gokseong.go.kr/kr/board/view.do;jsessionid=CF3ED1ACA19CB01EDCCC16D27A41FE9E?bbsId=BBS_000000000000151&pageIndex=1&nttId=113172&menuNo=102001002000&searchCategory1=&searchCategory2=&searchCategory3=",
+            "text": "곡성군미래교육재단, 장미 굿즈 팝업 및 로즈인턴 체험부스 운영"
+          },
+          {
+            "url": "https://www.gokseong.go.kr/kr/board/view.do;jsessionid=CF3ED1ACA19CB01EDCCC16D27A41FE9E?bbsId=BBS_000000000000151&pageIndex=1&nttId=113171&menuNo=102001002000&searchCategory1=&searchCategory2=&searchCategory3=",
+            "text": "곡성의 밤이 즐거워진다! 10월 8일‘곡성야행’첫 개최"
+          }
+        ]
+      },
+      "items": 10,
+      "latest": "2026-10-01",
+      "homepage": "https://www.gokseong.go.kr/kr/main.do",
+      "endpoint": "https://www.gokseong.go.kr/kr/board/list.do?bbsId=BBS_000000000000151&menuNo=102001002000",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-05T00:10:45.360Z"
+    },
+    "org:전남광주통합특별시:구례군": {
+      "status": "ACCESS_ERROR",
+      "reason": "UND_ERR_CONNECT_TIMEOUT",
+      "homepage": "https://www.gurye.go.kr/",
+      "checked_at": "2026-10-04T10:41:12.551Z"
+    },
+    "org:전남광주통합특별시:담양군": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.damyang.go.kr/",
+      "checked_at": "2026-10-04T10:40:52.647Z"
+    },
+    "org:전남광주통합특별시:무안군": {
+      "status": "ACCESS_ERROR",
+      "reason": "UND_ERR_CONNECT_TIMEOUT",
+      "homepage": "https://www.muan.go.kr/",
+      "checked_at": "2026-10-04T10:41:15.064Z"
+    },
+    "org:전남광주통합특별시:보성군": {
+      "status": "ACCESS_ERROR",
+      "reason": "UND_ERR_CONNECT_TIMEOUT",
+      "homepage": "https://www.boseong.go.kr/",
+      "checked_at": "2026-10-04T10:41:16.580Z"
+    },
+    "org:전남광주통합특별시:신안군": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)",
+      "homepage": "https://www.shinan.go.kr/home/www",
+      "endpoint": "https://www.shinan.go.kr/home/www/openinfo/participation_07/participation_07_03/page.wscms",
+      "menu_text": "보도자료/해명",
+      "checked_at": "2026-10-04T10:41:07.258Z"
+    },
+    "org:전남광주통합특별시:영광군": {
+      "status": "ACCESS_ERROR",
+      "reason": "UND_ERR_CONNECT_TIMEOUT",
+      "homepage": "https://www.yeonggwang.go.kr/",
+      "checked_at": "2026-10-04T10:41:23.139Z"
+    },
+    "org:전남광주통합특별시:완도군": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.wando.go.kr/",
+      "checked_at": "2026-10-04T10:41:04.733Z"
+    },
+    "org:전남광주통합특별시:장흥군": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.jangheung.go.kr/www/civil_complaint/citizen_participation/opinion",
+      "checked_at": "2026-10-04T10:41:13.340Z"
+    },
+    "org:전남광주통합특별시:진도군": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "목록 항목 0건, 날짜 0건(기준 미달)",
+      "pattern": {
+        "idParam": "articleId",
+        "count": 5,
+        "profile": {
+          "link": "href=[\"'][^\"']*?[?&](?:amp;)?articleId=(?<id>[\\w-]+)",
+          "url": "https://www.jindo.go.kr/home/board/B0016.cs?act=read&articleId={id}&categoryId=0&m=626&searchCondition=&searchKeyword=&pageIndex=1",
+          "title": "<em[^>]*>\\s*([^<]+)"
+        },
+        "samples": [
+          {
+            "url": "https://www.jindo.go.kr/home/board/B0016.cs?act=read&articleId=197038&categoryId=0&m=626&searchCondition=&searchKeyword=&pageIndex=1",
+            "text": "[진도소식] 진도군, 노인복지관서 ‘노인의 날’ 기념행사 성황리 개최 진도군, 노인복지관서 ‘노인의 날’ 기념행사 성황리 개최 노인복지 증진 유"
+          },
+          {
+            "url": "https://www.jindo.go.kr/home/board/B0016.cs?act=read&articleId=196964&categoryId=0&m=626&searchCondition=&searchKeyword=&pageIndex=1",
+            "text": "[진도소식] 진도군, 섬 주민 의료격차 해소 위한 ‘어복버스 사업’ 본격 운영 진도군, 섬 주민 의료격차 해소 위한 ‘어복버스 사업’ 본격 운영"
+          },
+          {
+            "url": "https://www.jindo.go.kr/home/board/B0016.cs?act=read&articleId=196940&categoryId=0&m=626&searchCondition=&searchKeyword=&pageIndex=1",
+            "text": "[진도소식] 진도군, 주요 관광개발사업 현장 방문해 추진상황 점검 진도군, 주요 관광개발사업 현장 방문해 추진상황 점검 더 많이 방문하고 더 오"
+          }
+        ]
+      },
+      "homepage": "https://www.jindo.go.kr/home/main.cs",
+      "endpoint": "https://www.jindo.go.kr/home/board/B0016.cs?m=626",
+      "menu_text": "군정소식",
+      "checked_at": "2026-10-04T10:41:21.876Z"
+    },
+    "org:전남광주통합특별시:해남군": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.haenam.go.kr/",
+      "checked_at": "2026-10-04T10:41:13.745Z"
+    },
+    "org:전북특별자치도:고창군": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.gochang.go.kr/index.gochang",
+      "checked_at": "2026-10-04T10:41:13.899Z"
+    },
+    "org:전북특별자치도:군산시": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)",
+      "homepage": "https://www.gunsan.go.kr/main/main?_currentUrl=https%3A%2F%2Fwww.gunsan.go.kr%2Fmain%2Fm2387&_retUrl=a13316bb78fb0458be9675f48763d79fc02bc10c8ea60b12011225dbc4a17bde46cae50a8a5a78754bcde810946b2f35",
+      "endpoint": "http://eminwon.gunsan.go.kr/emwp/jsp/ofr/OfrNewsEpctLSub.jsp?news_epct_yn=1,2",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T10:41:23.061Z"
+    },
+    "org:전북특별자치도:김제시": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "메뉴명이 '보도자료'가 아님(시정소식 새창열림). 민간 기사 모음일 수 있어 자동 확정하지 않음",
+      "pattern": {
+        "idParam": "dataSid",
+        "count": 9,
+        "profile": {
+          "link": "view\\.gimje[^\"']*?[?&](?:amp;)?dataSid=(?<id>[\\w-]+)",
+          "url": "https://www.gimje.go.kr/webzine/board/view.gimje?menuCd=DOM_000001201000000000&boardId=BBS_0000086&dataSid={id}",
+          "title": "<strong[^>]*>\\s*([^<]+)"
+        },
+        "samples": [
+          {
+            "url": "https://www.gimje.go.kr/webzine/board/view.gimje?menuCd=DOM_000001201000000000&boardId=BBS_0000086&dataSid=363543",
+            "text": "미래 첨단 농업 시대 개막 2026.09.30"
+          },
+          {
+            "url": "https://www.gimje.go.kr/webzine/board/view.gimje?menuCd=DOM_000001201000000000&boardId=BBS_0000086&dataSid=363420",
+            "text": "제28회 지평선축제 개막 앞두고 현장 최종 점검 2026.09.29"
+          },
+          {
+            "url": "https://www.gimje.go.kr/webzine/board/view.gimje?menuCd=DOM_000001201000000000&boardId=BBS_0000086&dataSid=362997",
+            "text": "추석맞이 전통시장 장보기 행사 등 추진 2026.09.23"
+          }
+        ]
+      },
+      "items": 9,
+      "homepage": "https://www.gimje.go.kr/index.gimje",
+      "endpoint": "https://www.gimje.go.kr/webzine/board/list.gimje?boardId=BBS_0000086&menuCd=DOM_000001201000000000&contentsSid=924&cpath=%2Fwebzine",
+      "menu_text": "시정소식 새창열림",
+      "checked_at": "2026-10-04T10:41:32.606Z"
+    },
+    "org:전북특별자치도:무주군": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.muju.go.kr/index.9is?contentUid=4028a6d28a8bff23018c336c49950e70",
+      "checked_at": "2026-10-04T10:41:19.391Z"
+    },
+    "org:전북특별자치도:부안군": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.buan.go.kr/index.buan",
+      "checked_at": "2026-10-04T10:41:17.073Z"
+    },
+    "org:전북특별자치도:완주군": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)",
+      "homepage": "https://www.wanju.go.kr/index.9is",
+      "endpoint": "https://www.wanju.go.kr/news/index.9is",
+      "menu_text": "보도자료 더보기",
+      "checked_at": "2026-10-04T10:41:24.749Z"
+    },
+    "org:전북특별자치도:임실군": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)",
+      "homepage": "https://www.imsil.go.kr/index.imsil",
+      "endpoint": "https://www.imsil.go.kr/index.imsil?menuCd=DOM_000000103002001000",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T10:41:30.767Z"
+    },
+    "org:전북특별자치도:장수군": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "메뉴명이 '보도자료'가 아님(언론보도). 민간 기사 모음일 수 있어 자동 확정하지 않음",
+      "pattern": {
+        "idParam": "dataSid",
+        "count": 10,
+        "profile": {
+          "link": "view\\.jangsu[^\"']*?[?&](?:amp;)?dataSid=(?<id>[\\w-]+)",
+          "url": "https://www.jangsu.go.kr/board/view.jangsu?boardId=BBS_0000041&menuCd=DOM_000000102001012000&paging=ok&startPage=1&dataSid={id}",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://www.jangsu.go.kr/board/view.jangsu?boardId=BBS_0000041&menuCd=DOM_000000102001012000&paging=ok&startPage=1&dataSid=579462",
+            "text": "장수군, 공약이행평가 군민배심원단 위촉식 및 회의 개최"
+          },
+          {
+            "url": "https://www.jangsu.go.kr/board/view.jangsu?boardId=BBS_0000041&menuCd=DOM_000000102001012000&paging=ok&startPage=1&dataSid=579461",
+            "text": "장수군여성단체협의회, 결혼이주여성과 함께하는 제빵 및 배식봉사 추진"
+          },
+          {
+            "url": "https://www.jangsu.go.kr/board/view.jangsu?boardId=BBS_0000041&menuCd=DOM_000000102001012000&paging=ok&startPage=1&dataSid=579460",
+            "text": "장수읍축제추진위, ‘제1회 장수 가야지 축제’ 성황리 개최"
+          }
+        ]
+      },
+      "items": 13,
+      "homepage": "https://www.jangsu.go.kr/index.jangsu",
+      "endpoint": "https://www.jangsu.go.kr/board/list.jangsu;jsessionid=6B9FE26F8DB944927E841C92FF33CDDC.tomcat1?boardId=BBS_0000041&menuCd=DOM_000000102001012000&contentsSid=24&cpath=",
+      "menu_text": "언론보도",
+      "checked_at": "2026-10-04T10:41:27.693Z"
+    },
+    "org:충청남도:당진시": {
+      "status": "AUTO_VERIFIED",
+      "reason": "개별 프로필(자동 탐색 실패 게시판): 목록 10건·날짜 10건 확인, 첫 게시물 원문 주소에서 제목 일치",
+      "pattern": {
+        "profile": {
+          "link": "selectBoardArticle\\.do\\?nttId=(?<id>\\d+)\"\\s+title=",
+          "url": "https://www.dangjin.go.kr/cop/bbs/BBSMSTR_000000000014/selectBoardArticle.do?nttId={id}",
+          "title": "attr:title",
+          "date": "등록일자</strong>\\s*([0-9.]+)"
+        },
+        "basis": "카드형 목록. 제목 링크(title 속성 있음)만 읽고 같은 번호의 요약 링크(div.pt, 본문 일부)는 건너뜀. 날짜는 '등록일자' 칸",
+        "method": "SCRIPT_LINK_PROFILE"
+      },
+      "homepage": "https://www.dangjin.go.kr/kor.do",
+      "endpoint": "https://www.dangjin.go.kr/cop/bbs/BBSMSTR_000000000014/selectBoardList.do",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T14:37:49.834Z",
+      "items": 10,
+      "latest": "2026-10-02",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "목록 항목 11건, 날짜 1건(기준 미달)"
+    },
+    "org:충청남도:아산시": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 원문에서 목록 제목을 찾지 못함(주소 틀 불일치 가능)",
+      "pattern": {
+        "idParam": "pds_no",
+        "count": 22,
+        "profile": {
+          "link": "m_news[^\"']*?[?&](?:amp;)?pds_no=(?<id>[\\w-]+)",
+          "url": "https://media.asan.go.kr/develop/m_news/?m_mode=view&cate=news&a_no=10&pds_no={id}",
+          "title": "text"
+        },
+        "samples": [
+          {
+            "url": "https://media.asan.go.kr/develop/m_news/?m_mode=view&cate=news&a_no=10&pds_no=2026092110024127766",
+            "text": "2026.09.21.송곡 은행나무 창작마루 개관식(드론)"
+          },
+          {
+            "url": "https://media.asan.go.kr/develop/m_news/?m_mode=view&cate=news&a_no=10&pds_no=2026092110024127766",
+            "text": "2026.09.21.송곡 은행나무 창작마루 개관식(드론)"
+          },
+          {
+            "url": "https://media.asan.go.kr/develop/m_news/?m_mode=view&cate=news&a_no=5&pds_no=2026091402033653410",
+            "text": "아산시, 외국인 주민 위한 생활안내·민원서식 QR 서비스 제공"
+          }
+        ]
+      },
+      "homepage": "https://www.asan.go.kr/main/",
+      "endpoint": "https://media.asan.go.kr/",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T10:41:41.808Z"
+    },
+    "org:충청북도:괴산군": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)",
+      "homepage": "https://www.goesan.go.kr/www/index.do",
+      "endpoint": "https://www.goesan.go.kr/www/selectBbsNttList.do?bbsNo=393&key=1972",
+      "menu_text": "10 월의 괴산군정뉴스 자세히보기",
+      "checked_at": "2026-10-04T10:41:39.815Z"
+    },
+    "org:충청북도:단양군": {
+      "status": "ACCESS_ERROR",
+      "reason": "TOO_MANY_REDIRECTS",
+      "homepage": "https://www.danyang.go.kr/",
+      "checked_at": "2026-10-04T10:41:29.354Z"
+    },
+    "org:충청북도:증평군": {
+      "status": "CANDIDATE_NEEDS_REVIEW",
+      "reason": "보도자료 목록은 있으나 상세보기가 POST 폼 전송이라 고정 원문 주소를 만들 수 없음(2026-10-04 사람 확인)",
+      "homepage": "https://www.jp.go.kr/kor.do",
+      "endpoint": "https://www.jp.go.kr/kor/cop/bbs/BBSMSTR_000000000135/selectBoardList.do",
+      "menu_text": "보도자료",
+      "checked_at": "2026-10-04T14:37:51.422Z",
+      "previous_status": "CANDIDATE_NEEDS_REVIEW",
+      "previous_reason": "상세 링크 묶음(5개 이상)을 찾지 못함(스크립트 링크·POST 폼 가능)"
+    },
+    "org:충청북도:충주시": {
+      "status": "NO_BOARD_FOUND",
+      "reason": "홈페이지 첫 화면에서 보도자료류 메뉴를 찾지 못함(스크립트 메뉴 가능)",
+      "homepage": "https://www.chungju.go.kr/www/index.do",
+      "checked_at": "2026-10-04T10:41:38.290Z"
+    }
+  }
+}
