@@ -7,6 +7,8 @@ const LEGACY_FILTER_FIELDS = [
   ["sido", "sido"],
   ["sigungu", "sigungu"],
   ["category", "category"],
+  ["subcategory", "subcategory"],
+  ["type", "type"],
   ["keyword", "q"],
 ] as const satisfies readonly QueryField[];
 
@@ -14,6 +16,8 @@ const PAGE_FILTER_FIELDS = [
   ["sido", "sido"],
   ["sigungu", "sigungu"],
   ["category", "category"],
+  ["subcategory", "subcategory"],
+  ["type", "type"],
   ["sort", "sort"],
 ] as const satisfies readonly QueryField[];
 
@@ -21,6 +25,8 @@ const CSV_FILTER_FIELDS = [
   ["sido", "sido"],
   ["sigungu", "sigungu"],
   ["category", "category"],
+  ["subcategory", "subcategory"],
+  ["type", "type"],
   ["keyword", "q"],
   ["sort", "sort"],
 ] as const satisfies readonly QueryField[];
@@ -36,17 +42,18 @@ export function readDashboardFilters(search: string): FilterState {
   return filters;
 }
 
-export function dashboardPagePath(pathname: string, filters: FilterState): string {
+export function dashboardPagePath(pathname: string, filters: FilterState, hash = ""): string {
   const params = new URLSearchParams();
   for (const [field, queryKey] of PAGE_FILTER_FIELDS) {
     if (filters[field]) params.set(queryKey, filters[field]);
   }
   const query = params.toString();
-  return query ? `${pathname}?${query}` : pathname;
+  const anchor = hash === "#search-results" ? hash : "";
+  return (query ? `${pathname}?${query}` : pathname) + anchor;
 }
 
-export function dashboardShareUrl(origin: string, pathname: string, filters: FilterState): string {
-  return new URL(dashboardPagePath(pathname, filters), origin).toString();
+export function dashboardShareUrl(origin: string, pathname: string, filters: FilterState, hash = ""): string {
+  return new URL(dashboardPagePath(pathname, filters, hash), origin).toString();
 }
 
 export function dashboardCsvUrl(filters: FilterState): string {

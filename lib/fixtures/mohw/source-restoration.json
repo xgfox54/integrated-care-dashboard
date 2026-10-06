@@ -1,0 +1,722 @@
+[
+  {
+    "live": {
+      "serviceId": "0085:1489600:1:2:7",
+      "sido": "경기도",
+      "sigungu": "김포시",
+      "category": "일상생활돌봄",
+      "subcategory": "가사지원",
+      "name": "일상돌봄",
+      "description": "돌봄이 필요한 청·중장년과 가족돌봄청년에게 재가돌봄·가사와 특화서비스를 제공하는 사업입니다.",
+      "target": "64세 미만 청장년",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "김포시청 및 협력 제공기관",
+      "type": "전국",
+      "serial": "22",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60611000000&bid=0085&act=view&list_no=1489600&tag=&nPage=2",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "가사지원",
+      "type": "전국",
+      "description": "청소, 세탁, 식사준비 등 가사서비스 제공"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0085:1489600:1:2:11",
+      "sido": "경기도",
+      "sigungu": "김포시",
+      "category": "일상생활돌봄",
+      "subcategory": "가사지원",
+      "name": "일상돌봄",
+      "description": "돌봄이 필요한 청·중장년과 가족돌봄청년에게 재가돌봄·가사와 특화서비스를 제공하는 사업입니다.",
+      "target": "64세 미만 청장년",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "김포시청 및 협력 제공기관",
+      "type": "전국",
+      "serial": "26",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60611000000&bid=0085&act=view&list_no=1489600&tag=&nPage=2",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "이동지원",
+      "type": "전국",
+      "description": "병원 등 목적지 왕복 및 동행 지원"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0085:1489615:1:2:11",
+      "sido": "경기도",
+      "sigungu": "여주시",
+      "category": "일상생활돌봄",
+      "subcategory": "일상생활지원",
+      "name": "재가노인지원서비스",
+      "description": "사례관리를 통한 통합적인 재가노인지원서비스 제공",
+      "target": "노인",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "수행기관 4개소",
+      "type": "전국",
+      "serial": "29",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60611000000&bid=0085&act=view&list_no=1489615&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "일상생활지원",
+      "type": "전국",
+      "description": "사례관리를 통한 통합적인 재가노인지원서비스 제공"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0085:1489615:1:2:12",
+      "sido": "경기도",
+      "sigungu": "여주시",
+      "category": "일상생활돌봄",
+      "subcategory": "일상생활지원",
+      "name": "재가노인지원서비스",
+      "description": "사례관리를 통한 통합적인 재가노인지원서비스 제공",
+      "target": "노인",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "수행기관 4개소",
+      "type": "전국",
+      "serial": "30",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60611000000&bid=0085&act=view&list_no=1489615&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "가사지원",
+      "type": "전국",
+      "description": "사례관리를 통한 통합적인 재가노인지원서비스 제공"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0085:1489596:1:2:1",
+      "sido": "경기도",
+      "sigungu": "평택시",
+      "category": "요양",
+      "subcategory": "방문요양",
+      "name": "노인장기요양보험",
+      "description": "재가급여서비스 지원",
+      "target": "노인",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "건강보험공단",
+      "type": "전국",
+      "serial": "1",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60611000000&bid=0085&act=view&list_no=1489596&tag=&nPage=3",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "방문요양",
+      "type": "전국",
+      "description": "재가급여서비스 지원"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0085:1489596:1:2:2",
+      "sido": "경기도",
+      "sigungu": "평택시",
+      "category": "요양",
+      "subcategory": "방문요양",
+      "name": "노인장기요양보험",
+      "description": "재가급여서비스 지원",
+      "target": "노인",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "건강보험공단",
+      "type": "전국",
+      "serial": "2",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60611000000&bid=0085&act=view&list_no=1489596&tag=&nPage=3",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "방문간호",
+      "type": "전국",
+      "description": "재가급여서비스 지원"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0085:1489596:1:2:3",
+      "sido": "경기도",
+      "sigungu": "평택시",
+      "category": "요양",
+      "subcategory": "방문요양",
+      "name": "노인장기요양보험",
+      "description": "재가급여서비스 지원",
+      "target": "노인",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "건강보험공단",
+      "type": "전국",
+      "serial": "3",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60611000000&bid=0085&act=view&list_no=1489596&tag=&nPage=3",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "방문목욕",
+      "type": "전국",
+      "description": "재가급여서비스 지원"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0085:1489596:1:2:4",
+      "sido": "경기도",
+      "sigungu": "평택시",
+      "category": "요양",
+      "subcategory": "방문요양",
+      "name": "노인장기요양보험",
+      "description": "재가급여서비스 지원",
+      "target": "노인",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "건강보험공단",
+      "type": "전국",
+      "serial": "4",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60611000000&bid=0085&act=view&list_no=1489596&tag=&nPage=3",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "주야간보호",
+      "type": "전국",
+      "description": "재가급여서비스 지원"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0085:1489596:1:2:5",
+      "sido": "경기도",
+      "sigungu": "평택시",
+      "category": "요양",
+      "subcategory": "방문요양",
+      "name": "노인장기요양보험",
+      "description": "재가급여서비스 지원",
+      "target": "노인",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "건강보험공단",
+      "type": "전국",
+      "serial": "5",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60611000000&bid=0085&act=view&list_no=1489596&tag=&nPage=3",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "단기보호",
+      "type": "전국",
+      "description": "재가급여서비스 지원"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0085:1489596:1:2:6",
+      "sido": "경기도",
+      "sigungu": "평택시",
+      "category": "요양",
+      "subcategory": "방문요양",
+      "name": "노인장기요양보험",
+      "description": "재가급여서비스 지원",
+      "target": "노인",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "건강보험공단",
+      "type": "전국",
+      "serial": "6",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60611000000&bid=0085&act=view&list_no=1489596&tag=&nPage=3",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "복지용구",
+      "type": "전국",
+      "description": "재가급여서비스 지원"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0075:1489541:1:2:3",
+      "sido": "서울특별시",
+      "sigungu": "용산구",
+      "category": "일상생활돌봄",
+      "subcategory": "일상생활지원",
+      "name": "돌봄SOS일시재가",
+      "description": "가사활동, 일상생활 지원 등 직접적인 수발 서비스 제공",
+      "target": "노인, 장애인(중위소득 100% 이하)",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "용산구",
+      "type": "지역특화",
+      "serial": "29",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60601000000&bid=0075&act=view&list_no=1489541&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "일상생활지원",
+      "type": "지역특화",
+      "description": "가사활동, 일상생활 지원 등 직접적인 수발 서비스 제공"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0075:1489541:1:2:7",
+      "sido": "서울특별시",
+      "sigungu": "용산구",
+      "category": "일상생활돌봄",
+      "subcategory": "일상생활지원",
+      "name": "돌봄SOS일시재가",
+      "description": "가사활동, 일상생활 지원 등 직접적인 수발 서비스 제공",
+      "target": "노인, 장애인(중위소득 100% 이하)",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "용산구",
+      "type": "지역특화",
+      "serial": "33",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60601000000&bid=0075&act=view&list_no=1489541&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "가사지원",
+      "type": "지역특화",
+      "description": "가사활동, 일상생활 지원 등 직접적인 수발 서비스 제공"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0081:1489585:1:3:1",
+      "sido": "울산광역시",
+      "sigungu": "북구",
+      "category": "요양",
+      "subcategory": "방문요양",
+      "name": "장기요양 재가급여",
+      "description": "장기요양 1~2등급: 재가급여 또는 시설급여 - 장기요양 3~5등급: 재가급여 - 인지지원등급: 재가급여 중 주야간보호만 이용 가능",
+      "target": "장기요양 수급자",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "건보공단",
+      "type": "전국",
+      "serial": "18",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60607000000&bid=0081&act=view&list_no=1489585&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "방문요양",
+      "type": "전국",
+      "description": "장기요양 1~2등급: 재가급여 또는 시설급여 - 장기요양 3~5등급: 재가급여 - 인지지원등급: 재가급여 중 주야간보호만 이용 가능"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0081:1489585:1:3:2",
+      "sido": "울산광역시",
+      "sigungu": "북구",
+      "category": "요양",
+      "subcategory": "방문요양",
+      "name": "장기요양 재가급여",
+      "description": "장기요양 1~2등급: 재가급여 또는 시설급여 - 장기요양 3~5등급: 재가급여 - 인지지원등급: 재가급여 중 주야간보호만 이용 가능",
+      "target": "장기요양 수급자",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "건보공단",
+      "type": "전국",
+      "serial": "19",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60607000000&bid=0081&act=view&list_no=1489585&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "방문간호",
+      "type": "전국",
+      "description": "장기요양 1~2등급: 재가급여 또는 시설급여 - 장기요양 3~5등급: 재가급여 - 인지지원등급: 재가급여 중 주야간보호만 이용 가능"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0081:1489585:1:3:3",
+      "sido": "울산광역시",
+      "sigungu": "북구",
+      "category": "요양",
+      "subcategory": "방문요양",
+      "name": "장기요양 재가급여",
+      "description": "장기요양 1~2등급: 재가급여 또는 시설급여 - 장기요양 3~5등급: 재가급여 - 인지지원등급: 재가급여 중 주야간보호만 이용 가능",
+      "target": "장기요양 수급자",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "건보공단",
+      "type": "전국",
+      "serial": "20",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60607000000&bid=0081&act=view&list_no=1489585&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "방문목욕",
+      "type": "전국",
+      "description": "장기요양 1~2등급: 재가급여 또는 시설급여 - 장기요양 3~5등급: 재가급여 - 인지지원등급: 재가급여 중 주야간보호만 이용 가능"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0081:1489585:1:3:4",
+      "sido": "울산광역시",
+      "sigungu": "북구",
+      "category": "요양",
+      "subcategory": "방문요양",
+      "name": "장기요양 재가급여",
+      "description": "장기요양 1~2등급: 재가급여 또는 시설급여 - 장기요양 3~5등급: 재가급여 - 인지지원등급: 재가급여 중 주야간보호만 이용 가능",
+      "target": "장기요양 수급자",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "건보공단",
+      "type": "전국",
+      "serial": "21",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60607000000&bid=0081&act=view&list_no=1489585&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "주야간보호",
+      "type": "전국",
+      "description": "장기요양 1~2등급: 재가급여 또는 시설급여 - 장기요양 3~5등급: 재가급여 - 인지지원등급: 재가급여 중 주야간보호만 이용 가능"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0081:1489585:1:3:5",
+      "sido": "울산광역시",
+      "sigungu": "북구",
+      "category": "요양",
+      "subcategory": "방문요양",
+      "name": "장기요양 재가급여",
+      "description": "장기요양 1~2등급: 재가급여 또는 시설급여 - 장기요양 3~5등급: 재가급여 - 인지지원등급: 재가급여 중 주야간보호만 이용 가능",
+      "target": "장기요양 수급자",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "건보공단",
+      "type": "전국",
+      "serial": "22",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60607000000&bid=0081&act=view&list_no=1489585&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "단기보호",
+      "type": "전국",
+      "description": "장기요양 1~2등급: 재가급여 또는 시설급여 - 장기요양 3~5등급: 재가급여 - 인지지원등급: 재가급여 중 주야간보호만 이용 가능"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0081:1489585:1:3:6",
+      "sido": "울산광역시",
+      "sigungu": "북구",
+      "category": "요양",
+      "subcategory": "방문요양",
+      "name": "장기요양 재가급여",
+      "description": "장기요양 1~2등급: 재가급여 또는 시설급여 - 장기요양 3~5등급: 재가급여 - 인지지원등급: 재가급여 중 주야간보호만 이용 가능",
+      "target": "장기요양 수급자",
+      "detailTarget": "",
+      "applicationMethod": "",
+      "provider": "건보공단",
+      "type": "전국",
+      "serial": "23",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60607000000&bid=0081&act=view&list_no=1489585&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "복지용구",
+      "type": "전국",
+      "description": "장기요양 1~2등급: 재가급여 또는 시설급여 - 장기요양 3~5등급: 재가급여 - 인지지원등급: 재가급여 중 주야간보호만 이용 가능"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0086:1489643:1:3:11",
+      "sido": "충청북도",
+      "sigungu": "음성군",
+      "category": "일상생활돌봄",
+      "subcategory": "가사지원",
+      "name": "가사지원",
+      "description": "단기돌봄 제공하여 병원입원 및 시설 입소 등 고비용 돌봄 진입 방지(월 24시간, 월 60시간)",
+      "target": "노인, 장애인",
+      "detailTarget": "노인, 장애인",
+      "applicationMethod": "",
+      "provider": "음성군통합돌봄지원센터",
+      "type": "미분류",
+      "serial": "",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60612000000&bid=0086&act=view&list_no=1489643&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "가사지원",
+      "type": "공통_연계",
+      "description": "단기돌봄 제공하여 병원입원 및 시설 입소 등 고비용 돌봄 진입 방지(월 24시간, 월 60시간)"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0086:1489643:1:6:8",
+      "sido": "충청북도",
+      "sigungu": "음성군",
+      "category": "일상생활돌봄",
+      "subcategory": "가사지원",
+      "name": "가사지원",
+      "description": "단기돌봄 제공하여 병원입원 및 시설 입소 등 고비용 돌봄 진입 방지(월 24시간, 월 60시간)",
+      "target": "노인, 장애인",
+      "detailTarget": "노인, 장애인",
+      "applicationMethod": "",
+      "provider": "음성군통합돌봄지원센터",
+      "type": "미분류",
+      "serial": "",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60612000000&bid=0086&act=view&list_no=1489643&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "가사지원",
+      "type": "지역특화",
+      "description": "단기돌봄 제공하여 병원입원 및 시설 입소 등 고비용 돌봄 진입 방지(월 24시간, 월 60시간)"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0086:1489643:1:3:10",
+      "sido": "충청북도",
+      "sigungu": "음성군",
+      "category": "일상생활돌봄",
+      "subcategory": "일상생활지원",
+      "name": "방문목욕",
+      "description": "욕조를 활용하여 목욕준비부터 이동보조, 몸 씻기, 머리 감기기, 옷 갈아입히기, 목욕 후 주변 정리 등 지원(월 4회)",
+      "target": "노인, 장애인",
+      "detailTarget": "노인, 장애인",
+      "applicationMethod": "",
+      "provider": "음성군통합돌봄지원센터",
+      "type": "미분류",
+      "serial": "",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60612000000&bid=0086&act=view&list_no=1489643&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "일상생활지원",
+      "type": "공통_연계",
+      "description": "욕조를 활용하여 목욕준비부터 이동보조, 몸 씻기, 머리 감기기, 옷 갈아입히기, 목욕 후 주변 정리 등 지원(월 4회)"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0086:1489643:1:6:7",
+      "sido": "충청북도",
+      "sigungu": "음성군",
+      "category": "일상생활돌봄",
+      "subcategory": "일상생활지원",
+      "name": "방문목욕",
+      "description": "욕조를 활용하여 목욕준비부터 이동보조, 몸 씻기, 머리 감기기, 옷 갈아입히기, 목욕 후 주변 정리 등 지원(월 4회)",
+      "target": "노인, 장애인",
+      "detailTarget": "노인, 장애인",
+      "applicationMethod": "",
+      "provider": "음성군통합돌봄지원센터",
+      "type": "미분류",
+      "serial": "",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60612000000&bid=0086&act=view&list_no=1489643&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "일상생활지원",
+      "type": "지역특화",
+      "description": "욕조를 활용하여 목욕준비부터 이동보조, 몸 씻기, 머리 감기기, 옷 갈아입히기, 목욕 후 주변 정리 등 지원(월 4회)"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0086:1489643:1:4:7",
+      "sido": "충청북도",
+      "sigungu": "음성군",
+      "category": "일상생활돌봄",
+      "subcategory": "식사지원",
+      "name": "식사지원",
+      "description": "저염식, 당뇨식 등 영양 식사 지원(주 3회/밥, 국, 반찬3)",
+      "target": "노인, 장애인",
+      "detailTarget": "노인, 장애인",
+      "applicationMethod": "",
+      "provider": "음성군통합돌봄지원센터",
+      "type": "미분류",
+      "serial": "",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60612000000&bid=0086&act=view&list_no=1489643&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "식사지원",
+      "type": "공통_연계",
+      "description": "저염식, 당뇨식 등 영양 식사 지원(주 3회/밥, 국, 반찬3)"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0086:1489643:1:6:9",
+      "sido": "충청북도",
+      "sigungu": "음성군",
+      "category": "일상생활돌봄",
+      "subcategory": "식사지원",
+      "name": "식사지원",
+      "description": "저염식, 당뇨식 등 영양 식사 지원(주 3회/밥, 국, 반찬3)",
+      "target": "노인, 장애인",
+      "detailTarget": "노인, 장애인",
+      "applicationMethod": "",
+      "provider": "음성군통합돌봄지원센터",
+      "type": "미분류",
+      "serial": "",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60612000000&bid=0086&act=view&list_no=1489643&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "식사지원",
+      "type": "지역특화",
+      "description": "저염식, 당뇨식 등 영양 식사 지원(주 3회/밥, 국, 반찬3)"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0086:1489643:1:4:3",
+      "sido": "충청북도",
+      "sigungu": "음성군",
+      "category": "일상생활돌봄",
+      "subcategory": "이동지원",
+      "name": "이동지원",
+      "description": "거동이 불편한 대상자에 대한 돌봄매니저의 병원동행 서비스(월 4회)",
+      "target": "노인, 장애인",
+      "detailTarget": "노인, 장애인",
+      "applicationMethod": "",
+      "provider": "음성군통합돌봄지원센터",
+      "type": "미분류",
+      "serial": "",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60612000000&bid=0086&act=view&list_no=1489643&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "이동지원",
+      "type": "공통_연계",
+      "description": "거동이 불편한 대상자에 대한 돌봄매니저의 병원동행 서비스(월 4회)"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0086:1489643:1:6:10",
+      "sido": "충청북도",
+      "sigungu": "음성군",
+      "category": "일상생활돌봄",
+      "subcategory": "이동지원",
+      "name": "이동지원",
+      "description": "거동이 불편한 대상자에 대한 돌봄매니저의 병원동행 서비스(월 4회)",
+      "target": "노인, 장애인",
+      "detailTarget": "노인, 장애인",
+      "applicationMethod": "",
+      "provider": "음성군통합돌봄지원센터",
+      "type": "미분류",
+      "serial": "",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60612000000&bid=0086&act=view&list_no=1489643&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "이동지원",
+      "type": "지역특화",
+      "description": "거동이 불편한 대상자에 대한 돌봄매니저의 병원동행 서비스(월 4회)"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0086:1489643:1:5:10",
+      "sido": "충청북도",
+      "sigungu": "음성군",
+      "category": "주거복지",
+      "subcategory": "주거공간개선",
+      "name": "주거환경개선",
+      "description": "낙상예방, 화재예방, 위생, 편의, 대여 등 지원",
+      "target": "노인, 장애인",
+      "detailTarget": "노인, 장애인",
+      "applicationMethod": "",
+      "provider": "음성군통합돌봄지원센터",
+      "type": "미분류",
+      "serial": "",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60612000000&bid=0086&act=view&list_no=1489643&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "주거공간개선",
+      "type": "공통_연계",
+      "description": "낙상예방, 화재예방, 위생, 편의, 대여 등 지원"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0086:1489643:1:7:2",
+      "sido": "충청북도",
+      "sigungu": "음성군",
+      "category": "주거복지",
+      "subcategory": "주거공간개선",
+      "name": "주거환경개선",
+      "description": "낙상예방, 화재예방, 위생, 편의, 대여 등 지원",
+      "target": "노인, 장애인",
+      "detailTarget": "노인, 장애인",
+      "applicationMethod": "",
+      "provider": "음성군통합돌봄지원센터",
+      "type": "미분류",
+      "serial": "",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60612000000&bid=0086&act=view&list_no=1489643&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "주거공간개선",
+      "type": "지역특화",
+      "description": "낙상예방, 화재예방, 위생, 편의, 대여 등 지원"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0086:1489643:1:6:4",
+      "sido": "충청북도",
+      "sigungu": "음성군",
+      "category": "기타",
+      "subcategory": "상시돌봄지원",
+      "name": "통합 돌봄콜",
+      "description": "유선창구를 통한 상담 및 정보제공",
+      "target": "노인, 장애인",
+      "detailTarget": "노인, 장애인",
+      "applicationMethod": "",
+      "provider": "음성군통합돌봄지원센터",
+      "type": "미분류",
+      "serial": "",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60612000000&bid=0086&act=view&list_no=1489643&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "상시돌봄지원",
+      "type": "공통_연계",
+      "description": "유선창구를 통한 상담 및 정보제공"
+    }
+  },
+  {
+    "live": {
+      "serviceId": "0086:1489643:1:7:4",
+      "sido": "충청북도",
+      "sigungu": "음성군",
+      "category": "기타",
+      "subcategory": "상시돌봄지원",
+      "name": "통합 돌봄콜",
+      "description": "유선창구를 통한 상담 및 정보제공",
+      "target": "노인, 장애인",
+      "detailTarget": "노인, 장애인",
+      "applicationMethod": "",
+      "provider": "음성군통합돌봄지원센터",
+      "type": "미분류",
+      "serial": "",
+      "detailUrl": "https://www.mohw.go.kr/board.es?mid=a60612000000&bid=0086&act=view&list_no=1489643&tag=&nPage=1",
+      "updatedDate": "2026-03"
+    },
+    "expected": {
+      "subcategory": "상시돌봄지원",
+      "type": "지역특화",
+      "description": "유선창구를 통한 상담 및 정보제공"
+    }
+  }
+]

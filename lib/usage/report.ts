@@ -3,6 +3,7 @@
 import { getD1 } from "../d1";
 import {
   ACTION_CODES,
+  CLICK_ACTIONS,
   AGGREGATE_RETENTION_DAYS,
   DURATION_EDGES_MS,
   ENTITY_KINDS,
@@ -520,7 +521,7 @@ async function qualityReport(meta: ReportMeta): Promise<QualityReport> {
   return {
     view: "quality",
     meta,
-    actions: actions.filter((row) => row.action !== "source_link"),
+    actions: actions.filter((row) => !CLICK_ACTIONS.includes(row.action)),
     searches: SEARCH_SCOPES.map((scope) => ({
       scope,
       ok: num(searches.find((row) => row.scope === scope && row.status === "ok")?.n),

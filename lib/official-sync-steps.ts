@@ -7,11 +7,15 @@ import {
   repairKnownExtractionFragments,
 } from "./official-correction.ts";
 import { enrichWithPublicApi } from "./official-enrichment.ts";
+import { restoreVerifiedSourceDistinctions } from "./official-source-restoration.ts";
+import { ACTIVE_KNOWLEDGE_RUN_ID_SQL } from "./platform/public-pin.ts";
+import { presenceStatements } from "./service-presence.ts";
 import { assessOfficialDataset } from "./official-quality.ts";
 import { MOHW_PROVINCES, PUBLIC_API_SEARCH_TERMS, boundedPageCount, type OfficialDocument, type OfficialService } from "./official-source.ts";
 import { repairExtractionSpacing } from "./official-spacing.ts";
 import { readSyncProgress, runUnitStatements, type SyncProgress, type SyncStage } from "./official-sync-progress.ts";
 import { insertDocumentsStatement, insertServicesStatement } from "./official-sync-writes.ts";
+import { buildSourceRowLedger, type LedgerRow } from "./official-ledger.ts";
 import { readRepositoryBaseline } from "./repository-baseline.ts";
 import type { SqlDatabase } from "./sql-database.ts";
 
@@ -38,6 +42,7 @@ export type StepOutcome = "continuing" | "succeeded" | "failed" | "idle";
 interface BuiltDataset {
   readonly services: readonly OfficialService[];
   readonly documentCount: number;
+  readonly ledger: readonly LedgerRow[];
 }
 
 /** 한 단계 안에서만 쓰는 계산 결과(저장 묶음마다 다시 계산하지 않도록 담아 둔다). */
@@ -133,15 +138,17 @@ async function buildDataset(db: SqlDatabase, runId: string, progress: SyncProgre
     "SELECT document_id, fingerprint, payload FROM official_document_service_cache WHERE document_id IN (SELECT document_id FROM official_source_document WHERE sync_run_id = ?)",
   ).bind(runId).all<{ document_id: string; fingerprint: string; payload: string }>();
   const cache = new Map(cached.results.map((row) => [row.document_id, row]));
-  const services = documents.flatMap((document) => {
+  const perDocument = documents.map((document) => {
     const fingerprint = officialDocumentFingerprint(document);
     const seed = seeds.get(document.documentId);
-    if (seed?.fingerprint === fingerprint) return seed.services;
+    if (seed?.fingerprint === fingerprint) return { documentId: document.documentId, extracted: seed.services.length, services: seed.services };
     const entry = cache.get(document.documentId);
     if (entry?.fingerprint !== fingerprint) throw new Error("보건복지부 문서별 사업 데이터가 모두 준비되지 않았습니다.");
     const payload: unknown = JSON.parse(entry.payload);
-    return Array.isArray(payload) ? payload.map(parseOfficialService).filter((service) => service !== null) : [];
+    const rows = Array.isArray(payload) ? payload : [];
+    return { documentId: document.documentId, extracted: rows.length, services: rows.map(parseOfficialService).filter((service) => service !== null) };
   });
+  const services = perDocument.flatMap((document) => document.services);
   if (services.length === 0) throw new Error("보건복지부 문서별 사업 데이터가 모두 준비되지 않았습니다.");
 
   const apiServices = new Map<string, OfficialService>();
@@ -155,23 +162,32 @@ async function buildDataset(db: SqlDatabase, runId: string, progress: SyncProgre
     }
   }
   const baseline = readRepositoryBaseline();
-  const corrected = correctFromRepositoryBaseline(
-    repairExtractionSpacing(removeExtractedContinuationFragments(repairKnownExtractionFragments(services))),
-    baseline,
-  );
+  const repaired = repairKnownExtractionFragments(services);
+  const kept = removeExtractedContinuationFragments(repaired);
+  const keptSet = new Set(kept);
+  const corrected = correctFromRepositoryBaseline(repairExtractionSpacing(kept), baseline);
   const enriched = enrichWithPublicApi(alignToRepositoryTaxonomy(corrected, baseline), [...apiServices.values()]);
   const quality = assessOfficialDataset(enriched.services, readMohwSeed().benchmark, baseline);
   if (!quality.passed) throw new Error(`데이터 품질 기준 미달: ${quality.reasons.join(" ")}`);
-  return { services: enriched.services, documentCount: documents.length };
+  const restored = enriched.services.map(restoreVerifiedSourceDistinctions);
+  const ledger = buildSourceRowLedger({
+    documents: perDocument.map((document) => ({ documentId: document.documentId, extracted: document.extracted, parsed: document.services.length })),
+    removedFragments: repaired.filter((service) => !keptSet.has(service)),
+    finalServices: restored,
+  });
+  return { services: restored, documentCount: documents.length, ledger };
 }
 
 async function runStore(db: SqlDatabase, runId: string, progress: SyncProgress, now: number, memo: StepMemo): Promise<UnitResult> {
   memo.dataset ??= buildDataset(db, runId, progress);
-  const { services } = await memo.dataset;
+  const { services, ledger } = await memo.dataset;
   const slice = services.slice(progress.stored, progress.stored + STORE_ROWS_PER_UNIT);
   const stored = progress.stored + slice.length;
   const next: SyncStage = stored >= services.length ? "promote" : "store";
   await db.batch([
+    ...(progress.stored === 0 ? ledger.map((row) => db.prepare(
+      "INSERT OR REPLACE INTO official_source_row_ledger (run_id, document_id, extracted, mapped, preserved_unresolved, excluded_unparseable, excluded_fragment, traced) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+    ).bind(runId, row.document_id, row.extracted, row.mapped, row.preserved_unresolved, row.excluded_unparseable, row.excluded_fragment, row.traced)) : []),
     ...insertServicesStatement(db, runId, slice, progress.stored, now),
     ...runUnitStatements(db, runId, next, { ...progress, stored, total: services.length, failures: 0 }, now),
   ]);
@@ -184,8 +200,11 @@ async function runPromote(db: SqlDatabase, runId: string, progress: SyncProgress
     db.prepare(
       "UPDATE official_sync_run SET status = 'succeeded', completed_at = ?, service_count = ?, document_count = ?, error = '', stage = 'done', advanced_at = ? WHERE id = ? AND status = 'running'",
     ).bind(now, progress.total, documents?.count ?? 0, now, runId),
-    db.prepare("DELETE FROM official_service_snapshot WHERE sync_run_id <> ? AND EXISTS (SELECT 1 FROM official_sync_run WHERE id = ? AND status = 'succeeded')").bind(runId, runId),
-    db.prepare("DELETE FROM official_source_document WHERE sync_run_id <> ? AND EXISTS (SELECT 1 FROM official_sync_run WHERE id = ? AND status = 'succeeded')").bind(runId, runId),
+    // 사업 수록 원장: 직전 성공 실행과 비교(이전 자료를 지우기 전에).
+    ...presenceStatements(db, runId, now),
+    // 활성 공개본이 아직 가리키는 이전 실행은 남긴다(공개본 전환 전 웹·MCP 조회가 빈 자료를 보지 않게). 다음 수집 때 정리된다.
+    db.prepare("DELETE FROM official_service_snapshot WHERE sync_run_id <> ? AND sync_run_id IS NOT " + ACTIVE_KNOWLEDGE_RUN_ID_SQL + " AND EXISTS (SELECT 1 FROM official_sync_run WHERE id = ? AND status = 'succeeded')").bind(runId, runId),
+    db.prepare("DELETE FROM official_source_document WHERE sync_run_id <> ? AND sync_run_id IS NOT " + ACTIVE_KNOWLEDGE_RUN_ID_SQL + " AND EXISTS (SELECT 1 FROM official_sync_run WHERE id = ? AND status = 'succeeded')").bind(runId, runId),
     db.prepare("DELETE FROM official_sync_api_page WHERE run_id = ?").bind(runId),
   ]);
   return { stage: "succeeded" };

@@ -171,7 +171,15 @@ export function isUsageComposing(): boolean {
 
 // ---- 화면·탭 ----
 
-const NAV_TABS: Record<string, TabCode> = { "/": "dashboard_search", "/wiki": "wiki", "/welfare100": "welfare100", "/sources": "sources" };
+const NAV_TABS: Record<string, TabCode> = {
+  "/": "dashboard_search",
+  "/wiki": "wiki",
+  "/welfare100": "welfare100",
+  "/mindmap": "mindmap",
+  "/news": "news",
+  "/budget": "budget",
+  "/sources": "sources",
+};
 
 /** 상단 메뉴를 누를 때. 다음 화면이 '이용자가 고른 탭'인지, 지금 탭을 다시 누른 것인지 알려 준다. */
 export function markUsageNavigation(href: string, current: boolean): void {
@@ -335,6 +343,12 @@ export function startUsageAction(action: ActionCode): UsageActionHandle {
     failure: (code, ms) => finish("failure", ms, code),
     cancel: () => finish("cancel"),
   };
+}
+
+/** 클릭만 세는 기능(WIKI→복지제도100 바로가기, 마인드맵 마디 선택, 복지뉴스 원문 보기, 복지예산 조회). */
+export function usageClick(action: "wiki_welfare100" | "mindmap_select" | "news_original" | "budget_query"): void {
+  if (!isUsageActive()) return;
+  emit({ type: "action", id: newUsageId(), action, outcome: "click" });
 }
 
 export function usagePerf(metric: Exclude<PerfMetric, "lcp" | "cls">, ms: number): void {

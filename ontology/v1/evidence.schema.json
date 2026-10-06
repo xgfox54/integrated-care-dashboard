@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "welfare-v1/evidence.schema.json",
+  "title": "Welfare 근거 위치(evidence) — document-facts-1",
+  "description": "파싱 구조 기준 위치. 실제 인쇄 쪽수를 확인한 값이 아니므로 physical_page_verified는 false만 허용.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evidence_id",
+    "statement_id",
+    "source_version_id",
+    "parse_id",
+    "block_id",
+    "ir_pointer",
+    "table_id",
+    "cell",
+    "locator_precision",
+    "page_mode",
+    "layout_page_start",
+    "physical_page_verified",
+    "quote"
+  ],
+  "properties": {
+    "evidence_id": {
+      "type": "string",
+      "pattern": "^ev_[a-z0-9_]{6,72}$"
+    },
+    "statement_id": {
+      "type": "string",
+      "pattern": "^stmt_[a-f0-9]{24}$"
+    },
+    "source_version_id": {
+      "type": "string",
+      "pattern": "^sv-[a-f0-9]{8,64}$"
+    },
+    "parse_id": {
+      "type": "string",
+      "pattern": "^p_[a-f0-9]{32}$"
+    },
+    "block_id": {
+      "type": "string",
+      "pattern": "^b:[a-f0-9]{8,32}$"
+    },
+    "ir_pointer": {
+      "type": "string",
+      "maxLength": 200,
+      "pattern": "^/blocks/[0-9]+(/[A-Za-z0-9_]+)*$"
+    },
+    "table_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^t:[a-f0-9]{8,32}$"
+    },
+    "cell": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 40
+    },
+    "locator_precision": {
+      "enum": [
+        "parsed_structural",
+        "document"
+      ]
+    },
+    "page_mode": {
+      "enum": [
+        "layout",
+        "none"
+      ]
+    },
+    "layout_page_start": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "physical_page_verified": {
+      "const": false
+    },
+    "quote": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300
+    }
+  }
+}

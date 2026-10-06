@@ -35,6 +35,7 @@ const CACHE_PARAMETERS: Readonly<Record<string, readonly string[]>> = {
   "/api/dataset/service": ["service"],
   "/api/dataset/bundle": ["scope", "part", "per", "size", "category"],
   "/api/wiki": ["name", "sido", "sigungu"],
+  "/api/mindmap": [],
 };
 
 export function sharedCacheKey(request: Request): string | null {

@@ -6,6 +6,8 @@ export interface WikiArticle {
   readonly name: string;
   readonly overview: string;
   readonly content: string;
+  readonly category: string;
+  readonly type: string;
   readonly contentStatus: "official-row" | "verified-supplement" | "admin-edited" | "unavailable";
   readonly applicationConditions?: string;
   readonly conditionsBasis?: string;
@@ -52,15 +54,21 @@ function unavailableContent(): string {
 }
 
 function detailedContent(row: ServiceRow, description: string): string {
-  const sentence = /[.!?]$/.test(description) ? description : `${description}.`;
-  const parts = [sentence, `제공 지역은 ${location(row)}입니다.`];
+  const name = oneLine(row.name);
+  const shortDescription = oneLine(description).replace(/[.!?]+$/, "");
+  const compactName = name.replace(/\s+/g, "");
+  const descriptionNamesBusiness = [compactName, `${compactName}지원`, `${compactName}사업`, `${compactName}지원사업`]
+    .includes(shortDescription.replace(/\s+/g, ""));
+  const title = descriptionNamesBusiness ? shortDescription : name;
+  const businessName = title.endsWith("사업") ? title : `${title} 사업`;
+  const parts = [`${location(row)}에서 제공하는 ${businessName}입니다.`];
   const provider = meaningful(row.provider);
   if (provider) parts.push(`제공기관은 ${provider}입니다.`);
-  const fields = [meaningful(row.category), meaningful(row.subcategory)].filter(Boolean);
-  if (fields.length) parts.push(`사업 분야는 ${fields.join(" · ")}입니다.`);
-  const type = meaningful(row.type);
-  if (type && type !== "미분류") parts.push(`사업구분은 ${type}입니다.`);
-  return parts.join(" ");
+  const introduction = parts.join(" ");
+  if (descriptionNamesBusiness) {
+    return introduction;
+  }
+  return `${introduction}\n\n${description}`;
 }
 
 export function createWikiArticle(
@@ -97,13 +105,12 @@ export function createWikiArticle(
     overview: oneLine(
       verifiedText?.overview || description || exactMatchSummary || unavailableOverview(row),
     ),
-    content: adminContent
-      ? adminContent
-      : verifiedText
-        ? verifiedText.content
-        : description
-          ? detailedContent(row, description)
-          : exactMatchSummary || unavailableContent(),
+    content: detailedContent(
+      row,
+      adminContent || verifiedText?.content || description || exactMatchSummary || unavailableContent(),
+    ),
+    category: [meaningful(row.category), meaningful(row.subcategory)].filter(Boolean).join(" · "),
+    type: meaningful(row.type),
     contentStatus,
     ...(applicationConditions
       ? {

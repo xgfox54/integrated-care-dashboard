@@ -1,0 +1,40 @@
+{
+  "name": "kordoc",
+  "package_version": "4.18.13",
+  "package_integrity": "sha512-LR7k8o9/SowG58UYivUTEuSlLIVbVoyiAaMkcErcIc3S5/SZXvOi4nJf34E95bujTF2sg8m3pFiu9B1n47F/Hg==",
+  "source_commit": "969526345dde7d6acd2f2bfd3c8e592069333355",
+  "source_commit_verification": "npm registry gitHead(2026-10-05 npm view kordoc@4.18.13). 저장소 체크아웃과의 빌드 재현은 확인하지 않음",
+  "license": "MIT",
+  "install_profile": "kordoc 공식 기본 설치(선택 의존성 포함, legacy-peer-deps로 puppeteer-core 제외). npm 설치 스크립트 미실행(onnxruntime-node CUDA 추가 다운로드·protobufjs 버전 경고만 해당)",
+  "runtime_dependencies": {
+    "pdfjs-dist": {
+      "version": "4.10.38",
+      "integrity": "sha512-/Y3fcFrXEAsMjJXeL9J8+ZG9U01LbuWaYypvDW2ycW1jL269L3js3DVBjDJ0Up9Np1uqDXsDrRihHANhZOlwdQ==",
+      "license": "Apache-2.0",
+      "role": "PDF 텍스트층·표 구조 추출"
+    },
+    "@hyzyla/pdfium": {
+      "version": "2.1.13",
+      "integrity": "sha512-4J+xMFJW6V+jktxor6Lsk/2YdPCpeY+Ga69J98uyNQwYESkAsUDxz8BeFU0ZbZJIJ+fK3J6bm61gmwWnUzVU1g==",
+      "license": "MIT",
+      "role": "PDF 쪽 렌더링(OCR 입력)"
+    },
+    "onnxruntime-node": {
+      "version": "1.30.0",
+      "integrity": "sha512-twhs1C2C/BFkz1yc5OY0KIU2GUq6DURO7hD4bx5Q2Qy3nAMJwRXW8xU3NVczE29VA9lolLOYepoD8fjTGOfIqw==",
+      "license": "MIT",
+      "role": "PP-OCRv5 ONNX 추론(CPU)"
+    },
+    "sharp": {
+      "version": "0.35.5",
+      "integrity": "sha512-Ywn4OnzGukp7CDMrp08RQ50YKmuwG47brZgIVPTvBaaAfQlRlygrRqSrxdCiL9M+LlzLBiJ68IR1QqvzHyjC7g==",
+      "license": "Apache-2.0",
+      "role": "OCR 전처리·이미지 입력 디코딩"
+    }
+  },
+  "previous": {
+    "package_version": "4.18.8",
+    "package_integrity": "sha512-/rrl2vTfAwS2kb3Vn41TYjPsE4c7isgGvFMTthcmSD2gBnDQW5zGctYD3JxiLJ6ZkggGIoJZV5rVvrTBuFlhnw==",
+    "source_commit": "1d9bc7d651bdae070113f3f91c98f6291570fd47"
+  }
+}

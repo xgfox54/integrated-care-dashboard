@@ -1,0 +1,117 @@
+{
+  "mapping_version": "welfare-localcrab-mapping-1",
+  "adapter": "factory/localcrab/welfare_localcrab.py (welfare-localcrab-adapter-1.0.0)",
+  "upstream": {
+    "repository": "https://github.com/AlexAI-MCP/OpenCrab.git",
+    "commit": "d34352cec9d99c755c1e891f811911461a460280",
+    "grammar_version": "1.0.0",
+    "grammar_extension": "none (어댑터 방식 채택, 9-Space 문법 확장 안 함)"
+  },
+  "nodes": [
+    {
+      "welfare_type": "implementation",
+      "id_from": "statement.subject_id (service:…)",
+      "space": "concept",
+      "node_type": "Entity",
+      "properties": [
+        "welfare_type",
+        "canonical_id",
+        "label",
+        "sido",
+        "sigungu"
+      ]
+    },
+    {
+      "welfare_type": "document_program",
+      "id_from": "statement.subject_id (docprog:…)",
+      "space": "concept",
+      "node_type": "Entity",
+      "properties": [
+        "welfare_type",
+        "canonical_id",
+        "label",
+        "sido",
+        "sigungu"
+      ]
+    },
+    {
+      "welfare_type": "issuer_text",
+      "id_from": "'issuer:' + source.issuer",
+      "space": "subject",
+      "node_type": "Org",
+      "properties": [
+        "welfare_type",
+        "label"
+      ],
+      "note": "발행기관 표기 문자열. 기관 레지스트리 ID로 확정하지 않음"
+    },
+    {
+      "welfare_type": "source_version",
+      "id_from": "source.source_version_id",
+      "space": "resource",
+      "node_type": "Document",
+      "properties": [
+        "welfare_type",
+        "welfare_record(sources.jsonl 행 전체)",
+        "adapter_version"
+      ]
+    },
+    {
+      "welfare_type": "evidence_locator",
+      "id_from": "evidence.evidence_id",
+      "space": "evidence",
+      "node_type": "Evidence",
+      "properties": [
+        "welfare_type",
+        "welfare_record(statement_id·source_version_id 제외)"
+      ],
+      "note": "소속 사실·문서는 속성이 아니라 관계 방향으로만 기록"
+    },
+    {
+      "welfare_type": "statement",
+      "id_from": "statement.statement_id",
+      "space": "claim",
+      "node_type": "Claim",
+      "properties": [
+        "welfare_type",
+        "welfare_record(statements.jsonl 행 전체)",
+        "subject_id",
+        "predicate_id",
+        "object_value",
+        "adapter_version"
+      ],
+      "note": "복지 predicate는 Claim의 predicate_id로 보존. concept→concept related_to 등으로 뭉개지 않음"
+    }
+  ],
+  "edges": [
+    {
+      "from": "subject/Org",
+      "relation": "owns",
+      "to": "resource/Document",
+      "welfare_relation": "issuedBy의 역방향"
+    },
+    {
+      "from": "resource/Document",
+      "relation": "contains",
+      "to": "evidence/Evidence",
+      "welfare_relation": "hasEvidence"
+    },
+    {
+      "from": "evidence/Evidence",
+      "relation": "supports",
+      "to": "claim/Claim",
+      "welfare_relation": "supports(근거 → 사실)"
+    }
+  ],
+  "not_projected": [
+    "Claim → 개체 관계(상위 문법에 claim→concept meta-edge 없음 → Claim.subject_id 속성)",
+    "contradicts(반입 사실은 승인된 지지 근거만 있음)",
+    "outcome·lever·community·policy Space(이 도메인에 쓰지 않음)",
+    "보도자료 본문·이미지·임시 IR(공개 뉴스는 메타데이터만)"
+  ],
+  "roundtrip": {
+    "test": "python -m unittest discover -s factory/localcrab -p \"test_*.py\"",
+    "fixture": "factory/tests/fixtures/roundtrip/two-sources",
+    "real_sample": "var/welfare-factory/packs/docfacts-seogwipo-recycling-a.zip (18 사실, 손실 0)"
+  }
+}

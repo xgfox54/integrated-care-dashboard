@@ -1,0 +1,8 @@
+{
+  "repository": "https://github.com/AlexAI-MCP/OpenCrab.git",
+  "commit": "d34352cec9d99c755c1e891f811911461a460280",
+  "commit_date": "2026-06-03",
+  "license": "MIT (pyproject.toml)",
+  "reused_modules": ["opencrab/grammar/manifest.py", "opencrab/grammar/validator.py", "opencrab/stores/local_graph_store.py"],
+  "not_used": ["opencrab/ontology/builder.py (neo4j·mongo 의존)", "opencrab/ontology/extractor.py (Anthropic API 필요, 기본 경로 금지)", "opencrab.sh SaaS"]
+}

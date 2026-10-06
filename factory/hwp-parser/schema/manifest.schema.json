@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "welfare-document-v1/manifest.schema.json",
+  "title": "welfare-document-v1 결과 manifest(출력)",
+  "type": "object",
+  "required": [
+    "contract",
+    "contract_version",
+    "adapter_version",
+    "job_id",
+    "source_version_id",
+    "parse_id",
+    "raw_sha256",
+    "raw_size",
+    "parser",
+    "profile",
+    "status",
+    "files",
+    "content_digest"
+  ],
+  "properties": {
+    "contract": {
+      "const": "welfare-document-v1"
+    },
+    "contract_version": {
+      "enum": [
+        "1.0.0",
+        "1.1.0"
+      ]
+    },
+    "adapter_version": {
+      "type": "string"
+    },
+    "job_id": {
+      "type": "string"
+    },
+    "source_version_id": {
+      "type": "string"
+    },
+    "parse_id": {
+      "type": "string",
+      "pattern": "^p_[0-9a-f]{32}$"
+    },
+    "raw_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "raw_size": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "detected_format": {
+      "enum": [
+        "hwp",
+        "hwp3",
+        "hwpx",
+        "hwpml",
+        "pdf",
+        "docx",
+        "xlsx",
+        "xls",
+        "pptx",
+        "image"
+      ]
+    },
+    "parser": {
+      "type": "object",
+      "required": [
+        "name",
+        "package_version",
+        "package_integrity",
+        "source_commit",
+        "runtime_version"
+      ],
+      "properties": {
+        "name": {
+          "const": "kordoc"
+        }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "required": [
+        "profile_id",
+        "profile_version",
+        "options",
+        "options_hash"
+      ],
+      "properties": {
+        "options_hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "STRUCTURE_VALIDATED",
+        "NEEDS_REVIEW",
+        "PARTIAL",
+        "FAILED",
+        "UNSUPPORTED",
+        "REQUIRES_AUTHORIZED_COPY"
+      ]
+    },
+    "page_mode": {
+      "enum": [
+        "layout",
+        "section",
+        "unknown"
+      ]
+    },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "sha256",
+          "size",
+          "records"
+        ],
+        "properties": {
+          "name": {
+            "enum": [
+              "raw-ir.json",
+              "document.json",
+              "tables.jsonl",
+              "source-map.jsonl",
+              "quality.json",
+              "content.md"
+            ]
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "records": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "content_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "ocr": {
+      "type": "object",
+      "required": [
+        "requested",
+        "reason"
+      ],
+      "properties": {
+        "requested": {
+          "type": "boolean"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "candidate_pages": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "applied_pages": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "performance": {
+      "type": "object",
+      "required": [
+        "elapsed_ms",
+        "peak_rss_mb"
+      ],
+      "properties": {
+        "elapsed_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "peak_rss_mb": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "parse_passes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

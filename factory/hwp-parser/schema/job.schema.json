@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "welfare-document-v1/job.schema.json",
+  "title": "문서 파싱 작업 명세(입력)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "job_id",
+    "source_version_id",
+    "input_ref",
+    "expected_sha256",
+    "profile_id",
+    "output_root"
+  ],
+  "properties": {
+    "job_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "source_version_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "input_ref": {
+      "type": "string",
+      "description": "작업공간 루트 기준 상대 경로. 절대경로·.. 금지",
+      "minLength": 1
+    },
+    "expected_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "profile_id": {
+      "enum": [
+        "document-ingest",
+        "hwp-ingest"
+      ],
+      "description": "hwp-ingest는 기존 작업 명세 호환용 이름(같은 프로필로 처리)"
+    },
+    "output_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "page_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "first",
+        "last"
+      ],
+      "description": "PDF에서 처리할 쪽 범위(포함). 길이는 쪽 수 상한 이하. 결과는 선언한 범위만 처리한 것으로 기록된다",
+      "properties": {
+        "first": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "last": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  }
+}

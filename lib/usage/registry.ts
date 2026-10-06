@@ -8,11 +8,17 @@ import { EMPTY_FILTERS, serviceWikiKey, type ServiceRow } from "../dataset";
 import { exportOfficialServices, readLatestRun, readOfficialDatasetSummary } from "../official-query";
 import { findOfficialServiceByWikiKey } from "../official-service-query";
 import { HOUSEHOLD_ORDER, LIFECYCLE_ORDER, TOPIC_ORDER } from "../welfare100/model";
+import { ORG_TYPE_LABELS, PRESS_CATEGORIES } from "../press/dictionary";
+import { REGION_DEFINITIONS } from "../region-statistics";
 import { normalizeName, type EntityKind, type FilterKind } from "./codes";
 
 const MEMO_TTL_MS = 10 * 60_000;
 const MEMO_LIMIT = 5000;
 const WELFARE_SCOPES = new Set(["주요 제도", "중앙부처", "지자체"]);
+/** 복지정보 관계성 지도 첫 단계 가지(lib/mindmap-view.ts TOP_IDS·고급 탐색). 이전 가지 코드는 지난 기록 집계를 위해 남긴다. */
+const MINDMAP_BRANCHES = new Set(["target", "service", "region", "welfare", "budget", "news", "advanced", "svc", "w100", "fiscal", "onto"]);
+/** 복지예산 분야 버튼(lib/fiscal/public.ts MODE_LABELS 중 화면에 있는 것). */
+const BUDGET_FIELDS = new Set(["social_welfare", "integrated_care", "health"]);
 
 interface EntityInfo {
   readonly name: string;
@@ -80,18 +86,12 @@ interface CareAllowList {
   readonly expiresAt: number;
 }
 
-let careAllow: Promise<CareAllowList> | null = null;
+// 끝난 결과만 기억한다(진행 중인 D1 조회를 요청끼리 나누면 처음 요청이 끊길 때 뒤 요청이 멈출 수 있다, lib/memo.ts 참고).
+let careAllow: CareAllowList | null = null;
 
-function readCareAllowList(): Promise<CareAllowList> {
-  const current = careAllow;
-  if (current) {
-    return current.then((value) => {
-      if (value.expiresAt > Date.now()) return value;
-      careAllow = null;
-      return readCareAllowList();
-    });
-  }
-  const next = readOfficialDatasetSummary().then(({ summary }) => {
+async function readCareAllowList(): Promise<CareAllowList> {
+  if (careAllow && careAllow.expiresAt > Date.now()) return careAllow;
+  const next = await readOfficialDatasetSummary().then(({ summary }) => {
     const regions = new Set<string>();
     for (const [sido, sigungus] of Object.entries(summary.sigunguBySido)) {
       regions.add(sido);
@@ -101,9 +101,6 @@ function readCareAllowList(): Promise<CareAllowList> {
     return { regions, categories: new Set(summary.categories), expiresAt: Date.now() + MEMO_TTL_MS };
   });
   careAllow = next;
-  next.catch(() => {
-    if (careAllow === next) careAllow = null;
-  });
   return next;
 }
 
@@ -126,6 +123,17 @@ export async function isAllowedUsageFilter(filter: FilterKind, code: string): Pr
       return (HOUSEHOLD_ORDER as readonly string[]).includes(code);
     case "welfare_scope":
       return WELFARE_SCOPES.has(code);
+    case "mindmap_branch":
+      return MINDMAP_BRANCHES.has(code);
+    case "news_category":
+      return PRESS_CATEGORIES.some((category) => category.code === code);
+    case "news_org_type":
+      return Object.hasOwn(ORG_TYPE_LABELS, code);
+    case "news_region":
+    case "budget_region":
+      return REGION_DEFINITIONS.some((region) => region.fullName === code);
+    case "budget_field":
+      return BUDGET_FIELDS.has(code);
     default:
       return false;
   }

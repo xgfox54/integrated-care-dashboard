@@ -1,5 +1,6 @@
 import { getD1 } from "./d1";
 import { memoizeForTtl } from "./memo";
+import { PUBLIC_KNOWLEDGE_RUN_SQL } from "./platform/public-pin";
 import {
   removeExtractedContinuationFragments,
   repairKnownExtractionFragments,
@@ -116,7 +117,7 @@ export function needsAutomaticSync(status: OfficialSyncStatus): boolean {
 export async function readOfficialDataset(): Promise<OfficialDatasetSnapshot> {
   const db = getD1();
   const run = await db.prepare(
-    "SELECT id, completed_at, document_count FROM official_sync_run WHERE status = 'succeeded' ORDER BY completed_at DESC LIMIT 1",
+    "SELECT id, completed_at, document_count FROM official_sync_run WHERE id = " + PUBLIC_KNOWLEDGE_RUN_SQL,
   ).first<{ id: string; completed_at: number; document_count: number }>();
   if (!run) return { rows: [], dataAsOf: "", completedAt: "", documentCount: 0 };
 

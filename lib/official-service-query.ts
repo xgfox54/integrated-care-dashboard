@@ -2,6 +2,7 @@ import { normalizeRows, serviceWikiKey, type ServiceRow } from "./dataset.ts";
 import { repairKnownExtractionFragments } from "./official-correction.ts";
 import { repairExtractionSpacing } from "./official-spacing.ts";
 import type { OfficialService } from "./official-source.ts";
+import { PUBLIC_KNOWLEDGE_RUN_SQL } from "./platform/public-pin.ts";
 
 type CandidateReader = (
   normalizedServiceId: string,
@@ -50,10 +51,7 @@ async function readCandidates(
   const { getD1 } = await import("./d1.ts");
   const db = getD1();
   const run = await db.prepare(
-    `SELECT id FROM official_sync_run
-     WHERE status = 'succeeded'
-     ORDER BY completed_at DESC
-     LIMIT 1`,
+    "SELECT id FROM official_sync_run WHERE id = " + PUBLIC_KNOWLEDGE_RUN_SQL,
   ).first<{ id: string }>();
   if (!run) return [];
 

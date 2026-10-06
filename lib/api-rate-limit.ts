@@ -13,6 +13,8 @@ const API_RATE_POLICIES: Readonly<Record<string, ApiRatePolicy>> = {
   "/api/dataset/search": { name: "dataset-search", limit: 120, windowSeconds: 60 },
   "/api/dataset/service": { name: "dataset-service", limit: 120, windowSeconds: 60 },
   "/api/dataset/summary": { name: "dataset-summary", limit: 120, windowSeconds: 60 },
+  "/mcp": { name: "mcp", limit: 60, windowSeconds: 60 },
+  "/api/budget": { name: "budget", limit: 120, windowSeconds: 60 },
 };
 
 export function apiRatePolicy(pathname: string): ApiRatePolicy | null {

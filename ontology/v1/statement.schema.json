@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "welfare-v1/statement.schema.json",
+  "title": "Welfare 문서 사실(statement) — document-facts-1",
+  "description": "lib/imports/pack.ts 검사기와 같은 규칙. 사실 ID는 subject·predicate·값·단위·범위·원문 버전의 SHA-256(statementIdOf)이다.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "statement_id",
+    "subject_id",
+    "subject_label",
+    "subject_sido",
+    "subject_sigungu",
+    "predicate_id",
+    "value_text",
+    "unit",
+    "scope_text",
+    "source_version_id",
+    "assertion_type",
+    "review_status",
+    "reviewed_at"
+  ],
+  "properties": {
+    "statement_id": {
+      "type": "string",
+      "pattern": "^stmt_[a-f0-9]{24}$"
+    },
+    "subject_id": {
+      "type": "string",
+      "maxLength": 500,
+      "pattern": "^(service:.+|docprog:[a-z0-9-]{3,80})$"
+    },
+    "subject_label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "subject_sido": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 30
+    },
+    "subject_sigungu": {
+      "type": "string",
+      "maxLength": 30
+    },
+    "predicate_id": {
+      "enum": [
+        "target_group",
+        "eligibility",
+        "exclusion",
+        "benefit_item",
+        "benefit_amount",
+        "operating_period",
+        "application_period",
+        "application_method",
+        "application_place",
+        "required_documents",
+        "procedure",
+        "provider"
+      ]
+    },
+    "value_text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "unit": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 30
+    },
+    "scope_text": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 300
+    },
+    "source_version_id": {
+      "type": "string",
+      "pattern": "^sv-[a-f0-9]{8,64}$"
+    },
+    "assertion_type": {
+      "const": "document_field"
+    },
+    "review_status": {
+      "const": "approved"
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

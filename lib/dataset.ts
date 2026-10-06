@@ -1,4 +1,5 @@
 import { matchesSearch, parseSearch, searchableText } from "./search-terms.ts";
+import { restoreVerifiedSourceDistinctions } from "./official-source-restoration.ts";
 
 export interface ServiceRow {
   id: number;
@@ -137,7 +138,7 @@ export function normalizeRows(payload: unknown): ServiceRow[] {
   source.forEach((entry, index) => {
     if (!entry || typeof entry !== "object") return;
     const record = entry as Record<string, unknown>;
-    const row: ServiceRow = {
+    const row: ServiceRow = restoreVerifiedSourceDistinctions({
       id: index,
       serviceId: text(record, "serviceId", "service_id"),
       sido: currentProvinceName(text(record, "시도", "시·도", "sido")),
@@ -150,12 +151,12 @@ export function normalizeRows(payload: unknown): ServiceRow[] {
       detailTarget: text(record, "세부대상자", "detailTarget", "detail_target"),
       applicationMethod: text(record, "신청방법", "applicationMethod", "application_method"),
       provider: text(record, "제공기관", "수행기관", "provider"),
-      type: text(record, "사업구분", "type"),
+      type: text(record, "사업구분", "type").replace(/^경기도$/, "광역"),
       serial: text(record, "연번"),
       detailUrl: text(record, "detailUrl", "detail_url", "원문URL", "출처URL"),
       updatedDate: text(record, "updatedDate", "updated_date", "기준일"),
       searchIndex: "",
-    };
+    });
     if (!row.sido && !row.sigungu && !row.name) return;
     row.searchIndex = searchableText([
       row.sido,

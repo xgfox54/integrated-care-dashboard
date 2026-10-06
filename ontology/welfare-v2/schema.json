@@ -1,0 +1,268 @@
+{
+  "contract": "welfare-v2",
+  "version": "2.1.0",
+  "compatible_core": "기존 개체 ID(service:/region:/category:/org:/news:)와 predicate 의미를 유지한다",
+  "entity_types": [
+    {
+      "id": "ProgramImplementation",
+      "prefix": "service:",
+      "status": "IMPLEMENTED",
+      "source": "official_service_snapshot(보건복지부 통합돌봄 사업안내)"
+    },
+    {
+      "id": "Region",
+      "prefix": "region:",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "id": "ServiceType",
+      "prefix": "category:",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "id": "Organization",
+      "prefix": "org:",
+      "status": "IMPLEMENTED",
+      "source": "press_organization 시드(행정안전부 지자체 누리집으로 교차 확인)"
+    },
+    {
+      "id": "FiscalEntity",
+      "prefix": "lofin:laf:",
+      "status": "IMPLEMENTED",
+      "source": "fiscal_entity(지방재정365 자치단체 코드)"
+    },
+    {
+      "id": "FiscalDepartment",
+      "prefix": "lofin:dept:",
+      "status": "IMPLEMENTED",
+      "note": "원천이 부서명을 주지 않아 코드만"
+    },
+    {
+      "id": "FiscalProject",
+      "prefix": "fp:",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "id": "FiscalObservation",
+      "prefix": "fo:",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "id": "BudgetDocument",
+      "status": "NOT_IMPLEMENTED",
+      "note": "예산서 원문 미수집"
+    },
+    {
+      "id": "BudgetRevision",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "id": "BudgetLine",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "id": "FundingSource",
+      "status": "PARTIAL",
+      "note": "원천 국비·시도비·시군구비·기타 칸만, 완전성 미확인"
+    },
+    {
+      "id": "FundingComponent",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "id": "NewsArticle",
+      "status": "NOT_COLLECTED",
+      "note": "민간 기사 미수집"
+    },
+    {
+      "id": "NewsPublisher",
+      "status": "NOT_COLLECTED"
+    },
+    {
+      "id": "OfficialPublication",
+      "status": "PARTIAL",
+      "note": "보도자료 유형만"
+    },
+    {
+      "id": "PressRelease",
+      "prefix": "news:",
+      "status": "IMPLEMENTED",
+      "note": "메타데이터만(본문 없음)"
+    },
+    {
+      "id": "RegionCode",
+      "prefix": "region_code:",
+      "status": "IMPLEMENTED",
+      "note": "법정동·행정동·통계지역·재정기관 코드를 체계별·적용기간별로 분리(region_code·region_code_map). 법정동코드만으로 재정기관 관계를 확정하지 않음"
+    },
+    {
+      "id": "StatisticalTable",
+      "prefix": "kosis:",
+      "status": "PARTIAL",
+      "note": "KOSIS 통계표(기관ID·표ID·항목·분류·단위·주기·지역 수준). 관리자가 메타데이터를 확인한 표만 수집"
+    },
+    {
+      "id": "StatisticalObservation",
+      "status": "PARTIAL",
+      "note": "KOSIS 수치. 결측·비공개를 0으로 바꾸지 않음(value_status)"
+    },
+    {
+      "id": "CareProvider",
+      "prefix": "ltc:",
+      "status": "IMPLEMENTED",
+      "note": "국민건강보험공단 장기요양기관(기관기호 원천 체계 유지, 다른 기관 DB ID와 동일시하지 않음)"
+    },
+    {
+      "id": "CareServiceType",
+      "status": "IMPLEMENTED",
+      "note": "장기요양 기관유형코드(활용가이드 코드표)"
+    },
+    {
+      "id": "PublicBenefitService",
+      "prefix": "gov24:",
+      "status": "IMPLEMENTED",
+      "note": "정부24 공공서비스(서비스ID 원천 체계 유지)"
+    },
+    {
+      "id": "LegalProvision",
+      "prefix": "law:",
+      "status": "PARTIAL",
+      "note": "법제처 법령·조문 식별자·버전·시행일(조문 본문은 해시만). korean-law-mcp 4.15.5 로컬 수집 묶음으로만 들어옴"
+    }
+  ],
+  "relations": [
+    {
+      "id": "located_in",
+      "domain": "ProgramImplementation",
+      "range": "Region",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "id": "classified_as",
+      "domain": "ProgramImplementation",
+      "range": "ServiceType",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "id": "fiscalProjectFor",
+      "domain": "FiscalProject",
+      "range": "ProgramImplementation",
+      "status": "IMPLEMENTED",
+      "note": "cross_domain_link, 관리자 검토(VERIFIED)만 공개, 금액 배분 없음"
+    },
+    {
+      "id": "observesFiscalProject",
+      "domain": "FiscalObservation",
+      "range": "FiscalProject",
+      "status": "IMPLEMENTED",
+      "note": "누적 관측 날짜끼리 합산 금지"
+    },
+    {
+      "id": "reportedByFiscalEntity",
+      "domain": "FiscalProject",
+      "range": "FiscalEntity",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "id": "assignedToFiscalDepartment",
+      "domain": "FiscalProject",
+      "range": "FiscalDepartment",
+      "status": "IMPLEMENTED",
+      "note": "유효기간 미보유(해당 연도 관측 기준)"
+    },
+    {
+      "id": "documentedInBudget",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "id": "hasFundingComponent",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "id": "mentionsInTitle",
+      "status": "PARTIAL",
+      "note": "get_welfare_context의 제목 일치 후보(검증 안 됨)로만"
+    },
+    {
+      "id": "classifiedAs(news)",
+      "domain": "PressRelease",
+      "range": "NewsCategory",
+      "status": "IMPLEMENTED",
+      "note": "제목 키워드 분류, 공식 분류 아님"
+    },
+    {
+      "id": "issuedBy",
+      "domain": "PressRelease",
+      "range": "Organization",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "id": "repostedBy",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "id": "reposts/corrects/withdraws",
+      "status": "NOT_IMPLEMENTED",
+      "note": "관련 묶음(related_group)만, 확정 관계 아님"
+    },
+    {
+      "id": "has_jurisdiction",
+      "domain": "Organization",
+      "range": "Region",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "id": "part_of",
+      "domain": "Region|Organization",
+      "range": "Region|Organization",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "id": "codeMapsTo",
+      "domain": "RegionCode",
+      "range": "RegionCode|Region",
+      "status": "IMPLEMENTED",
+      "note": "relation SAME·PART_OF·PREDECESSOR, valid_from·valid_to·근거·검증 상태"
+    },
+    {
+      "id": "observesRegion",
+      "domain": "StatisticalObservation",
+      "range": "RegionCode",
+      "status": "PARTIAL"
+    },
+    {
+      "id": "providerLocatedIn",
+      "domain": "CareProvider",
+      "range": "RegionCode",
+      "status": "IMPLEMENTED",
+      "note": "원천 시도·시군구 코드"
+    },
+    {
+      "id": "providesCareService",
+      "domain": "CareProvider",
+      "range": "CareServiceType",
+      "status": "IMPLEMENTED"
+    },
+    {
+      "id": "hasAgreementWith",
+      "domain": "CareProvider",
+      "range": "Organization",
+      "status": "PARTIAL",
+      "note": "협약 의료기관명·협약기간(현행·종료·원천 목록에서 빠짐 구분). 의료기관 ID 미제공"
+    },
+    {
+      "id": "sameProgramAs",
+      "domain": "ProgramImplementation",
+      "range": "PublicBenefitService",
+      "status": "PARTIAL",
+      "note": "program_ext_link GOV24. 자동 판정은 CANDIDATE, 관리자 확인(VERIFIED)만 공개"
+    },
+    {
+      "id": "legalBasis",
+      "domain": "ProgramImplementation",
+      "range": "LegalProvision",
+      "status": "PARTIAL",
+      "note": "program_ext_link LAW. 조문 존재 확인과 근거 판단은 별도, 관리자 확인만 공개"
+    }
+  ]
+}

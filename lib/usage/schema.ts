@@ -3,6 +3,7 @@
 import {
   ACTION_CODES,
   ACTION_OUTCOMES,
+  CLICK_ACTIONS,
   ENTITY_KINDS,
   ERROR_CODES,
   ERROR_OPS,
@@ -16,6 +17,7 @@ import {
   RESULT_BUCKETS,
   SCREEN_TYPES,
   SEARCH_SCOPES,
+  SEARCH_SCOPE_KIND,
   SEARCH_STATUSES,
   STAGED_ACTIONS,
   TAB_CODES,
@@ -183,9 +185,11 @@ export function parseUsageEvent(raw: unknown): UsageEvent | null {
         results: record.results,
         match: record.match,
       };
+      const kind = SEARCH_SCOPE_KIND[record.scope];
+      // 이름 대조를 하지 않는 범위(마인드맵·보도자료·예산)는 언제나 「대조 없음(unmatched)」으로만 받는다.
+      if (kind === null && record.match !== "unmatched") return null;
       if (record.match !== "matched") return record.key === undefined ? base : null;
-      const kind = record.scope === "welfare_catalog" ? "welfare_policy" : "care_program";
-      if (!isEntityKey(kind, record.key)) return null;
+      if (kind === null || !isEntityKey(kind, record.key)) return null;
       return { ...base, key: record.key };
     }
     case "filter":
@@ -200,6 +204,10 @@ export function parseUsageEvent(raw: unknown): UsageEvent | null {
         if (outcome !== "click" || !isOneOf(LINK_DESTINATIONS, record.dest)) return null;
         if (record.op !== undefined || record.error !== undefined || record.ms !== undefined) return null;
         return { type: "action", id, action, outcome, dest: record.dest };
+      }
+      if (CLICK_ACTIONS.includes(action)) {
+        if (outcome !== "click" || record.dest !== undefined || record.op !== undefined || record.error !== undefined || record.ms !== undefined) return null;
+        return { type: "action", id, action, outcome };
       }
       if (!STAGED_ACTIONS.includes(action) || outcome === "click" || record.dest !== undefined) return null;
       if (!isTempId(record.op)) return null;

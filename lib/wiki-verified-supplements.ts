@@ -11,14 +11,23 @@ export interface VerifiedWikiSupplement {
 
 const VERIFIED_SUPPLEMENTS: readonly VerifiedWikiSupplement[] = [
   {
+    serviceIds: ["0087:1489651:1:2:10"],
+    overview: "보령시가 공개한 2026년 시행계획(안)에 장애인 방문재활·건강재활프로그램과 방문 구강건강관리·상담을 포함한 지역사회중심재활사업이 제시되어 있습니다.",
+    content: "보령시가 2026년 1월 공개한 제8기 지역보건의료계획의 4차년도 시행계획(안)에는 장애인 방문재활서비스와 건강관리교실 등 건강재활프로그램, 개별맞춤 방문 구강건강관리·상담, 지역사회중심재활협의체 운영 및 장애인식개선·손상예방 홍보가 포함되어 있습니다. 공개된 계획안의 내용이며, 확정된 시행계획이나 현재 이용조건을 확인한 자료는 아닙니다. 같은 문서의 2025년 실적과 상위 방문건강관리사업 전체 대상 인원은 이 사업의 2026년 실적·대상 인원으로 사용하지 않습니다.",
+    sourceTitle: "제8기 지역보건의료계획 3차년도 시행결과 및 4차년도 시행계획(안)(보령시 공고 제2026-18호, 2026-01-06)",
+    publisher: "보령시",
+    url: "https://eminwon.brcn.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?context=NTIS&jndinm=OfrNotAncmtEJB&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=54040&subCheck=N",
+    verifiedOn: "2026-10-06",
+  },
+  {
     serviceIds: ["0083:1489622:1:2:7"],
     overview: "노인일자리 참여자가 취약계층 어르신 가정을 찾아 안부를 확인하고 말벗·고충상담·생활안전점검을 제공하는 이웃돌봄 사업입니다.",
-    content: "우리동네 1촌돌봄단은 노인일자리 사업과 연계해 돌봄단을 읍·면·동 주민센터와 수요처에 배치하고, 취약계층 어르신 가정을 정기적으로 방문해 말벗, 고충상담, 안부확인, 생활안전점검을 수행합니다.",
-    eligibility: "안부확인과 생활안전점검 등 돌봄이 필요한 취약계층 어르신",
-    sourceTitle: "2025년 노인일자리 및 사회활동지원사업 '우리동네1촌돌봄단'",
+    content: "우리동네 1촌돌봄단은 사회서비스형 노인일자리(만 60세 이상 지역주민 참여)로 운영됩니다. 2026년에는 2월부터 11월까지 21개 읍·면·동 주민센터 등 24개 수요처에 돌봄단을 배치해, 1인가구·고립가구 등 취약계층 가정을 정기적으로 방문하고 안부확인과 지속적인 모니터링, 복지사각지대 대상자 발굴 조사를 지원합니다.",
+    eligibility: "1인가구·고립가구 등 정기적인 안부확인이 필요한 강릉시 취약계층",
+    sourceTitle: "2026년 노인일자리 사업안내 '우리동네 1촌 돌봄단'(운영시기 2026.2.~11.)",
     publisher: "강릉종합사회복지관",
-    url: "https://gssw.or.kr/board/board.php?b_id=photo&cmd=view&num=1274",
-    verifiedOn: "2026-09-21",
+    url: "https://gssw.or.kr/page/view.php/n4s34",
+    verifiedOn: "2026-10-06",
   },
   {
     serviceIds: ["0085:1489588:1:1:15"],
@@ -43,12 +52,12 @@ const VERIFIED_SUPPLEMENTS: readonly VerifiedWikiSupplement[] = [
   {
     serviceIds: ["0090:1489803:1:2:18"],
     overview: "전문기술을 가진 주민들이 재능기부로 취약가구의 주거환경과 일상생활 불편을 개선하는 읍·면 단위 민간 돌봄조직입니다.",
-    content: "행복기동대는 읍·면 단위의 민간 돌봄조직으로, 전문기술을 가진 주민이 수도 수리, 방충망 교체 등 소규모 주거환경 개선과 생활불편 해소를 지원합니다. 위기가구를 발굴하고 필요한 복지정보와 지역자원을 연계하는 역할도 수행합니다.",
-    eligibility: "주거 안전이나 일상생활 불편 개선이 필요한 취약계층 가구",
-    sourceTitle: "2024년 도정 주요업무계획 - 행복기동대",
-    publisher: "경상북도",
-    url: "https://seed.gb.go.kr/Main/open_contents/ko/inc/download.jsp?FILE=dojeong_2024.pdf",
-    verifiedOn: "2026-09-21",
+    content: "행복기동대는 읍·면 단위의 민간 돌봄조직으로, 전문기술을 가진 주민이 재능기부로 취약가구의 생활불편을 해소합니다. 의성군은 2026년 3월 8개 면 40여 명의 대원을 대상으로 낙상 예방 안전바 설치, 미끄럼 방지 논슬립 설치, 방충망 교체 등 주거개선 기능교육을 실시했고, 대원들은 경로당과 취약가구를 직접 방문해 설치 작업과 안부 확인을 합니다.",
+    eligibility: "주거 안전이나 일상생활 불편 개선이 필요한 거동 불편 노인 등 취약계층 가구",
+    sourceTitle: "의성군, 행복기동대 주거개선 기능교육 실시(2026-03-16, 의성군 제공)",
+    publisher: "경북매일",
+    url: "https://kbmaeil.com/article/20260316500416",
+    verifiedOn: "2026-10-06",
   },
   {
     serviceIds: ["0085:1489614:1:1:5"],

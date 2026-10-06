@@ -3,6 +3,7 @@ import { after } from "next/server";
 import { getD1 } from "./d1";
 import { logServerError } from "./errors";
 import { readLatestRun } from "./official-query";
+import { PUBLIC_KNOWLEDGE_RUN_SQL } from "./platform/public-pin";
 import { cachedWikiEdits } from "./wiki-edit-store";
 import type { WikiEdit } from "./wiki-edits";
 
@@ -40,8 +41,7 @@ export function wikiEditsVersion(edits: ReadonlyMap<string, WikiEdit>): string {
   return edits.size + ":" + latest + ":" + total;
 }
 
-const CURRENT_RUN_SQL =
-  "(SELECT id FROM official_sync_run WHERE status = 'succeeded' ORDER BY completed_at DESC LIMIT 1)";
+const CURRENT_RUN_SQL = PUBLIC_KNOWLEDGE_RUN_SQL;
 const CURRENT_EDITS_SQL =
   "(SELECT COUNT(*) || ':' || COALESCE(MAX(updated_at), 0) || ':' || COALESCE(SUM(updated_at), 0) FROM wiki_edit)";
 

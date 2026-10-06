@@ -71,7 +71,7 @@ function typeFor(value: string): string {
   const normalized = compact(value);
   if (normalized.includes("지역특화")) return "지역특화";
   if (normalized.includes("전국")) return "전국";
-  if (normalized.includes("광역")) return "광역";
+  if (normalized.includes("광역") || normalized === "경기도") return "광역";
   return normalized || "미분류";
 }
 

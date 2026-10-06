@@ -14,12 +14,16 @@ import type {
   ErrorCode,
   ScreenType,
 } from "./codes.ts";
+import { CATEGORY_LABELS, ORG_TYPE_LABELS } from "../press/dictionary.ts";
 
 export const PAGE_LABELS: Record<PageCode, string> = {
   dashboard: "대시보드",
   wiki: "통합돌봄 WIKI",
   welfare_list: "복지제도100 목록",
   welfare_detail: "복지제도100 상세",
+  mindmap: "복지정보 관계성 지도",
+  news: "복지뉴스",
+  budget: "복지예산",
   sources: "데이터 출처",
   usage_policy: "이용통계 안내",
 };
@@ -29,6 +33,9 @@ export const TAB_LABELS: Record<TabCode, string> = {
   dashboard_compare: "대시보드 · 지자체 비교",
   wiki: "통합돌봄 WIKI",
   welfare100: "복지제도100",
+  mindmap: "복지정보 관계성 지도",
+  news: "복지뉴스",
+  budget: "복지예산",
   sources: "데이터 출처",
   usage_policy: "이용통계 안내",
 };
@@ -49,6 +56,9 @@ export const SEARCH_SCOPE_LABELS: Record<SearchScope, string> = {
   care_dashboard: "대시보드 통합검색",
   care_wiki: "WIKI 사업 검색",
   welfare_catalog: "복지제도100 검색",
+  mindmap_node: "복지정보 관계성 지도 검색",
+  press_news: "복지뉴스 제목 검색",
+  budget_project: "복지예산 세부사업명 검색",
 };
 
 export const MATCH_LABELS: Record<MatchState, string> = {
@@ -66,13 +76,38 @@ export const FILTER_LABELS: Record<FilterKind, string> = {
   welfare_lifecycle: "복지제도 생애주기",
   welfare_household: "복지제도 가구상황",
   welfare_provision: "복지제도 제공유형",
+  mindmap_branch: "복지정보 관계성 지도 가지",
+  news_category: "복지뉴스 분야",
+  news_org_type: "복지뉴스 기관 유형",
+  news_region: "복지뉴스 조회 지역",
+  budget_field: "복지예산 분야",
+  budget_region: "복지예산 조회 지역",
 };
+
+const MINDMAP_BRANCH_LABELS: Readonly<Record<string, string>> = {
+  target: "대상자", service: "복지서비스", region: "지역", welfare: "복지제도", budget: "복지예산", news: "복지뉴스", advanced: "고급 탐색",
+  svc: "통합돌봄 사업(이전 가지)", w100: "복지제도100(이전 가지)", fiscal: "복지예산(이전 가지)", onto: "구조(이전 가지)",
+};
+const BUDGET_FIELD_LABELS: Readonly<Record<string, string>> = { social_welfare: "사회복지", integrated_care: "통합돌봄", health: "보건" };
+
+/** 고른 조건 코드를 사람이 읽는 이름으로(분야·기관 유형·가지 코드). 지역·분류 이름은 그대로 둔다. */
+export function filterCodeLabel(filter: FilterKind, code: string): string {
+  const table = filter === "news_category" ? CATEGORY_LABELS : filter === "news_org_type" ? ORG_TYPE_LABELS : filter === "mindmap_branch" ? MINDMAP_BRANCH_LABELS : filter === "budget_field" ? BUDGET_FIELD_LABELS : null;
+  return table?.[code] ?? code.replace("|", " ");
+}
+
+/** 지역을 고른 조건(이용자 위치가 아니라 화면에서 고른 콘텐츠 지역). */
+export const REGION_FILTERS: readonly FilterKind[] = ["care_region", "welfare_region", "news_region", "budget_region"];
 
 export const ACTION_LABELS: Record<ActionCode, string> = {
   care_compare: "지자체 비교",
   welfare_compare: "복지제도 비교",
   care_csv: "검색결과 CSV 생성",
   care_share: "검색조건 주소 복사",
+  wiki_welfare100: "WIKI → 복지제도100 바로가기",
+  mindmap_select: "복지정보 관계성 지도 항목 선택",
+  news_original: "복지뉴스 원문 보기",
+  budget_query: "복지예산 조회",
   source_link: "출처 링크 클릭",
 };
 
@@ -111,6 +146,9 @@ export const ERROR_OP_LABELS: Record<ErrorOp, string> = {
   care_compare: "지자체 비교",
   care_csv: "검색결과 CSV 생성",
   care_share: "검색조건 주소 복사",
+  mindmap_data: "복지정보 관계성 지도 자료 불러오기",
+  press_list: "복지뉴스 목록 불러오기",
+  budget_list: "복지예산 결과 불러오기",
 };
 
 export const ERROR_CODE_LABELS: Record<ErrorCode, string> = {

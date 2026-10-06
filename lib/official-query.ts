@@ -1,4 +1,5 @@
 import { getD1 } from "./d1";
+import { PUBLIC_KNOWLEDGE_RUN_SQL } from "./platform/public-pin";
 import {
   type FilterState,
   type ServiceRow,
@@ -10,8 +11,9 @@ import {
   orderServiceCategories,
   SINGLE_TIER_SIDO,
 } from "./dataset-summary";
+import { verifiedSourceFieldSql } from "./official-source-restoration.ts";
 import { repairKnownExtractionFragments } from "./official-correction";
-import { CATEGORY_TEXT_SQL, NAME_TEXT_SQL, SEARCH_TEXT_LOOKUP, searchConditionSql, searchTermSql } from "./official-search-text";
+import { CATEGORY_TEXT_SQL, NAME_TEXT_SQL, SEARCH_TEXT_FROM_COLUMNS, SEARCH_TEXT_LOOKUP, searchConditionSql, searchTermSql } from "./official-search-text";
 import { repairExtractionSpacing } from "./official-spacing";
 import { cachedWikiEdits } from "./wiki-edit-store";
 import type { RegionTarget } from "./region-load-order";
@@ -29,9 +31,22 @@ import {
   type SearchTerm,
 } from "./search-terms";
 
+const RESTORED_SUBCATEGORY_SQL = verifiedSourceFieldSql("subcategory");
+const RESTORED_TYPE_SQL = `CASE WHEN type = '경기도' THEN '광역' ELSE ${verifiedSourceFieldSql("type")} END`;
+const RESTORED_SEARCH_TEXT_SQL = SEARCH_TEXT_FROM_COLUMNS
+  .replaceAll("COALESCE(subcategory,", `COALESCE((${RESTORED_SUBCATEGORY_SQL}),`)
+  .replaceAll("COALESCE(type,", `COALESCE((${RESTORED_TYPE_SQL}),`);
+// 필터·집계·정렬·검색 본문 모두 표시할 원문 구분을 사용한다. 저장된 원본은 변경하지 않는다.
+const SOURCE_ROWS_SQL = `(SELECT id, service_id, sync_run_id, sido, sigungu, category,
+  ${RESTORED_SUBCATEGORY_SQL} AS subcategory, name, description, target, detail_target,
+  application_method, provider, ${RESTORED_TYPE_SQL} AS type, serial, detail_url, updated_date,
+  CASE WHEN subcategory IS NOT (${RESTORED_SUBCATEGORY_SQL}) OR type IS NOT (${RESTORED_TYPE_SQL})
+    THEN ${RESTORED_SEARCH_TEXT_SQL} ELSE search_text END AS search_text
+  FROM official_service_snapshot)`;
+
 const INTEGRATED_PROVINCE_NAME = "전남광주통합특별시";
 const INTEGRATED_PROVINCE_ALIASES = ["광주광역시", "전라남도"] as const;
-const CANONICAL_SIDO_SQL =
+export const CANONICAL_SIDO_SQL =
   "CASE WHEN sido IN ('광주광역시', '전라남도') THEN '전남광주통합특별시' ELSE sido END";
 /** 「수록 시·군·구」: 시·군·구 칸이 비었거나 기초자치단체가 없는 광역(세종·제주)의 행은 세지 않는다. */
 const MUNICIPALITY_KEY_SQL =
@@ -105,16 +120,14 @@ async function loadLatestRun(): Promise<LatestRun | null> {
        COALESCE((SELECT MAX(data_as_of) FROM official_source_document
                  WHERE sync_run_id = official_sync_run.id), '') AS dataAsOf
      FROM official_sync_run
-     WHERE status = 'succeeded'
-     ORDER BY completed_at DESC
-     LIMIT 1`,
+     WHERE id = ${PUBLIC_KNOWLEDGE_RUN_SQL}`,
   ).first<LatestRun>();
   return run ?? null;
 }
 
 let latestRunMemo: { readonly promise: Promise<LatestRun | null>; readonly expiresAt: number } | null = null;
 
-/** 가장 최근에 성공한 수집. 30초 동안 기억해 두고, fresh면 새로 읽는다(수집 직후 미리 계산용). */
+/** 웹이 공개하는 수집 실행(활성 통합 공개본의 실행, 공개본이 없으면 가장 최근 성공 실행). 30초 동안 기억해 두고, fresh면 새로 읽는다(수집 직후 미리 계산용). */
 export function readLatestRun(fresh = false): Promise<LatestRun | null> {
   const now = Date.now();
   if (!fresh && latestRunMemo && now < latestRunMemo.expiresAt) return latestRunMemo.promise;
@@ -229,7 +242,7 @@ let suggestionNames: { readonly runId: string; readonly names: readonly string[]
 async function namesOfRun(runId: string): Promise<readonly string[]> {
   if (suggestionNames?.runId === runId) return suggestionNames.names;
   const rows = await bindAll<{ name: string | null }>(
-    "SELECT name FROM official_service_snapshot WHERE sync_run_id = ?",
+    `SELECT name FROM ${SOURCE_ROWS_SQL} WHERE sync_run_id = ?`,
     [runId],
   );
   suggestionNames = { runId, names: namesForSuggestion(rows.map((row) => row.name ?? "")) };
@@ -245,7 +258,7 @@ async function computeSearchHelp(filters: FilterState, runId: string): Promise<S
   const perTerm = await db
     .prepare(
       `SELECT ${conditions.map((condition, index) => `SUM(CASE WHEN ${condition.sql} THEN 1 ELSE 0 END) AS t${index}`).join(", ")}
-       FROM official_service_snapshot WHERE sync_run_id = ?`,
+       FROM ${SOURCE_ROWS_SQL} WHERE sync_run_id = ?`,
     )
     .bind(...conditions.flatMap((condition) => condition.values), runId)
     .first<Record<string, number | null>>();
@@ -261,7 +274,7 @@ async function computeSearchHelp(filters: FilterState, runId: string): Promise<S
       };
     });
     const counts = await db
-      .prepare(`SELECT ${leaveOut.map((part) => part.sql).join(", ")} FROM official_service_snapshot WHERE ${base.sql}`)
+      .prepare(`SELECT ${leaveOut.map((part) => part.sql).join(", ")} FROM ${SOURCE_ROWS_SQL} WHERE ${base.sql}`)
       .bind(...leaveOut.flatMap((part) => part.values), ...withRun(base, runId))
       .first<Record<string, number | null>>();
     withoutTerm = parsed.terms.map((term, index) => ({
@@ -290,7 +303,7 @@ async function computeSearchHelp(filters: FilterState, runId: string): Promise<S
       const query = words.join(" ");
       const where = searchWhere({ ...filters, keyword: query });
       const total = await db
-        .prepare(`SELECT COUNT(*) AS count FROM official_service_snapshot WHERE ${where.sql}`)
+        .prepare(`SELECT COUNT(*) AS count FROM ${SOURCE_ROWS_SQL} WHERE ${where.sql}`)
         .bind(...withRun(where, runId))
         .first<TotalRow>();
       if ((total?.count ?? 0) > 0) suggestion = { query, count: total?.count ?? 0 };
@@ -407,7 +420,7 @@ export async function readOfficialDatasetSummary(): Promise<{
         COUNT(DISTINCT ${CANONICAL_SIDO_SQL}) AS sidoCount,
         COUNT(DISTINCT ${MUNICIPALITY_KEY_SQL}) AS sigunguCount,
         COUNT(DISTINCT category) AS categoryCount
-       FROM official_service_snapshot WHERE sync_run_id = ?`,
+       FROM ${SOURCE_ROWS_SQL} WHERE sync_run_id = ?`,
     ).bind(run.id).first<{
       totalCount: number;
       sidoCount: number;
@@ -416,17 +429,17 @@ export async function readOfficialDatasetSummary(): Promise<{
     }>(),
     bindAll<CountRow>(
       `SELECT ${CANONICAL_SIDO_SQL} AS value, COUNT(*) AS count
-       FROM official_service_snapshot WHERE sync_run_id = ? GROUP BY value ORDER BY value`,
+       FROM ${SOURCE_ROWS_SQL} WHERE sync_run_id = ? GROUP BY value ORDER BY value`,
       [run.id],
     ),
     bindAll<CountRow>(
       `SELECT category AS value, COUNT(*) AS count
-       FROM official_service_snapshot WHERE sync_run_id = ? GROUP BY category ORDER BY value`,
+       FROM ${SOURCE_ROWS_SQL} WHERE sync_run_id = ? GROUP BY category ORDER BY value`,
       [run.id],
     ),
     bindAll<{ sido: string; sigungu: string }>(
       `SELECT ${CANONICAL_SIDO_SQL} AS sido, sigungu
-       FROM official_service_snapshot
+       FROM ${SOURCE_ROWS_SQL}
        WHERE sync_run_id = ? AND sigungu <> ''
        GROUP BY sido, sigungu ORDER BY sido, sigungu`,
       [run.id],
@@ -473,7 +486,7 @@ export async function searchOfficialServices(
   const nationwideWhere = searchWhere(filters, false);
   const regionWhere = regionOnlyWhere(filters);
   const total = await getD1().prepare(
-    `SELECT COUNT(*) AS count FROM official_service_snapshot WHERE ${where.sql}`,
+    `SELECT COUNT(*) AS count FROM ${SOURCE_ROWS_SQL} WHERE ${where.sql}`,
   ).bind(...withRun(where, run.id)).first<TotalRow>();
   const totalCount = total?.count ?? 0;
   const pageCount = Math.max(1, Math.ceil(totalCount / pageSize));
@@ -483,39 +496,39 @@ export async function searchOfficialServices(
   const order = orderBy(filters);
   const [records, regionCounts, categoryCounts, regionCategories, regionTypes, edits, nameRecords, searchHelp] = await Promise.all([
     bindAll<Record<string, unknown>>(
-      `SELECT ${SELECT_COLUMNS} FROM official_service_snapshot
+      `SELECT ${SELECT_COLUMNS} FROM ${SOURCE_ROWS_SQL}
        WHERE ${where.sql}
        ORDER BY ${order.sql} LIMIT ? OFFSET ?`,
       [...withRun(where, run.id), ...order.values, pageSize, offset],
     ),
     bindAll<CountRow>(
       `SELECT ${CANONICAL_SIDO_SQL} AS value, COUNT(*) AS count
-       FROM official_service_snapshot WHERE ${nationwideWhere.sql}
+       FROM ${SOURCE_ROWS_SQL} WHERE ${nationwideWhere.sql}
        GROUP BY value ORDER BY value`,
       withRun(nationwideWhere, run.id),
     ),
     bindAll<CountRow>(
       `SELECT category AS value, COUNT(*) AS count
-       FROM official_service_snapshot WHERE ${where.sql}
+       FROM ${SOURCE_ROWS_SQL} WHERE ${where.sql}
        GROUP BY category ORDER BY count DESC, value`,
       withRun(where, run.id),
     ),
     bindAll<CountRow>(
       `SELECT category AS value, COUNT(*) AS count
-       FROM official_service_snapshot WHERE ${regionWhere.sql}
+       FROM ${SOURCE_ROWS_SQL} WHERE ${regionWhere.sql}
        GROUP BY category ORDER BY count DESC, value`,
       withRun(regionWhere, run.id),
     ),
     bindAll<CountRow>(
       `SELECT type AS value, COUNT(*) AS count
-       FROM official_service_snapshot WHERE ${regionWhere.sql}
+       FROM ${SOURCE_ROWS_SQL} WHERE ${regionWhere.sql}
       GROUP BY type ORDER BY count DESC, value`,
       withRun(regionWhere, run.id),
     ),
     cachedWikiEdits(),
     nameKey
       ? bindAll<Record<string, unknown>>(
-          `SELECT ${SELECT_COLUMNS} FROM official_service_snapshot
+          `SELECT ${SELECT_COLUMNS} FROM ${SOURCE_ROWS_SQL}
            WHERE ${where.sql}
              AND LOWER(REPLACE(REPLACE(REPLACE(REPLACE(name, ' ', ''), char(9), ''), char(10), ''), char(13), '')) = ?
            ORDER BY sido, sigungu, name, id LIMIT 4`,
@@ -558,7 +571,7 @@ export async function exportOfficialServices(filters: FilterState): Promise<Serv
   const order = orderBy(filters);
   const [records, edits] = await Promise.all([
     bindAll<Record<string, unknown>>(
-      `SELECT ${SELECT_COLUMNS} FROM official_service_snapshot
+      `SELECT ${SELECT_COLUMNS} FROM ${SOURCE_ROWS_SQL}
        WHERE ${where.sql} ORDER BY ${order.sql}`,
       [...withRun(where, run.id), ...order.values],
     ),
@@ -659,7 +672,7 @@ export async function searchRegionTargets(
       `SELECT * FROM (
          SELECT ${SELECT_COLUMNS}, ${TARGET_SIDO_SQL} AS targetSido,
            ROW_NUMBER() OVER (PARTITION BY ${partition} ORDER BY ${within}) AS rowNumber
-         FROM official_service_snapshot
+         FROM ${SOURCE_ROWS_SQL}
          WHERE sync_run_id = ?${categoryFilter}${regionFilter}
        ) WHERE targetSido IS NOT NULL AND rowNumber <= ?
        ORDER BY targetSido, sigungu, rowNumber`,
@@ -667,14 +680,14 @@ export async function searchRegionTargets(
     ),
     bindAll<GroupRow>(
       scope === "sigungu"
-        ? `SELECT sido, sigungu, category, type, COUNT(*) AS count FROM official_service_snapshot
+        ? `SELECT sido, sigungu, category, type, COUNT(*) AS count FROM ${SOURCE_ROWS_SQL}
            WHERE sync_run_id = ?${regionFilter} GROUP BY sido, sigungu, category, type`
-        : "SELECT sido, category, type, COUNT(*) AS count FROM official_service_snapshot WHERE sync_run_id = ? GROUP BY sido, category, type",
+        : `SELECT sido, category, type, COUNT(*) AS count FROM ${SOURCE_ROWS_SQL} WHERE sync_run_id = ? GROUP BY sido, category, type`,
       [run.id, ...regionValues],
     ),
     scope === "sigungu"
       ? bindAll<{ readonly sido: string | null; readonly count: number }>(
-          `SELECT sido, COUNT(*) AS count FROM official_service_snapshot WHERE sync_run_id = ?${categoryFilter} GROUP BY sido`,
+          `SELECT sido, COUNT(*) AS count FROM ${SOURCE_ROWS_SQL} WHERE sync_run_id = ?${categoryFilter} GROUP BY sido`,
           [run.id, ...categoryValues],
         )
       : Promise.resolve(null),

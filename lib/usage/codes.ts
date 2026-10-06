@@ -3,13 +3,23 @@
 
 export const USAGE_SCHEMA_VERSION = 1;
 /** 이용통계 안내의 판. 수집 범위나 방식이 바뀌면 올린다. 서버는 현재 판으로 보낸 요청만 받는다. */
-export const USAGE_POLICY_VERSION = "2026-09-24b";
+export const USAGE_POLICY_VERSION = "2026-10-06";
 
-export const PAGE_CODES = ["dashboard", "wiki", "welfare_list", "welfare_detail", "sources", "usage_policy"] as const;
+export const PAGE_CODES = ["dashboard", "wiki", "welfare_list", "welfare_detail", "mindmap", "news", "budget", "sources", "usage_policy"] as const;
 export type PageCode = (typeof PAGE_CODES)[number];
 
-/** 탭: 상단 메뉴 화면과 대시보드 안의 검색 결과·지자체 비교 탭. */
-export const TAB_CODES = ["dashboard_search", "dashboard_compare", "wiki", "welfare100", "sources", "usage_policy"] as const;
+/** 탭: 상단 메뉴 화면(메뉴 순서)과 대시보드 안의 검색 결과·지자체 비교 탭. */
+export const TAB_CODES = [
+  "dashboard_search",
+  "dashboard_compare",
+  "wiki",
+  "welfare100",
+  "mindmap",
+  "news",
+  "budget",
+  "sources",
+  "usage_policy",
+] as const;
 export type TabCode = (typeof TAB_CODES)[number];
 
 /** initial: 주소 입력·새로고침·외부 링크로 처음 표시된 탭, selected: 이용자가 메뉴나 탭을 눌러 고른 탭. */
@@ -23,12 +33,16 @@ export type EntityKind = (typeof ENTITY_KINDS)[number];
 export const VIEW_ROUTES = ["search", "list", "compare", "direct"] as const;
 export type ViewRoute = (typeof VIEW_ROUTES)[number];
 
-export const SEARCH_SCOPES = ["care_dashboard", "care_wiki", "welfare_catalog"] as const;
+export const SEARCH_SCOPES = ["care_dashboard", "care_wiki", "welfare_catalog", "mindmap_node", "press_news", "budget_project"] as const;
 export type SearchScope = (typeof SEARCH_SCOPES)[number];
-export const SEARCH_SCOPE_KIND: Record<SearchScope, EntityKind> = {
+/** 검색어를 등록된 사업·제도 이름과 대조하는 범위. null이면 대조하지 않는다(마인드맵 마디·보도자료 제목·예산 세부사업명). */
+export const SEARCH_SCOPE_KIND: Record<SearchScope, EntityKind | null> = {
   care_dashboard: "care_program",
   care_wiki: "care_program",
   welfare_catalog: "welfare_policy",
+  mindmap_node: null,
+  press_news: null,
+  budget_project: null,
 };
 
 export const SEARCH_STATUSES = ["ok", "error"] as const;
@@ -49,13 +63,31 @@ export const FILTER_KINDS = [
   "welfare_lifecycle",
   "welfare_household",
   "welfare_provision",
+  "mindmap_branch",
+  "news_category",
+  "news_org_type",
+  "news_region",
+  "budget_field",
+  "budget_region",
 ] as const;
 export type FilterKind = (typeof FILTER_KINDS)[number];
 
-export const ACTION_CODES = ["care_compare", "welfare_compare", "care_csv", "care_share", "source_link"] as const;
+export const ACTION_CODES = [
+  "care_compare",
+  "welfare_compare",
+  "care_csv",
+  "care_share",
+  "wiki_welfare100",
+  "mindmap_select",
+  "news_original",
+  "budget_query",
+  "source_link",
+] as const;
 export type ActionCode = (typeof ACTION_CODES)[number];
-/** 시작·끝을 따로 세는 기능. 출처 링크는 클릭만 센다. */
+/** 시작·끝을 따로 세는 기능. */
 export const STAGED_ACTIONS: readonly ActionCode[] = ["care_compare", "welfare_compare", "care_csv", "care_share"];
+/** 클릭만 세는 기능. 출처 링크만 연결 기관(dest)을 함께 받는다. */
+export const CLICK_ACTIONS: readonly ActionCode[] = ["wiki_welfare100", "mindmap_select", "news_original", "budget_query", "source_link"];
 
 export const ACTION_OUTCOMES = ["start", "success", "failure", "cancel", "click"] as const;
 export type ActionOutcome = (typeof ACTION_OUTCOMES)[number];
@@ -89,6 +121,9 @@ export const ERROR_OPS = [
   "care_compare",
   "care_csv",
   "care_share",
+  "mindmap_data",
+  "press_list",
+  "budget_list",
 ] as const;
 export type ErrorOp = (typeof ERROR_OPS)[number];
 export const ERROR_CODES = ["network", "timeout", "http_4xx", "http_5xx", "not_found", "parse", "unsupported", "unknown"] as const;

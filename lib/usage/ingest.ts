@@ -417,8 +417,9 @@ async function planEvent(
     }
     case "search": {
       let matched: number | null = null;
-      if (event.match === "matched" && event.key) {
-        matched = await deps.resolveEntity(SEARCH_SCOPE_KIND[event.scope], event.key);
+      const kind = SEARCH_SCOPE_KIND[event.scope];
+      if (event.match === "matched" && event.key && kind) {
+        matched = await deps.resolveEntity(kind, event.key);
         if (matched === null) return null;
       }
       return [head, ...searchStatements(ctx, event, claim, matched)];

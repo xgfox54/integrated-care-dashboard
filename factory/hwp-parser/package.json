@@ -1,0 +1,22 @@
+{
+  "name": "welfare-factory-hwp-parser",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "로컬 전용 문서 파싱 워커(kordoc: HWP·HWPX·HWP3·HWPML·PDF·OCR·DOCX·XLS·XLSX). 사이트 런타임·공개 MCP에서 실행하지 않는다.",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "run-job": "node src/run-job.mjs",
+    "prepare-models": "node src/prepare-models.mjs"
+  },
+  "dependencies": {
+    "cfb": "1.2.2",
+    "kordoc": "4.18.13"
+  },
+  "devDependencies": {
+    "@cfworker/json-schema": "4.1.1"
+  }
+}

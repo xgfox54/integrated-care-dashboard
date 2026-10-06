@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "welfare-v1/release-manifest.schema.json",
+  "title": "welfare-public-release-v2 반입 manifest(knowledge/document-facts-1)",
+  "description": "서버 반입 검사기(lib/imports/pack.ts)가 받는 manifest. 모르는 필드는 거절한다. 공식 OpenCrab Pack(opencrab-pack-v1)이 아니며 Neo4j 검증을 뜻하지 않는다.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "artifact_id",
+    "created_at",
+    "producer_run_id",
+    "modules_present",
+    "module_schema_versions",
+    "module_modes",
+    "publication_scope",
+    "ontology_version",
+    "mapping_version",
+    "base_release_bundle_id",
+    "base_source_run_id",
+    "base_component_ids",
+    "source_set_digest",
+    "content_digest",
+    "source_policy_versions",
+    "files",
+    "coverage",
+    "validation"
+  ],
+  "properties": {
+    "format": {
+      "const": "welfare-public-release-v2"
+    },
+    "artifact_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 120,
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producer_run_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "modules_present": {
+      "type": "array",
+      "items": {
+        "const": "knowledge"
+      },
+      "minItems": 1,
+      "maxItems": 1
+    },
+    "module_schema_versions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "knowledge"
+      ],
+      "properties": {
+        "knowledge": {
+          "const": "document-facts-1"
+        }
+      }
+    },
+    "module_modes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "knowledge"
+      ],
+      "properties": {
+        "knowledge": {
+          "const": "source_scoped_replace"
+        }
+      }
+    },
+    "publication_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "knowledge"
+      ],
+      "properties": {
+        "knowledge": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source_ids"
+          ],
+          "properties": {
+            "source_ids": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 50,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^doc:[a-z0-9-]{3,80}$"
+              }
+            },
+            "empty_replace_source_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^doc:[a-z0-9-]{3,80}$"
+              }
+            }
+          }
+        }
+      }
+    },
+    "ontology_version": {
+      "const": "welfare-v2"
+    },
+    "mapping_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "base_release_bundle_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 120
+    },
+    "base_source_run_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 120
+    },
+    "base_component_ids": {
+      "type": "object"
+    },
+    "source_set_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "content_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "source_policy_versions": {
+      "type": "object"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "size",
+          "sha256",
+          "records"
+        ],
+        "properties": {
+          "path": {
+            "enum": [
+              "data/knowledge/sources.jsonl",
+              "data/knowledge/statements.jsonl",
+              "data/knowledge/evidence.jsonl",
+              "README.md",
+              "quality/report.json"
+            ]
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "records": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "coverage": {
+      "type": "object"
+    },
+    "validation": {
+      "type": "object"
+    }
+  }
+}

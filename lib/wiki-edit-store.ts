@@ -2,6 +2,7 @@ import { getD1 } from "./d1";
 import { logServerError } from "./errors";
 import { normalizeRows, type ServiceRow } from "./dataset";
 import { memoizeForTtl } from "./memo";
+import { PUBLIC_KNOWLEDGE_RUN_SQL } from "./platform/public-pin";
 import { repairKnownExtractionFragments } from "./official-correction";
 import { findOfficialServiceByWikiKey } from "./official-service-query";
 import type { OfficialService } from "./official-source";
@@ -131,7 +132,7 @@ export const cachedWikiEdits = memoizeForTtl(loadWikiEditMap, PUBLIC_EDIT_TTL_MS
 export async function readOriginalService(serviceId: string): Promise<ServiceRow | null> {
   const db = getD1();
   const run = await db
-    .prepare("SELECT id FROM official_sync_run WHERE status = 'succeeded' ORDER BY completed_at DESC LIMIT 1")
+    .prepare("SELECT id FROM official_sync_run WHERE id = " + PUBLIC_KNOWLEDGE_RUN_SQL)
     .first<{ id: string }>();
   if (!run) return null;
   const record = await db

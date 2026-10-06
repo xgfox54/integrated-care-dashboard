@@ -28,6 +28,8 @@ import { searchQueryString } from "./search-query";
 import { searchResponseBody } from "./search-response";
 import { cachedWikiEdits } from "./wiki-edit-store";
 import { logServerError } from "./errors";
+import { getD1 } from "./d1";
+import { failureCode, recordOptionalIndex } from "./optional-index";
 
 export type SummaryDataset = Awaited<ReturnType<typeof readOfficialDatasetSummary>>;
 
@@ -110,16 +112,22 @@ export async function bundleBodyJson(request: BundleRequest): Promise<DatasetJso
  * 이미 최신 보관본이 있으면 건너뛰므로 여러 번 불러도 된다.
  */
 export async function warmDatasetCache(): Promise<void> {
-  const run = await readLatestRun(true);
-  if (!run) return;
-  const version = wikiEditsVersion(await cachedWikiEdits());
-  let fresh: Set<string>;
+  // 선택 인덱스: 실패해도 다음 작업(보도자료·재정·공개본)을 멈추지 않고 상태에 실패를 남긴다(T33).
+  const now = () => Math.floor(Date.now() / 1000);
   try {
-    fresh = await listFreshKeys(run.id, version);
+    const runId = await warmDatasetCacheOnce();
+    if (runId) await recordOptionalIndex(getD1(), "dataset_response_cache", { ok: true, runId }, now());
   } catch (error) {
     logServerError(error, { path: "dataset-cache/warm", status: 500 });
-    return;
+    await recordOptionalIndex(getD1(), "dataset_response_cache", { ok: false, code: failureCode(error) }, now()).catch(() => undefined);
   }
+}
+
+async function warmDatasetCacheOnce(): Promise<string | null> {
+  const run = await readLatestRun(true);
+  if (!run) return null;
+  const version = wikiEditsVersion(await cachedWikiEdits());
+  const fresh = await listFreshKeys(run.id, version);
   const summary = await readOfficialDatasetSummary();
   if (!fresh.has("summary")) {
     await writeStoredEntries([{ key: "summary", body: JSON.stringify(summary) }], run.id, version);
@@ -141,4 +149,5 @@ export async function warmDatasetCache(): Promise<void> {
     );
   }
   await pruneStaleEntries(run.id, version);
+  return run.id;
 }

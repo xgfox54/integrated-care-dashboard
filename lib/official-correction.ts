@@ -1,4 +1,5 @@
 import type { OfficialService } from "./official-source.ts";
+import { restoreVerifiedSourceDistinctions } from "./official-source-restoration.ts";
 import { getVerifiedWikiSupplement } from "./wiki-verified-supplements.ts";
 
 /** 보건복지부 메뉴판의 구체적인 대분류. 원문이 이 가운데 하나면 기준 자료로 덮어쓰지 않는다. */
@@ -252,7 +253,7 @@ export function repairKnownExtractionFragments(
     const sourceRepair = VERIFIED_SOURCE_FIELD_REPAIRS.get(identity(named));
     const repaired = sourceRepair ? { ...named, ...sourceRepair } : named;
     const verified = getVerifiedWikiSupplement(repaired.serviceId);
-    return verified ? { ...repaired, description: verified.overview } : repaired;
+    return restoreVerifiedSourceDistinctions(verified ? { ...repaired, description: verified.overview } : repaired);
   });
 }
 
@@ -308,8 +309,8 @@ export function correctFromRepositoryBaseline(
   }
   return services.map((service) => {
     const baseline = byIdentity.get(identity(service));
-    if (!baseline) return service;
-    return {
+    if (!baseline) return restoreVerifiedSourceDistinctions(service);
+    return restoreVerifiedSourceDistinctions({
       ...service,
       category: SPECIFIC_CATEGORIES.has(service.category.trim())
         ? service.category
@@ -322,7 +323,7 @@ export function correctFromRepositoryBaseline(
       provider: preferCurrent(service.provider, baseline.provider),
       type: baseline.type.trim() || service.type,
       serial: preferCurrent(service.serial, baseline.serial),
-    };
+    });
   });
 }
 
