@@ -141,6 +141,181 @@
       "when": 1790762400000,
       "tag": "0019_resumable_official_sync",
       "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "6",
+      "when": 1790766000000,
+      "tag": "0020_press_archive",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "6",
+      "when": 1790769600000,
+      "tag": "0021_press_registry_seed",
+      "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "6",
+      "when": 1790773200000,
+      "tag": "0022_press_schedule_slots",
+      "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "6",
+      "when": 1790776800000,
+      "tag": "0023_press_metro_sources",
+      "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "6",
+      "when": 1790780400000,
+      "tag": "0024_press_metro_recheck",
+      "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "6",
+      "when": 1790784000000,
+      "tag": "0025_fiscal_module",
+      "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "6",
+      "when": 1790787600000,
+      "tag": "0026_press_registry_survey",
+      "breakpoints": true
+    },
+    {
+      "idx": 27,
+      "version": "6",
+      "when": 1790791200000,
+      "tag": "0027_press_related_groups",
+      "breakpoints": true
+    },
+    {
+      "idx": 28,
+      "version": "6",
+      "when": 1790794800000,
+      "tag": "0028_release_bundles",
+      "breakpoints": true
+    },
+    {
+      "idx": 29,
+      "version": "6",
+      "when": 1790798400000,
+      "tag": "0029_press_coverage_note",
+      "breakpoints": true
+    },
+    {
+      "idx": 30,
+      "version": "6",
+      "when": 1790884800000,
+      "tag": "0030_press_board_pages",
+      "breakpoints": true
+    },
+    {
+      "idx": 31,
+      "version": "6",
+      "when": 1790971200000,
+      "tag": "0031_document_imports",
+      "breakpoints": true
+    },
+    {
+      "idx": 32,
+      "version": "6",
+      "when": 1791057600000,
+      "tag": "0032_organization_history",
+      "breakpoints": true
+    },
+    {
+      "idx": 33,
+      "version": "6",
+      "when": 1791144000000,
+      "tag": "0033_press_ephemeral",
+      "breakpoints": true
+    },
+    {
+      "idx": 34,
+      "version": "6",
+      "when": 1791230400000,
+      "tag": "0034_press_host_lease",
+      "breakpoints": true
+    },
+    {
+      "idx": 35,
+      "version": "6",
+      "when": 1791316800000,
+      "tag": "0035_press_retention_window",
+      "breakpoints": true
+    },
+    {
+      "idx": 36,
+      "version": "6",
+      "when": 1791403200000,
+      "tag": "0036_press_review",
+      "breakpoints": true
+    },
+    {
+      "idx": 37,
+      "version": "6",
+      "when": 1791489600000,
+      "tag": "0037_official_row_ledger",
+      "breakpoints": true
+    },
+    {
+      "idx": 38,
+      "version": "6",
+      "when": 1791576000000,
+      "tag": "0038_press_item_block",
+      "breakpoints": true
+    },
+    {
+      "idx": 39,
+      "version": "6",
+      "when": 1791662400000,
+      "tag": "0039_press_duplicate_group",
+      "breakpoints": true
+    },
+    {
+      "idx": 40,
+      "version": "6",
+      "when": 1791748800000,
+      "tag": "0040_bundle_hold",
+      "breakpoints": true
+    },
+    {
+      "idx": 41,
+      "version": "6",
+      "when": 1791835200000,
+      "tag": "0041_optional_index_status",
+      "breakpoints": true
+    },
+    {
+      "idx": 42,
+      "version": "6",
+      "when": 1791921600000,
+      "tag": "0042_service_presence",
+      "breakpoints": true
+    },
+    {
+      "idx": 43,
+      "version": "6",
+      "when": 1792008000000,
+      "tag": "0043_fiscal_unit_check",
+      "breakpoints": true
+    },
+    {
+      "idx": 44,
+      "version": "6",
+      "when": 1792094400000,
+      "tag": "0044_fiscal_unit_check_progress",
+      "breakpoints": true
     }
   ]
 }

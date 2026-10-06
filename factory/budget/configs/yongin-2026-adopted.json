@@ -1,0 +1,28 @@
+{
+ "artifact_id": "budgetdoc-yongin-2026-adopted-swb-c",
+ "producer_run_id": "budget-factory-2026-10-05-yongin-2026",
+ "documents": [
+  {
+   "document_id": "doc:budget-yongin-2026-adopted-swb",
+   "lines_json": "var/budget-lines-yongin.json",
+   "parse_dir": "var/welfare-factory/parsed/p_a72f9adc5ff834d553c55ff2627afa60",
+   "title": "2026년도 일반회계 예산서 - 본예산 Ⅳ. 세출예산 사업명세서 중 사회복지국",
+   "issuer": "용인시",
+   "issuer_sido": "경기도",
+   "issuer_sigungu": "용인시",
+   "fiscal_entity_id": "lofin:laf:4129000",
+   "fiscal_year": "2026",
+   "page_url": "https://yongin.go.kr/home/ifOp/ifOpMunic/ifOpMunic02/ifOpMunic02_55.jsp",
+   "file_url": "https://yongin.go.kr/component/resrce/file/ND_resrceFileDownload.do?resrceSn=3766&resrceVer=1&fileSn=8",
+   "retrieved_at": "2026-10-05T09:46:23.075Z",
+   "rights_basis": "용인시 누리집 재정공시(예산서) 공개 파일. robots.txt 허용 경로(/component/)에서 내려받음. 원문 파일은 다시 배포하지 않고 구조화한 금액·계층·근거 위치만 공개",
+   "stage": "adopted_initial",
+   "supplementary_round": null,
+   "stage_basis": "공개 화면 제목 「2026년 예산서 - 본예산」, 문서 표 머리 「예산액·전년도예산액·비교증감」",
+   "account_code": "100",
+   "account_name": "일반회계",
+   "scope_text": "세출예산 사업명세서(일반회계) 중 사회복지국 4개 과(복지정책과·노인복지과·장애인복지과·아동보육과). 다른 국·특별회계는 포함하지 않음",
+   "previous_column": "previous_year_budget"
+  }
+ ]
+}

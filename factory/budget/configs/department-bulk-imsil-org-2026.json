@@ -1,0 +1,221 @@
+{
+  "schema": "department-bulk-v1",
+  "year": "2026",
+  "public_api": "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/api/budget",
+  "entities": [
+    {
+      "id": "imsil-org-2026",
+      "fiscal_entity_id": "lofin:laf:4575000",
+      "fiscal_entity_name": "전북임실군",
+      "region": "4500000",
+      "publisher": "임실군",
+      "index_url": "https://www.imsil.go.kr/index.imsil?menuCd=DOM_000000104004001048",
+      "index_required_text": [
+        "2026년 본예산"
+      ],
+      "adapter": "official-labeled-li-index",
+      "account_section_label": "일반회계",
+      "document_section_label": "부서별 세출예산사업명세서",
+      "account_end_label": "특별회계",
+      "expected_documents": 27,
+      "account_code": "100",
+      "account_name": "일반회계",
+      "amount_unit": "천원",
+      "stage": "adopted_initial",
+      "attachments": [
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94793",
+          "label": "의회사무과",
+          "toc_names": [
+            "의회사무과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94794",
+          "label": "기획감사실",
+          "toc_names": [
+            "기획감사실"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94795",
+          "label": "행정지원실",
+          "toc_names": [
+            "행정지원실"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94796",
+          "label": "홍보담당관",
+          "toc_names": [
+            "홍보담당관"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94797",
+          "label": "문화체육과",
+          "toc_names": [
+            "문화체육과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94798",
+          "label": "관광치즈과",
+          "toc_names": [
+            "관광치즈과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94799",
+          "label": "반려산업과",
+          "toc_names": [
+            "반려산업과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94800",
+          "label": "옥정호힐링과",
+          "toc_names": [
+            "옥정호힐링과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94801",
+          "label": "재무과",
+          "toc_names": [
+            "재무과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94802",
+          "label": "종합민원과",
+          "toc_names": [
+            "종합민원과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94803",
+          "label": "주민복지과",
+          "toc_names": [
+            "주민복지과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94804",
+          "label": "여성가족과",
+          "toc_names": [
+            "여성가족과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94805",
+          "label": "환경보호과",
+          "toc_names": [
+            "환경보호과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94806",
+          "label": "청소위생과",
+          "toc_names": [
+            "청소위생과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94807",
+          "label": "산림녹지과",
+          "toc_names": [
+            "산림녹지과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94808",
+          "label": "농업축산과",
+          "toc_names": [
+            "농업축산과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94809",
+          "label": "농촌활력과",
+          "toc_names": [
+            "농촌활력과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94810",
+          "label": "경제교통과",
+          "toc_names": [
+            "경제교통과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94811",
+          "label": "건설과",
+          "toc_names": [
+            "건설과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94812",
+          "label": "안전관리과",
+          "toc_names": [
+            "안전관리과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94813",
+          "label": "상하수도과",
+          "toc_names": [
+            "상하수도과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94814",
+          "label": "보건사업과",
+          "toc_names": [
+            "보건사업과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94815",
+          "label": "의료지원과",
+          "toc_names": [
+            "의료지원과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94816",
+          "label": "농촌지원과",
+          "toc_names": [
+            "농촌지원과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94817",
+          "label": "기술보급과",
+          "toc_names": [
+            "기술보급과"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94818",
+          "label": "시설사업소",
+          "toc_names": [
+            "시설사업소"
+          ]
+        },
+        {
+          "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136788&fileSid=94819",
+          "label": "읍면",
+          "toc_names": []
+        }
+      ],
+      "department_toc": {
+        "url": "https://www.imsil.go.kr/board/download.imsil?boardId=BBS_0000008&dataSid=136787&fileSid=94783",
+        "label": "조직별 세출총괄표(일반)",
+        "account_name": "일반회계"
+      }
+    }
+  ]
+}

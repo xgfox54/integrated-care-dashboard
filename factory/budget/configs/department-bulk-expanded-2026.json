@@ -1,0 +1,29 @@
+{
+  "schema": "department-bulk-v1",
+  "year": "2026",
+  "public_api": "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/api/budget",
+  "entities": [
+    {
+      "id": "gapyeong-2026",
+      "fiscal_entity_id": "lofin:laf:4177000",
+      "fiscal_entity_name": "경기가평군",
+      "region": "4100000",
+      "publisher": "가평군",
+      "index_url": "https://www.gp.go.kr/portal/contents.do?key=2562",
+      "index_required_text": ["2026년", "본예산", "일반회계세출", "일반회계 세출 사업명세서"],
+      "adapter": "official-single-general-pdf",
+      "account_row_label": "일반회계세출",
+      "attachment_label": "일반회계 세출 사업명세서",
+      "attachment_url": "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/10.pdf",
+      "department_toc": {
+        "url": "https://www.gp.go.kr/upload/attach_file/home/sub02/budget/2026/05.pdf",
+        "label": "조직별세출총괄표"
+      },
+      "expected_documents": 1,
+      "account_code": "100",
+      "account_name": "일반회계",
+      "amount_unit": "천원",
+      "stage": "adopted_initial"
+    }
+  ]
+}

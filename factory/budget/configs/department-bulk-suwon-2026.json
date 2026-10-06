@@ -1,0 +1,37 @@
+{
+  "schema": "department-bulk-v1",
+  "year": "2026",
+  "public_api": "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/api/budget",
+  "entities": [{
+    "id": "suwon-2026",
+    "fiscal_year": "2026",
+    "fiscal_entity_id": "lofin:laf:4111000",
+    "fiscal_entity_name": "경기수원시",
+    "region": "4100000",
+    "publisher": "수원시",
+    "index_url": "https://www.suwon.go.kr/web/budgetDoc/BD_budgetDoc.list.do?q_year=2026&q_typeCd=1159",
+    "index_required_text": ["2026년도 일반 및 특별회계 세입·세출 예산서"],
+    "adapter": "suwon-adopted-mixed-account-pdf",
+    "attachment_label": "2026년도 일반 및 특별회계 세입·세출 예산서",
+    "attachment_url": "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c",
+    "department_toc": {
+      "url": "https://www.suwon.go.kr/component/file/ND_fileDownload.do?id=9ad6a97e-cff0-4e77-8d90-fa3ccf152e2c",
+      "label": "일반회계 조직별 세출 총괄표",
+      "account_name": "일반회계",
+      "page_range": { "first": 29, "last": 35 }
+    },
+    "pdf_account_scope": {
+      "raw_sha256": "8b8224a74c025649e7de8f4b43758fa7e5c859fd7280892efd19817d953217fa",
+      "first": 49,
+      "last": 1107,
+      "start_heading": "4. 일반회계",
+      "end_heading": "5. 기타특별회계",
+      "adoption_cover_text": ["2025. 12. 19.", "제397회 수원시의회", "본회의 의결"]
+    },
+    "expected_documents": 1,
+    "account_code": "100",
+    "account_name": "일반회계",
+    "amount_unit": "천원",
+    "stage": "adopted_initial"
+  }]
+}

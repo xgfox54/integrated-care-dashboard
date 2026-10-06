@@ -1,0 +1,23 @@
+{
+  "schema": "department-bulk-v1",
+  "year": "2026",
+  "public_api": "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/api/budget",
+  "entities": [
+    {
+      "id": "yongin-2026",
+      "fiscal_entity_id": "lofin:laf:4129000",
+      "fiscal_entity_name": "경기용인시",
+      "region": "4100000",
+      "publisher": "용인시",
+      "index_url": "https://yongin.go.kr/home/ifOp/ifOpMunic/ifOpMunic02/ifOpMunic02_55.jsp",
+      "index_required_text": ["2026", "본예산", "세출예산 사업명세서(일반회계)"],
+      "adapter": "yongin-official-attachment-index",
+      "resource_ids": ["3766", "3767"],
+      "expected_documents": 30,
+      "account_code": "100",
+      "account_name": "일반회계",
+      "amount_unit": "천원",
+      "stage": "adopted_initial"
+    }
+  ]
+}

@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // 로컬 작업공간(원문·파싱 결과·상위 OpenCrab 고정 복제본). 사이트 코드가 아니다.
+    "var/**",
+    ".omo/**",
+    ".wrangler/**",
   ]),
   {
     files: ["components/ui/**/*.{ts,tsx}", "hooks/use-mobile.ts"],
