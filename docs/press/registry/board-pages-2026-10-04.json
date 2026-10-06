@@ -1,0 +1,25 @@
+{
+  "checked_at": "2026-10-04",
+  "method": "각 게시판 1쪽·2쪽을 수집기와 같은 User-Agent로 1초 간격 요청, 수집기 파서(parseHtmlBoard)로 읽어 비교. robots.txt 허용 확인.",
+  "boards": {
+    "src:chungnam:press": "robots=ALLOWED p1=10 p2=10 overlap=0 p1min=2026-10-02 p2max=2026-10-02",
+    "src:daejeon:press": "robots=ALLOWED p1=12 p2=12 overlap=2(쪽마다 붙는 고정 공지) p1min=2026-09-24(고정 공지) p2max=2026-10-03(고정 공지)",
+    "src:gangwon:press": "robots=ALLOWED p1=15 p2=15 overlap=0 p1min=2026-10-02 p2max=2026-10-01",
+    "src:gyeonggi:press": "robots=ALLOWED p1=10 p2=10 overlap=0 p1min=2026-10-01 p2max=2026-10-01",
+    "src:incheon:press": "robots.txt 없음 p1=10 p2=10 overlap=0 p1min=2026-10-01 p2max=2026-10-01",
+    "src:jeonbuk:press": "robots=ALLOWED p1=10 p2=10 overlap=0 p1min=2026-09-30 p2max=2026-09-30",
+    "src:seoul:press": "robots=ALLOWED p1=10 p2=10 overlap=0 p1min=2026-10-02 p2max=2026-10-02",
+    "src:ulsan:press": "robots=ALLOWED p1=10 p2=10 overlap=0 p1min=2026-10-01 p2max=2026-10-01",
+    "src:jeonnam-gwangju:press": "미설정: 이 PC와 Workers 모두에서 연결 실패(522)라 확인 못 함"
+  },
+  "page_templates": {
+    "src:chungnam:press": "https://www.chungnam.go.kr/cnportal/cnapcPressList/cnapcPress/list.do?menuNo=500498&pageIndex={page}",
+    "src:daejeon:press": "https://www.daejeon.go.kr/drh/board/boardNormalList.do?boardId=normal_0189&menuSeq=1632&pageIndex={page}",
+    "src:gangwon:press": "https://state.gwd.go.kr/portal/briefing/pressRelease?pageIndex={page}",
+    "src:gyeonggi:press": "https://gnews.gg.go.kr/briefing/brief_gongbo.do?BS_CODE=s017&page={page}",
+    "src:incheon:press": "https://www.incheon.go.kr/IC010205?curPage={page}",
+    "src:jeonbuk:press": "https://www.jeonbuk.go.kr/newsroom/board/list.jeonbuk?boardId=BBS_0000090&listRow=10&listCel=1&menuCd=DOM_000001101000000000&orderBy=REGISTER_DATE:DESC&paging=ok&startPage={page}",
+    "src:seoul:press": "https://www.seoul.go.kr/news/news_report.do?curPage={page}&bbsNo=158",
+    "src:ulsan:press": "https://www.ulsan.go.kr/u/rep/bbs/list.ulsan?bbsId=BBS_0000000000000027&mId=001004003001000000&page={page}"
+  }
+}

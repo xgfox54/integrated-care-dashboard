@@ -1,0 +1,950 @@
+{
+  "sample": "운영 DB press_item 전체(2026-10-04 기준 117건, 9개 Source). 무작위 추출이 아니라 그 시점 수집분 전수.",
+  "labeler": "작업자 1인 판정(이중 판정·합의 절차 없음). 제목만 보고 판정했고 본문은 열람·저장하지 않았다.",
+  "rule": "제목의 주된 내용이 복지·돌봄·보건의료 정책 또는 취약계층 지원이면 WELFARE, 지역 행사·산업·일반 안전·문화·행정 일정이면 NOT_WELFARE. 애매한 항목은 borderline에 이유를 적었다.",
+  "items": [
+    {
+      "item_id": "src:chungnam:press:08b463788cbb36a08750ae48b8bb04f6",
+      "source_id": "src:chungnam:press",
+      "published_date": "2026-10-02",
+      "title": "금산 인삼 알릴 열흘간의 축제 막 올라",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:chungnam:press:18faac8e25dcfcb83d7d1f8917144025",
+      "source_id": "src:chungnam:press",
+      "published_date": "2026-10-02",
+      "title": "충청권 ‘국립치의학연구원 천안 유치’ 촉구",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:chungnam:press:3072172b3ffbf41d99383e4d2c8dd4dd",
+      "source_id": "src:chungnam:press",
+      "published_date": "2026-10-02",
+      "title": "장애아동 복지 안전망 더 촘촘히 엮는다",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:chungnam:press:34c5c3bf2860ad5f3415f93a99f18a28",
+      "source_id": "src:chungnam:press",
+      "published_date": "2026-10-02",
+      "title": "응급의료 지역 맞춤 발전 방안 찾는다",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:chungnam:press:47f27a09a576297879adeea72527cc14",
+      "source_id": "src:chungnam:press",
+      "published_date": "2026-10-02",
+      "title": "‘충청광역연합 특별법 제정’ 560만 힘 모은다",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:chungnam:press:58b5a6ab7dd6871e95dddec4db39116a",
+      "source_id": "src:chungnam:press",
+      "published_date": "2026-10-02",
+      "title": "박수현 지사, 주한 호주대사와 협력 방안 논의",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:chungnam:press:73faf0280d52b296956f61d5726b4dc7",
+      "source_id": "src:chungnam:press",
+      "published_date": "2026-10-02",
+      "title": "논산 딸기·보령 섬, 세계와 만날 준비 ‘착착’",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:chungnam:press:82962354ed4ae2d8ef66c89862e402dc",
+      "source_id": "src:chungnam:press",
+      "published_date": "2026-10-02",
+      "title": "지적·드론 측량 실무 역량 겨뤄",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:chungnam:press:d086f961dce3f04c565ac79712b4051a",
+      "source_id": "src:chungnam:press",
+      "published_date": "2026-10-02",
+      "title": "충남도립대 컴퓨터공학과, 학생이 만든 게임 ‘G-STAR’ 무대 오른다",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:chungnam:press:f4254c6707557a48409516a2e5e917b9",
+      "source_id": "src:chungnam:press",
+      "published_date": "2026-10-02",
+      "title": "충남도·도의회 예산·도정현안 해결 소통",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NEEDS_REVIEW"
+    },
+    {
+      "item_id": "src:daejeon:press:05ec613d65add1c2267df7673270974d",
+      "source_id": "src:daejeon:press",
+      "published_date": "2026-10-02",
+      "title": "지적재조사사업 꿈돌이가 설명해드립니다",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NEEDS_REVIEW"
+    },
+    {
+      "item_id": "src:daejeon:press:10c0ad6e0c9048b258c1350d374c2725",
+      "source_id": "src:daejeon:press",
+      "published_date": "2026-10-03",
+      "title": "주간행사일정(2026. 10. 5. ~ 10. 11.)",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:daejeon:press:3015a511309101d439ba791cd681bddd",
+      "source_id": "src:daejeon:press",
+      "published_date": "2026-10-02",
+      "title": "2026년도 대전광역시 명장 3인 선정",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:daejeon:press:4bddbe43616efc7d9092f7a9e6d489ab",
+      "source_id": "src:daejeon:press",
+      "published_date": "2026-10-03",
+      "title": "서부소방서, 가을철 산불·산악사고 예방 캠페인",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:daejeon:press:5486d24aea7adf75320e59d1db461731",
+      "source_id": "src:daejeon:press",
+      "published_date": "2026-10-03",
+      "title": "소상공인․시민 함께 웃는 상생의 축제 열린다",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:daejeon:press:5fb6064478018cada09ea4c5f5812e5a",
+      "source_id": "src:daejeon:press",
+      "published_date": "2026-09-24",
+      "title": "주간행사일정(2026. 9. 28. ~ 10. 4.)",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:daejeon:press:61f9b1a54885495232e75c34a4e4f4dd",
+      "source_id": "src:daejeon:press",
+      "published_date": "2026-10-02",
+      "title": "대전시 찾아가는 전세피해 예방교육 실시",
+      "gold": "WELFARE",
+      "stored_status": "NON_WELFARE",
+      "borderline": "전세피해 예방교육을 주거취약 보호로 봄"
+    },
+    {
+      "item_id": "src:daejeon:press:771191587102f4c7f41efc062830144a",
+      "source_id": "src:daejeon:press",
+      "published_date": "2026-10-03",
+      "title": "아이와 부모가 소통하는‘북스타트’",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE",
+      "borderline": "도서관 독서 프로그램(북스타트)"
+    },
+    {
+      "item_id": "src:daejeon:press:81ca5ebe7df9ab36bf879052026449aa",
+      "source_id": "src:daejeon:press",
+      "published_date": "2026-10-02",
+      "title": "반려동물과의 이별 그리고 일상회복까지",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:daejeon:press:8c52704fd4e475a9ac811aef956c6944",
+      "source_id": "src:daejeon:press",
+      "published_date": "2026-10-03",
+      "title": "‘충청광역연합 특별법’제정 본격화\"행정․재정 권한으로 강력한 실행력 갖춰야”",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:daejeon:press:a3d291ba9245d6abd1a53e31bfa32ccb",
+      "source_id": "src:daejeon:press",
+      "published_date": "2026-10-02",
+      "title": "한밭도서관‘미디어는 내 친구’운영",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:daejeon:press:a8b317db4ed4536729bbcf568aa3db3c",
+      "source_id": "src:daejeon:press",
+      "published_date": "2026-10-02",
+      "title": "대전농업기술센터, 블루베리 기초교육 운영",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gangwon:press:0973d99ce555646cc68643db57730d0e",
+      "source_id": "src:gangwon:press",
+      "published_date": "2026-10-02",
+      "title": "강원특별자치도동물위생시험소, 가축질병 특별방역기간 대비 교육 추진",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gangwon:press:167ef1ba22cd854ff4dde5d57e23a682",
+      "source_id": "src:gangwon:press",
+      "published_date": "2026-10-03",
+      "title": "강원역사문화연구원 제9회 강원학대회 연계 '제2회 강원학탐방' 개최",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gangwon:press:4fde2544ba89489976a60c2a58eb0f57",
+      "source_id": "src:gangwon:press",
+      "published_date": "2026-10-02",
+      "title": "도립화목원의 가을, 국화로 피어나다",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gangwon:press:599a89adf17752702802d39871b5acb7",
+      "source_id": "src:gangwon:press",
+      "published_date": "2026-10-02",
+      "title": "강원관광재단, 청소년 마약 근절 ‘노 위크 챌린지’ 동참",
+      "gold": "NOT_WELFARE",
+      "stored_status": "WELFARE",
+      "borderline": "청소년 마약 근절 캠페인 동참이지만 주체가 관광재단이고 행사 참여 성격"
+    },
+    {
+      "item_id": "src:gangwon:press:5dad706dc726a5f6ff7919097918889a",
+      "source_id": "src:gangwon:press",
+      "published_date": "2026-10-03",
+      "title": "강원특별자치도, 철원에서 통일쌀 벼베기… 평화와 교류의 의미 되새겨",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gangwon:press:692e4f392446ecb40611369fdb8f6a93",
+      "source_id": "src:gangwon:press",
+      "published_date": "2026-10-03",
+      "title": "강원특별자치도, 농업재해 예방 및 정책보험지원 지속 추진",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NEEDS_REVIEW"
+    },
+    {
+      "item_id": "src:gangwon:press:6a3d53972bf32dd5fa43b6d6938f040d",
+      "source_id": "src:gangwon:press",
+      "published_date": "2026-10-02",
+      "title": "제580돌 한글날 기념 ‘한글날 큰 잔치’ 개최",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gangwon:press:82b434f8aba815242602a6b228d0d0dc",
+      "source_id": "src:gangwon:press",
+      "published_date": "2026-10-02",
+      "title": "강원특별자치도, 「특별한 강원, 우리의 변화」 공모전 개최",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NEEDS_REVIEW"
+    },
+    {
+      "item_id": "src:gangwon:press:85a30d2b594f868a725e373013eecdff",
+      "source_id": "src:gangwon:press",
+      "published_date": "2026-10-03",
+      "title": "강원특별자치도, 「2026 강원 어린이 안전골든벨」 개최",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gangwon:press:8de61f6a1ee6abc5c614f45839386cc1",
+      "source_id": "src:gangwon:press",
+      "published_date": "2026-10-02",
+      "title": "강원특별자치도 사회서비스원, 취약지역 주민 재난대응 역량 강화",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:gangwon:press:99b39aad56169504ce26d427d217c5eb",
+      "source_id": "src:gangwon:press",
+      "published_date": "2026-10-02",
+      "title": "강원특별자치도, 분산에너지 등 지역 전력 활용 해법 찾는다",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gangwon:press:a1b837c731ee75302bb924cdb5f621d1",
+      "source_id": "src:gangwon:press",
+      "published_date": "2026-10-02",
+      "title": "강원특별자치도 청년미래센터 업무 개시… 위기청년 지원 본격화",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:gangwon:press:aae58b581d0dcfe4a09e4b216bb4f206",
+      "source_id": "src:gangwon:press",
+      "published_date": "2026-10-03",
+      "title": "강원도립대학교 앵커사업단, 「2026 산학연협력 EXPO」 참가",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NEEDS_REVIEW"
+    },
+    {
+      "item_id": "src:gangwon:press:e2272d38563cc55294d474a644f86405",
+      "source_id": "src:gangwon:press",
+      "published_date": "2026-10-02",
+      "title": "강원특별자치도보건환경연구원, 하반기 도시대기측정소 실태점검 실시",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gangwon:press:f748edba8ecd9bdb5dc173dfdb5c0cc2",
+      "source_id": "src:gangwon:press",
+      "published_date": "2026-10-02",
+      "title": "강원특별자치도, 2026년 농업인대상 수상자 6명 선정",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gyeonggi:press:0b893c298cbedf3b4c7b516b4c99b729",
+      "source_id": "src:gyeonggi:press",
+      "published_date": "2026-10-01",
+      "title": "경기도, 추미애 지사 지시에 따라 간부공무원 대상 ‘재정상황 교육’ 실시",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gyeonggi:press:77a24c1774c5be6814c67f09bc856030",
+      "source_id": "src:gyeonggi:press",
+      "published_date": "2026-10-02",
+      "title": "경기도, 입주민과 관리종사자 ‘함께 웃는’ 착한아파트 6곳 선정",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gyeonggi:press:7bad20dfacc9e5ae3936c2716f6be8e9",
+      "source_id": "src:gyeonggi:press",
+      "published_date": "2026-10-02",
+      "title": "경기도, 출렁다리·스카이워크 32곳 전수점검 완료…행락철 안전사고 예방 총력",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gyeonggi:press:9863a9a155888458eda725207ed038f2",
+      "source_id": "src:gyeonggi:press",
+      "published_date": "2026-10-02",
+      "title": "경기도 먹거리광장, ‘제철을 색으로, AI로 상상하다’ 10월 테이스티광장 참여자 모집",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gyeonggi:press:a4014112c42512f83ba33223245c925f",
+      "source_id": "src:gyeonggi:press",
+      "published_date": "2026-10-02",
+      "title": "주형철 경기도 경제부지사 반도체산업 현장행보…삼성전자 평택캠퍼스·방류수 관리현장 점검",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gyeonggi:press:b2628115119687e4a46ee176c44b1f3e",
+      "source_id": "src:gyeonggi:press",
+      "published_date": "2026-10-02",
+      "title": "청년이 데이터로 찾은 일자리 해법…경기도일자리재단 ‘일자리상황판’ 공모전 시상",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NEEDS_REVIEW"
+    },
+    {
+      "item_id": "src:gyeonggi:press:b5de1c9c14b2aa9a651eb3c4e7d872fd",
+      "source_id": "src:gyeonggi:press",
+      "published_date": "2026-10-02",
+      "title": "경기도, 온실가스 관측 ‘경기기후위성 2호기’ 발사 성공",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gyeonggi:press:ba1dfb6a905f559ee0325753d88cbe25",
+      "source_id": "src:gyeonggi:press",
+      "published_date": "2026-10-02",
+      "title": "추미애, 국토부 장관 만나 ‘경기도형 주택공급 전략’ 제안 “일자리·주거 따로 놀아…물량 넘어 삶의 질까지 함께 설계해야”",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gyeonggi:press:d7ac40e763840d00b46cde73219d2906",
+      "source_id": "src:gyeonggi:press",
+      "published_date": "2026-10-02",
+      "title": "경기도, 제51주년 민방위대 창설기념행사 개최",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:gyeonggi:press:f36254dba7a1ae72e997f1a982b17ac2",
+      "source_id": "src:gyeonggi:press",
+      "published_date": "2026-10-02",
+      "title": "10월, 가을하늘과 임진강을 벗 삼아 걷는 길 평화누리길 8코스 `반구정길`",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:incheon:press:1993fc5fe925aa4e5e2a821b7290e509",
+      "source_id": "src:incheon:press",
+      "published_date": "2026-10-02",
+      "title": "인천시, 재난안전 담당자 현장 대응 역량 높인다",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:incheon:press:45571fc6fbb65d8628c605a77215b8c2",
+      "source_id": "src:incheon:press",
+      "published_date": "2026-10-02",
+      "title": "인천시, 청년·신혼부부‘주택 임대차 중개보수’ 연말까지 최대 30만 원 지원",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:incheon:press:5dee53da600b1893a4d3c8e05f3ae741",
+      "source_id": "src:incheon:press",
+      "published_date": "2026-10-01",
+      "title": "인천시-민주노총 인천본부, 2026년 노정 협의 전체 회의 개최",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:incheon:press:676ef09f3af1191082088418f2ad3276",
+      "source_id": "src:incheon:press",
+      "published_date": "2026-10-02",
+      "title": "“아이 권리, 복지 최일선부터”… 인천시, 미추홀구 공직자 대상으로 아동친화 가치 전해",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:incheon:press:765accbadd04f0d9f46f981496d0e2fb",
+      "source_id": "src:incheon:press",
+      "published_date": "2026-10-02",
+      "title": "인천시,‘내가 만드는 인천 일자리사업’시민제안 공모, 현장 목소리 담는다",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NEEDS_REVIEW"
+    },
+    {
+      "item_id": "src:incheon:press:9fd1d085933d2441b2cc3613acccb7ce",
+      "source_id": "src:incheon:press",
+      "published_date": "2026-10-02",
+      "title": "인천시, 중소기업 노동자 자녀 장학증서 수여식 개최",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE",
+      "borderline": "노동자 자녀 장학금, 근로자 복지이나 복지정책 동향 범위 밖으로 봄"
+    },
+    {
+      "item_id": "src:incheon:press:a609a2a02c2ae729046a252e5e3dbce3",
+      "source_id": "src:incheon:press",
+      "published_date": "2026-10-02",
+      "title": "인천시, 15년 투자유치 결실... 하나금융그룹과 함께 여는 새로운 100년",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:incheon:press:e98200956336a05fcc062e54d3285f30",
+      "source_id": "src:incheon:press",
+      "published_date": "2026-10-02",
+      "title": "인천시민이 그린 2045년 미래, 시민제안서로 첫걸음",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:incheon:press:fa8e9b430d0c514f057307f845366699",
+      "source_id": "src:incheon:press",
+      "published_date": "2026-10-02",
+      "title": "인천시, 온라인 유통 간장류 점검으로 안전한 먹거리 확보",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:incheon:press:fa9a048691e3d94b974f2675d36f6ede",
+      "source_id": "src:incheon:press",
+      "published_date": "2026-10-02",
+      "title": "송암미술관, 문화동행 프로그램 ‘하하호호 미술관’ 운영",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:jeonbuk:press:1419fe76cc2bfaa3046df2fe1967e55e",
+      "source_id": "src:jeonbuk:press",
+      "published_date": "2026-09-30",
+      "title": "전북도, 청년·신혼부부에 하루 1,000원 천원주택 700호 공급",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:jeonbuk:press:26fef833f68337f49d86e9630abad061",
+      "source_id": "src:jeonbuk:press",
+      "published_date": "2026-09-30",
+      "title": "이원택 도지사,‘AI-혁신’직원들과 브라운백 미팅 소통",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:jeonbuk:press:2a11b6817fcf2c585a99e4e82dfee04f",
+      "source_id": "src:jeonbuk:press",
+      "published_date": "2026-09-30",
+      "title": "전북자치도, 농어촌 기본소득 지역경제 선순환 체계 구축에 박차",
+      "gold": "WELFARE",
+      "stored_status": "NON_WELFARE",
+      "borderline": "농어촌 기본소득을 소득보장 정책으로 봄"
+    },
+    {
+      "item_id": "src:jeonbuk:press:35e98f38f0e8da8048fb45bde3d02366",
+      "source_id": "src:jeonbuk:press",
+      "published_date": "2026-09-30",
+      "title": "전북자치도 인구활력추진단 하반기 정례회의 개최",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:jeonbuk:press:48c850f8734a32bac0532425601af5df",
+      "source_id": "src:jeonbuk:press",
+      "published_date": "2026-09-30",
+      "title": "- 병원 도착 전 산모·신생아 지킨다 - “구급차 안 분만도 빈틈없이” 전북소방, 현장 대응력 높인다!",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:jeonbuk:press:6a310ba15fa5db84904e96992bf986e1",
+      "source_id": "src:jeonbuk:press",
+      "published_date": "2026-09-30",
+      "title": "전북도,‘2026 WT 올림픽 솔리더리티 (Olympic Solidarity) 육성 캠프’공동 개최",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:jeonbuk:press:75598fdbd2f71ac50e6af56e1ca88448",
+      "source_id": "src:jeonbuk:press",
+      "published_date": "2026-09-30",
+      "title": "군산항 물류 지도 새로 그린다! 군산항~부산항 피더항로 첫 운항",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:jeonbuk:press:75c15636196749a48360722cf831cb69",
+      "source_id": "src:jeonbuk:press",
+      "published_date": "2026-09-30",
+      "title": "전북자치도, 농지 전수조사 바탕으로 농촌 현실 맞는 관리체계 개선",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NEEDS_REVIEW"
+    },
+    {
+      "item_id": "src:jeonbuk:press:82f5b00f48d2596def6f3c81a3e501af",
+      "source_id": "src:jeonbuk:press",
+      "published_date": "2026-09-30",
+      "title": "전북소방, 위험물시설 ‘현장에서 배우고 현장에서 살핀다’",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:jeonbuk:press:e318bd6be7fc0c7b2e13b57d2ce76aea",
+      "source_id": "src:jeonbuk:press",
+      "published_date": "2026-09-30",
+      "title": "“5,000명 바로 입주 가능”… 전북자치도, 2차 공공기관 이전 ‘READY’",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:04f656e04c6cab1195b23784163a1953",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-01",
+      "title": "요양급여 거짓 청구한 의료기관 등 58개소 명단 공표",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:08ff527b007bb0284c9b3cf5de5a888c",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-02",
+      "title": "제30회 노인의 날 기념식 개최",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:0ad44a6711163846eab0d0fb03cd24f1",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-09-29",
+      "title": "한 눈에 보는 보건의료인력 현황, 「제2차 보건의료인력 실태조사」 결과 발표",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:0af9bfe570b7221112868a151e9a8178",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-02",
+      "title": "공적입양체계 전환 후 결연 실적 9월 기준 122명, 제3차 입양정책위원회 개최",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:1d84f5764eb99de14f3030e30a87c2b3",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-09-28",
+      "title": "부처별 흩어진 복지사업 점검해 빈틈없는 사회안전망 모색",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:248a63f4214855599afac27550f308dc",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-09-30",
+      "title": "‘데이터로 더 정확하게, 건강 지키는 맞춤형 정책 설계한다’ 미래 건강전략 포럼 개최",
+      "gold": "WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:26bb7233829fd4cf756105191863e0d2",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-01",
+      "title": "위기 상황에 처한 가구,담당 공무원이 직접 직권신청해 신속 보호‘복지급여 신청주의 대폭 개선’",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:2986499105f45f97dcdc2b40fb3e3631",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-09-30",
+      "title": "희귀·소외암환자 치료비 부담 낮춘다, 10월부터 암 치료제 건강보험 적용 확대",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:3760864f5e7da215b0e423fdc4741040",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-01",
+      "title": "통합돌봄 현장 이끌 핵심인재 500명 키운다!",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:4107b81e48e46e9243b27d109f211faf",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-01",
+      "title": "국립의학전문대학원 남원 설립 확정, 2029년 개교 본격 추진",
+      "gold": "WELFARE",
+      "stored_status": "NON_WELFARE",
+      "borderline": "의대 설립을 보건의료 인력정책으로 봄"
+    },
+    {
+      "item_id": "src:mohw:press-rss:423974cc71ad8f9c631dc372e6dc003a",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-01",
+      "title": "군복무 기간 전체로 국민연금 크레딧 확대 등 국민연금법, 기초연금법 개정안 국회 본회의 통과",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:4c2d46e6d3f7cdea43fe79fef0223636",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-02",
+      "title": "숭고한 의(義)를 실천한 1인, 의사자로 인정",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:4e2bdb4a08953aee70211fbab35d3440",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-09-30",
+      "title": "실제 주거공간에 고령친화기술 녹여낸다 복지부, 에이지테크 실증 현장 점검",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:58861e10368b96954268598c16bb50a5",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-09-28",
+      "title": "동네에서 치료뿐 아니라 포괄적 건강관리까지 ‘지역사회 일차의료 혁신 시범사업’ 시작",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:6019860a0607548d504808366e260b05",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-09-30",
+      "title": "국민 간병 부담 완화 위한 입원서비스 정책 로드맵 논의 착수",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:8978759e6adbb8e4267fe8c1d223f21f",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-01",
+      "title": "외국 출생·장기 체류 아동 복지급여 부정수급 막는다... 외교부 시스템 연계해 임시여권도 실시간 관리",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:8d6be41d002005782837a09f1fca6f2f",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-09-28",
+      "title": "유럽서 커지는 K-뷰티, 현지 진출길 넓힌다 이탈리아·독일·프랑스에 체험·판매장 순차 개소",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:908e3d984c1097351bd749dad4bfbde8",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-09-29",
+      "title": "“청년의 희망찬 내일을 지원합니다” 2026년 청년내일저축계좌 24,145명 최종 선정",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:93045dcccbc98bb65eda1987ae48e877",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-01",
+      "title": "의료 AI 실증 생태계, 병원과 기업간 현장 소통으로 내실 다진다",
+      "gold": "NOT_WELFARE",
+      "stored_status": "WELFARE",
+      "borderline": "의료 AI 실증, 보건산업 성격"
+    },
+    {
+      "item_id": "src:mohw:press-rss:9557e92ae27628a753fada3085bbf0f7",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-09-30",
+      "title": "‘아이의 신호를 놓치지 말아주세요’ 아동학대 전담의료기관 지원 강화한다",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:97da816daf08316418703775facce785",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-01",
+      "title": "루게릭병 전문요양병원 시범사업 11월 시행",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:98c658180e0b905fa020134ba295a36f",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-01",
+      "title": "“노인을 위한 도시는 있다” 고령친화도시 지정제도 본격 추진",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:99aac9fa1e66bd2c1c75545eb182d509",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-01",
+      "title": "시영화 제13대 국립나주병원장 취임",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:99e126059d8c9b5ec5318c4e4741c7a5",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-01",
+      "title": "응급환자 이송부터 최종치료까지, 적기에 치료 가능한 응급의료체계 혁신방안 논의",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:bb05b4ba6e9f2e4058bde2add0ec569a",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-01",
+      "title": "병·의원 넘어 '창고형 약국'까지 살핀다,제4차 비정상·가짜진료 행정조사 실시",
+      "gold": "WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:c178644edec39bd5c349b15d9b3c8e65",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-09-30",
+      "title": "각계 전문가 모여 지역 중심 통합돌봄 전달체계와 돌봄 생태계 논의",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:c2e3bd46d81ff119a3c39c75fe5b0e6b",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-01",
+      "title": "국립공주병원, 실전형 모의훈련으로 재난 심리지원 현장 대응력 높인다",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:c6f8be5b9c687c9041efe8f1fcd0a58f",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-02",
+      "title": "삶의 마지막까지 익숙한 곳에서 보낼 수 있도록 재가 생애말기 의료·요양·돌봄 지원방안 모색",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:d5ae4bd7b1874a4371d2045c68164932",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-10-01",
+      "title": "‘목숨을 살리는 정부’ 국정목표 위해 복지급여 신청주의, 응급환자 이송체계, 자살예방 제도 등 개선",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:mohw:press-rss:d6d96ce0ccf3e98d9ad7ffb7c24287e2",
+      "source_id": "src:mohw:press-rss",
+      "published_date": "2026-09-29",
+      "title": "「미디어, 마음을 쓰다 : 편견을 넘어 공감으로」 정신건강 보도 위한 미디어 역할 논의",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:seoul:press:15adf73ddaff9a802a8bd5f672e147ea",
+      "source_id": "src:seoul:press",
+      "published_date": "2026-10-02",
+      "title": "공간과 일상 사이에 스며든 식물…서울식물원‘초록, 속’기획전 운영",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:seoul:press:2c5137e30803cf62e636555cbcb2f869",
+      "source_id": "src:seoul:press",
+      "published_date": "2026-10-02",
+      "title": "“지하도상가서 친구·가족과 함께 파크골프 즐겨요” 서울시설공단, ‘제1회 서울아랫길 스크린 파크골프대회’ 개최",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:seoul:press:2dae16edc9edf4c863dce32b8b224499",
+      "source_id": "src:seoul:press",
+      "published_date": "2026-10-02",
+      "title": "\"한강 다리는 언제, 왜 놓였을까?\" 서울 발전사 담은「한강의 다리」발간",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:seoul:press:6b1fdfe99b33d40e41e14fa57e39f5b0",
+      "source_id": "src:seoul:press",
+      "published_date": "2026-10-02",
+      "title": "(석간) “외국인 창업가를 서울의 성장 동력으로”…서울시, 글로벌 창업 인재 발굴",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:seoul:press:759e1e3965fc9e133ebc1aa8fd480e7a",
+      "source_id": "src:seoul:press",
+      "published_date": "2026-10-02",
+      "title": "서울시복지재단 VR기술 활용 장애인 주거안전서비스 지원",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:seoul:press:7ab4fdfb7351ba16c3daca6e251e4fc2",
+      "source_id": "src:seoul:press",
+      "published_date": "2026-10-03",
+      "title": "(자료제공) 서울시장 사후동정 - 오세훈 시장, 3일(토) 2026 강남페스티벌 참석",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:seoul:press:91ba7d9f6a79f54d98ae8bfead4008a4",
+      "source_id": "src:seoul:press",
+      "published_date": "2026-10-02",
+      "title": "(자료제공) 서울시장 사후동정 - 오세훈 시장, 2일(금) 2026 서울라이트 한강 빛섬축제 참석",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:seoul:press:99322a90cf828f6e98789c0fb22d6053",
+      "source_id": "src:seoul:press",
+      "published_date": "2026-10-02",
+      "title": "(석간) ‘금2·은3·동4’서울시청 선수단, 아시안게임 빛냈다…추가 메달 도전",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:seoul:press:c2d741338fa7406c2095636cb158e5a8",
+      "source_id": "src:seoul:press",
+      "published_date": "2026-10-02",
+      "title": "(석간) 시민이 기부한 서울페이+ 잔액 2억 6천만 원, 위기가정·아이들 위한 나눔 됐다",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:seoul:press:dfc7fa7623db1cc84c68e3155ca36941",
+      "source_id": "src:seoul:press",
+      "published_date": "2026-10-02",
+      "title": "“아이가 치료 받는 30분, 가족도 쉼을 얻는다” 서울시 어린이병원 51병동, 환아·가족 함께하는 가족중심 건강돌봄 첫걸음",
+      "gold": "WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:ulsan:press:2e51e6ee83e67651e48c618a5fbdbfb3",
+      "source_id": "src:ulsan:press",
+      "published_date": "2026-10-02",
+      "title": "'끝내지 못한 이야기-국민화가 이중섭' 개최",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:ulsan:press:31c699396dc07b93e9f93f8a236ea5b7",
+      "source_id": "src:ulsan:press",
+      "published_date": "2026-10-01",
+      "title": "주택용소방시설 보급 활성화 위한 간담회 개최",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:ulsan:press:44f5784ee357488502d61f2d0e9a328a",
+      "source_id": "src:ulsan:press",
+      "published_date": "2026-10-02",
+      "title": "방재성능목표 30년 빈도에서 50년 빈도로 상향",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:ulsan:press:626b760c34bc90ee39f61ed1554ee44e",
+      "source_id": "src:ulsan:press",
+      "published_date": "2026-10-01",
+      "title": "서울주소방서, 원아 30명 대상 찾아가는 소방안전교육 실시",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:ulsan:press:8cea03b9b38860afe3b63be10de5fbff",
+      "source_id": "src:ulsan:press",
+      "published_date": "2026-10-02",
+      "title": "2027년도 국가예산 확보·지역현안 해결 협력 강화",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NEEDS_REVIEW"
+    },
+    {
+      "item_id": "src:ulsan:press:9300c2c9c70b056d1cb47b98312dbe93",
+      "source_id": "src:ulsan:press",
+      "published_date": "2026-10-02",
+      "title": "제61회 전국기능경기대회 울산선수단 해단식 개최",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:ulsan:press:9f3bd11d9a3a9fd300a58356b440034a",
+      "source_id": "src:ulsan:press",
+      "published_date": "2026-10-01",
+      "title": "울산시, 행안부 주관 2026년 하반기 마을기업 3개사 최종 지정",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:ulsan:press:a522aaba75c95a5c5dc59ee4ba17d664",
+      "source_id": "src:ulsan:press",
+      "published_date": "2026-10-02",
+      "title": "울산시립청소년교향악단, 신규 단원 4명 선발",
+      "gold": "NOT_WELFARE",
+      "stored_status": "WELFARE"
+    },
+    {
+      "item_id": "src:ulsan:press:bc9b7c888adc32bef5a05130d14d1e93",
+      "source_id": "src:ulsan:press",
+      "published_date": "2026-10-02",
+      "title": "석유화학단지 내 공장 합동소방훈련 실시",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    },
+    {
+      "item_id": "src:ulsan:press:db9698e94fa5a80ade01cca83adf090d",
+      "source_id": "src:ulsan:press",
+      "published_date": "2026-10-02",
+      "title": "울산광역시 보도자료(2026년 10월 2일)",
+      "gold": "NOT_WELFARE",
+      "stored_status": "NON_WELFARE"
+    }
+  ]
+}

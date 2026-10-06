@@ -1,0 +1,116 @@
+{
+  "labels": "docs/press/eval/labels-2026-10-04.json",
+  "dictionary_version": "press-dict-2026-10-04",
+  "total": 117,
+  "gold_welfare": 40,
+  "needs_review": 11,
+  "welfare_only": {
+    "tp": 37,
+    "fp": 1,
+    "fn": 3,
+    "tn": 76,
+    "precision": 0.974,
+    "recall": 0.925,
+    "f1": 0.949
+  },
+  "welfare_or_review": {
+    "tp": 37,
+    "fp": 12,
+    "fn": 3,
+    "tn": 65,
+    "precision": 0.755,
+    "recall": 0.925,
+    "f1": 0.831
+  },
+  "excluding_borderline": {
+    "total": 110,
+    "tp": 36,
+    "fp": 0,
+    "fn": 1,
+    "precision": 1,
+    "recall": 0.973
+  },
+  "by_source": {
+    "src:chungnam:press": {
+      "total": 10,
+      "gold_welfare": 2,
+      "predicted_welfare": 2,
+      "errors": 0
+    },
+    "src:daejeon:press": {
+      "total": 12,
+      "gold_welfare": 1,
+      "predicted_welfare": 1,
+      "errors": 0
+    },
+    "src:gangwon:press": {
+      "total": 15,
+      "gold_welfare": 2,
+      "predicted_welfare": 2,
+      "errors": 0
+    },
+    "src:gyeonggi:press": {
+      "total": 10,
+      "gold_welfare": 0,
+      "predicted_welfare": 0,
+      "errors": 0
+    },
+    "src:incheon:press": {
+      "total": 10,
+      "gold_welfare": 2,
+      "predicted_welfare": 2,
+      "errors": 0
+    },
+    "src:jeonbuk:press": {
+      "total": 10,
+      "gold_welfare": 3,
+      "predicted_welfare": 2,
+      "errors": 1
+    },
+    "src:mohw:press-rss": {
+      "total": 30,
+      "gold_welfare": 27,
+      "predicted_welfare": 26,
+      "errors": 3
+    },
+    "src:seoul:press": {
+      "total": 10,
+      "gold_welfare": 3,
+      "predicted_welfare": 3,
+      "errors": 0
+    },
+    "src:ulsan:press": {
+      "total": 10,
+      "gold_welfare": 0,
+      "predicted_welfare": 0,
+      "errors": 0
+    }
+  },
+  "false_positives": [
+    {
+      "source_id": "src:mohw:press-rss",
+      "title": "의료 AI 실증 생태계, 병원과 기업간 현장 소통으로 내실 다진다",
+      "borderline": "의료 AI 실증, 보건산업 성격"
+    }
+  ],
+  "false_negatives": [
+    {
+      "source_id": "src:jeonbuk:press",
+      "title": "전북자치도, 농어촌 기본소득 지역경제 선순환 체계 구축에 박차",
+      "predicted": "NON_WELFARE",
+      "borderline": "농어촌 기본소득을 소득보장 정책으로 봄"
+    },
+    {
+      "source_id": "src:mohw:press-rss",
+      "title": "‘데이터로 더 정확하게, 건강 지키는 맞춤형 정책 설계한다’ 미래 건강전략 포럼 개최",
+      "predicted": "NON_WELFARE",
+      "borderline": ""
+    },
+    {
+      "source_id": "src:mohw:press-rss",
+      "title": "국립의학전문대학원 남원 설립 확정, 2029년 개교 본격 추진",
+      "predicted": "NON_WELFARE",
+      "borderline": "의대 설립을 보건의료 인력정책으로 봄"
+    }
+  ]
+}

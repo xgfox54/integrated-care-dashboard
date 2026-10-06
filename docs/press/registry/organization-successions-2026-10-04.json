@@ -1,0 +1,154 @@
+{
+  "researched_at": "2026-10-04",
+  "method": "웹 검색으로 공식 법령·정부 보도자료를 확인. 각 관계의 basis_url은 1차 근거, secondary_url은 보조 근거(서해구 명칭은 언론 보도로 확인).",
+  "not_recorded": [
+    "강원특별자치도(2023-06-11)·전북특별자치도(2024-01-18) 출범: 이번 조사에서 공식 출처를 확인하지 못해 기록하지 않음(같은 기관의 명칭·지위 변경으로 ID 연속성 판단 필요).",
+    "광주광역시 자치구·전라남도 시·군의 법적 지위 변화: 특별법 조문을 직접 확인하지 못해 상위 기관만 기록. 시·군·구 행 자체는 기존 ID 유지."
+  ],
+  "successions": [
+    {
+      "succession_id": "succ:2026-07-01:gwangju-merge",
+      "predecessor_id": "org:광주광역시",
+      "successor_id": "org:전남광주통합특별시",
+      "kind": "MERGE",
+      "effective_date": "2026-07-01",
+      "territory_note": "광주광역시 전역",
+      "basis_title": "「전남광주통합특별시 설치를 위한 특별법」 시행",
+      "basis_url": "https://opinion.lawmaking.go.kr/gcom/ogLmPp/87004/myOpn",
+      "secondary_url": "https://m.korea.kr/news/policyNewsView.do?newsId=148960435"
+    },
+    {
+      "succession_id": "succ:2026-07-01:jeonnam-merge",
+      "predecessor_id": "org:전라남도",
+      "successor_id": "org:전남광주통합특별시",
+      "kind": "MERGE",
+      "effective_date": "2026-07-01",
+      "territory_note": "전라남도 전역",
+      "basis_title": "「전남광주통합특별시 설치를 위한 특별법」 시행",
+      "basis_url": "https://opinion.lawmaking.go.kr/gcom/ogLmPp/87004/myOpn",
+      "secondary_url": "https://m.korea.kr/news/policyNewsView.do?newsId=148960435"
+    },
+    {
+      "succession_id": "succ:2026-07-01:incheon-junggu-jemulpo",
+      "predecessor_id": "org:인천광역시:중구",
+      "successor_id": "org:인천광역시:제물포구",
+      "kind": "SPLIT",
+      "effective_date": "2026-07-01",
+      "territory_note": "중구 원도심(영종·용유 제외)",
+      "basis_title": "인천광역시 행정체제 개편 법률 시행",
+      "basis_url": "https://www.law.go.kr/LSW/lsInfoP.do?ancNo=20161",
+      "secondary_url": "https://www.incheon.go.kr/IC010205/view?repDt=2026-06-08&repSeq=DOM_0000000014871020"
+    },
+    {
+      "succession_id": "succ:2026-07-01:incheon-donggu-jemulpo",
+      "predecessor_id": "org:인천광역시:동구",
+      "successor_id": "org:인천광역시:제물포구",
+      "kind": "MERGE",
+      "effective_date": "2026-07-01",
+      "territory_note": "동구 전역",
+      "basis_title": "인천광역시 행정체제 개편 법률 시행",
+      "basis_url": "https://www.law.go.kr/LSW/lsInfoP.do?ancNo=20161",
+      "secondary_url": "https://www.incheon.go.kr/IC010205/view?repDt=2026-06-08&repSeq=DOM_0000000014871020"
+    },
+    {
+      "succession_id": "succ:2026-07-01:incheon-junggu-yeongjong",
+      "predecessor_id": "org:인천광역시:중구",
+      "successor_id": "org:인천광역시:영종구",
+      "kind": "SPLIT",
+      "effective_date": "2026-07-01",
+      "territory_note": "중구 영종·용유 지역",
+      "basis_title": "인천광역시 행정체제 개편 법률 시행",
+      "basis_url": "https://www.law.go.kr/LSW/lsInfoP.do?ancNo=20161",
+      "secondary_url": "https://www.incheon.go.kr/IC010205/view?repDt=2026-06-08&repSeq=DOM_0000000014871020"
+    },
+    {
+      "succession_id": "succ:2026-07-01:incheon-seogu-geomdan",
+      "predecessor_id": "org:인천광역시:서구",
+      "successor_id": "org:인천광역시:검단구",
+      "kind": "SPLIT",
+      "effective_date": "2026-07-01",
+      "territory_note": "서구 검단 지역",
+      "basis_title": "인천광역시 행정체제 개편 법률 시행",
+      "basis_url": "https://www.law.go.kr/LSW/lsInfoP.do?ancNo=20161",
+      "secondary_url": "https://www.incheon.go.kr/IC010205/view?repDt=2026-06-08&repSeq=DOM_0000000014871020"
+    },
+    {
+      "succession_id": "succ:2026-07-01:incheon-seogu-seohae",
+      "predecessor_id": "org:인천광역시:서구",
+      "successor_id": "org:인천광역시:서해구",
+      "kind": "SPLIT",
+      "effective_date": "2026-07-01",
+      "territory_note": "검단 분리 후 나머지 서구 지역. 개편 법률 공포 때 명칭은 서구였고 이후 별도 법률로 서해구로 개칭",
+      "basis_title": "인천광역시 행정체제 개편 법률 시행 및 명칭 변경",
+      "basis_url": "https://www.law.go.kr/LSW/lsInfoP.do?ancNo=20161",
+      "secondary_url": "https://www.yna.co.kr/view/AKR20260507123500530"
+    },
+    {
+      "succession_id": "succ:2023-07-01:gunwi-transfer",
+      "predecessor_id": "org:경상북도:군위군",
+      "successor_id": "org:대구광역시:군위군",
+      "kind": "TRANSFER",
+      "effective_date": "2023-07-01",
+      "territory_note": "군위군 전역(경상북도 → 대구광역시 관할 변경)",
+      "basis_title": "「경상북도와 대구광역시 간 관할구역 변경에 관한 법률」(법률 제19155호) 시행",
+      "basis_url": "https://www.moleg.go.kr/lawinfo/nwLwAnInfo.mo?cs_seq=443532&currentPage=6&keyField=&keyWord=&mid=a&pageCnt=50&sort=date",
+      "secondary_url": null
+    }
+  ],
+  "abolished_organizations": [
+    {
+      "organization_id": "org:광주광역시",
+      "name": "광주광역시",
+      "org_type": "METROPOLITAN",
+      "sido": "광주광역시",
+      "sigungu": "",
+      "parent_id": null,
+      "valid_to": "2026-06-30"
+    },
+    {
+      "organization_id": "org:전라남도",
+      "name": "전라남도",
+      "org_type": "METROPOLITAN",
+      "sido": "전라남도",
+      "sigungu": "",
+      "parent_id": null,
+      "valid_to": "2026-06-30"
+    },
+    {
+      "organization_id": "org:인천광역시:중구",
+      "name": "중구",
+      "org_type": "AUTONOMOUS_DISTRICT",
+      "sido": "인천광역시",
+      "sigungu": "중구",
+      "parent_id": "org:인천광역시",
+      "valid_to": "2026-06-30"
+    },
+    {
+      "organization_id": "org:인천광역시:동구",
+      "name": "동구",
+      "org_type": "AUTONOMOUS_DISTRICT",
+      "sido": "인천광역시",
+      "sigungu": "동구",
+      "parent_id": "org:인천광역시",
+      "valid_to": "2026-06-30"
+    },
+    {
+      "organization_id": "org:인천광역시:서구",
+      "name": "서구",
+      "org_type": "AUTONOMOUS_DISTRICT",
+      "sido": "인천광역시",
+      "sigungu": "서구",
+      "parent_id": "org:인천광역시",
+      "valid_to": "2026-06-30"
+    },
+    {
+      "organization_id": "org:경상북도:군위군",
+      "name": "군위군",
+      "org_type": "BASIC_COUNTY",
+      "sido": "경상북도",
+      "sigungu": "군위군",
+      "parent_id": "org:경상북도",
+      "valid_to": "2023-06-30"
+    }
+  ]
+}

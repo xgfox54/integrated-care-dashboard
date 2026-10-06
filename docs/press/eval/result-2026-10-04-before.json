@@ -1,0 +1,144 @@
+{
+  "labels": "docs/press/eval/labels-2026-10-04.json",
+  "dictionary_version": "press-dict-2026-10-03b",
+  "total": 117,
+  "gold_welfare": 40,
+  "needs_review": 10,
+  "welfare_only": {
+    "tp": 34,
+    "fp": 3,
+    "fn": 6,
+    "tn": 74,
+    "precision": 0.919,
+    "recall": 0.85,
+    "f1": 0.883
+  },
+  "welfare_or_review": {
+    "tp": 35,
+    "fp": 12,
+    "fn": 5,
+    "tn": 65,
+    "precision": 0.745,
+    "recall": 0.875,
+    "f1": 0.805
+  },
+  "excluding_borderline": {
+    "total": 110,
+    "tp": 34,
+    "fp": 1,
+    "fn": 3,
+    "precision": 0.971,
+    "recall": 0.919
+  },
+  "by_source": {
+    "src:chungnam:press": {
+      "total": 10,
+      "gold_welfare": 2,
+      "predicted_welfare": 2,
+      "errors": 0
+    },
+    "src:daejeon:press": {
+      "total": 12,
+      "gold_welfare": 1,
+      "predicted_welfare": 0,
+      "errors": 1
+    },
+    "src:gangwon:press": {
+      "total": 15,
+      "gold_welfare": 2,
+      "predicted_welfare": 3,
+      "errors": 1
+    },
+    "src:gyeonggi:press": {
+      "total": 10,
+      "gold_welfare": 0,
+      "predicted_welfare": 0,
+      "errors": 0
+    },
+    "src:incheon:press": {
+      "total": 10,
+      "gold_welfare": 2,
+      "predicted_welfare": 2,
+      "errors": 0
+    },
+    "src:jeonbuk:press": {
+      "total": 10,
+      "gold_welfare": 3,
+      "predicted_welfare": 2,
+      "errors": 1
+    },
+    "src:mohw:press-rss": {
+      "total": 30,
+      "gold_welfare": 27,
+      "predicted_welfare": 24,
+      "errors": 5
+    },
+    "src:seoul:press": {
+      "total": 10,
+      "gold_welfare": 3,
+      "predicted_welfare": 3,
+      "errors": 0
+    },
+    "src:ulsan:press": {
+      "total": 10,
+      "gold_welfare": 0,
+      "predicted_welfare": 1,
+      "errors": 1
+    }
+  },
+  "false_positives": [
+    {
+      "source_id": "src:gangwon:press",
+      "title": "강원관광재단, 청소년 마약 근절 ‘노 위크 챌린지’ 동참",
+      "borderline": "청소년 마약 근절 캠페인 동참이지만 주체가 관광재단이고 행사 참여 성격"
+    },
+    {
+      "source_id": "src:mohw:press-rss",
+      "title": "의료 AI 실증 생태계, 병원과 기업간 현장 소통으로 내실 다진다",
+      "borderline": "의료 AI 실증, 보건산업 성격"
+    },
+    {
+      "source_id": "src:ulsan:press",
+      "title": "울산시립청소년교향악단, 신규 단원 4명 선발",
+      "borderline": ""
+    }
+  ],
+  "false_negatives": [
+    {
+      "source_id": "src:daejeon:press",
+      "title": "대전시 찾아가는 전세피해 예방교육 실시",
+      "predicted": "NON_WELFARE",
+      "borderline": "전세피해 예방교육을 주거취약 보호로 봄"
+    },
+    {
+      "source_id": "src:jeonbuk:press",
+      "title": "전북자치도, 농어촌 기본소득 지역경제 선순환 체계 구축에 박차",
+      "predicted": "NON_WELFARE",
+      "borderline": "농어촌 기본소득을 소득보장 정책으로 봄"
+    },
+    {
+      "source_id": "src:mohw:press-rss",
+      "title": "‘데이터로 더 정확하게, 건강 지키는 맞춤형 정책 설계한다’ 미래 건강전략 포럼 개최",
+      "predicted": "NON_WELFARE",
+      "borderline": ""
+    },
+    {
+      "source_id": "src:mohw:press-rss",
+      "title": "국립의학전문대학원 남원 설립 확정, 2029년 개교 본격 추진",
+      "predicted": "NON_WELFARE",
+      "borderline": "의대 설립을 보건의료 인력정책으로 봄"
+    },
+    {
+      "source_id": "src:mohw:press-rss",
+      "title": "“청년의 희망찬 내일을 지원합니다” 2026년 청년내일저축계좌 24,145명 최종 선정",
+      "predicted": "NEEDS_REVIEW",
+      "borderline": ""
+    },
+    {
+      "source_id": "src:mohw:press-rss",
+      "title": "병·의원 넘어 '창고형 약국'까지 살핀다,제4차 비정상·가짜진료 행정조사 실시",
+      "predicted": "NON_WELFARE",
+      "borderline": ""
+    }
+  ]
+}
