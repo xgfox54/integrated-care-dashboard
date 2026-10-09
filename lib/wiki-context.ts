@@ -11,7 +11,7 @@ async function callTool(data: McpData, origin: string, name: string, args: Recor
     method: "POST",
     headers: { "content-type": "application/json", accept: "application/json, text/event-stream" },
     body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "tools/call", params: { name, arguments: args } }),
-  }), data);
+  }), data, undefined, { includeFiscal: true });
   if (!response.ok) return null;
   return ((await response.json()) as { result?: ToolResult }).result ?? null;
 }

@@ -2,7 +2,6 @@
   <img src="./care_dashboadrd_fix.png" alt="전국 통합돌봄 사업 총괄 대시보드 표지" width="100%">
 </p>
 
-
 # 전국 통합돌봄 사업 총괄 대시보드
 
 전국 지방자치단체의 통합돌봄 사업과 대한민국 복지제도 정보를 한곳에서 검색하고 비교하는 웹사이트입니다.
@@ -59,7 +58,14 @@ for file in drizzle/*.sql; do
 done
 ```
 
-자료가 비어 있으면 첫 요청 때 보건복지부 공식 자료 수집을 뒤에서 시작합니다. 공공데이터포털 지자체 복지서비스 API는 보조 자료로 쓰며, 쓰려면 배포 환경변수 `PUBLIC_DATA_SERVICE_KEY`에 인증키를 넣습니다(인코딩된 키면 `PUBLIC_DATA_SERVICE_KEY_ENCODING=encoded`). 인증키는 저장소에 넣지 마세요.
+자료가 비어 있으면 첫 요청 때 보건복지부 공식 자료 수집을 뒤에서 시작합니다. 외부 자료는 아래 배포 환경변수에 인증키를 넣었을 때만 받습니다. 인증키는 저장소에 넣지 마세요.
+
+| 환경변수 | 쓰는 곳 |
+|---|---|
+| `PUBLIC_DATA_SERVICE_KEY` | 공공데이터포털(지자체 복지서비스, 정부24 공공서비스, 법정동코드, 보도자료 Open API). 인코딩된 키면 `PUBLIC_DATA_SERVICE_KEY_ENCODING=encoded` |
+| `LOFIN_API_KEY` | 지방재정365 세출 현황(복지예산) |
+| `KOSIS_API_KEY` | KOSIS 국가통계 |
+| `SEOUL_OPEN_DATA_KEY` | 서울 열린데이터광장 보도자료 |
 
 ## 자료 출처
 

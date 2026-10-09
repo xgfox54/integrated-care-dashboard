@@ -57,6 +57,12 @@ export const NON_WELFARE_HINTS: readonly string[] = [
 
 export const WEAK_WORDS: readonly string[] = ["지원", "제도", "시행", "확대", "개선", "사업", "공모", "예산"];
 
+/**
+ * 운영자가 수집 대상에서 뺀 낱말(2026-10-09). 제목에 있으면 어르신·나눔 같은 복지 단서가 함께 있어도 비복지로 둔다.
+ * 영농부산물: 쓰레기 불법소각 방지 안내 보도자료.
+ */
+export const EXCLUDED_TITLE_WORDS: readonly string[] = ["영농부산물"];
+
 /** 발행기관 유형(당시 기준). */
 export const ORG_TYPE_LABELS: Readonly<Record<string, string>> = {
   CENTRAL: "중앙부처", METROPOLITAN: "광역자치단체", BASIC_CITY: "시", BASIC_COUNTY: "군", AUTONOMOUS_DISTRICT: "자치구", ADMINISTRATIVE_CITY: "행정시", GENERAL_DISTRICT: "일반구",

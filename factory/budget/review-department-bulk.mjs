@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { normalizeName } from "./match-departments.mjs";
-import { mergeReviewed, officialAttachments, organisationDepartments, documentRows, matchCorpus } from "./department-corpus.mjs";
+import { mergeReviewed, officialAttachments, organisationDepartments, documentRows, matchCorpus, pageUnitVerified } from "./department-corpus.mjs";
 
 export function reviewedMappings(mappings, manifest, receipt) {
   assert.equal(receipt.manifest_sha256, manifest.sha256, "visual receipt must pin the exact manifest");
@@ -40,7 +40,7 @@ const currentIndex = officialAttachments(indexText, report.entity);
 if (report.entity.department_toc) {
   assert.equal(state.department_toc.url, report.entity.department_toc.url);
   const directory = path.join(root, entity, "parsed", "department-toc");
-  const summary = organisationDepartments({ blocks: JSON.parse(readFileSync(path.join(directory, "document.json"), "utf8")).blocks, tables: readFileSync(path.join(directory, "tables.jsonl"), "utf8").trim().split("\n").filter(Boolean).map(JSON.parse) }, "2026", report.entity.department_toc.account_name);
+  const summary = organisationDepartments({ blocks: JSON.parse(readFileSync(path.join(directory, "document.json"), "utf8")).blocks, tables: readFileSync(path.join(directory, "tables.jsonl"), "utf8").trim().split("\n").filter(Boolean).map(JSON.parse) }, "2026", report.entity.department_toc.account_name, report.entity.department_toc);
   for (const item of currentIndex) item.toc_names = summary.names;
   for (const document of documents) assert.deepEqual(document.department_toc, { source_url: state.department_toc.url, raw_sha256: state.department_toc.sha256, ...(report.entity.department_toc.page_range ? { page_range: report.entity.department_toc.page_range } : {}), locations: summary.locations });
 }
@@ -60,12 +60,12 @@ for (const doc of documents) for (const chunk of doc.chunks) {
     if (!pageBlocks.has(key)) pageBlocks.set(key, []);
     pageBlocks.get(key).push(block);
     if (!headers.has(key)) headers.set(key, new Set());
-    const found = String(block.parsed_text_verbatim ?? "").match(/부서\s*[:：]\s*([^\n]+?)(?=\s+정책\s*[:：]|\s+단위\s*[:：]|$)/u);
+    const found = String(block.parsed_text_verbatim ?? "").match(/부서\s*[:：]\s*([^\n]+?)(?=\s*정책\s*[:：]|\s*단위\s*[:：]|$)/u);
     if (found) headers.get(key).add(normalizeName(found[1]));
   }
 }
 for (const document of documents) corpus.push(...documentRows(document, byDocument.get(document.id), report.entity, "2026").rows);
-const reproduced = matchCorpus([...api.values()], corpus);
+const reproduced = matchCorpus([...api.values()], corpus, report.entity);
 assert.deepEqual(reproduced.mappings, report.mappings, "recheck uniqueness against the complete corpus, including unverified rows");
 let checks = 0;
 for (const mapping of report.mappings) {
@@ -79,7 +79,7 @@ for (const mapping of report.mappings) {
     assert.equal(source.index_sha256, d.toc_index_sha256);
     assert.equal(d.department_basis, "explicit_same_page_header_and_official_index");
     const text = normalizeName(pageBlocks.get(source.id + ":" + d.page).map((b) => b.parsed_text_verbatim ?? "").join(" "));
-    assert.ok(text.includes("단위:천원") || text.includes("단위：천원"));
+    assert.ok(report.entity.amount_unit === "천원" && pageUnitVerified(report.entity, source, d.page, text, mapping.department_name));
     assert.ok(!text.includes("특별회계"));
     assert.ok(BigInt(d.amount_krw) > 0n);
     assert.equal(row.fiscal_entity.name, mapping.fiscal_entity_name);

@@ -37,8 +37,15 @@ export const MCP_TOOL_NAMES = [
 
 export type McpToolName = (typeof MCP_TOOL_NAMES)[number];
 
-/** 지금 공개 MCP에 실제로 등록하는 도구. 돌봄자원 보류(lib/integrations/care-hold.ts) 동안 돌봄 도구 3개는 빠진다. */
-export const PUBLIC_MCP_TOOL_NAMES: readonly McpToolName[] = MCP_TOOL_NAMES.filter((name) => CARE_RESOURCES_PUBLIC || !CARE_TOOL_NAMES.has(name));
+// 예산·재정 자료 MCP 제외(2026-10-06 운영자 지시): 부서 분리·신설이 예산에 반영되지 않는 등 아직 정확하지 않은 부분이 많다.
+// 공개 /mcp에는 재정 도구 4개와 다른 도구 응답 속 예산 항목을 내보내지 않는다. 다시 열 때는 FISCAL_MCP_PUBLIC을 true로 바꾼다.
+// 사이트 안의 위키 화면은 같은 도구를 내부 호출(includeFiscal)로 써서 검토된 예산사업 연결을 계속 보여 준다.
+export const FISCAL_MCP_PUBLIC: boolean = false;
+export const FISCAL_TOOL_NAMES: ReadonlySet<string> = new Set(["get_fiscal_catalog", "find_budget_projects", "get_budget_execution", "compare_budget_periods"]);
+export const FISCAL_WITHHELD_MESSAGE = "예산·재정 정보는 정확도 검증이 끝날 때까지 이 MCP에서 제공하지 않습니다. 다른 자료로 예산을 추정하지 마세요.";
+
+/** 지금 공개 MCP에 실제로 등록하는 도구. 돌봄자원 보류(lib/integrations/care-hold.ts)와 예산 제외 동안 해당 도구는 빠진다. */
+export const PUBLIC_MCP_TOOL_NAMES: readonly McpToolName[] = MCP_TOOL_NAMES.filter((name) => (CARE_RESOURCES_PUBLIC || !CARE_TOOL_NAMES.has(name)) && (FISCAL_MCP_PUBLIC || !FISCAL_TOOL_NAMES.has(name)));
 
 export const LIMITS = {
   listDefault: 20,

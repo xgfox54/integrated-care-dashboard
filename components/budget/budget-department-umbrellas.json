@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "mappings": [
+    {
+      "fiscal_entity_name": "충남논산시",
+      "fiscal_year": "2026",
+      "source_department_name": "보건소",
+      "status": "verified_exact",
+      "basis": "official_organization_and_verified_department_registry",
+      "children": [
+        {
+          "department_code": "1110001",
+          "department_name": "보건행정과"
+        },
+        {
+          "department_code": "1110010",
+          "department_name": "보건위생과"
+        },
+        {
+          "department_code": "1110011",
+          "department_name": "건강증진과"
+        },
+        {
+          "department_code": "1110012",
+          "department_name": "감염병관리과"
+        }
+      ],
+      "organization_source": {
+        "url": "https://www.nonsan.go.kr/health/html/sub01/0103.html",
+        "sha256": "f99fc3babef868947c37d59bef43782e1bc84854507a5460f2baec879862eb19",
+        "retrieved_at": "2026-10-09T03:15:54.467Z"
+      },
+      "department_registry_sha256": "2439c62eb8bc0f814a623ee0f61224f2b547039fdf518ec3110e31eec519f75b"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "as_of": "2026-10-09",
+  "executed_at": "2026-10-09T07:32:09.600Z",
+  "runner": "로컬 PC(Node v24.18.0), 실제 공식 endpoint 호출, 임시 SQLite",
+  "note": "대표 12곳 표본의 실제 상태다. 전국 수집 성공률이 아니며, Cloudflare Workers 운영 환경의 접근 가능 여부(예: 전남광주 522)와 다를 수 있다.",
+  "succeeded": 1,
+  "results": [
+    {
+      "organization_id": "org:전남광주통합특별시:화순군",
+      "name": "화순군",
+      "organization_type": "BASIC_COUNTY",
+      "lifecycle": "ACTIVE",
+      "survey": {
+        "survey_category": "endpoint_confirmed",
+        "survey_detail": "OPERATOR_SPECIFIED_PC_VERIFIED",
+        "survey_reason": "운영자 지정 화순포커스 게시판. 목록 12건 및 원문 2건 확인.",
+        "endpoint_url": "https://www.hwasun.go.kr/gallery.do?S=S01&M=020101000000&b_code=0000000001"
+      },
+      "sources": [
+        {
+          "source_id": "src:www.hwasun.go.kr:press",
+          "method": "HTML",
+          "adapter": "HTMLBoardAdapter",
+          "endpoint_url": "https://www.hwasun.go.kr/gallery.do?S=S01&M=020101000000&b_code=0000000001",
+          "verification_status": "ENDPOINT_VERIFIED",
+          "result": "succeeded",
+          "error_code": null,
+          "http_status": 200,
+          "elapsed_ms": 3685,
+          "counts": {
+            "feedItems": 12,
+            "rejected": 0,
+            "created": 12,
+            "updated": 0,
+            "unchanged": 0,
+            "welfare": 3,
+            "review": 1,
+            "nonWelfare": 8
+          },
+          "latest_published_date": "2026-10-08",
+          "sample": [
+            {
+              "title": "화순군농촌지도자 김영희, ‘대통령 표창’ 수상 영예",
+              "url": "https://www.hwasun.go.kr/gallery.do?S=S01&M=020101000000&b_code=0000000001&act=view&list_no=21056",
+              "date": "2026-10-08",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "필리핀 샤블라안시 시장 및 대표단, 화순군 방문",
+              "url": "https://www.hwasun.go.kr/gallery.do?S=S01&M=020101000000&b_code=0000000001&act=view&list_no=21057",
+              "date": "2026-10-08",
+              "public_status": "HIDDEN"
+            },
+            {
+              "title": "화순군, 2027년 신규시책 발굴 보고회 개최",
+              "url": "https://www.hwasun.go.kr/gallery.do?S=S01&M=020101000000&b_code=0000000001&act=view&list_no=21058",
+              "date": "2026-10-08",
+              "public_status": "HIDDEN"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

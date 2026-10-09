@@ -1,4 +1,5 @@
 import { SiteNav } from "@/components/site-nav";
+import { VisitCounter } from "@/components/visit-counter";
 
 /** 업무 셸 머리(제주 디자인 GNB). 아래쪽 얇은 3색 선은 제주 브랜드 원색 토큰으로만 그린다. */
 export function SiteHeader() {
@@ -9,7 +10,7 @@ export function SiteHeader() {
         className="absolute inset-x-0 bottom-0 h-0.5 bg-[linear-gradient(90deg,var(--jeju-blue)_0_34%,var(--jeju-green)_34%_67%,var(--jeju-orange)_67%)] print:hidden"
       />
       <div className="mx-auto flex min-h-(--jeju-gnb-h) max-w-(--jeju-main-max-wide) flex-col gap-3 px-4 py-3 sm:px-6 md:flex-row md:items-center md:justify-between">
-        <div className="min-w-0">
+        <div className="flex min-w-0 flex-col items-start gap-3 md:flex-row md:items-center md:gap-4">
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- Vinext's next/link runtime prevents navigation in this deployment target. */}
           <a
             href="/"
@@ -33,6 +34,7 @@ export function SiteHeader() {
               </span>
             </span>
           </a>
+          <VisitCounter />
         </div>
         <SiteNav />
       </div>

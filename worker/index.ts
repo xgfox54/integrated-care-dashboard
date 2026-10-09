@@ -68,7 +68,8 @@ const worker = {
     // 보도자료 수집(기관 누리집 요청, 7초×3회)을 먼저 단독으로 끝낸다. 예산 수집(20초 요청·대량 DB 쓰기)과 동시에 돌던 동안
     // 평소 1~6초면 끝나던 보도자료 요청이 세 번 모두 7초를 넘겨 NETWORK_ERROR가 크게 늘었다(2026-10-04 16시 UTC 이후).
     context.waitUntil((async () => {
-      if (flagEnabled("NEWS_DISCOVERY_ENABLED")) await advancePressInBackground().catch((error: unknown) => {
+      // 정기 수집 호출(/api/press/tick)은 요청 안에서 대기열을 직접 처리하므로 같은 요청 뒤에 보도자료 수집을 한 번 더 돌리지 않는다.
+      if (flagEnabled("NEWS_DISCOVERY_ENABLED") && url.pathname !== "/api/press/tick") await advancePressInBackground().catch((error: unknown) => {
         logServerError(error, { path: "background-press", status: 500 });
       });
       await Promise.all([

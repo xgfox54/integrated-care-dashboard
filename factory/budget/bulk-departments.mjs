@@ -35,6 +35,25 @@ async function parsePdf(file, sha, first, last, output) {
   });
 }
 
+// Publishers that hand out the budget book only through a session-bound POST form (Hwaseong 「OpenDown」).
+// The index page is fetched again to obtain a fresh session cookie and CSRF field; nothing else is sent.
+async function formDownload(entity, maxBytes) {
+  const form = entity.download_form, origin = new URL(entity.index_url).origin;
+  if (!form || new URL(entity.attachment_url).origin !== origin || new URL(entity.attachment_url).protocol !== "https:" || !/^[a-z_]+$/u.test(form.csrf_field ?? "")) throw Error("INVALID_DOWNLOAD_FORM");
+  const page = await fetch(entity.index_url, { signal: AbortSignal.timeout(90000), redirect: "error" });
+  if (!page.ok) throw Error("HTTP_" + page.status);
+  const cookie = page.headers.getSetCookie().map((c) => c.split(";")[0]).join("; ");
+  const token = (await page.text()).match(new RegExp('name="' + form.csrf_field + '" value="([a-f0-9]{16,128})"', "u"))?.[1];
+  if (!cookie || !token) throw Error("DOWNLOAD_SESSION_MISSING");
+  const response = await fetch(entity.attachment_url, { method: "POST", redirect: "error", signal: AbortSignal.timeout(300000), headers: { cookie, referer: entity.index_url, "content-type": "application/x-www-form-urlencoded" }, body: new URLSearchParams({ [form.csrf_field]: token, mseq: form.mseq, gubun: form.gubun }).toString() });
+  if (!response.ok) throw Error("HTTP_" + response.status);
+  if (Number(response.headers.get("content-length") ?? 0) > maxBytes) throw Error("RESPONSE_TOO_LARGE");
+  const bytes = Buffer.from(await response.arrayBuffer());
+  if (bytes.length > maxBytes) throw Error("RESPONSE_TOO_LARGE");
+  return bytes;
+}
+const officialFile = (entity, url, maxBytes) => entity.download_form && url === entity.attachment_url ? formDownload(entity, maxBytes) : request(url, maxBytes);
+
 function signature(data) { return JSON.stringify([data.total, data.size, data.snapshot, data.snapshots ?? null]); }
 export function departmentTocRange(toc) {
   const range = toc.page_range ?? { first: 1, last: 250 };
@@ -105,7 +124,7 @@ async function run(configFile, root, entityId, maxDocuments) {
     if (entity.department_toc) {
       const file = path.join(root, entityId, "raw", "department-toc.pdf");
       if (!state.department_toc) {
-        const bytes = await request(entity.department_toc.url, 64 * 1024 * 1024);
+        const bytes = await officialFile(entity, entity.department_toc.url, 64 * 1024 * 1024);
         if (bytes.subarray(0, 5).toString() !== "%PDF-") throw Error("NOT_PDF");
         mkdirSync(path.dirname(file), { recursive: true }); writeFileSync(file, bytes);
         state.department_toc = { ...artifact(root, file), url: entity.department_toc.url, retrieved_at: new Date().toISOString() }; downloaded++; save("DEPARTMENT_TOC");
@@ -119,7 +138,7 @@ async function run(configFile, root, entityId, maxDocuments) {
         state.parses[key] = ["parse-summary.json", "document.json", "tables.jsonl"].map((name) => artifact(root, path.join(output, name)));
         parsed++; save("DEPARTMENT_TOC_PARSED");
       } else { for (const item of state.parses[key]) verify(root, item); reused++; }
-      const summary = organisationDepartments({ blocks: read(path.join(output, "document.json")).blocks, tables: readFileSync(path.join(output, "tables.jsonl"), "utf8").trim().split("\n").filter(Boolean).map(JSON.parse) }, config.year, entity.department_toc.account_name);
+      const summary = organisationDepartments({ blocks: read(path.join(output, "document.json")).blocks, tables: readFileSync(path.join(output, "tables.jsonl"), "utf8").trim().split("\n").filter(Boolean).map(JSON.parse) }, config.year, entity.department_toc.account_name, entity.department_toc);
       for (const document of documents) {
         document.toc_names = summary.names;
         document.department_toc = { source_url: state.department_toc.url, raw_sha256: state.department_toc.sha256, ...(entity.department_toc.page_range ? { page_range: entity.department_toc.page_range } : {}), locations: summary.locations };
@@ -131,7 +150,7 @@ async function run(configFile, root, entityId, maxDocuments) {
       if (completedThisRun >= maxDocuments) { save("PAUSED_DOCUMENT_BUDGET"); return { status: state.status, reused, downloaded, parsed, apiFetched }; }
       const pdf = path.join(root, entityId, "raw", doc.id + ".pdf");
       if (!state.downloads[doc.id]) {
-        save("DOWNLOADING"); const bytes = await request(doc.url, 64 * 1024 * 1024);
+        save("DOWNLOADING"); const bytes = await officialFile(entity, doc.url, 64 * 1024 * 1024);
         if (bytes.subarray(0, 5).toString() !== "%PDF-") throw Error("NOT_PDF");
         mkdirSync(path.dirname(pdf), { recursive: true }); writeFileSync(pdf, bytes);
         state.downloads[doc.id] = { ...artifact(root, pdf), url: doc.url, retrieved_at: new Date().toISOString() }; downloaded++; save("DOWNLOADED");
@@ -185,7 +204,7 @@ async function run(configFile, root, entityId, maxDocuments) {
       }
       const collected = documentRows(doc, { blocks, tables }, entity, config.year); rows.push(...collected.rows); pageAudit.push(...collected.audit);
     }
-    const result = matchCorpus(items, rows);
+    const result = matchCorpus(items, rows, entity);
     const report = { status: "REVIEW_REQUIRED", entity, matcher_sha256: digest(readFileSync(path.join(repo, "factory/budget/department-corpus.mjs"))), api_projects: items.length, api_signature: state.api_signature, api_dates: [...new Set(items.map((i) => i.reference_date))], documents: documents.length, pages: documents.reduce((n, d) => n + d.page_count, 0), document_rows: rows.length, page_audit: pageAudit, ...result };
     json(path.join(root, entityId, "matches.json"), report);
     state.report = artifact(root, path.join(root, entityId, "matches.json"));

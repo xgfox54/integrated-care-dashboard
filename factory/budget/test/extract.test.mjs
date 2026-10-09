@@ -27,11 +27,40 @@ test("재원 표시와 금액이 붙으면 형식이 맞는 분할이 하나일 
   assert.deepEqual(glued[0].splits, [1, 3]);
 });
 
+test("가평군 원문의 지 재원을 일반 예산 행으로 소비하지 않고 원문 재원 합계를 보존한다", () => {
+  // Given: official 2026 Gapyeong general-account PDF, page 82.
+  const cell = "30,883,770\n국 19,922,605\n지 415,539\n도 2,248,952\n군 8,296,674";
+  // When
+  const tokens = amountTokens(cell);
+  // Then: only the first number is a budget-row value; all four funds remain attached.
+  assert.deepEqual(tokens.filter(t => t.kind === "amount"), [{ kind: "amount", text: "30,883,770" }]);
+  const funds = tokens.filter(t => t.kind === "funding");
+  assert.deepEqual(funds.map(t => [t.label, t.text]), [["국", "19,922,605"], ["지", "415,539"], ["도", "2,248,952"], ["군", "8,296,674"]]);
+  assert.equal(funds.find(t => t.label === "지").source, "other");
+  assert.equal(funds.reduce((sum, t) => sum + Number(t.text.replace(/,/g, "")), 0), 30_883_770);
+});
+
 test("통계목·부기(Ο)·하위 산출항목(o·ο)·줄바꿈 산출식을 나눈다", () => {
   const items = splitDetailLines(["04 기간제근로자등보수", "Ο현충탑 관리원 인건비", "95,440원*2명*230일", "Ο현충탑 관리원 4대 보험", "o건강보험", "21,951,200원*2명*3.595%*112.95%", "Ο참전명예수당", "(100,000원*2,300명*12월)+(50,000원", "*1,500명*12월)"].join("\n"));
   assert.deepEqual(items.map((i) => [i.level, i.code, i.name]), [["object", "04", "기간제근로자등보수"], ["item", null, "현충탑 관리원 인건비"], ["item", null, "현충탑 관리원 4대 보험"], ["sub_item", null, "건강보험"], ["item", null, "참전명예수당"]]);
   assert.equal(items[4].formula, "(100,000원*2,300명*12월)+(50,000원*1,500명*12월)");
   assert.equal(splitDetailLines("ο가족수당 140,000원*1명*12월")[0].level, "item", "앞선 Ο가 없으면 ο도 부기");
+});
+
+test("가평군 원문의 전각 하이픈은 부모 부기의 하위 산출항목을 보존한다", () => {
+  const items = splitDetailLines([
+    "○가평형 통합돌봄 신규서비스 발굴 및 기획", "사업",
+    "－지역특화 방문건강, 의약품 지원 등", "30,000,000원",
+    "－가평형 주거,안전 특화사업 등", "30,000,000원",
+    "－돌봄사각지대 맞춤형 서비스 발굴 등", "23,000,000원",
+  ].join("\n"));
+  assert.deepEqual(items.map(item => [item.level, item.name, item.formula]), [
+    ["item", "가평형 통합돌봄 신규서비스 발굴 및 기획 사업", null],
+    ["sub_item", "지역특화 방문건강, 의약품 지원 등", "30,000,000원"],
+    ["sub_item", "가평형 주거,안전 특화사업 등", "30,000,000원"],
+    ["sub_item", "돌봄사각지대 맞춤형 서비스 발굴 등", "23,000,000원"],
+  ]);
+  assert.equal(items.slice(1).reduce((sum, item) => sum + evaluateFormula(item.formula), 0), 83_000_000);
 });
 
 function parseDir(pages) {
@@ -118,4 +147,13 @@ test("병합 칸에 들어간 이름 조각은 부기 이름이 뒷받침하지 
   assert.ok(line, "조각을 붙이지 않은 원래 이름 그대로");
   assert.equal(line.checks.name_fragment_rejoined, "unplaced_no_evidence");
   assert.deepEqual(line.annotations, ["배치 근거 없는 이름 조각: 전국"]);
+});
+
+test("논산시 원문의 추·대 재원을 일반 금액 행으로 소비하지 않고 합계를 보존한다", () => {
+  const cell = ["14,847,900", "국 297,860", "균 210,255", "기 379,610도 1,657,386시 12,238,257", "추 14,532대 50,000"].join(String.fromCharCode(10));
+  const tokens = amountTokens(cell);
+  assert.deepEqual(tokens.filter(t => t.kind === "amount"), [{ kind: "amount", text: "14,847,900" }]);
+  const funds = tokens.filter(t => t.kind === "funding");
+  assert.deepEqual(funds.filter(t => ["추", "대"].includes(t.label)).map(t => [t.label, t.source, t.text]), [["추", "other", "14,532"], ["대", "other", "50,000"]]);
+  assert.equal(funds.reduce((sum, t) => sum + Number(t.text.replaceAll(",", "")), 0), 14_847_900);
 });

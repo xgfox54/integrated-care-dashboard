@@ -1,5 +1,6 @@
 import { matchesSearch, parseSearch, searchableText } from "./search-terms.ts";
 import { restoreVerifiedSourceDistinctions } from "./official-source-restoration.ts";
+import { serviceMatchesTarget } from "./target-groups.ts";
 
 export interface ServiceRow {
   id: number;
@@ -30,6 +31,8 @@ export interface FilterState {
   keyword: string;
   /** 결과 정렬. 비우면 검색어가 있을 때 관련도순, 없을 때 지역순(lib/search-terms.ts). */
   sort?: string;
+  /** 대상자 묶음 slug(target_group, 예: elderly). 관계성 지도와 같은 정의(lib/target-groups.ts)로 지원대상·세부대상·사업명을 본다. */
+  targetGroup?: string;
 }
 
 export const SERVICE_CATEGORY_ORDER = [
@@ -220,6 +223,7 @@ export function filterRows(rows: ServiceRow[], filters: FilterState): ServiceRow
     if (filters.category && row.category !== filters.category) return false;
     if (filters.subcategory && row.subcategory !== filters.subcategory) return false;
     if (filters.type && row.type !== filters.type) return false;
+    if (filters.targetGroup && !serviceMatchesTarget(row, filters.targetGroup)) return false;
     if (!matchesSearch(row.searchIndex, parsed)) return false;
     return true;
   });

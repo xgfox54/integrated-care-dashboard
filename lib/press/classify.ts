@@ -1,4 +1,4 @@
-import { AGENCY_WORDS, DICTIONARY_VERSION, NON_WELFARE_HINTS, POPULATION_ONLY_WORDS, PRESS_CATEGORIES, WEAK_WORDS, WELFARE_HINTS } from "./dictionary.ts";
+import { AGENCY_WORDS, DICTIONARY_VERSION, EXCLUDED_TITLE_WORDS, NON_WELFARE_HINTS, POPULATION_ONLY_WORDS, PRESS_CATEGORIES, WEAK_WORDS, WELFARE_HINTS } from "./dictionary.ts";
 
 // 제목 규칙 분류. 본문을 읽지 않으므로 근거는 항상 title_rule이다.
 // 1단계: 분야 키워드(대상 집단 말만 있으면 보류). 2단계: 복지·비복지 제목 단서(dictionary.ts WELFARE_HINTS·NON_WELFARE_HINTS).
@@ -33,6 +33,7 @@ export function classifyTitle(title: string): PressClassification {
     basis: "title_rule",
     dictionaryVersion: DICTIONARY_VERSION,
   });
+  if (EXCLUDED_TITLE_WORDS.some(has)) return result("NON_WELFARE", []);
   if (ruleCategories.length > 0 && !populationOnly) return result("WELFARE", ruleCategories);
 
   const welfareHints = WELFARE_HINTS.filter(([word]) => has(word));

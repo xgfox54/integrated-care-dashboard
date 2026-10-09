@@ -2,6 +2,7 @@ import type { SqlDatabase } from "../sql-database.ts";
 import { USER_AGENT, type PressFetcher } from "./collect.ts";
 import { blockedBy, readCrawlBlocks, recordRobotsAudit, ROBOTS_RECHECK_SECONDS } from "./operations.ts";
 import { analyzeRobots, type RobotsVerdict } from "./robots.ts";
+import { isPressFetchFailure } from "./fetch.ts";
 
 // 운영자 지시(2026-10-04): robots.txt가 수집 경로를 허용하는 Source는 관리자 승인 없이 자동으로 수집한다.
 // endpoint 확인(ENDPOINT_VERIFIED)을 마친 Source만 대상이며, 관리자가 해제한 Source(REVOKED)와 공용 게시판 기관은 건드리지 않는다.
@@ -40,7 +41,8 @@ export async function checkRobots(
     status = response.status;
     body = await response.text();
   } catch (error) {
-    if (!(error instanceof Error)) throw error;
+    if (!isPressFetchFailure(error)) throw error;
+    status = null;
   }
   const analysis = analyzeRobots(status, body, USER_AGENT, target.pathname + target.search);
   await recordRobotsAudit(db, { address, ...ids, httpStatus: status, body, userAgent: USER_AGENT, analysis, nowSeconds, newId: () => crypto.randomUUID() });

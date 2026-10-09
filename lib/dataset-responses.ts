@@ -54,7 +54,7 @@ function isKnownSelection(summary: SummaryDataset, sido: string, sigungu: string
 
 /** 검색어 없는 첫 쪽 가운데 실제 지역·분야 조합만 보관한다(지역·분야를 고를 때 보는 화면). */
 async function isStorableSearch(filters: FilterState, page: number): Promise<boolean> {
-  if (page !== 1 || filters.keyword || filters.subcategory || filters.type) return false;
+  if (page !== 1 || filters.keyword || filters.subcategory || filters.type || filters.targetGroup) return false;
   return isKnownSelection(await recentSummary(), filters.sido, filters.sigungu, filters.category);
 }
 

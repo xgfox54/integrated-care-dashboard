@@ -4,7 +4,8 @@ import { fileURLToPath } from "node:url";
 
 export const normalizeName = (value) => String(value ?? "").normalize("NFC").replace(/\s+/gu, "");
 export function explicitPageDepartment(blocks) {
-  const names = new Set(blocks.flatMap((block) => [...String(block.parsed_text_verbatim ?? "").matchAll(/부서\s*[:：]\s*([^\n]+?)(?=\s+정책\s*[:：]|\s+단위\s*[:：]|$)/gu)].map((match) => normalizeName(match[1]))));
+  // Some books print 「부서 : X과정책: …」 with no gap; 정책/단위 must be followed by a colon, so 「정책기획과」 is not cut.
+  const names = new Set(blocks.flatMap((block) => [...String(block.parsed_text_verbatim ?? "").matchAll(/부서\s*[:：]\s*([^\n]+?)(?=\s*정책\s*[:：]|\s*단위\s*[:：]|$)/gu)].map((match) => normalizeName(match[1]))));
   return names.size === 1 ? [...names][0] : null;
 }
 const keyOf = (row) => [row.fiscal_year, row.fiscal_entity_name, row.account_code, normalizeName(row.name), row.amount_krw].join("|");

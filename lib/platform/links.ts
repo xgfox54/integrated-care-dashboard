@@ -88,12 +88,27 @@ export async function generateFiscalLinkCandidates(db: SqlDatabase, nowSeconds: 
   return { examined, created };
 }
 
+/**
+ * 관리자의 확인·제외. 판정 출처를 reviewer로 남기고 판정 번호를 올린다(D-03). 자동 규칙은 reviewer 판정을 바꾸지 않으며,
+ * 자동 작업이 이 연결을 읽은 뒤 사람이 판정하면 번호가 달라져 자동 쓰기가 충돌로 건너뛴다.
+ */
 export async function reviewLink(db: SqlDatabase, linkId: string, decision: "verify" | "reject", nowSeconds: number): Promise<boolean> {
   const verified = decision === "verify";
-  await db.prepare("UPDATE cross_domain_link SET verification_status = ?, public_status = ?, reviewed_at = ? WHERE link_id = ?")
-    .bind(verified ? "VERIFIED" : "REJECTED", verified ? "PUBLIC" : "HIDDEN", nowSeconds, linkId).run();
-  const row = await db.prepare("SELECT verification_status FROM cross_domain_link WHERE link_id = ?").bind(linkId).first<{ verification_status: string }>();
-  return row?.verification_status === (verified ? "VERIFIED" : "REJECTED");
+  const status = verified ? "VERIFIED" : "REJECTED";
+  const publicStatus = verified ? "PUBLIC" : "HIDDEN";
+  const before = await db.prepare("SELECT verification_status, public_status, decision_origin, decision_revision, reviewed_at FROM cross_domain_link WHERE link_id = ?")
+    .bind(linkId).first<{ verification_status: string; public_status: string; decision_origin: string; decision_revision: number; reviewed_at: number | null }>();
+  if (!before) return false;
+  await db.batch([
+    db.prepare("UPDATE cross_domain_link SET verification_status = ?, public_status = ?, reviewed_at = ?, decision_origin = 'reviewer', decision_rule = '', decision_revision = decision_revision + 1 WHERE link_id = ?")
+      .bind(status, publicStatus, nowSeconds, linkId),
+    db.prepare(
+      "INSERT INTO cross_domain_link_decision_log (link_id, revision, at, actor, action, before_status, before_public, before_origin, before_reviewed_at, after_status, after_public, after_origin, rule_id, reason) " +
+        "SELECT link_id, decision_revision, ?, 'reviewer', ?, ?, ?, ?, ?, verification_status, public_status, decision_origin, '', '관리자 판정' FROM cross_domain_link WHERE link_id = ?",
+    ).bind(nowSeconds, decision, before.verification_status, before.public_status, before.decision_origin, before.reviewed_at, linkId),
+  ]);
+  const row = await db.prepare("SELECT verification_status, decision_origin FROM cross_domain_link WHERE link_id = ?").bind(linkId).first<{ verification_status: string; decision_origin: string }>();
+  return row?.verification_status === status && row.decision_origin === "reviewer";
 }
 
 export interface LinkRow {
@@ -105,10 +120,11 @@ export interface LinkRow {
   readonly candidate_basis: string;
   readonly verification_status: string;
   readonly reviewed_at: number | null;
+  readonly decision_origin?: string;
 }
 
 export async function listLinks(db: SqlDatabase, status: string, limit = 100): Promise<LinkRow[]> {
-  return (await db.prepare("SELECT link_id, source_id, target_id, relation, evidence_json, candidate_basis, verification_status, reviewed_at FROM cross_domain_link WHERE verification_status = ? ORDER BY created_at DESC, link_id LIMIT ?")
+  return (await db.prepare("SELECT link_id, source_id, target_id, relation, evidence_json, candidate_basis, verification_status, reviewed_at, decision_origin FROM cross_domain_link WHERE verification_status = ? ORDER BY created_at DESC, link_id LIMIT ?")
     .bind(status, limit).all<LinkRow>()).results;
 }
 

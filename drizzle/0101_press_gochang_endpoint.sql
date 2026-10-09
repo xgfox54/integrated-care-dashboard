@@ -1,0 +1,4 @@
+-- 고창군 보도자료 목록 주소(index.gochang?menuCd=…)가 게시판 실제 주소로 302 이동해 PC 중계(자동 이동 안 함)에서 URL_CHANGED. 이동 후 주소로 바꾼다(데스크톱 목록 10건·원문 2건 대조 재확인).
+UPDATE press_source SET endpoint_url = 'https://www.gochang.go.kr/board/list.gochang?boardId=BBS_0000179&menuCd=DOM_000000102002001000&contentsSid=241', robots_exempt = '운영자 지시(2026-10-09): 미연결 기관 보도자료 게시판 연결. 공개 행정기관 보도자료 목록의 제목·게시일·원문 링크만 수집. robots 예외 대상: https://www.gochang.go.kr/board/list.gochang?boardId=BBS_0000179&menuCd=DOM_000000102002001000&contentsSid=241' WHERE source_id = 'src:www.gochang.go.kr:press' AND registry_version = 'registry-2026-10-09-unconnected';
+UPDATE press_crawl_state SET next_due_at = 0, consecutive_failures = 0, safe_error = '' WHERE source_id = 'src:www.gochang.go.kr:press';
+UPDATE press_org_survey SET endpoint_url = 'https://www.gochang.go.kr/board/list.gochang?boardId=BBS_0000179&menuCd=DOM_000000102002001000&contentsSid=241' WHERE organization_id = 'org:전북특별자치도:고창군';

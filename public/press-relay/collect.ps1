@@ -116,8 +116,13 @@ try {
     $interval = [Math]::Max(3, [int]$job.intervalSec)
     $robots = Get-Page $job.robotsUrl "text/plain" $interval
     $page = Get-Page $job.endpointUrl $job.accept $interval
+    $responses = @($robots, $page)
+    # 제목이 줄어 저장된 글의 원문 화면(최대 3건)도 받아 올린다. 서버가 전체 제목만 찾아 바꾼다.
+    foreach ($detailUrl in @($job.detailUrls)) {
+      if ($detailUrl) { $responses += ,(Get-Page $detailUrl "text/html" $interval) }
+    }
     try {
-      $result = Invoke-Dashboard "POST" @{ sourceId = $job.sourceId; responses = @($robots, $page) }
+      $result = Invoke-Dashboard "POST" @{ sourceId = $job.sourceId; responses = $responses }
       $summary = $result.summary
       $created = if ($summary.counts) { $summary.counts.created } else { 0 }
       Write-Log ("  " + $job.sourceId + ": 목록 HTTP " + $page.status + ", 결과 " + $summary.status + " " + $summary.errorCode + ", 새 항목 " + $created + "건")

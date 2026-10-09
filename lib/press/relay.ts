@@ -6,12 +6,17 @@ import type { SqlDatabase } from "../sql-database.ts";
 import { collectPressSource, type CollectDeps, type CollectSummary, type FetchResponseLike } from "./collect.ts";
 import { crawlerEnabled, requestIntervalSec } from "./operations.ts";
 import { listDueSources, readSource } from "./store.ts";
+import { readTruncatedItems } from "./title-complete.ts";
+import { VERIFIED_RELAY_ROUTES } from "./verified-relay-routes.ts";
 
 export const RELAY_CLAIM_SECONDS = 20 * 60;
 const CLAIM_KEY = "press_relay_claim";
 const PCS_KEY = "press_relay_pcs";
 const MAX_PCS = 6;
-const MAX_JOBS = 80;
+// 서버 간헐 실패 게시판을 옮겨(2026-10-09, drizzle/0094) 중계 대상이 90여 곳이라 한 차례에 모두 받도록 늘린다.
+const MAX_JOBS = 120;
+/** 목록과 함께 받아 올 원문 화면(제목이 줄어 저장된 글) 수. 수집기 1회 보완 건수와 같다. */
+const DETAIL_PAGES_PER_JOB = 3;
 /** 응답 하나의 최대 크기(바이트). 수집기 상한(2MB)과 같다. */
 export const RELAY_MAX_BYTES = 2_000_000;
 
@@ -150,6 +155,8 @@ export interface RelayJob {
   readonly robotsUrl: string;
   readonly accept: string;
   readonly intervalSec: number;
+  /** 제목이 줄어 저장된 글의 원문 주소. PC가 목록과 함께 받아 올리면 서버가 전체 제목을 찾는다(예전 수집기는 무시해도 된다). */
+  readonly detailUrls: readonly string[];
 }
 
 /** 수집 차례를 잡고 지금 받아 올 목록을 돌려준다. 다른 PC가 차례를 잡고 있으면 빈 목록과 그 PC 이름. */
@@ -157,6 +164,21 @@ export async function claimRelayJobs(db: SqlDatabase, pc: string, nowSeconds: nu
   if (!(await crawlerEnabled(db))) return { jobs: [], busyBy: null };
   const claim = await readClaim(db);
   if (claim && claim.pc && claim.pc !== pc && claim.until > nowSeconds) return { jobs: [], busyBy: claim.pc };
+  // Only the authenticated existing PC workflow can recover these verified routes. Keep failure audits intact.
+  const endpoints = VERIFIED_RELAY_ROUTES.map(() => "(s.source_id = ? AND s.endpoint_url = ?)").join(" OR ");
+  const values = VERIFIED_RELAY_ROUTES.flatMap(([id, endpoint]) => [id, endpoint]);
+  const eligible = "SELECT s.source_id FROM press_source s JOIN press_crawl_state c ON c.source_id = s.source_id " +
+    "WHERE s.collect_via = 'server' AND s.approval_status = 'POLICY_APPROVED' AND s.enabled = 1 " +
+    "AND c.collection_hold = '' AND c.lease_expires_at <= ? AND c.consecutive_failures >= 5 " +
+    // 통신 실패를 원인별로 나누기 전(2026-10-09)에는 아래 네 가지가 모두 NETWORK_ERROR였다. 같은 회복 대상을 유지한다.
+    "AND c.safe_error IN ('NETWORK_ERROR', 'RESPONSE_TIMEOUT', 'BODY_READ_TIMEOUT', 'BODY_READ_FAILED', 'DNS_ERROR', 'TLS_ERROR', 'FEED_EMPTY') AND (" + endpoints + ")";
+  // D1 batch is transactional: schedule one recovery attempt, then switch the same eligible sources.
+  await db.batch([
+    db.prepare("UPDATE press_crawl_state SET next_due_at = ? WHERE source_id IN (" + eligible + ")")
+      .bind(nowSeconds, nowSeconds, ...values),
+    db.prepare("UPDATE press_source SET collect_via = 'relay' WHERE source_id IN (" + eligible + ")")
+      .bind(nowSeconds, ...values),
+  ]);
   const due = await listDueSources(db, nowSeconds, MAX_JOBS, "relay");
   if (due.length === 0) return { jobs: [], busyBy: null };
   // 읽었던 값이 그대로일 때만 확보한다. 동시 요청과 만료 후 인계도 한 SQL에서 승자를 정한다.
@@ -171,13 +193,14 @@ export async function claimRelayJobs(db: SqlDatabase, pc: string, nowSeconds: nu
   }
   return {
     busyBy: null,
-    jobs: due.map((source) => ({
+    jobs: await Promise.all(due.map(async (source) => ({
       sourceId: source.sourceId,
       endpointUrl: source.endpointUrl,
       robotsUrl: new URL(source.endpointUrl).origin + "/robots.txt",
       accept: source.adapter === "HTMLBoardAdapter" ? "text/html" : "application/rss+xml, application/xml;q=0.9, text/xml;q=0.8",
       intervalSec: requestIntervalSec(source.requestIntervalSec),
-    })),
+      detailUrls: (await readTruncatedItems(db, source.sourceId, DETAIL_PAGES_PER_JOB, nowSeconds)).map((item) => item.canonical_url),
+    }))),
   };
 }
 
@@ -225,7 +248,8 @@ export async function processRelayResult(
   const source = await readSource(db, sourceId);
   if (!source || source.collectVia !== "relay" || !source.enabled || source.approvalStatus !== "POLICY_APPROVED") return null;
   const robotsUrl = new URL(source.endpointUrl).origin + "/robots.txt";
-  const allowed = new Set([source.endpointUrl, robotsUrl]);
+  const details = (await readTruncatedItems(db, sourceId, DETAIL_PAGES_PER_JOB, deps.now())).map((item) => item.canonical_url);
+  const allowed = new Set([source.endpointUrl, robotsUrl, ...details]);
   const responses = new Map(uploaded.filter((item) => allowed.has(item.url)).map((item) => [item.url, item]));
   if (!responses.has(source.endpointUrl)) return null;
   const claim = await readClaim(db);
@@ -236,5 +260,7 @@ export async function processRelayResult(
     newId: deps.newId,
     // 요청 간격은 PC가 지킨다. 서버는 올린 응답을 바로 처리한다.
     sleep: async () => undefined,
+    // 원문 제목 보완은 PC가 함께 올린 원문 화면으로만 한다. 서버는 기관에 직접 요청하지 않는다.
+    detailAllowed: (address) => details.includes(address) && responses.has(address),
   }).then((summary) => ({ ...summary, relayPc: pc }));
 }

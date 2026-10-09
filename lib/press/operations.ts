@@ -2,6 +2,9 @@ import type { SqlDatabase } from "../sql-database.ts";
 import { sha256Hex } from "./normalize.ts";
 import type { RobotsAnalysis, RobotsDecision } from "./robots.ts";
 
+/** press_organization 조건: 운영자가 수집 제외로 정한 기관(press_org_survey operator_excluded)은 수집 대상 기관 수에서 뺀다. */
+export const COLLECTION_TARGET = "organization_id NOT IN (SELECT organization_id FROM press_org_survey WHERE survey_category = 'operator_excluded')";
+
 // 보도자료 수집 지침(2026-10-05) 운영 장치: 전체 수집 스위치, 도메인·경로 차단 목록, robots.txt 점검 기록·변경 이력, 지침 상태값.
 
 export const GLOBAL_CRAWLER_KEY = "GLOBAL_CRAWLER_ENABLED";
@@ -150,15 +153,16 @@ export async function readGuidelineReport(db: SqlDatabase, nowSeconds: number) {
   const one = async (sql: string, ...binds: unknown[]) => (await db.prepare(sql).bind(...binds).first<{ n: number }>())?.n ?? 0;
   const active = "s.approval_status = 'POLICY_APPROVED' AND s.enabled = 1";
   const [targets, boards, normal, robots, methods, failures, items, deduped, welfare, audited] = await Promise.all([
-    one("SELECT COUNT(*) AS n FROM press_organization WHERE lifecycle_status = 'ACTIVE'"),
+    one("SELECT COUNT(*) AS n FROM press_organization WHERE lifecycle_status = 'ACTIVE' AND " + COLLECTION_TARGET),
     one("SELECT COUNT(DISTINCT organization_id) AS n FROM press_source WHERE verification_status = 'ENDPOINT_VERIFIED'"),
     one("SELECT COUNT(DISTINCT s.organization_id) AS n FROM press_source s JOIN press_crawl_state c ON c.source_id = s.source_id WHERE " + active + " AND s.technical_status = 'NORMAL' AND c.last_success_at >= ?", nowSeconds - 86_400),
     db.prepare("SELECT decision, COUNT(*) AS n FROM (SELECT organization_id, decision, MAX(checked_at) AS checked FROM press_robots_audit WHERE organization_id IS NOT NULL GROUP BY organization_id) GROUP BY decision").all<{ decision: string; n: number }>(),
     db.prepare("SELECT s.method, COUNT(DISTINCT s.organization_id) AS n FROM press_source s WHERE " + active + " GROUP BY s.method").all<{ method: string; n: number }>(),
+    // 기간이 끝난 일시 중지(hold_until 경과)는 보류로 세지 않는다.
     db.prepare(
-      "SELECT CASE WHEN COALESCE(c.collection_hold, '') <> '' THEN c.collection_hold ELSE COALESCE(NULLIF(c.safe_error, ''), s.technical_status) END AS reason, COUNT(DISTINCT s.organization_id) AS n " +
-        "FROM press_source s LEFT JOIN press_crawl_state c ON c.source_id = s.source_id WHERE " + active + " AND (s.technical_status <> 'NORMAL' OR COALESCE(c.collection_hold, '') <> '') GROUP BY reason ORDER BY n DESC",
-    ).all<{ reason: string; n: number }>(),
+      "SELECT CASE WHEN COALESCE(c.collection_hold, '') <> '' AND (c.hold_until IS NULL OR c.hold_until > ?) THEN c.collection_hold ELSE COALESCE(NULLIF(c.safe_error, ''), s.technical_status) END AS reason, COUNT(DISTINCT s.organization_id) AS n " +
+        "FROM press_source s LEFT JOIN press_crawl_state c ON c.source_id = s.source_id WHERE " + active + " AND (s.technical_status <> 'NORMAL' OR (COALESCE(c.collection_hold, '') <> '' AND (c.hold_until IS NULL OR c.hold_until > ?))) GROUP BY reason ORDER BY n DESC",
+    ).bind(nowSeconds, nowSeconds).all<{ reason: string; n: number }>(),
     one("SELECT COUNT(*) AS n FROM press_item"),
     one("SELECT COUNT(DISTINCT COALESCE(duplicate_group_id, related_group_id, item_id)) AS n FROM press_item"),
     one("SELECT COUNT(*) AS n FROM press_item WHERE classification_status = 'WELFARE'"),

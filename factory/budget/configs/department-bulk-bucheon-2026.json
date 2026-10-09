@@ -1,0 +1,37 @@
+{
+  "schema": "department-bulk-v1",
+  "year": "2026",
+  "public_api": "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/api/budget",
+  "entities": [
+    {
+      "id": "bucheon-2026",
+      "fiscal_year": "2026",
+      "fiscal_entity_id": "lofin:laf:4115000",
+      "fiscal_entity_name": "경기부천시",
+      "region": "4100000",
+      "publisher": "부천시",
+      "index_url": "https://budget.bucheon.go.kr/site/homepage/menu/viewMenu?menuid=168002001020001",
+      "index_required_text": ["본예산", "Ⅲ. 세입세출 예산", "6. 세출예산사업명세서(일반회계)"],
+      "adapter": "bucheon-adopted-link-list",
+      "account_section_label": "Ⅲ. 세입세출 예산",
+      "attachment_label": "6. 세출예산사업명세서(일반회계)",
+      "attachment_url": "https://budget.bucheon.go.kr/docs/budget/depth1_1/2026/depth/3_6.pdf",
+      "department_toc": {
+        "url": "https://budget.bucheon.go.kr/docs/budget/depth1_1/2026/depth/3_3.pdf",
+        "label": "3. 세입세출총괄표(일반회계, 기타특별회계)",
+        "account_name": "일반회계",
+        "page_range": { "first": 21, "last": 25 }
+      },
+      "stage_evidence_url": "https://council.bucheon.go.kr/committee/E011/bill.do",
+      "stage_evidence_note": "부천시의회 의안 9-711 「2026년 예산안」 2025.12.19. 수정의결. 재정공시는 「본예산(안)」 파일을 별도로 두고 본예산 탭에 이 문서를 게시한다.",
+      "expected_documents": 1,
+      "account_code": "100",
+      "account_name": "일반회계",
+      "amount_unit": "천원",
+      "unit_visual_confirmations": [
+        { "document_id": "general-account", "page": 324, "raw_sha256": "101402a521d2ea9b915396df4a4795655299d6ddd2c44190eeb58d90fff87019", "department": "청년청소년과", "unit": "천원", "note": "원문 324쪽 오른쪽 위 「(단위:천원)」 표시를 판독기가 놓쳤다. 2026-10-06 화면 확인: 부서 청년청소년과, 청소년 지도사 배치지원 235,572천원." }
+      ],
+      "stage": "adopted_initial"
+    }
+  ]
+}

@@ -48,14 +48,15 @@ test("another code's representative does not approve this code", () => {
   assert.equal(reviewedMappings(f.mappings, f.manifest, f.receipt).approved.length, 0);
 });
 
-test("new Yongin names resolve only their verified snapshot; held codes stay unknown", () => {
-  assert.equal(budgetDepartmentLabel("경기용인시", "1001003", "2026", "2026-10-02"), "재산관리과 (1001003)");
+test("Yongin keeps only social-welfare/health departments; unrelated and held codes stay unknown", () => {
+  assert.equal(budgetDepartmentLabel("경기용인시", "1020030"), "여성가족과 (1020030)");
+  assert.equal(budgetDepartmentLabel("경기용인시", "3005040"), "처인구사회복지과 (3005040)");
+  assert.equal(budgetDepartmentLabel("경기용인시", "1110014"), "처인구보건소건강증진과 (1110014)");
   for (const args of [
-    ["경기용인시", "1001003", "2026", "2026-10-04"],
-    ["경기용인시", "1001003", "2025", "2026-10-02"],
-    ["용인시", "1001003", "2026", "2026-10-02"],
-    ["수원시", "1001003", "2026", "2026-10-02"],
-    ["경기용인시", "3005010", "2026", "2026-10-02"],
-    ["경기용인시", "1015030", "2026", "2026-10-02"],
+    ["경기용인시", "1001003"],
+    ["경기용인시", "1015030"],
+    ["용인시", "1020030"],
+    ["수원시", "1020030"],
+    ["경기용인시", "3005020"],
   ]) assert.match(budgetDepartmentLabel(...args), /명칭 미확인/u);
 });

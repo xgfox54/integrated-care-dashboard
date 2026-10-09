@@ -4,8 +4,20 @@
 import type { SqlDatabase, SqlStatement } from "../sql-database.ts";
 import { PUBLIC_KNOWLEDGE_RUN_SQL } from "../platform/public-pin.ts";
 
-export const MATCH_RULE_VERSION = "gov24-match-1";
+export const MATCH_RULE_VERSION = "gov24-match-3";
 export const CANDIDATE_THRESHOLD = 0.6;
+export const STALE_CANDIDATE_NOTE = "자동 정리: " + MATCH_RULE_VERSION + " 규칙에서 후보가 아님(추가지원 표시 차이·시군구 이름 부분 일치 등)";
+
+/**
+ * 국비 사업에 지방비로 덧붙인 추가지원 사업 표시(예: 「장애인 활동지원(추가)」, 「(구비)」, 「(서울시추가지원)」).
+ * 괄호를 지우고 비교하면 국비 사업과 이름이 같아지지만 예산이 따로인 별도 사업이다.
+ */
+export function supplementMarker(name: string): string {
+  const inner = [...name.matchAll(/\(([^)]*)\)/g)].map((match) => match[1].replace(/\s+/g, ""));
+  const marked = inner.find((text) => /추가|^(구|시|도|군)비$/.test(text));
+  if (marked) return marked;
+  return /추가지원/.test(name.replace(/\s+/g, "")) ? "추가지원" : "";
+}
 
 /** 비교용 이름: 괄호 안 설명·공백·기호를 지우고 끝의 「사업」을 뗀다. */
 export function normalizeProgramName(name: string): string {
@@ -31,9 +43,22 @@ export function regionFit(orgName: string, orgType: string, sido: string, sigung
   const sidoNames = SIDO_SHORT[sido] ?? [sido];
   const hasSido = sidoNames.some((name) => org.includes(name));
   const local = sigungu && sigungu !== sido ? sigungu : "";
-  if (local && org.includes(local)) return "SIGUNGU";
+  // 「서울특별시 성동구」 안의 「동구」처럼 이름 일부만 같은 경우를 막으려고 띄어쓰기 단위로 비교한다.
+  const tokens = org.split(" ");
+  if (local && tokens.some((token) => token === local || token === local + "청") && (hasSido || !Object.values(SIDO_SHORT).flat().some((name) => org.includes(name)))) return "SIGUNGU";
   if (hasSido && !local) return "SIDO";
   if (hasSido && /(특별시|광역시|특별자치시|도|특별자치도)$/.test(org)) return "SIDO";
+  // 「구리도시공사」「서울시설공단」「인천교통공사」 같은 지방공기업은 이름 앞 지역에서만 운영한다.
+  const corp = /^(?!한국|국민|국가)(.+?)(공공시설관리공단|시설관리공단|도시관리공사|도시개발공사|도시공사|시설공단|교통공사)$/.exec(org.replace(/\s+/g, ""));
+  if (corp) {
+    const place = corp[1];
+    const sidoHit = Object.entries(SIDO_SHORT).map(([key, names]) => [key, names.filter((name) => place.startsWith(name)).sort((a, b) => b.length - a.length)[0]] as const).find(([, name]) => name);
+    const rest = sidoHit ? place.slice(sidoHit[1]!.length) : place;
+    if (sidoHit && sidoHit[0] !== sido) return "MISMATCH";
+    if (!rest) return sidoHit ? "SIDO" : "MISMATCH";
+    const base = (name: string) => name.replace(/(시|군|구)$/, "");
+    return local && base(rest) === base(local) ? "SIGUNGU" : "MISMATCH";
+  }
   if (/중앙행정기관|공공기관/.test(orgType) || /부$|처$|청$|위원회$|공단$|공사$/.test(org) && !hasSido) return "CENTRAL";
   return "MISMATCH";
 }
@@ -71,6 +96,8 @@ export function scoreMatch(gov: Gov24Row, program: ProgramRow): MatchScore | nul
   const govName = normalizeProgramName(gov.name);
   const programName = normalizeProgramName(program.name);
   if (!govName || !programName) return null;
+  // 한쪽만 추가지원(지방비) 표시가 있으면 국비 사업과 다른 사업이다.
+  if (Boolean(supplementMarker(gov.name)) !== Boolean(supplementMarker(program.name))) return null;
   const stripped = (name: string) => {
     let out = name;
     for (const names of Object.values(SIDO_SHORT)) for (const prefix of names) if (out.startsWith(prefix.replace(/\s/g, ""))) out = out.slice(prefix.length);
@@ -121,17 +148,23 @@ export async function advanceGov24Matching(db: SqlDatabase, now: number, limit =
     for (const [name, list] of byName) {
       if (name.length >= 4 && normalizeProgramName(gov.name).endsWith(name) && name !== normalizeProgramName(gov.name)) for (const program of list) pool.set(wikiTargetId(program), program);
     }
+    const kept: string[] = [];
     for (const [targetId, program] of pool) {
       const match = scoreMatch(gov, program);
       if (!match || match.score < CANDIDATE_THRESHOLD) continue;
       candidates += 1;
+      kept.push(targetId);
       const evidence = { rule: MATCH_RULE_VERSION, name_rule: match.nameRule, region_fit: match.regionFit, gov24: { service_id: gov.service_id, name: gov.name, org_name: gov.org_name, modified_at: gov.modified_at }, program: { name: program.name, sido: program.sido, sigungu: program.sigungu, provider: program.provider } };
       const conflicts = [
         gov.target && program.target && normalizeProgramName(gov.target) !== normalizeProgramName(program.target) ? { field: "지원대상", gov24: gov.target.slice(0, 300), program: program.target.slice(0, 300) } : null,
       ].filter(Boolean);
-      statements.push(db.prepare("INSERT INTO program_ext_link (link_id, source_kind, source_id, target_kind, target_id, target_label, score, evidence_json, status, conflict_json, created_at, updated_at) VALUES (?, 'GOV24', ?, 'service', ?, ?, ?, ?, 'CANDIDATE', ?, ?, ?) ON CONFLICT(source_kind, source_id, target_kind, target_id) DO UPDATE SET score = excluded.score, evidence_json = excluded.evidence_json, conflict_json = excluded.conflict_json, updated_at = excluded.updated_at, status = CASE WHEN program_ext_link.status = 'VERIFIED' AND program_ext_link.evidence_json <> excluded.evidence_json THEN 'REVIEW_REQUIRED' ELSE program_ext_link.status END")
+      // 규칙 버전만 바뀐 근거는 내용 변경이 아니므로 확인된 연결을 재검토로 돌리지 않는다.
+      statements.push(db.prepare("INSERT INTO program_ext_link (link_id, source_kind, source_id, target_kind, target_id, target_label, score, evidence_json, status, conflict_json, created_at, updated_at) VALUES (?, 'GOV24', ?, 'service', ?, ?, ?, ?, 'CANDIDATE', ?, ?, ?) ON CONFLICT(source_kind, source_id, target_kind, target_id) DO UPDATE SET score = excluded.score, evidence_json = excluded.evidence_json, conflict_json = excluded.conflict_json, updated_at = excluded.updated_at, status = CASE WHEN program_ext_link.status = 'VERIFIED' AND json_remove(program_ext_link.evidence_json, '$.rule') <> json_remove(excluded.evidence_json, '$.rule') THEN 'REVIEW_REQUIRED' ELSE program_ext_link.status END")
         .bind("gov24:" + gov.service_id + "->" + targetId, gov.service_id, targetId, program.name + " · " + program.sido + (program.sigungu && program.sigungu !== program.sido ? " " + program.sigungu : ""), match.score, JSON.stringify(evidence), conflicts.length ? JSON.stringify(conflicts) : null, now, now));
     }
+    // 지금 규칙으로는 후보가 아닌 예전 후보만 정리한다. 사람이 확인·제외한 연결은 건드리지 않는다.
+    statements.push(db.prepare("UPDATE program_ext_link SET status = 'REJECTED', reviewed_at = ?, review_note = ?, updated_at = ? WHERE source_kind = 'GOV24' AND source_id = ? AND status = 'CANDIDATE' AND target_id NOT IN (SELECT value FROM json_each(?))")
+      .bind(now, STALE_CANDIDATE_NOTE, now, gov.service_id, JSON.stringify(kept)));
     statements.push(db.prepare("UPDATE gov24_service SET match_checked_hash = ?, match_checked_at = ? WHERE service_id = ?").bind(hash, now, gov.service_id));
   }
   for (let index = 0; index < statements.length; index += 200) await db.batch(statements.slice(index, index + 200));

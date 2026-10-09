@@ -3,7 +3,8 @@
 // 승인 해제·새 공개본·행정단위 변경은 키가 달라져 옛 결과를 쓰지 않는다.
 import type { SqlDatabase } from "../sql-database.ts";
 
-const CACHE_VERSION = "budget-v2";
+// v3(2026-10-09): v290에서 세부 예산분야가 캐시 열쇠의 구역 이름(part)과 겹쳐 잘못 저장된 결과를 버린다.
+const CACHE_VERSION = "budget-v4";
 /** 이보다 오래된 저장 결과는 지운다(주 1회 범위 공개본 2개 보관 기간보다 길게). */
 export const BUDGET_CACHE_TTL_SECONDS = 21 * 86_400;
 

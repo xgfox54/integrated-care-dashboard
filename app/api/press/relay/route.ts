@@ -33,7 +33,8 @@ export async function GET(request: Request): Promise<Response> {
 }
 
 function readResponses(value: unknown): RelayResponse[] | null {
-  if (!Array.isArray(value) || value.length > 4) return null;
+  // 목록·robots.txt에 제목 보완용 원문 화면(최대 3건)을 더한다.
+  if (!Array.isArray(value) || value.length > 8) return null;
   const out: RelayResponse[] = [];
   for (const item of value) {
     if (typeof item !== "object" || item === null) return null;

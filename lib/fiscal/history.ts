@@ -1,4 +1,5 @@
 import type { SqlDatabase } from "../sql-database.ts";
+import { cachedBudgetPart } from "./response-cache.ts";
 
 // 연도별 부서·사업 코드 이력(작업지시서 v5 T94, §20 fiscal_region_mappings: 연도별 조직개편·명칭 변경·이관·사업코드 변경은 이력으로 관리).
 // 같은 수집 범위의 서로 다른 회계연도 공개 snapshot을 비교한다. 코드는 문자열 그대로 비교한다(앞자리 0 보존).
@@ -60,6 +61,11 @@ export async function fiscalCodeHistory(db: SqlDatabase, scopeId: string): Promi
   ).bind(scopeId).all<{ fiscal_year: string; snapshot_id: string }>()).results;
   if (latest.length < 2) return null;
   const [current, previous] = latest as [{ fiscal_year: string; snapshot_id: string }, { fiscal_year: string; snapshot_id: string }];
+  // 공개 snapshot은 바뀌지 않으므로 두 snapshot ID가 같으면 비교 결과도 같다. 관리자 화면을 열 때마다 구성원 전체를 다시 읽지 않는다.
+  return cachedBudgetPart(db, { part: "code-history-v1", scopeId, current: current.snapshot_id, previous: previous.snapshot_id }, () => compareSnapshots(db, scopeId, current, previous));
+}
+
+async function compareSnapshots(db: SqlDatabase, scopeId: string, current: { fiscal_year: string; snapshot_id: string }, previous: { fiscal_year: string; snapshot_id: string }): Promise<CodeHistory> {
   const before = group(await members(db, previous.snapshot_id));
   const after = group(await members(db, current.snapshot_id));
   const added = [...after.departments].filter((code) => !before.departments.has(code)).sort();

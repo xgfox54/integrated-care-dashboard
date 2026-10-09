@@ -97,6 +97,50 @@ export function officialAttachments(html, config) {
     if (config.expected_documents !== 1 || config.account_code !== "100" || config.account_name !== "일반회계" || config.original_download_prefix !== "/contents/down/budget/" + config.fiscal_year + "/") throw Error("OFFICIAL_INDEX_SCOPE_CHANGED");
     return [{ id: "general-account", url: config.attachment_url, label: config.attachment_label, toc_names: [], toc_basis: "official_budget_organisation_statement", account_code: config.account_code, account_basis: "official_index_general_account_section" }];
   }
+  if (config.adapter === "hwaseong-budopen-form") {
+    // 화성시 재정공시 「예산서 공개」: 연도별 표의 본예산 줄 「일반회계」 칸이 POST 양식(OpenDown)으로 받는 문서다.
+    const form = config.download_form;
+    if (new URL(config.index_url).origin !== "https://money.hscity.go.kr" || config.expected_documents !== 1 || config.account_code !== "100" || config.account_name !== "일반회계" || !config.pdf_account_scope || !/^\d+$/u.test(form?.mseq ?? "") || form.gubun !== "2-1") throw Error("OFFICIAL_INDEX_SCOPE_CHANGED");
+    const headers = [...(html.match(/<thead\b[^>]*>([\s\S]*?)<\/thead>/iu)?.[1] ?? "").matchAll(/<th\b[^>]*>([\s\S]*?)<\/th>/giu)].map((cell) => normalizeName(cell[1].replace(/<[^>]*>/gu, " ")));
+    if (headers.join("|") !== "연도|예산구분|예산규모|일반회계|기타특별회계|공기업특별회계") throw Error("OFFICIAL_INDEX_SCOPE_CHANGED");
+    let year = null; const rows = [];
+    for (const row of html.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/giu)) {
+      const cells = [...row[1].matchAll(/<td\b([^>]*)>([\s\S]*?)<\/td>/giu)];
+      if (cells[0] && /rowspan/iu.test(cells[0][1])) { year = normalizeName(cells[0][2].replace(/<[^>]*>/gu, " ")).replace(/년$/u, ""); cells.shift(); }
+      const stage = cells[0]?.[2].match(/javascript:YeOpenView\('(\d+)'\);["']>([^<]+)</u);
+      // After the rowspan year cell: 예산구분, 예산규모, 일반회계, … (일반회계 is the third remaining cell).
+      if (year === config.fiscal_year && stage && normalizeName(stage[2]) === "본예산") rows.push({ mseq: stage[1], general: cells[2]?.[2] ?? "" });
+    }
+    if (rows.length !== 1 || rows[0].mseq !== form.mseq || !rows[0].general.includes("javascript:OpenDown('" + form.mseq + "','" + form.gubun + "');")) throw Error("OFFICIAL_ATTACHMENT_CHANGED");
+    const formHtml = [...html.matchAll(/<form\b([^>]*)>([\s\S]*?)<\/form>/giu)].filter((f) => /name=["']OpenDown["']/iu.test(f[1]));
+    const action = formHtml[0]?.[1].match(/action=["']([^"']+)["']/iu)?.[1];
+    if (formHtml.length !== 1 || !/method=["']post["']/iu.test(formHtml[0][1]) || !action || new URL(action, config.index_url).href !== config.attachment_url || !formHtml[0][2].includes('name="' + form.csrf_field + '"')) throw Error("OFFICIAL_ATTACHMENT_CHANGED");
+    if (config.department_toc && config.department_toc.url !== config.attachment_url) throw Error("OFFICIAL_DEPARTMENT_TOC_MISSING");
+    return [{ id: "general-account", url: config.attachment_url, label: config.attachment_label, toc_names: [], toc_basis: "official_budget_organisation_statement", account_code: config.account_code, account_basis: "verified_pdf_account_chapter" }];
+  }
+  if (config.adapter === "bucheon-adopted-link-list") {
+    const origin = new URL(config.index_url).origin;
+    if (origin !== "https://budget.bucheon.go.kr" || config.expected_documents !== 1 || config.account_code !== "100" || config.account_name !== "일반회계") throw Error("OFFICIAL_INDEX_SCOPE_CHANGED");
+    const menu = new URL(config.index_url).searchParams.get("menuid");
+    const activeYear = [...html.matchAll(/<li\b[^>]*class=["'][^"']*\bon\b[^"']*["'][^>]*>\s*<a\b[^>]*href=["']([^"']+)["'][^>]*>\s*<span>\s*(\d{4})\s*<\/span>/giu)];
+    if (activeYear.length !== 1 || activeYear[0][2] !== config.fiscal_year || new URL(activeYear[0][1].replaceAll("&amp;", "&"), config.index_url).searchParams.get("menuid") !== menu) throw Error("OFFICIAL_YEAR_SECTION_CHANGED");
+    const stageTab = html.match(/<nav\b[^>]*class=["'][^"']*\btab_ty02\b[^"']*["'][^>]*>([\s\S]*?)<\/nav>/iu)?.[1] ?? "";
+    const activeStage = [...stageTab.matchAll(/<li\b[^>]*class=["'][^"']*\bon\b[^"']*["'][^>]*>([\s\S]*?)<\/li>/giu)].map((item) => normalizeName(item[1].replace(/<[^>]*>/gu, " ")));
+    if (activeStage.length !== 1 || activeStage[0] !== "본예산") throw Error("OFFICIAL_STAGE_CHANGED");
+    const headings = [...html.matchAll(/<h4\b[^>]*>([\s\S]*?)<\/h4>/giu)];
+    const section = headings.findIndex((heading) => normalizeName(heading[1].replace(/<[^>]*>/gu, " ")) === normalizeName(config.account_section_label));
+    if (section < 0 || !headings[section + 1]) throw Error("ACCOUNT_SECTION_MISSING");
+    const scope = html.slice(headings[section].index, headings[section + 1].index);
+    const linkFor = (label, expectedUrl) => {
+      const items = [...scope.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/giu)].filter((item) => normalizeName(item[1].split(/<span\b/iu)[0].replace(/<[^>]*>/gu, " ")) === normalizeName(label));
+      if (items.length !== 1) throw Error("OFFICIAL_CORPUS_INCOMPLETE");
+      const hrefs = [...items[0][1].matchAll(/<a\b[^>]*href=["']([^"']+)["']/giu)].map((link) => new URL(link[1].replaceAll("&amp;", "&"), config.index_url));
+      if (hrefs.length !== 1 || hrefs[0].origin !== origin || hrefs[0].href !== expectedUrl || !hrefs[0].pathname.startsWith("/docs/budget/depth1_1/" + config.fiscal_year + "/")) throw Error("OFFICIAL_ATTACHMENT_CHANGED");
+    };
+    linkFor(config.attachment_label, config.attachment_url);
+    linkFor(config.department_toc.label, config.department_toc.url);
+    return [{ id: "general-account", url: config.attachment_url, label: config.attachment_label, toc_names: [], toc_basis: "official_budget_organisation_statement", account_code: config.account_code, account_basis: "official_index_general_account_section" }];
+  }
   if (config.adapter !== "yongin-official-attachment-index") throw Error("UNSUPPORTED_PUBLISHER_ADAPTER");
   const headings = [...html.matchAll(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/giu)];
   const section = headings.findIndex((m) => normalizeName(m[1]).includes("세출예산사업명세서(일반회계)"));
@@ -118,16 +162,20 @@ export function officialAttachments(html, config) {
 }
 
 // Independent official organisation budget summary; never infer names from code digits.
-export function organisationDepartments(parsed, year, accountName) {
+// toc.scope_text: the organisation table's own title when it is not 「조직별」 (Hwaseong uses the statement's 실국·부서 summary).
+// toc.exclude_pattern: out-of-scope units listed in the same table (읍·면·동, council secretariat).
+export function organisationDepartments(parsed, year, accountName, toc = {}) {
   const text = normalizeName(parsed.blocks.map((b) => b.parsed_text_verbatim ?? "").join(" "));
   if (accountName && (accountName !== "일반회계" || !text.includes("일반회계") || text.includes("특별회계"))) throw Error("DEPARTMENT_TOC_ACCOUNT_MISMATCH");
-  if (!text.includes(year + "년도본예산") || !text.includes("조직별") || !text.includes("단위:천원")) throw Error("DEPARTMENT_TOC_SCOPE_MISMATCH");
+  if (!text.includes(year + "년도본예산") || !text.includes(normalizeName(toc.scope_text ?? "조직별")) || !text.includes("단위:천원")) throw Error("DEPARTMENT_TOC_SCOPE_MISMATCH");
+  const excluded = toc.exclude_pattern ? new RegExp(toc.exclude_pattern, "u") : null;
   const names = new Map();
   for (const table of parsed.tables) {
     if (!table.cells.some((cell) => normalizeName(cell.parsed_text_verbatim) === "예산액")) continue;
     for (const cell of table.cells.filter((cell) => cell.anchor_col < 2 && cell.anchor_row > 1)) {
       const name = normalizeName(cell.parsed_text_verbatim);
       if (!/^[\p{L}\p{N}·]+(?:과|실|담당관|사업소|추진단|읍|면|센터)$/u.test(name)) continue;
+      if (excluded?.test(name)) continue;
       if (!names.has(name)) names.set(name, { table_id: table.table_id, row: cell.anchor_row, column: cell.anchor_col });
     }
   }
@@ -149,7 +197,7 @@ export function documentRows(document, parsed, config, year) {
     if (!statementTables.length) continue;
     const verified = Boolean(department && document.toc_names.includes(department));
     const accountVerified = document.account_code === config.account_code && (document.account_basis === "official_index_general_account_section" || Boolean(accountRange)) && !headerText.includes("특별회계");
-    const unitVerified = headerText.includes("단위:" + config.amount_unit) || headerText.includes("단위：" + config.amount_unit);
+    const unitVerified = pageUnitVerified(config, document, page, headerText, department);
     const reason = !department ? "missing_or_ambiguous_same_page_header" : !verified ? "header_not_in_official_toc" : !accountVerified ? "account_not_verified_in_index_or_page_conflict" : !unitVerified ? "amount_unit_not_explicit_on_page" : null;
     audit.push({ document_id: document.id, page, department, verified: !reason, reason, toc_names: document.toc_names });
     for (const table of statementTables) {
@@ -167,23 +215,43 @@ export function documentRows(document, parsed, config, year) {
   return { rows, audit };
 }
 
+// The parser can drop the small "(단위:천원)" label on continuation pages. A page counts only when the
+// label was parsed, or when a reviewer saw it on that exact page of that exact file under that department.
+export function pageUnitVerified(config, document, page, headerText, department) {
+  if (headerText.includes("단위:" + config.amount_unit) || headerText.includes("단위：" + config.amount_unit)) return true;
+  return (config.unit_visual_confirmations ?? []).some((c) => c.document_id === document.id && c.page === page && c.raw_sha256 === document.sha256 && c.unit === config.amount_unit && c.department === department && headerText.includes("부서:" + department));
+}
+
 export function verifiedAccountChapter(document, parsed, config, year) {
   const scope = config.pdf_account_scope;
   if (!scope || !/^[a-f0-9]{64}$/u.test(scope.raw_sha256 ?? "") || document.sha256 !== scope.raw_sha256 || config.fiscal_year !== year || config.account_name !== "일반회계" || config.account_code !== "100") throw Error("PDF_ACCOUNT_SCOPE_UNVERIFIED");
   if (!Number.isInteger(scope.first) || !Number.isInteger(scope.last) || scope.first < 2 || scope.last < scope.first || scope.last >= 5000) throw Error("PDF_ACCOUNT_SCOPE_UNVERIFIED");
   const pageText = (page) => normalizeName(parsed.blocks.filter((b) => b.page === page).map((b) => b.parsed_text_verbatim ?? "").join(" "));
-  if (!pageText(scope.first).includes(normalizeName(scope.start_heading)) || !pageText(scope.last + 1).includes(normalizeName(scope.end_heading)) || pageText(scope.first).includes("특별회계")) throw Error("PDF_ACCOUNT_BOUNDARY_CHANGED");
-  const cover = pageText(1);
+  // Some books print the cover and the account divider as images. Such a page (no extractable text at all, and only
+  // then) may be read from a recorded visual reading; the scope's raw_sha256 pin above ties the reading to this file.
+  const imageOnly = (page) => /^(?:-?\d{1,4}-?)?$/u.test(pageText(page));
+  const seen = (page) => imageOnly(page) ? normalizeName((scope.visual_text ?? []).find((v) => v.page === page)?.text ?? "") : pageText(page);
+  const endSeen = seen(scope.last + 1).includes(normalizeName(scope.end_heading));
+  const endVisualOnly = endSeen && imageOnly(scope.last + 1);
+  const machineSpecialSoon = [2, 3, 4, 5].some((offset) => pageText(scope.last + offset).includes("특별회계"));
+  if (!pageText(scope.first).includes(normalizeName(scope.start_heading)) || !endSeen || (endVisualOnly && !machineSpecialSoon) || pageText(scope.first).includes("특별회계")) throw Error("PDF_ACCOUNT_BOUNDARY_CHANGED");
+  const cover = seen(1);
   if (!cover.includes(year + "년도") || !scope.adoption_cover_text?.length || scope.adoption_cover_text.some((text) => !cover.includes(normalizeName(text)))) throw Error("PDF_ADOPTION_EVIDENCE_CHANGED");
   return { first: scope.first, last: scope.last };
 }
 
-export function matchCorpus(items, rows) {
+// config.codes_created_after_book: department codes of units created after the adopted book (e.g. Hwaseong's 2026 행정구);
+// the book can only show who budgeted a project, not the current name of a newer unit, so these are never named.
+export function matchCorpus(items, rows, config = {}) {
   const api = items.map((r) => ({ project_id: r.fiscal_project_id, fiscal_year: r.fiscal_year, reference_date: r.reference_date, fiscal_entity_name: r.fiscal_entity.name, department_code: r.department_code, account_code: r.account.code, name: r.name, amount_krw: r.current_budget_krw }));
   const result = matchDepartments(api, rows);
   const invalid = result.mappings.filter((m) => !m.department_name || m.evidence.some((e) => !e.document.department_basis));
   result.held.push(...invalid.map((m) => ({ ...m, reason: "unverified_document_department" })));
   result.mappings = result.mappings.filter((m) => !invalid.includes(m));
+  const newer = config.codes_created_after_book ? new RegExp(config.codes_created_after_book.pattern, "u") : null;
+  const later = newer ? result.mappings.filter((m) => newer.test(m.department_code)) : [];
+  result.held.push(...later.map((m) => ({ ...m, reason: "code_created_after_adopted_book" })));
+  result.mappings = result.mappings.filter((m) => !later.includes(m));
   return result;
 }
 

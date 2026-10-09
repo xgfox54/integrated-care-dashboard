@@ -8,7 +8,8 @@ export const API_KEY_REFS = ["seoul_open_data", "data_go_kr"] as const;
 export type ApiKeyRef = (typeof API_KEY_REFS)[number];
 
 export interface OpenApiProfile {
-  readonly keyRef: ApiKeyRef;
+  /** "none": 기관이 인증키 없이 공개한 게시판 목록 JSON(담양군 등). 주소 틀에 {key}를 넣지 않는다. */
+  readonly keyRef: ApiKeyRef | "none";
   readonly format: "json";
   /** 행 배열까지의 점 경로(예: tvReportedInfo.row). */
   readonly rows: string;
@@ -38,7 +39,7 @@ export function parseOpenApiProfile(raw: string): OpenApiProfile | null {
     throw error;
   }
   if (!isRecord(value) || !isRecord(value.fields)) return null;
-  const keyRef = API_KEY_REFS.find((ref) => ref === value.keyRef);
+  const keyRef = value.keyRef === "none" ? "none" : API_KEY_REFS.find((ref) => ref === value.keyRef);
   const { title, link, date } = value.fields;
   if (!keyRef || value.format !== "json" || typeof value.rows !== "string" || typeof title !== "string" || typeof link !== "string" || typeof date !== "string") return null;
   if ((value.linkId === undefined) !== (value.url === undefined)) return null;

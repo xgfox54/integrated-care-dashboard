@@ -2,6 +2,7 @@
 
 import { useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { routeProcessEdges } from "@/lib/welfare100/edge-router.mjs";
+import { splitStageName } from "@/lib/welfare100/stage-name.mjs";
 import type { ProcessEdge, ProcessModel, ProcessNode } from "@/lib/welfare100/types";
 
 type EdgeKind = "sequence" | "message" | "loop";
@@ -52,7 +53,7 @@ export default function DesktopProcessBoard({
   onNodeChange: (nodeId: string) => void;
 }) {
   const stages = useMemo(
-    () => process.stages.map((stage) => splitStage(stage)),
+    () => process.stages.map((stage) => splitStageName(stage)),
     [process.stages],
   );
   const loopLabels = useMemo(() => {
@@ -98,7 +99,7 @@ function FullProcessGrid({
   onNodeChange,
 }: {
   process: ProcessModel;
-  stages: ReturnType<typeof splitStage>[];
+  stages: ReturnType<typeof splitStageName>[];
   selectedNodeId: string;
   loopLabels: Map<string, string>;
   onNodeChange: (nodeId: string) => void;
@@ -246,7 +247,7 @@ function FullProcessGrid({
             className="desktop-process-v2-stage"
             style={{ gridColumn: stageIndex + 2, gridRow: 1 }}
           >
-            <span>{stage.code}</span>
+            {stage.code ? <span>{stage.code}</span> : null}
             <strong>{stage.label}</strong>
           </div>
         ))}
@@ -307,7 +308,7 @@ function CoreProcessFlow({
   onNodeChange: (nodeId: string) => void;
 }) {
   const stages = process.stages
-    .map((stage) => ({ ...splitStage(stage), nodes: process.nodes.filter((node) => node.stage === stage) }))
+    .map((stage) => ({ ...splitStageName(stage), nodes: process.nodes.filter((node) => node.stage === stage) }))
     .filter((stage) => stage.nodes.length > 0);
 
   return (
@@ -315,7 +316,7 @@ function CoreProcessFlow({
       {stages.map((stage) => (
         <section key={stage.full}>
           <header>
-            <span>{stage.code}</span>
+            {stage.code ? <span>{stage.code}</span> : null}
             <strong>{stage.label}</strong>
           </header>
           <div>
@@ -486,13 +487,6 @@ function roundedPath(points: number[][], radius: number) {
   }
   const [lastX, lastY] = points.at(-1)!;
   return `${path} L ${round(lastX)} ${round(lastY)}`;
-}
-
-function splitStage(stage: string) {
-  const separator = stage.indexOf(" ");
-  return separator > 0
-    ? { full: stage, code: stage.slice(0, separator), label: stage.slice(separator + 1) }
-    : { full: stage, code: stage, label: "" };
 }
 
 function isSelectedEdge(edge: ProcessEdge, selectedNodeId: string) {

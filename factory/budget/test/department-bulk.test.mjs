@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { officialAttachments, documentRows, matchCorpus, mergeReviewed } from "../department-corpus.mjs";
 import { validateApiPage } from "../bulk-departments.mjs";
-import { budgetDepartmentLabel, budgetDepartmentFilterLabel } from "../../../components/budget/budget-departments.ts";
+import { budgetDepartmentLabel } from "../../../components/budget/budget-departments.ts";
 
 const config = { fiscal_entity_id: "entity", fiscal_entity_name: "Test city", account_code: "100", account_name: "일반회계", amount_unit: "천원", stage: "adopted_initial" };
 const doc = { id: "d", url: "https://city.go.kr/budget.pdf", sha256: "abc", index_sha256: "def", toc_names: ["복지과"], account_code: "100", account_basis: "official_index_general_account_section" };
@@ -13,12 +13,10 @@ function parsed(header = "부서: 복지과 정책: 지원", page = 1, name = "�
 }
 const item = (id, name, amount = "1000") => ({ fiscal_project_id: id, fiscal_year: "2026", reference_date: "2026-10-02", fiscal_entity: { fiscal_entity_id: "entity", name: "Test city" }, department_code: "0000123", account: { code: "100" }, name, current_budget_krw: amount });
 
-test("reviewed Yongin entries use the actual 2026-10-02 observation and never a different entity or newer date", () => {
-  for (const [code, name] of [["1020020", "복지정책과"], ["1033003", "노인복지과"], ["1033007", "아동보육과"], ["1033010", "장애인복지과"], ["1033011", "복지정책과"]]) {
-    assert.equal(budgetDepartmentLabel("경기용인시", code, "2026", "2026-10-02"), `${name} (${code})`);
-    assert.match(budgetDepartmentLabel("경기용인시", code, "2026", "2026-10-04"), /미확인/u);
-    assert.match(budgetDepartmentLabel("다른기관", code, "2026", "2026-10-02"), /미확인/u);
-    assert.equal(budgetDepartmentFilterLabel("경기용인시", code, [{ fiscal_entity: { name: "제주본청" }, fiscal_year: "2026", reference_date: "2026-10-04" }, { fiscal_entity: { name: "경기용인시" }, fiscal_year: "2026", reference_date: "2026-10-02" }]), `${name} (${code})`);
+test("reviewed Yongin names follow the department code, never another entity", () => {
+  for (const [code, name] of [["1020020", "복지정책과"], ["1033003", "노인복지과"], ["1033007", "아동보육과"], ["1033010", "장애인복지과"], ["1033011", "통합돌봄과"]]) {
+    assert.equal(budgetDepartmentLabel("경기용인시", code), `${name} (${code})`);
+    assert.match(budgetDepartmentLabel("다른기관", code), /미확인/u);
   }
 });
 

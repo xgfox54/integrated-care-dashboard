@@ -1,0 +1,62 @@
+{
+  "schema": "department-bulk-v1",
+  "year": "2026",
+  "public_api": "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/api/budget",
+  "entities": [
+    {
+      "id": "hwaseong-2026",
+      "fiscal_year": "2026",
+      "fiscal_entity_id": "lofin:laf:4134000",
+      "fiscal_entity_name": "경기화성시",
+      "region": "4100000",
+      "publisher": "화성특례시",
+      "index_url": "https://money.hscity.go.kr/Money/finfo/budOpen.jsp",
+      "index_required_text": [
+        "예산서공개",
+        "일반회계"
+      ],
+      "adapter": "hwaseong-budopen-form",
+      "attachment_label": "2026년 본예산 일반회계",
+      "attachment_url": "https://money.hscity.go.kr/Money/finfo/YeDown.jsp",
+      "download_form": {
+        "form_name": "OpenDown",
+        "mseq": "15426",
+        "gubun": "2-1",
+        "csrf_field": "money_search_csrf"
+      },
+      "department_toc": {
+        "url": "https://money.hscity.go.kr/Money/finfo/YeDown.jsp",
+        "label": "세출예산사업명세서 일반회계 실국·부서 총괄표",
+        "account_name": "일반회계",
+        "page_range": {
+          "first": 383,
+          "last": 388
+        },
+        "scope_text": "세출예산사업명세서",
+        "exclude_pattern": "(?:읍|면|동)$|^의정담당관$"
+      },
+      "pdf_account_scope": {
+        "raw_sha256": "c34b0eec68cb0c0a4d8870b39955b75b63b1525685bf3f0c2d16252599864d5c",
+        "first": 383,
+        "last": 1468,
+        "start_heading": "세출예산사업명세서",
+        "end_heading": "기타특별회계",
+        "adoption_cover_text": [
+          "본예산서",
+          "2025년 12월 16일 의결"
+      ],
+      "visual_text": [
+        { "page": 1, "text": "2026년도 일반회계 및 특별회계 본예산서 (2025년 12월 16일 의결) 화성특례시", "note": "표지가 이미지라 글자가 추출되지 않음. 2026-10-06 화면 확인." },
+        { "page": 1469, "text": "기타특별회계", "note": "회계 구분 간지가 이미지. 2026-10-06 화면 확인. 1471쪽부터 공공폐수처리시설특별회계 글자가 추출된다." }
+      ]
+      },
+      "stage_evidence_note": "표지 「2026년도 일반회계 및 특별회계 본예산서 (2025년 12월 16일 의결)」. 일반회계 세출예산사업명세서는 PDF 383~1468쪽(인쇄 381~1466쪽), 1469쪽부터 기타특별회계. 읍·면·동과 의회사무국 의정담당관은 범위 밖이라 제외하고, 국 단위 보건소(서부·동탄·동부) 아래 과는 포함한다.",
+      "expected_documents": 1,
+      "account_code": "100",
+      "codes_created_after_book": { "pattern": "^200[3-6]\\d{3}$", "note": "2026년 2월 출범한 만세·효행·병점·동탄구(지방재정365 기관 admin:4134000:2003~2006)의 부서코드. 2025년 12월 의결 예산서에는 이 조직이 없어 현재 명칭을 확인할 수 없다." },
+      "account_name": "일반회계",
+      "amount_unit": "천원",
+      "stage": "adopted_initial"
+    }
+  ]
+}

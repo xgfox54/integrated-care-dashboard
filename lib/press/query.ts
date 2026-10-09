@@ -2,6 +2,7 @@ import type { SqlDatabase } from "../sql-database.ts";
 import { CATEGORY_LABELS } from "./dictionary.ts";
 import { REGION_DEFINITIONS } from "../region-statistics.ts";
 import { publicNewsClause } from "../platform/public-pin.ts";
+import { parseTargetGroup, targetGroupSql } from "../target-groups.ts";
 
 // 공개 조회. 승인된 Source의 복지 분류 자료만 돌려주고, 본문 성격의 필드는 DTO에 없다.
 
@@ -35,6 +36,8 @@ export interface PressSearch {
   readonly dateUnknown: boolean;
   /** 게시일 정렬: newest(기본) 또는 oldest. */
   readonly sort: "newest" | "oldest";
+  /** 대상자 묶음 slug(target_group). 제목에 묶음 낱말 중 하나가 들어간 보도자료(관계성 지도 집계와 같은 정의). */
+  readonly targetGroup?: string;
 }
 
 export type PressSearchParse =
@@ -79,6 +82,10 @@ export function parsePressSearch(params: URLSearchParams): PressSearchParse {
   if (duplicateGroupId && groupMode === "verified_groups") return { ok: false, message: "묶음 구성원 조회는 group_mode=items와 함께 써야 합니다." };
   const sort = bounded(params, "sort") || "newest";
   if (sort !== "newest" && sort !== "oldest") return { ok: false, message: "sort는 newest 또는 oldest여야 합니다." };
+  if (params.getAll("target_group").length > 1) return { ok: false, message: "target_group은 한 번만 쓸 수 있습니다." };
+  const targetGroupRaw = bounded(params, "target_group");
+  const targetGroup = targetGroupRaw ? parseTargetGroup(targetGroupRaw) : "";
+  if (targetGroup === null) return { ok: false, message: "알 수 없는 대상자 묶음입니다." };
   return {
     ok: true,
     search: {
@@ -86,7 +93,7 @@ export function parsePressSearch(params: URLSearchParams): PressSearchParse {
       organizationId: bounded(params, "organization_id"), sido: bounded(params, "sido"), sigungu: bounded(params, "sigungu"),
       page: integerIn(params.get("page"), 1, 1, 1000),
       size: integerIn(params.get("size"), DEFAULT_PAGE_SIZE, 1, MAX_PAGE_SIZE),
-      groupMode, duplicateGroupId, includeDescendants: flag(params, "include_descendants"), dateUnknown, sort,
+      groupMode, duplicateGroupId, includeDescendants: flag(params, "include_descendants"), dateUnknown, sort, targetGroup,
     },
   };
 }
@@ -117,6 +124,11 @@ function buildFilter(search: PressSearch): { readonly where: string; readonly bi
   for (const token of search.q.split(/\s+/).filter(Boolean).slice(0, MAX_TOKENS)) {
     clauses.push("i.title LIKE ? ESCAPE '\\'");
     binds.push(`%${escapeLike(token)}%`);
+  }
+  if (search.targetGroup) {
+    const target = targetGroupSql(search.targetGroup, ["i.title"]);
+    clauses.push(target.sql);
+    binds.push(...target.values);
   }
   const equals: readonly (readonly [string, string])[] = [
     ["i.issued_by_org_id = ?", search.organizationId], ["o.org_type = ?", search.organizationType],
@@ -291,4 +303,11 @@ export async function searchPress(db: SqlDatabase, search: PressSearch) {
     page: search.page,
     size: search.size,
   };
+}
+
+/** 공개 목록과 같은 조건(buildFilter)의 건수. 관계성 지도 집계가 클릭 목록과 같은 수를 보이도록 쓴다. */
+export async function countPress(db: SqlDatabase, search: PressSearch): Promise<number> {
+  const { where, binds } = buildFilter(search);
+  const total = await db.prepare(`SELECT COUNT(*) AS total ${PRESS_FROM_JOINS} WHERE ${where}`).bind(...binds).first<{ total: number }>();
+  return Number(total?.total ?? 0);
 }

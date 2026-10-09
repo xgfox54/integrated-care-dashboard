@@ -70,10 +70,11 @@ export interface ReviewQueueRow {
   readonly rule_classification_status: string;
   readonly reviewed_at: number | null;
   readonly auto_score: number | null;
+  readonly auto_reason: string;
   readonly organization_name: string;
 }
 
-const REVIEW_COLUMNS = "i.item_id, i.title, i.canonical_url, i.published_date, i.categories, i.classification_status, i.classification_basis, i.rule_classification_status, i.reviewed_at, i.auto_score, o.name AS organization_name";
+const REVIEW_COLUMNS = "i.item_id, i.title, i.canonical_url, i.published_date, i.categories, i.classification_status, i.classification_basis, i.rule_classification_status, i.reviewed_at, i.auto_score, i.auto_reason, o.name AS organization_name";
 const REVIEW_FROM = "FROM press_item i JOIN press_source s ON s.source_id = i.source_id JOIN press_organization o ON o.organization_id = i.issued_by_org_id WHERE s.approval_status = 'POLICY_APPROVED' AND s.enabled = 1";
 
 /**
@@ -103,15 +104,46 @@ export async function reviewPressClassification(db: SqlDatabase, itemId: string,
 export async function withdrawPressItem(db: SqlDatabase, target: string, reason: string, nowSeconds: number): Promise<number> {
   const text = reason.trim().slice(0, 200);
   if (!text) throw new Error("REASON_REQUIRED");
-  const item = await db.prepare("SELECT canonical_url FROM press_item WHERE item_id = ? OR canonical_url = ? LIMIT 1").bind(target, target).first<{ canonical_url: string }>();
+  const item = await db.prepare("SELECT canonical_url, public_status FROM press_item WHERE item_id = ? OR canonical_url = ? LIMIT 1").bind(target, target).first<{ canonical_url: string; public_status: string }>();
   const url = item?.canonical_url ?? (/^https:\/\//.test(target) ? target : null);
   if (!url) throw new Error("ITEM_NOT_FOUND");
+  // 되돌릴 때 쓰도록 삭제 전 공개 상태를 남긴다(이미 삭제된 항목을 다시 지워도 처음 상태를 지킨다).
+  const previous = item && item.public_status !== "WITHDRAWN" ? item.public_status : null;
   const results = await db.batch([
-    db.prepare("INSERT OR REPLACE INTO press_item_block (canonical_url, reason, blocked_at) VALUES (?, ?, ?)").bind(url, text, nowSeconds),
+    db.prepare("INSERT INTO press_item_block (canonical_url, reason, blocked_at, previous_status) VALUES (?, ?, ?, ?) ON CONFLICT(canonical_url) DO UPDATE SET reason = excluded.reason, blocked_at = excluded.blocked_at, previous_status = COALESCE(press_item_block.previous_status, excluded.previous_status)").bind(url, text, nowSeconds, previous),
     db.prepare("UPDATE press_item SET public_status = 'WITHDRAWN' WHERE canonical_url = ?").bind(url),
   ]);
   const changes = (results[1] as { changes?: number; meta?: { changes?: number } } | undefined);
   return changes?.changes ?? changes?.meta?.changes ?? 0;
+}
+
+/** 삭제(공개 철회) 되돌리기: 차단을 풀고 삭제 전 공개 상태로 돌린다. 삭제 전 상태 기록이 없으면 공개로 돌린다. */
+export async function restorePressItem(db: SqlDatabase, canonicalUrl: string): Promise<number> {
+  const block = await db.prepare("SELECT previous_status FROM press_item_block WHERE canonical_url = ?").bind(canonicalUrl).first<{ previous_status: string | null }>();
+  if (!block) throw new Error("BLOCK_NOT_FOUND");
+  const results = await db.batch([
+    db.prepare("UPDATE press_item SET public_status = ? WHERE canonical_url = ? AND public_status = 'WITHDRAWN'").bind(block.previous_status ?? "PUBLIC", canonicalUrl),
+    db.prepare("DELETE FROM press_item_block WHERE canonical_url = ?").bind(canonicalUrl),
+  ]);
+  const changes = (results[0] as { changes?: number; meta?: { changes?: number } } | undefined);
+  return changes?.changes ?? changes?.meta?.changes ?? 0;
+}
+
+export interface PressItemSearchRow {
+  readonly item_id: string; readonly title: string; readonly canonical_url: string; readonly published_date: string | null;
+  readonly public_status: string; readonly organization_name: string;
+}
+
+/** 관리자 삭제 화면: 제목 낱말(최대 5개, 모두 포함)로 보도자료를 찾는다. 삭제한 항목도 함께 보여 준다. */
+export async function searchPressItems(db: SqlDatabase, query: string, limit = 30): Promise<PressItemSearchRow[]> {
+  const tokens = query.trim().split(/\s+/).filter(Boolean).slice(0, 5);
+  if (!tokens.length) return [];
+  const like = tokens.map(() => "i.title LIKE ? ESCAPE '\\'").join(" AND ");
+  const values = tokens.map((token) => "%" + token.replace(/[\\%_]/g, (char) => "\\" + char) + "%");
+  return (await db.prepare(
+    "SELECT i.item_id, i.title, i.canonical_url, i.published_date, i.public_status, o.name AS organization_name FROM press_item i JOIN press_organization o ON o.organization_id = i.issued_by_org_id " +
+      "WHERE " + like + " ORDER BY i.published_date DESC, i.item_id LIMIT ?",
+  ).bind(...values, Math.min(Math.max(limit, 1), 50)).all<PressItemSearchRow>()).results;
 }
 
 /** 분류 검토 화면 전용(가벼운 조회): 검토 대기·최근 확정·최근 자동 판정과 분류 현황. 수집처·robots 기록은 읽지 않는다. */
@@ -132,7 +164,11 @@ export async function readAdminPress(db: SqlDatabase) {
     db.prepare(
       "SELECT s.source_id, o.name AS organization_name, s.method, s.endpoint_url, s.interval_minutes, s.verification_status, s.verification_note, s.endpoint_verified_at, " +
         "s.approval_status, s.policy_basis, s.approved_at, s.technical_status, s.enabled, c.last_attempt_at, c.last_success_at, c.latest_item_date, c.consecutive_failures, c.safe_error, c.next_due_at, " +
-        "s.request_interval_sec, s.board_name, s.copyright_type, s.public_nuri_type, s.reuse_allowed, c.collection_hold, c.hold_until, c.hold_reason, c.last_checked_at, " +
+        // 기간이 끝난 5xx 일시 중지는 보류로 보지 않는다(작업지시서 6-6: 만료된 hold_until이 수집 버튼·대기열을 막지 않게). 아직 유효한 중지는 그대로 둔다.
+        "s.request_interval_sec, s.board_name, s.copyright_type, s.public_nuri_type, s.reuse_allowed, " +
+        "CASE WHEN c.hold_until IS NOT NULL AND c.hold_until <= " + nowSeconds + " THEN '' ELSE c.collection_hold END AS collection_hold, " +
+        "CASE WHEN c.hold_until IS NOT NULL AND c.hold_until <= " + nowSeconds + " THEN NULL ELSE c.hold_until END AS hold_until, " +
+        "CASE WHEN c.hold_until IS NOT NULL AND c.hold_until <= " + nowSeconds + " THEN '' ELSE c.hold_reason END AS hold_reason, c.last_checked_at, " +
         "(SELECT a.decision FROM press_robots_audit a WHERE a.source_id = s.source_id ORDER BY a.checked_at DESC LIMIT 1) AS robots_decision, " +
         "(SELECT a.robots_rule FROM press_robots_audit a WHERE a.source_id = s.source_id ORDER BY a.checked_at DESC LIMIT 1) AS robots_rule, " +
         "(SELECT COUNT(*) FROM press_item i WHERE i.source_id = s.source_id) AS item_count, " +
@@ -147,7 +183,7 @@ export async function readAdminPress(db: SqlDatabase) {
     ).all<AdminRunRow>(),
     db.prepare("SELECT " + REVIEW_COLUMNS + " " + REVIEW_FROM + " AND i.classification_status = 'NEEDS_REVIEW' ORDER BY i.published_date DESC, i.item_id LIMIT 50").all<ReviewQueueRow>(),
     db.prepare("SELECT " + REVIEW_COLUMNS + " " + REVIEW_FROM + " AND i.classification_basis = 'reviewer' ORDER BY i.reviewed_at DESC LIMIT 20").all<ReviewQueueRow>(),
-    db.prepare("SELECT canonical_url, reason, blocked_at FROM press_item_block ORDER BY blocked_at DESC LIMIT 20").all<{ canonical_url: string; reason: string; blocked_at: number }>(),
+    db.prepare("SELECT b.canonical_url, b.reason, b.blocked_at, (SELECT i.title FROM press_item i WHERE i.canonical_url = b.canonical_url LIMIT 1) AS title FROM press_item_block b ORDER BY b.blocked_at DESC LIMIT 30").all<{ canonical_url: string; reason: string; blocked_at: number; title: string | null }>(),
     readPendingRelatedGroups(db),
     crawlerEnabled(db),
     readCrawlBlocks(db),

@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { officialAttachments, verifiedAccountChapter, documentRows } from "../department-corpus.mjs";
-import { budgetDepartmentFilterLabel, budgetDepartmentLabel } from "../../../components/budget/budget-departments.ts";
+import { budgetDepartmentLabel } from "../../../components/budget/budget-departments.ts";
 
 const profile = JSON.parse(readFileSync(new URL("../configs/department-bulk-suwon-2026.json", import.meta.url))).entities[0];
 const row = (title = profile.attachment_label, year = "2026", url = profile.attachment_url) => `<tr><td>${year}</td><td>일반 · 특별회계</td><td class="p-subject">${title}</td><td><a href="${url}">PDF보기</a></td></tr>`;
@@ -32,14 +32,15 @@ test("special-account rows cannot contaminate the general-account match corpus",
   assert.equal(result.rows[0].department_name, "복지정책과");
 });
 
-test("Suwon labels retain district identity and require the exact entity/year/observation", () => {
-  const observation = { fiscal_entity: { name: profile.fiscal_entity_name }, fiscal_year: "2026", reference_date: "2026-10-02" };
-  for (const [code, name] of [["1025020", "복지정책과"], ["1025055", "돌봄정책과"], ["4005040", "권선구사회복지과"], ["6005040", "영통구사회복지과"]]) {
-    assert.equal(budgetDepartmentFilterLabel(profile.fiscal_entity_name, code, [observation]), `${name} (${code})`);
-    for (const args of [["경기성남시", code, "2026", "2026-10-02"], [profile.fiscal_entity_name, code, "2025", "2026-10-02"], [profile.fiscal_entity_name, code, "2026", "2026-10-04"]]) {
-      if (args[0] === "경기성남시") assert.notEqual(budgetDepartmentLabel(...args), `${name} (${code})`, "same code in another city must not inherit Suwon's mapping");
-      else assert.match(budgetDepartmentLabel(...args), /명칭 미확인/u);
-    }
-    assert.match(budgetDepartmentFilterLabel(profile.fiscal_entity_name, code, [observation, { ...observation, reference_date: "2026-10-04" }]), /명칭 미확인/u);
+test("Suwon labels retain district identity and never pass to another city", () => {
+  for (const [code, name] of [["1025020", "복지정책과"], ["1025055", "돌봄정책과"]]) {
+    assert.equal(budgetDepartmentLabel(profile.fiscal_entity_name, code), `${name} (${code})`);
+    assert.notEqual(budgetDepartmentLabel("경기성남시", code), `${name} (${code})`, "same code in another city must not inherit Suwon's mapping");
+  }
+});
+
+test("Suwon official code catalog resolves district departments separately from transferred project names", () => {
+  for (const [code, name] of [["3005040", "장안구사회복지과"], ["4005040", "권선구사회복지과"], ["6005040", "영통구사회복지과"]]) {
+    assert.equal(budgetDepartmentLabel(profile.fiscal_entity_name, code), `${name} (${code})`);
   }
 });

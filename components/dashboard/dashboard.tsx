@@ -23,6 +23,7 @@ import { csvFileName } from "@/lib/dataset-csv";
 import { DEFAULT_SEARCH_PAGE_SIZE } from "@/lib/dataset-summary";
 import { getRegionDisplayName } from "@/lib/region-statistics";
 import { effectiveSort, parseSearch, type SearchSort } from "@/lib/search-terms";
+import { targetGroupOf } from "@/lib/target-groups";
 import { useDataset, useFullDataset } from "@/lib/use-dataset";
 import type { ViewRoute } from "@/lib/usage/codes";
 import {
@@ -130,7 +131,8 @@ export function Dashboard() {
   useEffect(() => {
     const fromUrl = readDashboardFilters(window.location.search);
     const hasRegion = Boolean(fromUrl.sido || fromUrl.sigungu);
-    const hasRequestedFilters = hasRegion || Boolean(fromUrl.category || fromUrl.subcategory || fromUrl.type || fromUrl.keyword) || window.location.hash === "#search-results";
+    // 대상자 묶음(관계성 지도에서 연 목록)도 요청한 조건이다: 접속 지역을 대신 적용하지 않아 지도 집계(전국)와 같은 범위를 본다.
+    const hasRequestedFilters = hasRegion || Boolean(fromUrl.category || fromUrl.subcategory || fromUrl.type || fromUrl.keyword || fromUrl.targetGroup) || window.location.hash === "#search-results";
     linkedResultsPending.current = window.location.hash === "#search-results";
     const apply = (next: FilterState) => {
       setFilters(next);
@@ -463,10 +465,15 @@ export function Dashboard() {
               </div>
             </div>
 
-            {filters.category || filters.subcategory || filters.type ? (
+            {filters.category || filters.subcategory || filters.type || filters.targetGroup ? (
               <div aria-label="적용된 사업 분류" className="flex flex-wrap items-center gap-2 text-(length:--jeju-text-sm)">
                 <span className="font-bold">적용 조건</span>
                 {filters.category ? <Chip>{filters.category}</Chip> : null}
+                {filters.targetGroup && targetGroupOf(filters.targetGroup) ? (
+                  <RemovableChip removeLabel={`대상자 묶음 ${targetGroupOf(filters.targetGroup)?.label} 조건 해제`} onRemove={() => updateFilters({ targetGroup: "" })}>
+                    대상자: {targetGroupOf(filters.targetGroup)?.label} (지원대상·세부대상·사업명에 「{targetGroupOf(filters.targetGroup)?.keywords.join("」「")}」 중 하나 포함, 개인 자격 판정 아님)
+                  </RemovableChip>
+                ) : null}
                 {filters.subcategory ? (
                   <RemovableChip removeLabel={`${filters.subcategory} 중분류 조건 해제`} onRemove={() => updateFilters({ subcategory: "" })}>
                     중분류: {filters.subcategory}

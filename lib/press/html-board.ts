@@ -21,7 +21,12 @@ export interface HtmlBoardProfile {
    * 게시물 링크 요소. 기본 "a". 목록 행을 <button onclick=…>으로 그리는 게시판만 "button".
    * "a-unclosed"는 </a> 없이 칸(</td>·</li>)이 끝나는 게시판(인제군 등): 링크 안쪽을 다음 </a>·</td>·</li>·<a 앞까지로 본다.
    */
-  readonly tag?: "a" | "button" | "a-unclosed";
+  readonly tag?: "a" | "button" | "a-unclosed" | "td" | "form";
+  /**
+   * "before": 제목·게시일이 링크 앞에 따로 있는 카드형 목록(완주군 등). 직전 게시물 링크부터 이 링크 앞까지에서
+   * 제목 정규식의 마지막 일치를 제목으로 쓴다. 제목은 정규식으로만 지정한다.
+   */
+  readonly titleScope?: "before";
 }
 
 const MAX_HTML_CHARS = 2_000_000;
@@ -31,6 +36,15 @@ const SEGMENT_LIMIT = 4000;
 const ANCHOR = /<a\b([^>]*)>([\s\S]*?)<\/a>/gi;
 const ANCHOR_UNCLOSED = /<a\b([^>]*)>([\s\S]*?)(?=<\/a>|<\/td>|<\/li>|<a\b)/gi;
 const BUTTON = /<button\b([^>]*)>([\s\S]*?)<\/button>/gi;
+// 표 칸 전체에 onclick이 걸린 목록(새올 보도자료 등)과, 게시물마다 form action에 번호가 있는 목록(증평군 등).
+const TABLE_CELL = /<td\b([^>]*)>([\s\S]*?)<\/td>/gi;
+const FORM = /<form\b([^>]*)>([\s\S]*?)<\/form>/gi;
+const TAGS = { a: ANCHOR, button: BUTTON, "a-unclosed": ANCHOR_UNCLOSED, td: TABLE_CELL, form: FORM } as const;
+const BEFORE_LIMIT = 16_000;
+
+function isBoardTag(value: unknown): value is keyof typeof TAGS {
+  return typeof value === "string" && Object.hasOwn(TAGS, value);
+}
 const DEFAULT_DATE = /(20\d{2})[-./]\s?(\d{1,2})[-./]\s?(\d{1,2})/;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -47,11 +61,12 @@ export function parseBoardProfile(json: string): HtmlBoardProfile | null {
     throw error;
   }
   if (!isRecord(value)) return null;
-  const { link, url, title, date, dateScope, page, tag } = value;
+  const { link, url, title, date, dateScope, page, tag, titleScope } = value;
   if (typeof link !== "string" || typeof url !== "string" || typeof title !== "string") return null;
   if (date !== undefined && typeof date !== "string") return null;
   if (dateScope !== undefined && dateScope !== "row") return null;
-  if (tag !== undefined && tag !== "a" && tag !== "button" && tag !== "a-unclosed") return null;
+  if (tag !== undefined && !isBoardTag(tag)) return null;
+  if (titleScope !== undefined && (titleScope !== "before" || ["text", "attr:title", "js-string:wdigm_title"].includes(title))) return null;
   if (page !== undefined && (typeof page !== "string" || page.length > 500 || !page.startsWith("https://") || !page.includes("{page}"))) return null;
   if (!link.includes("(?<id>") || !url.startsWith("https://") || !url.includes("{id}")) return null;
   for (const pattern of [link, title === "text" || title === "attr:title" ? "" : title, date ?? ""]) {
@@ -63,7 +78,10 @@ export function parseBoardProfile(json: string): HtmlBoardProfile | null {
       throw error;
     }
   }
-  return { link, url, title, ...(date === undefined ? {} : { date }), ...(dateScope === undefined ? {} : { dateScope }), ...(page === undefined ? {} : { page }), ...(tag === undefined ? {} : { tag }) };
+  return {
+    link, url, title, ...(date === undefined ? {} : { date }), ...(dateScope === undefined ? {} : { dateScope }), ...(page === undefined ? {} : { page }),
+    ...(tag === undefined ? {} : { tag }), ...(titleScope === undefined ? {} : { titleScope }),
+  };
 }
 
 function stripTags(html: string): string {
@@ -88,6 +106,21 @@ function readTitle(profile: HtmlBoardProfile, attrs: string, inner: string): str
   return match ? stripTags(match[1] ?? "") : "";
 }
 
+/** 목록이 제목 끝을 줄였을 때만 같은 링크의 전체 title 속성으로 보완한다. 메뉴·요약은 쓰지 않는다. */
+function completeTitle(title: string, candidate: Candidate): string {
+  const ending = /(?:\.{3}|…|⋯)\s*$/;
+  if (!ending.test(title)) return title;
+  const prefix = title.replace(ending, "").trimEnd();
+  if (!prefix) return title;
+  const attributes = [candidate.attrs, ...[...candidate.inner.matchAll(/<(?:span|strong|em|b)\b([^>]*)>/gi)].map((match) => match[1] ?? "")];
+  for (const attrs of attributes) {
+    const match = /(?:^|\s)title\s*=\s*(?:"([^"]*)"|'([^']*)')/i.exec(attrs);
+    const full = match ? cleanText(match[1] ?? match[2] ?? "") : "";
+    if (full.length > prefix.length && full.length <= MAX_TITLE_CHARS && full.startsWith(prefix) && !ending.test(full)) return full;
+  }
+  return title;
+}
+
 function readDate(profile: HtmlBoardProfile, segment: string): string {
   const pattern = profile.date ? new RegExp(profile.date) : DEFAULT_DATE;
   const match = pattern.exec(segment);
@@ -103,25 +136,41 @@ function readDate(profile: HtmlBoardProfile, segment: string): string {
 interface Candidate {
   readonly id: string;
   readonly start: number;
+  readonly end: number;
   readonly attrs: string;
   readonly inner: string;
+}
+
+/** titleScope "before": 직전 게시물 링크 뒤부터 이 링크 앞까지에서 제목 정규식의 마지막 일치. */
+function titleBefore(html: string, profile: HtmlBoardProfile, from: number, to: number): { readonly title: string; readonly segment: string } {
+  const segment = html.slice(Math.max(from, to - BEFORE_LIMIT), to);
+  const last = [...segment.matchAll(new RegExp(profile.title, "g"))].at(-1);
+  return { title: last ? stripTags(last[1] ?? "") : "", segment: last ? segment.slice(last.index) : "" };
 }
 
 export function parseHtmlBoard(html: string, profile: HtmlBoardProfile): PressFeedItem[] {
   if (html.length > MAX_HTML_CHARS) throw new FeedFormatError("FEED_TOO_LARGE");
   const link = new RegExp(profile.link);
   const candidates: Candidate[] = [];
-  for (const match of html.matchAll(profile.tag === "button" ? BUTTON : profile.tag === "a-unclosed" ? ANCHOR_UNCLOSED : ANCHOR)) {
+  for (const match of html.matchAll(TAGS[profile.tag ?? "a"])) {
     const attrs = match[1] ?? "";
     const id = link.exec(attrs)?.groups?.["id"];
     // 게시물 번호는 영문·숫자·_- 기본, 암호화 번호(base64: = + /)도 받는다. 주소에 넣을 때는 encodeURIComponent로 감싼다.
-    if (id && /^[\w=+/-]{1,80}$/.test(id)) candidates.push({ id, start: match.index ?? 0, attrs, inner: match[2] ?? "" });
+    const start = match.index ?? 0;
+    if (id && /^[\w=+/-]{1,80}$/.test(id)) candidates.push({ id, start, end: start + match[0].length, attrs, inner: match[2] ?? "" });
   }
   const items = new Map<string, PressFeedItem>();
   const tableRows = profile.dateScope === "row" ? [...html.matchAll(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi)] : [];
   candidates.forEach((candidate, index) => {
     if (items.size >= MAX_ITEMS) return;
-    const title = readTitle(profile, candidate.attrs, candidate.inner).slice(0, MAX_TITLE_CHARS);
+    if (profile.titleScope === "before") {
+      if (items.has(candidate.id)) return;
+      const before = titleBefore(html, profile, candidates[index - 1]?.end ?? 0, candidate.start);
+      const title = before.title.slice(0, MAX_TITLE_CHARS);
+      if (title) items.set(candidate.id, { title, link: profile.url.replace("{id}", encodeURIComponent(candidate.id)), guid: candidate.id, pubDate: readDate(profile, before.segment) });
+      return;
+    }
+    const title = completeTitle(readTitle(profile, candidate.attrs, candidate.inner), candidate).slice(0, MAX_TITLE_CHARS);
     if (!title || items.get(candidate.id)?.title) return;
     // 한 게시물에 링크가 여럿(사진·제목·요약)이면 다음 '다른' 게시물 링크까지를 이 게시물 구간으로 본다(게시일이 마지막 링크 뒤에 있는 게시판).
     const next = candidates.slice(index + 1).find((other) => other.id !== candidate.id);

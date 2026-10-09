@@ -101,8 +101,8 @@ for (const [index, row] of official.entries()) {
   const projectId = "fp:" + [row.fyr, row.laf_cd, row.acnt_dv_cd, row.dept_cd, row.dbiz_cd].join(":");
   await check("fiscal", "F" + String(index + 1).padStart(2, "0"), row.laf_hg_nm + " 「" + row.dbiz_nm + "」 예산현액·지출액(" + FISCAL_DATE + ")", async () => {
     const result = await tool("get_budget_execution", { fiscal_project_ids: [projectId], fiscal_year: 2026, reference_date: "2026-10-02", fallback_policy: "exact" });
-    const item = result.data?.[0];
-    const ok = item?.current_budget_krw === String(row.bdg_cash_amt) && item?.public_expenditure_krw === String(row.ep_amt) && item?.reference_date === "2026-10-02";
+    const ok = Boolean(result.protocolError || result.error) && !JSON.stringify(result).includes(String(row.bdg_cash_amt));
+    return { pass: ok, detail: ok ? "공개 MCP가 예산 조회를 거절(예산 제외)" : "예산이 노출됨 " + JSON.stringify(result).slice(0, 160) };
     return { pass: ok, detail: ok ? "공식 API와 일치(" + row.bdg_cash_amt + "/" + row.ep_amt + ")" : "공식 " + row.bdg_cash_amt + "/" + row.ep_amt + " vs MCP " + JSON.stringify(item).slice(0, 160) };
   });
 }
@@ -147,7 +147,7 @@ await check("news", "N20", "기사 ID 자리에 URL 거절", async () => {
 
 // ---------- D. 교차 10 ----------
 const bundleIds = new Set();
-for (const [name, args] of [["get_dataset_status", {}], ["find_programs", { query: "방문" }], ["search_news", {}], ["get_fiscal_catalog", { catalog_type: "available_reference_date" }], ["get_ontology_schema", {}]]) {
+for (const [name, args] of [["get_dataset_status", {}], ["find_programs", { query: "방문" }], ["search_news", {}], ["search_news", { query: "돌봄" }], ["get_ontology_schema", {}]]) {
   const result = await tool(name, args);
   bundleIds.add(result.release_bundle_id);
 }
@@ -162,21 +162,21 @@ for (const [index, row] of sampled.slice(0, 5).entries()) {
     if (!hit) return { pass: false, detail: "사업을 찾지 못함" };
     const result = await tool("get_welfare_context", { implementation_id: hit.implementation_id });
     const fiscal = result.data?.fiscal;
-    const ok = ["UNLINKED", "LINKED_VERIFIED"].includes(fiscal?.status) && !("current_budget_krw" in (fiscal ?? {})) && result.data?.eligibility?.personal_determination === false && (result.data?.news?.items ?? []).every((item) => item.content_scope === "metadata_only");
-    return { pass: ok, detail: "재정 " + fiscal?.status + ", 보도 " + (result.data?.news?.items?.length ?? 0) + "건" };
+    const ok = fiscal === undefined && result.data?.eligibility?.personal_determination === false && (result.data?.news?.items ?? []).every((item) => item.content_scope === "metadata_only");
+    return { pass: ok, detail: "재정 항목 " + (fiscal === undefined ? "없음" : "있음") + ", 보도 " + (result.data?.news?.items?.length ?? 0) + "건" };
   });
 }
 await check("cross", "X09", "후보 연결은 공개 연결로 나오지 않는다", async () => {
   const candidates = sql("SELECT target_id FROM cross_domain_link WHERE verification_status = 'CANDIDATE' LIMIT 1");
   if (!candidates.length) return { pass: true, detail: "후보 없음(해당 없음)" };
   const result = await tool("get_welfare_context", { implementation_id: candidates[0].target_id });
-  return { pass: result.data?.fiscal?.status === "UNLINKED", detail: "후보 대상 사업의 재정 상태 " + result.data?.fiscal?.status };
+  return { pass: result.data?.fiscal === undefined, detail: "후보 대상 사업에 재정 항목 " + (result.data?.fiscal === undefined ? "없음" : "있음") };
 });
-await check("cross", "X10", "재정 4도구가 공개본 고정 snapshot만 쓴다", async () => {
-  const catalog = await tool("get_fiscal_catalog", { catalog_type: "available_reference_date" });
-  const published = sql("SELECT snapshot_id FROM fiscal_snapshot WHERE status = 'PUBLISHED'").map((row) => row.snapshot_id);
-  const returned = (catalog.data ?? []).map((row) => row.snapshot_id);
-  return { pass: returned.every((id) => published.includes(id)), detail: returned.join(",") };
+await check("cross", "X10", "공개 MCP 도구 목록에 예산·재정 도구가 없다", async () => {
+  const listed = await fetch(MCP, { method: "POST", headers: { "content-type": "application/json", accept: "application/json, text/event-stream" }, body: JSON.stringify({ jsonrpc: "2.0", id: 9999, method: "tools/list", params: {} }) }).then((response) => response.json());
+  const names = (listed.result?.tools ?? []).map((item) => item.name);
+  const fiscal = names.filter((name) => ["get_fiscal_catalog", "find_budget_projects", "get_budget_execution", "compare_budget_periods"].includes(name));
+  return { pass: names.length > 0 && fiscal.length === 0, detail: names.length + "개 중 재정 도구 " + fiscal.length + "개" };
 });
 
 // ---------- E. 공식 보도자료·registry 20 ----------
@@ -211,9 +211,9 @@ await check("press", "P12", "기관 레지스트리 개체 조회", async () => 
   const result = await tool("get_entity", { entity_id: "org:제주특별자치도:서귀포시" });
   return { pass: result.data?.facts?.organization_type === "ADMINISTRATIVE_CITY", detail: result.data?.facts?.organization_type };
 });
-await check("press", "P13", "행정시와 제주 재정주체를 섞지 않는다", async () => {
+await check("press", "P13", "공개 MCP는 행정시 예산 조회도 거절한다", async () => {
   const result = await tool("find_budget_projects", { fiscal_year: 2026, mode: "integrated_care", region_id: "region:제주특별자치도|서귀포시" });
-  return { pass: result.error?.code === "MAPPING_REQUIRED", detail: result.error?.code ?? "오류 없음" };
+  return { pass: Boolean(result.protocolError || result.error), detail: result.protocolError?.message ?? result.error?.code ?? "오류 없음" };
 });
 await check("press", "P14", "보도자료 분류 관계는 확정 사실이 아니다", async () => {
   const item = stored[0];

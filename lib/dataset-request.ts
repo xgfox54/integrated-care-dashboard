@@ -3,8 +3,9 @@ import { z } from "zod";
 import { EMPTY_FILTERS, SERVICE_CATEGORY_ORDER, type FilterState } from "./dataset.ts";
 import { REGION_DEFINITIONS } from "./region-statistics.ts";
 import { isSearchSort } from "./search-terms.ts";
+import { parseTargetGroup } from "./target-groups.ts";
 
-const FILTER_KEYS = ["sido", "sigungu", "category", "subcategory", "type", "q", "sort"] as const;
+const FILTER_KEYS = ["sido", "sigungu", "category", "subcategory", "type", "q", "sort", "target_group"] as const;
 const SEARCH_KEYS = [...FILTER_KEYS, "page", "size"] as const;
 const ALLOWED_SIDO = new Set<string>(REGION_DEFINITIONS.flatMap((region) => [...region.aliases]));
 const ALLOWED_CATEGORY = new Set<string>(SERVICE_CATEGORY_ORDER);
@@ -19,6 +20,8 @@ const filterSchema = z.object({
   type: boundedText(40),
   keyword: boundedText(100),
   sort: boundedText(40).refine((value) => !value || isSearchSort(value)),
+  // 알 수 없는 대상자 묶음은 조용히 버리지 않고 요청을 거절한다(전체 결과를 대신 보여 주지 않음).
+  targetGroup: boundedText(48).refine((value) => !value || parseTargetGroup(value) !== null).transform((value) => (value ? parseTargetGroup(value) ?? "" : "")),
 }).refine((value) => !value.sigungu || Boolean(value.sido));
 
 const searchSchema = z.object({
@@ -57,6 +60,7 @@ function filterCandidate(params: URLSearchParams): FilterState {
     type: params.get("type") ?? "",
     keyword: params.get("q") ?? "",
     sort: isSearchSort(sort) ? sort : "",
+    targetGroup: params.get("target_group") ?? "",
   };
 }
 

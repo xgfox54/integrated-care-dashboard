@@ -11,6 +11,8 @@ import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select"
 import { Spinner } from "@/components/ui/spinner";
 
 import { formatJoEok } from "./budget-format";
+import { budgetDocumentIndent as indent, RELATION_TONE } from "./budget-document-display";
+import type { BudgetDocumentLine as Line } from "./budget-document-display";
 
 interface Revision {
   readonly document_revision_id: string;
@@ -28,24 +30,6 @@ interface Revision {
   readonly server_checks: { readonly children_sum?: { match: number; mismatch: number; partial_listing?: number }; readonly funding_sum?: { match: number; partial: number }; readonly side_columns?: { match: number; mismatch: number }; readonly bugi_lines?: number };
   readonly source: { readonly page_url: string | null; readonly file_url: string | null; readonly retrieved_at: string; readonly parser: string; readonly extractor_version: string; readonly format: string };
 }
-interface Line {
-  readonly budget_line_id: string;
-  readonly line_no: number;
-  readonly parent_line_no: number | null;
-  readonly level: string;
-  readonly level_label: string;
-  readonly code: string | null;
-  readonly name: string;
-  readonly formula_text: string | null;
-  readonly amount_thousand_krw: string | null;
-  readonly amount_krw: string | null;
-  readonly previous_amount_thousand_krw: string | null;
-  readonly change_amount_thousand_krw: string | null;
-  readonly funding: readonly { readonly label: string; readonly amount_thousand_krw: string }[];
-  readonly evidence: { readonly page: number | null };
-  readonly annotations: readonly string[];
-  readonly api_comparison?: null | { readonly relation: string; readonly relation_label: string; readonly api: null | { readonly current_budget_krw: string | null; readonly reference_date: string; readonly department_code: string } };
-}
 interface Outline {
   readonly revision: Revision;
   readonly lines: readonly Line[];
@@ -53,12 +37,6 @@ interface Outline {
 }
 
 const NUMBER = new Intl.NumberFormat("ko-KR");
-const RELATION_TONE: Record<string, "success" | "warning" | "neutral" | "info"> = {
-  same_within_display_rounding: "success", api_current_higher: "info", api_current_lower: "warning", not_found_in_api: "neutral", ambiguous_name_in_api: "neutral", api_amount_missing: "neutral",
-};
-/** 계층 깊이별 들여쓰기(rem). 부서 0 → 하위 산출항목 7. */
-const DEPTH: Record<string, number> = { department: 0, policy: 1, unit: 2, detail_project: 3, object_group: 4, object: 5, item: 6, sub_item: 7 };
-const indent = (level: string) => ({ paddingLeft: 0.75 + (DEPTH[level] ?? 0) * 0.85 + "rem" });
 
 async function getJson<T>(path: string, signal?: AbortSignal): Promise<T> {
   const response = await fetch(path, { signal });
@@ -69,20 +47,29 @@ async function getJson<T>(path: string, signal?: AbortSignal): Promise<T> {
 const thousand = (value: string | null) => (value === null ? "-" : value + "천원");
 
 export function BudgetDocumentsPanel({ entityId, regionEntityIds }: { readonly entityId: string; readonly regionEntityIds: readonly string[] | null }) {
-  const [revisions, setRevisions] = useState<readonly Revision[] | null>(null);
-  const [failed, setFailed] = useState(false);
+  type ListedRevision = Pick<Revision, "document_revision_id" | "title" | "issuer" | "fiscal_entity" | "fiscal_year" | "stage_label">;
+  // 응답은 요청한 범위(기관·지역) 키와 함께 둔다. 범위가 바뀌면 키가 달라 이전 목록을 쓰지 않는다.
+  const [listed, setListed] = useState<{ readonly scope: string; readonly revisions: readonly ListedRevision[] | null; readonly failed: boolean } | null>(null);
   const [picked, setPicked] = useState("");
   const [outline, setOutline] = useState<{ readonly id: string; readonly data: Outline | null } | null>(null);
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState<Record<string, readonly Line[] | "loading" | "error">>({});
   const requests = useRef(new Map<string, AbortController>());
 
+  // 선택한 기관·지역의 문서만 서버에서 받는다(전국 목록은 앞부분만 오므로, 화면에서 거르면 뒤쪽 기관 문서가 빠진다).
+  const regionKey = regionEntityIds === null ? null : [...regionEntityIds].sort().join(",");
+  const scope = entityId ? "&entity=" + encodeURIComponent(entityId) : regionKey !== null ? "&entities=" + encodeURIComponent(regionKey) : "";
+  const emptyRegion = !entityId && regionKey === "";
   useEffect(() => {
+    if (emptyRegion) return;
     let live = true;
-    getJson<{ readonly revisions: readonly Revision[] }>("/api/budget/documents")
-      .then((body) => { if (live) setRevisions(body.revisions); }, () => { if (live) setFailed(true); });
+    getJson<{ readonly revisions: readonly ListedRevision[] }>("/api/budget/documents?view=list" + scope)
+      .then((body) => { if (live) setListed({ scope, revisions: body.revisions, failed: false }); }, () => { if (live) setListed({ scope, revisions: null, failed: true }); });
     return () => { live = false; };
-  }, []);
+  }, [scope, emptyRegion]);
+  const scopedList = emptyRegion ? { scope, revisions: [] as readonly ListedRevision[], failed: false } : listed?.scope === scope ? listed : null;
+  const revisions = scopedList?.revisions ?? null;
+  const failed = scopedList?.failed ?? false;
 
   // 행정시·행정구도 해당 기관에 연결된 승인 문서만 보여 준다. 상위 기관 문서를 하위 기관 자료로 표시하지 않는다.
   const shown = useMemo(() => {

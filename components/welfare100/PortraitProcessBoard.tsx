@@ -16,6 +16,7 @@ import type {
   SourceVerification,
 } from "@/lib/welfare100/types";
 import { routeProcessEdges } from "@/lib/welfare100/edge-router.mjs";
+import { splitStageName } from "@/lib/welfare100/stage-name.mjs";
 import { ProcessVerificationSummaryBar } from "./ProcessVerification";
 import {
   Legend,
@@ -216,7 +217,7 @@ export default function PortraitProcessBoard({
       <div className="portrait-process-desktop-view">
         {!embedded && <nav className="portrait-stage-nav" aria-label="업무 단계 바로가기">
           {process.stages.map((stage) => {
-            const [code, ...label] = stage.split(" ");
+            const { code, label } = splitStageName(stage);
             return (
               <button
                 key={stage}
@@ -224,8 +225,8 @@ export default function PortraitProcessBoard({
                 data-status={stageStatus(stage, process.nodes)}
                 onClick={() => handleStageClick(stage)}
               >
-                <span>{code}</span>
-                <strong>{label.join(" ")}</strong>
+                {code ? <span>{code}</span> : null}
+                <strong>{label}</strong>
               </button>
             );
           })}
@@ -399,7 +400,7 @@ export default function PortraitProcessBoard({
             ))}
 
             {process.stages.flatMap((stage, stageIndex) => {
-              const [code, ...label] = stage.split(" ");
+              const { code, label } = splitStageName(stage);
               const status = stageStatus(stage, process.nodes);
               return [
                 <div
@@ -412,8 +413,8 @@ export default function PortraitProcessBoard({
                   data-status={status}
                   style={{ gridColumn: 1, gridRow: stageIndex + 2 }}
                 >
-                  <span className="mono">{code}</span>
-                  <strong>{label.join(" ")}</strong>
+                  {code ? <span className="mono">{code}</span> : null}
+                  <strong>{label}</strong>
                 </div>,
                 ...groups.map((group, groupIndex) => {
                   const cellNodes = process.nodes.filter(
