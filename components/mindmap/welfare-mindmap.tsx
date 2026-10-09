@@ -734,7 +734,6 @@ function GraphNode({ item, selected, dim, hit, onSelect, onToggle }: {
           if (event.key === " ") { event.preventDefault(); onToggle(); }
         }}
         className="cursor-pointer outline-none [&:focus-visible>rect.frame]:stroke-[#111827] [&:focus-visible>rect.frame]:stroke-[3px]">
-        {selected && !isRoot ? <rect x={-5} y={-5} width={item.w + 10} height={item.h + 10} rx={(item.h + 10) / 2.6} fill="none" stroke="#111827" strokeWidth={2.5} /> : null}
         {hit ? <rect x={-4} y={-4} width={item.w + 8} height={item.h + 8} rx={(item.h + 8) / 2.6} fill="none" stroke="#f18101" strokeWidth={2} strokeDasharray="5 3" /> : null}
         <rect className="frame" width={item.w} height={item.h} rx={depth <= 1 ? 12 : item.h / 2} fill={fill}
           stroke={isRoot ? "#1f2937" : color.line} strokeWidth={depth === 1 ? 2 : 1.4} strokeDasharray={node.family === "advanced" ? "5 3" : undefined} />

@@ -24,6 +24,7 @@ import { normalizeName, type FilterKind } from "@/lib/usage/codes";
 import { markUsageInternalNavigation, setUsageHandoff, usageError, usageErrorCode, usageFilter, usagePage, usagePerf } from "@/lib/usage/track";
 import { useSearchUsage } from "@/lib/usage/use-search-usage";
 import { watchVisitorRegion, type VisitorRegion } from "@/lib/visitor-location";
+import { parseTargetGroup, targetGroupOf, textsMatchTarget } from "@/lib/target-groups";
 import CompareTray from "./CompareTray";
 import styles from "./RegistryCatalog.module.css";
 
@@ -78,12 +79,15 @@ interface Filters {
   lifecycle: string;
   household: string;
   provision: string;
+  /** 대상자 묶음 slug(관계성 지도에서 연 목록). 제도명에 묶음 낱말 중 하나가 들어간 제도(지도 집계와 같은 판정). */
+  targetGroup: string;
 }
 
 type FacetKey = "scope" | "region" | "category" | "lifecycle" | "household" | "provision";
 const NO_SEARCH: ParsedSearch = parseSearch("");
 
 function matches(entry: CatalogEntry, filters: Filters, parsed: ParsedSearch, skip?: FacetKey): boolean {
+  if (filters.targetGroup && !textsMatchTarget(filters.targetGroup, [entry.name])) return false;
   if (skip !== "scope") {
     if (filters.scope === "주요 제도" && !entry.curated) return false;
     if (filters.scope === "중앙부처" && entry.org !== "중앙부처") return false;
@@ -159,6 +163,7 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
       lifecycle: lifecycleOrder.includes(searchParams.get("life") ?? "") ? (searchParams.get("life") as string) : ALL,
       household: householdOrder.includes(searchParams.get("household") ?? "") ? (searchParams.get("household") as string) : ALL,
       provision: param("type", ALL_TYPES),
+      targetGroup: parseTargetGroup(searchParams.get("target_group") ?? "") ?? "",
     };
   });
   const [sort, setSort] = useState<SortMode>(() => {
@@ -236,6 +241,7 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
   useEffect(() => {
     const url = new URL(window.location.href);
     updateUrlParam(url, "q", filters.query.trim());
+    updateUrlParam(url, "target_group", filters.targetGroup);
     updateUrlParam(url, "scope", filters.scope === "전체" ? "" : filters.scope);
     updateUrlParam(url, "sido", filters.sido === ALL_SIDO ? "" : filters.sido);
     updateUrlParam(url, "sigungu", filters.sigungu === ALL_SIGUNGU ? "" : filters.sigungu);
@@ -530,6 +536,12 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
             <p aria-live="polite">
               <strong>{filterTitle || "복지제도 대장"}</strong>
               <span> · {entries ? filtered.length.toLocaleString("ko-KR") + "개 결과" : "불러오는 중"}</span>
+              {filters.targetGroup && targetGroupOf(filters.targetGroup) ? (
+                <span>
+                  {" · 대상자: " + targetGroupOf(filters.targetGroup)?.label + "(제도명에 「" + targetGroupOf(filters.targetGroup)?.keywords.join("」「") + "」 중 하나) "}
+                  <button type="button" onClick={() => update({ targetGroup: "" })}>대상자 조건 해제</button>
+                </span>
+              ) : null}
             </p>
             <div className={styles.sortControl} role="group" aria-label="정렬 방식">
               {(hasQuery

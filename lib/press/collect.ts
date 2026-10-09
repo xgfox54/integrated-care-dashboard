@@ -5,7 +5,9 @@ import { parseOpenApiItems, parseOpenApiProfile, withApiKey, type ApiKeyRef } fr
 import { analyzeRobots, type RobotsAnalysis } from "./robots.ts";
 import { blockedBy, crawlerEnabled, readCrawlBlocks, recordRobotsAudit, requestIntervalSec, type CrawlBlock } from "./operations.ts";
 import { FeedFormatError, parseRssItems, type PressFeedItem } from "./rss.ts";
+import { isPressFetchFailure } from "./fetch.ts";
 import { nextCollectionSlot } from "./schedule.ts";
+import { completesTitle, extractFullTitle, isTruncatedTitle, readStoredTitles, readTruncatedItems, recordTitleAttempt } from "./title-complete.ts";
 import {
   claimCrawlLease, claimHostLease, insertItemStatement, readCrawlState, readExistingTitleHashes, readUrlsHeldElsewhere, releaseCrawlLease,
   releaseHostLease, updateItemStatement, type CrawlState, type PressItemRecord, type PressSource,
@@ -36,17 +38,24 @@ const BACKFILL_DEADLINE_SECONDS = 12;
 export interface FetchResponseLike {
   readonly status: number;
   readonly headers: { get(name: string): string | null };
+  /** 읽지 않는 응답의 연결을 해제한다. 메모리 응답·PC 중계에는 생략할 수 있다. */
+  discard?(): void;
   text(): Promise<string>;
 }
 export type PressFetcher = (url: string, headers: Record<string, string>) => Promise<FetchResponseLike>;
 
 export interface CollectDeps {
   readonly fetcher: PressFetcher;
+  readonly robotsFetcher?: PressFetcher;
+  /** 백그라운드 수집의 전체 통신·대기 마감(Unix 초). 미지정한 수동·PC 중계 실행은 기존 정책을 유지한다. */
+  readonly deadlineAt?: number;
   readonly now: () => number;
   readonly sleep: (milliseconds: number) => Promise<void>;
   readonly newId: () => string;
   /** Open API Source의 인증키(관리자 저장값). 없으면 그 Source는 KEY_REQUIRED로 막힌다. */
   readonly readApiKey?: (ref: ApiKeyRef) => Promise<string | null>;
+  /** PC 중계 수집: PC가 함께 올린 원문 화면 주소만 제목 보완에 쓴다. 없으면 robots·차단 목록이 허용한 원문을 서버가 직접 연다. */
+  readonly detailAllowed?: (address: string) => boolean;
 }
 
 export interface CollectRequest {
@@ -135,14 +144,34 @@ function sameUrl(location: string | null, endpoint: string): boolean {
   }
 }
 
+function hasCollectionTime(deps: CollectDeps, waitSeconds = 0): boolean {
+  return deps.deadlineAt === undefined || deps.now() + waitSeconds < deps.deadlineAt;
+}
+
+/**
+ * 통신 실패를 원인별로 나눈다(작업지시서 6-3). 응답 대기 시간 초과·DNS·TLS·그 밖의 연결 실패를 모두 NETWORK_ERROR로 적지 않는다.
+ * 호스팅 fetch 오류 문구는 표준이 아니어서, 알아볼 수 없는 연결 실패만 NETWORK_ERROR로 남긴다.
+ */
+export function networkFailureCode(error: unknown, phase: "connect" | "body"): string {
+  const name = typeof error === "object" && error !== null && "name" in error ? String((error as { name: unknown }).name) : "";
+  if (name === "TimeoutError" || name === "AbortError") return phase === "body" ? "BODY_READ_TIMEOUT" : "RESPONSE_TIMEOUT";
+  if (phase === "body") return "BODY_READ_FAILED";
+  const message = error instanceof Error ? error.message : "";
+  if (/certificate|tls|ssl|handshake/i.test(message)) return "TLS_ERROR";
+  if (/dns|resolve|getaddrinfo|enotfound|name not resolved/i.test(message)) return "DNS_ERROR";
+  return "NETWORK_ERROR";
+}
+
 async function fetchWithRetry(source: PressSource, state: CrawlState, deps: CollectDeps, intervalSec: number): Promise<Fetched> {
   let requestUrl = source.endpointUrl;
   if (source.adapter === "OpenAPIAdapter") {
     const profile = parseOpenApiProfile(source.adapterProfile);
     if (!profile) return failure("PROFILE_INVALID", "PARSER_ERROR");
-    const key = deps.readApiKey ? await deps.readApiKey(profile.keyRef) : null;
-    if (!key) return failure("KEY_REQUIRED", "BLOCKED");
-    requestUrl = withApiKey(source.endpointUrl, key);
+    if (profile.keyRef !== "none") {
+      const key = deps.readApiKey ? await deps.readApiKey(profile.keyRef) : null;
+      if (!key) return failure("KEY_REQUIRED", "BLOCKED");
+      requestUrl = withApiKey(source.endpointUrl, key);
+    }
   }
   const headers: Record<string, string> = {
     "user-agent": USER_AGENT,
@@ -153,12 +182,14 @@ async function fetchWithRetry(source: PressSource, state: CrawlState, deps: Coll
     if (state.lastModified) headers["if-modified-since"] = state.lastModified;
   }
   for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt += 1) {
+    if (!hasCollectionTime(deps)) return failure("TIME_BUDGET_EXCEEDED", "ERROR");
     const last = attempt === MAX_ATTEMPTS - 1;
     try {
       const response = await deps.fetcher(requestUrl, headers);
+      if (response.status < 200 || (response.status >= 300 && response.status !== 304)) response.discard?.();
       // 세션 쿠키를 심으려고 같은 주소로 다시 보내는 3xx는 주소 변경이 아니다. 잠시 뒤 다시 요청한다.
       if (response.status >= 300 && response.status < 400 && sameUrl(response.headers.get("location"), source.endpointUrl)) {
-        if (last) return failure("SAME_URL_REDIRECT", "ERROR", response.status);
+        if (last || !hasCollectionTime(deps, intervalSec * (attempt + 1))) return failure("SAME_URL_REDIRECT", "ERROR", response.status);
         await deps.sleep(intervalSec * 1000 * (attempt + 1));
         continue;
       }
@@ -166,10 +197,10 @@ async function fetchWithRetry(source: PressSource, state: CrawlState, deps: Coll
         const bad = statusFailure(response);
         return bad ? { kind: "failure", failure: bad } : { kind: "ok", response };
       }
-      if (last) return failure("SERVER_ERROR", "ERROR", response.status);
+      if (last || !hasCollectionTime(deps, intervalSec * (attempt + 1))) return failure("SERVER_ERROR", "ERROR", response.status);
     } catch (error) {
-      if (!(error instanceof Error)) throw error;
-      if (last) return failure("NETWORK_ERROR", "ERROR");
+      if (!isPressFetchFailure(error)) throw error;
+      if (last || !hasCollectionTime(deps, intervalSec * (attempt + 1))) return failure(networkFailureCode(error, "connect"), "ERROR");
     }
     await deps.sleep(intervalSec * 1000 * (attempt + 1));
   }
@@ -228,6 +259,9 @@ async function toRecords(
 
 async function saveRecords(db: SqlDatabase, records: readonly PressItemRecord[]): Promise<Pick<RunCounts, "created" | "updated" | "unchanged"> & { readonly createdIds: ReadonlySet<string> }> {
   const existing = await readExistingTitleHashes(db, records.map((record) => record.itemId));
+  // 목록이 다시 줄인 제목을 줘도, 원문에서 보완해 저장한 전체 제목은 그대로 둔다.
+  const shortened = records.filter((record) => existing.has(record.itemId) && existing.get(record.itemId) !== record.titleHash && isTruncatedTitle(record.title));
+  const stored = shortened.length ? await readStoredTitles(db, shortened.map((record) => record.itemId)) : new Map<string, string>();
   const fresh = records.filter((record) => !existing.has(record.itemId));
   const heldElsewhere = fresh.length ? await readUrlsHeldElsewhere(db, fresh[0].sourceId, fresh.map((record) => record.canonicalUrl)) : new Set<string>();
   const writes = [];
@@ -242,7 +276,7 @@ async function saveRecords(db: SqlDatabase, records: readonly PressItemRecord[])
       created += 1;
       createdIds.add(record.itemId);
       writes.push(insertItemStatement(db, record));
-    } else if (known !== record.titleHash) {
+    } else if (known !== record.titleHash && !completesTitle(stored.get(record.itemId) ?? "", record.title)) {
       updated += 1;
       writes.push(updateItemStatement(db, record));
     }
@@ -357,6 +391,31 @@ function parseSourceItems(source: PressSource, body: string): PressFeedItem[] {
 
 type RobotsCheck = (address: string) => "ALLOWED" | "DISALLOWED" | "UNREADABLE";
 
+/** 한 번 수집할 때 원문을 열어 제목을 보완하는 최대 건수. 같은 기관 요청 간격을 지키며 실행 시간 안에서만 연다. */
+const TITLE_FIX_PER_RUN = 3;
+
+async function completeTruncatedTitles(
+  db: SqlDatabase, source: PressSource, deps: CollectDeps, check: { readonly intervalSec: number; readonly allowed: (address: string) => boolean },
+): Promise<number> {
+  let completed = 0;
+  for (const item of await readTruncatedItems(db, source.sourceId, TITLE_FIX_PER_RUN, deps.now())) {
+    if (!check.allowed(item.canonical_url)) continue;
+    if (!hasCollectionTime(deps, check.intervalSec + 7)) break;
+    await deps.sleep(check.intervalSec * 1000);
+    let full: string | null = null;
+    try {
+      const response = await deps.fetcher(item.canonical_url, { "user-agent": USER_AGENT, accept: "text/html" });
+      if (response.status === 200) full = extractFullTitle(await response.text(), item.title);
+      else response.discard?.();
+    } catch (error) {
+      if (!isPressFetchFailure(error)) throw error;
+    }
+    await recordTitleAttempt(db, item, full, deps.now());
+    if (full) completed += 1;
+  }
+  return completed;
+}
+
 /**
  * 수집할 때마다 robots.txt를 다시 읽고 점검 기록(press_robots_audit)을 남긴다. 수집 경로가 명시적으로 막혀 있으면 가져오지 않는다(우회 없음).
  * 읽을 수 없으면(401·5xx·HTML·시간 초과) CHECK_ERROR로 기록하고 등록 때 내린 판단을 유지해 진행한다(지침 5·32항: robots는 유일한 기준이 아닌 운영 참고값).
@@ -367,11 +426,12 @@ async function loadRobots(db: SqlDatabase, source: PressSource, deps: CollectDep
   let status: number | null = null;
   let body = "";
   try {
-    const response = await deps.fetcher(origin + "/robots.txt", { "user-agent": USER_AGENT, accept: "text/plain" });
+    const response = await (deps.robotsFetcher ?? deps.fetcher)(origin + "/robots.txt", { "user-agent": USER_AGENT, accept: "text/plain" });
     status = response.status;
     body = await response.text();
   } catch (error) {
-    if (!(error instanceof Error)) throw error;
+    if (!isPressFetchFailure(error)) throw error;
+    status = null;
   }
   const endpoint = new URL(source.endpointUrl);
   const analysis = analyzeRobots(status, body, USER_AGENT, endpoint.pathname + endpoint.search);
@@ -412,15 +472,18 @@ async function backfillPages(
   for (let page = 2; page <= 1 + MAX_BACKFILL_PAGES; page += 1) {
     const address = profile.page.replace("{page}", String(page));
     if (new URL(address).host !== new URL(source.endpointUrl).host || robots(address) === "DISALLOWED" || blockedBy(pace.blocks, address)) break;
-    if (deps.now() - pace.startedAt > BACKFILL_DEADLINE_SECONDS) break;
+    if (deps.now() - pace.startedAt > BACKFILL_DEADLINE_SECONDS || !hasCollectionTime(deps, pace.intervalSec + 7)) break;
     await deps.sleep(pace.intervalSec * 1000);
     let items: PressFeedItem[];
     try {
       const response = await deps.fetcher(address, { "user-agent": USER_AGENT, accept: "text/html" });
-      if (response.status !== 200) break;
+      if (response.status !== 200) {
+        response.discard?.();
+        break;
+      }
       items = parseHtmlBoard(await response.text(), profile);
     } catch (error) {
-      if (error instanceof Error) break;
+      if (isPressFetchFailure(error)) break;
       throw error;
     }
     const converted = await toRecords(items, source, deps.now());
@@ -438,6 +501,7 @@ async function backfillPages(
   return { recovered: false, feedItems, rejected, records, saved };
 }
 
+// allow: SIZE_OK — 실행권·체크포인트·감사 기록의 순서를 보존하는 기존 수집 상태기계. 변경은 통신 경계에 한정한다.
 async function collectOnce(db: SqlDatabase, request: CollectRequest, deps: CollectDeps, token: string, runId: string): Promise<CollectSummary> {
   const { source } = request;
   const startedAt = deps.now();
@@ -467,6 +531,7 @@ async function collectOnce(db: SqlDatabase, request: CollectRequest, deps: Colle
     return fail({ errorCode: "ROBOTS_DISALLOWED", technicalStatus: "BLOCKED", httpStatus: 0, retryAfterSeconds: 0 });
   }
   // robots.txt를 읽은 같은 서버에 바로 이어 요청하지 않는다(지침 9항: 같은 기관 다음 요청까지 3초 이상).
+  if (!hasCollectionTime(deps, intervalSec)) return fail({ errorCode: "TIME_BUDGET_EXCEEDED", technicalStatus: "ERROR", httpStatus: 0, retryAfterSeconds: 0 });
   await deps.sleep(intervalSec * 1000);
   const fetched = await fetchWithRetry(source, state, deps, intervalSec);
   if (fetched.kind === "failure") return fail(fetched.failure);
@@ -475,9 +540,18 @@ async function collectOnce(db: SqlDatabase, request: CollectRequest, deps: Colle
     await finishSuccess(db, request, state, token, { latestDate: "", feedItems: 0, response, changed: false }, deps.now());
     return finishWith({ status: "not_modified", errorCode: "", httpStatus: 304, counts: NO_COUNTS });
   }
-  if (Number.parseInt(response.headers.get("content-length") ?? "0", 10) > MAX_FEED_BYTES) return fail({ errorCode: "FEED_TOO_LARGE", technicalStatus: "PARSER_ERROR", httpStatus: response.status, retryAfterSeconds: 0 });
+  if (Number.parseInt(response.headers.get("content-length") ?? "0", 10) > MAX_FEED_BYTES) {
+    response.discard?.();
+    return fail({ errorCode: "FEED_TOO_LARGE", technicalStatus: "PARSER_ERROR", httpStatus: response.status, retryAfterSeconds: 0 });
+  }
 
-  const body = await response.text();
+  let body: string;
+  try {
+    body = await response.text();
+  } catch (error) {
+    if (!isPressFetchFailure(error)) throw error;
+    return fail({ errorCode: networkFailureCode(error, "body"), technicalStatus: "ERROR", httpStatus: response.status, retryAfterSeconds: 0 });
+  }
   audit.responseSize = new TextEncoder().encode(body).length;
   if (looksLikeWafBlock(body)) {
     const blocked = await fail({ errorCode: "WAF_BLOCKED", technicalStatus: "BLOCKED", httpStatus: response.status, retryAfterSeconds: 0 });
@@ -500,7 +574,8 @@ async function collectOnce(db: SqlDatabase, request: CollectRequest, deps: Colle
       if (looksLikeCaptcha(body)) return fail(captcha);
       return fail({ errorCode: error.code, technicalStatus: error.code === "API_KEY_INVALID" ? "BLOCKED" : "PARSER_ERROR", httpStatus: response.status, retryAfterSeconds: 0 });
     }
-    if (error instanceof Error) return fail({ errorCode: "NETWORK_ERROR", technicalStatus: "ERROR", httpStatus: response.status, retryAfterSeconds: 0 });
+    // 파서의 예상하지 못한 예외는 통신 오류가 아니라 파서 오류다(작업지시서 6-3). 마지막 정상 데이터는 그대로 둔다.
+    if (error instanceof Error) return fail({ errorCode: "PARSER_ERROR", technicalStatus: "PARSER_ERROR", httpStatus: response.status, retryAfterSeconds: 0 });
     throw error;
   }
   if (feedItems.length === 0 && looksLikeCaptcha(body)) return fail(captcha);
@@ -510,11 +585,22 @@ async function collectOnce(db: SqlDatabase, request: CollectRequest, deps: Colle
     : feedItems.length >= MIN_ITEMS_FOR_DRIFT_CHECK && rejected / feedItems.length > MAX_REJECTED_RATIO ? "FEED_FIELD_DRIFT" : "";
   if (driftCode) return fail({ errorCode: driftCode, technicalStatus: "PARSER_ERROR", httpStatus: response.status, retryAfterSeconds: 0 }, { ...NO_COUNTS, feedItems: feedItems.length, rejected });
 
-  const { createdIds, ...saved } = await saveRecords(db, records);
+  // 저장이 실패하면 성공 시각·기준점을 옮기지 않고 DB_WRITE_FAILED로 남긴다. 이미 들어간 항목은 item_id가 같아 재시도해도 중복되지 않는다.
+  let stored: Awaited<ReturnType<typeof saveRecords>>;
+  try {
+    stored = await saveRecords(db, records);
+  } catch (error) {
+    if (!(error instanceof Error)) throw error;
+    return fail({ errorCode: "DB_WRITE_FAILED", technicalStatus: "ERROR", httpStatus: response.status, retryAfterSeconds: 0 }, { ...NO_COUNTS, feedItems: feedItems.length, rejected });
+  }
+  const { createdIds, ...saved } = stored;
   const gap = gapPossible(records, createdIds, state.lastSuccessAt > 0);
   const backfill = gap ? await backfillPages(db, source, deps, robots, { intervalSec, startedAt, blocks }) : null;
   const coverageNote = !gap ? "" : backfill?.recovered ? "GAP_RECOVERED" : "GAP_POSSIBLE";
   const extra = backfill ?? { feedItems: 0, rejected: 0, records: [], saved: { created: 0, updated: 0, unchanged: 0 } };
+  const titlesCompleted = await completeTruncatedTitles(db, source, deps, {
+    intervalSec, allowed: deps.detailAllowed ?? ((address) => robots(address) !== "DISALLOWED" && blockedBy(blocks, address) === null),
+  });
   const latestDate = records.reduce((latest, record) => (record.publishedDate > latest ? record.publishedDate : latest), "");
   // 모든 글에 게시 시각이 있으면 시각으로, 아니면 날짜로 보유창을 잰다.
   const timed = records.every((record) => record.publishedAt !== null);
@@ -525,7 +611,7 @@ async function collectOnce(db: SqlDatabase, request: CollectRequest, deps: Colle
     status: "succeeded", errorCode: "", httpStatus: response.status,
     counts: {
       feedItems: feedItems.length + extra.feedItems, rejected: rejected + extra.rejected,
-      created: saved.created + extra.saved.created, updated: saved.updated + extra.saved.updated, unchanged: saved.unchanged + extra.saved.unchanged,
+      created: saved.created + extra.saved.created, updated: saved.updated + extra.saved.updated + titlesCompleted, unchanged: saved.unchanged + extra.saved.unchanged,
       ...countClasses([...records, ...extra.records]),
     },
     coverageNote,

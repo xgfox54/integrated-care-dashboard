@@ -1,0 +1,2535 @@
+{
+  "basis": "검증된 기관·부서코드와 운영자 지정 제외 범위",
+  "departments": [
+    {
+      "fiscal_entity_name": "강원삼척시",
+      "department_code": "1015010",
+      "department_name": "총무과",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 70,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "강원양구군",
+      "department_code": "3005010",
+      "department_name": "양구읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 2,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "강원양구군",
+      "department_code": "3005020",
+      "department_name": "국토정중앙면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 2,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "강원양구군",
+      "department_code": "3005030",
+      "department_name": "동면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 2,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "강원양구군",
+      "department_code": "3005040",
+      "department_name": "방산면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 2,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "강원양구군",
+      "department_code": "3005050",
+      "department_name": "해안면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 2,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "강원철원군",
+      "department_code": "3005050",
+      "department_name": "서면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 3,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기과천시",
+      "department_code": "3005100",
+      "department_name": "중앙동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기과천시",
+      "department_code": "3005200",
+      "department_name": "원문동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기과천시",
+      "department_code": "3005300",
+      "department_name": "별양동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기과천시",
+      "department_code": "3005400",
+      "department_name": "부림동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기과천시",
+      "department_code": "3005500",
+      "department_name": "과천동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 10,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기과천시",
+      "department_code": "3005600",
+      "department_name": "문원동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 12,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기과천시",
+      "department_code": "3005603",
+      "department_name": "갈현동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 10,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기군포시",
+      "department_code": "1105011",
+      "department_name": "산본보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 40,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기김포시",
+      "department_code": "1105026",
+      "department_name": "북부보건센터",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 17,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009007",
+      "department_name": "원미구심곡1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 16,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009008",
+      "department_name": "원미구심곡2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009009",
+      "department_name": "원미구심곡3동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 12,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009010",
+      "department_name": "원미구원미1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009011",
+      "department_name": "원미구원미2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 13,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009012",
+      "department_name": "원미구소사동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009013",
+      "department_name": "원미구역곡1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 17,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009014",
+      "department_name": "원미구역곡2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 13,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009015",
+      "department_name": "원미구춘의동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009016",
+      "department_name": "원미구도당동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009017",
+      "department_name": "원미구약대동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009018",
+      "department_name": "원미구중동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009019",
+      "department_name": "원미구중1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009020",
+      "department_name": "원미구중2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 16,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009021",
+      "department_name": "원미구중3동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 15,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009022",
+      "department_name": "원미구중4동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 15,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009023",
+      "department_name": "원미구상동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 15,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009024",
+      "department_name": "원미구상1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009025",
+      "department_name": "원미구상2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2009026",
+      "department_name": "원미구상3동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 13,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2010007",
+      "department_name": "소사구심곡본1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 13,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2010008",
+      "department_name": "소사구심곡본동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 16,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2010009",
+      "department_name": "소사구소사본동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 16,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2010010",
+      "department_name": "소사구소사본1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2010011",
+      "department_name": "소사구범박동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 15,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2010012",
+      "department_name": "소사구옥길동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 13,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2010013",
+      "department_name": "소사구괴안동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2010014",
+      "department_name": "소사구역곡3동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2010015",
+      "department_name": "소사구송내1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 16,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2010016",
+      "department_name": "소사구송내2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 15,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2011006",
+      "department_name": "오정구성곡동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 17,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2011007",
+      "department_name": "오정구원종1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 17,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2011008",
+      "department_name": "오정구원종2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 15,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2011009",
+      "department_name": "오정구고강본동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 18,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2011010",
+      "department_name": "오정구고강1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2011011",
+      "department_name": "오정구오정동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 15,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기부천시",
+      "department_code": "2011013",
+      "department_name": "오정구신흥동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "1108002",
+      "department_name": "분당구보건소판교보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 10,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3015010",
+      "department_name": "신흥1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 10,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3015020",
+      "department_name": "신흥2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 11,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3015030",
+      "department_name": "신흥3동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 7,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3015040",
+      "department_name": "태평1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 11,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3015050",
+      "department_name": "태평2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 10,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3015060",
+      "department_name": "태평3동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 12,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3015070",
+      "department_name": "태평4동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 13,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3015080",
+      "department_name": "수진1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 10,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3015090",
+      "department_name": "수진2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 13,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3015100",
+      "department_name": "단대동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 10,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3015110",
+      "department_name": "산성동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 10,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3015120",
+      "department_name": "양지동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 12,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3015130",
+      "department_name": "복정동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3015140",
+      "department_name": "신촌동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3015150",
+      "department_name": "고등동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 11,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3015160",
+      "department_name": "시흥동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "3015165",
+      "department_name": "위례동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4015010",
+      "department_name": "성남동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 13,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4015020",
+      "department_name": "중앙동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4015030",
+      "department_name": "금광1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4015040",
+      "department_name": "금광2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 12,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4015050",
+      "department_name": "은행1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 12,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4015060",
+      "department_name": "은행2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 12,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4015070",
+      "department_name": "상대원1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4015080",
+      "department_name": "상대원2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4015090",
+      "department_name": "상대원3동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 10,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4015100",
+      "department_name": "하대원동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 11,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "4015104",
+      "department_name": "도촌동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 12,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015010",
+      "department_name": "분당동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015020",
+      "department_name": "수내1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015030",
+      "department_name": "수내2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015040",
+      "department_name": "수내3동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 11,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015050",
+      "department_name": "정자1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015060",
+      "department_name": "정자2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015070",
+      "department_name": "정자3동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 12,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015080",
+      "department_name": "서현1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 11,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015090",
+      "department_name": "서현2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 6,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015100",
+      "department_name": "이매1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 10,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015110",
+      "department_name": "이매2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015120",
+      "department_name": "야탑1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 4,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015130",
+      "department_name": "야탑2동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015140",
+      "department_name": "야탑3동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 12,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015150",
+      "department_name": "판교동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015160",
+      "department_name": "금곡동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015170",
+      "department_name": "구미1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 11,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015180",
+      "department_name": "구미동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 10,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015190",
+      "department_name": "운중동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015195",
+      "department_name": "삼평동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015196",
+      "department_name": "백현동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 13,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기성남시",
+      "department_code": "5015197",
+      "department_name": "정자동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 7,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기시흥시",
+      "department_code": "1105020",
+      "department_name": "정왕보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 17,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기안산시",
+      "department_code": "1015010",
+      "department_name": "총무과",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 27,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기안성시",
+      "department_code": "1006007",
+      "department_name": "회계과",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 16,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기양주시",
+      "department_code": "3005100",
+      "department_name": "회천3동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기양주시",
+      "department_code": "3005110",
+      "department_name": "옥정1동",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기이천시",
+      "department_code": "3005010",
+      "department_name": "장호원읍행정복지센터",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 45,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기이천시",
+      "department_code": "3005020",
+      "department_name": "부발읍행정복지센터",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 34,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기이천시",
+      "department_code": "3005030",
+      "department_name": "신둔면행정복지센터",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 28,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기이천시",
+      "department_code": "3005040",
+      "department_name": "백사면행정복지센터",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 35,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기이천시",
+      "department_code": "3005050",
+      "department_name": "호법면행정복지센터",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 30,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기이천시",
+      "department_code": "3005060",
+      "department_name": "마장면행정복지센터",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 34,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기이천시",
+      "department_code": "3005070",
+      "department_name": "대월면행정복지센터",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 36,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기이천시",
+      "department_code": "3005080",
+      "department_name": "모가면행정복지센터",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 32,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기이천시",
+      "department_code": "3005090",
+      "department_name": "설성면행정복지센터",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 34,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기이천시",
+      "department_code": "3005100",
+      "department_name": "율면행정복지센터",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 34,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기이천시",
+      "department_code": "3005110",
+      "department_name": "창전동행정복지센터",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 11,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기이천시",
+      "department_code": "3005120",
+      "department_name": "증포동행정복지센터",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 16,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기이천시",
+      "department_code": "3005130",
+      "department_name": "중리동행정복지센터",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 26,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기이천시",
+      "department_code": "3005140",
+      "department_name": "관고동행정복지센터",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 16,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기파주시",
+      "department_code": "1105013",
+      "department_name": "문산보건센터",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 16,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경기하남시",
+      "department_code": "1105017",
+      "department_name": "미사보건센터",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 48,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경남창원시",
+      "department_code": "1115010",
+      "department_name": "진해보건소서부보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 30,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경남함안군",
+      "department_code": "3005010",
+      "department_name": "가야읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 2,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경남함안군",
+      "department_code": "3005020",
+      "department_name": "함안면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 6,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경남함안군",
+      "department_code": "3005030",
+      "department_name": "군북면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 2,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경남함안군",
+      "department_code": "3005040",
+      "department_name": "법수면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 2,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경남함안군",
+      "department_code": "3005050",
+      "department_name": "대산면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경남함안군",
+      "department_code": "3005060",
+      "department_name": "칠서면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 2,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경남함안군",
+      "department_code": "3005070",
+      "department_name": "칠북면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 2,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경남함안군",
+      "department_code": "3005080",
+      "department_name": "칠원읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 2,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경남함안군",
+      "department_code": "3005090",
+      "department_name": "산인면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경남함안군",
+      "department_code": "3005100",
+      "department_name": "여항면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경북경산시",
+      "department_code": "1010010",
+      "department_name": "총무과",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 3,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경북영덕군",
+      "department_code": "3005010",
+      "department_name": "영덕읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 6,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경북영덕군",
+      "department_code": "3005020",
+      "department_name": "강구면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 7,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경북영덕군",
+      "department_code": "3005030",
+      "department_name": "남정면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 4,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경북영덕군",
+      "department_code": "3005040",
+      "department_name": "달산면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 4,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경북영덕군",
+      "department_code": "3005050",
+      "department_name": "지품면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 7,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경북영덕군",
+      "department_code": "3005060",
+      "department_name": "축산면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 7,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경북영덕군",
+      "department_code": "3005070",
+      "department_name": "영해면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 7,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경북영덕군",
+      "department_code": "3005080",
+      "department_name": "병곡면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 4,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "경북영덕군",
+      "department_code": "3005090",
+      "department_name": "창수면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 4,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "대구군위군",
+      "department_code": "1005134",
+      "department_name": "총무과",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 54,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "대구달서구",
+      "department_code": "1105011",
+      "department_name": "성서보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "대구달성군",
+      "department_code": "3005010",
+      "department_name": "화원읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 11,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "대구달성군",
+      "department_code": "3005020",
+      "department_name": "논공읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 10,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "대구달성군",
+      "department_code": "3005030",
+      "department_name": "다사읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 17,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "대구달성군",
+      "department_code": "3005040",
+      "department_name": "가창면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 12,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "대구달성군",
+      "department_code": "3005050",
+      "department_name": "하빈면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 15,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "대구달성군",
+      "department_code": "3005060",
+      "department_name": "옥포읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 15,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "대구달성군",
+      "department_code": "3005070",
+      "department_name": "현풍읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 10,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "대구달성군",
+      "department_code": "3005090",
+      "department_name": "구지읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 12,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "대구달성군",
+      "department_code": "3005092",
+      "department_name": "유가읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 16,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "대구북구",
+      "department_code": "1105013",
+      "department_name": "강북보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 6,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "부산금정구",
+      "department_code": "1015010",
+      "department_name": "총무과",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 74,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "부산본청",
+      "department_code": "1045010",
+      "department_name": "총무과",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 27,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "부산사하구",
+      "department_code": "1010010",
+      "department_name": "총무과",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 3,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "서울강남구",
+      "department_code": "1105037",
+      "department_name": "세곡보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 6,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "서울강북구",
+      "department_code": "2005043",
+      "department_name": "보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 13,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "서울관악구",
+      "department_code": "1105009",
+      "department_name": "보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 13,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "서울광진구",
+      "department_code": "1105043",
+      "department_name": "보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 10,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "서울노원구",
+      "department_code": "1105040",
+      "department_name": "월계보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "서울노원구",
+      "department_code": "1105045",
+      "department_name": "공릉보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 5,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "서울노원구",
+      "department_code": "1105046",
+      "department_name": "상계보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 4,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "서울노원구",
+      "department_code": "1105048",
+      "department_name": "마들보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 7,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "서울도봉구",
+      "department_code": "1105050",
+      "department_name": "보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "서울마포구",
+      "department_code": "1010010",
+      "department_name": "총무과",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 22,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "서울서대문구",
+      "department_code": "1110035",
+      "department_name": "가좌보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 19,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "서울서초구",
+      "department_code": "1105032",
+      "department_name": "방배보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "서울서초구",
+      "department_code": "1105033",
+      "department_name": "서초보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 5,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "서울성북구",
+      "department_code": "1105033",
+      "department_name": "보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 17,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "서울송파구",
+      "department_code": "1105031",
+      "department_name": "돌봄건강지원센터보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 34,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "서울양천구",
+      "department_code": "1105033",
+      "department_name": "보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 7,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "서울중랑구",
+      "department_code": "1105043",
+      "department_name": "보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 6,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "세종본청",
+      "department_code": "1101132",
+      "department_name": "남부통합보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 25,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "울산울주군",
+      "department_code": "1105011",
+      "department_name": "남부통합보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 7,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "인천계양구",
+      "department_code": "1120011",
+      "department_name": "장기보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 5,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "인천미추홀구",
+      "department_code": "1105014",
+      "department_name": "숭의보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 16,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "인천부평구",
+      "department_code": "1106002",
+      "department_name": "청천보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 6,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "인천서해구",
+      "department_code": "1015100",
+      "department_name": "총무과",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 50,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "인천연수구",
+      "department_code": "1010010",
+      "department_name": "총무과",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 2,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주목포시",
+      "department_code": "1105030",
+      "department_name": "하당보건지소",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 33,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주무안군",
+      "department_code": "3005010",
+      "department_name": "무안읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 6,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주무안군",
+      "department_code": "3005020",
+      "department_name": "일로읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 6,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주무안군",
+      "department_code": "3005030",
+      "department_name": "삼향읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 7,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주무안군",
+      "department_code": "3005040",
+      "department_name": "몽탄면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 5,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주무안군",
+      "department_code": "3005060",
+      "department_name": "청계면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 4,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주무안군",
+      "department_code": "3005070",
+      "department_name": "현경면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 6,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주무안군",
+      "department_code": "3005080",
+      "department_name": "망운면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 5,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주무안군",
+      "department_code": "3005090",
+      "department_name": "해제면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 6,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주무안군",
+      "department_code": "3005100",
+      "department_name": "운남면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 2,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주완도군",
+      "department_code": "3005010",
+      "department_name": "완도읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 11,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주완도군",
+      "department_code": "3005020",
+      "department_name": "금일읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주완도군",
+      "department_code": "3005030",
+      "department_name": "노화읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 15,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주완도군",
+      "department_code": "3005040",
+      "department_name": "군외면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 15,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주완도군",
+      "department_code": "3005060",
+      "department_name": "고금면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 16,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주완도군",
+      "department_code": "3005070",
+      "department_name": "약산면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 13,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주완도군",
+      "department_code": "3005080",
+      "department_name": "청산면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 11,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주완도군",
+      "department_code": "3005090",
+      "department_name": "소안면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 12,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주완도군",
+      "department_code": "3005100",
+      "department_name": "금당면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 12,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주완도군",
+      "department_code": "3005110",
+      "department_name": "보길면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 18,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주완도군",
+      "department_code": "3005120",
+      "department_name": "생일면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 11,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주장흥군",
+      "department_code": "3005010",
+      "department_name": "장흥읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 10,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주장흥군",
+      "department_code": "3005020",
+      "department_name": "관산읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 11,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주장흥군",
+      "department_code": "3005030",
+      "department_name": "대덕읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주장흥군",
+      "department_code": "3005040",
+      "department_name": "용산면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 7,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주장흥군",
+      "department_code": "3005050",
+      "department_name": "안양면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 7,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주장흥군",
+      "department_code": "3005060",
+      "department_name": "장동면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주장흥군",
+      "department_code": "3005070",
+      "department_name": "장평면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주장흥군",
+      "department_code": "3005080",
+      "department_name": "유치면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 10,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주장흥군",
+      "department_code": "3005090",
+      "department_name": "부산면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 7,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주장흥군",
+      "department_code": "3005100",
+      "department_name": "회진면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주진도군",
+      "department_code": "3005070",
+      "department_name": "조도면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 16,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주함평군",
+      "department_code": "3005010",
+      "department_name": "함평읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 17,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주함평군",
+      "department_code": "3005020",
+      "department_name": "손불면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 20,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주함평군",
+      "department_code": "3005030",
+      "department_name": "신광면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 19,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주함평군",
+      "department_code": "3005050",
+      "department_name": "엄다면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 15,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주함평군",
+      "department_code": "3005060",
+      "department_name": "대동면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 20,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주함평군",
+      "department_code": "3005070",
+      "department_name": "나산면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 21,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주함평군",
+      "department_code": "3005080",
+      "department_name": "해보면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 20,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주함평군",
+      "department_code": "3005090",
+      "department_name": "월야면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 22,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전남광주화순군",
+      "department_code": "1005177",
+      "department_name": "총무과",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 46,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "전북정읍시",
+      "department_code": "1000030",
+      "department_name": "총무과",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 25,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "제주본청",
+      "department_code": "1030010",
+      "department_name": "총무과",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 3,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남부여군",
+      "department_code": "3005160",
+      "department_name": "초촌면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남서천군",
+      "department_code": "3005001",
+      "department_name": "장항읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 5,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남서천군",
+      "department_code": "3005002",
+      "department_name": "서천읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 6,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남서천군",
+      "department_code": "3005003",
+      "department_name": "마서면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 7,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남서천군",
+      "department_code": "3005004",
+      "department_name": "화양면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 7,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남서천군",
+      "department_code": "3005005",
+      "department_name": "기산면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 6,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남서천군",
+      "department_code": "3005006",
+      "department_name": "한산면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 6,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남서천군",
+      "department_code": "3005007",
+      "department_name": "마산면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남서천군",
+      "department_code": "3005008",
+      "department_name": "시초면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 11,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남서천군",
+      "department_code": "3005009",
+      "department_name": "문산면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 6,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남서천군",
+      "department_code": "3005010",
+      "department_name": "판교면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 9,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남서천군",
+      "department_code": "3005011",
+      "department_name": "종천면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 6,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남서천군",
+      "department_code": "3005012",
+      "department_name": "비인면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 5,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남서천군",
+      "department_code": "3005013",
+      "department_name": "서면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 8,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남태안군",
+      "department_code": "3005010",
+      "department_name": "태안읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남태안군",
+      "department_code": "3005020",
+      "department_name": "안면읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 16,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남태안군",
+      "department_code": "3005030",
+      "department_name": "고남면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남태안군",
+      "department_code": "3005040",
+      "department_name": "남면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남태안군",
+      "department_code": "3005050",
+      "department_name": "근흥면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 13,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남태안군",
+      "department_code": "3005060",
+      "department_name": "소원면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남태안군",
+      "department_code": "3005070",
+      "department_name": "원북면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충남태안군",
+      "department_code": "3005080",
+      "department_name": "이원면",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 14,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충북괴산군",
+      "department_code": "1005149",
+      "department_name": "체육진흥과",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 2,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충북증평군",
+      "department_code": "3005010",
+      "department_name": "증평읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 15,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    },
+    {
+      "fiscal_entity_name": "충북청주시",
+      "department_code": "3501100",
+      "department_name": "오창읍",
+      "basis": "official_budget_ledger_export",
+      "independent_amount_projects": 31,
+      "source_urls": [
+        "https://www.ehojo.go.kr/"
+      ]
+    }
+  ]
+}

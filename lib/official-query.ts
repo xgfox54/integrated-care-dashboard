@@ -15,6 +15,7 @@ import { verifiedSourceFieldSql } from "./official-source-restoration.ts";
 import { repairKnownExtractionFragments } from "./official-correction";
 import { CATEGORY_TEXT_SQL, NAME_TEXT_SQL, SEARCH_TEXT_FROM_COLUMNS, SEARCH_TEXT_LOOKUP, searchConditionSql, searchTermSql } from "./official-search-text";
 import { repairExtractionSpacing } from "./official-spacing";
+import { SERVICE_TARGET_COLUMNS, targetGroupSql } from "./target-groups.ts";
 import { cachedWikiEdits } from "./wiki-edit-store";
 import type { RegionTarget } from "./region-load-order";
 import { applyWikiEdits, type WikiEditValues } from "./wiki-edits";
@@ -183,6 +184,12 @@ function searchWhere(filters: FilterState, includeRegion = true): SearchWhere {
   if (filters.type) {
     parts.push("type = ?");
     values.push(filters.type);
+  }
+  // 대상자 묶음(관계성 지도와 같은 정의, lib/target-groups.ts): 낱말 OR, 다른 조건과 AND.
+  if (filters.targetGroup) {
+    const target = targetGroupSql(filters.targetGroup, SERVICE_TARGET_COLUMNS);
+    parts.push(target.sql);
+    values.push(...target.values);
   }
   // 검색어의 단어마다 조건 하나(모든 단어가 들어 있어야 함). 지역어는 정식 이름 중 하나만 있어도 된다.
   for (const term of parseSearch(filters.keyword).terms) {

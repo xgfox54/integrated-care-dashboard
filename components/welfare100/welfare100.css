@@ -1179,9 +1179,10 @@
 .k100 .desktop-process-v2-stage strong,
 .k100 .desktop-process-v2-core header strong {
   min-width: 0;
-  color: var(--color-ink);
-  font-size: 12px;
-  font-weight: 650;
+  /* 단계(게이트) 이름은 표의 열 제목이라 파란색·큰 글자로 강조한다. */
+  color: var(--jeju-blue);
+  font-size: 15px;
+  font-weight: 800;
   line-height: 1.3;
   overflow-wrap: anywhere;
 }

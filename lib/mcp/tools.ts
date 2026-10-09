@@ -8,6 +8,7 @@ import { readPressCoverage } from "../press/coverage.ts";
 import { CATEGORY_LABELS } from "../press/dictionary.ts";
 import { toPressDto, type PressItemRow } from "../press/query.ts";
 import { REGION_DEFINITIONS } from "../region-statistics.ts";
+import { TARGET_GROUPS } from "../target-groups.ts";
 import { createWikiArticle } from "../wiki-article.ts";
 import { getVerifiedWikiSupplement } from "../wiki-verified-supplements.ts";
 import {
@@ -18,6 +19,8 @@ import {
   EMPTY_BASIS,
   encodeCursor,
   type Envelope,
+  FISCAL_TOOL_NAMES,
+  FISCAL_WITHHELD_MESSAGE,
   fingerprint,
   LIMITS,
   MCP_SCHEMA_VERSION,
@@ -45,6 +48,7 @@ export interface McpToolContext {
   readonly baseUrl: string;
   readonly nowSeconds?: () => number;
   readonly onUnexpectedError?: (error: unknown, tool: string) => void;
+  readonly includeFiscal?: boolean;
 }
 
 interface PublicState {
@@ -75,18 +79,8 @@ const SIDO_NAMES: ReadonlySet<string> = new Set(REGION_DEFINITIONS.map((region) 
 const ORG_TYPES = ["CENTRAL", "METROPOLITAN", "BASIC_CITY", "BASIC_COUNTY", "AUTONOMOUS_DISTRICT", "ADMINISTRATIVE_CITY", "GENERAL_DISTRICT"] as const;
 const NEWS_CATEGORY_IDS = Object.keys(CATEGORY_LABELS) as [string, ...string[]];
 
-/** 대상자 묶음. 공개 원문(대상·세부대상·사업명)에 이 낱말이 들어 있는지만 본다. 개인 자격 판정이 아니다. */
-export const TARGET_GROUPS: Readonly<Record<string, { readonly label: string; readonly keywords: readonly string[] }>> = {
-  "target:elderly": { label: "노인", keywords: ["노인", "어르신", "65세"] },
-  "target:dementia": { label: "치매", keywords: ["치매"] },
-  "target:disabled": { label: "장애인", keywords: ["장애"] },
-  "target:child": { label: "아동", keywords: ["아동", "영유아", "어린이"] },
-  "target:youth": { label: "청소년·청년", keywords: ["청소년", "청년"] },
-  "target:low_income": { label: "저소득", keywords: ["기초생활", "수급자", "차상위", "저소득", "중위소득"] },
-  "target:single_household": { label: "1인 가구·독거", keywords: ["독거", "1인 가구", "1인가구", "홀로"] },
-  "target:caregiver": { label: "가족돌봄자·보호자", keywords: ["보호자", "가족돌봄", "돌봄가족"] },
-  "target:discharged_patient": { label: "퇴원환자", keywords: ["퇴원"] },
-};
+/** 대상자 묶음. 공개 원문(대상·세부대상·사업명)에 이 낱말이 들어 있는지만 본다. 개인 자격 판정이 아니다. 웹 필터(target_group)와 같은 정의(lib/target-groups.ts). */
+export { TARGET_GROUPS };
 const TARGET_GROUP_IDS = Object.keys(TARGET_GROUPS) as [string, ...string[]];
 
 // ---------- 입력 스키마 조각 ----------
@@ -244,6 +238,7 @@ function errorResult(code: string, message: string) {
 // ---------- 서버에 17개 도구 등록 ----------
 export function registerWelfareTools(server: McpServer, context: McpToolContext): McpToolName[] {
   const { data, baseUrl } = context;
+  const fiscalOn = context.includeFiscal === true;
   const now = context.nowSeconds ?? (() => Math.floor(Date.now() / 1000));
   const registered: McpToolName[] = [];
   let statePromise: Promise<PublicState> | null = null;
@@ -285,7 +280,7 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
   }
 
   function state(): Promise<PublicState> {
-    statePromise ??= loadState();
+    statePromise ??= loadState().then((loaded) => fiscalOn ? loaded : { ...loaded, components: { ...loaded.components, fiscal: null } });
     return statePromise;
   }
 
@@ -395,8 +390,8 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
     shape: Shape,
     handler: (args: z.objectOutputType<Shape, z.ZodTypeAny>) => Promise<object>,
   ): void {
-    // 보류된 도구(돌봄자원)는 등록하지 않는다(lib/integrations/care-hold.ts).
-    if (!PUBLIC_MCP_TOOL_NAMES.includes(name)) return;
+    // 보류된 도구(돌봄자원·예산)는 등록하지 않는다(lib/integrations/care-hold.ts, contract.ts FISCAL_MCP_PUBLIC).
+    if (!PUBLIC_MCP_TOOL_NAMES.includes(name) && !(fiscalOn && FISCAL_TOOL_NAMES.has(name))) return;
     server.registerTool(name, { title, description, inputSchema: shape, annotations: { title, ...ANNOTATIONS } }, (async (args: z.objectOutputType<Shape, z.ZodTypeAny>) => {
       try {
         return toolResult(await handler(args));
@@ -801,8 +796,12 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
   });
 
   // 7. get_sources
-  register("get_sources", "출처 조회", "시행사업·지역·기관·보도자료·공개 재정 관측(fiscal_observation)·승인 반입 문서(document, doc:…)의 출처와 근거 범위를 돌려줍니다. 예산서 행(budget_line)은 원문 미수집으로 미가용입니다.", {
-    subject_type: z.enum(["implementation", "region", "organization", "press_release", "fiscal_observation", "budget_line", "document"]),
+  register("get_sources", "출처 조회", fiscalOn
+    ? "시행사업·지역·기관·보도자료·공개 재정 관측(fiscal_observation)·승인 반입 문서(document, doc:…)의 출처와 근거 범위를 돌려줍니다. 예산서 행(budget_line)은 원문 미수집으로 미가용입니다."
+    : "시행사업·지역·기관·보도자료·승인 반입 문서(document, doc:…)의 출처와 근거 범위를 돌려줍니다.", {
+    subject_type: fiscalOn
+      ? z.enum(["implementation", "region", "organization", "press_release", "fiscal_observation", "budget_line", "document"])
+      : z.enum(["implementation", "region", "organization", "press_release", "document"]),
     subject_id: z.string().min(1).max(LIMITS.idMax),
     snapshot_id: snapshotInput,
     release_bundle_id: bundleInput,
@@ -902,7 +901,7 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
         official_press_release: "PARTIAL", private_news_article: "NOT_COLLECTED",
         schedule: coverage.schedule.label, schedule_note: coverage.schedule.note,
       },
-      fiscal: fiscalSnapshots.length ? {
+      fiscal: !fiscalOn ? { component: null, status: "NOT_PROVIDED", reason: FISCAL_WITHHELD_MESSAGE } : fiscalSnapshots.length ? {
         component: current.components.fiscal, status: "PARTIAL",
         snapshots: fiscalSnapshots.map((snapshot) => ({ snapshot_id: snapshot.snapshot_id, scope: snapshot.scope_label, mode: snapshot.mode, effective_reference_date: snapshot.effective_reference_date, complete: snapshot.complete === 1, access_tier: snapshot.access_tier, rows: snapshot.unique_count })),
         unavailable_modes: fiscalSnapshots.some((snapshot) => snapshot.mode === "all_fields") ? [] : ["social_welfare", "health", "department"],
@@ -940,11 +939,13 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
         { id: "organization", prefix: "org:", label: "행정기관", description: "보도자료 발행기관 레지스트리(시드)." },
         { id: "press_release", prefix: "news:", label: "공식 보도자료", description: "메타데이터만 보관(본문·요약 없음)." },
         { id: "source_document", prefix: "mohw-doc:", label: "원자료 문서", description: "근거(evidence)로만 제공." },
-        { id: "fiscal_project", prefix: "fp:", label: "재정사업", description: "지방재정365 세부사업(연도:자치단체:회계:부서:사업코드). find_budget_projects로 조회." },
-        { id: "fiscal_entity", prefix: "lofin:laf:", label: "재정주체", description: "지방재정365 자치단체 코드. 콘텐츠 지역(region:)과 별개이며 검증 매핑으로만 연결." },
+        ...(fiscalOn ? [
+          { id: "fiscal_project", prefix: "fp:", label: "재정사업", description: "지방재정365 세부사업(연도:자치단체:회계:부서:사업코드). find_budget_projects로 조회." },
+          { id: "fiscal_entity", prefix: "lofin:laf:", label: "재정주체", description: "지방재정365 자치단체 코드. 콘텐츠 지역(region:)과 별개이며 검증 매핑으로만 연결." },
+        ] : []),
         { id: "document_program", prefix: "docprog:", label: "문서 정의 사업", description: "승인 반입된 공고·안내 문서가 정의한 사업. 보건복지부 사업안내에 없는 사업일 수 있음." },
         { id: "document_source", prefix: "doc:", label: "반입 문서", description: "HWP/HWPX 원문 한 건(원문 버전 source_version_id 단위). get_sources(subject_type=document)로 조회." },
-        { id: "fiscal_observation", prefix: "fo:", label: "재정 관측", description: "기준일별 예산현액·공개 지출액 한 건. get_sources로 원천 필드 확인." },
+        ...(fiscalOn ? [{ id: "fiscal_observation", prefix: "fo:", label: "재정 관측", description: "기준일별 예산현액·공개 지출액 한 건. get_sources로 원천 필드 확인." }] : []),
       ],
       predicates: async () => [
         { id: "succeeded_by", domain: "organization", range: "organization", assertion_type: "official_succession", kinds: ["MERGE", "SPLIT", "RENAME", "TRANSFER"], note: "효력일·근거와 함께 기록. 과거 게시물의 발행기관은 바꾸지 않음" },
@@ -1089,11 +1090,12 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
   });
 
   // 17. get_welfare_context
-  register("get_welfare_context", "사업 종합 맥락", "시행사업 하나의 공개 조건, 재정 연결 상태, 관련 보도자료 제목 링크를 각각의 출처·기준일·미확인 상태와 함께 묶어 돌려줍니다. 도메인별 기준일을 하나로 합치지 않습니다.", {
+  register("get_welfare_context", "사업 종합 맥락", fiscalOn
+    ? "시행사업 하나의 공개 조건, 재정 연결 상태, 관련 보도자료 제목 링크를 각각의 출처·기준일·미확인 상태와 함께 묶어 돌려줍니다. 도메인별 기준일을 하나로 합치지 않습니다."
+    : "시행사업 하나의 공개 조건과 관련 보도자료 제목 링크를 각각의 출처·기준일·미확인 상태와 함께 묶어 돌려줍니다. 예산·재정 정보는 제공하지 않습니다.", {
     implementation_id: implementationInput,
     as_of: asOfInput,
-    fiscal_year: z.number().int().min(2000).max(2100).optional(),
-    budget_reference_date: dateInput.optional(),
+    ...(fiscalOn ? { fiscal_year: z.number().int().min(2000).max(2100).optional(), budget_reference_date: dateInput.optional() } : {}),
     news_date_from: dateInput.optional(),
     news_date_to: dateInput.optional(),
     news_date_basis: z.enum(["published", "discovered"]).optional(),
@@ -1117,7 +1119,9 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
     const supplementary = articleEvidence(row, parts, evidence[0]?.evidence_id ?? null);
     const organizationIds = [...regionOrgs, ...provinceOrgs].map((org) => org.organization_id);
     // 검토된 사업–재정사업 연결만 쓴다(공개본 이후 검토된 연결은 다음 공개본부터). 금액은 나누거나 합치지 않는다.
-    const links = await verifiedLinksFor(data.db, args.implementation_id, data.pin.linksWatermark);
+    const links = fiscalOn ? await verifiedLinksFor(data.db, args.implementation_id, data.pin.linksWatermark) : [];
+    const fiscalYear = "fiscal_year" in args && typeof args.fiscal_year === "number" ? args.fiscal_year : null;
+    const budgetDate = "budget_reference_date" in args && typeof args.budget_reference_date === "string" ? args.budget_reference_date : null;
     const nameTokens = tokens(row.name.replace(/[()[\]·,]/g, " ")).filter((token) => token.length >= 2);
     const newsLimit = pageLimit(args.news_limit, LIMITS.newsContextDefault, LIMITS.newsContextMax);
     const news = organizationIds.length && nameTokens.length
@@ -1126,14 +1130,14 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
     return envelope(current, now(), {
       program: { ...programCard(row, baseUrl), overview: article.overview, content_status: article.contentStatus, overview_evidence_ref: supplementary.overviewRef, effective_reference_date: basis.effective_reference_date },
       eligibility: { application_conditions: article.applicationConditions ?? null, conditions_basis: article.conditionsBasis ?? null, application_method: meaningful(row.applicationMethod), personal_determination: false },
-      fiscal: links.length
+      ...(fiscalOn ? { fiscal: links.length
         ? {
           status: "LINKED_VERIFIED",
           linked_fiscal_projects: links.map((link) => ({ fiscal_project_id: link.source_id, link_id: link.link_id, relation: link.relation, basis: link.candidate_basis, reviewed_at: link.reviewed_at ? new Date(link.reviewed_at * 1000).toISOString() : null })),
           message: "관리자가 검토한 관련 재정사업입니다. 재정사업 금액은 이 사업만의 예산이 아닐 수 있어 사업별로 나누거나 합치지 않았습니다. 금액은 get_budget_execution(fiscal_project_ids)로 조회하세요.",
-          requested_fiscal_year: args.fiscal_year ?? null, requested_reference_date: args.budget_reference_date ?? null,
+          requested_fiscal_year: fiscalYear, requested_reference_date: budgetDate,
         }
-        : { status: "UNLINKED", reason_code: "NO_VERIFIED_FISCAL_LINK", message: "검토된 시행사업–재정사업 연결이 없어 예산·집행 정보를 붙이지 않습니다. 다른 지역 예산으로 대체하지 않습니다. find_budget_projects로 따로 찾을 수 있으나 같은 사업이라는 확인은 아닙니다.", requested_fiscal_year: args.fiscal_year ?? null, requested_reference_date: args.budget_reference_date ?? null },
+        : { status: "UNLINKED", reason_code: "NO_VERIFIED_FISCAL_LINK", message: "검토된 시행사업–재정사업 연결이 없어 예산·집행 정보를 붙이지 않습니다. 다른 지역 예산으로 대체하지 않습니다. find_budget_projects로 따로 찾을 수 있으나 같은 사업이라는 확인은 아닙니다.", requested_fiscal_year: fiscalYear, requested_reference_date: budgetDate } } : {}),
       news: {
         status: news.rows.length ? "TITLE_MATCH_UNVERIFIED" : "NONE_FOUND",
         link_basis: "사업 지역의 시·군·구와 시·도가 발행한 공식 보도자료 중 제목에 사업명 낱말이 모두 들어간 항목(검증된 연결 아님)",
@@ -1144,8 +1148,8 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
       },
     }, {
       evidence: [...evidence, ...supplementary.items], basis: { ...basis, news_date_basis: args.news_date_basis ?? "published" },
-      coverage: { scope: "welfare_context", complete: false, gaps: [KNOWLEDGE_GAP, "재정 연결 미가용", NEWS_GAPS[1]] },
-      warnings: ["사업·재정·보도자료의 기준일은 서로 다르며 하나로 합치지 않았습니다."],
+      coverage: { scope: "welfare_context", complete: false, gaps: fiscalOn ? [KNOWLEDGE_GAP, "재정 연결 미가용", NEWS_GAPS[1]] : [KNOWLEDGE_GAP, NEWS_GAPS[1]] },
+      warnings: fiscalOn ? ["사업·재정·보도자료의 기준일은 서로 다르며 하나로 합치지 않았습니다."] : ["사업·보도자료의 기준일은 서로 다르며 하나로 합치지 않았습니다.", FISCAL_WITHHELD_MESSAGE],
       truncated: news.total > news.rows.length,
     });
   });

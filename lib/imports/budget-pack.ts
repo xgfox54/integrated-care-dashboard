@@ -4,6 +4,8 @@
 // 문서 금액은 그 문서·편성 단계의 값이다. 지방재정365 예산현액(기준일 현액)과 섞거나 서로 덮어쓰지 않는다.
 import { readZip, ZipSafetyError, type ZipEntry } from "./zip.ts";
 import { canonicalJson, sha256OfBytes, type ImportProblem } from "./pack.ts";
+import { DEPTH, isBudgetLevel, type BudgetLevel } from "./budget-levels.ts";
+export { BUDGET_LEVELS, BUDGET_LEVEL_LABELS, type BudgetLevel } from "./budget-levels.ts";
 
 export const BUDGET_IMPORT_FORMAT = "welfare-budget-document-v1";
 export const BUDGET_SCHEMA_VERSION = "budget-document-1";
@@ -15,12 +17,6 @@ export const BUDGET_STAGE_LABELS: Record<BudgetStage, string> = {
 /** 금액 오른쪽 칸의 뜻: 본예산 「전년도예산액」, 추경 「기정예산액」(이번 추경 직전까지 확정된 금액). */
 export const PREVIOUS_COLUMNS = ["previous_year_budget", "pre_revision_budget", "none"] as const;
 export type PreviousColumn = (typeof PREVIOUS_COLUMNS)[number];
-export const BUDGET_LEVELS = ["department", "policy", "unit", "detail_project", "object_group", "object", "item", "sub_item"] as const;
-export type BudgetLevel = (typeof BUDGET_LEVELS)[number];
-export const BUDGET_LEVEL_LABELS: Record<BudgetLevel, string> = {
-  department: "부서", policy: "정책사업", unit: "단위사업", detail_project: "세부사업", object_group: "편성목", object: "통계목", item: "부기", sub_item: "하위 산출항목",
-};
-const DEPTH: Record<BudgetLevel, number> = { department: 0, policy: 1, unit: 2, detail_project: 3, object_group: 4, object: 5, item: 6, sub_item: 7 };
 const FUNDING_SOURCES: ReadonlySet<string> = new Set(["national", "balanced_development", "province", "municipal", "other"]);
 const DOCUMENT_FORMATS: ReadonlySet<string> = new Set(["PDF", "HWP5", "HWPX", "HWP3", "HWPML", "DOCX", "XLS", "XLSX"]);
 const MAX_LINES = 20_000;
@@ -330,7 +326,7 @@ async function validateLines(rows: Record<string, unknown>[], revisions: readonl
     const revisionId = typeof row.revision_id === "string" && revisionIds.has(row.revision_id) ? row.revision_id : null;
     if (!revisionId) problems.push({ code: "REVISION_UNKNOWN", path, line, field: "revision_id" });
     if (!Number.isInteger(row.line_no) || (row.line_no as number) < 1) problems.push({ code: "VALUE_INVALID", path, line, field: "line_no" });
-    if (!BUDGET_LEVELS.includes(row.level as BudgetLevel)) problems.push({ code: "LEVEL_INVALID", path, line, field: "level" });
+    if (!isBudgetLevel(row.level)) problems.push({ code: "LEVEL_INVALID", path, line, field: "level" });
     if (!(row.code === null || (isString(row.code, 3) && /^\d{2,3}$/.test(row.code)))) problems.push({ code: "VALUE_INVALID", path, line, field: "code" });
     if (!isString(row.name, 300, 0)) problems.push({ code: "VALUE_INVALID", path, line, field: "name" });
     if (!(row.formula_text === null || isString(row.formula_text, 1000, 0))) problems.push({ code: "VALUE_INVALID", path, line, field: "formula_text" });
@@ -358,7 +354,7 @@ async function validateLines(rows: Record<string, unknown>[], revisions: readonl
     // 부모는 같은 단계 문서 안의 앞 행이고 계층이 더 위여야 한다.
     if (record.parent_line_no !== null) {
       const parent = lines.get(record.parent_line_no);
-      if (!parent || DEPTH[parent.level] >= DEPTH[record.level]) {
+      if (!parent || DEPTH[parent.level] >= DEPTH[record.level] || (record.level === "sub_item_detail" && parent.level !== "sub_item")) {
         problems.push({ code: "PARENT_INVALID", path, line, field: "parent_line_no" });
         continue;
       }

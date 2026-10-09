@@ -58,7 +58,7 @@ export async function beginImport(
   db: SqlDatabase,
   input: { readonly artifactId: string; readonly archiveSha256: string; readonly sizeBytes: number; readonly totalChunks: number },
   now: number,
-): Promise<{ readonly row: ImportRow; readonly resumed: boolean }> {
+): Promise<{ readonly row: ImportRow; readonly resumed: boolean; readonly chunks: readonly { index: number; sha256: string }[] }> {
   if (!/^[A-Za-z0-9._:-]{8,120}$/.test(input.artifactId)) throw new ImportError("ARTIFACT_ID_INVALID", "artifact_id 형식이 올바르지 않습니다.", 400);
   if (!HEX64.test(input.archiveSha256)) throw new ImportError("ARCHIVE_SHA256_INVALID", "archive_sha256은 소문자 16진수 64자여야 합니다.", 400);
   if (!Number.isInteger(input.sizeBytes) || input.sizeBytes <= 0 || input.sizeBytes > ARCHIVE_MAX_BYTES) throw new ImportError("ARCHIVE_TOO_LARGE", "묶음 크기가 허용 범위(25MiB)를 벗어납니다.", 400);
@@ -67,13 +67,15 @@ export async function beginImport(
   const existing = await db.prepare("SELECT * FROM import_artifact WHERE artifact_id = ?").bind(input.artifactId).first<ImportRow>();
   if (existing) {
     if (existing.archive_sha256 !== input.archiveSha256) throw new ImportError("ARTIFACT_ID_CONFLICT", "같은 artifact_id로 다른 내용이 이미 반입되었습니다. 새 artifact_id로 만들어 주세요.");
-    return { row: existing, resumed: true };
+    if (existing.size_bytes !== input.sizeBytes || existing.total_chunks !== input.totalChunks) throw new ImportError("ARCHIVE_METADATA_CONFLICT", "기존 반입의 파일 크기·청크 수와 선언이 다릅니다.");
+    const chunks = existing.status === "received" ? (await db.prepare("SELECT chunk_index AS 'index', sha256 FROM import_chunk WHERE import_id = ? ORDER BY chunk_index").bind(existing.import_id).all<{ index: number; sha256: string }>()).results : [];
+    return { row: existing, resumed: true, chunks };
   }
   const importId = await importIdOf(input.artifactId, input.archiveSha256);
   await db.prepare(
     "INSERT INTO import_artifact (import_id, artifact_id, archive_sha256, size_bytes, total_chunks, status, received_at, updated_at) VALUES (?, ?, ?, ?, ?, 'received', ?, ?)",
   ).bind(importId, input.artifactId, input.archiveSha256, input.sizeBytes, input.totalChunks, now, now).run();
-  return { row: (await readImport(db, importId))!, resumed: false };
+  return { row: (await readImport(db, importId))!, resumed: false, chunks: [] };
 }
 
 function toBase64(bytes: Uint8Array): string {
@@ -122,59 +124,68 @@ export async function finalizeImport(db: SqlDatabase, importId: string, subjects
   if (row.status !== "received") return row;
   const chunks = (await db.prepare("SELECT chunk_index, data_b64 FROM import_chunk WHERE import_id = ? ORDER BY chunk_index").bind(importId).all<{ chunk_index: number; data_b64: string }>()).results;
   if (chunks.length !== row.total_chunks) throw new ImportError("CHUNKS_INCOMPLETE", "아직 받지 못한 청크가 있습니다(" + chunks.length + "/" + row.total_chunks + ").");
-  await db.prepare("UPDATE import_artifact SET status = 'validating', updated_at = ? WHERE import_id = ? AND status = 'received'").bind(now, importId).run();
-  const archive = new Uint8Array(row.size_bytes);
-  let offset = 0;
-  for (const chunk of chunks) {
-    const bytes = fromBase64(chunk.data_b64);
-    archive.set(bytes, offset);
-    offset += bytes.length;
-  }
-  const finish = async (status: string, reportJson: string, extra: SqlStatement[] = []) => {
-    await db.batch([
-      ...extra,
-      db.prepare("UPDATE import_artifact SET status = ?, report_json = ?, staged_at = CASE WHEN ? = 'staged' THEN ? ELSE staged_at END, updated_at = ? WHERE import_id = ?").bind(status, reportJson, status, now, now, importId),
-      db.prepare("DELETE FROM import_chunk WHERE import_id = ?").bind(importId),
-    ]);
-    return (await readImport(db, importId))!;
-  };
-  if ((await sha256OfBytes(archive)) !== row.archive_sha256) return finish("rejected", report([{ code: "ARCHIVE_HASH_MISMATCH", path: "" }]));
-  // 예산서 묶음(welfare-budget-document-v1)은 따로 검사·저장한다. 공개 절차(승인·활성화·되돌리기·차단)는 같다.
-  const budget = await validateBudgetArchive(archive);
-  if (budget) {
-    if (!budget.ok) return finish("rejected", report(budget.problems));
-    const { pack } = budget;
+  const claimed = await db.prepare("UPDATE import_artifact SET status = 'validating', updated_at = ? WHERE import_id = ? AND status = 'received' RETURNING import_id").bind(now, importId).first<{ import_id: string }>();
+  if (!claimed) return (await readImport(db, importId))!;
+  const validate = async () => {
+    const archive = new Uint8Array(row.size_bytes);
+    let offset = 0;
+    for (const chunk of chunks) {
+      const bytes = fromBase64(chunk.data_b64);
+      archive.set(bytes, offset);
+      offset += bytes.length;
+    }
+    const finish = async (status: string, reportJson: string, extra: SqlStatement[] = []) => {
+      await db.batch([
+        ...extra,
+        db.prepare("UPDATE import_artifact SET status = ?, report_json = ?, staged_at = CASE WHEN ? = 'staged' THEN ? ELSE staged_at END, updated_at = ? WHERE import_id = ?").bind(status, reportJson, status, now, now, importId),
+        db.prepare("DELETE FROM import_chunk WHERE import_id = ?").bind(importId),
+      ]);
+      return (await readImport(db, importId))!;
+    };
+    if ((await sha256OfBytes(archive)) !== row.archive_sha256) return finish("rejected", report([{ code: "ARCHIVE_HASH_MISMATCH", path: "" }]));
+    // 예산서 묶음(welfare-budget-document-v1)은 따로 검사·저장한다. 공개 절차(승인·활성화·되돌리기·차단)는 같다.
+    const budget = await validateBudgetArchive(archive);
+    if (budget) {
+      if (!budget.ok) return finish("rejected", report(budget.problems));
+      const { pack } = budget;
+      if (pack.artifactId !== row.artifact_id) return finish("rejected", report([{ code: "ARTIFACT_ID_MISMATCH", path: "manifest.json", field: "artifact_id" }]));
+      const unknown = await unknownFiscalEntities(db, pack);
+      if (unknown.length) return finish("rejected", report(unknown.map((id) => ({ code: "FISCAL_ENTITY_UNKNOWN", path: "data/budget/documents.jsonl", field: id }))));
+      const blockedDocs = await blockedSources(db, pack.documentIds);
+      if (blockedDocs.length) return finish("rejected", report(blockedDocs.map((id) => ({ code: "SOURCE_BLOCKED", path: "manifest.json", field: id }))));
+      return finish("staged", report([], budgetReport(pack, unknown)), [
+        db.prepare("UPDATE import_artifact SET format = ?, manifest_json = ?, scope_json = ? WHERE import_id = ?").bind(BUDGET_IMPORT_FORMAT, JSON.stringify({ ...pack.manifest, validation: undefined }), JSON.stringify({ source_ids: pack.documentIds, empty_replace_source_ids: [] }), importId),
+        ...stageBudgetStatements(db, importId, pack),
+      ]);
+    }
+    const result = await validatePack(archive);
+    if (!result.ok) return finish("rejected", report(result.problems));
+    const { pack } = result;
     if (pack.artifactId !== row.artifact_id) return finish("rejected", report([{ code: "ARTIFACT_ID_MISMATCH", path: "manifest.json", field: "artifact_id" }]));
-    const unknown = await unknownFiscalEntities(db, pack);
-    if (unknown.length) return finish("rejected", report(unknown.map((id) => ({ code: "FISCAL_ENTITY_UNKNOWN", path: "data/budget/documents.jsonl", field: id }))));
-    const blockedDocs = await blockedSources(db, pack.documentIds);
-    if (blockedDocs.length) return finish("rejected", report(blockedDocs.map((id) => ({ code: "SOURCE_BLOCKED", path: "manifest.json", field: id }))));
-    return finish("staged", report([], budgetReport(pack, unknown)), [
-      db.prepare("UPDATE import_artifact SET format = ?, manifest_json = ?, scope_json = ? WHERE import_id = ?").bind(BUDGET_IMPORT_FORMAT, JSON.stringify({ ...pack.manifest, validation: undefined }), JSON.stringify({ source_ids: pack.documentIds, empty_replace_source_ids: [] }), importId),
-      ...stageBudgetStatements(db, importId, pack),
+    const missing = await missingSubjects(pack, subjects);
+    if (missing.length) return finish("rejected", report(missing.map((id) => ({ code: "SUBJECT_NOT_FOUND", path: "data/knowledge/statements.jsonl", field: id }))));
+    const blocked = await blockedSources(db, pack.scopeSourceIds);
+    if (blocked.length) return finish("rejected", report(blocked.map((id) => ({ code: "SOURCE_BLOCKED", path: "manifest.json", field: id }))));
+    // 원문 동등성(T74): 같은 Source에 바이트가 다른 원문(형식이 바뀐 HWP→HWPX 등)이 오면 같은 문서로 합치지 않고 새 원문 버전으로 알린다.
+    const activeVersions = (await db.prepare(
+      "SELECT a.source_id, a.source_version_id, s.format, s.raw_sha256 FROM doc_active_source a JOIN doc_source s ON s.import_id = a.import_id AND s.source_version_id = a.source_version_id WHERE a.source_id IN (SELECT value FROM json_each(?))",
+    ).bind(JSON.stringify(pack.scopeSourceIds)).all<{ source_id: string; source_version_id: string; format: string; raw_sha256: string }>()).results;
+    const versionChanges = pack.sources.flatMap((source) => {
+      const active = activeVersions.find((row) => row.source_id === source.source_id);
+      if (!active || active.raw_sha256 === source.raw_sha256) return [];
+      return [{ source_id: source.source_id, previous_version: active.source_version_id, previous_format: active.format, new_version: source.source_version_id, new_format: source.format, format_changed: active.format !== source.format }];
+    });
+    return finish("staged", report([], { counts: { sources: pack.sources.length, statements: pack.statements.length, evidence: pack.evidence.length }, content_digest: pack.contentDigest, version_changes: versionChanges }), [
+      db.prepare("UPDATE import_artifact SET format = ?, manifest_json = ?, scope_json = ? WHERE import_id = ?").bind(String(pack.manifest.format), JSON.stringify(pack.manifest), JSON.stringify({ source_ids: pack.scopeSourceIds, empty_replace_source_ids: pack.emptyReplaceSourceIds }), importId),
+      ...stageStatements(db, importId, pack),
     ]);
+  };
+  try { return await validate(); }
+  catch (error) {
+    // 통신·DB 오류는 내용 불합격과 구분한다. 받은 청크를 보존하고 같은 파일로 다시 검사할 수 있게 한다.
+    await db.prepare("UPDATE import_artifact SET status = 'received', updated_at = ? WHERE import_id = ? AND status = 'validating' AND updated_at = ?").bind(now, importId, now).run();
+    throw error;
   }
-  const result = await validatePack(archive);
-  if (!result.ok) return finish("rejected", report(result.problems));
-  const { pack } = result;
-  if (pack.artifactId !== row.artifact_id) return finish("rejected", report([{ code: "ARTIFACT_ID_MISMATCH", path: "manifest.json", field: "artifact_id" }]));
-  const missing = await missingSubjects(pack, subjects);
-  if (missing.length) return finish("rejected", report(missing.map((id) => ({ code: "SUBJECT_NOT_FOUND", path: "data/knowledge/statements.jsonl", field: id }))));
-  const blocked = await blockedSources(db, pack.scopeSourceIds);
-  if (blocked.length) return finish("rejected", report(blocked.map((id) => ({ code: "SOURCE_BLOCKED", path: "manifest.json", field: id }))));
-  // 원문 동등성(T74): 같은 Source에 바이트가 다른 원문(형식이 바뀐 HWP→HWPX 등)이 오면 같은 문서로 합치지 않고 새 원문 버전으로 알린다.
-  const activeVersions = (await db.prepare(
-    "SELECT a.source_id, a.source_version_id, s.format, s.raw_sha256 FROM doc_active_source a JOIN doc_source s ON s.import_id = a.import_id AND s.source_version_id = a.source_version_id WHERE a.source_id IN (SELECT value FROM json_each(?))",
-  ).bind(JSON.stringify(pack.scopeSourceIds)).all<{ source_id: string; source_version_id: string; format: string; raw_sha256: string }>()).results;
-  const versionChanges = pack.sources.flatMap((source) => {
-    const active = activeVersions.find((row) => row.source_id === source.source_id);
-    if (!active || active.raw_sha256 === source.raw_sha256) return [];
-    return [{ source_id: source.source_id, previous_version: active.source_version_id, previous_format: active.format, new_version: source.source_version_id, new_format: source.format, format_changed: active.format !== source.format }];
-  });
-  return finish("staged", report([], { counts: { sources: pack.sources.length, statements: pack.statements.length, evidence: pack.evidence.length }, content_digest: pack.contentDigest, version_changes: versionChanges }), [
-    db.prepare("UPDATE import_artifact SET format = ?, manifest_json = ?, scope_json = ? WHERE import_id = ?").bind(String(pack.manifest.format), JSON.stringify(pack.manifest), JSON.stringify({ source_ids: pack.scopeSourceIds, empty_replace_source_ids: pack.emptyReplaceSourceIds }), importId),
-    ...stageStatements(db, importId, pack),
-  ]);
 }
 
 async function missingSubjects(pack: ValidatedPack, subjects: SubjectChecker): Promise<string[]> {
@@ -221,6 +232,25 @@ export async function approveImport(db: SqlDatabase, importId: string, archiveSh
   await db.prepare("UPDATE import_artifact SET status = 'approved', approved_at = ?, approved_hash = ?, approved_epoch = ?, updated_at = ? WHERE import_id = ? AND status = 'staged'")
     .bind(now, archiveSha256, policy_epoch, now, importId).run();
   return (await readImport(db, importId))!;
+}
+
+/** 검토한 해시 한 개를 승인·공개한다. 대기열은 이 함수를 순차 호출하며 기존 검사 조건을 그대로 거친다. */
+export async function publishImport(db: SqlDatabase, importId: string, archiveSha256: string, subjects: SubjectChecker, now: number): Promise<ImportRow> {
+  let row = await readImport(db, importId);
+  if (!row) throw new ImportError("IMPORT_NOT_FOUND", "반입 작업을 찾지 못했습니다.", 404);
+  if (row.archive_sha256 !== archiveSha256) throw new ImportError("APPROVED_HASH_MISMATCH", "검토한 해시가 반입된 묶음의 해시와 다릅니다.");
+  if (row.status === "active") return row;
+  try {
+    if (row.status === "staged") row = await approveImport(db, importId, archiveSha256, now);
+    if (row.status !== "approved") throw new ImportError("IMPORT_NOT_PUBLISHABLE", "검사를 통과한 반입만 승인·공개할 수 있습니다(상태 " + row.status + ").");
+    return await activateImport(db, importId, subjects, now);
+  }
+  catch (error) {
+    // 응답을 받기 전에 다른 동일 요청이 끝났다면 이미 완료된 결과를 돌려준다.
+    const latest = await readImport(db, importId);
+    if (latest?.status === "active" && latest.archive_sha256 === archiveSha256) return latest;
+    throw error;
+  }
 }
 
 export async function rejectImport(db: SqlDatabase, importId: string, now: number): Promise<ImportRow> {
@@ -353,7 +383,8 @@ export async function blockSource(db: SqlDatabase, sourceId: string, reason: str
 
 export async function readAdminImports(db: SqlDatabase) {
   const [imports, active, blocks, pointer, activeBudget] = await Promise.all([
-    db.prepare("SELECT import_id, artifact_id, archive_sha256, size_bytes, total_chunks, received_chunks, status, report_json, scope_json, received_at, staged_at, approved_at, activated_at FROM import_artifact ORDER BY received_at DESC LIMIT 50").all<Record<string, unknown>>(),
+    // 미완료 반입이 최근 공개 기록에 밀려 사라지지 않도록 먼저 보여 준다.
+    db.prepare("SELECT import_id, artifact_id, archive_sha256, size_bytes, total_chunks, received_chunks, status, report_json, scope_json, received_at, staged_at, approved_at, activated_at FROM import_artifact ORDER BY CASE WHEN status IN ('received', 'validating', 'staged', 'approved') THEN 0 ELSE 1 END, received_at DESC LIMIT 200").all<Record<string, unknown>>(),
     db.prepare("SELECT a.source_id, a.import_id, a.source_version_id, a.retrieved_at, a.activated_at, s.title, s.issuer, (SELECT COUNT(*) FROM doc_statement t WHERE t.import_id = a.import_id AND t.source_version_id = a.source_version_id) AS statements FROM doc_active_source a JOIN doc_source s ON s.import_id = a.import_id AND s.source_version_id = a.source_version_id ORDER BY a.source_id").all<Record<string, unknown>>(),
     db.prepare("SELECT source_id, reason, blocked_at FROM doc_block ORDER BY blocked_at DESC").all<Record<string, unknown>>(),
     policyEpoch(db),

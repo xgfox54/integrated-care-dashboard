@@ -15,6 +15,7 @@ import type {
   SourceVerification,
 } from "@/lib/welfare100/types";
 import { getNodeVerification } from "@/lib/welfare100/process-verification";
+import { splitStageName } from "@/lib/welfare100/stage-name.mjs";
 import {
   NodeLegalVerification,
   ProcessVerificationSummaryBar,
@@ -91,7 +92,7 @@ function GateTimeline({
         {stages.map((stage, i) => {
           const st = stageStatus(stage, nodes);
           const isLast = i === stages.length - 1;
-          const [code, ...rest] = stage.split(" ");
+          const { code, label: stageLabel } = splitStageName(stage);
           const dotBg =
             st === "done" || st === "current" ? "var(--jeju-primary)" : st === "risk" ? "var(--jeju-orange-dark)" : "transparent";
           const dotBorder =
@@ -159,7 +160,7 @@ function GateTimeline({
                       wordBreak: "keep-all",
                     }}
                   >
-                    {rest.join(" ")}
+                    {stageLabel}
                   </span>
                 </div>
               </button>
@@ -202,7 +203,7 @@ function MobileSwimlaneStageNav({
       aria-label="스윔레인 단계 바로가기"
     >
       {stages.map((stage) => {
-        const [code, ...rest] = stage.split(" ");
+        const { code, label: stageLabel } = splitStageName(stage);
         return (
           <button
             key={stage}
@@ -211,8 +212,8 @@ function MobileSwimlaneStageNav({
             onClick={() => onStageClick(stage)}
             aria-label={`${stage} 열로 이동`}
           >
-            <span>{code}</span>
-            <strong>{rest.join(" ")}</strong>
+            {code ? <span>{code}</span> : null}
+            <strong>{stageLabel}</strong>
           </button>
         );
       })}
@@ -517,7 +518,7 @@ export function MobileProcessFlow({
 
       <nav className="mobile-process-stage-nav" aria-label="업무 단계 바로가기">
         {visibleStages.map((stage) => {
-          const [code, ...rest] = stage.split(" ");
+          const { code, label: stageLabel } = splitStageName(stage);
           const status = stageStatus(stage, visibleNodes);
           return (
             <button
@@ -527,16 +528,16 @@ export function MobileProcessFlow({
               onClick={() => scrollToStage(stage)}
               aria-label={`${stage} 단계로 이동`}
             >
-              <span>{code}</span>
-              <strong>{rest.join(" ")}</strong>
+              {code ? <span>{code}</span> : null}
+              <strong>{stageLabel}</strong>
             </button>
           );
         })}
       </nav>
 
       <div className="mobile-process-timeline">
-        {visibleStages.map((stage) => {
-          const [code, ...rest] = stage.split(" ");
+        {visibleStages.map((stage, stageIndex) => {
+          const { code, label: stageLabel } = splitStageName(stage);
           const stageNodes = visibleNodes.filter(
             (node) => node.stage === stage
           );
@@ -551,13 +552,13 @@ export function MobileProcessFlow({
               }}
               className="mobile-process-stage"
               data-status={status}
-              aria-labelledby={`mobile-stage-${code}`}
+              aria-labelledby={`mobile-stage-${stageIndex}`}
             >
               <header>
                 <span className="mobile-process-stage-marker" aria-hidden="true" />
                 <div>
-                  <span className="mono">{code}</span>
-                  <h3 id={`mobile-stage-${code}`}>{rest.join(" ")}</h3>
+                  {code ? <span className="mono">{code}</span> : null}
+                  <h3 id={`mobile-stage-${stageIndex}`}>{stageLabel}</h3>
                 </div>
                 <span>{stageNodes.length}개</span>
               </header>
@@ -1408,7 +1409,7 @@ export default function SwimlaneBoard({
 
           {/* ── Stage headers (row 1) ── */}
           {stages.map((stage, si) => {
-            const [code, ...rest] = stage.split(" ");
+            const { code, label: stageLabel } = splitStageName(stage);
             const st = stageStatus(stage, nodes);
             return (
               <div
@@ -1444,7 +1445,7 @@ export default function SwimlaneBoard({
                   overflow: "hidden", display: "-webkit-box",
                   WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
                 }}>
-                  {rest.join(" ")}
+                  {stageLabel}
                 </span>
               </div>
             );

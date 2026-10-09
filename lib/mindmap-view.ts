@@ -3,6 +3,7 @@
 // 화면은 이 구조만 그린다. 수는 모두 원본 집계에서 그대로 가져오며 임의 숫자를 넣지 않는다.
 import { buildServerBranches, type MindmapSource, type MindNode, type Welfare100Entry } from "./mindmap.ts";
 import { REGION_DEFINITIONS } from "./region-statistics.ts";
+import { targetGroupSlug, textsMatchTarget } from "./target-groups.ts";
 
 /** 색 계열: care(통합돌봄·서비스·지역 #0173bc), people(대상자·복지제도 #00a074), data(뉴스·예산·자료 #f18101), advanced(고급 탐색). */
 export type ExploreFamily = "root" | "care" | "people" | "data" | "advanced";
@@ -67,9 +68,11 @@ function convert(node: MindNode, family: ExploreFamily, icon: ExploreIcon, relat
   };
 }
 
-function welfareMatches(entries: readonly Welfare100Entry[] | null, keywords: readonly string[]): number | undefined {
+/** 복지제도100 제도명에 대상자 묶음 낱말이 들어간 제도 수. 복지제도100 화면의 target_group 필터와 같은 판정(lib/target-groups.ts). */
+function welfareMatches(entries: readonly Welfare100Entry[] | null, groupId: string): number | undefined {
   if (!entries) return undefined;
-  return entries.filter((entry) => keywords.some((keyword) => entry.name.includes(keyword))).length;
+  const slug = targetGroupSlug(groupId);
+  return entries.filter((entry) => textsMatchTarget(slug, [entry.name])).length;
 }
 
 /** 시·도 이름으로 지방재정365 재정주체 지역(광역 코드)을 찾는다. */
@@ -97,40 +100,41 @@ export function buildExploreTree({ source, welfareBranch, welfareEntries }: Expl
   const targets: ExploreNode[] = source.services.targetGroups.map((group): ExploreNode => {
     const slug = group.id.replace(/^target:/, "").replace(/_/g, "-");
     const id = "target/" + slug;
-    const keyword = group.keywords[0] ?? group.label;
-    const welfareCount = welfareMatches(welfareEntries, group.keywords);
+    // 클릭 목록은 집계와 같은 대상자 묶음 조건(target_group)으로 연다. 첫 낱말(q)만 넘기면 「어르신」「65세」만 있는 사업이 빠졌다(D-04).
+    const target = targetGroupSlug(group.id);
+    const welfareCount = welfareMatches(welfareEntries, group.id);
     const byCategory = [...(group.byCategory ?? [])].filter((row) => row.count > 0).sort((a, b) => b.count - a.count);
     const children: ExploreNode[] = byCategory.map((row) => ({
       id: id + "/svc/" + encodeURIComponent(row.category), label: row.category, family: "people", icon: "item", count: row.count, unit: "건",
-      href: query("/", { q: keyword, category: row.category }), note: group.label + " 대상 낱말이 들어간 「" + row.category + "」 사업",
-      related: [{ key: "services", label: "통합돌봄 사업", count: row.count, unit: "건", href: query("/", { q: keyword, category: row.category }) }],
-      links: [{ label: "통합돌봄 사업 보기", href: query("/", { q: keyword, category: row.category }) }],
+      href: query("/", { target_group: target, category: row.category }), note: group.label + " 대상 낱말이 들어간 「" + row.category + "」 사업",
+      related: [{ key: "services", label: "통합돌봄 사업", count: row.count, unit: "건", href: query("/", { target_group: target, category: row.category }) }],
+      links: [{ label: "통합돌봄 사업 보기", href: query("/", { target_group: target, category: row.category }) }],
     }));
     if (welfareCount) {
       children.push({
-        id: id + "/welfare", label: "관련 복지제도", family: "people", icon: "welfare", count: welfareCount, unit: "개", href: query("/welfare100", { q: keyword }),
+        id: id + "/welfare", label: "관련 복지제도", family: "people", icon: "welfare", count: welfareCount, unit: "개", href: query("/welfare100", { target_group: target }),
         note: "복지제도100 이름에 「" + group.keywords.join("」「") + "」가 들어간 제도",
-        related: [{ key: "welfare", label: "복지제도", count: welfareCount, unit: "개", href: query("/welfare100", { q: keyword }) }],
-        links: [{ label: "복지제도 보기", href: query("/welfare100", { q: keyword }) }],
+        related: [{ key: "welfare", label: "복지제도", count: welfareCount, unit: "개", href: query("/welfare100", { target_group: target }) }],
+        links: [{ label: "복지제도 보기", href: query("/welfare100", { target_group: target }) }],
       });
     }
     const related: RelatedItem[] = [
-      { key: "services", label: "통합돌봄 사업", count: group.count, unit: "건", href: query("/", { q: keyword }) },
-      ...(welfareCount !== undefined ? [{ key: "welfare" as const, label: "복지제도", count: welfareCount, unit: "개", href: query("/welfare100", { q: keyword }) }] : []),
-      ...(group.regionCount !== undefined ? [{ key: "regions" as const, label: "관련 지역(시·군·구)", count: group.regionCount, unit: "곳", href: query("/", { q: keyword }) }] : []),
-      ...(group.newsCount !== undefined ? [{ key: "news" as const, label: "공식 보도자료", count: group.newsCount, unit: "건", href: query("/news", { q: keyword }) }] : []),
-      ...(group.budgetCount !== undefined ? [{ key: "budget" as const, label: "관련 예산사업(사회복지)", count: group.budgetCount, unit: "건", href: query("/budget", { mode: "social_welfare", q: keyword }) }] : []),
+      { key: "services", label: "통합돌봄 사업", count: group.count, unit: "건", href: query("/", { target_group: target }) },
+      ...(welfareCount !== undefined ? [{ key: "welfare" as const, label: "복지제도", count: welfareCount, unit: "개", href: query("/welfare100", { target_group: target }) }] : []),
+      ...(group.regionCount !== undefined ? [{ key: "regions" as const, label: "관련 지역(시·군·구)", count: group.regionCount, unit: "곳", href: query("/", { target_group: target }) }] : []),
+      ...(group.newsCount !== undefined ? [{ key: "news" as const, label: "공식 보도자료", count: group.newsCount, unit: "건", href: query("/news", { target_group: target }) }] : []),
+      ...(group.budgetCount !== undefined ? [{ key: "budget" as const, label: "관련 예산사업(사회복지)", count: group.budgetCount, unit: "건", href: query("/budget", { mode: "social_welfare", target_group: target }) }] : []),
     ];
     return {
-      id, label: group.label, family: "people", icon: "target", count: group.count, unit: "건", href: query("/", { q: keyword }),
-      note: "지원대상·세부대상·사업명에 「" + group.keywords.join("」「") + "」가 들어간 사업(개인 자격 판정 아님). 바로가기는 「" + keyword + "」로 찾습니다.",
+      id, label: group.label, family: "people", icon: "target", count: group.count, unit: "건", href: query("/", { target_group: target }),
+      note: "지원대상·세부대상·사업명에 「" + group.keywords.join("」「") + "」 중 하나가 들어간 사업(개인 자격 판정 아님). 바로가기도 같은 조건(대상자 묶음)으로 엽니다.",
       keywords: group.keywords, children, related, topics: byCategory.slice(0, 5).map((row) => row.category),
       links: [
-        { label: "통합돌봄 사업 보기", href: query("/", { q: keyword }) },
-        { label: "복지제도 보기", href: query("/welfare100", { q: keyword }) },
-        { label: "지역별 보기", href: query("/", { q: keyword }) },
-        { label: "관련 뉴스 보기", href: query("/news", { q: keyword }) },
-        { label: "예산 보기", href: query("/budget", { mode: "social_welfare", q: keyword }) },
+        { label: "통합돌봄 사업 보기", href: query("/", { target_group: target }) },
+        { label: "복지제도 보기", href: query("/welfare100", { target_group: target }) },
+        { label: "지역별 보기", href: query("/", { target_group: target }) },
+        { label: "관련 뉴스 보기", href: query("/news", { target_group: target }) },
+        { label: "예산 보기", href: query("/budget", { mode: "social_welfare", target_group: target }) },
       ],
     };
   }).sort((a, b) => (b.count ?? 0) - (a.count ?? 0));

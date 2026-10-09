@@ -13,6 +13,9 @@ import { CATEGORY_LABELS, ORG_TYPE_LABELS, PRESS_CATEGORIES } from "@/lib/press/
 import { REGION_DEFINITIONS, buildRegionStatisticsFromCounts } from "@/lib/region-statistics";
 import { usageClick, usageError, usageErrorCode, usageFilter } from "@/lib/usage/track";
 import { useSearchUsage } from "@/lib/usage/use-search-usage";
+import { PRESS_PERIODS, pressPeriodQuery } from "@/lib/press-period";
+import { PressPeriodControls } from "@/components/press/press-period-controls";
+import { parseTargetGroup, targetGroupOf } from "@/lib/target-groups";
 
 interface PressItem {
   readonly article_id: string;
@@ -46,17 +49,14 @@ interface Filters {
   readonly q: string; readonly category: string; readonly period: string; readonly from: string; readonly to: string;
   readonly organizationId: string; readonly organizationType: string; readonly sido: string; readonly sigungu: string; readonly includeDescendants: boolean;
   readonly page: number; readonly size: number; readonly sort: "newest" | "oldest";
+  /** 대상자 묶음 slug(관계성 지도에서 연 목록). 제목에 묶음 낱말 중 하나가 들어간 보도자료. */
+  readonly targetGroup: string;
 }
 
-const PERIODS: readonly { readonly value: string; readonly label: string }[] = [
-  { value: "", label: "전체 기간" }, { value: "today", label: "오늘" }, { value: "7", label: "최근 7일" }, { value: "30", label: "최근 30일" }, { value: "90", label: "최근 3개월" },
-  { value: "custom", label: "직접 선택" }, { value: "unknown", label: "게시일 미확인만" },
-];
 const PAGE_SIZES = [10, 20, 50] as const;
-const EMPTY: Filters = { q: "", category: "", period: "", from: "", to: "", organizationId: "", organizationType: "", sido: "", sigungu: "", includeDescendants: false, page: 1, size: 20, sort: "newest" };
-// 주소에 남기는 조건(공유·지도 연결용). 검색어는 남기지 않는다.
-const URL_KEYS = [["sido", "sido"], ["sigungu", "sigungu"], ["organizationId", "organization_id"], ["organizationType", "organization_type"], ["category", "category"]] as const;
-const KST_OFFSET_MS = 9 * 60 * 60 * 1000;
+const EMPTY: Filters = { q: "", category: "", period: "", from: "", to: "", organizationId: "", organizationType: "", sido: "", sigungu: "", includeDescendants: false, page: 1, size: 20, sort: "newest", targetGroup: "" };
+// 주소에 남기는 조건(공유·지도 연결용). 검색어는 남기지 않는다. 대상자 묶음은 새로고침·공유에도 같은 목록이 되도록 남긴다.
+const URL_KEYS = [["sido", "sido"], ["sigungu", "sigungu"], ["organizationId", "organization_id"], ["organizationType", "organization_type"], ["category", "category"], ["targetGroup", "target_group"]] as const;
 const ORGANIZATIONS_SHOWN = 12;
 /** 휴대폰 폭에서는 목록이 결과보다 먼저 길게 나오지 않도록 5곳만 먼저 보인다. */
 const ORGANIZATIONS_SHOWN_MOBILE = 5;
@@ -77,14 +77,8 @@ function requestPath(filters: Filters): string {
   if (filters.sido) params.set("sido", filters.sido);
   if (filters.sigungu) params.set("sigungu", filters.sigungu);
   if (filters.sigungu && filters.includeDescendants) params.set("include_descendants", "1");
-  const today = new Date(Date.now() + KST_OFFSET_MS).toISOString().slice(0, 10);
-  if (filters.period === "today") params.set("from", today);
-  else if (/^\d+$/.test(filters.period)) params.set("from", new Date(Date.now() + KST_OFFSET_MS - Number(filters.period) * 86_400_000).toISOString().slice(0, 10));
-  else if (filters.period === "unknown") params.set("date_unknown", "1");
-  else if (filters.period === "custom") {
-    if (filters.from) params.set("from", filters.from);
-    if (filters.to) params.set("to", filters.to);
-  }
+  if (filters.targetGroup) params.set("target_group", filters.targetGroup);
+  for (const [key, value] of pressPeriodQuery(filters)) params.set(key, value);
   return `/api/press?${params.toString()}`;
 }
 
@@ -95,6 +89,8 @@ function filtersFromLocation(search: string): Filters | null {
   for (const [key, param] of URL_KEYS) {
     const value = (params.get(param) ?? "").trim().slice(0, 100);
     if (!value) continue;
+    // 알 수 없는 대상자 묶음은 조건으로 쓰지 않는다(API도 거절한다).
+    if (key === "targetGroup" && !parseTargetGroup(value)) continue;
     found = true;
     filters = { ...filters, [key]: value };
   }
@@ -168,7 +164,7 @@ export function PressBrowser() {
   useEffect(() => {
     const controller = new AbortController();
     getJson<PressRegions>("/api/press/regions", controller.signal).then(setRegions).catch(() => undefined);
-    getJson<Coverage>("/api/press/status", controller.signal).then(setCoverage).catch(() => undefined);
+    getJson<Coverage>("/api/press/status?view=public", controller.signal).then(setCoverage).catch(() => undefined);
     return () => controller.abort();
   }, []);
   const path = requestPath(applied);
@@ -236,10 +232,11 @@ export function PressBrowser() {
 
   const activeFilters: { readonly label: string; readonly clear: Partial<Filters> }[] = [
     ...(applied.q ? [{ label: "검색어: " + applied.q, clear: { q: "" } }] : []),
+    ...(applied.targetGroup && targetGroupOf(applied.targetGroup) ? [{ label: "대상자: " + targetGroupOf(applied.targetGroup)?.label + "(제목에 「" + targetGroupOf(applied.targetGroup)?.keywords.join("」「") + "」 중 하나)", clear: { targetGroup: "" } }] : []),
     ...(applied.organizationType ? [{ label: "기관 유형: " + (ORG_TYPE_LABELS[applied.organizationType] ?? applied.organizationType), clear: { organizationType: "" } }] : []),
     ...(applied.organizationId ? [{ label: "발행기관: " + organizationName(applied.organizationId), clear: { organizationId: "" } }] : []),
     ...(applied.sido ? [{ label: "지역: " + [applied.sido, applied.sigungu].filter(Boolean).join(" ") + (applied.includeDescendants ? "(하위 포함)" : ""), clear: { sido: "", sigungu: "", includeDescendants: false } }] : []),
-    ...(applied.period ? [{ label: "기간: " + (PERIODS.find((period) => period.value === applied.period)?.label ?? applied.period), clear: { period: "", from: "", to: "" } }] : []),
+    ...(applied.period ? [{ label: "기간: " + (PRESS_PERIODS.find((period) => period.value === applied.period)?.label ?? applied.period), clear: { period: "", from: "", to: "" } }] : []),
   ];
   const resetAll = () => { setQuery(""); setRegionDraft({ sido: "", sigungu: "", includeDescendants: false }); setApplied({ ...EMPTY, size: applied.size, sort: applied.sort }); };
 
@@ -255,7 +252,7 @@ export function PressBrowser() {
 
   return (
     <main className="mx-auto grid max-w-(--jeju-main-max-wide) gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[300px_minmax(0,1fr)]">
-      <aside className="space-y-5 lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:self-start lg:overflow-y-auto lg:pr-1" aria-label="보도자료 조건">
+      <aside className="space-y-5 lg:self-start" aria-label="보도자료 조건">
         <div>
           <h1 className="text-(length:--jeju-h2-size) leading-(--jeju-leading-tight) font-extrabold text-(--jeju-text-strong)">전국 복지뉴스 아카이빙</h1>
           <p className="mt-1.5 text-(length:--jeju-text-sm) leading-relaxed text-muted-foreground">공식 보도자료로 발표된 복지 소식의 제목·발행기관·게시일과 원문 링크입니다. 본문은 저장하지 않으니 자세한 내용은 원문에서 확인하세요.</p>
@@ -395,27 +392,16 @@ export function PressBrowser() {
           <p className="text-(length:--jeju-text-sm) text-(--jeju-text-body)" role="status">
             {page ? <>전체 <b className="text-(--jeju-text-strong) tabular-nums">{page.total_count.toLocaleString("ko-KR")}</b>건 중 <span className="tabular-nums">{firstShown.toLocaleString("ko-KR")}–{lastShown.toLocaleString("ko-KR")}</span></> : "불러오는 중"}
           </p>
-          <div className="lg:mx-auto">{pager("top")}</div>
           <div className="ml-auto flex flex-wrap items-center gap-2 text-(length:--jeju-text-sm)">
-            <Label htmlFor="press-period" className="sr-only">게시 기간</Label>
-            <NativeSelect id="press-period" size="sm" value={applied.period} onChange={(event) => apply({ period: event.target.value, ...(event.target.value === "custom" ? {} : { from: "", to: "" }) })}>
-              {PERIODS.map((period) => <NativeSelectOption key={period.value} value={period.value}>{period.label}</NativeSelectOption>)}
-            </NativeSelect>
+            <PressPeriodControls selection={applied} onChange={apply} />
             <Label htmlFor="press-sort" className="text-muted-foreground">정렬</Label>
             <NativeSelect id="press-sort" size="sm" value={applied.sort} onChange={(event) => apply({ sort: event.target.value === "oldest" ? "oldest" : "newest" })}>
               <NativeSelectOption value="newest">최신순</NativeSelectOption>
               <NativeSelectOption value="oldest">오래된순</NativeSelectOption>
             </NativeSelect>
           </div>
-          {applied.period === "custom" ? (
-            <div className="flex w-full flex-wrap items-center gap-2 text-(length:--jeju-text-sm)">
-              <Label htmlFor="press-from">시작일</Label>
-              <Input id="press-from" type="date" className="h-8 w-auto" value={applied.from} max={applied.to || undefined} onChange={(event) => apply({ from: event.target.value })} />
-              <Label htmlFor="press-to">종료일</Label>
-              <Input id="press-to" type="date" className="h-8 w-auto" value={applied.to} min={applied.from || undefined} onChange={(event) => apply({ to: event.target.value })} />
-            </div>
-          ) : null}
         </div>
+        {page && page.total_count > applied.size ? <div className="mt-3 flex justify-center">{pager("top")}</div> : null}
 
         {loading ? <p className="mt-4 flex items-center gap-2 text-(length:--jeju-text-sm) text-muted-foreground"><Spinner label="목록을 불러오는 중" />목록을 불러오는 중입니다.</p> : null}
         {!loading && !page ? <p role="alert" className="mt-4 text-(length:--jeju-text-sm) text-(--jeju-danger)">목록을 불러오지 못했습니다. 잠시 뒤 다시 시도해 주세요.</p> : null}

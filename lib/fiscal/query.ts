@@ -1,6 +1,7 @@
 // 공개 재정 조회. 공개(PUBLISHED)된 불변 snapshot만 읽고, 금액은 10진 문자열로 돌려준다.
 // 합계는 고유 재정 관측행을 먼저 집계하며(다른 도메인과 JOIN 후 합산하지 않음), 결측은 0으로 채우지 않는다.
 import type { SqlDatabase } from "../sql-database.ts";
+import { targetGroupSql } from "../target-groups.ts";
 import { reconcileFunding, executionRate, subtractWon } from "./amount.ts";
 import { CONTRACT_VERSION, QWGJK_ENDPOINT } from "./qwgjk.ts";
 import { unitVerificationSql } from "./unit-check.ts";
@@ -31,11 +32,19 @@ export interface SnapshotRow {
 export interface ProjectFilter {
   readonly waCode?: string;
   readonly entityId?: string;
+  /**
+   * 고른 공개 snapshot들의 회계연도(모두 같을 때만). 지역·기관·행정단위 조건이 있으면 이 연도로
+   * fiscal_project_year_entity_idx(회계연도·기관·부서) 색인부터 읽어, 전국 snapshot 구성원 전체를 훑지 않는다.
+   */
+  readonly fiscalYear?: string;
   /** 행정시·행정구(제주시·창원시 의창구 등): 상위 재정주체의 부서코드 앞자리로 고른다(fiscal_admin_unit). 앞자리가 여럿이면 쉼표로 잇는다(예: "2005,2120"). */
   readonly adminUnit?: { readonly entityId: string; readonly deptPrefix: string };
   readonly departmentCodes?: readonly string[];
+  readonly excludedDepartmentKeys?: readonly string[];
   readonly accountCodes?: readonly string[];
   readonly fieldCodes?: readonly string[];
+  /** 세부 예산분야(원천 부문코드, 예: 08C 노인). lib/fiscal/parts.ts */
+  readonly partCodes?: readonly string[];
   /**
    * 통합돌봄 분류(fiscal_project_class): "only"는 통합돌봄으로 분류된 사업만, "include"는 분야코드 조건에 더해 통합돌봄 사업도 넣는다
    * (통합돌봄은 사회복지의 하위 분류라 사회복지 합계에 포함. 2026-10-05 운영자 지시).
@@ -43,6 +52,8 @@ export interface ProjectFilter {
   readonly integratedCare?: "only" | "include";
   readonly projectIds?: readonly string[];
   readonly query?: string;
+  /** 대상자 묶음 slug: 세부사업명에 묶음 낱말 중 하나가 들어간 사업(lib/target-groups.ts). */
+  readonly targetGroup?: string;
 }
 
 export interface ProjectRecord {
@@ -92,6 +103,11 @@ const INTEGRATED_CARE_SQL = "p.fiscal_project_id IN (SELECT fiscal_project_id FR
 const PROJECT_JOINS =
   "FROM fiscal_snapshot_member m JOIN fiscal_project p ON p.fiscal_project_id = m.fiscal_project_id JOIN fiscal_observation o ON o.observation_id = m.observation_id " +
   "JOIN fiscal_entity e ON e.fiscal_entity_id = p.fiscal_entity_id";
+// 지역·기관 조건이 있을 때: 사업(회계연도·기관 색인) → 구성원(snapshot·사업 기본키) 순서로 고정해 읽는다.
+// 같은 안쪽 결합이라 결과 행은 PROJECT_JOINS와 같다(CROSS JOIN은 SQLite에서 읽는 순서만 고정한다).
+const ENTITY_FIRST_JOINS =
+  "FROM fiscal_project p CROSS JOIN fiscal_snapshot_member m ON m.fiscal_project_id = p.fiscal_project_id CROSS JOIN fiscal_observation o ON o.observation_id = m.observation_id " +
+  "CROSS JOIN fiscal_entity e ON e.fiscal_entity_id = p.fiscal_entity_id";
 
 function marks(count: number): string {
   return Array.from({ length: count }, () => "?").join(", ");
@@ -201,17 +217,26 @@ export async function modeFieldCodes(db: SqlDatabase, mode: FiscalMode, fiscalYe
 /** 공개 snapshot 하나 또는 여러 개(광역별 전체 세출 범위를 합쳐 읽을 때). */
 export type SnapshotKey = string | readonly string[];
 
-function projectWhere(snapshot: SnapshotKey, filter: ProjectFilter): { where: string; binds: unknown[] } {
+function projectWhere(snapshot: SnapshotKey, filter: ProjectFilter): { joins: string; where: string; binds: unknown[] } {
   const ids = typeof snapshot === "string" ? [snapshot] : [...snapshot];
   const clauses = [ids.length === 1 ? "m.snapshot_id = ?" : "m.snapshot_id IN (" + marks(ids.length) + ")"];
   const binds: unknown[] = [...ids];
+  // 검색어가 있는 전국 조회는 회계연도·분야 색인(fiscal_project_year_field_idx)으로 그 분야 사업만 읽고 이름을 먼저 거른다.
+  // 검색어가 없는 전국 조회는 대부분의 사업을 읽어야 해서 구성원부터 읽는 편이 빠르다(시험용 SQLite 비교).
+  const fieldSearch = Boolean(filter.fieldCodes?.length && filter.integratedCare !== "include" && (filter.query ?? "").trim());
+  const entityFirst = Boolean(filter.fiscalYear && (filter.waCode || filter.entityId || filter.adminUnit || fieldSearch));
+  if (entityFirst) {
+    clauses.push("p.fiscal_year = ?");
+    binds.push(filter.fiscalYear);
+  }
   const inList = (column: string, values: readonly string[] | undefined) => {
     if (!values?.length) return;
     clauses.push(column + " IN (" + marks(values.length) + ")");
     binds.push(...values);
   };
   if (filter.waCode) {
-    clauses.push("e.wa_code = ?");
+    // e.wa_code와 같은 조건이지만 기관 목록으로 바꿔 사업 색인(회계연도·기관)을 쓰게 한다.
+    clauses.push(entityFirst ? "p.fiscal_entity_id IN (SELECT fiscal_entity_id FROM fiscal_entity WHERE wa_code = ?)" : "e.wa_code = ?");
     binds.push(filter.waCode);
   }
   if (filter.entityId) {
@@ -224,6 +249,10 @@ function projectWhere(snapshot: SnapshotKey, filter: ProjectFilter): { where: st
     binds.push(filter.adminUnit.entityId, ...prefixes.flatMap((prefix) => [prefix.length, prefix]));
   }
   inList("p.department_code", filter.departmentCodes);
+  if (filter.excludedDepartmentKeys?.length) {
+    clauses.push("(e.name || '|' || p.department_code) NOT IN (SELECT value FROM json_each(?))");
+    binds.push(JSON.stringify(filter.excludedDepartmentKeys));
+  }
   inList("p.account_code", filter.accountCodes);
   if (filter.fieldCodes?.length) {
     const fields = "p.field_code IN (" + marks(filter.fieldCodes.length) + ")";
@@ -231,20 +260,26 @@ function projectWhere(snapshot: SnapshotKey, filter: ProjectFilter): { where: st
     binds.push(...filter.fieldCodes);
   }
   if (filter.integratedCare === "only") clauses.push(INTEGRATED_CARE_SQL);
+  inList("p.part_code", filter.partCodes);
   inList("p.fiscal_project_id", filter.projectIds);
   for (const token of (filter.query ?? "").split(/\s+/).filter(Boolean).slice(0, 5)) {
     clauses.push("p.name LIKE ? ESCAPE '\\'");
     binds.push("%" + escapeLike(token) + "%");
   }
-  return { where: clauses.join(" AND "), binds };
+  if (filter.targetGroup) {
+    const target = targetGroupSql(filter.targetGroup, ["p.name"]);
+    clauses.push(target.sql);
+    binds.push(...target.values);
+  }
+  return { joins: entityFirst ? ENTITY_FIRST_JOINS : PROJECT_JOINS, where: clauses.join(" AND "), binds };
 }
 
 export async function snapshotProjectRows(db: SqlDatabase, snapshotId: SnapshotKey, filter: ProjectFilter, offset: number, limit: number): Promise<ProjectRecord[]> {
-  const { where, binds } = projectWhere(snapshotId, filter);
+  const { joins, where, binds } = projectWhere(snapshotId, filter);
   // 정렬·OFFSET에는 관측행 키만 싣고, 단위 검증·분류와 상세 열은 선택된 페이지에서만 읽는다.
   // 안쪽 JOIN은 그대로 두어 누락 참조 제외와 여러 snapshot의 동일 사업 관측행 수를 보존한다.
   const order = "e.wa_code, p.fiscal_entity_id, p.department_code, p.dbiz_code";
-  const rows = await db.prepare("WITH page AS MATERIALIZED (SELECT m.fiscal_project_id, m.observation_id " + PROJECT_JOINS + " WHERE " + where + " ORDER BY " + order + " LIMIT ? OFFSET ?) " +
+  const rows = await db.prepare("WITH page AS MATERIALIZED (SELECT m.fiscal_project_id, m.observation_id " + joins + " WHERE " + where + " ORDER BY " + order + " LIMIT ? OFFSET ?) " +
       "SELECT " + PROJECT_COLUMNS + " FROM page JOIN fiscal_project p ON p.fiscal_project_id = page.fiscal_project_id " +
       "JOIN fiscal_observation o ON o.observation_id = page.observation_id JOIN fiscal_entity e ON e.fiscal_entity_id = p.fiscal_entity_id ORDER BY " + order)
     .bind(...binds, limit, offset).all<ProjectRecord>();
@@ -252,9 +287,9 @@ export async function snapshotProjectRows(db: SqlDatabase, snapshotId: SnapshotK
 }
 
 export async function snapshotProjects(db: SqlDatabase, snapshotId: SnapshotKey, filter: ProjectFilter, offset: number, limit: number): Promise<{ rows: ProjectRecord[]; total: number }> {
-  const { where, binds } = projectWhere(snapshotId, filter);
+  const { joins, where, binds } = projectWhere(snapshotId, filter);
   const [total, rows] = await Promise.all([
-    db.prepare("SELECT COUNT(*) AS total " + PROJECT_JOINS + " WHERE " + where).bind(...binds).first<{ total: number }>(),
+    db.prepare("SELECT COUNT(*) AS total " + joins + " WHERE " + where).bind(...binds).first<{ total: number }>(),
     snapshotProjectRows(db, snapshotId, filter, offset, limit),
   ]);
   return { rows, total: total?.total ?? 0 };
@@ -262,21 +297,21 @@ export async function snapshotProjects(db: SqlDatabase, snapshotId: SnapshotKey,
 
 /** 필터에 맞는 행이 실제로 들어 있는 snapshot과 그 행 수. 응답의 출처 범위를 결과와 맞추는 데 쓴다. */
 export async function snapshotMatchCounts(db: SqlDatabase, snapshotId: SnapshotKey, filter: ProjectFilter): Promise<Map<string, number>> {
-  const { where, binds } = projectWhere(snapshotId, filter);
-  const rows = (await db.prepare("SELECT m.snapshot_id AS snapshot_id, COUNT(*) AS matching " + PROJECT_JOINS + " WHERE " + where + " GROUP BY m.snapshot_id")
+  const { joins, where, binds } = projectWhere(snapshotId, filter);
+  const rows = (await db.prepare("SELECT m.snapshot_id AS snapshot_id, COUNT(*) AS matching " + joins + " WHERE " + where + " GROUP BY m.snapshot_id")
     .bind(...binds).all<{ snapshot_id: string; matching: number }>()).results;
   return new Map(rows.map((row) => [row.snapshot_id, row.matching]));
 }
 
 /** 필터에 맞는 전체 범위의 합계. 예산현액·지출액이 모두 있는 행만 같은 분모·분자로 더한다. */
 export async function snapshotSummary(db: SqlDatabase, snapshotId: SnapshotKey, filter: ProjectFilter) {
-  const { where, binds } = projectWhere(snapshotId, filter);
+  const { joins, where, binds } = projectWhere(snapshotId, filter);
   const row = await db.prepare(
     "SELECT COUNT(*) AS total, " +
       "SUM(CASE WHEN o.current_budget_krw IS NOT NULL AND o.public_expenditure_krw IS NOT NULL THEN 1 ELSE 0 END) AS comparable, " +
       "CAST(SUM(CASE WHEN o.current_budget_krw IS NOT NULL AND o.public_expenditure_krw IS NOT NULL THEN CAST(o.current_budget_krw AS INTEGER) END) AS TEXT) AS budget, " +
       "CAST(SUM(CASE WHEN o.current_budget_krw IS NOT NULL AND o.public_expenditure_krw IS NOT NULL THEN CAST(o.public_expenditure_krw AS INTEGER) END) AS TEXT) AS expenditure, " +
-      "COUNT(DISTINCT p.fiscal_entity_id) AS entities " + PROJECT_JOINS + " WHERE " + where,
+      "COUNT(DISTINCT p.fiscal_entity_id) AS entities " + joins + " WHERE " + where,
   ).bind(...binds).first<{ total: number; comparable: number | null; budget: string | null; expenditure: string | null; entities: number }>();
   const comparable = row?.comparable ?? 0;
   const budget = comparable ? row?.budget ?? null : null;
@@ -299,13 +334,13 @@ export async function snapshotSummary(db: SqlDatabase, snapshotId: SnapshotKey, 
 
 /** 광역 지역(원천 지역코드)별 세부사업 수·합계. 화면 지도와 상위 지역 목록에 쓴다(금액 합은 snapshotSummary와 같은 규칙). */
 export async function snapshotRegionSummary(db: SqlDatabase, snapshotId: SnapshotKey, filter: ProjectFilter) {
-  const { where, binds } = projectWhere(snapshotId, filter);
+  const { joins, where, binds } = projectWhere(snapshotId, filter);
   const rows = (await db.prepare(
     "SELECT e.wa_code AS code, MAX(e.wa_name) AS name, COUNT(*) AS projects, COUNT(DISTINCT p.fiscal_entity_id) AS entities, " +
       "SUM(CASE WHEN o.current_budget_krw IS NOT NULL AND o.public_expenditure_krw IS NOT NULL THEN 1 ELSE 0 END) AS comparable, " +
       "CAST(SUM(CASE WHEN o.current_budget_krw IS NOT NULL AND o.public_expenditure_krw IS NOT NULL THEN CAST(o.current_budget_krw AS INTEGER) END) AS TEXT) AS budget, " +
       "CAST(SUM(CASE WHEN o.current_budget_krw IS NOT NULL AND o.public_expenditure_krw IS NOT NULL THEN CAST(o.public_expenditure_krw AS INTEGER) END) AS TEXT) AS expenditure " +
-      PROJECT_JOINS + " WHERE " + where + " GROUP BY e.wa_code ORDER BY e.wa_code",
+      joins + " WHERE " + where + " GROUP BY e.wa_code ORDER BY e.wa_code",
   ).bind(...binds).all<{ code: string; name: string; projects: number; entities: number; comparable: number; budget: string | null; expenditure: string | null }>()).results;
   return rows.map((row) => {
     const budget = row.comparable ? row.budget : null;
@@ -362,12 +397,12 @@ export function projectDto(row: ProjectRecord) {
 }
 
 export async function fiscalCatalog(db: SqlDatabase, snapshotId: SnapshotKey, type: string, filter: ProjectFilter) {
-  const { where, binds } = projectWhere(snapshotId, filter);
+  const { joins, where, binds } = projectWhere(snapshotId, filter);
   const queries: Record<string, string> = {
-    fiscal_entity: "SELECT p.fiscal_entity_id AS id, e.name, e.code, e.wa_code AS region_code, e.wa_name AS region_name, COUNT(*) AS project_count " + PROJECT_JOINS + " WHERE " + where + " GROUP BY p.fiscal_entity_id ORDER BY e.wa_code, e.code",
-    department: "SELECT 'lofin:dept:' || e.code || ':' || p.department_code AS id, p.department_code AS code, e.name AS fiscal_entity_name, COUNT(*) AS project_count " + PROJECT_JOINS + " WHERE " + where + " GROUP BY p.fiscal_entity_id, p.department_code ORDER BY e.code, p.department_code",
-    account: "SELECT p.account_code AS code, p.account_name AS name, COUNT(*) AS project_count " + PROJECT_JOINS + " WHERE " + where + " GROUP BY p.account_code, p.account_name ORDER BY p.account_code",
-    classification: "SELECT p.field_code, p.field_name, p.part_code, p.part_name, COUNT(*) AS project_count " + PROJECT_JOINS + " WHERE " + where + " GROUP BY p.field_code, p.field_name, p.part_code, p.part_name ORDER BY p.field_code, p.part_code",
+    fiscal_entity: "SELECT p.fiscal_entity_id AS id, e.name, e.code, e.wa_code AS region_code, e.wa_name AS region_name, COUNT(*) AS project_count " + joins + " WHERE " + where + " GROUP BY p.fiscal_entity_id ORDER BY e.wa_code, e.code",
+    department: "SELECT 'lofin:dept:' || e.code || ':' || p.department_code AS id, p.department_code AS code, e.name AS fiscal_entity_name, p.fiscal_entity_id AS fiscal_entity_id, e.wa_code AS region_code, COUNT(*) AS project_count " + joins + " WHERE " + where + " GROUP BY p.fiscal_entity_id, p.department_code ORDER BY e.code, p.department_code",
+    account: "SELECT p.account_code AS code, p.account_name AS name, COUNT(*) AS project_count " + joins + " WHERE " + where + " GROUP BY p.account_code, p.account_name ORDER BY p.account_code",
+    classification: "SELECT p.field_code, p.field_name, p.part_code, p.part_name, COUNT(*) AS project_count " + joins + " WHERE " + where + " GROUP BY p.field_code, p.field_name, p.part_code, p.part_name ORDER BY p.field_code, p.part_code",
   };
   const sql = queries[type];
   if (!sql) return [];

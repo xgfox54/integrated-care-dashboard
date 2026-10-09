@@ -4,16 +4,18 @@
 // 한 셀에 여러 줄이 이어진 금액 열에서 숫자가 붙어 나온 경우(예: "2002005,028")는 산출식으로 계산한 값의 이어 붙임과 정확히 같을 때만 나눈다.
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import { BUDGET_LINE_DEPTH } from "../../lib/budget-line-levels.mjs";
+import { ITEM_MARK, SUB_MARK, DETAIL_MARK, OBJECT_GROUP, OBJECT, FORMULA_START, splitDetailLines } from "./detail-line-tokens.mjs";
+export { splitDetailLines } from "./detail-line-tokens.mjs";
+// allow: SIZE_OK — ordered table amount alignment is one closure-based state machine; detail token parsing is a separate unit.
 
-export const EXTRACTOR_VERSION = "budget-lines-1.2.2";
-const FUNDING_LABELS = { 국: "national", 균: "balanced_development", 도: "province", 시: "municipal", 구: "municipal", 군: "municipal", 기: "other" };
+export const EXTRACTOR_VERSION = "budget-lines-1.3.2";
+// 자: 제주특별자치도 예산서의 자체재원 표기(국·균·기·도와 함께 재원 합계를 이룸). 성격을 단정하지 않고 other로 둔다.
+// 두 글자 표기(안양시 등 「국비·도비·시비」)는 한 글자 표기와 같은 재원이다.
+// 대·재(인천), 채(지방채), 소·부(충남·세종 등) 재원 표기는 성격을 단정하지 않고 other로 둔다.
+const FUNDING_LABELS = { 국: "national", 균: "balanced_development", 도: "province", 시: "municipal", 구: "municipal", 군: "municipal", 기: "other", 지: "other", 자: "other", 추: "other", 대: "other", 재: "other", 채: "other", 소: "other", 부: "other", 국비: "national", 도비: "province", 시비: "municipal", 구비: "municipal", 군비: "municipal" };
 /** 쉼표 세 자리 묶음 금액. 0 하나를 빼고는 0으로 시작하지 않는다(붙은 숫자를 잘못 나누지 않도록). */
 const VALID_AMOUNT = /^△?-?(0|[1-9]\d{0,2}(,\d{3})*)$/;
-const ITEM_MARK = /^[ΟOＯ○◦ㅇ](?=\S)/u;
-const SUB_MARK = /^[oｏοº·∘―](?=\S)/u;
-const OBJECT_GROUP = /^(\d{3})\s+(\S.*)$/;
-const OBJECT = /^(\d{2})\s+(\S.*)$/;
-const FORMULA_START = /\(?\s*[\d,]+(?:\.\d+)?\s*(?:[\p{L}%²³㎡㎥]+\s*[*×x/]\s*[\d,]+(?:\.\d+)?\s*)*원/u;
 
 const squash = (text) => (text ?? "").replace(/\s+/g, "");
 export const formatThousands = (value) => (value < 0 ? "△" : "") + Math.abs(value).toLocaleString("en-US");
@@ -114,7 +116,7 @@ export function uniqueRowAmounts(texts, expectations) {
 export function amountTokens(text) {
   const out = [];
   for (const line of (text ?? "").split("\n")) {
-    const pattern = /(국|균|도|시|구|군|기타|기)?\s*(△?-?[\d,]+)/g;
+    const pattern = /(국비|도비|시비|구비|군비|국|균|도|시|구|군|기타|기|지|자|추|대|재|채|소|부)?\s*(△?-?[\d,]+)/g;
     let match;
     while ((match = pattern.exec(line))) {
       const label = match[1] ? (match[1] === "기타" ? "기" : match[1]) : null;
@@ -146,58 +148,12 @@ function pageHeader(texts) {
   return header;
 }
 
-/** 산출 셀(통계목·부기 줄들)을 항목 목록으로 나눈다. */
-export function splitDetailLines(text, parentHasItem = false) {
-  const items = [];
-  for (const raw of (text ?? "").split("\n")) {
-    const line = raw.trim();
-    if (!line) continue;
-    const group = OBJECT_GROUP.exec(line);
-    const object = !group && OBJECT.exec(line);
-    if (group) { items.push({ level: "object_group", code: group[1], name: group[2], formula: null, lines: [line] }); continue; }
-    if (object) { items.push({ level: "object", code: object[1], name: object[2], formula: null, lines: [line] }); continue; }
-    const marked = ITEM_MARK.test(line);
-    const small = !marked && SUB_MARK.test(line);
-    const hasItemInObject = (() => { for (let i = items.length - 1; i >= 0; i -= 1) { if (items[i].level === "item") return true; if (items[i].level === "object" || items[i].level === "object_group") return false; } return parentHasItem; })();
-    const isItem = marked || (small && !hasItemInObject);
-    const isSub = small && hasItemInObject;
-    if (isItem || isSub) {
-      const body = line.slice(1).trim();
-      const at = body.search(FORMULA_START);
-      let name = (at > 0 ? body.slice(0, at) : at === 0 ? "" : body).trim();
-      const marker = /\s(경정|기정|당초|증액|감액|변경)$/.exec(name);
-      if (marker && at > 0) name = name.slice(0, marker.index).trim();
-      items.push({ level: isItem ? "item" : "sub_item", code: null, name, formula: at >= 0 ? body.slice(at).trim() : null, lines: [line], ...(marker && at > 0 ? { markers: [marker[1]] } : {}) });
-      continue;
-    }
-    const last = items[items.length - 1];
-    if (!last) { items.push({ level: "unknown", code: null, name: line, formula: null, lines: [line] }); continue; }
-    last.lines.push(line);
-    const formulaOpen = last.formula && ((last.formula.match(/\(/g) ?? []).length > (last.formula.match(/\)/g) ?? []).length || /[*+×x\-/]$/.test(last.formula));
-    if (last.formula && (formulaOpen || /^[*+×x)/]/.test(line))) last.formula += line;
-    else if (FORMULA_START.test(line) && (last.level === "item" || last.level === "sub_item") && !last.formula) {
-      // 「원 173,880,000원」: 줄바꿈으로 넘어온 이름 끝(「지원」의 「원」)과 산출식. 산출식 앞 글자는 이름에 붙인다(한두 글자면 낱말 중간 줄바꿈으로 보고 붙여 씀).
-      const at = line.search(FORMULA_START);
-      let head = line.slice(0, at).trim();
-      // 추경 문서의 산출식 앞 표시(「경정 532,181,000원」의 「경정」 등)는 이름이 아니라 금액 성격 표시라 따로 남긴다(「원 경정 …」처럼 이름 끝과 함께 올 수 있음).
-      const marker = /(^|\s)(경정|기정|당초|증액|감액|신규|변경)$/.exec(head);
-      if (marker) {
-        (last.markers ??= []).push(marker[2]);
-        head = head.slice(0, marker.index).trim();
-      }
-      if (head && !/\d/.test(head)) last.name = (last.name + (/^[가-힣]{1,2}$/.test(head) ? "" : " ") + head).trim();
-      last.formula = (head && !/\d/.test(head)) || marker ? line.slice(at).trim() : line;
-    }
-    else if (last.formula) last.formula += " " + line;
-    else last.name = (last.name + " " + line).trim();
-  }
-  return items;
-}
 
-const DEPTH = { department: 0, policy: 1, unit: 2, detail_project: 3, object_group: 4, object: 5, item: 6, sub_item: 7, unresolved: 3 };
+const DEPTH = { ...BUDGET_LINE_DEPTH, unresolved: 3 };
+const FORMULA_LEVELS = new Set(["item", "sub_item", "sub_item_detail"]);
 const depth = (line) => DEPTH[line.level] ?? 9;
 const expected = (item) => {
-  if (item.level !== "item" && item.level !== "sub_item") return null;
+  if (!FORMULA_LEVELS.has(item.level)) return null;
   return thousandCandidates(evaluateFormula(item.formula_text ?? item.formula));
 };
 
@@ -207,19 +163,19 @@ export function extractBudgetLines(parseDir, meta = {}) {
   const tables = new Map(readFileSync(path.join(parseDir, "tables.jsonl"), "utf8").split("\n").filter(Boolean).map((line) => JSON.parse(line)).map((table) => [table.table_id, table]));
   const lines = [];
   const problems = [];
-  const context = { department: null, policy: null, unit: null, detail: null, group: null, object: null, item: null };
+  const context = { department: null, policy: null, unit: null, detail: null, group: null, object: null, item: null, sub_item: null };
   let lastAmountLine = null;
   let header = {};
   const headerNames = { policy: new Set(), unit: new Set() };
   const add = (row) => {
-    const parentKey = { department: null, unresolved: null, policy: "department", unit: "policy", detail_project: "unit", object_group: "detail", object: "group", item: "object", sub_item: "item" }[row.level];
+    const parentKey = { department: null, unresolved: null, policy: "department", unit: "policy", detail_project: "unit", object_group: "detail", object: "group", item: "object", sub_item: "item", sub_item_detail: "sub_item" }[row.level];
     const parent = parentKey ? context[parentKey] : null;
     const line = { line_no: lines.length + 1, parent_line_no: parent?.line_no ?? null, ...row, amount_thousand_krw: null, amount_basis: null, funding: [], formula_value_krw: null, checks: {} };
     lines.push(line);
-    const slot = { department: "department", policy: "policy", unit: "unit", detail_project: "detail", object_group: "group", object: "object", item: "item" }[row.level];
+    const slot = { department: "department", policy: "policy", unit: "unit", detail_project: "detail", object_group: "group", object: "object", item: "item", sub_item: "sub_item" }[row.level];
     if (slot) {
       context[slot] = line;
-      const order = ["department", "policy", "unit", "detail", "group", "object", "item"];
+      const order = ["department", "policy", "unit", "detail", "group", "object", "item", "sub_item"];
       for (const key of order.slice(order.indexOf(slot) + 1)) context[key] = null;
     }
     return line;
@@ -353,7 +309,7 @@ export function extractBudgetLines(parseDir, meta = {}) {
         continue;
       }
       const window = slots.slice(at);
-      const expectations = window.map((slot) => { const e = expected(slot); return e && e.length ? e : slot.level === "object" || slot.level === "object_group" || slot.level === "item" || slot.level === "sub_item" ? "free" : []; });
+      const expectations = window.map((slot) => { const e = expected(slot); return e && e.length ? e : slot.level === "object" || slot.level === "object_group" || FORMULA_LEVELS.has(slot.level) ? "free" : []; });
       // 자유 칸은 바로 뒤 자식 칸들의 합과 같아야 한다(통계목 = 부기 합, 부기 = 하위항목 합).
       const accept = (pieces) => window.slice(0, pieces.length).every((slot, i) => {
         if (expectations[i] !== "free") return true;
@@ -420,12 +376,12 @@ export function extractBudgetLines(parseDir, meta = {}) {
         else assign([], amountTokens(amountText), where);
         return;
       }
-      if (OBJECT_GROUP.test(first) || OBJECT.test(first) || ITEM_MARK.test(first) || SUB_MARK.test(first)) {
+      if (OBJECT_GROUP.test(first) || OBJECT.test(first) || ITEM_MARK.test(first) || SUB_MARK.test(first) || DETAIL_MARK.test(first)) {
         flushPending(OBJECT_GROUP.test(first));
         const rowLines = [];
-        for (const item of splitDetailLines(label, Boolean(context.item))) {
+        for (const item of splitDetailLines(label, Boolean(context.item), Boolean(context.sub_item))) {
           if (item.level === "unknown") { problems.push({ code: "LINE_UNCLASSIFIED", where, text: item.name.slice(0, 60) }); return; }
-          if ((item.level === "item" || item.level === "sub_item") && !context.object) problems.push({ code: "ITEM_WITHOUT_OBJECT", where, text: item.name.slice(0, 60) });
+          if (FORMULA_LEVELS.has(item.level) && !context.object) problems.push({ code: "ITEM_WITHOUT_OBJECT", where, text: item.name.slice(0, 60) });
           const line = add({ level: item.level, code: item.code, name: item.name, formula_text: item.formula, source_text: item.lines.join("\n"), evidence, ...(item.markers ? { annotations: [...item.markers] } : {}) });
           const value = evaluateFormula(item.formula);
           line.formula_value_krw = value === null ? null : Math.round(value * 1000) / 1000;
@@ -435,14 +391,14 @@ export function extractBudgetLines(parseDir, meta = {}) {
         return;
       }
       const labelLines = label.split("\n").map((line) => line.trim()).filter(Boolean);
-      const codeAt = labelLines.findIndex((line) => OBJECT_GROUP.test(line) || OBJECT.test(line) || ITEM_MARK.test(line) || SUB_MARK.test(line));
+      const codeAt = labelLines.findIndex((line) => OBJECT_GROUP.test(line) || OBJECT.test(line) || ITEM_MARK.test(line) || SUB_MARK.test(line) || DETAIL_MARK.test(line));
       const lastLine = lines[lines.length - 1];
       if (codeAt > 0 && !OBJECT_GROUP.test(labelLines[codeAt])) {
         // 통계목·부기 앞의 이름 조각은 앞 행 이름이 줄바꿈으로 넘어온 것이다(새 사업이 아님).
         if (pending.length) pending[pending.length - 1].name += " " + labelLines.slice(0, codeAt).join(" ");
         else if (lastLine) { lastLine.name = (lastLine.name + " " + labelLines.slice(0, codeAt).join(" ")).trim(); lastLine.checks.name_continued = "next_row"; }
         const rowLines = [];
-        for (const item of splitDetailLines(labelLines.slice(codeAt).join("\n"), Boolean(context.item))) {
+        for (const item of splitDetailLines(labelLines.slice(codeAt).join("\n"), Boolean(context.item), Boolean(context.sub_item))) {
           const line = add({ level: item.level, code: item.code, name: item.name, formula_text: item.formula, source_text: item.lines.join("\n"), evidence, ...(item.markers ? { annotations: [...item.markers] } : {}) });
           const value = evaluateFormula(item.formula);
           line.formula_value_krw = value === null ? null : Math.round(value * 1000) / 1000;
@@ -473,7 +429,7 @@ export function extractBudgetLines(parseDir, meta = {}) {
         assign(rowLines, amountTokens(amountText), where);
         return;
       }
-      if (FORMULA_START.test(label) && (lastLine?.level === "item" || lastLine?.level === "sub_item") && !pending.length) {
+      if (FORMULA_START.test(label) && FORMULA_LEVELS.has(lastLine?.level) && !pending.length) {
         // 「8,360,000원」「수련회 2,000,000원」: 줄바꿈으로 넘어온 직전 부기의 이름·산출식.
         const joined = labelLines.join(" ");
         const at = joined.search(FORMULA_START);
@@ -550,7 +506,7 @@ function verify(lines, problems) {
   for (const line of lines) if (line.parent_line_no) (children.get(line.parent_line_no) ?? children.set(line.parent_line_no, []).get(line.parent_line_no)).push(line);
   for (const line of lines) {
     const value = line.amount_thousand_krw === null ? null : parseAmount(line.amount_thousand_krw);
-    if ((line.level === "item" || line.level === "sub_item") && line.formula_text) {
+    if (FORMULA_LEVELS.has(line.level) && line.formula_text) {
       const candidates = thousandCandidates(evaluateFormula(line.formula_text));
       line.checks.formula = !candidates.length ? "not_computable" : value === null ? "no_amount" : candidates.includes(value) ? "match" : "mismatch";
       if (line.checks.formula === "mismatch") problems.push({ code: "FORMULA_MISMATCH", where: line.evidence, text: line.name.slice(0, 40) + " " + line.amount_thousand_krw + " vs " + candidates.join("/") });
