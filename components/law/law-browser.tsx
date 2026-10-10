@@ -137,7 +137,7 @@ function StatusBadge({ status }: { readonly status: LawStatus | null }) {
     >
       {status.configured ? <Check className="size-3.5" aria-hidden="true" /> : <Scale className="size-3.5" aria-hidden="true" />}
       내장형 v{status.package_version ?? "4.15.6"}
-      {status.configured ? " · 사용 가능" : " · 인증값 미설정"}
+      {status.configured ? " · 인증값 설정됨" : " · 인증값 미설정"}
     </span>
   );
 }

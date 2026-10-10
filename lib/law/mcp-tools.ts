@@ -4,7 +4,7 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
 import { LawApiClient } from "korean-law-mcp/lib/api-client";
-import { formatToolError } from "korean-law-mcp/lib/errors";
+import { ErrorCodes, LawApiError, formatToolError } from "korean-law-mcp/lib/errors";
 import { truncateResponse } from "korean-law-mcp/lib/schemas";
 import { maskToolText } from "korean-law-mcp/lib/tool-output";
 import type { McpTool } from "korean-law-mcp/lib/types";
@@ -117,6 +117,88 @@ function stripSecrets(value: unknown, depth = 0): unknown {
     clean[key] = stripSecrets(child, depth + 1);
   }
   return clean;
+}
+
+export interface LawApiEnvelopeFailure {
+  readonly message: string;
+  readonly suggestions: readonly string[];
+}
+
+function decodeXmlValue(value: string): string {
+  return value
+    .replace(/^<!\[CDATA\[|\]\]>$/g, "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/&amp;/g, "&")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/** 법제처가 HTTP 200으로 돌려주는 오류 봉투를 정상적인 0건 응답과 구분한다. */
+export function detectLawApiEnvelopeFailure(text: string): LawApiEnvelopeFailure | null {
+  const trimmed = text.trim();
+  if (!trimmed) return null;
+
+  let result = "";
+  let message = "";
+  try {
+    const parsed = JSON.parse(trimmed) as unknown;
+    if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+      const record = parsed as Record<string, unknown>;
+      result = typeof record.result === "string" ? record.result.trim() : "";
+      message = typeof record.msg === "string" ? record.msg.trim() : "";
+    }
+  } catch {
+    const readTag = (tag: "result" | "msg") => {
+      const match = trimmed.match(new RegExp(`<${tag}\\b[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i"));
+      return match ? decodeXmlValue(match[1]) : "";
+    };
+    result = readTag("result");
+    message = readTag("msg");
+  }
+
+  if (!result && !message) return null;
+  const combined = `${result} ${message}`;
+  if (/사용자\s*정보\s*검증.*실패|정확한\s*서버장비|IP주소.*도메인주소.*등록/u.test(combined)) {
+    return {
+      message: "법제처 OPEN API 사용자 검증에 실패했습니다. 법제처 활용 신청 정보에 실제 운영 서버의 IP 주소 또는 도메인을 등록해야 합니다.",
+      suggestions: [
+        "법제처 OPEN API 활용 신청 정보에 운영 도메인과 서버 출발 IP의 등록 상태를 확인하세요.",
+        "등록 정보가 반영된 뒤 실제 운영 서버에서 다시 호출하세요.",
+      ],
+    };
+  }
+  if (/실패|오류|유효하지|인증|검증|등록/u.test(combined)) {
+    return {
+      message: "법제처 OPEN API가 정상 데이터 대신 오류 응답을 반환했습니다.",
+      suggestions: ["법제처 OPEN API 활용 신청, 인증 정보와 호출 제한 상태를 확인하세요."],
+    };
+  }
+  return null;
+}
+
+/**
+ * v4.15.6의 private readBody는 런타임에서는 일반 프로토타입 메서드다.
+ * 버전을 고정한 상태에서 응답 판독 직후 오류 봉투 검사를 삽입해 NOT_FOUND 오인을 막는다.
+ */
+function createLawApiClient(apiKey: string): LawApiClient {
+  const client = new LawApiClient({ apiKey });
+  const originalReadBody = Reflect.get(client, "readBody");
+  if (typeof originalReadBody !== "function") {
+    throw new Error("korean-law-mcp 응답 판독기를 찾지 못했습니다. 고정 버전 호환성을 확인하세요.");
+  }
+  Reflect.set(client, "readBody", async (...args: unknown[]) => {
+    const text = await (Reflect.apply(originalReadBody, client, args) as Promise<string>);
+    const failure = detectLawApiEnvelopeFailure(text);
+    if (failure) {
+      throw new LawApiError(failure.message, ErrorCodes.API_ERROR, [...failure.suggestions]);
+    }
+    return text;
+  });
+  return client;
 }
 
 function publicText(value: LooseToolResponse, args: unknown): { content: { type: "text"; text: string }[]; isError?: boolean } {
@@ -305,7 +387,7 @@ export async function runLawTool(
     return { content: [{ type: "text", text: `지원하지 않는 법령 도구입니다: ${name}` }], isError: true };
   }
   const args = stripSecrets(rawArgs);
-  const client = new LawApiClient({ apiKey: options.apiKey?.trim() ?? "" });
+  const client = createLawApiClient(options.apiKey?.trim() ?? "");
   // execute_tool·discover_tools가 같은 런타임에 이식된 공개 핵심 도구만 다루게 한다.
   setAllToolsRef(EXECUTABLE_TOOL_INDEX);
   try {

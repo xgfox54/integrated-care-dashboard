@@ -54,7 +54,8 @@ const worker = {
     if (url.pathname === "/mcp") {
       // 공개 MCP는 배경 수집을 부수적으로 일으키지 않는다. 법령 도구만 법제처 OPEN API를 요청 시점에 읽는다.
       // korean-law-mcp가 모듈 초기화 때 Referer를 읽으므로 동적 import 전에 운영 등록값을 주입한다.
-      if (workerEnv.LAW_REFERER?.trim()) process.env.LAW_REFERER = workerEnv.LAW_REFERER.trim();
+      // 별도 설정이 없으면 사용자 헤더가 아닌 Worker의 실제 요청 origin을 사용한다.
+      process.env.LAW_REFERER = workerEnv.LAW_REFERER?.trim() || `${url.origin}/`;
       const [{ handleMcpRequest }, { McpData }, { cachedWikiEdits }] = await Promise.all([
         import("../lib/mcp/server"),
         import("../lib/mcp/data"),
@@ -68,7 +69,7 @@ const worker = {
     }
     if (url.pathname === "/api/law") {
       // 웹 법령 검색도 외부 MCP가 아니라 같은 Worker의 korean-law-mcp 실행 모듈을 직접 호출한다.
-      if (workerEnv.LAW_REFERER?.trim()) process.env.LAW_REFERER = workerEnv.LAW_REFERER.trim();
+      process.env.LAW_REFERER = workerEnv.LAW_REFERER?.trim() || `${url.origin}/`;
       const { handleLawHttpRequest } = await import("../lib/law/http");
       return secureResponse(await handleLawHttpRequest(request, workerEnv));
     }
