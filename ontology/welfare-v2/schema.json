@@ -127,7 +127,7 @@
       "id": "LegalProvision",
       "prefix": "law:",
       "status": "PARTIAL",
-      "note": "법제처 법령·조문 식별자·버전·시행일(조문 본문은 해시만). korean-law-mcp 4.15.5 로컬 수집 묶음으로만 들어옴"
+      "note": "법제처 법령·조문 식별자·버전·시행일(조문 본문은 해시만). korean-law-mcp 4.15.6 로컬 수집 묶음으로만 들어옴"
     }
   ],
   "relations": [

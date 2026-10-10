@@ -178,6 +178,7 @@ const NAV_TABS: Record<string, TabCode> = {
   "/mindmap": "mindmap",
   "/news": "news",
   "/budget": "budget",
+  "/law": "law",
   "/sources": "sources",
 };
 

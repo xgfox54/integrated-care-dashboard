@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import vinext from "vinext";
 import { defineConfig } from "vite";
 import hostingConfig from "./.openai/hosting.json" with { type: "json" };
@@ -13,6 +14,20 @@ const { d1, r2 } = hostingConfig;
 // macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === "seatbelt";
 const managedLinux = readExecutionProfile() === "managed-linux";
+
+// korean-law-mcp NOTICE가 별도 허락을 권고한 JS 안티봇 우회 모듈은 번들에 넣지 않는다.
+// 법제처가 HTML 차단 페이지를 돌려주면 원본의 HTML 감지·재시도 뒤 오류로 끝낸다.
+const noKoreanLawAntibotPlugin = {
+  name: "no-korean-law-antibot",
+  enforce: "pre" as const,
+  resolveId(source: string, importer?: string) {
+    const normalized = importer?.replaceAll("\\", "/");
+    if (source === "./law-antibot.js" && normalized?.endsWith("/node_modules/korean-law-mcp/build/lib/fetch-with-retry.js")) {
+      return fileURLToPath(new URL("./lib/law/no-antibot.ts", import.meta.url));
+    }
+    return null;
+  },
+};
 
 const localBindingConfig = {
   main: "./worker/index.ts",
@@ -68,6 +83,7 @@ export default defineConfig(async () => {
       ...(isCodexSeatbeltSandbox ? { watch: { useFsEvents: false, usePolling: true } } : {}),
     },
     plugins: [
+      noKoreanLawAntibotPlugin,
       vinext(),
       sites({ mockAuth: !managedLinux }),
       cloudflare({

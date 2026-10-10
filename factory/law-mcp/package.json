@@ -13,6 +13,6 @@
     "collect": "node src/collect.mjs"
   },
   "dependencies": {
-    "korean-law-mcp": "4.15.5"
+    "korean-law-mcp": "4.15.6"
   }
 }

@@ -1,5 +1,5 @@
 // 법령 근거 후보 수집(로컬 전용). 관리자 화면에서 내려받은 후보 목록(정부24 상세의 법령·자치법규·행정규칙 인용)을
-// korean-law-mcp 4.15.5로 법제처에 대조해 welfare-law-bundle-1 묶음을 만든다. 조문 본문은 저장하지 않고 해시만 남긴다.
+// korean-law-mcp 4.15.6로 법제처에 대조해 welfare-law-bundle-1 묶음을 만든다. 조문 본문은 저장하지 않고 해시만 남긴다.
 // 사용: LAW_OC=<발급 인증값> node src/collect.mjs --candidates <후보.json> --out <폴더> [--query-date YYYY-MM-DD] [--limit 50]
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";

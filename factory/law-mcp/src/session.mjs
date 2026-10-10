@@ -9,7 +9,7 @@ import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 export const PACKAGE_ROOT = path.join(here, "..", "node_modules", "korean-law-mcp");
-export const PINNED_VERSION = "4.15.5";
+export const PINNED_VERSION = "4.15.6";
 
 export function installedVersion() {
   return JSON.parse(readFileSync(path.join(PACKAGE_ROOT, "package.json"), "utf8")).version;

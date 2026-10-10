@@ -24,6 +24,7 @@ export const PAGE_LABELS: Record<PageCode, string> = {
   mindmap: "복지정보 관계성 지도",
   news: "복지뉴스",
   budget: "복지예산",
+  law: "법령정보",
   sources: "데이터 출처",
   usage_policy: "이용통계 안내",
 };
@@ -36,6 +37,7 @@ export const TAB_LABELS: Record<TabCode, string> = {
   mindmap: "복지정보 관계성 지도",
   news: "복지뉴스",
   budget: "복지예산",
+  law: "법령정보",
   sources: "데이터 출처",
   usage_policy: "이용통계 안내",
 };

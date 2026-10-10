@@ -6,7 +6,7 @@ import { CARE_RESOURCES_PUBLIC } from "@/lib/integrations/care-hold";
 import { markUsageNavigation } from "@/lib/usage/track";
 import { cn } from "@/lib/utils";
 
-// 점 색은 탭 순서(자리)에 붙는다: 주황·초록·파랑을 두 번 되풀이하고 마지막 자리는 빨강. 현재 화면 탭은 초록 채움 위에 흰 점으로 바뀐다.
+// 점 색은 탭 순서에 주황·초록·파랑을 되풀이해 붙인다. 현재 화면 탭은 초록 채움 위에 흰 점으로 바뀐다.
 const NAV_ITEMS: readonly { href: string; label: string; dot?: string }[] = [
   { href: "/", label: "대시보드", dot: "bg-(--jeju-orange)" },
   { href: "/wiki", label: "통합돌봄 WIKI", dot: "bg-(--jeju-green)" },
@@ -14,6 +14,7 @@ const NAV_ITEMS: readonly { href: string; label: string; dot?: string }[] = [
   { href: "/mindmap", label: "복지정보 관계성 지도", dot: "bg-(--jeju-orange)" },
   { href: "/news", label: "복지뉴스", dot: "bg-(--jeju-green)" },
   { href: "/budget", label: "복지예산", dot: "bg-(--jeju-blue)" },
+  { href: "/law", label: "법령정보", dot: "bg-(--jeju-orange)" },
   { href: "/sources", label: "데이터 출처", dot: "bg-(--jeju-danger)" },
   // 돌봄자원은 보류 중이라 메뉴에 내지 않는다(lib/integrations/care-hold.ts).
   ...(CARE_RESOURCES_PUBLIC ? [{ href: "/care", label: "돌봄자원", dot: "bg-(--jeju-green)" }] : []),

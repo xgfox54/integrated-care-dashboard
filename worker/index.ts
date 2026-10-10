@@ -52,7 +52,9 @@ const worker = {
     const limited = await enforceApiRateLimit(request, workerEnv.DB);
     if (limited) return secureResponse(limited);
     if (url.pathname === "/mcp") {
-      // 공개 MCP는 저장된 자료만 읽는다. 수집·동기화를 부수적으로 일으키지 않도록 배경 작업 트리거보다 먼저 처리한다.
+      // 공개 MCP는 배경 수집을 부수적으로 일으키지 않는다. 법령 도구만 법제처 OPEN API를 요청 시점에 읽는다.
+      // korean-law-mcp가 모듈 초기화 때 Referer를 읽으므로 동적 import 전에 운영 등록값을 주입한다.
+      if (workerEnv.LAW_REFERER?.trim()) process.env.LAW_REFERER = workerEnv.LAW_REFERER.trim();
       const [{ handleMcpRequest }, { McpData }, { cachedWikiEdits }] = await Promise.all([
         import("../lib/mcp/server"),
         import("../lib/mcp/data"),
@@ -61,8 +63,14 @@ const worker = {
       if (!workerEnv.DB) return secureResponse(Response.json({ error: "MCP_UNAVAILABLE" }, { status: 503, headers: { "cache-control": "no-store" } }));
       const response = await handleMcpRequest(request, new McpData(workerEnv.DB, cachedWikiEdits), (error, tool) => {
         logServerError(error, { path: "/mcp:" + tool, status: 500 });
-      });
+      }, { lawApiKey: workerEnv.LAW_OC });
       return secureResponse(response);
+    }
+    if (url.pathname === "/api/law") {
+      // 웹 법령 검색도 외부 MCP가 아니라 같은 Worker의 korean-law-mcp 실행 모듈을 직접 호출한다.
+      if (workerEnv.LAW_REFERER?.trim()) process.env.LAW_REFERER = workerEnv.LAW_REFERER.trim();
+      const { handleLawHttpRequest } = await import("../lib/law/http");
+      return secureResponse(await handleLawHttpRequest(request, workerEnv));
     }
     // 이 호스팅에서는 예약 작업이 돌지 않으므로, 응답 뒤 남는 시간에 수집을 한 단계씩 잇는다.
     // 보도자료 수집(기관 누리집 요청, 7초×3회)을 먼저 단독으로 끝낸다. 예산 수집(20초 요청·대량 DB 쓰기)과 동시에 돌던 동안

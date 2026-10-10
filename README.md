@@ -15,6 +15,7 @@
 | 대시보드 | `/` | 광역시·도와 시·군·구별 통합돌봄 사업 현황, 지도, 분야별 분포, 지자체 비교, CSV 내려받기 |
 | 통합돌봄 WIKI | `/wiki` | 사업별 설명·대상·신청 방법과 근거 자료 |
 | 복지제도100 | `/welfare100` | 복지로에 등록된 중앙부처·지자체 복지서비스 전체와 주요 제도 100개의 업무구조도 |
+| 법령정보 | `/law` | 법령·조문·별표·판례·해석례·결정례 검색, 법률 리서치와 조례 정비 점검 |
 | 데이터 출처 | `/sources` | 자료 출처와 현행화 방식 |
 
 접속한 지역(모바일은 위치 동의 시 GPS, 그 밖에는 접속 IP 기준)의 광역시·도 자료를 먼저 보여 주고, 나머지 지역은 가나다 순서로 미리 받아 둡니다. 브라우저의 데이터 절약 모드가 켜져 있으면 미리받기를 하지 않습니다.
@@ -25,6 +26,16 @@
 - Cloudflare Workers, D1(SQLite)
 - Tailwind CSS 4, shadcn/ui 일부 부품
 - 테스트: Node.js 내장 테스트(`node --test`)
+- 법령 조회: `korean-law-mcp` 4.15.6의 조회·검증 로직을 Worker에 내장해 법제처 국가법령정보 OPEN API를 직접 호출
+
+## 내장 법령 조회
+
+법령 기능은 외부 MCP 엔드포인트를 호출하지 않습니다. `/law` 웹 화면, `/api/law`, 기존 `/mcp`가 `lib/law/`의 같은 실행 모듈을 공유합니다. 공개 MCP에는 법령 검색·본문·별표·판례·리서치·인용검증·조례 정비·도구 안내를 포함한 10개 읽기 전용 도구가 등록됩니다.
+
+- 인증값은 Worker 비밀값 `LAW_OC`로만 주입하며 브라우저 입력·응답·로그에 포함하지 않습니다.
+- 직접 조회한 법령·판례 응답 원문은 D1에 저장하지 않습니다.
+- 원본 NOTICE가 별도 허락을 권고한 JS 안티봇 우회 모듈은 배포 번들에서 제외했습니다. 법제처가 HTML 차단 페이지를 반환하면 재시도 후 정상 오류로 처리합니다.
+- 업무 적용 전 시행일·조문·별표는 국가법령정보센터 원문으로 최종 확인해야 합니다.
 
 ## 폴더 구조
 
@@ -66,6 +77,8 @@ done
 | `LOFIN_API_KEY` | 지방재정365 세출 현황(복지예산) |
 | `KOSIS_API_KEY` | KOSIS 국가통계 |
 | `SEOUL_OPEN_DATA_KEY` | 서울 열린데이터광장 보도자료 |
+| `LAW_OC` | 법제처 국가법령정보 공동활용 OPEN API 인증값. Worker 비밀값으로만 저장 |
+| `LAW_REFERER` | 법제처에 등록한 대시보드 도메인 URL(선택). 예: 운영 사이트 주소 |
 
 ## 자료 출처
 
@@ -73,6 +86,7 @@ done
 - 공공데이터포털 한국사회보장정보원 지자체 복지서비스 API
 - 복지로 복지서비스(중앙부처·지자체): <https://www.bokjiro.go.kr>
 - 복지톡 DB: 보건복지부 사업안내 매뉴얼
+- 법제처 국가법령정보 공동활용 OPEN API: <https://www.law.go.kr>
 - 시도 경계: 통계청 2018 경계를 가공한 [southkorea-maps](https://github.com/southkorea/southkorea-maps)
 - 지도 도형: [@svg-maps/south-korea](https://github.com/VictorCazanave/svg-maps)(CC BY 4.0)
 
@@ -91,3 +105,4 @@ done
 - 복지제도100 화면: [hosungseo/korea100](https://github.com/hosungseo/korea100)을 고쳐 씀(MIT, `components/welfare100/KOREA100-LICENSE`)
 - shadcn/ui Tailwind 스타일(MIT, `vendor/shadcn-tailwind-4.13.0.LICENSE.md`)
 - Sites Vite 플러그인(MIT, `build/sites-vite-plugin.LICENSE`)
+- korean-law-mcp 4.15.6(MIT, `vendor/korean-law-mcp.LICENSE`, 세부사항 `THIRD_PARTY_NOTICES.md`)

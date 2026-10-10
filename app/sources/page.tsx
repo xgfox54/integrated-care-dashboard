@@ -105,6 +105,17 @@ export default async function SourcesPage() {
         </p>
       </Section>
 
+      <Section title="법령정보">
+        <p>
+          법령정보 화면과 공개 MCP의 법령 도구는 외부 법령 MCP 서버에 연결하지 않습니다. 대시보드 Worker에 내장한 korean-law-mcp 4.15.6의
+          조회·검증 로직이 법제처 국가법령정보 공동활용 OPEN API를 요청 시점에 직접 호출합니다. 법제처 인증값은 서버 비밀값으로만 보관하고 브라우저에는 전달하지 않습니다.
+        </p>
+        <p>
+          직접 조회한 법령·판례 응답 원문은 대시보드 데이터베이스에 저장하지 않습니다. 사업 상세에 표시하는 법령 근거 연결은 별도의 검토 절차를 거쳐 승인된 식별자·시행일·근거만 공개합니다.
+          적용 시점과 법적 효력이 필요한 판단은 <a href="https://www.law.go.kr" target="_blank" rel="noreferrer" className={LINK_CLASS}>국가법령정보센터 원문<span className="sr-only">(새 창)</span></a>에서 최종 확인해야 합니다.
+        </p>
+      </Section>
+
       <Section title="복지정보 관계성 지도">
         <p>
           공개된 사업·제도·지역·법령·보도자료·예산 사이의 확인된 연결을 시각화합니다.
@@ -169,8 +180,8 @@ export default async function SourcesPage() {
 
       <Section title={CARE_RESOURCES_PUBLIC ? "외부 데이터 연계(지역 돌봄 수요·자원, 공식 혜택정보, 법령 근거)" : "외부 데이터 연계(공식 혜택정보, 법령 근거)"}>
         <p>
-          아래 원천은 제공기관의 공개 API에서 받아 {CARE_RESOURCES_PUBLIC ? "지역 돌봄 자원 화면과 " : ""}위키 사업 상세에 씁니다. 사업과 정부24 서비스·법령의 연결은
-          검토·승인된 연결만 공개합니다. 법령의 원천은 법제처 국가법령정보센터이며 적용 시점과 조문 근거를 함께 확인합니다.
+          아래 원천은 제공기관의 공개 API에서 받아 {CARE_RESOURCES_PUBLIC ? "지역 돌봄 자원 화면과 " : ""}위키 사업 상세에 씁니다. 사업과 정부24 서비스·법령의 저장된 연결은
+          검토·승인된 연결만 공개합니다. 법령정보 화면의 직접 조회와 사업별 확정 근거 저장은 서로 구분하며, 적용 시점과 조문 근거를 함께 확인합니다.
         </p>
         <ul className="grid gap-2">
           {integrations.filter((row) => CARE_RESOURCES_PUBLIC || !CARE_DATASET_KEYS.has(row.dataset_key)).map((row) => (

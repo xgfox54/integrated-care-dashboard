@@ -6,9 +6,9 @@ import { CARE_RESOURCES_PUBLIC, CARE_TOOL_NAMES } from "../integrations/care-hol
 export const MCP_SCHEMA_VERSION = "2.0";
 // 공식 명칭(운영자 지정 2026-10-04). serverInfo.name과 표시용 title에 같은 이름을 쓴다.
 export const MCP_SERVER_NAME = "Korean Welfare MCP";
-export const MCP_SERVER_VERSION = "1.0.0";
+export const MCP_SERVER_VERSION = "1.1.0";
 
-/** 공개 도구 22개(기존 17개 + 외부 연계 5개)의 명시적 허용목록. 여기 없는 이름은 등록하지 않는다. */
+/** 공개 도구 32개(복지 22개 + 내장 법령 10개)의 명시적 허용목록. 여기 없는 이름은 등록하지 않는다. */
 export const MCP_TOOL_NAMES = [
   "search",
   "fetch",
@@ -33,6 +33,17 @@ export const MCP_TOOL_NAMES = [
   "find_care_institutions",
   "get_care_institution",
   "get_program_public_info",
+  // 내장 법령 조회(korean-law-mcp 4.15.6, 외부 MCP 서버에 연결하지 않음)
+  "legal_research",
+  "legal_analysis",
+  "search_law",
+  "get_law_text",
+  "get_annexes",
+  "search_decisions",
+  "get_decision_text",
+  "ordinance_radar",
+  "discover_tools",
+  "execute_tool",
 ] as const;
 
 export type McpToolName = (typeof MCP_TOOL_NAMES)[number];

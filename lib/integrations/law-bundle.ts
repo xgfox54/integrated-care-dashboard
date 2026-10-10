@@ -1,4 +1,4 @@
-// 법령 근거 반입 묶음(welfare-law-bundle-1). 로컬 수집기(factory/law-mcp)가 korean-law-mcp 4.15.5로 법제처에서 확인한 결과를
+// 법령 근거 반입 묶음(welfare-law-bundle-1). 로컬 수집기(factory/law-mcp)가 korean-law-mcp 4.15.6로 법제처에서 확인한 결과를
 // 관리자가 올린다. 서버는 법제처를 직접 부르지 않는다(인증값·로컬 프로세스 없음). 반입 결과는 모두 후보(CANDIDATE)이며,
 // 조문이 존재한다는 확인과 그 조문이 사업의 실제 근거라는 판단은 별개다. 근거 확정은 관리자 검토(VERIFIED)로만 한다.
 import { z } from "zod";
@@ -7,8 +7,8 @@ import type { SqlDatabase, SqlStatement } from "../sql-database.ts";
 import { sha256Hex } from "./http.ts";
 
 export const LAW_BUNDLE_SCHEMA = "welfare-law-bundle-1";
-export const PINNED_LAW_PACKAGE = "korean-law-mcp@4.15.5";
-export const LAW_SOURCE_LABEL = "법제처 국가법령정보 OPEN API(원천) · korean-law-mcp 4.15.5(조회·검증 계층)";
+export const PINNED_LAW_PACKAGE = "korean-law-mcp@4.15.6";
+export const LAW_SOURCE_LABEL = "법제처 국가법령정보 OPEN API(원천) · korean-law-mcp 4.15.6(조회·검증 계층)";
 
 const isoDay = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
 const sha = z.string().regex(/^[0-9a-f]{64}$/);

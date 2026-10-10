@@ -1,4 +1,4 @@
-// 로컬 법령 수집기 시험. 도구 출력 형식은 korean-law-mcp 4.15.5 소스(search-hits.js formatHit, law-text.js)와 같게 만들었다.
+// 로컬 법령 수집기 시험. 도구 출력 형식은 korean-law-mcp 4.15.6 소스(search-hits.js formatHit, law-text.js)와 같게 만들었다.
 // 실제 서버(stdio) 시험은 인증값 없이 initialize·tools/list와 인증값 누락 응답만 확인한다(법제처로 요청이 나가지 않는다).
 import assert from "node:assert/strict";
 import test from "node:test";
@@ -65,7 +65,7 @@ test("가짜 도구 응답으로 후보 한 건을 대조해 서버 반입 형�
   assert.equal(item.references[0].article_status, "EXISTS");
   assert.match(item.references[0].text_sha256, /^[0-9a-f]{64}$/);
   assert.equal(JSON.stringify(item).includes("홀로 사는 노인"), false, "조문 본문은 묶음에 넣지 않는다");
-  const bundle = buildBundle([item], { queryDate: "2026-10-05", server: { name: "korean-law", version: "4.15.5" }, protocolSha: "a".repeat(64), blockedCount: 0 });
+  const bundle = buildBundle([item], { queryDate: "2026-10-05", server: { name: "korean-law", version: "4.15.6" }, protocolSha: "a".repeat(64), blockedCount: 0 });
   const { importLawBundle } = await import("../../../lib/integrations/law-bundle.ts");
   const { database } = await import("../../../lib/press-test-support.mjs");
   const db = database();
@@ -74,11 +74,11 @@ test("가짜 도구 응답으로 후보 한 건을 대조해 서버 반입 형�
   assert.equal(db.sqlite.prepare("SELECT status FROM program_ext_link WHERE source_kind = 'LAW'").get().status, "CANDIDATE");
 });
 
-test("실제 korean-law-mcp 4.15.5(stdio): 인증값 없이 initialize·tools/list가 되고, 도구 호출은 인증값 누락으로 끝난다", { timeout: 60_000 }, async () => {
+test("실제 korean-law-mcp 4.15.6(stdio): 인증값 없이 initialize·tools/list가 되고, 도구 호출은 인증값 누락으로 끝난다", { timeout: 60_000 }, async () => {
   const session = await openLawSession({ lawOc: "" });
   try {
     const server = session.client.getServerVersion();
-    assert.deepEqual({ name: server.name, version: server.version }, { name: "korean-law", version: "4.15.5" });
+    assert.deepEqual({ name: server.name, version: server.version }, { name: "korean-law", version: "4.15.6" });
     const { tools } = await session.client.listTools();
     for (const name of ["search_law", "get_law_text", "legal_analysis", "ordinance_radar", "legal_research", "execute_tool", "discover_tools"]) assert.ok(tools.some((tool) => tool.name === name), name);
     const item = await collectItem({ candidate_id: "c", target_kind: "service", target_id: "service:x", target_label: "", citation_text: "노인복지법 제27조의2", source: { kind: "MANUAL", id: "t", field: "법령" } }, "2026-10-05", (name, args) => session.client.callTool({ name, arguments: args }));

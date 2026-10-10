@@ -1,4 +1,4 @@
-// korean-law-mcp 4.15.5 도구 출력(텍스트)에서 식별자·시점을 읽는다. 형식 근거: build/tools/search-hits.js formatHit,
+// korean-law-mcp 4.15.6 도구 출력(텍스트)에서 식별자·시점을 읽는다. 형식 근거: build/tools/search-hits.js formatHit,
 // build/tools/law-text.js(법령명·공포일·시행일·시행예정 표시, [NOT_FOUND]). 읽지 못한 값은 null/UNKNOWN으로 두고 추정하지 않는다.
 
 /** 「노인복지법 제27조의2, 같은 법 시행령 제18조」 같은 인용 글에서 (법령명, 조문) 목록을 뽑는다. 「같은 법·동법」은 바로 앞 법령으로 바꾼다. */

@@ -19,10 +19,13 @@ async function request(path, json = true) {
 }
 let failure;
 try {
-  for (const path of ["/", "/wiki", "/welfare100", "/mindmap", "/news", "/budget", "/sources", "/usage-policy"]) {
+  for (const path of ["/", "/wiki", "/welfare100", "/mindmap", "/news", "/budget", "/law", "/sources", "/usage-policy"]) {
     const html = await request(path, false);
     assert.ok(html.includes("전국 통합돌봄"), `${path}: HTML 페이지 확인`);
   }
+  const law = await request("/api/law");
+  assert.equal(law.implementation, "embedded", "법령 조회는 외부 MCP가 아닌 내장형");
+  assert.equal(law.package_version, "4.15.6", "고정된 korean-law-mcp 버전");
   const summary = await request("/data/summary.json");
   assert.ok(Date.parse(summary.fetchedAt) > Date.UTC(2026, 0, 1), "정적 자료 확인 날짜");
   const service = "service:00831489622127|강원특별자치도|강릉시|일상생활돌봄|안부확인|1촌돌봄단";

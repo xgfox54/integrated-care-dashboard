@@ -290,6 +290,8 @@ export function BudgetBrowser() {
   };
   useEffect(() => {
     if (options.data && draft.account && !options.data.filters.accounts.some((account) => account.code === draft.account)) {
+      // 서버가 돌려준 회계 선택지가 바뀌면 더는 유효하지 않은 사용자 선택만 정리한다.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setDraft((current) => ({ ...current, account: "" }));
     }
   }, [options.data, draft.account]);

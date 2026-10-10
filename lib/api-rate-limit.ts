@@ -14,6 +14,7 @@ const API_RATE_POLICIES: Readonly<Record<string, ApiRatePolicy>> = {
   "/api/dataset/service": { name: "dataset-service", limit: 120, windowSeconds: 60 },
   "/api/dataset/summary": { name: "dataset-summary", limit: 120, windowSeconds: 60 },
   "/mcp": { name: "mcp", limit: 60, windowSeconds: 60 },
+  "/api/law": { name: "law", limit: 30, windowSeconds: 60 },
   "/api/budget": { name: "budget", limit: 120, windowSeconds: 60 },
 };
 

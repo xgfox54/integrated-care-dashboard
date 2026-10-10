@@ -1,5 +1,5 @@
 // 법제처(law.go.kr)가 자동화 요청에 보내는 JS 차단 페이지를 판정한다.
-// korean-law-mcp 4.15.5의 law-antibot 모듈은 이 페이지를 해석해 우회 요청을 보낸다. 이 수집기는 우회하지 않는다.
+// korean-law-mcp 4.15.6의 law-antibot 모듈은 이 페이지를 해석해 우회 요청을 보낸다. 이 수집기는 우회하지 않는다.
 // 판정 기준은 같은 모듈이 쓰는 표지(location.assign이 문서 앞 4KB 안에 있는 HTML)와 같게 둔다.
 export const ANTIBOT_PROBE_BYTES = 4096;
 export const ANTIBOT_BLOCK_CODE = "LAW_ANTIBOT_CHALLENGE_BLOCKED";
