@@ -15,15 +15,23 @@ const { d1, r2 } = hostingConfig;
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === "seatbelt";
 const managedLinux = readExecutionProfile() === "managed-linux";
 
-// korean-law-mcp NOTICE가 별도 허락을 권고한 JS 안티봇 우회 모듈은 번들에 넣지 않는다.
-// 법제처가 HTML 차단 페이지를 돌려주면 원본의 HTML 감지·재시도 뒤 오류로 끝낸다.
-const noKoreanLawAntibotPlugin = {
-  name: "no-korean-law-antibot",
+const NO_LAW_ANTIBOT_MODULE = fileURLToPath(new URL("./lib/law/no-antibot.ts", import.meta.url));
+const LAW_WORKER_CACHE_MODULE = fileURLToPath(new URL("./lib/law/worker-cache.ts", import.meta.url));
+
+// korean-law-mcp를 Worker 런타임에 맞춘다.
+// 1) NOTICE가 별도 허락을 권고한 JS 안티봇 우회 구현은 번들에서 제외한다.
+// 2) 모듈 전역 setInterval 캐시는 요청 시 지연 정리 방식으로 교체한다.
+const koreanLawWorkerCompatPlugin = {
+  name: "korean-law-worker-compat",
   enforce: "pre" as const,
   resolveId(source: string, importer?: string) {
     const normalized = importer?.replaceAll("\\", "/");
-    if (source === "./law-antibot.js" && normalized?.endsWith("/node_modules/korean-law-mcp/build/lib/fetch-with-retry.js")) {
-      return fileURLToPath(new URL("./lib/law/no-antibot.ts", import.meta.url));
+    if (!normalized?.includes("/node_modules/korean-law-mcp/build/")) return null;
+    if (source === "./law-antibot.js" && normalized.endsWith("/lib/fetch-with-retry.js")) {
+      return NO_LAW_ANTIBOT_MODULE;
+    }
+    if ((source === "./cache.js" || source === "../lib/cache.js")) {
+      return LAW_WORKER_CACHE_MODULE;
     }
     return null;
   },
@@ -83,7 +91,7 @@ export default defineConfig(async () => {
       ...(isCodexSeatbeltSandbox ? { watch: { useFsEvents: false, usePolling: true } } : {}),
     },
     plugins: [
-      noKoreanLawAntibotPlugin,
+      koreanLawWorkerCompatPlugin,
       vinext(),
       sites({ mockAuth: !managedLinux }),
       cloudflare({
