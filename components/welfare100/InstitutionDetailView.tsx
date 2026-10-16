@@ -281,7 +281,7 @@ function OnePageCanvas({
                     ) : (
                       <strong>{basis.law}</strong>
                     )}
-                    <span>{basis.articles?.replace(/,\s*(?=제\d)/g, ",\n") || "조문 미표기"}{basis.reviewNote && <><br /><small>{basis.reviewNote}</small></>}</span>
+                    <span>{basis.articles?.replace(/,\s*(?=제\d)/g, ",\n") || "조문 미표기"}{(basis.reviewNote || basis.scopeNote) && <><br /><small>{basis.reviewNote ?? basis.scopeNote}</small></>}</span>
                     <small>{basis.kind}</small>
                   </div>
                 );

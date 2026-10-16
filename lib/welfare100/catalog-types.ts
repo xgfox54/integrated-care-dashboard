@@ -56,6 +56,9 @@ export interface BokjiroLaw {
   kind: LegalBasisKind;
   url?: string;
   reviewNote?: string;
+  scopeNote?: string;
+  sourceName?: string;
+  sourceArticle?: string;
 }
 
 /** 복지로 원자료가 지난 내용일 때, 확인한 최신 자료로 고친 기록(data/welfare100/bokjiro-edits.json). */

@@ -332,7 +332,7 @@ if (FROM_ITEMS) {
 // ---------------------------------------------------------------- 최신 자료 반영(data/welfare100/bokjiro-edits.json)
 // 복지로 원자료가 지난 내용일 때 확인한 최신 자료로 고치거나 지운다. 복지로 자료를 다시 받아도 이 파일이 다시 적용된다.
 // 재연결 점검의 사업 파일에는 이미 반영돼 있으므로 다시 적용하지 않는다.
-const EDITABLE_FIELDS = new Set(["name", "summary", "target", "selection", "benefit", "applyText", "contacts", "websites", "forms", "applyMethods", "startDate", "endDate"]);
+const EDITABLE_FIELDS = new Set(["name", "summary", "target", "selection", "benefit", "applyText", "contacts", "websites", "forms", "applyMethods", "startDate", "endDate", "steps"]);
 const bokjiroEdits = FROM_ITEMS ? {} : readJson(path.join(DATA, "bokjiro-edits.json"));
 for (const entry of bokjiroEdits.remove ?? []) {
   if (!rawById.delete(entry.id)) console.warn("삭제 대상이 복지로 목록에 없음", entry.id, entry.name);

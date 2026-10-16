@@ -9,6 +9,7 @@ import { createHash } from "node:crypto";
 import { COMBINED_REVISION, ORIGINALS_REVISION, combinedManualLines, createManualPageLocator, originalPages, readCorpus } from "./manual-pages.mjs";
 import { listRowMismatch, listRowRegion, MANUAL_LINK_REVIEWS, manualLinkAllowed, manualLinkReview, manualLinkReviewState, REGION_LIST_MANUALS, talkSourceKeys } from "./manual-link-scope.mjs";
 import { writeSplitIndex } from "./split-index.mjs";
+import { resolveManualSourceOverride } from "./manual-source-overrides.mjs";
 
 const argv = process.argv.slice(2);
 const check = argv.includes("--check");
@@ -18,6 +19,7 @@ const SITE = process.cwd();
 const CORPUS = path.join(SITE, "data/manual-corpus/assets/__manual_corpus");
 const ITEMS = path.join(path.resolve(SITE, argv.includes("--out") ? argv[argv.indexOf("--out") + 1] : "public/data/welfare100"), "items");
 const manualTitles = JSON.parse(fs.readFileSync(path.join(SITE, "data/welfare100/manuals.json"), "utf8"));
+const sourceOverrides = JSON.parse(fs.readFileSync(path.join(SITE, "data/welfare100/manual-source-overrides.json"), "utf8"));
 
 const manualLines = combinedManualLines(readCorpus(CORPUS, COMBINED_REVISION));
 const pages = originalPages(readCorpus(CORPUS, ORIGINALS_REVISION));
@@ -103,14 +105,16 @@ for (const file of fs.readdirSync(ITEMS).filter((name) => name.endsWith(".json")
     const present = new Set(kept.map((ref) => ref.key));
     const added = [];
     for (const key of payload.record.src.filter((key) => !present.has(key))) {
-      const found = locateProgram(key, names);
+      const override = sourceOverrides.overrides.find((row) => row.item === itemId && row.source_key === key);
+      const sourceKey = override?.key ?? key;
+      const found = override ? resolveManualSourceOverride(override, { manualLines, pages, locate, fallback: () => locateProgram(key, names) }) : locateProgram(key, names);
       const result = { ...found, original: withOcrCheck(found.original) };
       const outcome = "SOURCE_" + (result.original ? result.status : "NOT_FOUND");
       counts[outcome] = (counts[outcome] ?? 0) + 1;
-      report.push({ item: file.replace(/\.json$/, ""), name, key, title: manualTitles[key], line: 0, match: "제도명 일치", curatedSource: true, outcome, file: result.original?.file ?? null, page: result.original?.page ?? null, pageEnd: result.original?.pageEnd ?? null, basis: result.original?.basis ?? null, ocr: result.original?.ocr ?? null, expectedPage: null, quote: result.original?.quote ?? null, previousExcerpt: null, heading: null });
+      report.push({ item: file.replace(/\.json$/, ""), name, key: sourceKey, sourceKey: key, sectionLine: override?.section_line ?? null, title: manualTitles[sourceKey], line: 0, match: "제도명 일치", curatedSource: true, outcome, file: result.original?.file ?? null, page: result.original?.page ?? null, pageEnd: result.original?.pageEnd ?? null, basis: result.original?.basis ?? null, ocr: result.original?.ocr ?? null, expectedPage: null, quote: result.original?.quote ?? null, previousExcerpt: null, heading: null });
       if (!result.original) continue;
       const heading = result.original.quote?.split("\n")[0];
-      added.push({ key, title: manualTitles[key] ?? "복지톡 DB", line: 0, ...(heading ? { heading } : {}), match: "제도명 일치", count: 1, excerpt: result.original.quote ?? result.original.file, curatedSource: true, original: result.original });
+      added.push({ key: sourceKey, title: manualTitles[sourceKey] ?? "복지톡 DB", line: 0, ...(heading ? { heading } : {}), match: "제도명 일치", count: 1, excerpt: result.original.quote ?? result.original.file, curatedSource: true, ...(override ? { sourceKey: key, sectionLine: override.section_line ?? null, review: { decision: override.decision, checkedAt: sourceOverrides.checked_at, source: "review" } } : {}), original: result.original });
     }
     payload.extra.talkRefs = [...added, ...kept];
     // 목록의 매뉴얼 수(k)는 lib/welfare100/bokjiro.ts talkSourceCount와 같이 연결 매뉴얼과 정리 근거 매뉴얼(record.src)을 함께 센다.
@@ -133,7 +137,13 @@ for (const file of fs.readdirSync(ITEMS).filter((name) => name.endsWith(".json")
   }
 }
 const blocked = staleReviews.length > 0 && !allowStale;
-if (!check && !blocked) for (const [target, after] of pendingWrites) fs.writeFileSync(target, after);
+if (!check && !blocked) for (const [target, after] of pendingWrites) {
+  const latest = JSON.parse(fs.readFileSync(target, "utf8"));
+  const reviewed = JSON.parse(after);
+  if (latest.kind === "curated") latest.extra.talkRefs = reviewed.extra.talkRefs;
+  else latest.raw.talkRefs = reviewed.raw.talkRefs;
+  fs.writeFileSync(target, JSON.stringify(latest));
+}
 const refs = report;
 const located = refs.filter((row) => row.page !== null).length;
 const indexPath = path.join(ITEMS, "..", "index.json");

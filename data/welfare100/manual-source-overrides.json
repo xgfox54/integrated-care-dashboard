@@ -1,0 +1,310 @@
+{
+  "checked_at": "2026-10-16",
+  "corpus": {
+    "combined": "sgw-bdef4e9c1609-v1",
+    "original": "sgw-originals-c9444df0dbe4-v1",
+    "manuals": 39,
+    "pages": 29745,
+    "scannedLines": 896852
+  },
+  "overrides": [
+    {
+      "issue": "M00749",
+      "item": "basic-pension",
+      "source_key": "11",
+      "key": "11",
+      "decision": "DIRECT",
+      "file": "10.[매뉴얼-종합안내] 2026+나에게+힘이+되는+복지서비스★.pdf",
+      "page": 198,
+      "page_sha256": "25a656dcab8b0c5876f4c2f6170069a5961f0cdd683bb14572f654be165af416"
+    },
+    {
+      "issue": "M00750",
+      "item": "catastrophic-medical-expense",
+      "source_key": "18",
+      "key": "18",
+      "decision": "CONTENTS",
+      "file": "[매뉴얼-긴급복지] 2026년_재난적의료비지원사업__안내.pdf",
+      "page": 1,
+      "page_sha256": "560ee0e70d88aeac7c62913bc1f25bba1cd0448b1588886020ee6844c3e892c5"
+    },
+    {
+      "issue": "M00752",
+      "item": "child-allowance",
+      "source_key": "17",
+      "key": "17",
+      "decision": "CONTENTS",
+      "file": "3.[매뉴얼-아동] 2026년+아동수당+사업+안내.pdf",
+      "page": 1,
+      "page_sha256": "933504529cad33053912325106fc2bdb46897b229beed3b7c69ba61bf0786d50"
+    },
+    {
+      "issue": "M00753",
+      "item": "crisis-pregnancy-protected-birth",
+      "source_key": "11",
+      "key": "11",
+      "decision": "DIRECT",
+      "file": "10.[매뉴얼-종합안내] 2026+나에게+힘이+되는+복지서비스★.pdf",
+      "page": 96,
+      "page_sha256": "84457b75dcda34f4756b35b2e196cb83eb3137a60962ba0c000454e10bd41054"
+    },
+    {
+      "issue": "M00755",
+      "item": "daily-care",
+      "source_key": "11",
+      "key": "11",
+      "decision": "DIRECT",
+      "file": "10.[매뉴얼-종합안내] 2026+나에게+힘이+되는+복지서비스★.pdf",
+      "page": 53,
+      "page_sha256": "938ab8b1ec375f3143ca80a2daaa1052071eae18585107f320b0ac72c2e55cf2"
+    },
+    {
+      "issue": "M00758",
+      "item": "dementia-screening-treatment",
+      "source_key": "11",
+      "key": "11",
+      "decision": "DIRECT",
+      "file": "10.[매뉴얼-종합안내] 2026+나에게+힘이+되는+복지서비스★.pdf",
+      "page": 204,
+      "page_sha256": "579937f8b05e60c91c8d96e61557ba465b63d3829a27d4bcd96e8dd55887b3b2"
+    },
+    {
+      "issue": "M00759",
+      "item": "didim-seed-account",
+      "source_key": "11",
+      "key": "11",
+      "decision": "DIRECT",
+      "file": "10.[매뉴얼-종합안내] 2026+나에게+힘이+되는+복지서비스★.pdf",
+      "page": 133,
+      "page_sha256": "c27aedf56b767012d1ae2ba03a645d168982a5481cc849607f0b9e5fc0da34aa"
+    },
+    {
+      "issue": "M00760",
+      "item": "disability-jobs",
+      "source_key": "14",
+      "key": "14",
+      "decision": "DIRECT",
+      "file": "[매뉴얼-장애]제7권 2026년 장애인일자리 사업안내.pdf",
+      "page": 15,
+      "page_sha256": "e75e00df8060884e4d32b79d01931ae0e81a4dc9fd67f2baafb39decc1090440"
+    },
+    {
+      "issue": "M00761",
+      "item": "disability-pension",
+      "source_key": "14",
+      "key": "14",
+      "decision": "CONTENTS",
+      "file": "[매뉴얼-장애]제6권 2026년+장애인연금+사업안내.pdf",
+      "page": 1,
+      "page_sha256": "d13a87fd529ad2ac332391036ce021829f1de21e300b46fb3588572d757061c7"
+    },
+    {
+      "issue": "M00762",
+      "item": "dream-start",
+      "source_key": "17",
+      "key": "17",
+      "decision": "CONTENTS",
+      "file": "10.[매뉴얼-아동] 2026년도+드림스타트+사업안내(최종).pdf",
+      "page": 1,
+      "page_sha256": "9bf4ba139f7e540485f0878e26b5c6055f06cc4936201c68597d0cc98037b15b"
+    },
+    {
+      "issue": "M00763",
+      "item": "education-benefit",
+      "source_key": "01",
+      "key": "11",
+      "decision": "DIRECT",
+      "file": "10.[매뉴얼-종합안내] 2026+나에게+힘이+되는+복지서비스★.pdf",
+      "page": 147,
+      "page_sha256": "17687fcf062273af3c75d4bb802d048aa1e654d7b53603cd1e2773c7ce836600",
+      "section_line": 3732,
+      "line_sha256": "228a0f2d466cd5a0",
+      "quote": "교육비가 부담될 때(교육비 지원)\n저소득층 자녀가 차별 없이 공부할 수 있도록 교육비를 지원해드립니다.\n기초생활보장(교육급여)\nⅠ 대상 소득인정액이 기준 중위소득 50% 이하 가구의 자녀\nⅠ 내용 교육활동지원비, 교과서비, 입학금 및 수업료 지원\nⅠ 방법\nⅠ 문의\n거주지 주민센터(행정복지센터) 또는 온라인 누리집(복지로 www.bokjiro.go.kr), 교육비원클릭시스템\n(oneclick.neis.go.kr), 교육급여 바우처(e-voucher.kosaf.go.kr)으로 신청\n∙ 보건복지상담센터(☎129)\n∙ 한국장학재단 교육급여 바우처 상담센터(☎1599-2000)\n청소년･청년 지원 147\n급여종류\n구분 | 교육활동지원비 | 교과서 | 입학금 및 수업료\n초등학생 | 502,000원 | - | -\n중학생 | 699,000원 | - | -\n고등학생 | 860,000원 | 해당 학년의 정규 교육 과정에\n편성된 교과목의 교과서 전체 | 학교장이 고지한 금액 전액\n지급방법 | 연 1회\n(해당 학생에게\n바우처 지급) | 연 1회\n(학교로 실비 지급) | 입학금은 신입생 입학 시 1회\n수업료는 분기별 지급\n(학교로 실비 지급)\n자주 하는 질문\n입학금･수업료는 중복 지원되지 않습니다.\n교육급여를 다른 급여와 같이 신청할 수 있나요?\n신청할 수도 있습니다. | 초･중･고 학생 교육비를 지원받고 있습니다. 교육급여를 받을 수 있나요?\n교육급여와 초중고학생 교육비 지원은 선정 기준과 지원내용 등이 달라 둘 다 지원받을 수 있습니다. 다만, 고교\n기존과 같이 ‘기초생활보장’을 통합신청(생계급여, 의료급여, 주거급여, 교육급여)할 수도 있고, 본인 선택에 따라 교육급여만",
+      "quote_sha256": "26f9969be77467e54e4d915ab1956c150690dc5a004970201658413a729df74a"
+    },
+    {
+      "issue": "M00764",
+      "item": "elderly-customized-care",
+      "source_key": "16",
+      "key": "16",
+      "decision": "DIRECT",
+      "file": "[매뉴얼-노인복지] 2026_노인보건복지사업안내(1권).pdf",
+      "page": 131,
+      "page_sha256": "c0d1cfb50f58d11398863cbd50055fd799b4debb02c9e0b21fb83b690bc58c18"
+    },
+    {
+      "issue": "M00765",
+      "item": "emergency-care",
+      "source_key": "11",
+      "key": "11",
+      "decision": "DIRECT",
+      "file": "10.[매뉴얼-종합안내] 2026+나에게+힘이+되는+복지서비스★.pdf",
+      "page": 26,
+      "page_sha256": "da2bfa12917de69fffcb4bfeb0cd43fc3e5c6a40d76015cc915664a020f5b7a5"
+    },
+    {
+      "issue": "M00766",
+      "item": "emergency-welfare",
+      "source_key": "11",
+      "key": "11",
+      "decision": "DIRECT",
+      "file": "10.[매뉴얼-종합안내] 2026+나에게+힘이+되는+복지서비스★.pdf",
+      "page": 23,
+      "page_sha256": "b7d05f2906a3761e565f681e03204e98732432163ee614526eeb12341d78a4dc"
+    },
+    {
+      "issue": "M00767",
+      "item": "first-meeting-voucher",
+      "source_key": "17",
+      "key": "17",
+      "decision": "CONTENTS",
+      "file": "5.[매뉴얼-아동] 2026년+첫만남이용권+사업안내.pdf",
+      "page": 1,
+      "page_sha256": "901ed9661f96761c60410087162f0372c5bfc12a0f7fe978a0a875e10d55676b"
+    },
+    {
+      "issue": "M00768",
+      "item": "first-meeting-voucher",
+      "source_key": "11",
+      "key": "11",
+      "decision": "DIRECT",
+      "file": "10.[매뉴얼-종합안내] 2026+나에게+힘이+되는+복지서비스★.pdf",
+      "page": 99,
+      "page_sha256": "628925d65cc7a3f1c902068445726228cd2e2d75a28a4d40b23879573fa1a423"
+    },
+    {
+      "issue": "M00769",
+      "item": "hourly-childcare",
+      "source_key": "17",
+      "key": "17",
+      "decision": "DIRECT",
+      "file": "9.[매뉴얼-아동] 2026년 보육사업안내.pdf",
+      "page": 280,
+      "page_sha256": "7aa36dc774c6d0a11c61767cf16bc3eb68ee3936c85353b25b390a7eb15a3b9f",
+      "section_line": 8912,
+      "line_sha256": "1355746ac669296e",
+      "quote": "Ⅷ┃ 시간제보육\n1 시간제보육 사업 개요\n※ 시간제보육에 관한 자세한 내용은 「시간제보육 사업안내」 참고\n가. 정의\n가정양육 시에도 지정된 제공기관에서 시간단위로 보육서비스를 이용하고 이용한 시간만큼 보육료를 지불하는 보육서비스\n나. 법적근거\n영유아보육법 제26조의2, 같은 법 시행령 제21조의3, 같은 법 시행규칙 제28조의2\n다. 이용 및 지원대상\n구분 | 독립반 | 통합반\n이용대상 | 6~36개월 미만 영아(내/외국인) | 6개월~2세반* 영아(내/외국인)\n* 2세반 출생일 기준 : ‘23.1.1.~’23.12.31.\n지원대상 | 어린이집, 유치원을 이용하지 않고 부모급여(현금) 또는 양육수당을 수급 중인 자\n※ 단, 어린이집 및 유치원을 이용하는 자는 자부담으로 이용 가능\n라. 사업 기관\n(제공기관) 시･군･구로부터 시간제보육 제공기관으로 지정 받은 어린이집, 육아종합지원센터 등\n(관리기관) 시･도 육아종합지원센터",
+      "quote_sha256": "603f97d3021069ad6625694e64a79b50cdede9c512768ab36b942f76111debc5"
+    },
+    {
+      "issue": "M00770",
+      "item": "housework-nursing",
+      "source_key": "11",
+      "key": "11",
+      "decision": "DIRECT",
+      "file": "10.[매뉴얼-종합안내] 2026+나에게+힘이+되는+복지서비스★.pdf",
+      "page": 52,
+      "page_sha256": "dea18c7a2723399912a2eb8e60103ee2f18dec5f0d35fb8b0c5c27c7b7effa83"
+    },
+    {
+      "issue": "M00771",
+      "item": "housing-benefit",
+      "source_key": "11",
+      "key": "11",
+      "decision": "DIRECT",
+      "file": "10.[매뉴얼-종합안내] 2026+나에게+힘이+되는+복지서비스★.pdf",
+      "page": 39,
+      "page_sha256": "07adaadb118f7e4575fecf7194abac0902981c8ec95d1125a2c1dabcc27e181a"
+    },
+    {
+      "issue": "M00773",
+      "item": "integrated-case-management",
+      "source_key": "25",
+      "key": "25",
+      "decision": "CONTENTS",
+      "file": "3.[메뉴얼-위기가구] 2025년 통합사례관리 실천가이드.pdf",
+      "page": 1,
+      "page_sha256": "67e1c5e616a1c1caf220e9534109e8bb2ef77105ea16a18e5ca9ca453ec21d3a"
+    },
+    {
+      "issue": "M00776",
+      "item": "livelihood-benefit",
+      "source_key": "01",
+      "key": "01",
+      "decision": "DIRECT",
+      "file": "01.[매뉴얼-공적급여] 2026년도+국민기초생활보장+사업안내★.pdf",
+      "page": 264,
+      "page_sha256": "aca347abda3cbbfc197345bc3022ec63457a5c8e2adc10912c4aa77eea671ac6"
+    },
+    {
+      "issue": "M00778",
+      "item": "local-children-center",
+      "source_key": "11",
+      "key": "11",
+      "decision": "DIRECT",
+      "file": "10.[매뉴얼-종합안내] 2026+나에게+힘이+되는+복지서비스★.pdf",
+      "page": 127,
+      "page_sha256": "7c633221e187e6b47dca5affbf11541899c3ec25ede32a6cc729bb7915484e09"
+    },
+    {
+      "issue": "M00781",
+      "item": "long-term-care-insurance",
+      "source_key": "11",
+      "key": "11",
+      "decision": "DIRECT",
+      "file": "10.[매뉴얼-종합안내] 2026+나에게+힘이+되는+복지서비스★.pdf",
+      "page": 194,
+      "page_sha256": "7e24c246e77e4e9236bd8508cdc182c70051f65adcd585ba7a12d74e96139d82"
+    },
+    {
+      "issue": "M00782",
+      "item": "maternal-newborn-care",
+      "source_key": "11",
+      "key": "11",
+      "decision": "DIRECT",
+      "file": "10.[매뉴얼-종합안내] 2026+나에게+힘이+되는+복지서비스★.pdf",
+      "page": 100,
+      "page_sha256": "5a0b0e94b0cb4bdd0a2f33db130d54334860a7790730e0b7c2a3838ba15f8f9f"
+    },
+    {
+      "issue": "M00783",
+      "item": "mental-health-center",
+      "source_key": "30",
+      "key": "30",
+      "decision": "GENERAL_STANDARD",
+      "file": "[매뉴얼-보건소] 2026년+정신건강사업+안내.pdf",
+      "page": 83,
+      "page_sha256": "5a5e8a5716d4d56ce7a67f3a8dbfd99ffd2955375f6e1fa429c816122f63c473"
+    },
+    {
+      "issue": "M00784",
+      "item": "mental-health-center",
+      "source_key": "11",
+      "key": "11",
+      "decision": "DIRECT",
+      "file": "10.[매뉴얼-종합안내] 2026+나에게+힘이+되는+복지서비스★.pdf",
+      "page": 190,
+      "page_sha256": "2206f0ea2d976224fb7ed7f1bac1b7a3aa0981d7df5797441c837ce46f5e44a9"
+    },
+    {
+      "issue": "M00787",
+      "item": "parent-benefit",
+      "source_key": "17",
+      "key": "17",
+      "decision": "CONTENTS",
+      "file": "4.[매뉴얼-아동] 2026년도+부모급여+사업안내.pdf",
+      "page": 1,
+      "page_sha256": "3835cfdecdbd58ed887ec7aed37005002bfbd8f761603092504f7cb732bd98f6"
+    },
+    {
+      "issue": "M00791",
+      "item": "suicide-prevention",
+      "source_key": "30",
+      "key": "30",
+      "decision": "CONTENTS",
+      "file": "[매뉴얼-보건소] 2026년+자살예방사업+안내.pdf",
+      "page": 1,
+      "page_sha256": "6bfcc174474839b4d8ddfb99496c20d09957ab1690f61703321ee208de12db82"
+    },
+    {
+      "issue": "M00792",
+      "item": "vulnerable-fire-support",
+      "source_key": "37",
+      "key": "37",
+      "decision": "CONTENTS",
+      "file": "[서귀포시업무-위기가구] 취약계층 화재 발생 긴급 지원제도 안내.pdf",
+      "page": 1,
+      "page_sha256": "42bfc8a9696e9120813f2a1342d0825d4d45f3e5b4243c686b7d859c8756fe47"
+    }
+  ]
+}

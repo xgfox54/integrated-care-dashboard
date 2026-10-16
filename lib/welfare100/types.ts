@@ -19,6 +19,7 @@ export interface LegalBasis {
   kind: LegalBasisKind;
   url?: string;
   readonly reviewNote?: string;
+  readonly scopeNote?: string;
 }
 
 export type SourceVerificationStatus =

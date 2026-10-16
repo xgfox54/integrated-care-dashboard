@@ -253,7 +253,7 @@ function fieldChecks(raw: BokjiroRaw, generic: boolean): string[] {
 /** 복지로 원자료를 제도 페이지 모델로 펼친다. */
 export function expandBokjiro(raw: BokjiroRaw): WelfareInstitution {
   const { process, generic, orgs } = buildAutoProcess(raw);
-  const legalBasis: LegalBasis[] = raw.laws.map((law) => ({ law: law.name, articles: law.article ?? "", kind: law.kind, url: law.url, reviewNote: law.reviewNote }));
+  const legalBasis: LegalBasis[] = raw.laws.map((law) => ({ law: law.name, articles: law.article ?? "", kind: law.kind, url: law.url, reviewNote: law.reviewNote, scopeNote: law.scopeNote }));
 
   const authorityRoles = new Map<string, string[]>();
   const addAuthority = (name: string, role: string) => {
