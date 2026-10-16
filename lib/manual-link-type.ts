@@ -46,6 +46,12 @@ export function assessManualLink(ref: Pick<TalkRef, "key" | "title" | "heading" 
   const candidate = (basis: string): ManualLinkAssessment => ({ type: "CANDIDATE", label: "연결 후보", confirmed: false, basis, titleYear, yearNote, provenance });
   if (provenance.status === "INVALID") return candidate("원본 위치 정보 오류: " + provenance.issues.join(", "));
   if (ref.review?.decision === "RECHECK") return candidate("원문이 검수 때와 달라져 검수 판정을 적용하지 않았습니다. 재검수가 필요합니다.");
+  if (ref.review?.decision === "LIST_ENTRY") return candidate("사업 목록 표의 언급입니다. 지원 조건을 직접 설명하는 근거로 사용할 수 없습니다.");
+  if (ref.review?.decision === "SAME_NAME_OTHER_CITY") return candidate("다른 지역의 같은 이름 사업입니다. 이 사업의 지원 조건으로 사용할 수 없습니다.");
+  if (ref.review?.decision === "GENERAL_STANDARD") return candidate("전국 공통 상담·지원 기준의 설명입니다. 이 지역 사업의 독립된 지원 조건은 확인되지 않았습니다.");
+  if (ref.review?.decision === "EXCLUSION_LIST") return candidate("중복 참여 제한·다른 사업의 나열 구간입니다. 이 사업의 직접 설명이 아닙니다.");
+  if (ref.review?.decision === "CONTENTS") return candidate("표지·목차의 사업명입니다. 실제 본문 설명 절은 추가 확인이 필요합니다.");
+  if (ref.review?.decision === "PENDING") return candidate("연결 범위와 해당 사업의 동일성을 추가 확인해야 합니다. 확정 근거로 사용할 수 없습니다.");
   const headingNamed = name.length >= 3 && headingIdentities(ref.heading ?? "").includes(name);
   const exactName = ref.match === "제도명 일치";
   if (name.length >= 3 && !ref.title.includes("합본") && manualIdentities(ref.title).includes(name)) {
@@ -65,8 +71,6 @@ export function assessManualLink(ref: Pick<TalkRef, "key" | "title" | "heading" 
   if (exactName && headingNamed) {
     return { type: "B", label: "본문 직접 설명", confirmed: true, basis: "매뉴얼의 절 제목이 제도명과 일치합니다. 원본 인용 검증과는 별개입니다.", titleYear, yearNote, provenance };
   }
-  if (ref.review?.decision === "LIST_ENTRY") return candidate("사업 목록 표에 이 제도가 한 줄로 올라 있는 곳입니다. 사업명·담당 정도만 있어 지원 조건의 근거로는 부족합니다.");
-  if (ref.review?.decision === "SAME_NAME_OTHER_CITY") return candidate("서귀포시 자료의 같은 이름 절입니다. 이 사업의 기준과 같은지 확인이 필요합니다.");
   return candidate(exactName ? "본문에 제도명이 나오지만 그 제도를 다루는 절인지 확인되지 않았습니다." : "관련 단어가 언급된 구간입니다. 같은 제도인지 확인되지 않았습니다.");
 }
 

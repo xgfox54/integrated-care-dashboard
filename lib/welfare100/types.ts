@@ -1,4 +1,5 @@
 export type LegalBasisKind =
+  | "헌법"
   | "법률"
   | "대통령령"
   | "총리령"
@@ -17,6 +18,7 @@ export interface LegalBasis {
   articles?: string;
   kind: LegalBasisKind;
   url?: string;
+  readonly reviewNote?: string;
 }
 
 export type SourceVerificationStatus =

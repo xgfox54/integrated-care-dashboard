@@ -271,7 +271,7 @@ function OnePageCanvas({
           {canvas.legalBasis.length > 0 ? (
             <div className={styles.legalRows}>
               {canvas.legalBasis.map((basis) => {
-                const url = basis.url ?? lawUrl(basis.law);
+                const url = basis.reviewNote ? undefined : basis.url ?? lawUrl(basis.law);
                 return (
                   <div key={basis.kind + ":" + basis.law + ":" + (basis.articles ?? "")}>
                     {url ? (
@@ -281,7 +281,7 @@ function OnePageCanvas({
                     ) : (
                       <strong>{basis.law}</strong>
                     )}
-                    <span>{basis.articles?.replace(/,\s*(?=제\d)/g, ",\n") || "조문 미표기"}</span>
+                    <span>{basis.articles?.replace(/,\s*(?=제\d)/g, ",\n") || "조문 미표기"}{basis.reviewNote && <><br /><small>{basis.reviewNote}</small></>}</span>
                     <small>{basis.kind}</small>
                   </div>
                 );

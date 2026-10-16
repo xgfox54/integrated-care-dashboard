@@ -383,7 +383,7 @@ export function expandRecord(
       status: "source-linked",
       verifiedAt: AS_OF_DATE,
       method: "복지톡 DB 원문 대조",
-      scope: "복지톡 DB의 2026년 사업안내 원문(" + record.src.map((key) => "[" + key + "]").join(" ") + ")을 기준으로 대상·지원내용·신청방법과 절차를 정리했다. 조문 번호는 원문 표기를 따랐으며 법제처 원문 대조는 하지 않았다.",
+      scope: "복지톡 DB의 2026년 사업안내 원문(" + record.src.map((key) => "[" + key + "]").join(" ") + ")을 기준으로 대상·지원내용·신청방법과 절차를 정리했다. 조문·절차 인용은 개별 검수 범위를 확인해야 하며, 모든 조문의 현행 적용 여부를 검증한 것은 아니다.",
       sources: legalBasis
         .map((basis) => ({ basis, url: lawUrl(basis.law) }))
         .filter((item): item is { basis: LegalBasis; url: string } => Boolean(item.url))

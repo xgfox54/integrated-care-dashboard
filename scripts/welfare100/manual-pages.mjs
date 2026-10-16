@@ -458,7 +458,7 @@ export function createManualPageLocator({ manualLines, pages }) {
       if (expected !== null && Math.abs(pages[chosen].page - expected) > 3) return { status: "CONTEXT_FAR" };
       at = -1;
     }
-    if (at >= 0 && basis !== "context" && variants.length) {
+    if (at >= 0 && basis !== "context" && !(heading && basis === "line") && variants.length) {
       // 발췌 구간에 사업명이 없고 같은 쪽 다른 줄에 있으면 사업명이 나오는 줄부터 옮긴다.
       const quoted = keepOnly(quoteAt(view, at, heading ? HEADING_QUOTE : MENTION_QUOTE));
       if (!variants.some((variant) => quoted.includes(variant))) {
@@ -481,6 +481,10 @@ export function createManualPageLocator({ manualLines, pages }) {
       }
     }
     const expected = expectedPage(page.documentId, line);
+    const sectionQuote = at >= 0 ? quoteAt(view, at, heading ? HEADING_QUOTE : MENTION_QUOTE) : null;
+    const nextHeading = heading ? lines.slice(line).find(text => /^#{1,6}\s/.test(text)) : null;
+    const quoteLines = sectionQuote?.split("\n") ?? [];
+    const boundary = nextHeading ? quoteLines.findIndex(text => normalizeForMatch(text) === normalizeForMatch(nextHeading)) : -1;
     return {
       status: basis.toUpperCase(),
       expectedPage: expected === null ? null : Math.round(expected),
@@ -492,7 +496,7 @@ export function createManualPageLocator({ manualLines, pages }) {
         pages: pagesByDocument.get(page.documentId).length,
         basis,
         ocr: page.ocr,
-        quote: at >= 0 ? quoteAt(view, at, heading ? HEADING_QUOTE : MENTION_QUOTE) : null,
+        quote: boundary >= 0 ? quoteLines.slice(0, boundary).join("\n") : sectionQuote,
       },
     };
   }

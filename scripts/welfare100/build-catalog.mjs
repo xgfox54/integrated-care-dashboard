@@ -6,7 +6,8 @@ import fs from "node:fs";
 import path from "node:path";
 
 import { BOKJIRO_AS_OF, expandBokjiro, toCatalogRow } from "../../lib/welfare100/bokjiro.ts";
-import { lawUrl } from "../../lib/welfare100/law-url.ts";
+import { lawUrl, lawKind } from "../../lib/welfare100/law-url.ts";
+import { applyLegalLinkReviews } from "./legal-link-reviews.mjs";
 import { HOUSEHOLD_ORDER, LIFECYCLE_ORDER, TOPIC_ORDER, expandRecord } from "../../lib/welfare100/model.ts";
 import { writeSplitIndex } from "./split-index.mjs";
 import { listRowMismatch, manualLinkAllowed } from "./manual-link-scope.mjs";
@@ -184,19 +185,6 @@ const ordered = (values, order) => {
 };
 const PROVISION_LABEL = { "전자바우처(바우처)": "전자바우처", "프로그램/서비스(서비스)": "프로그램/서비스" };
 
-const LOCAL_PREFIX = /^(서울특별시|부산광역시|대구광역시|인천광역시|광주광역시|대전광역시|울산광역시|세종특별자치시|경기도|강원특별자치도|강원도|충청북도|충청남도|전북특별자치도|전라북도|전라남도|전남광주통합특별시|경상북도|경상남도|제주특별자치도)/;
-function lawKind(name) {
-  const compact = name.replace(/\s/g, "");
-  if (/조례/.test(compact)) return /규칙/.test(compact) ? "조례·규칙" : "조례";
-  if (LOCAL_PREFIX.test(compact) && /규칙$/.test(compact)) return "조례·규칙";
-  if (/총리령$/.test(compact)) return "총리령";
-  if (/시행규칙$/.test(compact)) return "부령";
-  if (/시행령$/.test(compact)) return "대통령령";
-  if (/규칙$/.test(compact)) return LOCAL_PREFIX.test(compact) ? "조례·규칙" : "부령";
-  if (/(법|법률)$/.test(compact)) return "법률";
-  if (/(지침|고시|훈령|예규|요령|규정|기준|계획|안내|매뉴얼|방침|지시)$/.test(compact)) return "고시·지침";
-  return "행정규칙";
-}
 function parseLaw(row) {
   const text = String(row.nm ?? "").replace(/\s+/g, " ").trim();
   if (!text) return null;
@@ -374,6 +362,7 @@ for (const [id, entry] of Object.entries(bokjiroEdits.edit ?? {})) {
 }
 
 // ---------------------------------------------------------------- curated 100
+for (const raw of rawById.values()) raw.laws = applyLegalLinkReviews(raw.id, raw.laws);
 const manualTitles = readJson(path.join(DATA, "manuals.json"));
 const programs = readJson(path.join(DATA, "programs.json"));
 const records = new Map();

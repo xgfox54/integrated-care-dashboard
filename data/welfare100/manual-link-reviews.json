@@ -1,6 +1,6 @@
 {
- "revision": "manual-link-review-20261015-v2",
- "checked_at": "2026-10-15",
+ "revision": "manual-link-review-20261016-v3",
+ "checked_at": "2026-10-16",
  "scope": "서귀포·제주 사업, 주요 제도 100, 다른 지역 사업의 연결 후보를 합본 원문 줄과 주변 문맥으로 검수",
  "decisions": [
   {
@@ -5520,7 +5520,7 @@
    "item": "WLF00005247",
    "key": "10",
    "line": 13619,
-   "decision": "LIST_ENTRY",
+   "decision": "EXCLUSION_LIST",
    "name": "희망두배 청년통장",
    "line_sha256": "b54af1bb839af5bf"
   },
@@ -5536,7 +5536,7 @@
    "item": "WLF00005038",
    "key": "10",
    "line": 13629,
-   "decision": "LIST_ENTRY",
+   "decision": "EXCLUSION_LIST",
    "name": "청년13(일+삶)통장 지원 사업",
    "line_sha256": "a0e2a5aa33a28b68"
   },
@@ -5544,7 +5544,7 @@
    "item": "WLF00006215",
    "key": "10",
    "line": 13633,
-   "decision": "LIST_ENTRY",
+   "decision": "EXCLUSION_LIST",
    "name": "청년내일채움공제",
    "line_sha256": "36e7bdf9eb621c1d"
   },
@@ -5552,7 +5552,7 @@
    "item": "WLF00005298",
    "key": "10",
    "line": 13634,
-   "decision": "LIST_ENTRY",
+   "decision": "EXCLUSION_LIST",
    "name": "세종 청년 미래적금",
    "line_sha256": "41cefdab9d50a36b"
   },
@@ -5560,7 +5560,7 @@
    "item": "WLF00006266",
    "key": "10",
    "line": 13634,
-   "decision": "LIST_ENTRY",
+   "decision": "EXCLUSION_LIST",
    "name": "청년미래적금",
    "line_sha256": "41cefdab9d50a36b"
   },
@@ -5568,7 +5568,7 @@
    "item": "WLF00004995",
    "key": "10",
    "line": 13638,
-   "decision": "LIST_ENTRY",
+   "decision": "EXCLUSION_LIST",
    "name": "경기도 장애인 누림통장",
    "line_sha256": "c4ec2576b3f34e8c"
   },
@@ -5592,7 +5592,7 @@
    "item": "WLF00006601",
    "key": "10",
    "line": 13640,
-   "decision": "LIST_ENTRY",
+   "decision": "EXCLUSION_LIST",
    "name": "중증장애인 자산형성 지원",
    "line_sha256": "d4513107305305ee"
   },
@@ -5600,7 +5600,7 @@
    "item": "WLF00002729",
    "key": "10",
    "line": 13648,
-   "decision": "LIST_ENTRY",
+   "decision": "EXCLUSION_LIST",
    "name": "으뜸관악 청년통장",
    "line_sha256": "3de7cefbc47a42f7"
   },
@@ -16160,6 +16160,3505 @@
    "decision": "EXCLUDE",
    "name": "고혈압·당뇨병 등록관리사업",
    "line_sha256": "de35a62c603936d7"
+  },
+  {
+   "item": "WLF00001167",
+   "key": "11",
+   "line": 6077,
+   "decision": "DIRECT",
+   "to_key": "11",
+   "to_line": 6055,
+   "name": "장애인기업종합지원센터운영",
+   "line_sha256": "12dd431a31e3a53d",
+   "to_line_sha256": "e8f217ca6ef3910e"
+  },
+  {
+   "item": "WLF00001474",
+   "key": "14",
+   "line": 29670,
+   "decision": "EXCLUDE",
+   "name": "장애인 생활안정지원",
+   "line_sha256": "689d8bde9d1f6efa"
+  },
+  {
+   "item": "WLF00001849",
+   "key": "31",
+   "line": 36980,
+   "decision": "EXCLUDE",
+   "name": "산후 건강관리 지원",
+   "line_sha256": "57eada857f5e87a3"
+  },
+  {
+   "item": "WLF00002177",
+   "key": "11",
+   "line": 8606,
+   "decision": "EXCLUDE",
+   "name": "건강보험료지원",
+   "line_sha256": "dc1dca7a26ca4e8f"
+  },
+  {
+   "item": "WLF00002177",
+   "key": "12",
+   "line": 3911,
+   "decision": "EXCLUDE",
+   "name": "건강보험료지원",
+   "line_sha256": "5ca741f0424310b1"
+  },
+  {
+   "item": "WLF00003141",
+   "key": "31",
+   "line": 36980,
+   "decision": "EXCLUDE",
+   "name": "산후건강관리 지원사업",
+   "line_sha256": "57eada857f5e87a3"
+  },
+  {
+   "item": "WLF00003686",
+   "key": "29",
+   "line": 1363,
+   "decision": "EXCLUDE",
+   "name": "기저귀 지원사업",
+   "line_sha256": "c266ace6efca261a"
+  },
+  {
+   "item": "WLF00004004",
+   "key": "11",
+   "line": 891,
+   "decision": "EXCLUDE",
+   "name": "청년 월세 지원",
+   "line_sha256": "f4d87b8069ee2883"
+  },
+  {
+   "item": "WLF00004277",
+   "key": "11",
+   "line": 6994,
+   "decision": "EXCLUDE",
+   "name": "국가유공자 및 유가족 지원",
+   "line_sha256": "a17fb938ca4ee9cd"
+  },
+  {
+   "item": "WLF00004934",
+   "key": "31",
+   "line": 36980,
+   "decision": "EXCLUDE",
+   "name": "산후 건강관리 지원사업",
+   "line_sha256": "57eada857f5e87a3"
+  },
+  {
+   "item": "WLF00005303",
+   "key": "34",
+   "line": 7618,
+   "decision": "EXCLUDE",
+   "name": "구리시 공영장례 지원",
+   "line_sha256": "98f6892ad5e0c944"
+  },
+  {
+   "item": "WLF00005305",
+   "key": "29",
+   "line": 1365,
+   "decision": "EXCLUDE",
+   "name": "치매검진비 지원",
+   "line_sha256": "8852d757d843455c"
+  },
+  {
+   "item": "WLF00005449",
+   "key": "32",
+   "line": 5937,
+   "decision": "EXCLUDE",
+   "name": "가임력 보존지원 사업",
+   "line_sha256": "a82cccd5e24a0610"
+  },
+  {
+   "item": "WLF00005956",
+   "key": "11",
+   "line": 3177,
+   "decision": "EXCLUDE",
+   "name": "누구나 돌봄",
+   "line_sha256": "960e5da8785e418d"
+  },
+  {
+   "item": "WLF00006135",
+   "key": "11",
+   "line": 891,
+   "decision": "EXCLUDE",
+   "name": "청년 월세 지원",
+   "line_sha256": "f4d87b8069ee2883"
+  },
+  {
+   "item": "WLF00006313",
+   "key": "29",
+   "line": 1297,
+   "decision": "EXCLUDE",
+   "name": "건강보험 임신출산 진료비(국민행복카드)",
+   "line_sha256": "4a751b396740a86c"
+  },
+  {
+   "item": "WLF00000239",
+   "key": "29",
+   "line": 6102,
+   "decision": "LIST_ENTRY",
+   "name": "장애인보조기기 수리비 지원사업",
+   "line_sha256": "450b2ba605e54f39"
+  },
+  {
+   "item": "WLF00000344",
+   "key": "15",
+   "line": 23618,
+   "decision": "CONTENTS",
+   "name": "장애인가족휴식",
+   "line_sha256": "260b5191bc51dbbb"
+  },
+  {
+   "item": "WLF00000370",
+   "key": "02",
+   "line": 8506,
+   "decision": "LIST_ENTRY",
+   "name": "대학진학 축하금 지원",
+   "line_sha256": "a01d1f33b0b6e4ec"
+  },
+  {
+   "item": "WLF00000572",
+   "key": "02",
+   "line": 8406,
+   "decision": "LIST_ENTRY",
+   "name": "영유아양육비지원",
+   "line_sha256": "8ccf2a33c44a71a9"
+  },
+  {
+   "item": "WLF00000603",
+   "key": "02",
+   "line": 8519,
+   "decision": "LIST_ENTRY",
+   "name": "참전유공자 명예수당 및 사망위로금 지원",
+   "line_sha256": "16ac2272bed07214"
+  },
+  {
+   "item": "WLF00000705",
+   "key": "02",
+   "line": 8326,
+   "decision": "LIST_ENTRY",
+   "name": "저소득주민 시비특별지원사업",
+   "line_sha256": "b90607dc7a6d17f6"
+  },
+  {
+   "item": "WLF00000714",
+   "key": "29",
+   "line": 5998,
+   "decision": "LIST_ENTRY",
+   "name": "장애인활동지원 의정부시 추가 지원",
+   "line_sha256": "36c7a0993df82a4f"
+  },
+  {
+   "item": "WLF00000846",
+   "key": "02",
+   "line": 9782,
+   "decision": "LIST_ENTRY",
+   "name": "서울형 장애인 부가급여",
+   "line_sha256": "43beb0870dbacb1c"
+  },
+  {
+   "item": "WLF00000954",
+   "key": "29",
+   "line": 6684,
+   "decision": "LIST_ENTRY",
+   "name": "노인의치(틀니)사업",
+   "line_sha256": "a05b65c21ab8a2d6"
+  },
+  {
+   "item": "WLF00001210",
+   "key": "02",
+   "line": 9843,
+   "decision": "LIST_ENTRY",
+   "name": "장애인 신문보급",
+   "line_sha256": "f014513a3f83ce73"
+  },
+  {
+   "item": "WLF00001218",
+   "key": "02",
+   "line": 8323,
+   "decision": "LIST_ENTRY",
+   "name": "저소득 중증장애인 교통비 지원",
+   "line_sha256": "f305f33553bdedc4"
+  },
+  {
+   "item": "WLF00001237",
+   "key": "29",
+   "line": 5892,
+   "decision": "LIST_ENTRY",
+   "name": "저소득 주민을 위한 경기도 부동산 중개보수 지원사업",
+   "line_sha256": "65fe8fe92c69ba49"
+  },
+  {
+   "item": "WLF00001351",
+   "key": "29",
+   "line": 1300,
+   "decision": "GENERAL_STANDARD",
+   "name": "산모신생아건강관리서비스 본인부담금 지원사업",
+   "line_sha256": "8b383aa7a4f23d9a"
+  },
+  {
+   "item": "WLF00001377",
+   "key": "29",
+   "line": 5958,
+   "decision": "LIST_ENTRY",
+   "name": "수원시 자녀 출산·입양 지원금",
+   "line_sha256": "68cfe57088d9e3c3"
+  },
+  {
+   "item": "WLF00001384",
+   "key": "02",
+   "line": 9850,
+   "decision": "LIST_ENTRY",
+   "name": "학기중아동급식지원",
+   "line_sha256": "d5b4f1b61e1e7315"
+  },
+  {
+   "item": "WLF00001391",
+   "key": "29",
+   "line": 1362,
+   "decision": "GENERAL_STANDARD",
+   "name": "효도수당",
+   "line_sha256": "79a559adf2e34b69"
+  },
+  {
+   "item": "WLF00001478",
+   "key": "29",
+   "line": 1362,
+   "decision": "GENERAL_STANDARD",
+   "name": "효도수당",
+   "line_sha256": "79a559adf2e34b69"
+  },
+  {
+   "item": "WLF00001480",
+   "key": "10",
+   "line": 13641,
+   "decision": "EXCLUSION_LIST",
+   "name": "영암군 청년 희망 디딤돌 통장 사업",
+   "line_sha256": "ca1d092f2d23571d"
+  },
+  {
+   "item": "WLF00001480",
+   "key": "02",
+   "line": 8514,
+   "decision": "LIST_ENTRY",
+   "name": "영암군 청년 희망 디딤돌 통장 사업",
+   "line_sha256": "2055f8242b1df483"
+  },
+  {
+   "item": "WLF00001511",
+   "key": "31",
+   "line": 36849,
+   "decision": "CONTENTS",
+   "name": "산모 건강관리 지원사업",
+   "line_sha256": "37a0ed98441ccfa7"
+  },
+  {
+   "item": "WLF00001520",
+   "key": "29",
+   "line": 5974,
+   "decision": "LIST_ENTRY",
+   "name": "안양 청년 월세 지원사업",
+   "line_sha256": "2109a931a62b067b"
+  },
+  {
+   "item": "WLF00001581",
+   "key": "02",
+   "line": 9842,
+   "decision": "LIST_ENTRY",
+   "name": "장애인 하이패스 단말기 지원사업",
+   "line_sha256": "2e4846c2ff91f13f"
+  },
+  {
+   "item": "WLF00001639",
+   "key": "02",
+   "line": 8515,
+   "decision": "LIST_ENTRY",
+   "name": "청년 취업자 주거비 지원사업",
+   "line_sha256": "fcd4e6cb59e1d6c3"
+  },
+  {
+   "item": "WLF00001640",
+   "key": "02",
+   "line": 8386,
+   "decision": "LIST_ENTRY",
+   "name": "어린이집 생애최초 입학준비금 지원",
+   "line_sha256": "3aa49f7d5878e2c3"
+  },
+  {
+   "item": "WLF00001688",
+   "key": "29",
+   "line": 5827,
+   "decision": "LIST_ENTRY",
+   "name": "산후(산모,신생아)건강관리비지원",
+   "line_sha256": "5ee84b7b0d4fe6e7"
+  },
+  {
+   "item": "WLF00001866",
+   "key": "29",
+   "line": 6856,
+   "decision": "LIST_ENTRY",
+   "name": "사립유치원 유아교육비 보조지원",
+   "line_sha256": "5c9585b559986bdf"
+  },
+  {
+   "item": "WLF00001965",
+   "key": "02",
+   "line": 9852,
+   "decision": "LIST_ENTRY",
+   "name": "장애인활동지원제도 추가지원사업",
+   "line_sha256": "e58cdc3500ff6a3f"
+  },
+  {
+   "item": "WLF00002022",
+   "key": "29",
+   "line": 1301,
+   "decision": "GENERAL_STANDARD",
+   "name": "출산축하금",
+   "line_sha256": "bc811aa8eba67228"
+  },
+  {
+   "item": "WLF00002106",
+   "key": "29",
+   "line": 6750,
+   "decision": "LIST_ENTRY",
+   "name": "열린교육바우처 사업",
+   "line_sha256": "9193047645ccfbdb"
+  },
+  {
+   "item": "WLF00002150",
+   "key": "02",
+   "line": 8551,
+   "decision": "LIST_ENTRY",
+   "name": "참전유공자 명예수당 지급",
+   "line_sha256": "442eaad1927aee3a"
+  },
+  {
+   "item": "WLF00002153",
+   "key": "02",
+   "line": 8520,
+   "decision": "LIST_ENTRY",
+   "name": "국가유공자 보훈명예수당 및 사망위로금 지원 사업",
+   "line_sha256": "4d4cfd7dd62e0395"
+  },
+  {
+   "item": "WLF00002158",
+   "key": "02",
+   "line": 8318,
+   "decision": "LIST_ENTRY",
+   "name": "저소득주민 국민건강보험료 지원",
+   "line_sha256": "bf8dfe64f869df4d"
+  },
+  {
+   "item": "WLF00002183",
+   "key": "29",
+   "line": 1361,
+   "decision": "GENERAL_STANDARD",
+   "name": "장수축하금",
+   "line_sha256": "589b2528fecf627d"
+  },
+  {
+   "item": "WLF00002202",
+   "key": "02",
+   "line": 8310,
+   "decision": "LIST_ENTRY",
+   "name": "서울특별시 도봉구 장애인가정 출산지원금 지원",
+   "line_sha256": "82934d47a1b66c46"
+  },
+  {
+   "item": "WLF00002224",
+   "key": "02",
+   "line": 8302,
+   "decision": "LIST_ENTRY",
+   "name": "저소득주민 명절위문금 지급",
+   "line_sha256": "9c23113d563dce81"
+  },
+  {
+   "item": "WLF00002234",
+   "key": "02",
+   "line": 8283,
+   "decision": "LIST_ENTRY",
+   "name": "서울형 기초보장제도 운영",
+   "line_sha256": "a2f44b6a8e376f40"
+  },
+  {
+   "item": "WLF00002254",
+   "key": "02",
+   "line": 9824,
+   "decision": "LIST_ENTRY",
+   "name": "강원특별자치도 육아기본수당 지원사업",
+   "line_sha256": "e12f31e38f5c9c94"
+  },
+  {
+   "item": "WLF00002291",
+   "key": "02",
+   "line": 8526,
+   "decision": "LIST_ENTRY",
+   "name": "광양시 출생축하금 지원",
+   "line_sha256": "48986dfc7854333f"
+  },
+  {
+   "item": "WLF00002305",
+   "key": "29",
+   "line": 1374,
+   "decision": "GENERAL_STANDARD",
+   "name": "화장장려금 지원 사업",
+   "line_sha256": "01abf311760d1bbf"
+  },
+  {
+   "item": "WLF00002337",
+   "key": "29",
+   "line": 1301,
+   "decision": "GENERAL_STANDARD",
+   "name": "출산축하금 지급",
+   "line_sha256": "bc811aa8eba67228"
+  },
+  {
+   "item": "WLF00002366",
+   "key": "02",
+   "line": 9854,
+   "decision": "LIST_ENTRY",
+   "name": "부모부담 차액보육료 지원",
+   "line_sha256": "2916b58581a93e8a"
+  },
+  {
+   "item": "WLF00002385",
+   "key": "29",
+   "line": 5924,
+   "decision": "LIST_ENTRY",
+   "name": "구리시 무주택 신혼부부 전월세자금 대출이자 지원",
+   "line_sha256": "8c9f8f2ffb99003b"
+  },
+  {
+   "item": "WLF00002428",
+   "key": "10",
+   "line": 13641,
+   "decision": "EXCLUSION_LIST",
+   "name": "청년 희망 디딤돌 통장 지원사업",
+   "line_sha256": "ca1d092f2d23571d"
+  },
+  {
+   "item": "WLF00002428",
+   "key": "02",
+   "line": 8514,
+   "decision": "LIST_ENTRY",
+   "name": "청년 희망 디딤돌 통장 지원사업",
+   "line_sha256": "2055f8242b1df483"
+  },
+  {
+   "item": "WLF00002461",
+   "key": "29",
+   "line": 1301,
+   "decision": "GENERAL_STANDARD",
+   "name": "출산축하금",
+   "line_sha256": "bc811aa8eba67228"
+  },
+  {
+   "item": "WLF00002516",
+   "key": "02",
+   "line": 8440,
+   "decision": "LIST_ENTRY",
+   "name": "여성구직활동 지원사업",
+   "line_sha256": "dfb5988e343af91d"
+  },
+  {
+   "item": "WLF00002572",
+   "key": "02",
+   "line": 9818,
+   "decision": "LIST_ENTRY",
+   "name": "노인급식지원사업",
+   "line_sha256": "12d6132a564de574"
+  },
+  {
+   "item": "WLF00002617",
+   "key": "29",
+   "line": 6362,
+   "decision": "LIST_ENTRY",
+   "name": "신혼부부 임차보증금 지원사업",
+   "line_sha256": "1e870d2b7e9800b2"
+  },
+  {
+   "item": "WLF00002637",
+   "key": "29",
+   "line": 6360,
+   "decision": "LIST_ENTRY",
+   "name": "청년 임차보증금 이자지원사업",
+   "line_sha256": "b5041bb7997ff0c7"
+  },
+  {
+   "item": "WLF00002686",
+   "key": "29",
+   "line": 5965,
+   "decision": "LIST_ENTRY",
+   "name": "신혼부부 전세자금대출 이자지원사업",
+   "line_sha256": "0b10ef9653d067ba"
+  },
+  {
+   "item": "WLF00002715",
+   "key": "02",
+   "line": 8312,
+   "decision": "LIST_ENTRY",
+   "name": "저소득주민 특별생계보호사업",
+   "line_sha256": "0c7f9575f7313eaa"
+  },
+  {
+   "item": "WLF00002729",
+   "key": "02",
+   "line": 8305,
+   "decision": "LIST_ENTRY",
+   "name": "으뜸관악 청년통장",
+   "line_sha256": "7f46309992d183c8"
+  },
+  {
+   "item": "WLF00002855",
+   "key": "02",
+   "line": 8469,
+   "decision": "LIST_ENTRY",
+   "name": "홍천군 출산장려금",
+   "line_sha256": "95d2b139327601e6"
+  },
+  {
+   "item": "WLF00003039",
+   "key": "31",
+   "line": 36849,
+   "decision": "CONTENTS",
+   "name": "임산부 건강관리 지원",
+   "line_sha256": "37a0ed98441ccfa7"
+  },
+  {
+   "item": "WLF00003077",
+   "key": "02",
+   "line": 8454,
+   "decision": "LIST_ENTRY",
+   "name": "호국보훈수당 지원",
+   "line_sha256": "c9686c60c35e8bd1"
+  },
+  {
+   "item": "WLF00003141",
+   "key": "02",
+   "line": 9855,
+   "decision": "LIST_ENTRY",
+   "name": "산후건강관리 지원사업",
+   "line_sha256": "ddec99e47f846d5f"
+  },
+  {
+   "item": "WLF00003141",
+   "key": "29",
+   "line": 6689,
+   "decision": "LIST_ENTRY",
+   "name": "산후건강관리 지원사업",
+   "line_sha256": "720736a308ac317d"
+  },
+  {
+   "item": "WLF00003167",
+   "key": "29",
+   "line": 6640,
+   "decision": "LIST_ENTRY",
+   "name": "출산 전 준비금",
+   "line_sha256": "a4c4d22643165087"
+  },
+  {
+   "item": "WLF00003567",
+   "key": "02",
+   "line": 8517,
+   "decision": "LIST_ENTRY",
+   "name": "청년부부 결혼축하금 지원",
+   "line_sha256": "0386e836c9f31c58"
+  },
+  {
+   "item": "WLF00003603",
+   "key": "29",
+   "line": 5857,
+   "decision": "LIST_ENTRY",
+   "name": "한방난임 지원사업",
+   "line_sha256": "09f50a229d5a65ef"
+  },
+  {
+   "item": "WLF00003608",
+   "key": "29",
+   "line": 1300,
+   "decision": "GENERAL_STANDARD",
+   "name": "산모 신생아 건강관리서비스 지원",
+   "line_sha256": "8b383aa7a4f23d9a"
+  },
+  {
+   "item": "WLF00003626",
+   "key": "29",
+   "line": 5837,
+   "decision": "LIST_ENTRY",
+   "name": "정선군 성인 예방접종 지원사업",
+   "line_sha256": "2822804985efa0d0"
+  },
+  {
+   "item": "WLF00003646",
+   "key": "02",
+   "line": 8455,
+   "decision": "LIST_ENTRY",
+   "name": "정선군 출생아 양육비 지원사업",
+   "line_sha256": "c4eef0efe3b10b47"
+  },
+  {
+   "item": "WLF00003728",
+   "key": "02",
+   "line": 8453,
+   "decision": "LIST_ENTRY",
+   "name": "참전유공자 공로수당지원",
+   "line_sha256": "b80a42f85af8a53a"
+  },
+  {
+   "item": "WLF00003792",
+   "key": "29",
+   "line": 1362,
+   "decision": "GENERAL_STANDARD",
+   "name": "효도수당",
+   "line_sha256": "79a559adf2e34b69"
+  },
+  {
+   "item": "WLF00003806",
+   "key": "02",
+   "line": 8354,
+   "decision": "LIST_ENTRY",
+   "name": "5.18민주유공자 생활지원금 지원",
+   "line_sha256": "e15fb157070c978d"
+  },
+  {
+   "item": "WLF00003825",
+   "key": "02",
+   "line": 8423,
+   "decision": "LIST_ENTRY",
+   "name": "평택시 청년 월세 지원",
+   "line_sha256": "f99a79c08cf94955"
+  },
+  {
+   "item": "WLF00003979",
+   "key": "02",
+   "line": 8342,
+   "decision": "LIST_ENTRY",
+   "name": "청년 발달장애인 자산형성 지원사업(행복씨앗통장)",
+   "line_sha256": "04d1da579cf7909d"
+  },
+  {
+   "item": "WLF00004039",
+   "key": "02",
+   "line": 8413,
+   "decision": "LIST_ENTRY",
+   "name": "다자녀장려금 지원",
+   "line_sha256": "950b0358df3a36b5"
+  },
+  {
+   "item": "WLF00004071",
+   "key": "29",
+   "line": 1300,
+   "decision": "GENERAL_STANDARD",
+   "name": "산모·신생아 건강관리서비스 지원사업",
+   "line_sha256": "8b383aa7a4f23d9a"
+  },
+  {
+   "item": "WLF00004075",
+   "key": "02",
+   "line": 8502,
+   "decision": "LIST_ENTRY",
+   "name": "김제시 청소년드림카드 지원 사업",
+   "line_sha256": "84933c411443342c"
+  },
+  {
+   "item": "WLF00004097",
+   "key": "02",
+   "line": 9825,
+   "decision": "LIST_ENTRY",
+   "name": "어르신 이·미용비 지원 사업",
+   "line_sha256": "a3fd082b2d6df5ff"
+  },
+  {
+   "item": "WLF00004128",
+   "key": "02",
+   "line": 8356,
+   "decision": "LIST_ENTRY",
+   "name": "광주형 기초보장제도",
+   "line_sha256": "28fd772b29c9df04"
+  },
+  {
+   "item": "WLF00004184",
+   "key": "29",
+   "line": 1328,
+   "decision": "GENERAL_STANDARD",
+   "name": "전입축하금 지원",
+   "line_sha256": "b7e721ada8691b31"
+  },
+  {
+   "item": "WLF00004192",
+   "key": "02",
+   "line": 9833,
+   "decision": "LIST_ENTRY",
+   "name": "충청남도 행복키움수당",
+   "line_sha256": "70e07183bfeb2ac4"
+  },
+  {
+   "item": "WLF00004237",
+   "key": "29",
+   "line": 1308,
+   "decision": "GENERAL_STANDARD",
+   "name": "곡성군 아이돌봄서비스 본인부담금 지원",
+   "line_sha256": "b63f4a685509ffef"
+  },
+  {
+   "item": "WLF00004250",
+   "key": "29",
+   "line": 6270,
+   "decision": "LIST_ENTRY",
+   "name": "세 자녀 이상 가정 온누리상품권 지원",
+   "line_sha256": "934bc2fda9494bf1"
+  },
+  {
+   "item": "WLF00004332",
+   "key": "29",
+   "line": 6262,
+   "decision": "LIST_ENTRY",
+   "name": "청년 주택임차보증금 이자지원 사업",
+   "line_sha256": "48ad10d7a649727e"
+  },
+  {
+   "item": "WLF00004343",
+   "key": "02",
+   "line": 9805,
+   "decision": "LIST_ENTRY",
+   "name": "장애인활동지원 울산시 시비추가지원사업",
+   "line_sha256": "31e7eb88e351356b"
+  },
+  {
+   "item": "WLF00004457",
+   "key": "29",
+   "line": 6012,
+   "decision": "LIST_ENTRY",
+   "name": "파주시 취약계층 대상포진 예방접종 지원 사업",
+   "line_sha256": "9fb354fc3c215bee"
+  },
+  {
+   "item": "WLF00004496",
+   "key": "29",
+   "line": 6737,
+   "decision": "LIST_ENTRY",
+   "name": "한방난임부부 지원사업",
+   "line_sha256": "d437e1a928564f48"
+  },
+  {
+   "item": "WLF00004578",
+   "key": "29",
+   "line": 6641,
+   "decision": "LIST_ENTRY",
+   "name": "완도군 출산장려를 위한 양육비 지원",
+   "line_sha256": "4fc762612afb835b"
+  },
+  {
+   "item": "WLF00004672",
+   "key": "29",
+   "line": 5846,
+   "decision": "LIST_ENTRY",
+   "name": "어린이집특별활동비 지원",
+   "line_sha256": "9b3a644bbeffef51"
+  },
+  {
+   "item": "WLF00004706",
+   "key": "29",
+   "line": 5927,
+   "decision": "LIST_ENTRY",
+   "name": "군포시 청년 전월세 보증금 대출이자 지원사업",
+   "line_sha256": "bd2f26d6279cc6f8"
+  },
+  {
+   "item": "WLF00004710",
+   "key": "29",
+   "line": 6635,
+   "decision": "LIST_ENTRY",
+   "name": "아이돌봄 서비스 본인부담금 추가지원",
+   "line_sha256": "180e5f03aaf6a7bd"
+  },
+  {
+   "item": "WLF00004711",
+   "key": "29",
+   "line": 6253,
+   "decision": "LIST_ENTRY",
+   "name": "신혼부부 결혼 축하 바우처 지원",
+   "line_sha256": "fb2b23a1c2cb562d"
+  },
+  {
+   "item": "WLF00004712",
+   "key": "02",
+   "line": 8428,
+   "decision": "LIST_ENTRY",
+   "name": "평택시 청년 전월세보증금 대출이자 지원",
+   "line_sha256": "f2eebfb55e1acbcc"
+  },
+  {
+   "item": "WLF00004744",
+   "key": "02",
+   "line": 9851,
+   "decision": "LIST_ENTRY",
+   "name": "발달장애인 주간활동서비스 추가지원",
+   "line_sha256": "8b48c24059c0fdd9"
+  },
+  {
+   "item": "WLF00004763",
+   "key": "02",
+   "line": 8542,
+   "decision": "LIST_ENTRY",
+   "name": "해남형 청년 주거비 지원사업",
+   "line_sha256": "c1ff3ac406d0f905"
+  },
+  {
+   "item": "WLF00004776",
+   "key": "29",
+   "line": 1328,
+   "decision": "GENERAL_STANDARD",
+   "name": "전입지원금",
+   "line_sha256": "b7e721ada8691b31"
+  },
+  {
+   "item": "WLF00004777",
+   "key": "29",
+   "line": 6196,
+   "decision": "LIST_ENTRY",
+   "name": "중증장애인 교통비 지원",
+   "line_sha256": "da56f5c0bb3e0327"
+  },
+  {
+   "item": "WLF00004781",
+   "key": "02",
+   "line": 8543,
+   "decision": "LIST_ENTRY",
+   "name": "다자녀 가정 양육 장려금 지원",
+   "line_sha256": "f0170498d4b8fedf"
+  },
+  {
+   "item": "WLF00004799",
+   "key": "29",
+   "line": 1308,
+   "decision": "GENERAL_STANDARD",
+   "name": "아이돌봄서비스 본인부담금 지원",
+   "line_sha256": "b63f4a685509ffef"
+  },
+  {
+   "item": "WLF00004807",
+   "key": "29",
+   "line": 6704,
+   "decision": "LIST_ENTRY",
+   "name": "군산시 신혼부부 주택 전세자금 대출이자 지원",
+   "line_sha256": "ea110fca32256c74"
+  },
+  {
+   "item": "WLF00004807",
+   "key": "02",
+   "line": 8497,
+   "decision": "LIST_ENTRY",
+   "name": "군산시 신혼부부 주택 전세자금 대출이자 지원",
+   "line_sha256": "6527ca6ca5244d55"
+  },
+  {
+   "item": "WLF00004808",
+   "key": "29",
+   "line": 6125,
+   "decision": "LIST_ENTRY",
+   "name": "청년 누비자 이용요금 지원사업",
+   "line_sha256": "f515a4e53d7fbf76"
+  },
+  {
+   "item": "WLF00004829",
+   "key": "02",
+   "line": 8490,
+   "decision": "LIST_ENTRY",
+   "name": "청양군 청소년 꿈키움 바우처지원사업",
+   "line_sha256": "1493323350b30996"
+  },
+  {
+   "item": "WLF00004830",
+   "key": "02",
+   "line": 8475,
+   "decision": "LIST_ENTRY",
+   "name": "제천시 청소년꿈모아바우처 지원",
+   "line_sha256": "f69e51744e6e3ef6"
+  },
+  {
+   "item": "WLF00004875",
+   "key": "02",
+   "line": 8517,
+   "decision": "LIST_ENTRY",
+   "name": "결혼축하금",
+   "line_sha256": "0386e836c9f31c58"
+  },
+  {
+   "item": "WLF00004929",
+   "key": "29",
+   "line": 6190,
+   "decision": "LIST_ENTRY",
+   "name": "예비·신혼부부 임신준비물품 지원",
+   "line_sha256": "2a2769fca198302f"
+  },
+  {
+   "item": "WLF00004944",
+   "key": "29",
+   "line": 1308,
+   "decision": "GENERAL_STANDARD",
+   "name": "아이돌봄서비스 본인부담금 지원 사업",
+   "line_sha256": "b63f4a685509ffef"
+  },
+  {
+   "item": "WLF00004946",
+   "key": "02",
+   "line": 8361,
+   "decision": "LIST_ENTRY",
+   "name": "대전형 양육기본수당",
+   "line_sha256": "6fb4d15f22c2b032"
+  },
+  {
+   "item": "WLF00004961",
+   "key": "29",
+   "line": 6713,
+   "decision": "LIST_ENTRY",
+   "name": "남원시 청년 주거 정착 지원사업",
+   "line_sha256": "2ba3c4c6930c236c"
+  },
+  {
+   "item": "WLF00004964",
+   "key": "02",
+   "line": 8403,
+   "decision": "LIST_ENTRY",
+   "name": "시흥시 노동취약계층 유급병가 지원사업",
+   "line_sha256": "fa3e3fcba16ea78b"
+  },
+  {
+   "item": "WLF00004995",
+   "key": "02",
+   "line": 8371,
+   "decision": "LIST_ENTRY",
+   "name": "경기도 장애인 누림통장",
+   "line_sha256": "cba1c1da5f357b37"
+  },
+  {
+   "item": "WLF00004998",
+   "key": "02",
+   "line": 8516,
+   "decision": "LIST_ENTRY",
+   "name": "신혼부부, 다자녀가정 보금자리 지원사업",
+   "line_sha256": "8b1d51eca30090b7"
+  },
+  {
+   "item": "WLF00005018",
+   "key": "02",
+   "line": 9837,
+   "decision": "LIST_ENTRY",
+   "name": "청년 주택임차보증금 이자 지원사업",
+   "line_sha256": "4c77a508dbbfffd7"
+  },
+  {
+   "item": "WLF00005019",
+   "key": "02",
+   "line": 8515,
+   "decision": "LIST_ENTRY",
+   "name": "청년 취업자 주거비 지원사업",
+   "line_sha256": "fcd4e6cb59e1d6c3"
+  },
+  {
+   "item": "WLF00005027",
+   "key": "02",
+   "line": 8420,
+   "decision": "LIST_ENTRY",
+   "name": "신혼부부 주택임차보증금 대출이자 지원사업",
+   "line_sha256": "55841bb290230aa8"
+  },
+  {
+   "item": "WLF00005041",
+   "key": "29",
+   "line": 6890,
+   "decision": "LIST_ENTRY",
+   "name": "제천시 청년창업 특례보증 지원사업",
+   "line_sha256": "d4a71b829060f33a"
+  },
+  {
+   "item": "WLF00005046",
+   "key": "02",
+   "line": 9806,
+   "decision": "LIST_ENTRY",
+   "name": "산후조리비지원사업",
+   "line_sha256": "33115032c6320642"
+  },
+  {
+   "item": "WLF00005056",
+   "key": "02",
+   "line": 8438,
+   "decision": "LIST_ENTRY",
+   "name": "신혼부부 주거자금 대출이자 지원사업",
+   "line_sha256": "3fac01b8927c349c"
+  },
+  {
+   "item": "WLF00005092",
+   "key": "29",
+   "line": 6214,
+   "decision": "LIST_ENTRY",
+   "name": "손자녀가족돌보미 지원사업",
+   "line_sha256": "cafb4c44603fbe65"
+  },
+  {
+   "item": "WLF00005097",
+   "key": "02",
+   "line": 8294,
+   "decision": "LIST_ENTRY",
+   "name": "서울형 아이돌봄비 지원사업",
+   "line_sha256": "54a93f89ccb4df54"
+  },
+  {
+   "item": "WLF00005102",
+   "key": "02",
+   "line": 8357,
+   "decision": "LIST_ENTRY",
+   "name": "광주다움 통합돌봄",
+   "line_sha256": "b40b8bcd1f7b6bb7"
+  },
+  {
+   "item": "WLF00005105",
+   "key": "29",
+   "line": 6683,
+   "decision": "LIST_ENTRY",
+   "name": "전북청년 지역정착 지원사업",
+   "line_sha256": "9d18b635a8a59481"
+  },
+  {
+   "item": "WLF00005112",
+   "key": "02",
+   "line": 8557,
+   "decision": "LIST_ENTRY",
+   "name": "경상남도 청년 월세 지원사업",
+   "line_sha256": "f394c9be58f49ba7"
+  },
+  {
+   "item": "WLF00005117",
+   "key": "29",
+   "line": 6719,
+   "decision": "LIST_ENTRY",
+   "name": "부안군 아이돌봄서비스 본인부담금 지원",
+   "line_sha256": "0285513ea977af28"
+  },
+  {
+   "item": "WLF00005135",
+   "key": "29",
+   "line": 5937,
+   "decision": "LIST_ENTRY",
+   "name": "워킹맘(대디) 가사지원서비스",
+   "line_sha256": "683c471ddf796704"
+  },
+  {
+   "item": "WLF00005161",
+   "key": "29",
+   "line": 6678,
+   "decision": "LIST_ENTRY",
+   "name": "전북형 난임 시술비 지원사업",
+   "line_sha256": "4226e3d507c865fe"
+  },
+  {
+   "item": "WLF00005183",
+   "key": "29",
+   "line": 6912,
+   "decision": "LIST_ENTRY",
+   "name": "충주시 아동 예체능 문화바우처 지원",
+   "line_sha256": "9198eab3eb2e91ac"
+  },
+  {
+   "item": "WLF00005183",
+   "key": "02",
+   "line": 8478,
+   "decision": "LIST_ENTRY",
+   "name": "충주시 아동 예체능 문화바우처 지원",
+   "line_sha256": "35a126cbca45bf26"
+  },
+  {
+   "item": "WLF00005190",
+   "key": "02",
+   "line": 8507,
+   "decision": "LIST_ENTRY",
+   "name": "순창군 대학생 생활지원금 지원사업",
+   "line_sha256": "928e76779db3f224"
+  },
+  {
+   "item": "WLF00005197",
+   "key": "29",
+   "line": 1308,
+   "decision": "GENERAL_STANDARD",
+   "name": "아이돌봄서비스 본인부담금 지원사업",
+   "line_sha256": "b63f4a685509ffef"
+  },
+  {
+   "item": "WLF00005199",
+   "key": "02",
+   "line": 9853,
+   "decision": "LIST_ENTRY",
+   "name": "어린이집 필요경비 지원 사업",
+   "line_sha256": "e137c2382df0c2d4"
+  },
+  {
+   "item": "WLF00005214",
+   "key": "29",
+   "line": 1308,
+   "decision": "GENERAL_STANDARD",
+   "name": "아이돌봄서비스 본인부담금 지원",
+   "line_sha256": "b63f4a685509ffef"
+  },
+  {
+   "item": "WLF00005241",
+   "key": "29",
+   "line": 6753,
+   "decision": "LIST_ENTRY",
+   "name": "육아수당",
+   "line_sha256": "a9960be830b3cdc5"
+  },
+  {
+   "item": "WLF00005252",
+   "key": "29",
+   "line": 6141,
+   "decision": "LIST_ENTRY",
+   "name": "함양군 청소년 꿈드림 바우처 지원사업",
+   "line_sha256": "72c4b2f76c079ba6"
+  },
+  {
+   "item": "WLF00005306",
+   "key": "02",
+   "line": 8451,
+   "decision": "LIST_ENTRY",
+   "name": "원주시 청소년 꿈이룸 바우처 지원사업",
+   "line_sha256": "851cd5a5da4934d8"
+  },
+  {
+   "item": "WLF00005321",
+   "key": "29",
+   "line": 1361,
+   "decision": "GENERAL_STANDARD",
+   "name": "장수축하금",
+   "line_sha256": "589b2528fecf627d"
+  },
+  {
+   "item": "WLF00005325",
+   "key": "02",
+   "line": 8604,
+   "decision": "LIST_ENTRY",
+   "name": "청년 주거임대료 지원사업",
+   "line_sha256": "be8e179a71a6d135"
+  },
+  {
+   "item": "WLF00005326",
+   "key": "02",
+   "line": 9836,
+   "decision": "LIST_ENTRY",
+   "name": "다자녀 맘 산후 건강관리 지원",
+   "line_sha256": "6487dd872a55fe7a"
+  },
+  {
+   "item": "WLF00005327",
+   "key": "02",
+   "line": 9831,
+   "decision": "LIST_ENTRY",
+   "name": "난임부부 한방치료비 지원",
+   "line_sha256": "6221bd9f1cd325f3"
+  },
+  {
+   "item": "WLF00005364",
+   "key": "02",
+   "line": 8372,
+   "decision": "LIST_ENTRY",
+   "name": "경기도 장애인 대소변흡수용품 구입지원",
+   "line_sha256": "8769c297a08d89eb"
+  },
+  {
+   "item": "WLF00005378",
+   "key": "02",
+   "line": 8541,
+   "decision": "LIST_ENTRY",
+   "name": "진도군 청소년 꿈키움 바우처 지원 사업",
+   "line_sha256": "79ff042410038326"
+  },
+  {
+   "item": "WLF00005386",
+   "key": "29",
+   "line": 5963,
+   "decision": "LIST_ENTRY",
+   "name": "출생축하금 지원",
+   "line_sha256": "10f2ed914a684969"
+  },
+  {
+   "item": "WLF00005391",
+   "key": "02",
+   "line": 8539,
+   "decision": "LIST_ENTRY",
+   "name": "장성군 청소년 꿈키움 바우처 지원 사업",
+   "line_sha256": "83552992a524770d"
+  },
+  {
+   "item": "WLF00005400",
+   "key": "29",
+   "line": 5897,
+   "decision": "LIST_ENTRY",
+   "name": "경기도 대안교육기관 등 학생 교복 지원 사업",
+   "line_sha256": "2512ff23abfe670e"
+  },
+  {
+   "item": "WLF00005403",
+   "key": "02",
+   "line": 8383,
+   "decision": "LIST_ENTRY",
+   "name": "다자녀 양육바우처 지원",
+   "line_sha256": "a9e228a101eed1a1"
+  },
+  {
+   "item": "WLF00005404",
+   "key": "02",
+   "line": 8540,
+   "decision": "LIST_ENTRY",
+   "name": "장애아동수당 미수급자 지원",
+   "line_sha256": "b2e96ccbef45e2db"
+  },
+  {
+   "item": "WLF00005409",
+   "key": "02",
+   "line": 9780,
+   "decision": "LIST_ENTRY",
+   "name": "장애인 버스요금 지원",
+   "line_sha256": "74c7e545dcb5bdb6"
+  },
+  {
+   "item": "WLF00005410",
+   "key": "02",
+   "line": 9781,
+   "decision": "LIST_ENTRY",
+   "name": "서울런(Seoul-Learn)",
+   "line_sha256": "b90bd39b83968440"
+  },
+  {
+   "item": "WLF00005422",
+   "key": "02",
+   "line": 8496,
+   "decision": "LIST_ENTRY",
+   "name": "고창군 신혼부부 및 청년 주택대출이자 지원사업",
+   "line_sha256": "8a3a56ec20c7659e"
+  },
+  {
+   "item": "WLF00005427",
+   "key": "29",
+   "line": 5815,
+   "decision": "LIST_ENTRY",
+   "name": "청년 이사비용 지원사업",
+   "line_sha256": "9f423142c21b8ffe"
+  },
+  {
+   "item": "WLF00005427",
+   "key": "02",
+   "line": 8445,
+   "decision": "LIST_ENTRY",
+   "name": "청년 이사비용 지원사업",
+   "line_sha256": "c6e37c77f54977b1"
+  },
+  {
+   "item": "WLF00005435",
+   "key": "29",
+   "line": 6523,
+   "decision": "LIST_ENTRY",
+   "name": "취약계층 어르신 대상포진 예방접종 지원사업",
+   "line_sha256": "829fe0d4d4ebead9"
+  },
+  {
+   "item": "WLF00005437",
+   "key": "02",
+   "line": 8484,
+   "decision": "LIST_ENTRY",
+   "name": "저소득층 자녀교육비 지원사업",
+   "line_sha256": "36e9c1a82fe99fa5"
+  },
+  {
+   "item": "WLF00005461",
+   "key": "02",
+   "line": 8402,
+   "decision": "LIST_ENTRY",
+   "name": "신혼부부 전세대출금 이자지원 사업",
+   "line_sha256": "8bfbc2ea5e6760f6"
+  },
+  {
+   "item": "WLF00005483",
+   "key": "02",
+   "line": 8456,
+   "decision": "LIST_ENTRY",
+   "name": "철원군 어르신 봉양수당 지원",
+   "line_sha256": "a0675888e0b7593e"
+  },
+  {
+   "item": "WLF00005538",
+   "key": "02",
+   "line": 8348,
+   "decision": "LIST_ENTRY",
+   "name": "천사지원금 지급",
+   "line_sha256": "ebe1716a4743a08b"
+  },
+  {
+   "item": "WLF00005543",
+   "key": "29",
+   "line": 6105,
+   "decision": "LIST_ENTRY",
+   "name": "다자녀가정 튼튼수당(바우처)",
+   "line_sha256": "c5951de8558c820d"
+  },
+  {
+   "item": "WLF00005547",
+   "key": "29",
+   "line": 6065,
+   "decision": "LIST_ENTRY",
+   "name": "청소년 꿈키움 바우처 지원사업",
+   "line_sha256": "42b47c3e70b408a7"
+  },
+  {
+   "item": "WLF00005550",
+   "key": "02",
+   "line": 9834,
+   "decision": "LIST_ENTRY",
+   "name": "충청남도 입원생활비 지원",
+   "line_sha256": "7277501b24cb8083"
+  },
+  {
+   "item": "WLF00005563",
+   "key": "02",
+   "line": 8546,
+   "decision": "LIST_ENTRY",
+   "name": "구미시 근로취약계층 유급병가 지원사업",
+   "line_sha256": "d4a783bb0768c4d5"
+  },
+  {
+   "item": "WLF00005594",
+   "key": "02",
+   "line": 8580,
+   "decision": "LIST_ENTRY",
+   "name": "고성군 긴급돌봄 SOS센터 운영",
+   "line_sha256": "bb344f057e06b804"
+  },
+  {
+   "item": "WLF00005662",
+   "key": "10",
+   "line": 13646,
+   "decision": "EXCLUSION_LIST",
+   "name": "춘천형 일자리 안심공제",
+   "line_sha256": "a4eb47f1422231b6"
+  },
+  {
+   "item": "WLF00005662",
+   "key": "02",
+   "line": 8459,
+   "decision": "LIST_ENTRY",
+   "name": "춘천형 일자리 안심공제",
+   "line_sha256": "a90d2177cb69bff6"
+  },
+  {
+   "item": "WLF00005673",
+   "key": "29",
+   "line": 6091,
+   "decision": "LIST_ENTRY",
+   "name": "사천시 초·중·고등학교 입학 축하금 지원",
+   "line_sha256": "df9e4e6032bf2118"
+  },
+  {
+   "item": "WLF00005681",
+   "key": "29",
+   "line": 5863,
+   "decision": "LIST_ENTRY",
+   "name": "평창군 출산산후조리비 지원",
+   "line_sha256": "aadd08be6dbf8bda"
+  },
+  {
+   "item": "WLF00005687",
+   "key": "29",
+   "line": 6222,
+   "decision": "LIST_ENTRY",
+   "name": "학생교육비 '꿈드리미' 지원",
+   "line_sha256": "0c9fc815c91404a2"
+  },
+  {
+   "item": "WLF00005709",
+   "key": "10",
+   "line": 13646,
+   "decision": "EXCLUSION_LIST",
+   "name": "홍천형 일자리 안심공제 지원사업",
+   "line_sha256": "a4eb47f1422231b6"
+  },
+  {
+   "item": "WLF00005743",
+   "key": "02",
+   "line": 8473,
+   "decision": "LIST_ENTRY",
+   "name": "어르신 백내장, 무릎인공관절 수술비 지원",
+   "line_sha256": "e93fd4def42dfdf4"
+  },
+  {
+   "item": "WLF00005759",
+   "key": "29",
+   "line": 6865,
+   "decision": "LIST_ENTRY",
+   "name": "충청북도 농어업인 공익수당 지원",
+   "line_sha256": "14644cbadab614db"
+  },
+  {
+   "item": "WLF00005765",
+   "key": "02",
+   "line": 8517,
+   "decision": "LIST_ENTRY",
+   "name": "전라남도 청년부부 결혼축하금 지원사업",
+   "line_sha256": "0386e836c9f31c58"
+  },
+  {
+   "item": "WLF00005767",
+   "key": "02",
+   "line": 9860,
+   "decision": "LIST_ENTRY",
+   "name": "전라남도 임산부 친환경농산물 지원사업",
+   "line_sha256": "575e277c9c7dd047"
+  },
+  {
+   "item": "WLF00005772",
+   "key": "02",
+   "line": 9867,
+   "decision": "LIST_ENTRY",
+   "name": "저소득 장애인부모 건강검진비 지원",
+   "line_sha256": "0bfb62e4562ac682"
+  },
+  {
+   "item": "WLF00005829",
+   "key": "02",
+   "line": 8504,
+   "decision": "LIST_ENTRY",
+   "name": "순창군 아동행복수당 지원",
+   "line_sha256": "7603b00f7842dc59"
+  },
+  {
+   "item": "WLF00005846",
+   "key": "29",
+   "line": 1308,
+   "decision": "GENERAL_STANDARD",
+   "name": "아이돌봄서비스 본인부담금 지원",
+   "line_sha256": "b63f4a685509ffef"
+  },
+  {
+   "item": "WLF00005849",
+   "key": "02",
+   "line": 8300,
+   "decision": "LIST_ENTRY",
+   "name": "서울형 가사서비스 지원사업",
+   "line_sha256": "8708cba8f0973b42"
+  },
+  {
+   "item": "WLF00005860",
+   "key": "02",
+   "line": 8554,
+   "decision": "LIST_ENTRY",
+   "name": "영천시 청년근로자 월세 지원",
+   "line_sha256": "f77762f8ed778b1e"
+  },
+  {
+   "item": "WLF00005863",
+   "key": "29",
+   "line": 6258,
+   "decision": "LIST_ENTRY",
+   "name": "청년 부동산중개수수료 및 이사비 지원사업",
+   "line_sha256": "6228c333f7ed8904"
+  },
+  {
+   "item": "WLF00005865",
+   "key": "29",
+   "line": 6187,
+   "decision": "LIST_ENTRY",
+   "name": "영천시 청년 이사비용 지원사업",
+   "line_sha256": "3addb6c29ee9b100"
+  },
+  {
+   "item": "WLF00005866",
+   "key": "29",
+   "line": 6388,
+   "decision": "LIST_ENTRY",
+   "name": "서울시 1인 자영업자 등 배우자 출산휴가급여 지원",
+   "line_sha256": "c8670e513a376dc6"
+  },
+  {
+   "item": "WLF00005896",
+   "key": "02",
+   "line": 8566,
+   "decision": "LIST_ENTRY",
+   "name": "다자녀가정 양육바우처 지원",
+   "line_sha256": "80a6d1b43c2167bf"
+  },
+  {
+   "item": "WLF00005899",
+   "key": "02",
+   "line": 8565,
+   "decision": "LIST_ENTRY",
+   "name": "출산장려금 지원",
+   "line_sha256": "c63aebdcf983aa87"
+  },
+  {
+   "item": "WLF00005906",
+   "key": "29",
+   "line": 6560,
+   "decision": "LIST_ENTRY",
+   "name": "나만의 결혼식 지원",
+   "line_sha256": "b92f5b086f4192c7"
+  },
+  {
+   "item": "WLF00005929",
+   "key": "29",
+   "line": 6015,
+   "decision": "LIST_ENTRY",
+   "name": "전세사기피해자 주거안정 지원",
+   "line_sha256": "add6edc97a3b90dd"
+  },
+  {
+   "item": "WLF00005932",
+   "key": "29",
+   "line": 6300,
+   "decision": "LIST_ENTRY",
+   "name": "초등학교 입학지원금 지원",
+   "line_sha256": "7dbcdd20d32264f6"
+  },
+  {
+   "item": "WLF00005965",
+   "key": "29",
+   "line": 6791,
+   "decision": "LIST_ENTRY",
+   "name": "제주시 취업준비 청년 자격증 등 응시료 지원사업",
+   "line_sha256": "c2f4cd14638337b0"
+  },
+  {
+   "item": "WLF00005990",
+   "key": "29",
+   "line": 6164,
+   "decision": "LIST_ENTRY",
+   "name": "청년근로자 지역정착 행복원룸사업",
+   "line_sha256": "e77f79f61e095927"
+  },
+  {
+   "item": "WLF00005994",
+   "key": "29",
+   "line": 6334,
+   "decision": "LIST_ENTRY",
+   "name": "부산광역시 사하구 초등학교 입학축하금 지원 사업",
+   "line_sha256": "00a15d58770c0733"
+  },
+  {
+   "item": "WLF00005997",
+   "key": "29",
+   "line": 6581,
+   "decision": "LIST_ENTRY",
+   "name": "가족체류형 농어촌유학 프로그램 운영 사업",
+   "line_sha256": "dfd63d27e83b897a"
+  },
+  {
+   "item": "WLF00006003",
+   "key": "29",
+   "line": 1333,
+   "decision": "GENERAL_STANDARD",
+   "name": "이사비 지원사업",
+   "line_sha256": "6f9652fdf24e5fa9"
+  },
+  {
+   "item": "WLF00006006",
+   "key": "29",
+   "line": 6545,
+   "decision": "LIST_ENTRY",
+   "name": "울주군 청년 주택 임차비용 지원",
+   "line_sha256": "66e7066244b7548a"
+  },
+  {
+   "item": "WLF00006009",
+   "key": "02",
+   "line": 9816,
+   "decision": "LIST_ENTRY",
+   "name": "척척세종 생활민원 기동처리반 운영",
+   "line_sha256": "2cbfa93d11fa9564"
+  },
+  {
+   "item": "WLF00006017",
+   "key": "29",
+   "line": 1368,
+   "decision": "GENERAL_STANDARD",
+   "name": "이천시 장애인가정 출산비 지원",
+   "line_sha256": "11c86b06611089bb"
+  },
+  {
+   "item": "WLF00006047",
+   "key": "29",
+   "line": 1308,
+   "decision": "GENERAL_STANDARD",
+   "name": "아이돌봄서비스 본인부담금 지원사업",
+   "line_sha256": "b63f4a685509ffef"
+  },
+  {
+   "item": "WLF00006055",
+   "key": "29",
+   "line": 6531,
+   "decision": "LIST_ENTRY",
+   "name": "달빛어린이병원 운영 지원",
+   "line_sha256": "2a371ac0c671e262"
+  },
+  {
+   "item": "WLF00006056",
+   "key": "02",
+   "line": 9825,
+   "decision": "LIST_ENTRY",
+   "name": "강릉시 어르신 이.미용비 지원사업",
+   "line_sha256": "a3fd082b2d6df5ff"
+  },
+  {
+   "item": "WLF00006059",
+   "key": "29",
+   "line": 5879,
+   "decision": "LIST_ENTRY",
+   "name": "화천군 주택화재 피해주민 지원사업",
+   "line_sha256": "43c72f5bd896af14"
+  },
+  {
+   "item": "WLF00006060",
+   "key": "29",
+   "line": 5877,
+   "decision": "LIST_ENTRY",
+   "name": "화천군 결혼지원금 지원",
+   "line_sha256": "095a89398f7cd4d4"
+  },
+  {
+   "item": "WLF00006063",
+   "key": "29",
+   "line": 6690,
+   "decision": "LIST_ENTRY",
+   "name": "육아휴직 대체인력 근로자 지원",
+   "line_sha256": "f013fc59eca86cd7"
+  },
+  {
+   "item": "WLF00006074",
+   "key": "29",
+   "line": 6165,
+   "decision": "LIST_ENTRY",
+   "name": "구미시 예방접종(대상포진) 지원사업",
+   "line_sha256": "ff4ef13ffe418c57"
+  },
+  {
+   "item": "WLF00006086",
+   "key": "29",
+   "line": 5856,
+   "decision": "LIST_ENTRY",
+   "name": "외국인 아동 보육료 지원",
+   "line_sha256": "597279c14e7902eb"
+  },
+  {
+   "item": "WLF00006087",
+   "key": "29",
+   "line": 6055,
+   "decision": "LIST_ENTRY",
+   "name": "신혼부부 및 출산가구 주택구입 대출이자 지원사업",
+   "line_sha256": "57aeb0d130a1b294"
+  },
+  {
+   "item": "WLF00006091",
+   "key": "29",
+   "line": 1308,
+   "decision": "GENERAL_STANDARD",
+   "name": "아이돌봄서비스 본인부담금 지원 사업",
+   "line_sha256": "b63f4a685509ffef"
+  },
+  {
+   "item": "WLF00006102",
+   "key": "02",
+   "line": 9828,
+   "decision": "LIST_ENTRY",
+   "name": "다자녀가정 아이돌봄서비스 본인부담금 지원",
+   "line_sha256": "09c401d0a46a4b51"
+  },
+  {
+   "item": "WLF00006115",
+   "key": "02",
+   "line": 8432,
+   "decision": "LIST_ENTRY",
+   "name": "화성시 청년 부동산 중개보수 및 이사비 지원",
+   "line_sha256": "0f17fdbb7835383a"
+  },
+  {
+   "item": "WLF00006118",
+   "key": "29",
+   "line": 6183,
+   "decision": "LIST_ENTRY",
+   "name": "생애최초 신혼집 리모델링 일부 지원 사업",
+   "line_sha256": "24565e0bb2945afd"
+  },
+  {
+   "item": "WLF00006138",
+   "key": "29",
+   "line": 6239,
+   "decision": "LIST_ENTRY",
+   "name": "군위군 청년 맞춤형 문화 스포츠 프리패스 지원사업",
+   "line_sha256": "130c6a6b76167a87"
+  },
+  {
+   "item": "WLF00006169",
+   "key": "29",
+   "line": 6537,
+   "decision": "LIST_ENTRY",
+   "name": "교통약자 이동지원 확대 사업",
+   "line_sha256": "d23cd88adf95b65f"
+  },
+  {
+   "item": "WLF00006170",
+   "key": "29",
+   "line": 6367,
+   "decision": "LIST_ENTRY",
+   "name": "기후동행카드 다자녀·저소득층 할인제도 운영",
+   "line_sha256": "265aa74575404515"
+  },
+  {
+   "item": "WLF00006174",
+   "key": "02",
+   "line": 8470,
+   "decision": "LIST_ENTRY",
+   "name": "홍천군 효행장려금",
+   "line_sha256": "6ea9530abe26ac8d"
+  },
+  {
+   "item": "WLF00006174",
+   "key": "29",
+   "line": 5871,
+   "decision": "LIST_ENTRY",
+   "name": "홍천군 효행장려금",
+   "line_sha256": "c1d7547c3b6939d4"
+  },
+  {
+   "item": "WLF00006175",
+   "key": "02",
+   "line": 9839,
+   "decision": "LIST_ENTRY",
+   "name": "어르신 대상포진 예방접종 지원사업",
+   "line_sha256": "787fcdd37b599db3"
+  },
+  {
+   "item": "WLF00006176",
+   "key": "02",
+   "line": 9840,
+   "decision": "LIST_ENTRY",
+   "name": "백내장의료비 지원사업",
+   "line_sha256": "bbfe0e33fbb7d163"
+  },
+  {
+   "item": "WLF00006177",
+   "key": "02",
+   "line": 9796,
+   "decision": "LIST_ENTRY",
+   "name": "어르신 목욕비 및 이·미용비 지원사업",
+   "line_sha256": "256a7e1a6c3400a6"
+  },
+  {
+   "item": "WLF00006178",
+   "key": "02",
+   "line": 9797,
+   "decision": "LIST_ENTRY",
+   "name": "부산광역시 서구 장수축하물품 지원사업",
+   "line_sha256": "104505b32a247e11"
+  },
+  {
+   "item": "WLF00006180",
+   "key": "02",
+   "line": 9820,
+   "decision": "LIST_ENTRY",
+   "name": "용인시 취약계층 어르신 대상포진 무료 예방접종",
+   "line_sha256": "fad7c5f89e1c14d6"
+  },
+  {
+   "item": "WLF00006186",
+   "key": "02",
+   "line": 9789,
+   "decision": "LIST_ENTRY",
+   "name": "깡충깡충 성장양육지원금 지원",
+   "line_sha256": "6c8d8d9be6c2a9dc"
+  },
+  {
+   "item": "WLF00006187",
+   "key": "02",
+   "line": 9866,
+   "decision": "LIST_ENTRY",
+   "name": "고흥청년 플러스 목돈통장사업",
+   "line_sha256": "4484b3f870c946a1"
+  },
+  {
+   "item": "WLF00006187",
+   "key": "29",
+   "line": 6592,
+   "decision": "LIST_ENTRY",
+   "name": "고흥청년 플러스 목돈통장사업",
+   "line_sha256": "e797c426948d86af"
+  },
+  {
+   "item": "WLF00006188",
+   "key": "02",
+   "line": 9826,
+   "decision": "LIST_ENTRY",
+   "name": "강릉시 아이돌봄서비스 본인부담금 추가 지원",
+   "line_sha256": "ef2e095a9a5e21c0"
+  },
+  {
+   "item": "WLF00006190",
+   "key": "29",
+   "line": 5808,
+   "decision": "LIST_ENTRY",
+   "name": "삼척시 어르신 목욕 및 이·미용비 지원 사업",
+   "line_sha256": "11d02eeb1d661dee"
+  },
+  {
+   "item": "WLF00006191",
+   "key": "02",
+   "line": 9822,
+   "decision": "LIST_ENTRY",
+   "name": "오산시 청년 및 신혼부부 주택임차 보증금 대출이자 지원사업",
+   "line_sha256": "cd4888c807842510"
+  },
+  {
+   "item": "WLF00006192",
+   "key": "02",
+   "line": 9821,
+   "decision": "LIST_ENTRY",
+   "name": "용인청년 생애 첫 주택구입 대출이자 지원사업",
+   "line_sha256": "0498f3e33a88bd77"
+  },
+  {
+   "item": "WLF00006192",
+   "key": "29",
+   "line": 5993,
+   "decision": "LIST_ENTRY",
+   "name": "용인청년 생애 첫 주택구입 대출이자 지원사업",
+   "line_sha256": "fc3950a83b3c47ff"
+  },
+  {
+   "item": "WLF00006199",
+   "key": "29",
+   "line": 6511,
+   "decision": "LIST_ENTRY",
+   "name": "자립준비청년 생활보조수당 지원",
+   "line_sha256": "08138f9b3dafd99b"
+  },
+  {
+   "item": "WLF00006281",
+   "key": "29",
+   "line": 6601,
+   "decision": "LIST_ENTRY",
+   "name": "방학기간 초등아동 점심도시락 배달비 지원사업",
+   "line_sha256": "61214ce4361765c5"
+  },
+  {
+   "item": "WLF00006322",
+   "key": "29",
+   "line": 6729,
+   "decision": "LIST_ENTRY",
+   "name": "전입학생 생활안정 장학금",
+   "line_sha256": "d8e6d52faff4098b"
+  },
+  {
+   "item": "WLF00006325",
+   "key": "29",
+   "line": 6410,
+   "decision": "LIST_ENTRY",
+   "name": "강북구 배달플랫폼 종사자 고용보험료 지원 사업",
+   "line_sha256": "a25b6e6eb8ce6e7c"
+  },
+  {
+   "item": "WLF00006326",
+   "key": "29",
+   "line": 6516,
+   "decision": "LIST_ENTRY",
+   "name": "은평구 한방 난임 치료지원사업",
+   "line_sha256": "52b4069c579f07e5"
+  },
+  {
+   "item": "WLF00006329",
+   "key": "29",
+   "line": 6453,
+   "decision": "LIST_ENTRY",
+   "name": "플랫폼 종사자 고용산재보험료 지원 사업",
+   "line_sha256": "00aaee1e8d8deced"
+  },
+  {
+   "item": "WLF00006337",
+   "key": "29",
+   "line": 6819,
+   "decision": "LIST_ENTRY",
+   "name": "보령시 신규 가정위탁 지원금",
+   "line_sha256": "80729da905e6275a"
+  },
+  {
+   "item": "WLF00006339",
+   "key": "29",
+   "line": 5874,
+   "decision": "LIST_ENTRY",
+   "name": "홍천군 어르신 장수축하금 지급",
+   "line_sha256": "93f7e9f4bf8c159e"
+  },
+  {
+   "item": "WLF00006340",
+   "key": "29",
+   "line": 5875,
+   "decision": "LIST_ENTRY",
+   "name": "홍천군 노인 성인용 보행기 지원사업",
+   "line_sha256": "dc29272df03c67a5"
+  },
+  {
+   "item": "WLF00006341",
+   "key": "29",
+   "line": 5876,
+   "decision": "LIST_ENTRY",
+   "name": "홍천군 결혼장려금",
+   "line_sha256": "310d8f68348c9d62"
+  },
+  {
+   "item": "WLF00006343",
+   "key": "29",
+   "line": 6137,
+   "decision": "LIST_ENTRY",
+   "name": "하동군 대상포진 예방접종 지원 사업",
+   "line_sha256": "d22c5474f045fcc8"
+  },
+  {
+   "item": "WLF00006347",
+   "key": "29",
+   "line": 5920,
+   "decision": "LIST_ENTRY",
+   "name": "주거위기가구 지원사업",
+   "line_sha256": "24d14f545c94db7c"
+  },
+  {
+   "item": "WLF00006351",
+   "key": "29",
+   "line": 6421,
+   "decision": "LIST_ENTRY",
+   "name": "서울특별시 강서구 전세피해임차인 지원사업",
+   "line_sha256": "97a880dec4cef8a2"
+  },
+  {
+   "item": "WLF00006353",
+   "key": "29",
+   "line": 6251,
+   "decision": "LIST_ENTRY",
+   "name": "달성 경만이 jump up 인턴 사업",
+   "line_sha256": "5d129848e8f44497"
+  },
+  {
+   "item": "WLF00006354",
+   "key": "29",
+   "line": 6414,
+   "decision": "LIST_ENTRY",
+   "name": "중장년 (재)취업 자격시험 응시료 지원",
+   "line_sha256": "247874fca1e0dfaf"
+  },
+  {
+   "item": "WLF00006355",
+   "key": "02",
+   "line": 8404,
+   "decision": "LIST_ENTRY",
+   "name": "성남시 저소득층 4대 중증질환자 응급 간병비 지원",
+   "line_sha256": "5a975e8f4e414b43"
+  },
+  {
+   "item": "WLF00006356",
+   "key": "29",
+   "line": 6089,
+   "decision": "LIST_ENTRY",
+   "name": "밀양시 산후조리비용 지원사업",
+   "line_sha256": "c88f44feb6a1712f"
+  },
+  {
+   "item": "WLF00006357",
+   "key": "29",
+   "line": 6400,
+   "decision": "LIST_ENTRY",
+   "name": "강남구 아빠 육아휴직장려금 지원사업",
+   "line_sha256": "fe3fdec3b0457790"
+  },
+  {
+   "item": "WLF00006358",
+   "key": "29",
+   "line": 5979,
+   "decision": "LIST_ENTRY",
+   "name": "양평군 전세사기 임차인 이주비 지원",
+   "line_sha256": "0c080ffdde6782f9"
+  },
+  {
+   "item": "WLF00006359",
+   "key": "29",
+   "line": 6252,
+   "decision": "LIST_ENTRY",
+   "name": "발달장애인 안심보험 지원사업",
+   "line_sha256": "24714da22ad34cb1"
+  },
+  {
+   "item": "WLF00006360",
+   "key": "29",
+   "line": 5809,
+   "decision": "LIST_ENTRY",
+   "name": "농어촌 유학생 주거비 지원사업",
+   "line_sha256": "45299674e153db9b"
+  },
+  {
+   "item": "WLF00006361",
+   "key": "29",
+   "line": 6589,
+   "decision": "LIST_ENTRY",
+   "name": "전남형 만원주택 사업",
+   "line_sha256": "cfbef18397939390"
+  },
+  {
+   "item": "WLF00006362",
+   "key": "29",
+   "line": 6080,
+   "decision": "LIST_ENTRY",
+   "name": "김해형 대중교통 무료화 정책(김해패스)",
+   "line_sha256": "a65a20fdecad6e4e"
+  },
+  {
+   "item": "WLF00006364",
+   "key": "29",
+   "line": 5882,
+   "decision": "LIST_ENTRY",
+   "name": "난임부부 시술비 본인부담금 지원사업",
+   "line_sha256": "5c02014196c6a7b6"
+  },
+  {
+   "item": "WLF00006365",
+   "key": "29",
+   "line": 5883,
+   "decision": "LIST_ENTRY",
+   "name": "한방 난임 의료비 지원사업",
+   "line_sha256": "14995e53ab92660a"
+  },
+  {
+   "item": "WLF00006366",
+   "key": "29",
+   "line": 5887,
+   "decision": "LIST_ENTRY",
+   "name": "횡성군 대상포진 예방접종비용지원 사업",
+   "line_sha256": "2ec54fca7d9d18d5"
+  },
+  {
+   "item": "WLF00006367",
+   "key": "29",
+   "line": 5884,
+   "decision": "LIST_ENTRY",
+   "name": "출산장려금 지원사업",
+   "line_sha256": "79b09f266466e584"
+  },
+  {
+   "item": "WLF00006368",
+   "key": "02",
+   "line": 8458,
+   "decision": "LIST_ENTRY",
+   "name": "철원군 거주군인 체육시설 이용 지원사업",
+   "line_sha256": "0705b1a1469485ad"
+  },
+  {
+   "item": "WLF00006368",
+   "key": "29",
+   "line": 5847,
+   "decision": "LIST_ENTRY",
+   "name": "철원군 거주군인 체육시설 이용 지원사업",
+   "line_sha256": "3536b21396b80bd1"
+  },
+  {
+   "item": "WLF00006369",
+   "key": "29",
+   "line": 5835,
+   "decision": "LIST_ENTRY",
+   "name": "인제군 산모 산후 조리비 지원사업",
+   "line_sha256": "8d901b7f53a31e61"
+  },
+  {
+   "item": "WLF00006370",
+   "key": "10",
+   "line": 13646,
+   "decision": "EXCLUSION_LIST",
+   "name": "삼척형 일자리 안심공제 지원사업",
+   "line_sha256": "a4eb47f1422231b6"
+  },
+  {
+   "item": "WLF00006371",
+   "key": "29",
+   "line": 5838,
+   "decision": "LIST_ENTRY",
+   "name": "정선군 결혼장려금 지원",
+   "line_sha256": "892e64739e8df822"
+  },
+  {
+   "item": "WLF00006372",
+   "key": "29",
+   "line": 5845,
+   "decision": "LIST_ENTRY",
+   "name": "철원군 신혼부부정착지원금 지원사업",
+   "line_sha256": "f07769cf59e2424f"
+  },
+  {
+   "item": "WLF00006373",
+   "key": "29",
+   "line": 5844,
+   "decision": "LIST_ENTRY",
+   "name": "철원군 전입세대 지원금 지원사업",
+   "line_sha256": "c13d6e490d26a871"
+  },
+  {
+   "item": "WLF00006376",
+   "key": "29",
+   "line": 6182,
+   "decision": "LIST_ENTRY",
+   "name": "안동 청년두배드림통장 사업",
+   "line_sha256": "5a63fc84b0193f50"
+  },
+  {
+   "item": "WLF00006379",
+   "key": "29",
+   "line": 6678,
+   "decision": "LIST_ENTRY",
+   "name": "남성 난임 시술비 지원사업",
+   "line_sha256": "4226e3d507c865fe"
+  },
+  {
+   "item": "WLF00006380",
+   "key": "29",
+   "line": 6580,
+   "decision": "LIST_ENTRY",
+   "name": "유치원 외국국적 유아 학비지원 사업",
+   "line_sha256": "cd2f11237e6aaf06"
+  },
+  {
+   "item": "WLF00006381",
+   "key": "29",
+   "line": 6309,
+   "decision": "LIST_ENTRY",
+   "name": "부산광역시 기장군 암환자 가발구입비 지원사업",
+   "line_sha256": "3578a369a42915c3"
+  },
+  {
+   "item": "WLF00006384",
+   "key": "29",
+   "line": 6201,
+   "decision": "LIST_ENTRY",
+   "name": "자격증 취득교육 지원사업",
+   "line_sha256": "e091b16013e9bb42"
+  },
+  {
+   "item": "WLF00006385",
+   "key": "02",
+   "line": 8564,
+   "decision": "LIST_ENTRY",
+   "name": "거제 아동 문화·관광 체험카드 지원 사업",
+   "line_sha256": "31691e15f7527768"
+  },
+  {
+   "item": "WLF00006385",
+   "key": "29",
+   "line": 6059,
+   "decision": "LIST_ENTRY",
+   "name": "거제 아동 문화·관광 체험카드 지원 사업",
+   "line_sha256": "60012826e11c3b11"
+  },
+  {
+   "item": "WLF00006392",
+   "key": "29",
+   "line": 6318,
+   "decision": "LIST_ENTRY",
+   "name": "남구형 주거취약계층 중개보수 지원사업",
+   "line_sha256": "2bc12a410166cce0"
+  },
+  {
+   "item": "WLF00006393",
+   "key": "29",
+   "line": 6623,
+   "decision": "LIST_ENTRY",
+   "name": "순천시 치매환자 조호물품 지원 확대",
+   "line_sha256": "bfed9013008e82bf"
+  },
+  {
+   "item": "WLF00006397",
+   "key": "29",
+   "line": 6088,
+   "decision": "LIST_ENTRY",
+   "name": "난임부부 시술비 확대지원사업",
+   "line_sha256": "7673a12bec5dd629"
+  },
+  {
+   "item": "WLF00006404",
+   "key": "29",
+   "line": 6908,
+   "decision": "LIST_ENTRY",
+   "name": "저장강박증 의심가구 지원사업",
+   "line_sha256": "2e8c731b063534b2"
+  },
+  {
+   "item": "WLF00006405",
+   "key": "29",
+   "line": 6551,
+   "decision": "LIST_ENTRY",
+   "name": "출산축하용품 지원",
+   "line_sha256": "049f08c3769b7a78"
+  },
+  {
+   "item": "WLF00006406",
+   "key": "29",
+   "line": 1308,
+   "decision": "GENERAL_STANDARD",
+   "name": "서천군 아이돌봄서비스 본인부담금 지원",
+   "line_sha256": "b63f4a685509ffef"
+  },
+  {
+   "item": "WLF00006407",
+   "key": "29",
+   "line": 6841,
+   "decision": "LIST_ENTRY",
+   "name": "서천군 온라인, 오프라인 학습비 지원사업",
+   "line_sha256": "a93d29a7a906a6f9"
+  },
+  {
+   "item": "WLF00006409",
+   "key": "29",
+   "line": 5955,
+   "decision": "LIST_ENTRY",
+   "name": "청년 주거 패키지",
+   "line_sha256": "fd366e9cb3b4a3bf"
+  },
+  {
+   "item": "WLF00006412",
+   "key": "29",
+   "line": 6384,
+   "decision": "LIST_ENTRY",
+   "name": "취약계층 차열페인트 도장 지원",
+   "line_sha256": "c733733db0c19c0b"
+  },
+  {
+   "item": "WLF00006416",
+   "key": "29",
+   "line": 6203,
+   "decision": "LIST_ENTRY",
+   "name": "울진군 다자녀 유공수당 지원",
+   "line_sha256": "e3150fc8b0239506"
+  },
+  {
+   "item": "WLF00006417",
+   "key": "29",
+   "line": 5932,
+   "decision": "LIST_ENTRY",
+   "name": "다자녀가정 종량제봉투 지원사업",
+   "line_sha256": "fc9b25c761a41752"
+  },
+  {
+   "item": "WLF00006421",
+   "key": "29",
+   "line": 5936,
+   "decision": "LIST_ENTRY",
+   "name": "동두천시 화장장려금 지원",
+   "line_sha256": "5a70a34530c34354"
+  },
+  {
+   "item": "WLF00006422",
+   "key": "29",
+   "line": 6337,
+   "decision": "LIST_ENTRY",
+   "name": "서구 장애인가정 출산지원금 지원 사업",
+   "line_sha256": "61fa7a7e84d05761"
+  },
+  {
+   "item": "WLF00006423",
+   "key": "29",
+   "line": 5992,
+   "decision": "LIST_ENTRY",
+   "name": "용인청년 중개보수 및 이사비 지원사업",
+   "line_sha256": "682752ccb8c08de4"
+  },
+  {
+   "item": "WLF00006425",
+   "key": "29",
+   "line": 6533,
+   "decision": "LIST_ENTRY",
+   "name": "어린이집 식판 세척·소독 지원",
+   "line_sha256": "a87d499762b7807f"
+  },
+  {
+   "item": "WLF00006426",
+   "key": "29",
+   "line": 6135,
+   "decision": "LIST_ENTRY",
+   "name": "하동군 노인 목욕비 및 이미용비 지원 사업",
+   "line_sha256": "e61cac415be45caf"
+  },
+  {
+   "item": "WLF00006429",
+   "key": "29",
+   "line": 5935,
+   "decision": "LIST_ENTRY",
+   "name": "동두천시 고령노인 목욕비 지원",
+   "line_sha256": "132d8e118748511a"
+  },
+  {
+   "item": "WLF00006430",
+   "key": "29",
+   "line": 6875,
+   "decision": "LIST_ENTRY",
+   "name": "장애인 노인 등 전동보조기기 배상책임보험 지원 사업",
+   "line_sha256": "83a65d8325622f46"
+  },
+  {
+   "item": "WLF00006431",
+   "key": "29",
+   "line": 6548,
+   "decision": "LIST_ENTRY",
+   "name": "중증장애아동 돌봄서비스 이용료 지원사업",
+   "line_sha256": "0859657833573081"
+  },
+  {
+   "item": "WLF00006432",
+   "key": "29",
+   "line": 6559,
+   "decision": "LIST_ENTRY",
+   "name": "든든한 동행, 방문 장애인 등록 서비스",
+   "line_sha256": "65171bf36eb79934"
+  },
+  {
+   "item": "WLF00006435",
+   "key": "29",
+   "line": 6098,
+   "decision": "LIST_ENTRY",
+   "name": "노인 무릎 인공관절 수술비 등 지원 사업",
+   "line_sha256": "6ac4ad7d49c77666"
+  },
+  {
+   "item": "WLF00006436",
+   "key": "29",
+   "line": 6078,
+   "decision": "LIST_ENTRY",
+   "name": "2026년 청년 운전면허 취득비용 지원사업",
+   "line_sha256": "872201da70fc62a1"
+  },
+  {
+   "item": "WLF00006438",
+   "key": "29",
+   "line": 6077,
+   "decision": "LIST_ENTRY",
+   "name": "김해시 청년 자격증 시험 응시료 지원",
+   "line_sha256": "9a313eed9174f95d"
+  },
+  {
+   "item": "WLF00006439",
+   "key": "29",
+   "line": 6893,
+   "decision": "LIST_ENTRY",
+   "name": "제천시 암환자 가발구입비 지원",
+   "line_sha256": "2aa5694f46ec5ec1"
+  },
+  {
+   "item": "WLF00006440",
+   "key": "29",
+   "line": 6542,
+   "decision": "LIST_ENTRY",
+   "name": "울주군 산후조리비 지원사업",
+   "line_sha256": "b700c89b211579f6"
+  },
+  {
+   "item": "WLF00006440",
+   "key": "02",
+   "line": 9806,
+   "decision": "LIST_ENTRY",
+   "name": "울주군 산후조리비 지원사업",
+   "line_sha256": "33115032c6320642"
+  },
+  {
+   "item": "WLF00006443",
+   "key": "29",
+   "line": 6110,
+   "decision": "LIST_ENTRY",
+   "name": "의령군 노인 이미용비 및 목욕비 지원",
+   "line_sha256": "46e3137ad1ce5cb6"
+  },
+  {
+   "item": "WLF00006444",
+   "key": "29",
+   "line": 6885,
+   "decision": "LIST_ENTRY",
+   "name": "장애인활동지원 영동군 24시간 추가지원",
+   "line_sha256": "8d1b2ed6452b1562"
+  },
+  {
+   "item": "WLF00006448",
+   "key": "29",
+   "line": 5912,
+   "decision": "LIST_ENTRY",
+   "name": "광명시 초·중·고등학교 졸업앨범비 지원",
+   "line_sha256": "f33cd729237133d7"
+  },
+  {
+   "item": "WLF00006450",
+   "key": "29",
+   "line": 6315,
+   "decision": "LIST_ENTRY",
+   "name": "학교 밖 청소년 고졸 검정고시 합격 축하금 지원",
+   "line_sha256": "8b2d05aff2e35ca9"
+  },
+  {
+   "item": "WLF00006452",
+   "key": "29",
+   "line": 6544,
+   "decision": "LIST_ENTRY",
+   "name": "장애인 전동보장구 보험서비스 지원",
+   "line_sha256": "71974699af3c444c"
+  },
+  {
+   "item": "WLF00006454",
+   "key": "29",
+   "line": 5905,
+   "decision": "LIST_ENTRY",
+   "name": "전입세대 환영물품 지급",
+   "line_sha256": "fd5fc7776342b3c6"
+  },
+  {
+   "item": "WLF00006458",
+   "key": "29",
+   "line": 5918,
+   "decision": "LIST_ENTRY",
+   "name": "장수축하물품",
+   "line_sha256": "c86908b84b0013da"
+  },
+  {
+   "item": "WLF00006462",
+   "key": "29",
+   "line": 6061,
+   "decision": "LIST_ENTRY",
+   "name": "거제시 아동·청소년·어르신 교통비 지원사업",
+   "line_sha256": "7cffdc3884912dbc"
+  },
+  {
+   "item": "WLF00006464",
+   "key": "29",
+   "line": 6546,
+   "decision": "LIST_ENTRY",
+   "name": "소상공인 신규채용 인건비 지원사업",
+   "line_sha256": "cdbbb023e8e7f97f"
+  },
+  {
+   "item": "WLF00006470",
+   "key": "29",
+   "line": 6109,
+   "decision": "LIST_ENTRY",
+   "name": "청년 소상공인 점포 임차료 지원사업",
+   "line_sha256": "d7b8c9169b665821"
+  },
+  {
+   "item": "WLF00006471",
+   "key": "29",
+   "line": 5921,
+   "decision": "LIST_ENTRY",
+   "name": "다태임신 임산부 교통비 지원",
+   "line_sha256": "ca8a8132e15fd03c"
+  },
+  {
+   "item": "WLF00006477",
+   "key": "29",
+   "line": 6279,
+   "decision": "LIST_ENTRY",
+   "name": "공공예식장 작은결혼식 지원",
+   "line_sha256": "4a63db666bddc89a"
+  },
+  {
+   "item": "WLF00006479",
+   "key": "29",
+   "line": 6387,
+   "decision": "LIST_ENTRY",
+   "name": "시니어 동행상점",
+   "line_sha256": "81a276699e8fead8"
+  },
+  {
+   "item": "WLF00006484",
+   "key": "29",
+   "line": 6486,
+   "decision": "LIST_ENTRY",
+   "name": "서울특별시교육청 농촌유학",
+   "line_sha256": "33a20123cac982a7"
+  },
+  {
+   "item": "WLF00006486",
+   "key": "29",
+   "line": 6288,
+   "decision": "LIST_ENTRY",
+   "name": "부산 다자녀 교육지원포인트",
+   "line_sha256": "63492cca9e2ae03b"
+  },
+  {
+   "item": "WLF00006492",
+   "key": "29",
+   "line": 6394,
+   "decision": "LIST_ENTRY",
+   "name": "서울형 산후조리경비 지원",
+   "line_sha256": "320cb7b2d32c7f5c"
+  },
+  {
+   "item": "WLF00006493",
+   "key": "29",
+   "line": 6748,
+   "decision": "LIST_ENTRY",
+   "name": "에듀페이(학습지원비) 지원",
+   "line_sha256": "20405f8b3ca33e35"
+  },
+  {
+   "item": "WLF00006496",
+   "key": "29",
+   "line": 6837,
+   "decision": "LIST_ENTRY",
+   "name": "서천군 청년 이사비 지원사업",
+   "line_sha256": "28deff2e5cfc53a5"
+  },
+  {
+   "item": "WLF00006498",
+   "key": "29",
+   "line": 6718,
+   "decision": "LIST_ENTRY",
+   "name": "부안군 남성 육아휴직 장려금 지원사업",
+   "line_sha256": "1a86754be5b16293"
+  },
+  {
+   "item": "WLF00006500",
+   "key": "29",
+   "line": 6845,
+   "decision": "LIST_ENTRY",
+   "name": "서천군 농어촌버스 미운행지역 희망택시 운행",
+   "line_sha256": "d8507ebe4939b178"
+  },
+  {
+   "item": "WLF00006501",
+   "key": "29",
+   "line": 6852,
+   "decision": "LIST_ENTRY",
+   "name": "천안시 장수축하물품 지원",
+   "line_sha256": "930d2d554af56ded"
+  },
+  {
+   "item": "WLF00006504",
+   "key": "29",
+   "line": 6835,
+   "decision": "LIST_ENTRY",
+   "name": "서천군 대상포진 예방접종 지원사업",
+   "line_sha256": "b08d2b551ac269d2"
+  },
+  {
+   "item": "WLF00006505",
+   "key": "29",
+   "line": 6831,
+   "decision": "LIST_ENTRY",
+   "name": "산모신생아 건강관리 지원 사업 본인부담금 지원",
+   "line_sha256": "39d96de61a4a9482"
+  },
+  {
+   "item": "WLF00006507",
+   "key": "29",
+   "line": 6755,
+   "decision": "LIST_ENTRY",
+   "name": "정읍시 전입 청년 이사비용 지원사업",
+   "line_sha256": "1f04f7a62a04c80d"
+  },
+  {
+   "item": "WLF00006510",
+   "key": "29",
+   "line": 6297,
+   "decision": "LIST_ENTRY",
+   "name": "강서구 청년 자격시험 응시료 지원 사업",
+   "line_sha256": "211120487981c593"
+  },
+  {
+   "item": "WLF00006513",
+   "key": "29",
+   "line": 6284,
+   "decision": "LIST_ENTRY",
+   "name": "부산 청년 중개보수 및 이사비 지원",
+   "line_sha256": "a86cd5eee63c82f6"
+  },
+  {
+   "item": "WLF00006514",
+   "key": "29",
+   "line": 6333,
+   "decision": "LIST_ENTRY",
+   "name": "사상구 학교 밖 청소년 검정고시 합격축하금 지원 사업",
+   "line_sha256": "6e3ba2737d627521"
+  },
+  {
+   "item": "WLF00006516",
+   "key": "29",
+   "line": 6520,
+   "decision": "LIST_ENTRY",
+   "name": "장애 청소년 단체상해보험",
+   "line_sha256": "c0863858978ccf2b"
+  },
+  {
+   "item": "WLF00006518",
+   "key": "29",
+   "line": 6504,
+   "decision": "LIST_ENTRY",
+   "name": "플랫폼 배달노동자 산재보험 지원",
+   "line_sha256": "cbd393b3d3e51792"
+  },
+  {
+   "item": "WLF00006522",
+   "key": "29",
+   "line": 6460,
+   "decision": "LIST_ENTRY",
+   "name": "동대문구 암환자 가발구입비 지원",
+   "line_sha256": "e6ecafdea555a97b"
+  },
+  {
+   "item": "WLF00006524",
+   "key": "29",
+   "line": 6680,
+   "decision": "LIST_ENTRY",
+   "name": "전북 청년 1인 소상공인농어업인 출산급여 지원사업",
+   "line_sha256": "398d2a1b860f9f41"
+  },
+  {
+   "item": "WLF00006525",
+   "key": "29",
+   "line": 6693,
+   "decision": "LIST_ENTRY",
+   "name": "초등학부모 10시 출근제 도입 중소기업 지원",
+   "line_sha256": "51359f75b8587758"
+  },
+  {
+   "item": "WLF00006528",
+   "key": "29",
+   "line": 6767,
+   "decision": "LIST_ENTRY",
+   "name": "정읍시 이동노동자 휴게쉼터 조성사업",
+   "line_sha256": "bbb816580021b049"
+  },
+  {
+   "item": "WLF00006529",
+   "key": "29",
+   "line": 6761,
+   "decision": "LIST_ENTRY",
+   "name": "정읍시 전입지원금 확대 지급",
+   "line_sha256": "09657253986609d2"
+  },
+  {
+   "item": "WLF00006530",
+   "key": "29",
+   "line": 6766,
+   "decision": "LIST_ENTRY",
+   "name": "정읍시 북한이탈주민 자격취득 지원",
+   "line_sha256": "2998963f4b2fbd17"
+  },
+  {
+   "item": "WLF00006533",
+   "key": "29",
+   "line": 6765,
+   "decision": "LIST_ENTRY",
+   "name": "정읍시 신중년 자격증 응시료 지원사업",
+   "line_sha256": "77ff1f176f2022dc"
+  },
+  {
+   "item": "WLF00006535",
+   "key": "29",
+   "line": 6709,
+   "decision": "LIST_ENTRY",
+   "name": "청년 면접정장 대여지원",
+   "line_sha256": "415546d8cc1d42f2"
+  },
+  {
+   "item": "WLF00006538",
+   "key": "29",
+   "line": 6700,
+   "decision": "LIST_ENTRY",
+   "name": "군산형 가사서비스 지원사업",
+   "line_sha256": "2ec55d9513fc3d46"
+  },
+  {
+   "item": "WLF00006539",
+   "key": "29",
+   "line": 1308,
+   "decision": "GENERAL_STANDARD",
+   "name": "아이돌봄서비스 본인부담금 지원",
+   "line_sha256": "b63f4a685509ffef"
+  },
+  {
+   "item": "WLF00006540",
+   "key": "29",
+   "line": 6707,
+   "decision": "LIST_ENTRY",
+   "name": "저소득장애인가정 안심장비 지원 사업",
+   "line_sha256": "0e076c03f17437da"
+  },
+  {
+   "item": "WLF00006543",
+   "key": "29",
+   "line": 6320,
+   "decision": "LIST_ENTRY",
+   "name": "장애인가정 출산지원금 지원",
+   "line_sha256": "f991ac7104cb8009"
+  },
+  {
+   "item": "WLF00006545",
+   "key": "29",
+   "line": 6286,
+   "decision": "LIST_ENTRY",
+   "name": "부산광역시 경계선지능인 지원 사업",
+   "line_sha256": "2cb0ae921775f6fa"
+  },
+  {
+   "item": "WLF00006546",
+   "key": "29",
+   "line": 6754,
+   "decision": "LIST_ENTRY",
+   "name": "다함께돌봄센터 간식비 지원",
+   "line_sha256": "7e212ae9268c7d50"
+  },
+  {
+   "item": "WLF00006547",
+   "key": "29",
+   "line": 1301,
+   "decision": "GENERAL_STANDARD",
+   "name": "출산축하금",
+   "line_sha256": "bc811aa8eba67228"
+  },
+  {
+   "item": "WLF00006548",
+   "key": "29",
+   "line": 6692,
+   "decision": "LIST_ENTRY",
+   "name": "외국인 자녀 보육료 지원",
+   "line_sha256": "3d69bd57cd457971"
+  },
+  {
+   "item": "WLF00006551",
+   "key": "29",
+   "line": 5865,
+   "decision": "LIST_ENTRY",
+   "name": "평창군 저소득층 노인안질환(백내장) 수술비 지원",
+   "line_sha256": "7b1bb963afd546b7"
+  },
+  {
+   "item": "WLF00006558",
+   "key": "29",
+   "line": 6864,
+   "decision": "LIST_ENTRY",
+   "name": "초 다자녀 가정 지원 사업",
+   "line_sha256": "b66ecd209f404dfc"
+  },
+  {
+   "item": "WLF00006559",
+   "key": "29",
+   "line": 6884,
+   "decision": "LIST_ENTRY",
+   "name": "영동군 아이돌봄서비스 본인부담금 지원",
+   "line_sha256": "1f80ded727ba789d"
+  },
+  {
+   "item": "WLF00006560",
+   "key": "29",
+   "line": 6870,
+   "decision": "LIST_ENTRY",
+   "name": "임신출산 가정 가사돌봄 지원",
+   "line_sha256": "f7b14bf0aa5dcf5e"
+  },
+  {
+   "item": "WLF00006562",
+   "key": "29",
+   "line": 6746,
+   "decision": "LIST_ENTRY",
+   "name": "아침결식 개선사업",
+   "line_sha256": "4771e279998a3ffb"
+  },
+  {
+   "item": "WLF00006563",
+   "key": "29",
+   "line": 6403,
+   "decision": "LIST_ENTRY",
+   "name": "취약계층 에어컨 청소 지원 사업",
+   "line_sha256": "5bd26378aa8cd7e6"
+  },
+  {
+   "item": "WLF00006564",
+   "key": "29",
+   "line": 6013,
+   "decision": "LIST_ENTRY",
+   "name": "파주시 공공예식장 예식비 지원",
+   "line_sha256": "32503687934e04da"
+  },
+  {
+   "item": "WLF00006565",
+   "key": "29",
+   "line": 6006,
+   "decision": "LIST_ENTRY",
+   "name": "파주시 아빠 육아휴직 장려금",
+   "line_sha256": "299f99c6a0cec9ba"
+  },
+  {
+   "item": "WLF00006566",
+   "key": "29",
+   "line": 6570,
+   "decision": "LIST_ENTRY",
+   "name": "강화군 대학생 주거비 지원사업",
+   "line_sha256": "5429c97705b355fb"
+  },
+  {
+   "item": "WLF00006567",
+   "key": "29",
+   "line": 6000,
+   "decision": "LIST_ENTRY",
+   "name": "1인 자영업자 등 출산급여 지원",
+   "line_sha256": "0783c5f683f76da9"
+  },
+  {
+   "item": "WLF00006569",
+   "key": "29",
+   "line": 6272,
+   "decision": "LIST_ENTRY",
+   "name": "장애인통합복지카드 발급수수료 지원 사업",
+   "line_sha256": "f225cdcd678fb973"
+  },
+  {
+   "item": "WLF00006570",
+   "key": "29",
+   "line": 6219,
+   "decision": "LIST_ENTRY",
+   "name": "여성장애인 가사도우미 지원",
+   "line_sha256": "9c3d14892f7de0a7"
+  },
+  {
+   "item": "WLF00006576",
+   "key": "29",
+   "line": 6311,
+   "decision": "LIST_ENTRY",
+   "name": "기장군 청년 창업자 임차료 지원사업",
+   "line_sha256": "85eb00f76fe368d7"
+  },
+  {
+   "item": "WLF00006578",
+   "key": "29",
+   "line": 6382,
+   "decision": "LIST_ENTRY",
+   "name": "서울형 입원 생활비 지원 사업",
+   "line_sha256": "a0057c94167f6538"
+  },
+  {
+   "item": "WLF00006578",
+   "key": "02",
+   "line": 8286,
+   "decision": "LIST_ENTRY",
+   "name": "서울형 입원 생활비 지원 사업",
+   "line_sha256": "4ceefa3f5a4c6d12"
+  },
+  {
+   "item": "WLF00006579",
+   "key": "29",
+   "line": 6373,
+   "decision": "LIST_ENTRY",
+   "name": "서울마음편의점 조성·운영",
+   "line_sha256": "6329aaa9bd44d6d0"
+  },
+  {
+   "item": "WLF00006581",
+   "key": "29",
+   "line": 5944,
+   "decision": "LIST_ENTRY",
+   "name": "성남시 초등학교 등 입학준비금 지원 사업",
+   "line_sha256": "545c12db51eae6d6"
+  },
+  {
+   "item": "WLF00006584",
+   "key": "29",
+   "line": 6366,
+   "decision": "LIST_ENTRY",
+   "name": "학자금대출 신용회복지원 사업",
+   "line_sha256": "98bfa9dbfdb91979"
+  },
+  {
+   "item": "WLF00006585",
+   "key": "29",
+   "line": 6150,
+   "decision": "LIST_ENTRY",
+   "name": "청소년부모 아동양육비 추가 지원사업",
+   "line_sha256": "2db4fd8ffd4f882c"
+  },
+  {
+   "item": "WLF00006589",
+   "key": "29",
+   "line": 6045,
+   "decision": "LIST_ENTRY",
+   "name": "경남도민연금",
+   "line_sha256": "3c5420ac7e4be007"
+  },
+  {
+   "item": "WLF00006595",
+   "key": "29",
+   "line": 6060,
+   "decision": "LIST_ENTRY",
+   "name": "거제시 대상포진 예방접종 지원사업",
+   "line_sha256": "74514332c4d1cd50"
+  },
+  {
+   "item": "WLF00006596",
+   "key": "29",
+   "line": 6086,
+   "decision": "LIST_ENTRY",
+   "name": "남해군 대상포진 예방접종 지원사업",
+   "line_sha256": "1fda9182557e6145"
+  },
+  {
+   "item": "WLF00006597",
+   "key": "29",
+   "line": 6179,
+   "decision": "LIST_ENTRY",
+   "name": "성주군 대상포진 예방접종 지원사업",
+   "line_sha256": "a3ea0b4465fd0491"
+  },
+  {
+   "item": "WLF00006599",
+   "key": "29",
+   "line": 6905,
+   "decision": "LIST_ENTRY",
+   "name": "청년 신혼부부 월세 지원사업",
+   "line_sha256": "55405ece1b5ed848"
+  },
+  {
+   "item": "WLF00006600",
+   "key": "29",
+   "line": 6907,
+   "decision": "LIST_ENTRY",
+   "name": "충주시 미취업 청년 어학·자격증 취득 지원사업",
+   "line_sha256": "c48519e22304d122"
+  },
+  {
+   "item": "WLF00006601",
+   "key": "02",
+   "line": 8481,
+   "decision": "LIST_ENTRY",
+   "name": "중증장애인 자산형성 지원",
+   "line_sha256": "5eafac0e5b5f0353"
+  },
+  {
+   "item": "WLF00006606",
+   "key": "29",
+   "line": 5976,
+   "decision": "LIST_ENTRY",
+   "name": "양주시 의료 취약지역 민간의료기관 지원사업",
+   "line_sha256": "c68336ae8dbfff9e"
+  },
+  {
+   "item": "WLF00006608",
+   "key": "29",
+   "line": 6900,
+   "decision": "LIST_ENTRY",
+   "name": "청주시 지자체 대상포진 예방접종 지원사업",
+   "line_sha256": "f65127b20540088c"
+  },
+  {
+   "item": "WLF00006611",
+   "key": "29",
+   "line": 6851,
+   "decision": "LIST_ENTRY",
+   "name": "예산군 암환자 가발구입비 지원 사업",
+   "line_sha256": "905a0c064d1e07b4"
+  },
+  {
+   "item": "WLF00006612",
+   "key": "29",
+   "line": 6850,
+   "decision": "LIST_ENTRY",
+   "name": "전입실비",
+   "line_sha256": "e8cbfbe62fc9e253"
+  },
+  {
+   "item": "WLF00006615",
+   "key": "29",
+   "line": 6343,
+   "decision": "LIST_ENTRY",
+   "name": "검정고시 합격축하금 지원 사업",
+   "line_sha256": "329fb83572930438"
+  },
+  {
+   "item": "WLF00006616",
+   "key": "29",
+   "line": 6808,
+   "decision": "LIST_ENTRY",
+   "name": "공주시 다자녀가구 주택구입 및 전세자금 대출이자 지원사업",
+   "line_sha256": "db45953e61fe7c28"
+  },
+  {
+   "item": "WLF00006618",
+   "key": "29",
+   "line": 5941,
+   "decision": "LIST_ENTRY",
+   "name": "성남시 청년 면접준비 지원사업",
+   "line_sha256": "a9b1b462510ec4ea"
+  },
+  {
+   "item": "WLF00006619",
+   "key": "29",
+   "line": 5942,
+   "decision": "LIST_ENTRY",
+   "name": "성남시 청년 취업준비 컨설팅 지원사업",
+   "line_sha256": "9abddeaa8400e820"
+  },
+  {
+   "item": "WLF00006620",
+   "key": "29",
+   "line": 6485,
+   "decision": "LIST_ENTRY",
+   "name": "외국국적 유아학비 추가 지원",
+   "line_sha256": "25c3a1a9765f4fb8"
+  },
+  {
+   "item": "WLF00006621",
+   "key": "29",
+   "line": 6329,
+   "decision": "LIST_ENTRY",
+   "name": "청년 전월세 중개보수 지원",
+   "line_sha256": "ba8913acc1817209"
+  },
+  {
+   "item": "WLF00006623",
+   "key": "29",
+   "line": 6034,
+   "decision": "LIST_ENTRY",
+   "name": "화성청년 취업역량강화",
+   "line_sha256": "c7787fe8798e5488"
+  },
+  {
+   "item": "WLF00006625",
+   "key": "29",
+   "line": 6276,
+   "decision": "LIST_ENTRY",
+   "name": "무연고 사망자 유품정리 지원 사업",
+   "line_sha256": "e3b98afe3d722dc4"
+  },
+  {
+   "item": "WLF00006633",
+   "key": "29",
+   "line": 6871,
+   "decision": "LIST_ENTRY",
+   "name": "단양군 어르신 농어촌버스 무료 이용 지원사업",
+   "line_sha256": "c79e03ff63c48c83"
+  },
+  {
+   "item": "WLF00006635",
+   "key": "29",
+   "line": 5855,
+   "decision": "LIST_ENTRY",
+   "name": "춘천시 대상포진 예방접종 지원사업",
+   "line_sha256": "7c34585e28a8813f"
+  },
+  {
+   "item": "WLF00006637",
+   "key": "29",
+   "line": 6274,
+   "decision": "LIST_ENTRY",
+   "name": "어린이집 2세반 필요경비 지원",
+   "line_sha256": "9a8f4f4448cadea8"
+  },
+  {
+   "item": "WLF00006642",
+   "key": "29",
+   "line": 6310,
+   "decision": "LIST_ENTRY",
+   "name": "기장군 공공심야어린이병원 지원",
+   "line_sha256": "7464894d712deda1"
+  },
+  {
+   "item": "WLF00006644",
+   "key": "29",
+   "line": 5849,
+   "decision": "LIST_ENTRY",
+   "name": "경계선지능 아동 발달 지원 사업",
+   "line_sha256": "a647a538459030d0"
+  },
+  {
+   "item": "WLF00006648",
+   "key": "29",
+   "line": 6896,
+   "decision": "LIST_ENTRY",
+   "name": "진천형 출생지원금 지원사업",
+   "line_sha256": "d99e46b744ae5e6c"
+  },
+  {
+   "item": "WLF00006650",
+   "key": "29",
+   "line": 6887,
+   "decision": "LIST_ENTRY",
+   "name": "옥천군 청년지원 수당",
+   "line_sha256": "e76dd992919a319f"
+  },
+  {
+   "item": "WLF00006651",
+   "key": "29",
+   "line": 6170,
+   "decision": "LIST_ENTRY",
+   "name": "문경시 임산부 산후조리비 지원",
+   "line_sha256": "96b59d13cddac4f6"
+  },
+  {
+   "item": "WLF00006652",
+   "key": "29",
+   "line": 6112,
+   "decision": "LIST_ENTRY",
+   "name": "진주시 사회초년생 운전면허 취득비용 지원사업",
+   "line_sha256": "80b22ab0de8988cc"
+  },
+  {
+   "item": "WLF00006653",
+   "key": "29",
+   "line": 6392,
+   "decision": "LIST_ENTRY",
+   "name": "서울형 안심 산후조리원 운영 시범사업",
+   "line_sha256": "1de4e90aa02c2d62"
+  },
+  {
+   "item": "WLF00006654",
+   "key": "29",
+   "line": 6249,
+   "decision": "LIST_ENTRY",
+   "name": "영구임대주택 공동전기요금 지원 사업",
+   "line_sha256": "d726cadd242d7f10"
+  },
+  {
+   "item": "WLF00006656",
+   "key": "29",
+   "line": 6428,
+   "decision": "LIST_ENTRY",
+   "name": "관악구 한의약 난임치료 지원 사업",
+   "line_sha256": "8dcf52348fc15e50"
+  },
+  {
+   "item": "WLF00006659",
+   "key": "29",
+   "line": 6275,
+   "decision": "LIST_ENTRY",
+   "name": "장애인 전동보조기기 보험 가입 및 지원",
+   "line_sha256": "7f0b0e8ed0a6fbd6"
+  },
+  {
+   "item": "WLF00006661",
+   "key": "29",
+   "line": 5926,
+   "decision": "LIST_ENTRY",
+   "name": "군포시 치매치료관리비 확대 지원",
+   "line_sha256": "c0cd60d7d92e803f"
+  },
+  {
+   "item": "WLF00006663",
+   "key": "29",
+   "line": 6666,
+   "decision": "LIST_ENTRY",
+   "name": "난임부부 원거리 교통비 지원사업",
+   "line_sha256": "b3d257ed131a1765"
+  },
+  {
+   "item": "WLF00006672",
+   "key": "29",
+   "line": 6244,
+   "decision": "LIST_ENTRY",
+   "name": "대구 남구 주거지원형 일자리 인큐베이팅 하우스 사업",
+   "line_sha256": "f960c41e9dbdbe44"
+  },
+  {
+   "item": "WLF00006674",
+   "key": "29",
+   "line": 5981,
+   "decision": "LIST_ENTRY",
+   "name": "청년신혼부부 주거자금 대출 이자 지원사업",
+   "line_sha256": "d26ef28377fa01db"
+  },
+  {
+   "item": "WLF00006675",
+   "key": "29",
+   "line": 5980,
+   "decision": "LIST_ENTRY",
+   "name": "양평 청년 근로지원금 지원 사업",
+   "line_sha256": "fcc70363d5b3343c"
+  },
+  {
+   "item": "WLF00006676",
+   "key": "29",
+   "line": 6590,
+   "decision": "LIST_ENTRY",
+   "name": "다둥이가정 육아용품 구입비 지원",
+   "line_sha256": "2daadfec4a529078"
+  },
+  {
+   "item": "WLF00006678",
+   "key": "29",
+   "line": 6519,
+   "decision": "LIST_ENTRY",
+   "name": "미취업청년 자격시험 응시료 지원사업",
+   "line_sha256": "8e015bdfa2913b27"
+  },
+  {
+   "item": "WLF00006681",
+   "key": "29",
+   "line": 6493,
+   "decision": "LIST_ENTRY",
+   "name": "성동청년 상생학사 운영",
+   "line_sha256": "4695d6cb8ef28e48"
+  },
+  {
+   "item": "WLF00006686",
+   "key": "29",
+   "line": 6660,
+   "decision": "LIST_ENTRY",
+   "name": "함평군 전입청년 이사 지원사업",
+   "line_sha256": "aabb7521a667159d"
+  },
+  {
+   "item": "WLF00006687",
+   "key": "29",
+   "line": 6638,
+   "decision": "LIST_ENTRY",
+   "name": "영암군 청년 자격증 응시료 지원사업",
+   "line_sha256": "cbb6850dba7b60b0"
+  },
+  {
+   "item": "WLF00006688",
+   "key": "29",
+   "line": 6409,
+   "decision": "LIST_ENTRY",
+   "name": "강동구 고등학생 교육 이용료 지원",
+   "line_sha256": "e44f90c30d41ae6f"
+  },
+  {
+   "item": "WLF00006689",
+   "key": "29",
+   "line": 6351,
+   "decision": "LIST_ENTRY",
+   "name": "전입세대 종량제봉투 지원사업",
+   "line_sha256": "508e82b629b1156f"
+  },
+  {
+   "item": "WLF00006697",
+   "key": "29",
+   "line": 6364,
+   "decision": "LIST_ENTRY",
+   "name": "서울 난자동결 시술비용 지원",
+   "line_sha256": "0f830654e6783884"
+  },
+  {
+   "item": "WLF00006699",
+   "key": "29",
+   "line": 5971,
+   "decision": "LIST_ENTRY",
+   "name": "안성맞춤 주택바우처",
+   "line_sha256": "f8510f17b50310a4"
+  },
+  {
+   "item": "WLF00006700",
+   "key": "29",
+   "line": 6376,
+   "decision": "LIST_ENTRY",
+   "name": "뇌병변장애인 맞춤형 보조기기 지원",
+   "line_sha256": "cbd8ab6f4f760696"
+  },
+  {
+   "item": "WLF00006701",
+   "key": "29",
+   "line": 6389,
+   "decision": "LIST_ENTRY",
+   "name": "장애인 수동휠체어 동력보조장치 지원",
+   "line_sha256": "7999511511e0e0e9"
+  },
+  {
+   "item": "WLF00006702",
+   "key": "29",
+   "line": 6391,
+   "decision": "LIST_ENTRY",
+   "name": "중증장애인 스마트 음성스위치 설치지원",
+   "line_sha256": "9a6a0936e9c9056d"
+  },
+  {
+   "item": "WLF00006703",
+   "key": "29",
+   "line": 6365,
+   "decision": "LIST_ENTRY",
+   "name": "서울 경력단절여성등 재취업 지원사업",
+   "line_sha256": "8a78ab7c570ad8bd"
+  },
+  {
+   "item": "WLF00006705",
+   "key": "29",
+   "line": 5819,
+   "decision": "LIST_ENTRY",
+   "name": "아이돌봄서비스이용자 본인부담금 지원",
+   "line_sha256": "cf9feae8b472df0a"
+  },
+  {
+   "item": "WLF00006706",
+   "key": "29",
+   "line": 5885,
+   "decision": "LIST_ENTRY",
+   "name": "횡성군 청소년 희망채움 바우처 지원사업",
+   "line_sha256": "c55be2dcdc6c5e23"
+  },
+  {
+   "item": "WLF00006706",
+   "key": "02",
+   "line": 8472,
+   "decision": "LIST_ENTRY",
+   "name": "횡성군 청소년 희망채움 바우처 지원사업",
+   "line_sha256": "5c7d1f646b6f48df"
+  },
+  {
+   "item": "WLF00006707",
+   "key": "02",
+   "line": 8457,
+   "decision": "LIST_ENTRY",
+   "name": "철원군 자녀키움수당 지원사업",
+   "line_sha256": "b501ce9b2cc86e25"
+  },
+  {
+   "item": "WLF00006708",
+   "key": "29",
+   "line": 6368,
+   "decision": "LIST_ENTRY",
+   "name": "서울 영테크",
+   "line_sha256": "c8227b3723b919e9"
+  },
+  {
+   "item": "WLF00006710",
+   "key": "29",
+   "line": 5893,
+   "decision": "LIST_ENTRY",
+   "name": "The 경기패스 어르신 지원 확대 시범사업",
+   "line_sha256": "deee241a77d6d043"
+  },
+  {
+   "item": "WLF00006714",
+   "key": "29",
+   "line": 6759,
+   "decision": "LIST_ENTRY",
+   "name": "치매치료관리비 지원 대상 확대 사업",
+   "line_sha256": "f879526759b29bca"
+  },
+  {
+   "item": "WLF00006715",
+   "key": "29",
+   "line": 5991,
+   "decision": "LIST_ENTRY",
+   "name": "청소년 월경통 한방진료사업",
+   "line_sha256": "9e658338365fa3c3"
+  },
+  {
+   "item": "WLF00006716",
+   "key": "29",
+   "line": 6074,
+   "decision": "LIST_ENTRY",
+   "name": "주택 리모델링 지원사업",
+   "line_sha256": "c34a4e6957575f77"
+  },
+  {
+   "item": "WLF00006722",
+   "key": "29",
+   "line": 5800,
+   "decision": "LIST_ENTRY",
+   "name": "진폐의증환자 수당 지원",
+   "line_sha256": "023093d621e39571"
+  },
+  {
+   "item": "WLF00006724",
+   "key": "29",
+   "line": 6134,
+   "decision": "LIST_ENTRY",
+   "name": "통영형 청소년(한)부모 자녀양육비 지원 사업",
+   "line_sha256": "96bc6368717d21e4"
+  },
+  {
+   "item": "WLF00006725",
+   "key": "29",
+   "line": 6140,
+   "decision": "LIST_ENTRY",
+   "name": "신혼부부 결혼자금 지원",
+   "line_sha256": "7b6db5be33dc250a"
+  },
+  {
+   "item": "WLF00006726",
+   "key": "29",
+   "line": 6139,
+   "decision": "LIST_ENTRY",
+   "name": "주택 보금자리 지원",
+   "line_sha256": "df9f26862c3611c6"
+  },
+  {
+   "item": "WLF00006728",
+   "key": "29",
+   "line": 6085,
+   "decision": "LIST_ENTRY",
+   "name": "난임부부 교통비지원 사업",
+   "line_sha256": "33670f8feb29390e"
+  },
+  {
+   "item": "WLF00006734",
+   "key": "10",
+   "line": 13646,
+   "decision": "EXCLUSION_LIST",
+   "name": "횡성형 일자리 안심공제 지원사업",
+   "line_sha256": "a4eb47f1422231b6"
+  },
+  {
+   "item": "WLF00006744",
+   "key": "29",
+   "line": 6578,
+   "decision": "LIST_ENTRY",
+   "name": "연수구 어르신 품위유지비 사업",
+   "line_sha256": "366f59a192f6e425"
+  },
+  {
+   "item": "WLF00006748",
+   "key": "29",
+   "line": 5929,
+   "decision": "LIST_ENTRY",
+   "name": "맞춤형 온라인 콘텐츠 지원",
+   "line_sha256": "5adf02f9f5d1f3d4"
+  },
+  {
+   "item": "WLF00006766",
+   "key": "29",
+   "line": 6692,
+   "decision": "LIST_ENTRY",
+   "name": "외국인 자녀 보육료 지원",
+   "line_sha256": "3d69bd57cd457971"
+  },
+  {
+   "item": "WLF00006767",
+   "key": "29",
+   "line": 6806,
+   "decision": "LIST_ENTRY",
+   "name": "충남형 가족돌봄 지원사업",
+   "line_sha256": "f3e834b5bd411769"
+  },
+  {
+   "item": "WLF00006774",
+   "key": "29",
+   "line": 6101,
+   "decision": "LIST_ENTRY",
+   "name": "양산시 청년 면접 준비비용 지원사업",
+   "line_sha256": "2ca894a44431e483"
+  },
+  {
+   "item": "WLF00006775",
+   "key": "29",
+   "line": 6430,
+   "decision": "LIST_ENTRY",
+   "name": "관악구 청년 월세 지원사업",
+   "line_sha256": "d2fef812c06494a3"
+  },
+  {
+   "item": "WLF00006777",
+   "key": "29",
+   "line": 6115,
+   "decision": "LIST_ENTRY",
+   "name": "청년 구직자 자격증 응시료 지원사업",
+   "line_sha256": "4878c62313b82ded"
+  },
+  {
+   "item": "WLF00006778",
+   "key": "29",
+   "line": 6087,
+   "decision": "LIST_ENTRY",
+   "name": "저소득층 치과진료비 지원사업",
+   "line_sha256": "4a2c1227c7b3baa8"
   }
  ],
  "corpus_revision": "sgw-bdef4e9c1609-v1"

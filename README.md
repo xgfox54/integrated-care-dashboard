@@ -6,7 +6,7 @@
 
 [운영 사이트](https://integrated-care-national-dashboard.xgfox54.chatgpt.site) · [복지제도100](https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100) · [데이터 출처](https://integrated-care-national-dashboard.xgfox54.chatgpt.site/sources)
 
-**2026-10-16 운영 v458 기준 공개본**입니다. 복지제도100 설명·지원 요약의 줄바꿈과 한 장 캔버스 안내 간격 개선을 포함합니다. 자료의 기준일은 출처마다 다르며, 소스 동기화 날짜가 모든 자료의 기준일을 뜻하지는 않습니다.
+**2026-10-16 데이터 연결 재점검을 반영한 공개본**입니다. 복지제도100 설명·지원 요약의 줄바꿈과 한 장 캔버스 안내 간격 개선을 포함합니다. 잘못된 조문·매뉴얼 연결의 수정 범위와 남은 확인 사항은 [연결 재점검 기록](docs/welfare100-link-review-20261016.md)에 정리했습니다. 자료의 기준일은 출처마다 다르며, 소스 동기화 날짜가 모든 자료의 기준일을 뜻하지는 않습니다.
 
 ## 이용 화면
 

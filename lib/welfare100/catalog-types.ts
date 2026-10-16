@@ -43,7 +43,7 @@ export interface TalkRef {
 }
 
 export interface TalkRefReview {
-  decision: "DIRECT" | "LIST_ENTRY" | "SAME_NAME_OTHER_CITY" | "RECHECK";
+  decision: "DIRECT" | "LIST_ENTRY" | "SAME_NAME_OTHER_CITY" | "RECHECK" | "GENERAL_STANDARD" | "EXCLUSION_LIST" | "CONTENTS" | "PENDING";
   checkedAt: string;
   source: "review" | "rule";
 }
@@ -55,6 +55,7 @@ export interface BokjiroLaw {
   article?: string;
   kind: LegalBasisKind;
   url?: string;
+  reviewNote?: string;
 }
 
 /** 복지로 원자료가 지난 내용일 때, 확인한 최신 자료로 고친 기록(data/welfare100/bokjiro-edits.json). */
