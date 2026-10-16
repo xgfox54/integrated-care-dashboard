@@ -11,7 +11,7 @@ import departmentExclusions from "./department-exclusions.json" with { type: "js
 import { type FiscalMode, FISCAL_MODES, fiscalCatalog, modeFieldCodes, pickSnapshotSet, type ProjectFilter, projectDto, publishedSnapshots, snapshotProjectRows, snapshotRegionSummary, snapshotSummary, type SnapshotRow } from "./query.ts";
 
 export const BUDGET_PAGE_SIZE = 20;
-const EXCLUDED_DEPARTMENT_KEYS: readonly string[] = departmentExclusions.departments.map(row => row.fiscal_entity_name + "|" + row.department_code);
+export const EXCLUDED_DEPARTMENT_KEYS: readonly string[] = departmentExclusions.departments.map(row => row.fiscal_entity_name + "|" + row.department_code);
 /** 단위 대조 문구·분야코드처럼 수집 때만 바뀌는 작은 값을 서버 메모리에 두는 시간. */
 const SMALL_MEMO_MS = 10 * 60_000;
 // 공개 snapshot 목록(최대 2000행)과 행정단위는 화면 하나가 동시에 보내는 여러 조회가 똑같이 읽는다. D1은 요청을 차례로 처리해

@@ -22,6 +22,12 @@ export function failureCode(error: unknown): string {
   return (name || "Error").replace(/[^A-Za-z0-9_]/g, "").slice(0, 40) || "Error";
 }
 
+export async function markOptionalIndexPending(db: SqlDatabase, name: OptionalIndexName, nowSeconds: number): Promise<void> {
+  await db.prepare("INSERT INTO optional_index_status (index_name, status, updated_at) VALUES (?, 'BUILDING', ?) " +
+    "ON CONFLICT(index_name) DO UPDATE SET status = 'BUILDING', updated_at = excluded.updated_at")
+    .bind(name, nowSeconds).run();
+}
+
 export async function recordOptionalIndex(db: SqlDatabase, name: OptionalIndexName, outcome: { readonly ok: true; readonly runId: string } | { readonly ok: false; readonly code: string }, nowSeconds: number): Promise<void> {
   if (outcome.ok) {
     await db.prepare(
@@ -42,7 +48,7 @@ export async function readOptionalIndexes(db: SqlDatabase, currentRunId: string 
   const iso = (seconds: number | null) => (seconds ? new Date(seconds * 1000).toISOString() : null);
   return (Object.keys(OPTIONAL_INDEXES) as OptionalIndexName[]).map((name) => {
     const row = rows.get(name);
-    const state = !row ? "NOT_BUILT" : row.status === "FAILED" ? "FAILED" : currentRunId && row.run_id !== currentRunId ? "STALE" : "FRESH";
+    const state = !row ? "NOT_BUILT" : row.status === "FAILED" ? "FAILED" : row.status === "BUILDING" || (currentRunId && row.run_id !== currentRunId) ? "STALE" : "FRESH";
     return {
       index: name, purpose: OPTIONAL_INDEXES[name], required: false, state,
       built_for_run: row?.run_id ?? null, last_success_at: iso(row?.last_success_at ?? null), last_failure_at: iso(row?.last_failure_at ?? null), failure_code: row?.failure_code ?? null,

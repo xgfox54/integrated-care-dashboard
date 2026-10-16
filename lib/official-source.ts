@@ -122,7 +122,13 @@ export function dataAsOfFromTitle(title: string): string {
 }
 
 export function municipalityFromTitle(title: string, province: string): string {
-  if (province === "세종특별자치시" || province === "제주특별자치도") return province;
+  if (province === "제주특별자치도") {
+    // 광역 메뉴판의 기존 원본 식별값은 유지한다. 단, 행정시가 제목에 명시되면 그 지역을
+    // 보존하여 제주시 자료가 서귀포시에도 적용되는 광역 자료로 들어가지 않게 한다.
+    const cities = [...new Set([...title.matchAll(/(?:^|[^가-힣])(서귀포시|제주시)(?=$|[^가-힣])/g)].map((match) => match[1]))];
+    return cities.length === 1 ? cities[0] : province;
+  }
+  if (province === "세종특별자치시") return province;
   const exactRest = title.replace(province, "").trim();
   const exact = exactRest.match(/^([가-힣·]+(?:시|군|구))/)?.[1];
   if (exact) return exact;

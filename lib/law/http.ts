@@ -1,5 +1,6 @@
 import { DEFAULT_EXECUTION_LIMITS, RequestExecutionBudget } from "korean-law-mcp/lib/execution-limits";
 import { runWithRequestContext } from "korean-law-mcp/lib/session-state";
+import { readBoundedJson, RequestBodyError } from "../request-body.ts";
 
 import {
   KOREAN_LAW_PACKAGE_VERSION,
@@ -23,21 +24,9 @@ function reply(body: Record<string, unknown>, status = 200): Response {
 function sameOrigin(request: Request): boolean {
   const expected = new URL(request.url).origin;
   const origin = request.headers.get("origin");
-  if (origin && origin !== "null") return origin === expected;
+  if (origin !== null) return origin === expected;
   const fetchSite = request.headers.get("sec-fetch-site");
   return fetchSite === null || fetchSite === "same-origin";
-}
-
-async function readLimitedJson(request: Request): Promise<unknown | null> {
-  const declared = Number(request.headers.get("content-length") ?? "0");
-  if (!Number.isFinite(declared) || declared < 0 || declared > MAX_REQUEST_BYTES) return null;
-  const buffer = await request.arrayBuffer();
-  if (buffer.byteLength === 0 || buffer.byteLength > MAX_REQUEST_BYTES) return null;
-  try {
-    return JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(buffer));
-  } catch {
-    return null;
-  }
 }
 
 export async function handleLawHttpRequest(request: Request, env: LawHttpEnvironment): Promise<Response> {
@@ -59,7 +48,7 @@ export async function handleLawHttpRequest(request: Request, env: LawHttpEnviron
     );
   }
   if (!sameOrigin(request)) return reply({ error: "ORIGIN_NOT_ALLOWED", message: "같은 사이트 요청만 허용합니다." }, 403);
-  if (!request.headers.get("content-type")?.toLowerCase().startsWith("application/json")) {
+  if (request.headers.get("content-type")?.split(";", 1)[0].trim().toLowerCase() !== "application/json") {
     return reply({ error: "UNSUPPORTED_MEDIA_TYPE", message: "application/json 요청만 지원합니다." }, 415);
   }
   const apiKey = env.LAW_OC?.trim();
@@ -69,7 +58,19 @@ export async function handleLawHttpRequest(request: Request, env: LawHttpEnviron
       message: "운영 서버에 법제처 OPEN API 인증값(LAW_OC)이 설정되지 않았습니다.",
     }, 503);
   }
-  const body = await readLimitedJson(request);
+  let body: unknown;
+  try {
+    body = await readBoundedJson(request, { maxBytes: MAX_REQUEST_BYTES });
+  } catch (error) {
+    // 기존 공개 오류 계약(REQUEST_TOO_LARGE·INVALID_REQUEST)을 유지하고, 수신 시간 초과만 408로 구분한다.
+    if (error instanceof RequestBodyError && error.status === 413) {
+      return reply({ error: "REQUEST_TOO_LARGE", message: "요청 본문은 64 KiB 이하여야 합니다." }, 413);
+    }
+    if (error instanceof RequestBodyError && error.status === 408) {
+      return reply({ error: error.code, message: error.message }, 408);
+    }
+    return reply({ error: "INVALID_REQUEST", message: "요청 본문을 확인해 주세요." }, 400);
+  }
   if (!body || typeof body !== "object" || Array.isArray(body)) {
     return reply({ error: "INVALID_REQUEST", message: "요청 본문을 확인해 주세요." }, 400);
   }

@@ -4,7 +4,7 @@ import type { SqlDatabase } from "../sql-database.ts";
 import { targetGroupSql } from "../target-groups.ts";
 import { reconcileFunding, executionRate, subtractWon } from "./amount.ts";
 import { CONTRACT_VERSION, QWGJK_ENDPOINT } from "./qwgjk.ts";
-import { unitVerificationSql } from "./unit-check.ts";
+import { unitVerificationSql, verifiedAmountSql } from "./unit-check.ts";
 
 export type FiscalMode = "integrated_care" | "social_welfare" | "health" | "department";
 export const FISCAL_MODES: readonly FiscalMode[] = ["social_welfare", "integrated_care", "health", "department"];
@@ -30,6 +30,8 @@ export interface SnapshotRow {
 }
 
 export interface ProjectFilter {
+  /** 공개 MCP 합계 전용: 공식 화면 검증 범위의 원 단위 관측만 포함. */
+  readonly verifiedAmountsOnly?: boolean;
   readonly waCode?: string;
   readonly entityId?: string;
   /**
@@ -137,8 +139,8 @@ export async function publishedSnapshots(db: SqlDatabase, options: { fiscalYear?
   // 통합 공개본에 고정된 snapshot만 본다(현재도 PUBLISHED여야 함: 승인 해제는 즉시 반영).
   if (options.snapshotIds) {
     if (!options.snapshotIds.length) return [];
-    clauses.push("s.snapshot_id IN (" + marks(options.snapshotIds.length) + ")");
-    binds.push(...options.snapshotIds);
+    clauses.push("s.snapshot_id IN (SELECT value FROM json_each(?))");
+    binds.push(JSON.stringify(options.snapshotIds));
   }
   return (await db.prepare(
     "SELECT " + SNAPSHOT_COLUMNS + " FROM fiscal_snapshot s JOIN fiscal_scope c ON c.scope_id = s.scope_id WHERE " + clauses.join(" AND ") +
@@ -219,8 +221,9 @@ export type SnapshotKey = string | readonly string[];
 
 function projectWhere(snapshot: SnapshotKey, filter: ProjectFilter): { joins: string; where: string; binds: unknown[] } {
   const ids = typeof snapshot === "string" ? [snapshot] : [...snapshot];
-  const clauses = [ids.length === 1 ? "m.snapshot_id = ?" : "m.snapshot_id IN (" + marks(ids.length) + ")"];
-  const binds: unknown[] = [...ids];
+  const clauses = [ids.length === 1 ? "m.snapshot_id = ?" : "m.snapshot_id IN (SELECT value FROM json_each(?))"];
+  const binds: unknown[] = ids.length === 1 ? [...ids] : [JSON.stringify(ids)];
+  if (filter.verifiedAmountsOnly) clauses.push(verifiedAmountSql("o"));
   // 검색어가 있는 전국 조회는 회계연도·분야 색인(fiscal_project_year_field_idx)으로 그 분야 사업만 읽고 이름을 먼저 거른다.
   // 검색어가 없는 전국 조회는 대부분의 사업을 읽어야 해서 구성원부터 읽는 편이 빠르다(시험용 SQLite 비교).
   const fieldSearch = Boolean(filter.fieldCodes?.length && filter.integratedCare !== "include" && (filter.query ?? "").trim());
@@ -311,8 +314,8 @@ export async function snapshotSummary(db: SqlDatabase, snapshotId: SnapshotKey, 
       "SUM(CASE WHEN o.current_budget_krw IS NOT NULL AND o.public_expenditure_krw IS NOT NULL THEN 1 ELSE 0 END) AS comparable, " +
       "CAST(SUM(CASE WHEN o.current_budget_krw IS NOT NULL AND o.public_expenditure_krw IS NOT NULL THEN CAST(o.current_budget_krw AS INTEGER) END) AS TEXT) AS budget, " +
       "CAST(SUM(CASE WHEN o.current_budget_krw IS NOT NULL AND o.public_expenditure_krw IS NOT NULL THEN CAST(o.public_expenditure_krw AS INTEGER) END) AS TEXT) AS expenditure, " +
-      "COUNT(DISTINCT p.fiscal_entity_id) AS entities " + joins + " WHERE " + where,
-  ).bind(...binds).first<{ total: number; comparable: number | null; budget: string | null; expenditure: string | null; entities: number }>();
+      "COUNT(DISTINCT p.fiscal_entity_id) AS entities, COUNT(DISTINCT p.fiscal_project_id) AS unique_projects " + joins + " WHERE " + where,
+  ).bind(...binds).first<{ total: number; comparable: number | null; budget: string | null; expenditure: string | null; entities: number; unique_projects: number }>();
   const comparable = row?.comparable ?? 0;
   const budget = comparable ? row?.budget ?? null : null;
   const expenditure = comparable ? row?.expenditure ?? null : null;
@@ -324,6 +327,7 @@ export async function snapshotSummary(db: SqlDatabase, snapshotId: SnapshotKey, 
     excluded_rows: (row?.total ?? 0) - comparable,
     excluded_reason: "예산현액 또는 지출액을 원 단위 정수로 확인할 수 없는 행",
     fiscal_entities: row?.entities ?? 0,
+    ...(filter.verifiedAmountsOnly ? { unique_projects: row?.unique_projects ?? 0 } : {}),
     current_budget_krw: budget,
     public_expenditure_krw: expenditure,
     unspent_difference_krw: subtractWon(budget, expenditure),

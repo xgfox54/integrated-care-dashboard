@@ -132,13 +132,14 @@ export async function buildPublicRelease(db: SqlDatabase, bundle: BundleRow, now
     created_at: new Date(nowSeconds * 1000).toISOString(),
     release_bundle_id: bundle.bundle_id,
     bundle_schema_version: bundle.bundle_schema_version,
-    components: { knowledge_snapshot_id: bundle.knowledge_snapshot_id, fiscal_snapshot_id: bundle.fiscal_snapshot_id, news_snapshot_id: bundle.news_snapshot_id, link_snapshot_id: bundle.link_snapshot_id, document_snapshot_id: (components.documents as { id?: string | null } | undefined)?.id ?? null },
+    components: { knowledge_snapshot_id: bundle.knowledge_snapshot_id, fiscal_snapshot_id: bundle.fiscal_snapshot_id, news_snapshot_id: bundle.news_snapshot_id, link_snapshot_id: bundle.link_snapshot_id, document_snapshot_id: (components.documents as { id?: string | null } | undefined)?.id ?? null, manual_corpus_revision: components.manuals?.detail?.revision ?? null },
     modules_present: ["knowledge", "fiscal", "news", "links"].filter((module) => files.find((file) => file.path.startsWith("data/" + module + "/"))?.records),
     domains: {
       knowledge: { schema_version: "welfare-knowledge-card-1", publication_scope: "public", snapshot_mode: "self_contained" },
       fiscal: { schema_version: "fiscal-observation-1", publication_scope: "public", snapshot_mode: "self_contained" },
       news: { schema_version: "2.1", publication_scope: "public_metadata_only", snapshot_mode: "self_contained", source_registry_version: components.news?.detail?.registry_version ?? null },
       links: { schema_version: "cross-domain-link-1", publication_scope: "public_verified_only", snapshot_mode: "self_contained" },
+      manuals: { schema_version: "manual-corpus-1", publication_scope: "mcp_bounded_excerpts", snapshot_mode: "referenced_revision", included_in_export: false, source_repository: components.manuals?.detail?.source_repository ?? null, source_commit: components.manuals?.detail?.source_commit ?? null },
     },
     files: declared,
   };

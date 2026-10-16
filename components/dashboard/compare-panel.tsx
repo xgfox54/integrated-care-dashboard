@@ -16,10 +16,12 @@ import {
   type ServiceRow,
   collapse,
   countBy,
-  municipalityKey,
   municipalityLabel,
   sortedUnique,
 } from "@/lib/dataset";
+import { RegionalIndicatorTable } from "@/components/dashboard/regional-indicator-table";
+import { JEJU_ADMIN_CITIES, JEJU_PROVINCE } from "@/lib/admin-city";
+import { regionRows } from "@/lib/regional-indicators";
 
 const NUMBER_FORMAT = new Intl.NumberFormat("ko-KR");
 const SLOT_COUNT = 3;
@@ -32,11 +34,12 @@ interface CompareGroup {
   nameSet: Set<string>;
 }
 
-export function ComparePanel({ rows }: { rows: ServiceRow[] }) {
-  const optionKeys = useMemo(
-    () => sortedUnique(rows.filter((row) => row.sido && row.sigungu).map(municipalityKey)),
-    [rows],
-  );
+export function ComparePanel({ rows, dataAsOf = "" }: { rows: ServiceRow[]; dataAsOf?: string }) {
+  const optionKeys = useMemo(() => {
+    const keys = rows.filter((row) => row.sido && row.sigungu).map((row) => row.sido + "|" + row.sigungu);
+    if (rows.some((row) => row.sido === JEJU_PROVINCE)) keys.push(...JEJU_ADMIN_CITIES.map((city) => JEJU_PROVINCE + "|" + city));
+    return sortedUnique(keys);
+  }, [rows]);
 
   const defaultKey = useMemo(
     () => optionKeys.find((key) => key.includes("서귀포")) ?? "",
@@ -48,7 +51,7 @@ export function ComparePanel({ rows }: { rows: ServiceRow[] }) {
   const groups = useMemo<CompareGroup[]>(() => {
     const chosen = [...new Set(selection.filter(Boolean))];
     return chosen.map((key) => {
-      const groupRows = rows.filter((row) => municipalityKey(row) === key);
+      const groupRows = regionRows(rows, key);
       return {
         key,
         label: municipalityLabel(key),
@@ -88,7 +91,7 @@ export function ComparePanel({ rows }: { rows: ServiceRow[] }) {
     <section aria-label="지자체 비교" className="rounded-xl border border-border bg-card p-4">
       <h2 className="text-(length:--jeju-h3-size) font-extrabold text-(--jeju-text-strong)">지자체 비교</h2>
       <p className="mt-1 text-(length:--jeju-text-sm) text-muted-foreground">
-        최대 {SLOT_COUNT}개 시·군·구를 골라 사업 수와 분야 구성을 비교합니다.
+        최대 {SLOT_COUNT}개 시·군·구(제주 행정시 포함)를 골라 사업 수, 분야 구성, 고령인구 대비 지표를 같은 기준으로 비교합니다.
       </p>
 
       <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -147,7 +150,7 @@ export function ComparePanel({ rows }: { rows: ServiceRow[] }) {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-40">분야</TableHead>
+                  <TableHead className="w-40">분야 (구성비)</TableHead>
                   {groups.map((group) => (
                     <TableHead key={group.key} className="text-right">
                       {group.label}
@@ -161,9 +164,11 @@ export function ComparePanel({ rows }: { rows: ServiceRow[] }) {
                     <TableCell className="font-bold">{category}</TableCell>
                     {groups.map((group) => (
                       <TableCell key={group.key} className="text-right tabular-nums">
-                        {NUMBER_FORMAT.format(
-                          group.rows.filter((row) => (row.category || "미분류") === category).length,
-                        )}
+                        {(() => {
+                          const count = group.rows.filter((row) => (row.category || "미분류") === category).length;
+                          const share = group.rows.length ? Math.round((count / group.rows.length) * 1000) / 10 : 0;
+                          return NUMBER_FORMAT.format(count) + "건 (" + share + "%)";
+                        })()}
                       </TableCell>
                     ))}
                   </TableRow>
@@ -171,6 +176,8 @@ export function ComparePanel({ rows }: { rows: ServiceRow[] }) {
               </TableBody>
             </Table>
           </div>
+
+          <RegionalIndicatorTable rows={rows} keys={groups.map((group) => group.key)} dataAsOf={dataAsOf} />
 
           {groups.length >= 2 ? (
             <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">

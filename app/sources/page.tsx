@@ -4,6 +4,9 @@ import { MOHW_INTEGRATED_CARE_URL } from "@/lib/official-source";
 import { getD1 } from "@/lib/d1";
 import { integrationStatus, type DatasetStatus } from "@/lib/integrations/public";
 import { CARE_DATASET_KEYS, CARE_RESOURCES_PUBLIC } from "@/lib/integrations/care-hold";
+import { readManualCorpusState } from "@/lib/manuals/store";
+import { LAW_MCP_PUBLIC } from "@/lib/mcp/contract";
+import type { ManualCorpusState } from "@/lib/manuals/types";
 
 export const dynamic = "force-dynamic";
 
@@ -36,6 +39,12 @@ export default async function SourcesPage() {
     status = null;
   }
   const success = status?.latestSuccess ?? null;
+  let manuals: ManualCorpusState | null = null;
+  try {
+    manuals = await readManualCorpusState(getD1());
+  } catch {
+    manuals = null;
+  }
   let integrations: DatasetStatus[] = [];
   try {
     integrations = await integrationStatus(getD1());
@@ -105,21 +114,23 @@ export default async function SourcesPage() {
         </p>
       </Section>
 
+      <Section title="복지통계">
+        <p>보건복지부의 승인통계 37종, e-나라지표 34종, 관련 주요 통계기관 11곳의 목록을 2026년 10월 10일 기준으로 확인했습니다. 이 중 공개 통계표 7개를 연결해 기초생활보장·의료급여·아동 인구·국민연금·노인복지시설·노인일자리·경상의료비 수치를 제공합니다. 전체 기관의 모든 통계가 반입된 것은 아닙니다.</p>
+        <p>지역별 인구는 <a href="https://jumin.mois.go.kr/ageStatMonth.do" target="_blank" rel="noreferrer" className={LINK_CLASS}>행정안전부 주민등록 인구통계</a>의 2026년 9월 30일 기준 전국·16개 광역시·도 확인본입니다. 중장년층은 만 40~64세, 노년층은 만 65세 이상, 아동은 만 0~17세이며 외국인은 제외합니다. 중장년층은 같은 지역·월의 전체 인구에서 0~39세와 65세 이상 인구를 빼서 정확히 산출합니다. 지역 내 비중의 분모는 같은 지역·월의 전체 주민등록인구입니다. 시·군·구와 다른 기준월은 포함하지 않으며 다음 공표월로 자동 갱신하지 않습니다.</p>
+        <p>기존 전국 집계 7개 공식 공개 표는 요청 시 확인하고 성공한 응답을 24시간 재사용합니다. robots.txt가 금지하거나 확인되지 않으면 자동조회를 진행하지 않으며, 원문 연결·해석 실패 시 마지막 확인본과 상태를 보여줍니다. 표의 연도·행별 단위·잠정치·결측 기호를 보존합니다. 승인통계의 공표일정과 확인일은 관측연도가 아닙니다.</p>
+        <p><a href="/statistics" className={LINK_CLASS}>복지통계와 원문 출처 보기</a> · <a href="/welfaremcp" className={LINK_CLASS}>복지정보MCP 조회 안내</a></p>
+      </Section>
+
       <Section title="법령정보">
         <p>
-          법령정보 화면과 공개 MCP의 법령 도구는 외부 법령 MCP 서버에 연결하지 않습니다. 대시보드 Worker에 내장한 korean-law-mcp 4.15.6의
-          조회·검증 로직이 법제처 국가법령정보 공동활용 OPEN API를 요청 시점에 직접 호출합니다. 법제처 인증값은 서버 비밀값으로만 보관하고 브라우저에는 전달하지 않습니다.
+          {LAW_MCP_PUBLIC
+            ? "공개 MCP의 법령 도구는 대시보드 Worker에 내장한 korean-law-mcp 4.15.6의 조회·검증 로직으로 법제처 국가법령정보 공동활용 OPEN API를 요청 시점에 직접 호출합니다."
+            : "현재 제공 상태: 법령 화면과 공개 MCP의 법령 도구는 제공하지 않습니다. 법령 조회 로직과 자료는 관리자 저장소에 보존되어 있으며, 다시 제공할 때 이 안내를 함께 바꿉니다."}{" "}
+          법제처 인증값은 서버 비밀값으로만 보관하고 브라우저에는 전달하지 않습니다.
         </p>
         <p>
           직접 조회한 법령·판례 응답 원문은 대시보드 데이터베이스에 저장하지 않습니다. 사업 상세에 표시하는 법령 근거 연결은 별도의 검토 절차를 거쳐 승인된 식별자·시행일·근거만 공개합니다.
           적용 시점과 법적 효력이 필요한 판단은 <a href="https://www.law.go.kr" target="_blank" rel="noreferrer" className={LINK_CLASS}>국가법령정보센터 원문<span className="sr-only">(새 창)</span></a>에서 최종 확인해야 합니다.
-        </p>
-      </Section>
-
-      <Section title="복지정보 관계성 지도">
-        <p>
-          공개된 사업·제도·지역·법령·보도자료·예산 사이의 확인된 연결을 시각화합니다.
-          지도에 연결되어 있다는 사실만으로 신청 자격이나 예산의 실제 수혜관계가 확정되는 것은 아닙니다. 선택한 항목의 원문과 상세 화면에서 근거를 확인할 수 있습니다.
         </p>
       </Section>
 
@@ -130,6 +141,19 @@ export default async function SourcesPage() {
         </p>
         <p>
           <a href="/documents" className={LINK_CLASS}>공개 중인 문서 근거 사실 보기</a>
+        </p>
+      </Section>
+
+      <Section title="복지 매뉴얼 본문">
+        <p>
+          복지 매뉴얼과 서귀포 복지업무 자료를 파싱한 저장소의 자료를 본문 구간별로 검색합니다.
+          {manuals?.active ? ` 현재 문서 ${manuals.active.document_count.toLocaleString("ko-KR")}개와 본문 구간 ${manuals.active.section_count.toLocaleString("ko-KR")}개를 제공합니다.` : " 자료 반입 상태는 MCP의 공개 자료 상태에서 확인할 수 있습니다."}
+          {" "}<a href="https://gitlab.aigov.go.kr/memory365/seoguipowelfare" target="_blank" rel="noreferrer" className={LINK_CLASS}>파싱 자료 출처<span className="sr-only">(새 창)</span></a>
+        </p>
+        <p>
+          검색된 구간에는 문서명, 합본 안의 원본 파일명, 원문 줄 위치와 자료 버전이 붙습니다.
+          파일명 연도와 실제 적용연도는 구분해야 하며, 줄 번호는 PDF의 인쇄 쪽수가 아닙니다.
+          이미지 본문은 포함되지 않으므로 이미지에만 있는 표나 설명은 원본에서 확인해 주세요.
         </p>
       </Section>
 
@@ -181,7 +205,7 @@ export default async function SourcesPage() {
       <Section title={CARE_RESOURCES_PUBLIC ? "외부 데이터 연계(지역 돌봄 수요·자원, 공식 혜택정보, 법령 근거)" : "외부 데이터 연계(공식 혜택정보, 법령 근거)"}>
         <p>
           아래 원천은 제공기관의 공개 API에서 받아 {CARE_RESOURCES_PUBLIC ? "지역 돌봄 자원 화면과 " : ""}위키 사업 상세에 씁니다. 사업과 정부24 서비스·법령의 저장된 연결은
-          검토·승인된 연결만 공개합니다. 법령정보 화면의 직접 조회와 사업별 확정 근거 저장은 서로 구분하며, 적용 시점과 조문 근거를 함께 확인합니다.
+          검토·승인된 연결만 공개합니다. 법령 API·MCP의 직접 조회와 사업별 확정 근거 저장은 서로 구분하며, 적용 시점과 조문 근거를 함께 확인합니다.
         </p>
         <ul className="grid gap-2">
           {integrations.filter((row) => CARE_RESOURCES_PUBLIC || !CARE_DATASET_KEYS.has(row.dataset_key)).map((row) => (

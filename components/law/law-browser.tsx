@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  AlertCircle,
   BookOpenText,
   Building2,
   Check,
@@ -11,10 +12,11 @@ import {
   Gavel,
   Landmark,
   LoaderCircle,
+  RefreshCw,
   Scale,
   Search,
 } from "lucide-react";
-import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { type FormEvent, type KeyboardEvent, useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -29,10 +31,15 @@ type ToolName =
   | "ordinance_radar";
 
 interface LawStatus {
-  readonly configured?: boolean;
-  readonly implementation?: string;
-  readonly package_version?: string;
+  readonly configured: boolean;
+  readonly implementation: "embedded";
+  readonly package_version: string;
 }
+
+type LawStatusState =
+  | { readonly state: "loading" }
+  | { readonly state: "ready"; readonly data: LawStatus }
+  | { readonly state: "error"; readonly message: string };
 
 interface LawResponse {
   readonly ok?: boolean;
@@ -118,37 +125,49 @@ function Field({
   );
 }
 
-function StatusBadge({ status }: { readonly status: LawStatus | null }) {
-  if (!status) {
+function StatusBadge({ connection }: { readonly connection: LawStatusState }) {
+  if (connection.state === "loading") {
     return (
       <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-2.5 py-1 text-(length:--jeju-text-sm) font-bold text-muted-foreground">
-        <LoaderCircle className="size-3.5 animate-spin" aria-hidden="true" /> 연결 확인 중
+        <LoaderCircle className="size-3.5 animate-spin motion-reduce:animate-none" aria-hidden="true" /> 설정 상태 확인 중
       </span>
     );
   }
+  if (connection.state === "error") {
+    return (
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-destructive/40 bg-background px-2.5 py-1 text-(length:--jeju-text-sm) font-bold text-destructive">
+        <AlertCircle className="size-3.5" aria-hidden="true" /> 연결 상태 확인 실패
+      </span>
+    );
+  }
+  const status = connection.data;
   return (
     <span
       className={cn(
         "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-(length:--jeju-text-sm) font-bold",
         status.configured
           ? "border-(--jeju-secondary) bg-(--jeju-secondary-tint) text-(--jeju-secondary-strong)"
-          : "border-(--jeju-orange) bg-(--jeju-orange-tint) text-(--jeju-text-strong)",
+          : "border-(--jeju-accent) bg-(--jeju-accent-tint) text-(--jeju-text-strong)",
       )}
     >
       {status.configured ? <Check className="size-3.5" aria-hidden="true" /> : <Scale className="size-3.5" aria-hidden="true" />}
-      내장형 v{status.package_version ?? "4.15.6"}
-      {status.configured ? " · 인증값 설정됨" : " · 인증값 미설정"}
+      {status.configured ? "인증키 등록됨" : "인증키 설정 필요"} · v{status.package_version}
     </span>
   );
 }
 
-export function LawBrowser() {
+export function LawBrowser({ initialConfigured }: { readonly initialConfigured: boolean }) {
   const [mode, setMode] = useState<Mode>("search");
-  const [status, setStatus] = useState<LawStatus | null>(null);
+  const [connection, setConnection] = useState<LawStatusState>({
+    state: "ready",
+    data: { configured: initialConfigured, implementation: "embedded", package_version: "4.15.6" },
+  });
+  const [statusAttempt, setStatusAttempt] = useState(0);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<LawResponse | null>(null);
   const [copied, setCopied] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
+  const copyTimerRef = useRef<number | null>(null);
 
   const [searchQuery, setSearchQuery] = useState("의료·요양 등 지역 돌봄의 통합지원에 관한 법률");
   const [lawId, setLawId] = useState("");
@@ -172,21 +191,48 @@ export function LawBrowser() {
 
   useEffect(() => {
     let active = true;
-    void fetch("/api/law", { cache: "no-store", credentials: "same-origin" })
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => {
+      controller.abort();
+      if (active) setConnection({ state: "error", message: "법령 서비스의 상태 확인이 지연되고 있습니다. 잠시 후 다시 확인해 주세요." });
+    }, 15_000);
+    void fetch("/api/law", { cache: "no-store", credentials: "same-origin", signal: controller.signal })
       .then(async (response) => {
-        const body = (await response.json()) as LawStatus;
-        if (active) setStatus(body);
+        if (!response.ok) throw new Error("법령 조회 준비 상태를 확인하지 못했습니다. 잠시 후 다시 확인해 주세요.");
+        const body: unknown = await response.json();
+        if (!body || typeof body !== "object" || !("configured" in body) || typeof body.configured !== "boolean"
+          || !("implementation" in body) || body.implementation !== "embedded"
+          || !("package_version" in body) || typeof body.package_version !== "string") {
+          throw new Error("법령 서비스의 상태 응답을 확인하지 못했습니다. 잠시 후 다시 확인해 주세요.");
+        }
+        if (active && !controller.signal.aborted) setConnection({ state: "ready", data: { configured: body.configured, implementation: body.implementation, package_version: body.package_version } });
       })
       .catch(() => {
-        if (active) setStatus({ configured: false, package_version: "4.15.6" });
-      });
+        if (active && !controller.signal.aborted) {
+          setConnection({ state: "error", message: "법령 서비스에 연결하지 못해 인증키 설정 여부를 확인할 수 없습니다. 잠시 후 다시 확인해 주세요." });
+        }
+      })
+      .finally(() => window.clearTimeout(timeout));
     return () => {
       active = false;
-      abortRef.current?.abort();
+      controller.abort();
+      window.clearTimeout(timeout);
     };
+  }, [statusAttempt]);
+
+  useEffect(() => () => {
+    abortRef.current?.abort();
+    if (copyTimerRef.current !== null) window.clearTimeout(copyTimerRef.current);
   }, []);
 
-  const selectedMode = useMemo(() => MODES.find((item) => item.id === mode) ?? MODES[0], [mode]);
+  const status = connection.state === "ready" ? connection.data : null;
+  const canQuery = status?.configured === true && !loading;
+  const selectedMode = MODES.find((item) => item.id === mode) ?? MODES[0];
+
+  function refreshStatus() {
+    setConnection({ state: "loading" });
+    setStatusAttempt((attempt) => attempt + 1);
+  }
 
   function selectMode(nextMode: Mode) {
     if (nextMode === mode) return;
@@ -196,6 +242,19 @@ export function LawBrowser() {
     setResult(null);
     setCopied(false);
     setMode(nextMode);
+  }
+
+  function moveModeFocus(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+    let nextIndex: number;
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") nextIndex = (index + 1) % MODES.length;
+    else if (event.key === "ArrowLeft" || event.key === "ArrowUp") nextIndex = (index - 1 + MODES.length) % MODES.length;
+    else if (event.key === "Home") nextIndex = 0;
+    else if (event.key === "End") nextIndex = MODES.length - 1;
+    else return;
+    event.preventDefault();
+    const nextMode = MODES[nextIndex].id;
+    selectMode(nextMode);
+    document.getElementById(`law-tab-${nextMode}`)?.focus();
   }
 
   function requestForMode(): { tool: ToolName; args: Record<string, unknown> } {
@@ -264,6 +323,16 @@ export function LawBrowser() {
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (loading) return;
+    if (!canQuery) {
+      const message = connection.state === "loading"
+        ? "법령 서비스의 설정 상태를 확인하고 있습니다."
+        : connection.state === "error"
+          ? "연결 상태를 다시 확인한 뒤 조회해 주세요."
+          : "인증키 설정이 필요합니다. 운영자가 법제처 인증키를 등록한 뒤 조회할 수 있습니다.";
+      setResult({ ok: false, error: connection.state === "ready" ? "LAW_API_NOT_CONFIGURED" : "LAW_STATUS_UNAVAILABLE", text: message });
+      return;
+    }
     const validation = clientValidation();
     if (validation) {
       setResult({ ok: false, error: "INVALID_INPUT", message: validation, text: validation });
@@ -287,14 +356,23 @@ export function LawBrowser() {
       });
       let body: LawResponse;
       try {
-        body = (await response.json()) as LawResponse;
+        const parsed: unknown = await response.json();
+        if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) throw new Error("Invalid response");
+        const payload = parsed as Record<string, unknown>;
+        if (["error", "message", "text", "tool", "package_version", "source"].some((key) => payload[key] !== undefined && typeof payload[key] !== "string")
+          || (payload.ok !== undefined && typeof payload.ok !== "boolean")) throw new Error("Invalid response");
+        body = parsed as LawResponse;
       } catch {
         body = { ok: false, error: "INVALID_RESPONSE", message: "서버 응답을 읽지 못했습니다." };
       }
-      if (!response.ok && !body.text) body = { ...body, ok: false, text: body.message ?? `요청에 실패했습니다. (${response.status})` };
+      if (controller.signal.aborted || abortRef.current !== controller) return;
+      if (!response.ok) body = { ...body, ok: false, text: body.text ?? body.message ?? `요청에 실패했습니다. (${response.status})` };
+      if (body.error === "LAW_API_NOT_CONFIGURED") {
+        setConnection({ state: "ready", data: { configured: false, implementation: "embedded", package_version: status?.package_version ?? "4.15.6" } });
+      }
       setResult(body);
     } catch (error) {
-      if (error instanceof DOMException && error.name === "AbortError") return;
+      if (controller.signal.aborted || abortRef.current !== controller || (error instanceof DOMException && error.name === "AbortError")) return;
       setResult({ ok: false, error: "NETWORK_ERROR", text: "법령정보 서버에 연결하지 못했습니다. 잠시 뒤 다시 확인해 주세요." });
     } finally {
       if (abortRef.current === controller) {
@@ -309,7 +387,8 @@ export function LawBrowser() {
     try {
       await navigator.clipboard.writeText(result.text);
       setCopied(true);
-      window.setTimeout(() => setCopied(false), 1500);
+      if (copyTimerRef.current !== null) window.clearTimeout(copyTimerRef.current);
+      copyTimerRef.current = window.setTimeout(() => setCopied(false), 1500);
     } catch {
       setCopied(false);
     }
@@ -325,15 +404,26 @@ export function LawBrowser() {
               국가법령정보 통합 조회
             </h2>
             <p className="mt-1 max-w-3xl text-(length:--jeju-text-sm) leading-relaxed text-muted-foreground">
-              외부 법령 MCP에 연결하지 않고 이 대시보드 서버가 법제처 국가법령정보 OPEN API를 직접 조회합니다.
-              인증값은 서버에만 보관하며 브라우저에는 전달하지 않습니다.
+              법제처 국가법령정보센터의 공식 자료를 조회합니다. 검색 결과의 시행일과 조문을 함께 확인해 주세요.
             </p>
           </div>
-          <StatusBadge status={status} />
+          <StatusBadge connection={connection} />
         </div>
 
+        {connection.state === "error" || (status && !status.configured) ? (
+          <div id="law-service-notice" className={cn("mt-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border p-4 text-(length:--jeju-text-sm) leading-relaxed", connection.state === "error" ? "border-destructive/40 bg-background" : "border-(--jeju-accent) bg-(--jeju-accent-tint)")} role="status" aria-live="polite">
+            <div className="min-w-0 flex-1 basis-64">
+              <p className="font-extrabold text-(--jeju-text-strong)">{connection.state === "error" ? "연결 상태 확인 실패" : "인증키 설정 필요"}</p>
+              <p className="mt-1 text-(--jeju-text-body)">{connection.state === "error" ? connection.message : "운영 서버의 법제처 인증키(LAW_OC)가 설정되지 않았습니다. 인증키 등록이 완료되면 아래에서 설정 상태를 다시 확인해 주세요."}</p>
+            </div>
+            <button type="button" onClick={refreshStatus} className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-lg border border-input bg-background px-3 py-2 font-bold text-(--jeju-text-strong) outline-none hover:bg-muted focus-visible:shadow-(--jeju-focus-ring)">
+              <RefreshCw className="size-4" aria-hidden="true" /> 상태 다시 확인
+            </button>
+          </div>
+        ) : null}
+
         <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4" role="tablist" aria-label="법령정보 조회 기능">
-          {MODES.map((item) => {
+          {MODES.map((item, index) => {
             const Icon = item.icon;
             const selected = item.id === mode;
             return (
@@ -341,8 +431,12 @@ export function LawBrowser() {
                 key={item.id}
                 type="button"
                 role="tab"
+                id={`law-tab-${item.id}`}
                 aria-selected={selected}
+                aria-controls="law-tool-panel"
+                tabIndex={selected ? 0 : -1}
                 onClick={() => selectMode(item.id)}
+                onKeyDown={(event) => moveModeFocus(event, index)}
                 className={cn(
                   "flex min-h-16 items-center gap-3 rounded-lg border px-3 py-2 text-left outline-none transition-colors focus-visible:shadow-(--jeju-focus-ring)",
                   selected
@@ -360,14 +454,14 @@ export function LawBrowser() {
           })}
         </div>
 
-        <form className="mt-5 space-y-4" onSubmit={submit} aria-label={selectedMode.label}>
+        <form id="law-tool-panel" role="tabpanel" aria-labelledby={`law-tab-${mode}`} aria-describedby={connection.state === "error" || (status && !status.configured) ? "law-service-notice" : undefined} aria-busy={loading} className="mt-5 space-y-4" onSubmit={submit}>
           {mode === "search" ? (
             <div className="grid gap-4 md:grid-cols-[1fr_180px]">
               <Field label="법령명 또는 핵심어" hint="현행 법령을 먼저 찾고, 없으면 자치법규와 행정규칙까지 확인합니다.">
                 <input className={FIELD_CLASS} value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} maxLength={2000} placeholder="예: 의료·요양 등 지역 돌봄의 통합지원에 관한 법률" />
               </Field>
               <div className="flex items-end">
-                <button className="min-h-11 w-full rounded-lg bg-primary px-4 py-2 font-extrabold text-primary-foreground hover:bg-(--jeju-primary-hover) disabled:cursor-not-allowed disabled:opacity-60" disabled={loading}>
+                <button className="min-h-11 w-full rounded-lg bg-primary px-4 py-2 font-extrabold text-primary-foreground hover:bg-(--jeju-primary-hover) disabled:cursor-not-allowed disabled:opacity-60" disabled={!canQuery}>
                   {loading ? "조회 중…" : "법령 검색"}
                 </button>
               </div>
@@ -390,7 +484,7 @@ export function LawBrowser() {
                   <input type="date" className={FIELD_CLASS} value={effectiveDate} onChange={(event) => setEffectiveDate(event.target.value)} />
                 </Field>
               </div>
-              <button className="min-h-11 rounded-lg bg-primary px-5 py-2 font-extrabold text-primary-foreground hover:bg-(--jeju-primary-hover) disabled:opacity-60" disabled={loading}>{loading ? "조회 중…" : "조문 조회"}</button>
+              <button className="min-h-11 rounded-lg bg-primary px-5 py-2 font-extrabold text-primary-foreground hover:bg-(--jeju-primary-hover) disabled:cursor-not-allowed disabled:opacity-60" disabled={!canQuery}>{loading ? "조회 중…" : "조문 조회"}</button>
             </>
           ) : null}
 
@@ -410,7 +504,7 @@ export function LawBrowser() {
                   <input type="date" className={FIELD_CLASS} value={effectiveDate} onChange={(event) => setEffectiveDate(event.target.value)} />
                 </Field>
               </div>
-              <button className="min-h-11 rounded-lg bg-primary px-5 py-2 font-extrabold text-primary-foreground hover:bg-(--jeju-primary-hover) disabled:opacity-60" disabled={loading}>{loading ? "조회 중…" : "별표·서식 조회"}</button>
+              <button className="min-h-11 rounded-lg bg-primary px-5 py-2 font-extrabold text-primary-foreground hover:bg-(--jeju-primary-hover) disabled:cursor-not-allowed disabled:opacity-60" disabled={!canQuery}>{loading ? "조회 중…" : "별표·서식 조회"}</button>
             </>
           ) : null}
 
@@ -426,7 +520,7 @@ export function LawBrowser() {
                   <input className={FIELD_CLASS} value={decisionQuery} onChange={(event) => setDecisionQuery(event.target.value)} maxLength={2000} placeholder="예: 재가급여 장기요양" />
                 </Field>
               </div>
-              <button className="min-h-11 rounded-lg bg-primary px-5 py-2 font-extrabold text-primary-foreground hover:bg-(--jeju-primary-hover) disabled:opacity-60" disabled={loading}>{loading ? "조회 중…" : "판례·결정례 검색"}</button>
+              <button className="min-h-11 rounded-lg bg-primary px-5 py-2 font-extrabold text-primary-foreground hover:bg-(--jeju-primary-hover) disabled:cursor-not-allowed disabled:opacity-60" disabled={!canQuery}>{loading ? "조회 중…" : "판례·결정례 검색"}</button>
             </>
           ) : null}
 
@@ -442,7 +536,7 @@ export function LawBrowser() {
                   <textarea className={cn(FIELD_CLASS, "min-h-28 resize-y")} value={researchQuery} onChange={(event) => setResearchQuery(event.target.value)} maxLength={2000} />
                 </Field>
               </div>
-              <button className="min-h-11 rounded-lg bg-primary px-5 py-2 font-extrabold text-primary-foreground hover:bg-(--jeju-primary-hover) disabled:opacity-60" disabled={loading}>{loading ? "분석 중…" : "종합 리서치 실행"}</button>
+              <button className="min-h-11 rounded-lg bg-primary px-5 py-2 font-extrabold text-primary-foreground hover:bg-(--jeju-primary-hover) disabled:cursor-not-allowed disabled:opacity-60" disabled={!canQuery}>{loading ? "분석 중…" : "종합 리서치 실행"}</button>
             </>
           ) : null}
 
@@ -480,7 +574,7 @@ export function LawBrowser() {
                   </Field>
                 </div>
               ) : null}
-              <button className="min-h-11 rounded-lg bg-primary px-5 py-2 font-extrabold text-primary-foreground hover:bg-(--jeju-primary-hover) disabled:opacity-60" disabled={loading}>{loading ? "검증 중…" : "검증 실행"}</button>
+              <button className="min-h-11 rounded-lg bg-primary px-5 py-2 font-extrabold text-primary-foreground hover:bg-(--jeju-primary-hover) disabled:cursor-not-allowed disabled:opacity-60" disabled={!canQuery}>{loading ? "검증 중…" : "검증 실행"}</button>
             </>
           ) : null}
 
@@ -494,18 +588,11 @@ export function LawBrowser() {
                   <input className={FIELD_CLASS} value={ordinanceQuery} onChange={(event) => setOrdinanceQuery(event.target.value)} maxLength={2000} placeholder="예: 제주 통합돌봄" />
                 </Field>
               </div>
-              <button className="min-h-11 rounded-lg bg-primary px-5 py-2 font-extrabold text-primary-foreground hover:bg-(--jeju-primary-hover) disabled:opacity-60" disabled={loading}>{loading ? "대조 중…" : "조례 정비 점검"}</button>
+              <button className="min-h-11 rounded-lg bg-primary px-5 py-2 font-extrabold text-primary-foreground hover:bg-(--jeju-primary-hover) disabled:cursor-not-allowed disabled:opacity-60" disabled={!canQuery}>{loading ? "대조 중…" : "조례 정비 점검"}</button>
             </>
           ) : null}
         </form>
       </section>
-
-      {status && !status.configured ? (
-        <div className="rounded-xl border border-(--jeju-orange) bg-(--jeju-orange-tint) p-4 text-(length:--jeju-text-sm) leading-relaxed text-(--jeju-text-strong)" role="status">
-          운영 서버의 <code className="rounded bg-background px-1.5 py-0.5 font-bold">LAW_OC</code> 비밀값이 설정되기 전에는 실제 조회가 실행되지 않습니다.
-          코드와 화면은 설치되어 있으며 인증값 등록 후 즉시 사용할 수 있습니다.
-        </div>
-      ) : null}
 
       {loading ? (
         <div className="flex min-h-44 items-center justify-center rounded-xl border border-border bg-card" role="status" aria-live="polite">

@@ -46,10 +46,10 @@ const LOOP_BELOW = 68;
 // ── Status styles ─────────────────────────────────────────────────────────────
 const SS: Record<string, { bg: string; border: string; dot: string; label: string; ink: string; sub: string }> = {
   done:    { bg: "var(--jeju-success-tint)", border: "var(--jeju-primary)", dot: "var(--jeju-primary)", label: "선행",  ink: "var(--jeju-green-deep)", sub: "var(--jeju-green-dark)" },
-  current: { bg: "var(--jeju-primary)", border: "var(--jeju-primary)", dot: "var(--jeju-on-fill)",    label: "핵심", ink: "var(--jeju-on-fill)", sub: "color-mix(in srgb, var(--jeju-on-fill) 80%, transparent)" },
+  current: { bg: "var(--jeju-primary)", border: "var(--jeju-primary)", dot: "var(--jeju-on-fill)",    label: "설명 기준", ink: "var(--jeju-on-fill)", sub: "color-mix(in srgb, var(--jeju-on-fill) 80%, transparent)" },
   waiting: { bg: "var(--jeju-surface-inset)", border: "var(--jeju-border)", dot: "var(--jeju-border-strong)", label: "후속",  ink: "var(--jeju-text)", sub: "var(--jeju-text-muted)" },
-  risk:    { bg: "var(--jeju-warning-tint)", border: "var(--jeju-orange-dark)", dot: "var(--jeju-orange-dark)", label: "병목",  ink: "var(--jeju-orange-deep)", sub: "var(--jeju-orange-dark)" },
-  loop:    { bg: "var(--jeju-info-tint)", border: "var(--jeju-blue-dark)", dot: "var(--jeju-blue-dark)", label: "회귀",  ink: "var(--jeju-blue-deep)", sub: "var(--jeju-blue-dark)" },
+  risk:    { bg: "var(--jeju-warning-tint)", border: "var(--jeju-orange-dark)", dot: "var(--jeju-orange-dark)", label: "유의",  ink: "var(--jeju-orange-deep)", sub: "var(--jeju-orange-dark)" },
+  loop:    { bg: "var(--jeju-info-tint)", border: "var(--jeju-blue-dark)", dot: "var(--jeju-blue-dark)", label: "재검토",  ink: "var(--jeju-blue-deep)", sub: "var(--jeju-blue-dark)" },
   gateway: { bg: "var(--jeju-surface-inset)", border: "var(--jeju-border-strong)", dot: "var(--jeju-text-muted)", label: "판단",  ink: "var(--jeju-text)", sub: "var(--jeju-text-muted)" },
 };
 function ss(status: string) { return SS[status] ?? SS.waiting; }
@@ -321,7 +321,7 @@ export function SwimlaneNodeCard({
       {/* name — 2-line clamp */}
       <div
         style={{
-          fontSize: 12,
+          fontSize: 13,
           fontWeight: 620,
           color: c.ink,
           lineHeight: 1.3,
@@ -395,7 +395,7 @@ export function SwimlaneNodeCard({
         <VerificationMark result={verificationResult} inverse={isCurrent} compact nested />
         {verificationResult.lowConfidence && (
           <span
-            title={`법령 근거 확신도 ${Math.round((node.confidence ?? 0) * 100)}%`}
+            title="인용 조문의 원문 대조와 현재 적용기준을 확인하세요"
             style={{
               minHeight: 16,
               padding: "1px 4px",
@@ -775,7 +775,7 @@ export function NodeDrawer({
             borderRadius: 8, border: "1px solid color-mix(in srgb, var(--jeju-orange) 25%, transparent)",
             fontSize: 13, color: "var(--jeju-warning)", fontWeight: 600, marginBottom: 16,
           }}>
-            ⚠ 현장 검증 필요 — 법령 근거 확신도 {Math.round((node.confidence ?? 0) * 100)}%
+            ⚠ 현장 검증 필요 — 인용 조문의 원문 대조와 현재 적용기준을 확인하세요
           </div>
         )}
 

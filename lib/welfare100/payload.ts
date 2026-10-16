@@ -1,6 +1,7 @@
 import manualTitles from "@/data/welfare100/manuals.json";
 import { versionedDataUrl } from "@/lib/data-versions";
 import { searchableText } from "@/lib/search-terms";
+import { recipientProvisionOf } from "./provision-review.ts";
 import { expandBokjiro } from "./bokjiro";
 import type { BokjiroRaw, CatalogRow, PackedCatalogIndex, WelfareOrg } from "./catalog-types";
 import { expandRecord, type CuratedExtra, type ProgramMeta, type WelfareInstitution, type WelfareRecord } from "./model";
@@ -51,6 +52,7 @@ const EMPTY_EXTRA: Omit<ExtraCatalogRow, "s"> = { d: "", y: "", cy: [], ln: 0, g
 
 export function decodeCatalogRow(row: LiteCatalogRow & Partial<ExtraCatalogRow>): CatalogEntry {
   const full = { ...EMPTY_EXTRA, ...row };
+  const provision = recipientProvisionOf(row.s, row.pv);
   const org: WelfareOrg = row.g === 0 ? "중앙부처" : "지자체";
   return {
     slug: row.s,
@@ -66,7 +68,7 @@ export function decodeCatalogRow(row: LiteCatalogRow & Partial<ExtraCatalogRow>)
     lifecycle: row.l,
     household: row.h,
     type: full.y,
-    provision: row.pv,
+    provision,
     cycle: full.cy,
     dept: full.d,
     processNodeCount: row.p,
@@ -77,7 +79,7 @@ export function decodeCatalogRow(row: LiteCatalogRow & Partial<ExtraCatalogRow>)
     bottleneckCount: full.b,
     online: full.on === 1,
     laws: full.laws,
-    searchText: searchableText([row.n, row.o, full.d, row.sd, row.sg, full.y, ...row.t, ...row.l, ...row.h, ...row.pv, ...full.laws, org]),
+    searchText: searchableText([row.n, row.o, full.d, row.sd, row.sg, full.y, ...row.t, ...row.l, ...row.h, ...provision, ...full.laws, org]),
     complete: row.d !== undefined,
   };
 }

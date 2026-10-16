@@ -3,7 +3,8 @@
 import type { SqlDatabase } from "../sql-database.ts";
 import { BUDGET_LEVEL_LABELS, BUDGET_STAGE_LABELS, type BudgetLevel, type BudgetStage, thousandOf } from "../imports/budget-pack.ts";
 import { apiRowsFor, compareDocumentRows, type ApiRow } from "./budget-document-comparison.ts";
-import { budgetDocumentMatcher, type BudgetMatchBasis } from "./budget-document-matching.ts";
+import { budgetDocumentMatcher, squashName, type BudgetMatchBasis } from "./budget-document-matching.ts";
+import { budgetPinWhere, type BudgetRevisionPin } from "./budget-publication.ts";
 export { API_RELATION_LABELS } from "./budget-document-comparison.ts";
 export { squashName } from "./budget-document-matching.ts";
 
@@ -50,6 +51,7 @@ export function revisionDto(row: RevisionRow) {
     document_revision_id: row.revision_id,
     document_id: row.document_id,
     title: row.title,
+    label_verification: { status: 'CATALOG_METADATA', original_department_header_verified: false, note: 'title·scope는 등록 메타데이터입니다. 원문에 인쇄된 부서명과 현행 부서코드·조직 이력·시군구 재정주체 연결을 증명하지 않습니다. 원문 머리말과 검증된 매핑을 별도 확인하세요.' },
     issuer: row.issuer,
     region: { sido: row.issuer_sido, sigungu: row.issuer_sigungu },
     fiscal_entity: row.fiscal_entity_id ? { fiscal_entity_id: row.fiscal_entity_id, name: row.entity_name } : null,
@@ -100,9 +102,14 @@ export function lineDto(row: LineRow, funding: readonly { source: string; label:
 // 전국 목록(기관 지정 없음)은 앞 200건만 준다. 기관(들)을 지정하면 그 기관 문서를 모두 준다(부서별 문서가 많아도 잘리지 않게).
 export const REVISION_LIST_LIMIT = 200;
 export const REVISION_ENTITY_LIMIT = 3000;
-export async function activeRevisions(db: SqlDatabase, filter: { readonly entityId?: string; readonly entityIds?: readonly string[]; readonly year?: string; readonly revisionIds?: readonly string[] } = {}): Promise<RevisionRow[]> {
+export async function activeRevisions(db: SqlDatabase, filter: { readonly entityId?: string; readonly entityIds?: readonly string[]; readonly year?: string; readonly revisionIds?: readonly string[]; readonly pin?: BudgetRevisionPin } = {}): Promise<RevisionRow[]> {
   const clauses: string[] = [];
   const binds: unknown[] = [];
+  if (filter.pin !== undefined) {
+    const pinned = budgetPinWhere(filter.pin);
+    clauses.push(pinned.sql);
+    binds.push(...pinned.binds);
+  }
   if (filter.entityId) {
     clauses.push("a.fiscal_entity_id = ?");
     binds.push(filter.entityId);
@@ -179,24 +186,42 @@ export interface DocumentLink {
  * 재정사업 → 공개 예산서. 개요 대조와 같은 부서·사업코드 조건을 적용한다. 후보가 여럿이면 ambiguous로 표시한다.
  * 금액은 문서 단계 값이며 지방재정365 예산현액을 대신하지 않는다.
  */
-export async function documentLinksForProjects(db: SqlDatabase, projects: readonly { readonly fiscal_project_id: string; readonly fiscal_entity_id: string; readonly fiscal_year: string; readonly account_code: string; readonly name: string }[]): Promise<Map<string, DocumentLink[]>> {
+export async function documentLinksForProjects(db: SqlDatabase, projects: readonly { readonly fiscal_project_id: string; readonly fiscal_entity_id: string; readonly fiscal_year: string; readonly account_code: string; readonly name: string }[], pin: BudgetRevisionPin = null): Promise<Map<string, DocumentLink[]>> {
   const out = new Map<string, DocumentLink[]>();
   const apiCache = new Map<string, readonly ApiRow[]>();
   const keys = [...new Set(projects.map((project) => project.fiscal_entity_id + "|" + project.fiscal_year))];
   for (const key of keys) {
     const [entityId, year] = key.split("|");
-    const revisions = await activeRevisions(db, { entityId, year });
+    const revisions = await activeRevisions(db, { entityId, year, pin });
+    // 대조 후보는 이름이 같은 행뿐이다. 세부사업 이름을 한 번의 조회로 읽어, 요청한 사업과 같은 이름이 없는 예산서는 건너뛴다.
+    const relevant = revisions.filter((revision) => projects.some((project) => project.fiscal_entity_id === entityId && project.fiscal_year === year && project.account_code === revision.account_code));
+    const imports = new Map(relevant.map((revision) => [revision.revision_id, revision.import_id]));
+    const nameRows = relevant.length ? (await db.prepare("SELECT revision_id, import_id, name FROM budget_line WHERE revision_id IN (SELECT value FROM json_each(?)) AND level = 'detail_project'")
+      .bind(JSON.stringify([...imports.keys()])).all<{ revision_id: string; import_id: string; name: string }>()).results : [];
+    const detailNames = new Map<string, Set<string>>();
+    for (const row of nameRows) {
+      if (imports.get(row.revision_id) !== row.import_id) continue;
+      detailNames.set(row.revision_id, (detailNames.get(row.revision_id) ?? new Set()).add(squashName(row.name)));
+    }
     for (const revision of revisions) {
       const wanted = projects.filter((project) => project.fiscal_entity_id === entityId && project.fiscal_year === year && project.account_code === revision.account_code);
       if (!wanted.length) continue;
+      const wantedNames = new Set(wanted.map((project) => squashName(project.name)));
+      if (![...wantedNames].some((name) => detailNames.get(revision.revision_id)?.has(name))) continue;
       const lines = (await db.prepare("SELECT " + LINE_COLUMNS + " FROM budget_line WHERE import_id = ? AND revision_id = ? AND level IN ('department', 'policy', 'unit', 'detail_project') ORDER BY line_no")
         .bind(revision.import_id, revision.revision_id).all<LineRow>()).results;
       const scopeKey = key + "|" + revision.account_code;
       const apiRows = apiCache.get(scopeKey) ?? (await apiRowsFor(db, revision)).rows;
       apiCache.set(scopeKey, apiRows);
       const matchProject = budgetDocumentMatcher(revision.entity_name, lines.map((line) => ({ ...line, annotations: lineDto(line).annotations })));
-      const eligible = lines.filter((line) => line.level === "detail_project").map((line) => ({
-        line, matched: matchProject({ ...line, annotations: lineDto(line).annotations }, apiRows),
+      // 요청한 사업과 이름이 같은 줄만, 같은 이름의 지방재정 행 전체와 대조한다.
+      const byName = new Map<string, ApiRow[]>();
+      for (const row of apiRows) {
+        const name = squashName(row.name);
+        if (wantedNames.has(name)) byName.set(name, [...(byName.get(name) ?? []), row]);
+      }
+      const eligible = lines.filter((line) => line.level === "detail_project" && byName.has(squashName(line.name))).map((line) => ({
+        line, matched: matchProject({ ...line, annotations: lineDto(line).annotations }, byName.get(squashName(line.name)) ?? []),
       }));
       for (const project of wanted) {
         const hits = eligible.filter(({ matched }) => matched.candidates.some((candidate) => candidate.fiscal_project_id === project.fiscal_project_id));

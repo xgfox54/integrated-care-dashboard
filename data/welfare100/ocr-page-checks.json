@@ -1,0 +1,61 @@
+{
+ "description": "OCR로 읽은 원본 쪽 중 원본 PDF 화면과 대조해 연결 발췌문의 쪽 위치를 확인한 기록. page_sha256은 복지톡 원본 코퍼스의 해당 쪽 텍스트 해시이며, 원문이 바뀌면 이 기록은 적용되지 않는다. 글자 단위 교정은 하지 않았다.",
+ "checks": [
+  {
+   "file": "1.[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.pdf",
+   "page": 66,
+   "page_sha256": "d337ee0fed8a81c41d990b57f393ec9dbf9a26377c534d732155380f8f27e6e1",
+   "source_pdf_sha256_prefix": "e646a78914f03936",
+   "checked_at": "2026-10-15",
+   "method": "원본 PDF 해당 쪽을 화면으로 띄워 연결 발췌문이 같은 쪽에 있는지 대조"
+  },
+  {
+   "file": "1.[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.pdf",
+   "page": 68,
+   "page_sha256": "52587112fe0e67df321e7817c3adf144367e081611a3fd200848604d4bfc155b",
+   "source_pdf_sha256_prefix": "e646a78914f03936",
+   "checked_at": "2026-10-15",
+   "method": "원본 PDF 해당 쪽을 화면으로 띄워 연결 발췌문이 같은 쪽에 있는지 대조"
+  },
+  {
+   "file": "1.[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.pdf",
+   "page": 74,
+   "page_sha256": "b1791d986475752a32b91b2d09755be985fc1e5bf6d4844b0a09ff4c55a9cbe2",
+   "source_pdf_sha256_prefix": "e646a78914f03936",
+   "checked_at": "2026-10-15",
+   "method": "원본 PDF 해당 쪽을 화면으로 띄워 연결 발췌문이 같은 쪽에 있는지 대조"
+  },
+  {
+   "file": "1.[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.pdf",
+   "page": 192,
+   "page_sha256": "a48bcbfdf0a1947ef103a285e7ee68e1c69cacd8287746c00a8ee3a897851a31",
+   "source_pdf_sha256_prefix": "e646a78914f03936",
+   "checked_at": "2026-10-15",
+   "method": "원본 PDF 해당 쪽을 화면으로 띄워 연결 발췌문이 같은 쪽에 있는지 대조"
+  },
+  {
+   "file": "1.[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.pdf",
+   "page": 217,
+   "page_sha256": "7f5a1999d0feb7531ef82e77bc9e61783f7b5c2cf934d90dcbf0e68f4021dec2",
+   "source_pdf_sha256_prefix": "e646a78914f03936",
+   "checked_at": "2026-10-15",
+   "method": "원본 PDF 해당 쪽을 화면으로 띄워 연결 발췌문이 같은 쪽에 있는지 대조"
+  },
+  {
+   "file": "1.[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.pdf",
+   "page": 315,
+   "page_sha256": "d616d0be90b2eb46c3da7e2c25aef39b62b79406fdf2efbfb3279d939f9577b9",
+   "source_pdf_sha256_prefix": "e646a78914f03936",
+   "checked_at": "2026-10-15",
+   "method": "원본 PDF 해당 쪽을 화면으로 띄워 연결 발췌문이 같은 쪽에 있는지 대조"
+  },
+  {
+   "file": "12.[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.pdf",
+   "page": 305,
+   "page_sha256": "e905849e72f80818d328294d28aa0c3ffc461e4da905834748796872b517001a",
+   "source_pdf_sha256_prefix": "5c15d68c0c246a69",
+   "checked_at": "2026-10-15",
+   "method": "원본 PDF 해당 쪽을 화면으로 띄워 연결 발췌문이 같은 쪽에 있는지 대조"
+  }
+ ]
+}

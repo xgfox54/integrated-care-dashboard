@@ -1,3 +1,5 @@
+import { isAdminCity } from "./admin-city.ts";
+
 export interface RegionTarget {
   readonly sido: string;
   readonly sigungu: string;
@@ -30,7 +32,7 @@ export function districtTargets(sigunguBySido: Readonly<Record<string, readonly 
     .sort(byKoreanName)
     .flatMap((sido) =>
       (sigunguBySido[sido] ?? [])
-        .filter((sigungu) => sigungu && sigungu !== sido)
+        .filter((sigungu) => sigungu && sigungu !== sido && !isAdminCity(sido, sigungu))
         .map((sigungu) => ({ sido, sigungu })),
     )
     .sort((left, right) => byKoreanName(left.sigungu, right.sigungu) || byKoreanName(left.sido, right.sido));

@@ -7,10 +7,12 @@ import { cn } from "@/lib/utils"
 function Table({
   className,
   containerClassName,
+  containerProps,
   ...props
-}: React.ComponentProps<"table"> & { containerClassName?: string }) {
+}: React.ComponentProps<"table"> & { containerClassName?: string; containerProps?: Omit<React.ComponentProps<"div">, "className" | "children"> }) {
   return (
     <div
+      {...containerProps}
       data-slot="table-container"
       className={cn(
         "relative w-full overflow-x-auto rounded-xl border border-border bg-card print:overflow-visible print:rounded-none print:border-0",

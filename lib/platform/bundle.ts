@@ -4,6 +4,9 @@
 import { documentComponent } from "../imports/public.ts";
 import { sha256Hex } from "../press/normalize.ts";
 import type { SqlDatabase } from "../sql-database.ts";
+import { budgetDocumentComponent } from "../fiscal/budget-publication.ts";
+import { manualCorpusComponent } from "../manuals/store.ts";
+import { PRESS_FROM_JOINS, PUBLIC_PRESS_CLAUSES } from "../press/query.ts";
 
 export const BUNDLE_SCHEMA_VERSION = "1.0";
 
@@ -19,6 +22,8 @@ export interface Components {
   readonly news: ComponentState;
   readonly links: ComponentState;
   readonly documents: ComponentState;
+  readonly budget_documents: ComponentState;
+  readonly manuals: ComponentState;
 }
 
 export interface BundleRow {
@@ -38,18 +43,22 @@ export interface BundleRow {
 
 /** 지금 각 모듈의 최신 공개 가능 상태를 읽는다(쓰기 없음). */
 export async function readComponents(db: SqlDatabase): Promise<Components> {
-  const [run, fiscal, news, links, documents] = await Promise.all([
+  const [run, fiscal, news, links, documents, budgetDocuments, unitChecks, manuals] = await Promise.all([
     db.prepare(
       "SELECT id, completed_at, COALESCE((SELECT MAX(data_as_of) FROM official_source_document WHERE sync_run_id = official_sync_run.id), '') AS data_as_of " +
         "FROM official_sync_run WHERE status = 'succeeded' ORDER BY completed_at DESC LIMIT 1",
     ).first<{ id: string; completed_at: number; data_as_of: string }>(),
     db.prepare("SELECT snapshot_id, scope_id, requested_reference_date, complete FROM fiscal_snapshot WHERE status = 'PUBLISHED' ORDER BY snapshot_id").all<{ snapshot_id: string; scope_id: string; requested_reference_date: string; complete: number }>(),
+    // 웹·MCP와 같은 공개 조건으로 센다. 화면에 나오지 않는 광역 재게시가 새로 수집돼도 버전이 바뀌지 않는다.
     db.prepare(
       "SELECT MAX(s.registry_version) AS registry_version, MAX(i.discovered_at) AS watermark, COUNT(*) AS items, GROUP_CONCAT(DISTINCT i.dictionary_version) AS dictionaries " +
-        "FROM press_item i JOIN press_source s ON s.source_id = i.source_id WHERE i.public_status = 'PUBLIC' AND s.approval_status = 'POLICY_APPROVED' AND s.enabled = 1",
+        PRESS_FROM_JOINS + " WHERE " + PUBLIC_PRESS_CLAUSES.join(" AND "),
     ).first<{ registry_version: string | null; watermark: number | null; items: number; dictionaries: string | null }>(),
     db.prepare("SELECT COUNT(*) AS verified, MAX(reviewed_at) AS watermark FROM cross_domain_link WHERE verification_status = 'VERIFIED' AND public_status = 'PUBLIC'").first<{ verified: number; watermark: number | null }>(),
     documentComponent(db),
+    budgetDocumentComponent(db),
+    db.prepare("SELECT uc.snapshot_id, uc.reference_date, uc.rows_compared, uc.field_checks, uc.mismatches, uc.only_api, uc.checked_at FROM fiscal_unit_check uc JOIN fiscal_snapshot s ON s.snapshot_id = uc.snapshot_id WHERE s.status = 'PUBLISHED' ORDER BY uc.snapshot_id").all<Record<string, unknown>>(),
+    manualCorpusComponent(db),
   ]);
   const fiscalIds = fiscal.results.map((row) => row.snapshot_id);
   return {
@@ -57,11 +66,11 @@ export async function readComponents(db: SqlDatabase): Promise<Components> {
       ? { id: "kg:" + run.id, status: "AVAILABLE", detail: { sync_run_id: run.id, collected_at: run.completed_at, source_data_as_of: run.data_as_of } }
       : { id: null, status: "UNAVAILABLE", detail: { reason: "성공한 공식자료 수집이 없음" } },
     fiscal: fiscalIds.length
-      ? { id: "fiscal:" + (await sha256Hex(fiscalIds.join(","))).slice(0, 16), status: fiscal.results.every((row) => row.complete === 1) ? "AVAILABLE" : "PARTIAL", detail: { snapshot_ids: fiscalIds, reference_dates: [...new Set(fiscal.results.map((row) => row.requested_reference_date))] } }
+      ? { id: "fiscal:" + (await sha256Hex(JSON.stringify([fiscalIds, unitChecks.results]))).slice(0, 16), status: fiscal.results.every((row) => row.complete === 1) ? "AVAILABLE" : "PARTIAL", detail: { snapshot_ids: fiscalIds, reference_dates: [...new Set(fiscal.results.map((row) => row.requested_reference_date))] } }
       : { id: null, status: "UNAVAILABLE", detail: { reason: "공개 승인된 재정 snapshot이 없음" } },
     news: news?.items
       ? {
-        id: "news:" + news.registry_version + ":" + news.watermark,
+        id: "news:" + news.registry_version + ":" + news.watermark + ":" + news.items,
         status: "PARTIAL",
         detail: { registry_version: news.registry_version, discovered_watermark: news.watermark, public_items: news.items, dictionary_versions: (news.dictionaries ?? "").split(",").filter(Boolean).sort() },
       }
@@ -70,6 +79,8 @@ export async function readComponents(db: SqlDatabase): Promise<Components> {
       ? { id: "links:" + links.verified + ":" + links.watermark, status: "PARTIAL", detail: { verified_links: links.verified, reviewed_watermark: links.watermark } }
       : { id: null, status: "UNAVAILABLE", detail: { reason: "검토된 사업–재정–보도자료 연결이 없음(후보만 있거나 없음)" } },
     documents,
+    budget_documents: budgetDocuments,
+    manuals,
   };
 }
 
@@ -104,7 +115,7 @@ export async function ensureActiveBundle(db: SqlDatabase, nowSeconds: number): P
     // 관리자가 이전 공개본으로 되돌려 보류 중이면 새 공개본으로 넘어가지 않는다.
     if (pointer?.hold_reason) return { bundle: await readActiveBundle(db), changed: false, blocking: ["관리자 보류: " + pointer.hold_reason] };
     const components = await readComponents(db);
-    const ids = { knowledge: components.knowledge.id, fiscal: components.fiscal.id, news: components.news.id, links: components.links.id, documents: components.documents.id };
+    const ids = { knowledge: components.knowledge.id, fiscal: components.fiscal.id, news: components.news.id, links: components.links.id, documents: components.documents.id, budget_documents: components.budget_documents.id, manuals: components.manuals.id };
     const key = (await sha256Hex(JSON.stringify(ids))).slice(0, 24);
     const active = await readActiveBundle(db);
     if (active && active.components_key === key) return { bundle: active, changed: false, blocking: [] };

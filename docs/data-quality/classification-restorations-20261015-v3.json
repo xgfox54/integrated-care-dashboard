@@ -1,0 +1,4007 @@
+{
+ "summary": {
+  "revision": "source-classifications-20261015-v3",
+  "documents": 108,
+  "original_bytes": 17206391,
+  "row_count": 12526,
+  "type_restored": 29,
+  "subcategory_restored": 4,
+  "unclassified_type_before": 182,
+  "unclassified_type_after": 153,
+  "blank_subcategory_before": 103,
+  "blank_subcategory_after": 103,
+  "parser": "kordoc@4.18.2",
+  "geometry_verifier": "pdfplumber@0.11.9"
+ },
+ "originals": [
+  {
+   "id": "0083:1489622:1",
+   "sha256": "34ba388e59010ca175010f729fc916725d7ce2d7d427e65407d12d80a3681855",
+   "bytes": 103295,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0083&list_no=1489622&seq=1"
+  },
+  {
+   "id": "0083:1489623:1",
+   "sha256": "23fb66947e6a4e67daa28ddef4e69d251efd93edbcc326224982222ad1408d1a",
+   "bytes": 253797,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0083&list_no=1489623&seq=1"
+  },
+  {
+   "id": "0083:1489636:1",
+   "sha256": "88062e9c2099a0c616b101571ebe40ade2a108d576ff0f3badd0fccd692b1e15",
+   "bytes": 231634,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0083&list_no=1489636&seq=1"
+  },
+  {
+   "id": "0083:1489626:1",
+   "sha256": "d1d24b529baaa40366f70f2207a4b740bff3573c9f91b9ce41db48bfde036b3b",
+   "bytes": 308515,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0083&list_no=1489626&seq=1"
+  },
+  {
+   "id": "0083:1489637:1",
+   "sha256": "9c5d2757d361ab46b9cfe0aea4bb7504f67fc2bcb4a4a1fe38eb7202925f2606",
+   "bytes": 243445,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0083&list_no=1489637&seq=1"
+  },
+  {
+   "id": "0083:1489625:1",
+   "sha256": "d0a20deb90b2197282f16ba99737b32ea15ed9e8d07f04c6b77f8fd417d07362",
+   "bytes": 336122,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0083&list_no=1489625&seq=1"
+  },
+  {
+   "id": "0083:1489629:1",
+   "sha256": "5a59440d250b5864849d24996824bd9525b4cef3eb7053dfca860f4b17f16af8",
+   "bytes": 234310,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0083&list_no=1489629&seq=1"
+  },
+  {
+   "id": "0083:1489621:1",
+   "sha256": "8666fd4b85010d3352499429aa6e00f516016d5ec726b340cc759e487c9cae88",
+   "bytes": 253389,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0083&list_no=1489621&seq=1"
+  },
+  {
+   "id": "0083:1489635:1",
+   "sha256": "c869e914992c71797ec4ebd9b60d27ad16d0d7438bf82611b2f41e0670deef7e",
+   "bytes": 249008,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0083&list_no=1489635&seq=1"
+  },
+  {
+   "id": "0083:1489620:1",
+   "sha256": "1fc68161c3d8984d602d191fefa51ed9e8186c3bab811db4886fe79acf3423dd",
+   "bytes": 250435,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0083&list_no=1489620&seq=1"
+  },
+  {
+   "id": "0083:1489624:1",
+   "sha256": "b51bdd7b1def1024805c6420cf2ba1a133258c88c06dd260aedce723ebf22b79",
+   "bytes": 228740,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0083&list_no=1489624&seq=1"
+  },
+  {
+   "id": "0083:1489630:1",
+   "sha256": "6e800c9f70d533979a6556134bd54270b2a0406ff8c895ac7f60477947700b3d",
+   "bytes": 235330,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0083&list_no=1489630&seq=1"
+  },
+  {
+   "id": "0083:1489627:1",
+   "sha256": "307e442bf8cebfffaf36f646882fd3d0fe6514575b2e10007970fdb0b4786220",
+   "bytes": 318141,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0083&list_no=1489627&seq=1"
+  },
+  {
+   "id": "0083:1489633:1",
+   "sha256": "5d307545dc31cc0bbe75eb69978b2fe2ac4c90145669c1918704e5089b415bbb",
+   "bytes": 337372,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0083&list_no=1489633&seq=1"
+  },
+  {
+   "id": "0083:1489628:1",
+   "sha256": "0be4f787d4816b13a29dc3bb210625b065bcbb9dca16d0122b8a5e6d94e117a2",
+   "bytes": 328441,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0083&list_no=1489628&seq=1"
+  },
+  {
+   "id": "0085:1489590:1",
+   "sha256": "ec42b4611e63b8268a9f2571c32f7f2e03f8d9425f63ec71969badb3c23d4afc",
+   "bytes": 126903,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0085&list_no=1489590&seq=1"
+  },
+  {
+   "id": "0085:1489602:1",
+   "sha256": "e0e923836db1e6e86884af5e9dd00d181791cf40855f7796880e6881fbe5cef7",
+   "bytes": 100720,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0085&list_no=1489602&seq=1"
+  },
+  {
+   "id": "0085:1489593:1",
+   "sha256": "e0fac2128a7d894db5e9d6a832472756673eaa713baf0dc574d247885a96bf1a",
+   "bytes": 130541,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0085&list_no=1489593&seq=1"
+  },
+  {
+   "id": "0085:1489598:1",
+   "sha256": "ff2bf8b6a15719fe539d8039cee174eb6c6475c26f62623b59ca3fc2a807f3d0",
+   "bytes": 178202,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0085&list_no=1489598&seq=1"
+  },
+  {
+   "id": "0085:1489610:1",
+   "sha256": "86e4ee5c942157aa975cd01933bded6c38d5876d071ee646e661d99cc3e47f81",
+   "bytes": 126314,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0085&list_no=1489610&seq=1"
+  },
+  {
+   "id": "0085:1489614:1",
+   "sha256": "8125e443fff24f9ea794d9b749788bbeed513c9e81c7672969e3a0b11209813f",
+   "bytes": 89432,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0085&list_no=1489614&seq=1"
+  },
+  {
+   "id": "0085:1489589:1",
+   "sha256": "a5ba5561090f42a073ecb7daa45b2a2f0da1c4658016e30fdaa637276fe8d463",
+   "bytes": 119141,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0085&list_no=1489589&seq=1"
+  },
+  {
+   "id": "0085:1489599:1",
+   "sha256": "70142a5c797b1681c3af5cafa85b2281e20c98f7f6921260acb08a60b8b53f64",
+   "bytes": 163405,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0085&list_no=1489599&seq=1"
+  },
+  {
+   "id": "0091:1489707:1",
+   "sha256": "32604b09cd9543e14a269fee8bc3f02338d79d1a52e910b272a0efa849b04692",
+   "bytes": 113080,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0091&list_no=1489707&seq=1"
+  },
+  {
+   "id": "0091:1489705:1",
+   "sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "bytes": 136164,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0091&list_no=1489705&seq=1"
+  },
+  {
+   "id": "0091:1489706:1",
+   "sha256": "6f24d7eb24d6f037f0d303ac1aab8f406e9260f6bd0f2ee892ddcc9f96510dde",
+   "bytes": 92755,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0091&list_no=1489706&seq=1"
+  },
+  {
+   "id": "0091:1489702:1",
+   "sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "bytes": 169630,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0091&list_no=1489702&seq=1"
+  },
+  {
+   "id": "0090:1489801:1",
+   "sha256": "09b889cebe62690beb6a3cc0aa7db334d2e1c8bbe5140f5b7fde1e6712e859ed",
+   "bytes": 100169,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0090&list_no=1489801&seq=1"
+  },
+  {
+   "id": "0091:1489703:1",
+   "sha256": "cb9659008a8c51424f9a7cfc0a9226c8d1fcd4adca886a69a0d335ae1ee3b93b",
+   "bytes": 105804,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0091&list_no=1489703&seq=1"
+  },
+  {
+   "id": "0090:1489811:1",
+   "sha256": "e2b685a262868e6eaf48270f0e4b374b682ff04a4314d5ca5dc0031757374588",
+   "bytes": 114167,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0090&list_no=1489811&seq=1"
+  },
+  {
+   "id": "0077:1489747:1",
+   "sha256": "887c1903469c6cf05063598a8f3ea8a887cab1dc18d493b4c5f59fd74397b232",
+   "bytes": 194840,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0077&list_no=1489747&seq=1"
+  },
+  {
+   "id": "0077:1489748:1",
+   "sha256": "a8148db02aa5ee3077e28d849065989d336a1db5cff253fdb38f249c5b4bd09d",
+   "bytes": 187371,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0077&list_no=1489748&seq=1"
+  },
+  {
+   "id": "0077:1489746:1",
+   "sha256": "945139322e58ecc38f28c00aed52ecf19960cf9935ab26544a90d6778b42cfd5",
+   "bytes": 192507,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0077&list_no=1489746&seq=1"
+  },
+  {
+   "id": "0077:1489744:1",
+   "sha256": "538e5a3e2c2c7a5f777944735868db8bcc75eef8d830195617918f9864bbece4",
+   "bytes": 185918,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0077&list_no=1489744&seq=1"
+  },
+  {
+   "id": "0077:1489745:1",
+   "sha256": "957c6c9d29f320b8d6d3f4ac46eac6f39710145e8694eaadafc33b8703a17c20",
+   "bytes": 183934,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0077&list_no=1489745&seq=1"
+  },
+  {
+   "id": "0077:1489743:1",
+   "sha256": "dec9f6aa79580e88fde6dc3bc341d72c42b67cdf80eb86c086c1ce78692cac37",
+   "bytes": 190297,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0077&list_no=1489743&seq=1"
+  },
+  {
+   "id": "0077:1489741:1",
+   "sha256": "bfbee87e1a0520ea780cd1d168c2d41b2456f9f66d54ea506af248ea0e073c3b",
+   "bytes": 206237,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0077&list_no=1489741&seq=1"
+  },
+  {
+   "id": "0077:1489742:1",
+   "sha256": "9ae1fb321068f3c2464b2b6f41c2bce066853374c765f7e02ab10d740b68bcc9",
+   "bytes": 185192,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0077&list_no=1489742&seq=1"
+  },
+  {
+   "id": "0077:1489740:1",
+   "sha256": "5a39e961fc0dbdb713e1a90c8be2f35b50425896725dc7fe4d453435b0540081",
+   "bytes": 186643,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0077&list_no=1489740&seq=1"
+  },
+  {
+   "id": "0080:1489578:1",
+   "sha256": "f5a41a956ec815dc309a81f6b800a48967a0a8146ef608e9bb279d919e81da0a",
+   "bytes": 97798,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0080&list_no=1489578&seq=1"
+  },
+  {
+   "id": "0080:1489580:1",
+   "sha256": "711ed348e1b2d50c51a4893c8df61e0218f7d2580fbb1d28dcda2d6381913e92",
+   "bytes": 99146,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0080&list_no=1489580&seq=1"
+  },
+  {
+   "id": "0080:1489579:1",
+   "sha256": "dd40f99ccb0e3f8d781539f6cc4a1c9287f46271f9186cbab1bf12f8ba2b6f58",
+   "bytes": 98826,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0080&list_no=1489579&seq=1"
+  },
+  {
+   "id": "0080:1489581:1",
+   "sha256": "a467c1d6ad2468fed302b04255a3205485ed9b779266ae653fe8ab7b94dc3be8",
+   "bytes": 99172,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0080&list_no=1489581&seq=1"
+  },
+  {
+   "id": "0076:1489548:1",
+   "sha256": "7e9dde88c02e3d839b5e2b63df3e5c34d5286b0d8f4f74bedf48fe322288744b",
+   "bytes": 83840,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489548&seq=1"
+  },
+  {
+   "id": "0076:1489547:1",
+   "sha256": "06464ceca94a5406a4be753de29020097696bae25fc869810503bca3f4cf4a36",
+   "bytes": 333317,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489547&seq=1"
+  },
+  {
+   "id": "0076:1489549:1",
+   "sha256": "048aa9690ddbd3df143908d01275890ec42839f4bbb2af4163ed8120c1b9ab2f",
+   "bytes": 86920,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489549&seq=1"
+  },
+  {
+   "id": "0076:1489552:1",
+   "sha256": "2594191b7da05e754cb10911ccd6f9d72f49d96e3338649358e2bc02131e87c2",
+   "bytes": 69874,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489552&seq=1"
+  },
+  {
+   "id": "0076:1489551:1",
+   "sha256": "0460ba5f01fff994e2514236a830a0921a40d8661cb95fea4f03f1006595116f",
+   "bytes": 251243,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489551&seq=1"
+  },
+  {
+   "id": "0076:1489553:1",
+   "sha256": "c30d1e44cb2a7645bb89b546007c5e75ea50aef65c287a74c4627fb7b64b3e68",
+   "bytes": 277520,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489553&seq=1"
+  },
+  {
+   "id": "0076:1489555:1",
+   "sha256": "95c6cf68ba880e89118644e6a73e903ac983d3a02cb6fcf89f247d43e4cfdef4",
+   "bytes": 331171,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489555&seq=1"
+  },
+  {
+   "id": "0076:1489556:1",
+   "sha256": "7136293b6e5bfb1c9de6424d54a38aae846d50306f22f5cd7bcbb5cb550f7097",
+   "bytes": 149054,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489556&seq=1"
+  },
+  {
+   "id": "0076:1489557:1",
+   "sha256": "61de01a6f65af59ee21193a96c10b6b6f20b4089fed0f311e1809e7158b98c79",
+   "bytes": 178167,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489557&seq=1"
+  },
+  {
+   "id": "0076:1489560:1",
+   "sha256": "799f468e91ab0ddd3455ce6136a451f093bb84cab5ca8f01d0dcc0641d887490",
+   "bytes": 81794,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489560&seq=1"
+  },
+  {
+   "id": "0076:1489558:1",
+   "sha256": "cdf534d78006f0da8fc58d7ea78d85b1e3054c762a46120a4008da0a02a536a5",
+   "bytes": 343608,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489558&seq=1"
+  },
+  {
+   "id": "0076:1489559:1",
+   "sha256": "cc9fc9853968caa7830812eec32517bfef61c806483db7e1d44bb59ddeb02855",
+   "bytes": 342507,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489559&seq=1"
+  },
+  {
+   "id": "0076:1489564:1",
+   "sha256": "7480b620749755f82c594f4ad86e73af29a9e1abf8307ae129eb061eada92f4e",
+   "bytes": 75824,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489564&seq=1"
+  },
+  {
+   "id": "0076:1489561:1",
+   "sha256": "aee9584bdeeb6f04f5ff720b6a6a6502f1a4efbad6ca4adf7d7cc7d66913842d",
+   "bytes": 326018,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489561&seq=1"
+  },
+  {
+   "id": "0076:1489563:1",
+   "sha256": "35c24bf782320927751ab981ae15475075d004e720256978bc7087111bfd9d84",
+   "bytes": 271797,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489563&seq=1"
+  },
+  {
+   "id": "0081:1489585:1",
+   "sha256": "6355c2eb7a24c6d7c85ec6d6452c4fea6e2f56b6f207b7e16315bc8093727b67",
+   "bytes": 143605,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0081&list_no=1489585&seq=1"
+  },
+  {
+   "id": "0078:1489567:1",
+   "sha256": "2f7cc8b7e8b409051b318d6fd7ced469cc6d18ed23ec448cae2664e5dd2e457e",
+   "bytes": 151718,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0078&list_no=1489567&seq=1"
+  },
+  {
+   "id": "0078:1489573:1",
+   "sha256": "9832cc9c24eeb4be07fe99ebbdeb226877375fd688ee013f85b32c55c87a6719",
+   "bytes": 202486,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0078&list_no=1489573&seq=1"
+  },
+  {
+   "id": "0078:1489571:1",
+   "sha256": "b069726dcb095cd094a502d83f07fbdbec0e5df0a043d5946b4ce686049949d3",
+   "bytes": 166738,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0078&list_no=1489571&seq=1"
+  },
+  {
+   "id": "0078:1489574:1",
+   "sha256": "c600ec44c1201a7368f75610ec7c88975ef72f212ca354d33b4318143c9849cf",
+   "bytes": 179719,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0078&list_no=1489574&seq=1"
+  },
+  {
+   "id": "0078:1489572:1",
+   "sha256": "abc15fdbfa32f194e7faaead4664650c1001cf82778190dd4a348b907f74b8c8",
+   "bytes": 117236,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0078&list_no=1489572&seq=1"
+  },
+  {
+   "id": "0078:1489568:1",
+   "sha256": "81adb132e8276c950e078499aa82ac9b98ecb0ffa10d8cac8dee739b06879c3a",
+   "bytes": 104786,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0078&list_no=1489568&seq=1"
+  },
+  {
+   "id": "0089:1489690:1",
+   "sha256": "61a9562d03a0b74c1aa79618fc9e0b951c86f95836aeab548e2b28a30b49145b",
+   "bytes": 122691,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0089&list_no=1489690&seq=1"
+  },
+  {
+   "id": "0089:1489682:1",
+   "sha256": "10b91261159e31ab1c40bba941fa9955afc5e35899c00557a475849747626485",
+   "bytes": 145485,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0089&list_no=1489682&seq=1"
+  },
+  {
+   "id": "0089:1489679:1",
+   "sha256": "7dca4f5201dbca6a71d9083675b64a1b85eeacdf42c738f1f9acec2740ef46e1",
+   "bytes": 112264,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0089&list_no=1489679&seq=1"
+  },
+  {
+   "id": "0089:1489694:1",
+   "sha256": "ed8d020c955f3103beffda01dad196f27e307ee886060a6a7db516856a85b01c",
+   "bytes": 109873,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0089&list_no=1489694&seq=1"
+  },
+  {
+   "id": "0089:1489700:1",
+   "sha256": "bdb1c3f8b1ce8367740a1ec8e62f1ae067d02304b730dd9ed6080b322d148af4",
+   "bytes": 142322,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0089&list_no=1489700&seq=1"
+  },
+  {
+   "id": "0089:1489688:1",
+   "sha256": "8cc36c2666b2d489c9cf2c592a6b1105688a9e3b8f1078d0a431a84ac2d143f3",
+   "bytes": 138357,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0089&list_no=1489688&seq=1"
+  },
+  {
+   "id": "0089:1489696:1",
+   "sha256": "cd52bb0515f3b7beda1703a1bb27c6cf4f63d0faa33a63895d12e558ddda1264",
+   "bytes": 121924,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0089&list_no=1489696&seq=1"
+  },
+  {
+   "id": "0089:1489699:1",
+   "sha256": "28d902bc45a0fa21969fe9e3559dde7ecd9202b687263965d697a1b2f4e2ba70",
+   "bytes": 110839,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0089&list_no=1489699&seq=1"
+  },
+  {
+   "id": "0089:1489697:1",
+   "sha256": "ae73982ef88b9f83a82b255d4a599d47278e2d5747e5835b52d6d50d76afc780",
+   "bytes": 184507,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0089&list_no=1489697&seq=1"
+  },
+  {
+   "id": "0089:1489695:1",
+   "sha256": "e7c5296c2fc96c5c6664052e21b29b2a2b9147732d843fdccae7307c034f6972",
+   "bytes": 108124,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0089&list_no=1489695&seq=1"
+  },
+  {
+   "id": "0089:1489692:1",
+   "sha256": "ac898f4e4cf2c6b9af1b011f813b0df6a26e87d51afd6dd080c1c1aa41c4b663",
+   "bytes": 103922,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0089&list_no=1489692&seq=1"
+  },
+  {
+   "id": "0088:1489666:1",
+   "sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "bytes": 231763,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0088&list_no=1489666&seq=1"
+  },
+  {
+   "id": "0088:1489670:1",
+   "sha256": "8259420d4e6cf49f45c8f3005ed019bb566c2e1dfe5442f9af3e4430e170ffa9",
+   "bytes": 131285,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0088&list_no=1489670&seq=1"
+  },
+  {
+   "id": "0088:1489675:1",
+   "sha256": "b40a94be99eb3c11dc0c09874bda5089ef3eacc2fad62d91d8f0d404aec3dc65",
+   "bytes": 123022,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0088&list_no=1489675&seq=1"
+  },
+  {
+   "id": "0088:1489674:1",
+   "sha256": "a58011efd4affec79fc359e068b2fe56028c66ae133ce9f55068208ec157efda",
+   "bytes": 110439,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0088&list_no=1489674&seq=1"
+  },
+  {
+   "id": "0088:1489665:1",
+   "sha256": "bde803c25fa449fcea5ae00f15b1a8bcedd9732c2a38337780812fa5c885dab3",
+   "bytes": 164273,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0088&list_no=1489665&seq=1"
+  },
+  {
+   "id": "0087:1489655:1",
+   "sha256": "3ab4b9c4deac69d2abc83e0833719cb322b0250e5134ab085df77d6c3c736596",
+   "bytes": 109917,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0087&list_no=1489655&seq=1"
+  },
+  {
+   "id": "0087:1489650:1",
+   "sha256": "34292d4fa6bf94ef8adde4bd6871837f19284e1af462415bdc06f2f733fa2f81",
+   "bytes": 129241,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0087&list_no=1489650&seq=1"
+  },
+  {
+   "id": "0087:1489654:1",
+   "sha256": "dfb28b24602b160917650ca8359a4d7f544d3516bf15a7210f43fe72e0071b7e",
+   "bytes": 108249,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0087&list_no=1489654&seq=1"
+  },
+  {
+   "id": "0087:1489656:1",
+   "sha256": "2b1f7f352aaf14a905cfc197665fc14d6f567808cef79c11b3097c9192f55f4a",
+   "bytes": 119281,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0087&list_no=1489656&seq=1"
+  },
+  {
+   "id": "0087:1489658:1",
+   "sha256": "3e2aa5afaa4b433e3dbe263a7596d98364c59dd626444aaad854bf6792b182e8",
+   "bytes": 74660,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0087&list_no=1489658&seq=1"
+  },
+  {
+   "id": "0087:1489651:1",
+   "sha256": "d6c94a65a2bc6fa835f11242e2985048a179e34ddf6b0019414f8dea8c425480",
+   "bytes": 93688,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0087&list_no=1489651&seq=1"
+  },
+  {
+   "id": "0087:1489660:1",
+   "sha256": "a3777f2144c2a5a542425fdba5e4654d8e279c1a57fad6a1685c5b2952e5bf80",
+   "bytes": 113460,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0087&list_no=1489660&seq=1"
+  },
+  {
+   "id": "0087:1489659:1",
+   "sha256": "1a88863d2075d38ff52c33e75bdbbd23378fd490bc78bfa7a12d46850aa3b9e1",
+   "bytes": 89254,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0087&list_no=1489659&seq=1"
+  },
+  {
+   "id": "0087:1489652:1",
+   "sha256": "35029751126b9f5725986bdd81741de569753ebf41839fedf15e1bf533cfcd17",
+   "bytes": 137349,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0087&list_no=1489652&seq=1"
+  },
+  {
+   "id": "0087:1489663:1",
+   "sha256": "bd9ec38168c1de17b927fac2854725fc405e862704d31d261a2933aa43589329",
+   "bytes": 102623,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0087&list_no=1489663&seq=1"
+  },
+  {
+   "id": "0087:1489661:1",
+   "sha256": "1dd5ebfccd28564aa695964c1be9281fb8aced84ac4434afc7afed13db4c3db9",
+   "bytes": 94771,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0087&list_no=1489661&seq=1"
+  },
+  {
+   "id": "0087:1489664:1",
+   "sha256": "239e5c12f8c60522d99c7b7199c106c37efba122010864e29b5eaf5cffff7508",
+   "bytes": 86988,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0087&list_no=1489664&seq=1"
+  },
+  {
+   "id": "0087:1489662:1",
+   "sha256": "031db199dbe0ddfd9ddf3a1b657f7e488f62b6742289df5e6bf56bfee411717d",
+   "bytes": 100029,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0087&list_no=1489662&seq=1"
+  },
+  {
+   "id": "0086:1489638:1",
+   "sha256": "aefe4d2c7d87bcb99e9c57be3f9603e04359d420a5dd85b1b785952546f83450",
+   "bytes": 90501,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0086&list_no=1489638&seq=1"
+  },
+  {
+   "id": "0086:1489639:1",
+   "sha256": "da2791b3ae41ce2e51a3ce4b52fbadcafab559d33dad187911b1e07641a6d621",
+   "bytes": 73840,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0086&list_no=1489639&seq=1"
+  },
+  {
+   "id": "0086:1489640:1",
+   "sha256": "7d8e7c41abd9a7fe2cb1ef7e8a7221944497f90d0847b69971b347c71457fa04",
+   "bytes": 91142,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0086&list_no=1489640&seq=1"
+  },
+  {
+   "id": "0086:1489642:1",
+   "sha256": "ddba59832517b271ab68407747412cae3bcd08fcdc80ad2ea3adec86b6a207a9",
+   "bytes": 78949,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0086&list_no=1489642&seq=1"
+  },
+  {
+   "id": "0086:1489641:1",
+   "sha256": "9ae48948748a33bcfb0485b710272303d4ea5b71c1d0a6f5c52b8b61cedc052d",
+   "bytes": 89194,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0086&list_no=1489641&seq=1"
+  },
+  {
+   "id": "0086:1489643:1",
+   "sha256": "0a62762f54e4dfcdbd92a8088061d10d2860c2c220d55b4500cd87d7dbd70361",
+   "bytes": 130562,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0086&list_no=1489643&seq=1"
+  },
+  {
+   "id": "0086:1489646:1",
+   "sha256": "fba1e320a3d1cb0e53317cf0fb01e6a83f0ecc16572af78dbebda19c8c014e6f",
+   "bytes": 97846,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0086&list_no=1489646&seq=1"
+  },
+  {
+   "id": "0086:1489645:1",
+   "sha256": "ccd67252b366ee7af78a9a3a2131ee24c1fef1337aec0d3ef16ff1b1ec39bb35",
+   "bytes": 106335,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0086&list_no=1489645&seq=1"
+  },
+  {
+   "id": "0086:1489647:1",
+   "sha256": "65f6373e68de6f5a008de1a234f0eea502ca69eead2857171a2e030df1f21085",
+   "bytes": 122444,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0086&list_no=1489647&seq=1"
+  },
+  {
+   "id": "0091:1489708:1",
+   "sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "bytes": 90728,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0091&list_no=1489708&seq=1"
+  },
+  {
+   "id": "0086:1489648:1",
+   "sha256": "6351f84afe767074c3d47b28470e8fd554602dc03414eb278c2def81e84d4042",
+   "bytes": 111696,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0086&list_no=1489648&seq=1"
+  },
+  {
+   "id": "0075:1489523:1",
+   "sha256": "03ff7e1bd9bd7bc05288913d226253a4fabd813c0c63d8c5da2700e5595562bf",
+   "bytes": 115918,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0075&list_no=1489523&seq=1"
+  },
+  {
+   "id": "0075:1489545:1",
+   "sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "bytes": 158895,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0075&list_no=1489545&seq=1"
+  },
+  {
+   "id": "0078:1489570:1",
+   "sha256": "b02050bd1868d34cd52f5420843520bb553e0ce8a5a82a271b7bddb820124dfc",
+   "bytes": 172517,
+   "url": "https://www.mohw.go.kr/boardDownload.es?bid=0078&list_no=1489570&seq=1"
+  }
+ ],
+ "rows": [
+  {
+   "service_id": "0091:1489707:1:6:6",
+   "name": "독거노인장애인 응급안전안심서비스",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "국가",
+    "header": "사업구분 (국가/지자체)",
+    "table": 0,
+    "row": 6,
+    "target_row": 6,
+    "column": 13,
+    "inherited": false,
+    "page": 6,
+    "row_cells": [
+     {
+      "text": "39",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "④ 일상생활",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "(7)스마트돌",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "안부확인",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "독거노인장",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "응급상황모니터링, 정서 및 건강",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "노인, 장애인",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "상시보호가 필요",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "신청대기",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "상시",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "N",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "노인장애인과",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "거제노인통",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "국가",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     918.043,
+     680.754,
+     967.807,
+     699.7
+    ],
+    "text": "국가",
+    "header": "사업구분 (국가/지자체)",
+    "clipped": false,
+    "source_page": 6,
+    "name_bbox": [
+     223.995,
+     680.754,
+     277.955,
+     699.7
+    ],
+    "source_name": "독거노인장",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "32604b09cd9543e14a269fee8bc3f02338d79d1a52e910b272a0efa849b04692",
+   "reason": null,
+   "value": "전국",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "국가",
+   "review_note": "Serial39/name starts at page6 bottom and finishes at page7 top; 国家 label is on page6; header from page1.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0091-1489707-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0091&list_no=1489707&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0091-1489707-1-p1.png",
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0091-1489707-1-p6.png",
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0091-1489707-1-p7.png"
+   ]
+  },
+  {
+   "service_id": "0091:1489702:1:9:5",
+   "name": "가사지원 서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 9,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "지역\n특화",
+    "header": "사업구분",
+    "table": 0,
+    "row": 5,
+    "target_row": 5,
+    "column": 7,
+    "inherited": false,
+    "page": 9,
+    "row_cells": [
+     {
+      "text": "국가형",
+      "colSpan": 1,
+      "rowSpan": 3
+     },
+     {
+      "text": "일 상생 활지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "57",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "가사지원\n서비스",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "취사, 청소, 신체활동 등 지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "통합돌봄대상자 중 해당 서비스가 필요한 자",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "(진주시\n노인복지과)\n①사회복지법인공덕원\n②사회복지법인은\n혜복지재단\n③사회복지법인한얼\n④사회적협동조합\n휴먼앤러브",
+      "colSpan": 1,
+      "rowSpan": 3
+     },
+     {
+      "text": "지역\n특화",
+      "colSpan": 1,
+      "rowSpan": 3
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     532.154,
+     638.302,
+     566.935,
+     769.199
+    ],
+    "text": "지역\n특화",
+    "header": "사업구분",
+    "clipped": false,
+    "source_page": 9,
+    "name_bbox": [
+     147.761,
+     638.302,
+     196.694,
+     688.6469999999999
+    ],
+    "source_name": "가사지원\n서비스",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": null,
+   "value": "지역특화",
+   "previous_reason": "PARSER_OR_LAYOUT_DISAGREEMENT",
+   "decision": "approved",
+   "source_label": "지역\n특화",
+   "review_note": "Original PDF row visually checked; fresh pdfplumber and Kordoc cells agree.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0091-1489702-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0091&list_no=1489702&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0091-1489702-1-p9.png"
+   ]
+  },
+  {
+   "service_id": "0091:1489702:1:5:7",
+   "name": "노인맞춤돌봄서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "전국",
+    "header": "사업구분",
+    "table": 0,
+    "row": 7,
+    "target_row": 7,
+    "column": 7,
+    "inherited": false,
+    "page": 5,
+    "row_cells": [
+     {
+      "text": "일상\n생활\n돌봄",
+      "colSpan": 1,
+      "rowSpan": 3
+     },
+     {
+      "text": "일 상생 활지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "33",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "노인맞춤돌봄서비스",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "가정방문, 유선 등을 통한 주기적 안전확인, 사회참여, 생활교육, 일상생활지원 등의 지원서비스",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "○만 65세 이상 기초생\n활수급자, 차상위계층,\n기초연금수급자로서 독거･조손･고령부부 등\n돌봄이 필요한 노인\n○신체적 기능 저하,\n정신적 어려움(인지저하, 우울감 등) 등으로\n돌봄이 필요한 노인\n○사회･신체･정신 영역 등의 지표 및 항목을 영역별 점수에 따라 집계하여 대상자\n군(일반돌봄군, 중점돌\n봄군) 분류 제외대상",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "①진양노인통합지원센터\n②진주노인통합지원센터\n③나누리노인통합지원센터\n④공덕의집노인통합지원센터\n⑤하늘마음노인통합지원센터",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "전국",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     532.154,
+     481.993,
+     566.935,
+     689.606
+    ],
+    "text": "전국",
+    "header": "사업구분",
+    "clipped": false,
+    "source_page": 5,
+    "name_bbox": [
+     147.761,
+     481.993,
+     196.694,
+     689.606
+    ],
+    "source_name": "노인맞춤\n돌봄서비\n스",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": null,
+   "value": "전국",
+   "previous_reason": "PARSER_OR_LAYOUT_DISAGREEMENT",
+   "decision": "approved",
+   "source_label": "전국",
+   "review_note": "Original PDF row visually checked; fresh pdfplumber and Kordoc cells agree.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0091-1489702-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0091&list_no=1489702&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0091-1489702-1-p5.png"
+   ]
+  },
+  {
+   "service_id": "0091:1489702:1:9:7",
+   "name": "방문목욕 서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 9,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "지역\n특화",
+    "header": "사업구분",
+    "table": 0,
+    "row": 5,
+    "target_row": 7,
+    "column": 7,
+    "inherited": true,
+    "page": 9,
+    "row_cells": [
+     {
+      "text": "",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "일 상생 활지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "59",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "방문목욕\n서비스",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "가정방문 등 목욕 지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "통합돌봄대상자 중 해당 서비스가 필요한 자",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     532.154,
+     638.302,
+     566.935,
+     769.199
+    ],
+    "text": "지역\n특화",
+    "header": "사업구분",
+    "clipped": false,
+    "source_page": 9,
+    "name_bbox": [
+     147.761,
+     727.364,
+     196.694,
+     769.199
+    ],
+    "source_name": "방문목욕\n서비스",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": null,
+   "value": "지역특화",
+   "previous_reason": "PARSER_OR_LAYOUT_DISAGREEMENT",
+   "decision": "approved",
+   "source_label": "지역\n특화",
+   "review_note": "Original PDF row visually checked; fresh pdfplumber and Kordoc cells agree.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0091-1489702-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0091&list_no=1489702&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0091-1489702-1-p9.png"
+   ]
+  },
+  {
+   "service_id": "0091:1489702:1:5:3",
+   "name": "방문목욕(차량내 목욕/가정내목욕)",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "전국",
+    "header": "사업구분",
+    "table": 0,
+    "row": 3,
+    "target_row": 3,
+    "column": 7,
+    "inherited": false,
+    "page": 5,
+    "row_cells": [
+     {
+      "text": "",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "재 가급여",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "29",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "방문목욕\n( 차량내\n목욕/가정내목욕)",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "장기요양 재가급여대상자에 대한 목욕 서비스",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "장기요양 등급자",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "지정 장기요양기관",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "전국",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     532.154,
+     275.09900000000005,
+     566.935,
+     326.88199999999995
+    ],
+    "text": "전국",
+    "header": "사업구분",
+    "clipped": false,
+    "source_page": 5,
+    "name_bbox": [
+     147.761,
+     275.09900000000005,
+     196.694,
+     326.88199999999995
+    ],
+    "source_name": "방문목욕\n(차량내\n목욕/가\n정내목욕)",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": null,
+   "value": "전국",
+   "previous_reason": "PARSER_OR_LAYOUT_DISAGREEMENT",
+   "decision": "approved",
+   "source_label": "전국",
+   "review_note": "Original PDF row visually checked; fresh pdfplumber and Kordoc cells agree.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0091-1489702-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0091&list_no=1489702&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0091-1489702-1-p5.png"
+   ]
+  },
+  {
+   "service_id": "0091:1489702:1:10:3",
+   "name": "방문복약 상담",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 10,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "지역\n특화",
+    "header": "사업구분",
+    "table": 0,
+    "row": 3,
+    "target_row": 3,
+    "column": 7,
+    "inherited": false,
+    "page": 10,
+    "row_cells": [
+     {
+      "text": "특화",
+      "colSpan": 1,
+      "rowSpan": 3
+     },
+     {
+      "text": "건 강관리",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "62",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "방문복약\n상담",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "약물 부작용 가능성이 큰 다제\n약물 복용 대상자를 위한 맞춤\n복약지도",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "의료급여수급자 중 고혈압, 당뇨병 등 만성질환을 1개 이상 진단 받고\n상시(6개월간 투약일수가 60일 이상) 복용 약\n개수가 10개 이상(또는\n복용 의심)인 자 중",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "(진주시\n노인복지과)\n진주시약사회",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "지역\n특화",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     532.154,
+     186.15599999999995,
+     566.935,
+     276.89700000000005
+    ],
+    "text": "지역\n특화",
+    "header": "사업구분",
+    "clipped": false,
+    "source_page": 10,
+    "name_bbox": [
+     147.761,
+     186.15599999999995,
+     196.694,
+     276.89700000000005
+    ],
+    "source_name": "방문복약\n상담",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": null,
+   "value": "지역특화",
+   "previous_reason": "PARSER_OR_LAYOUT_DISAGREEMENT",
+   "decision": "approved",
+   "source_label": "지역\n특화",
+   "review_note": "Original PDF row visually checked; fresh pdfplumber and Kordoc cells agree.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0091-1489702-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0091&list_no=1489702&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0091-1489702-1-p10.png"
+   ]
+  },
+  {
+   "service_id": "0091:1489702:1:10:1",
+   "name": "식사지원 서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 10,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "지역\n특화",
+    "header": "사업구분",
+    "table": 0,
+    "row": 1,
+    "target_row": 1,
+    "column": 7,
+    "inherited": false,
+    "page": 10,
+    "row_cells": [
+     {
+      "text": "",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "일 상생 활지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "60",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "식사지원\n서비스",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "도시락 및 밑반찬 지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "통합돌봄대상자 중 해당 서비스가 필요한 자",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "(진주시\n노인복지과)\n진주지역자활센터",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "지역\n특화",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     532.154,
+     93.35636363636368,
+     566.935,
+     134.49300000000005
+    ],
+    "text": "지역\n특화",
+    "header": "사업구분",
+    "clipped": false,
+    "source_page": 10,
+    "name_bbox": [
+     147.761,
+     93.35636363636368,
+     196.694,
+     134.49300000000005
+    ],
+    "source_name": "식사지원\n서비스",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": null,
+   "value": "지역특화",
+   "previous_reason": "PARSER_OR_LAYOUT_DISAGREEMENT",
+   "decision": "approved",
+   "source_label": "지역\n특화",
+   "review_note": "Original PDF row visually checked; fresh pdfplumber and Kordoc cells agree.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0091-1489702-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0091&list_no=1489702&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0091-1489702-1-p10.png"
+   ]
+  },
+  {
+   "service_id": "0091:1489702:1:5:5",
+   "name": "주야간보호",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "전국",
+    "header": "사업구분",
+    "table": 0,
+    "row": 5,
+    "target_row": 5,
+    "column": 7,
+    "inherited": false,
+    "page": 5,
+    "row_cells": [
+     {
+      "text": "",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "재 가급여",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "31",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "주야간\n보호",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "수급자를 하루 중 일정한 시간\n동안 장기요양기관에 보호하여\n목욕, 식사, 기본간호, 치매관리,\n응급서비스 등 심신기능의 유지,\n향상위한 교육, 훈련 등을 제공",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "장기요양 등급자",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "지정 장기요양기관",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "전국",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     532.154,
+     352.654,
+     566.935,
+     443.155
+    ],
+    "text": "전국",
+    "header": "사업구분",
+    "clipped": false,
+    "source_page": 5,
+    "name_bbox": [
+     147.761,
+     352.654,
+     196.694,
+     443.155
+    ],
+    "source_name": "주야간\n보호",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": null,
+   "value": "전국",
+   "previous_reason": "PARSER_OR_LAYOUT_DISAGREEMENT",
+   "decision": "approved",
+   "source_label": "전국",
+   "review_note": "Original PDF row visually checked; fresh pdfplumber and Kordoc cells agree.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0091-1489702-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0091&list_no=1489702&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0091-1489702-1-p5.png"
+   ]
+  },
+  {
+   "service_id": "0091:1489702:1:10:2",
+   "name": "퇴원환자 지역사회 연계",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 10,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "지역\n특화",
+    "header": "사업구분",
+    "table": 0,
+    "row": 2,
+    "target_row": 2,
+    "column": 7,
+    "inherited": false,
+    "page": 10,
+    "row_cells": [
+     {
+      "text": "",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "퇴 원환 자지 원연계",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "61",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "퇴원환자\n지역사회\n연계",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "협약의료기관을 통해 돌봄이 필요한 대상자 발굴 및 직접 시로\n의뢰",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "협약 병원에서 의뢰서,\n신청서, 조사표를 모두\n갖추어 통합돌봄전담부\n서로 의뢰된 퇴원환자",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "국립경상대학교병원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "지역\n특화",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     532.154,
+     134.49300000000005,
+     566.935,
+     186.15599999999995
+    ],
+    "text": "지역\n특화",
+    "header": "사업구분",
+    "clipped": false,
+    "source_page": 10,
+    "name_bbox": [
+     147.761,
+     134.49300000000005,
+     196.694,
+     186.15599999999995
+    ],
+    "source_name": "퇴원환자\n지역사회\n연계",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": null,
+   "value": "지역특화",
+   "previous_reason": "PARSER_OR_LAYOUT_DISAGREEMENT",
+   "decision": "approved",
+   "source_label": "지역\n특화",
+   "review_note": "Original PDF row visually checked; fresh pdfplumber and Kordoc cells agree.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0091-1489702-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0091&list_no=1489702&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0091-1489702-1-p10.png"
+   ]
+  },
+  {
+   "service_id": "0091:1489702:1:5:8",
+   "name": "해피콜서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "지역\n특화",
+    "header": "사업구분",
+    "table": 0,
+    "row": 8,
+    "target_row": 8,
+    "column": 7,
+    "inherited": false,
+    "page": 5,
+    "row_cells": [
+     {
+      "text": "",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "일 상생 활지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "34",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "해피콜서비스",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "전력 통신분야 빅데이터 인공지\n능으로 1인 가구 안부살핌서비스",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "독거노인, 고독사 취약\n중장년 1인 가구",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "진주시 복지정책과\n(진주복지콜센터)",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "지역\n특화",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     532.154,
+     689.606,
+     566.935,
+     728.323
+    ],
+    "text": "지역\n특화",
+    "header": "사업구분",
+    "clipped": false,
+    "source_page": 5,
+    "name_bbox": [
+     147.761,
+     689.606,
+     196.694,
+     728.323
+    ],
+    "source_name": "해피콜서\n비스",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": null,
+   "value": "지역특화",
+   "previous_reason": "PARSER_OR_LAYOUT_DISAGREEMENT",
+   "decision": "approved",
+   "source_label": "지역\n특화",
+   "review_note": "Original PDF row visually checked; fresh pdfplumber and Kordoc cells agree.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0091-1489702-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0091&list_no=1489702&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0091-1489702-1-p5.png"
+   ]
+  },
+  {
+   "service_id": "0077:1489746:1:5:10",
+   "name": "퇴원환자 연계",
+   "updated_date": "2026-03-23",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "지자체",
+    "header": "국가/지자체",
+    "table": 2,
+    "row": 2,
+    "target_row": 2,
+    "column": 6,
+    "inherited": false,
+    "page": 5,
+    "row_cells": [
+     {
+      "text": "1",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "보건\n의료",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "기타",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "퇴원환자 연계",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "‣ 급성기 퇴원(예정) 환자 중 돌봄 필요\n대상자에게 재가복귀 시 의료‧돌봄 서비스 연계",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "노인,장애인",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "지자체",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     491.016,
+     434.045,
+     537.8,
+     500.333
+    ],
+    "text": "지자체\n지자체",
+    "header": "국가/지자체",
+    "method": "manual_open_column_row_bounds",
+    "source_page": 5,
+    "name_bbox": [
+     157.38292307692308,
+     434.045,
+     304.3365,
+     500.333
+    ],
+    "source_name": "퇴원환자 연계",
+    "table_index": 1,
+    "repeated_same_label": 2
+   },
+   "agreed": true,
+   "original_sha256": "945139322e58ecc38f28c00aed52ecf19960cf9935ab26544a90d6778b42cfd5",
+   "reason": null,
+   "value": "지역특화",
+   "previous_reason": "PARSER_OR_LAYOUT_DISAGREEMENT",
+   "decision": "approved",
+   "source_label": "지자체\n지자체",
+   "review_note": "Original PDF row visually checked; fresh pdfplumber and Kordoc cells agree.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0077-1489746-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0077&list_no=1489746&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0077-1489746-1-p5.png"
+   ]
+  },
+  {
+   "service_id": "0076:1489553:1:4:8",
+   "name": "재가의료급여사업",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "연계",
+    "header": "유형",
+    "table": 0,
+    "row": 9,
+    "target_row": 9,
+    "column": 5,
+    "inherited": false,
+    "page": 4,
+    "row_cells": [
+     {
+      "text": "43",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "일상생활돌봄",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "가사지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "국가",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "연계",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "연계",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "업",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "노인,\n장애인",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "장기입원 후 퇴원한 의료급여 수급자",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "구",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     176.44642857142858,
+     387.24,
+     210.44642857142858,
+     429.24
+    ],
+    "text": "연계",
+    "header": "유형",
+    "clipped": false,
+    "source_page": 4,
+    "name_bbox": [
+     210.44642857142858,
+     387.24,
+     270.44642857142856,
+     429.24
+    ],
+    "source_name": "재가의료급여사\n업",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "c30d1e44cb2a7645bb89b546007c5e75ea50aef65c287a74c4627fb7b64b3e68",
+   "reason": null,
+   "value": "공통_연계",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "연계",
+   "review_note": "Kordoc split the service name/type into separate table fragments; source row serial, original cell geometry and rendered row verify association.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0076-1489553-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489553&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0076-1489553-1-p4.png"
+   ]
+  },
+  {
+   "service_id": "0076:1489555:1:5:6",
+   "name": "고령장애인 통합돌봄 체계 구축",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "연계",
+    "header": "유형",
+    "table": 2,
+    "row": 0,
+    "target_row": 0,
+    "column": 0,
+    "inherited": false,
+    "page": 5,
+    "row_cells": [
+     {
+      "text": "연계",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "통합돌봄 체계",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     176.41666666666666,
+     254.24,
+     210.41666666666666,
+     299.3243243243243
+    ],
+    "text": "연계",
+    "header": "유형",
+    "clipped": false,
+    "source_page": 5,
+    "name_bbox": [
+     210.41666666666666,
+     254.24,
+     270.4166666666667,
+     299.3243243243243
+    ],
+    "source_name": "고령장애인\n통합돌봄체계\n구축",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "95c6cf68ba880e89118644e6a73e903ac983d3a02cb6fcf89f247d43e4cfdef4",
+   "reason": null,
+   "value": "공통_연계",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "연계",
+   "review_note": "Kordoc split the service name/type into separate table fragments; source row serial, original cell geometry and rendered row verify association.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0076-1489555-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489555&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0076-1489555-1-p5.png"
+   ]
+  },
+  {
+   "service_id": "0076:1489555:1:2:3",
+   "name": "일차의료 방문진료 수가 시범사업",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "연계",
+    "header": "유형",
+    "table": 1,
+    "row": 0,
+    "target_row": 0,
+    "column": 0,
+    "inherited": false,
+    "page": 2,
+    "row_cells": [
+     {
+      "text": "연계",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "방문진료 수가",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     176.44642857142858,
+     175.24,
+     210.44642857142858,
+     217.24
+    ],
+    "text": "연계",
+    "header": "유형",
+    "clipped": false,
+    "source_page": 2,
+    "name_bbox": [
+     210.44642857142858,
+     175.24,
+     270.44642857142856,
+     217.24
+    ],
+    "source_name": "일차의료\n방문진료수가\n시범사업",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "95c6cf68ba880e89118644e6a73e903ac983d3a02cb6fcf89f247d43e4cfdef4",
+   "reason": null,
+   "value": "공통_연계",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "연계",
+   "review_note": "Kordoc split the service name/type into separate table fragments; source row serial, original cell geometry and rendered row verify association.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0076-1489555-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489555&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0076-1489555-1-p2.png"
+   ]
+  },
+  {
+   "service_id": "0076:1489561:1:3:8",
+   "name": "장애인복지관서비스",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "연계",
+    "header": "유형",
+    "table": 0,
+    "row": 8,
+    "target_row": 8,
+    "column": 5,
+    "inherited": false,
+    "page": 3,
+    "row_cells": [
+     {
+      "text": "39",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "보건의료",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "방문진료",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "국가",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "직\n접",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "연계",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "스",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "특화 서비스 제공",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "장애\n인",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "등록 장애인",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "통합돌봄과",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "영도구",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     194.45,
+     417.24,
+     232.45,
+     447.24
+    ],
+    "text": "연계",
+    "header": "유형",
+    "clipped": false,
+    "source_page": 3,
+    "name_bbox": [
+     232.45,
+     417.24,
+     300.45,
+     447.24
+    ],
+    "source_name": "장애인복지관서비\n스",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "aee9584bdeeb6f04f5ff720b6a6a6502f1a4efbad6ca4adf7d7cc7d66913842d",
+   "reason": null,
+   "value": "공통_연계",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "연계",
+   "review_note": "Kordoc split the service name/type into separate table fragments; source row serial, original cell geometry and rendered row verify association.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0076-1489561-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0076&list_no=1489561&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0076-1489561-1-p3.png"
+   ]
+  },
+  {
+   "service_id": "0078:1489574:1:3:1",
+   "name": "노인장기요양 통합재가서비스",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "국가",
+    "header": "사업구분",
+    "table": 0,
+    "row": 13,
+    "target_row": 13,
+    "column": 7,
+    "inherited": false,
+    "page": 2,
+    "row_cells": [
+     {
+      "text": "\n장기요양",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "방문요양",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "1",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "노인장기요양\n통합재가서비스",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "장기요양요원이 수급자의\n가정 등을 방문하여 신체활동 및 가사활동 등\n지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "장기요양 1~5\n등급을 받은\n65세 이상 어르신 및 노인\n성질병*을 가진 65세 미만",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "국민건강보험\n공단",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "국가",
+      "colSpan": 1,
+      "rowSpan": 2
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     490.056,
+     670.7860000000001,
+     538.271,
+     767.401
+    ],
+    "text": "국가",
+    "header": "사업구분",
+    "clipped": false,
+    "source_page": 2,
+    "name_bbox": [
+     181.342,
+     670.7860000000001,
+     260.62,
+     767.401
+    ],
+    "source_name": "노인장기요양\n통합재가서비스",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "c600ec44c1201a7368f75610ec7c88975ef72f212ca354d33b4318143c9849cf",
+   "reason": null,
+   "source_row_page": 3,
+   "value": "전국",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "국가",
+   "review_note": "Source name/type is one merged cell beginning on page2 (국가), continuing on page3 through serial3,4,5,6. Page3 column is unbroken until next independent service. No value inferred from another service.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0078-1489574-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0078&list_no=1489574&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0078-1489574-1-p2.png",
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0078-1489574-1-p3.png"
+   ],
+   "continuation_proof": {
+    "row_page": 3,
+    "serial": "3",
+    "serial_cell": {
+     "bbox": [
+      150.159,
+      112.79700000000003,
+      181.342,
+      163.50099999999998
+     ],
+     "text": "3"
+    },
+    "name_and_type_source_page": 2,
+    "name_cell": {
+     "bbox": [
+      181.342,
+      670.7860000000001,
+      260.62,
+      767.401
+     ],
+     "text": "노인장기요양\n통합재가서비스"
+    },
+    "source_type_cell": {
+     "bbox": [
+      490.056,
+      670.7860000000001,
+      538.271,
+      767.401
+     ],
+     "text": "국가",
+     "header": "사업구분",
+     "clipped": false,
+     "source_page": 2,
+     "name_bbox": [
+      181.342,
+      670.7860000000001,
+      260.62,
+      767.401
+     ],
+     "source_name": "노인장기요양\n통합재가서비스",
+     "table_index": 0
+    }
+   }
+  },
+  {
+   "service_id": "0078:1489574:1:3:2",
+   "name": "노인장기요양 통합재가서비스",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "국가",
+    "header": "사업구분",
+    "table": 0,
+    "row": 13,
+    "target_row": 13,
+    "column": 7,
+    "inherited": false,
+    "page": 2,
+    "row_cells": [
+     {
+      "text": "\n장기요양",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "방문요양",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "1",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "노인장기요양\n통합재가서비스",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "장기요양요원이 수급자의\n가정 등을 방문하여 신체활동 및 가사활동 등\n지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "장기요양 1~5\n등급을 받은\n65세 이상 어르신 및 노인\n성질병*을 가진 65세 미만",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "국민건강보험\n공단",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "국가",
+      "colSpan": 1,
+      "rowSpan": 2
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     490.056,
+     670.7860000000001,
+     538.271,
+     767.401
+    ],
+    "text": "국가",
+    "header": "사업구분",
+    "clipped": false,
+    "source_page": 2,
+    "name_bbox": [
+     181.342,
+     670.7860000000001,
+     260.62,
+     767.401
+    ],
+    "source_name": "노인장기요양\n통합재가서비스",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "c600ec44c1201a7368f75610ec7c88975ef72f212ca354d33b4318143c9849cf",
+   "reason": null,
+   "source_row_page": 3,
+   "value": "전국",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "국가",
+   "review_note": "Source name/type is one merged cell beginning on page2 (국가), continuing on page3 through serial3,4,5,6. Page3 column is unbroken until next independent service. No value inferred from another service.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0078-1489574-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0078&list_no=1489574&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0078-1489574-1-p2.png",
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0078-1489574-1-p3.png"
+   ],
+   "continuation_proof": {
+    "row_page": 3,
+    "serial": "4",
+    "serial_cell": {
+     "bbox": [
+      150.159,
+      163.50099999999998,
+      181.342,
+      214.086
+     ],
+     "text": "4"
+    },
+    "name_and_type_source_page": 2,
+    "name_cell": {
+     "bbox": [
+      181.342,
+      670.7860000000001,
+      260.62,
+      767.401
+     ],
+     "text": "노인장기요양\n통합재가서비스"
+    },
+    "source_type_cell": {
+     "bbox": [
+      490.056,
+      670.7860000000001,
+      538.271,
+      767.401
+     ],
+     "text": "국가",
+     "header": "사업구분",
+     "clipped": false,
+     "source_page": 2,
+     "name_bbox": [
+      181.342,
+      670.7860000000001,
+      260.62,
+      767.401
+     ],
+     "source_name": "노인장기요양\n통합재가서비스",
+     "table_index": 0
+    }
+   }
+  },
+  {
+   "service_id": "0078:1489574:1:3:3",
+   "name": "노인장기요양 통합재가서비스",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "국가",
+    "header": "사업구분",
+    "table": 0,
+    "row": 13,
+    "target_row": 13,
+    "column": 7,
+    "inherited": false,
+    "page": 2,
+    "row_cells": [
+     {
+      "text": "\n장기요양",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "방문요양",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "1",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "노인장기요양\n통합재가서비스",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "장기요양요원이 수급자의\n가정 등을 방문하여 신체활동 및 가사활동 등\n지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "장기요양 1~5\n등급을 받은\n65세 이상 어르신 및 노인\n성질병*을 가진 65세 미만",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "국민건강보험\n공단",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "국가",
+      "colSpan": 1,
+      "rowSpan": 2
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     490.056,
+     670.7860000000001,
+     538.271,
+     767.401
+    ],
+    "text": "국가",
+    "header": "사업구분",
+    "clipped": false,
+    "source_page": 2,
+    "name_bbox": [
+     181.342,
+     670.7860000000001,
+     260.62,
+     767.401
+    ],
+    "source_name": "노인장기요양\n통합재가서비스",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "c600ec44c1201a7368f75610ec7c88975ef72f212ca354d33b4318143c9849cf",
+   "reason": null,
+   "source_row_page": 3,
+   "value": "전국",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "국가",
+   "review_note": "Source name/type is one merged cell beginning on page2 (국가), continuing on page3 through serial3,4,5,6. Page3 column is unbroken until next independent service. No value inferred from another service.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0078-1489574-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0078&list_no=1489574&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0078-1489574-1-p2.png",
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0078-1489574-1-p3.png"
+   ],
+   "continuation_proof": {
+    "row_page": 3,
+    "serial": "5",
+    "serial_cell": {
+     "bbox": [
+      150.159,
+      214.086,
+      181.342,
+      264.66999999999996
+     ],
+     "text": "5"
+    },
+    "name_and_type_source_page": 2,
+    "name_cell": {
+     "bbox": [
+      181.342,
+      670.7860000000001,
+      260.62,
+      767.401
+     ],
+     "text": "노인장기요양\n통합재가서비스"
+    },
+    "source_type_cell": {
+     "bbox": [
+      490.056,
+      670.7860000000001,
+      538.271,
+      767.401
+     ],
+     "text": "국가",
+     "header": "사업구분",
+     "clipped": false,
+     "source_page": 2,
+     "name_bbox": [
+      181.342,
+      670.7860000000001,
+      260.62,
+      767.401
+     ],
+     "source_name": "노인장기요양\n통합재가서비스",
+     "table_index": 0
+    }
+   }
+  },
+  {
+   "service_id": "0078:1489574:1:3:4",
+   "name": "노인장기요양 통합재가서비스",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "국가",
+    "header": "사업구분",
+    "table": 0,
+    "row": 13,
+    "target_row": 13,
+    "column": 7,
+    "inherited": false,
+    "page": 2,
+    "row_cells": [
+     {
+      "text": "\n장기요양",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "방문요양",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "1",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "노인장기요양\n통합재가서비스",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "장기요양요원이 수급자의\n가정 등을 방문하여 신체활동 및 가사활동 등\n지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "장기요양 1~5\n등급을 받은\n65세 이상 어르신 및 노인\n성질병*을 가진 65세 미만",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "국민건강보험\n공단",
+      "colSpan": 1,
+      "rowSpan": 2
+     },
+     {
+      "text": "국가",
+      "colSpan": 1,
+      "rowSpan": 2
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     490.056,
+     670.7860000000001,
+     538.271,
+     767.401
+    ],
+    "text": "국가",
+    "header": "사업구분",
+    "clipped": false,
+    "source_page": 2,
+    "name_bbox": [
+     181.342,
+     670.7860000000001,
+     260.62,
+     767.401
+    ],
+    "source_name": "노인장기요양\n통합재가서비스",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "c600ec44c1201a7368f75610ec7c88975ef72f212ca354d33b4318143c9849cf",
+   "reason": null,
+   "source_row_page": 3,
+   "value": "전국",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "국가",
+   "review_note": "Source name/type is one merged cell beginning on page2 (국가), continuing on page3 through serial3,4,5,6. Page3 column is unbroken until next independent service. No value inferred from another service.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0078-1489574-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0078&list_no=1489574&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0078-1489574-1-p2.png",
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0078-1489574-1-p3.png"
+   ],
+   "continuation_proof": {
+    "row_page": 3,
+    "serial": "6",
+    "serial_cell": {
+     "bbox": [
+      150.159,
+      264.66999999999996,
+      181.342,
+      315.375
+     ],
+     "text": "6"
+    },
+    "name_and_type_source_page": 2,
+    "name_cell": {
+     "bbox": [
+      181.342,
+      670.7860000000001,
+      260.62,
+      767.401
+     ],
+     "text": "노인장기요양\n통합재가서비스"
+    },
+    "source_type_cell": {
+     "bbox": [
+      490.056,
+      670.7860000000001,
+      538.271,
+      767.401
+     ],
+     "text": "국가",
+     "header": "사업구분",
+     "clipped": false,
+     "source_page": 2,
+     "name_bbox": [
+      181.342,
+      670.7860000000001,
+      260.62,
+      767.401
+     ],
+     "source_name": "노인장기요양\n통합재가서비스",
+     "table_index": 0
+    }
+   }
+  },
+  {
+   "service_id": "0089:1489688:1:3:4",
+   "name": "노인무료급식",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "전라\n남도",
+    "header": "사업구분",
+    "table": 0,
+    "row": 3,
+    "target_row": 3,
+    "column": 8,
+    "inherited": false,
+    "page": 3,
+    "row_cells": [
+     {
+      "text": "",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "31",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "노인무료급식",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "거동불편 어르신에\n식사배달 서비스 지원(주2회)",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "무료",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "노인",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "노인복지팀",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "전라\n남도",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     497.133,
+     349.658,
+     536.831,
+     396.167
+    ],
+    "text": "전라\n남도",
+    "header": "사업구분",
+    "clipped": false,
+    "source_page": 3,
+    "name_bbox": [
+     154.477,
+     349.658,
+     233.754,
+     396.167
+    ],
+    "source_name": "노인무료급식",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "8cc36c2666b2d489c9cf2c592a6b1105688a9e3b8f1078d0a431a84ac2d143f3",
+   "reason": null,
+   "value": "광역",
+   "previous_reason": "PARSER_OR_LAYOUT_DISAGREEMENT",
+   "decision": "approved",
+   "source_label": "전라\n남도",
+   "review_note": "Original PDF row visually checked; fresh pdfplumber and Kordoc cells agree.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0089-1489688-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0089&list_no=1489688&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0089-1489688-1-p3.png"
+   ]
+  },
+  {
+   "service_id": "0088:1489670:1:2:13",
+   "name": "이동지원 서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "지역특화",
+    "header": "사업구분",
+    "table": 0,
+    "row": 14,
+    "target_row": 14,
+    "column": 7,
+    "inherited": false,
+    "page": 2,
+    "row_cells": [
+     {
+      "text": "",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "이동지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "27",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "특화",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "병원 등 의료기관 및 일상행활에",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "거동 불편",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "경로장애인과",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "지역특화",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     483.34,
+     746.5563333333333,
+     540.07,
+     768.719
+    ],
+    "text": "지역특화",
+    "header": "사업구분",
+    "clipped": false,
+    "source_page": 2,
+    "name_bbox": [
+     166.47,
+     746.5563333333333,
+     235.793,
+     768.719
+    ],
+    "source_name": "특화",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "8259420d4e6cf49f45c8f3005ed019bb566c2e1dfe5442f9af3e4430e170ffa9",
+   "reason": null,
+   "value": "지역특화",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "지역특화",
+   "review_note": "Serial27 starts at page2 bottom (특화 badge); actual service name continues on page3. Classification cell says 지역특화.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0088-1489670-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0088&list_no=1489670&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0088-1489670-1-p2.png",
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0088-1489670-1-p3.png"
+   ]
+  },
+  {
+   "service_id": "0087:1489660:1:1:15",
+   "name": "방문영양관리(영양플랫폼 사업)",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "연계서비스",
+    "header": "구분",
+    "table": 2,
+    "row": 15,
+    "target_row": 15,
+    "column": 0,
+    "inherited": false,
+    "page": 1,
+    "row_cells": [
+     {
+      "text": "연계서비스",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "건강관리예",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "건강관리",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "방문영양관리(영양플",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "균형 영양식 지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "❶~❼ 노인,장",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "보건소(1)",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     35.981,
+     778.908,
+     83.475,
+     803.721
+    ],
+    "text": "연계서비스",
+    "header": "구분",
+    "clipped": false,
+    "source_page": 1,
+    "name_bbox": [
+     193.456,
+     778.908,
+     278.37,
+     803.721
+    ],
+    "source_name": "방문영양관리(영양플",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "a3777f2144c2a5a542425fdba5e4654d8e279c1a57fad6a1685c5b2952e5bf80",
+   "reason": null,
+   "value": "공통_연계",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "연계서비스",
+   "review_note": "Service name continues on following page; full classification text is on source row page.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0087-1489660-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0087&list_no=1489660&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0087-1489660-1-p1.png",
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0087-1489660-1-p2.png"
+   ]
+  },
+  {
+   "service_id": "0086:1489639:1:1:4",
+   "name": "AI·IoT 기반 어르신 건강관리사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "공통_연계",
+    "header": "구분",
+    "table": 1,
+    "row": 4,
+    "target_row": 4,
+    "column": 0,
+    "inherited": false,
+    "page": 1,
+    "row_cells": [
+     {
+      "text": "공통_연계",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "보건의료",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "방문간호",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "AI·lot기반 어르신\n건강관리사업",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "‘오늘건강앱’ 활용 비대면 건강관리",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "노인",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "1개소",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     50.373,
+     291.40099999999995,
+     95.349,
+     333.955
+    ],
+    "text": "공통_연\n계",
+    "header": "구분",
+    "clipped": false,
+    "source_page": 1,
+    "name_bbox": [
+     200.292,
+     291.40099999999995,
+     285.207,
+     333.955
+    ],
+    "source_name": "AI·lot기반 어르신\n건강관리사업",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "da2791b3ae41ce2e51a3ce4b52fbadcafab559d33dad187911b1e07641a6d621",
+   "reason": null,
+   "value": "공통_연계",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "공통_연\n계",
+   "review_note": "Original service-name typo/orthography differs from normalized dataset name; exact row position, description and neighbors reviewed. Classification cell agrees.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0086-1489639-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0086&list_no=1489639&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0086-1489639-1-p1.png"
+   ]
+  },
+  {
+   "service_id": "0086:1489640:1:1:14",
+   "name": "심뇌혈관질환 예방관리사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "공통_연\n계",
+    "header": "구분",
+    "table": 1,
+    "row": 14,
+    "target_row": 14,
+    "column": 0,
+    "inherited": false,
+    "page": 1,
+    "row_cells": [
+     {
+      "text": "공통_연",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "건강관리",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "건강관리",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "심뇌혈관질환 예방",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "고혈압 당뇨교실, 혈압,혈당측정기",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "고혈압, 당뇨",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "보건소(1)",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ],
+    "continuation": {
+     "page": 2,
+     "table": 0,
+     "row": 1,
+     "column": 0,
+     "text": "계"
+    }
+   },
+   "geometry": {
+    "bbox": [
+     50.373,
+     758.89,
+     95.349,
+     787.658
+    ],
+    "text": "공통_연\n계",
+    "header": "구분",
+    "clipped": false,
+    "continuation": {
+     "page": 2,
+     "bbox": [
+      50.373,
+      95.17600000000006,
+      95.349,
+      123.94399999999996
+     ],
+     "text": "계"
+    },
+    "source_page": 1,
+    "name_bbox": [
+     200.292,
+     758.89,
+     285.207,
+     787.658
+    ],
+    "source_name": "심뇌혈관질환 예방",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "7d8e7c41abd9a7fe2cb1ef7e8a7221944497f90d0847b69971b347c71457fa04",
+   "reason": null,
+   "value": "공통_연계",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "공통_연\n계",
+   "review_note": "Same row continues across page boundary; 공통_연 + 계 explicitly reconstructed from both cells.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0086-1489640-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0086&list_no=1489640&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0086-1489640-1-p1.png",
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0086-1489640-1-p2.png"
+   ]
+  },
+  {
+   "service_id": "0086:1489643:1:5:12",
+   "name": "시각장애인가정 가스자동화차단기 지원사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "공통_연계",
+    "header": "구분",
+    "table": 0,
+    "row": 13,
+    "target_row": 13,
+    "column": 0,
+    "inherited": false,
+    "page": 5,
+    "row_cells": [
+     {
+      "text": "공통_연계",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "주거복지",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "주거공간개선",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "시각장애인가정 가\n스자동화차단기 지",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "가스 자동화 차단기(음성경보 기능)\n설치 및 지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "장애인",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "읍면복지팀",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     50.373,
+     744.506,
+     95.349,
+     787.059
+    ],
+    "text": "공통_연\n계",
+    "header": "구분",
+    "clipped": false,
+    "source_page": 5,
+    "name_bbox": [
+     200.292,
+     744.506,
+     285.207,
+     787.059
+    ],
+    "source_name": "시각장애인가정 가\n스자동화차단기 지",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "0a62762f54e4dfcdbd92a8088061d10d2860c2c220d55b4500cd87d7dbd70361",
+   "reason": null,
+   "value": "공통_연계",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "공통_연\n계",
+   "review_note": "Service name continues on following page; full classification text is on source row page.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0086-1489643-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0086&list_no=1489643&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0086-1489643-1-p5.png",
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0086-1489643-1-p6.png"
+   ]
+  },
+  {
+   "service_id": "0086:1489643:1:2:14",
+   "name": "자살위험자 응급개입치료비 지원",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "공통_연\n계",
+    "header": "구분",
+    "table": 0,
+    "row": 14,
+    "target_row": 14,
+    "column": 0,
+    "inherited": false,
+    "page": 2,
+    "row_cells": [
+     {
+      "text": "공통_연",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "건강관리",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "정신건강관",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "자살위험자 응급개",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "전문가 치료 도모(입원비, 외래진",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "노인,장애인",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "음성군정신",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ],
+    "continuation": {
+     "page": 3,
+     "table": 0,
+     "row": 1,
+     "column": 0,
+     "text": "계"
+    }
+   },
+   "geometry": {
+    "bbox": [
+     50.373,
+     759.4889999999999,
+     95.349,
+     788.258
+    ],
+    "text": "공통_연\n계",
+    "header": "구분",
+    "clipped": false,
+    "continuation": {
+     "page": 3,
+     "bbox": [
+      50.373,
+      95.17600000000006,
+      95.349,
+      137.729
+     ],
+     "text": "계"
+    },
+    "source_page": 2,
+    "name_bbox": [
+     200.292,
+     759.4889999999999,
+     285.207,
+     788.258
+    ],
+    "source_name": "자살위험자 응급개",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "0a62762f54e4dfcdbd92a8088061d10d2860c2c220d55b4500cd87d7dbd70361",
+   "reason": null,
+   "value": "공통_연계",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "공통_연\n계",
+   "review_note": "Same row continues across page boundary; 공통_연 + 계 explicitly reconstructed from both cells.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0086-1489643-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0086&list_no=1489643&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0086-1489643-1-p2.png",
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0086-1489643-1-p3.png"
+   ]
+  },
+  {
+   "service_id": "0086:1489647:1:4:10",
+   "name": "재가노인지원서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "공통_연계",
+    "header": "구분",
+    "table": 0,
+    "row": 11,
+    "target_row": 11,
+    "column": 0,
+    "inherited": false,
+    "page": 4,
+    "row_cells": [
+     {
+      "text": "공통_연계",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "일상생활\n돌봄",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "가사지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "재가노인지원비스",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "대상자 욕구를 고려한 맞춤형 서비스 연계 및 사례관리 (가사일상,\n신변활동, 정서지원)",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "노인",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "4개소",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     50.373,
+     576.4490000000001,
+     95.349,
+     632.788
+    ],
+    "text": "공통_연\n계",
+    "header": "구분",
+    "clipped": false,
+    "source_page": 4,
+    "name_bbox": [
+     200.292,
+     576.4490000000001,
+     285.207,
+     632.788
+    ],
+    "source_name": "재가노인지원비스",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "65f6373e68de6f5a008de1a234f0eea502ca69eead2857171a2e030df1f21085",
+   "reason": null,
+   "value": "공통_연계",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "공통_연\n계",
+   "review_note": "Original service-name typo/orthography differs from normalized dataset name; exact row position, description and neighbors reviewed. Classification cell agrees.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0086-1489647-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0086&list_no=1489647&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0086-1489647-1-p4.png"
+   ]
+  },
+  {
+   "service_id": "0086:1489648:1:4:2",
+   "name": "국가보훈대상자 택시바우처(보훈콜)",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "공통_연계",
+    "header": "구분",
+    "table": 0,
+    "row": 2,
+    "target_row": 2,
+    "column": 0,
+    "inherited": false,
+    "page": 4,
+    "row_cells": [
+     {
+      "text": "공통_연계",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "일상생활\n돌봄",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "이동지원",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "국가보훈대상자 택비바우처\n(보훈콜)",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "고령의 국가부훈대상자에게 택시\n바우처를 제공",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "관내 70세이\n상 국가보훈대상자",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "민간수행기관(1개소)",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     50.373,
+     144.562,
+     95.349,
+     193.94799999999998
+    ],
+    "text": "공통_연\n계",
+    "header": "구분",
+    "clipped": false,
+    "source_page": 4,
+    "name_bbox": [
+     200.292,
+     144.562,
+     285.207,
+     193.94799999999998
+    ],
+    "source_name": "국가보훈대상자 택\n비바우처\n(보훈콜)",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "6351f84afe767074c3d47b28470e8fd554602dc03414eb278c2def81e84d4042",
+   "reason": null,
+   "value": "공통_연계",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "공통_연\n계",
+   "review_note": "Original service-name typo/orthography differs from normalized dataset name; exact row position, description and neighbors reviewed. Classification cell agrees.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0086-1489648-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0086&list_no=1489648&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0086-1489648-1-p4.png"
+   ]
+  },
+  {
+   "service_id": "0086:1489648:1:3:4",
+   "name": "주야간보호기관 내 단기보호서비스",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "공통_연계",
+    "header": "구분",
+    "table": 0,
+    "row": 4,
+    "target_row": 4,
+    "column": 0,
+    "inherited": false,
+    "page": 3,
+    "row_cells": [
+     {
+      "text": "공통_연계",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "장기요양",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "단기보호",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "주야간보호관리 내\n단기보호서비스",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "일정 기간 시설에서 보호·돌봄 서\n비스를 제공하는 요양 서비스",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "장기요양수급\n권자",
+      "colSpan": 1,
+      "rowSpan": 1
+     },
+     {
+      "text": "관내 장기요양기관\n(28개소)",
+      "colSpan": 1,
+      "rowSpan": 1
+     }
+    ]
+   },
+   "geometry": {
+    "bbox": [
+     50.373,
+     250.40599999999995,
+     95.349,
+     299.79200000000003
+    ],
+    "text": "공통_연\n계",
+    "header": "구분",
+    "clipped": false,
+    "source_page": 3,
+    "name_bbox": [
+     200.292,
+     250.40599999999995,
+     285.207,
+     299.79200000000003
+    ],
+    "source_name": "주야간보호관리 내\n단기보호서비스",
+    "table_index": 0
+   },
+   "agreed": true,
+   "original_sha256": "6351f84afe767074c3d47b28470e8fd554602dc03414eb278c2def81e84d4042",
+   "reason": null,
+   "value": "공통_연계",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "공통_연\n계",
+   "review_note": "Original service-name typo/orthography differs from normalized dataset name; exact row position, description and neighbors reviewed. Classification cell agrees.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0086-1489648-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0086&list_no=1489648&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0086-1489648-1-p3.png"
+   ]
+  },
+  {
+   "service_id": "0078:1489574:1:3:1",
+   "name": "노인장기요양 통합재가서비스",
+   "updated_date": "2026-03-20",
+   "field": "subcategory",
+   "before": "방문요양",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "방문목욕",
+    "header": "중분류",
+    "page": 3,
+    "table": 0,
+    "row": 2,
+    "column": 1,
+    "serial": "3"
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     112.79700000000003,
+     150.159,
+     163.50099999999998
+    ],
+    "text": "방문목욕",
+    "header": "중분류",
+    "source_page": 3,
+    "serial_cell": {
+     "bbox": [
+      150.159,
+      112.79700000000003,
+      181.342,
+      163.50099999999998
+     ],
+     "text": "3"
+    },
+    "name_inherited_from_page": 2
+   },
+   "agreed": true,
+   "original_sha256": "c600ec44c1201a7368f75610ec7c88975ef72f212ca354d33b4318143c9849cf",
+   "reason": null,
+   "source_row_page": 3,
+   "value": "방문목욕",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "방문목욕",
+   "review_note": "Additional explicitly authorized correction. Existing snapshot serial maps unique page3 row3..6 to exact middle-classification cell; merged service name starts on page2. All four existing subcategories incorrectly inherited 방문요양.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0078-1489574-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0078&list_no=1489574&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0078-1489574-1-p2.png",
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0078-1489574-1-p3.png"
+   ],
+   "continuation_proof": {
+    "row_page": 3,
+    "serial": "3",
+    "serial_cell": {
+     "bbox": [
+      150.159,
+      112.79700000000003,
+      181.342,
+      163.50099999999998
+     ],
+     "text": "3"
+    },
+    "name_and_type_source_page": 2,
+    "name_cell": {
+     "bbox": [
+      181.342,
+      670.7860000000001,
+      260.62,
+      767.401
+     ],
+     "text": "노인장기요양\n통합재가서비스"
+    },
+    "source_type_cell": {
+     "bbox": [
+      490.056,
+      670.7860000000001,
+      538.271,
+      767.401
+     ],
+     "text": "국가",
+     "header": "사업구분",
+     "clipped": false,
+     "source_page": 2,
+     "name_bbox": [
+      181.342,
+      670.7860000000001,
+      260.62,
+      767.401
+     ],
+     "source_name": "노인장기요양\n통합재가서비스",
+     "table_index": 0
+    }
+   }
+  },
+  {
+   "service_id": "0078:1489574:1:3:2",
+   "name": "노인장기요양 통합재가서비스",
+   "updated_date": "2026-03-20",
+   "field": "subcategory",
+   "before": "방문요양",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "주야간\n보호",
+    "header": "중분류",
+    "page": 3,
+    "table": 0,
+    "row": 3,
+    "column": 1,
+    "serial": "4"
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     163.50099999999998,
+     150.159,
+     214.086
+    ],
+    "text": "주야간\n보호",
+    "header": "중분류",
+    "source_page": 3,
+    "serial_cell": {
+     "bbox": [
+      150.159,
+      163.50099999999998,
+      181.342,
+      214.086
+     ],
+     "text": "4"
+    },
+    "name_inherited_from_page": 2
+   },
+   "agreed": true,
+   "original_sha256": "c600ec44c1201a7368f75610ec7c88975ef72f212ca354d33b4318143c9849cf",
+   "reason": null,
+   "source_row_page": 3,
+   "value": "주야간보호",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "주야간\n보호",
+   "review_note": "Additional explicitly authorized correction. Existing snapshot serial maps unique page3 row3..6 to exact middle-classification cell; merged service name starts on page2. All four existing subcategories incorrectly inherited 방문요양.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0078-1489574-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0078&list_no=1489574&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0078-1489574-1-p2.png",
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0078-1489574-1-p3.png"
+   ],
+   "continuation_proof": {
+    "row_page": 3,
+    "serial": "4",
+    "serial_cell": {
+     "bbox": [
+      150.159,
+      163.50099999999998,
+      181.342,
+      214.086
+     ],
+     "text": "4"
+    },
+    "name_and_type_source_page": 2,
+    "name_cell": {
+     "bbox": [
+      181.342,
+      670.7860000000001,
+      260.62,
+      767.401
+     ],
+     "text": "노인장기요양\n통합재가서비스"
+    },
+    "source_type_cell": {
+     "bbox": [
+      490.056,
+      670.7860000000001,
+      538.271,
+      767.401
+     ],
+     "text": "국가",
+     "header": "사업구분",
+     "clipped": false,
+     "source_page": 2,
+     "name_bbox": [
+      181.342,
+      670.7860000000001,
+      260.62,
+      767.401
+     ],
+     "source_name": "노인장기요양\n통합재가서비스",
+     "table_index": 0
+    }
+   }
+  },
+  {
+   "service_id": "0078:1489574:1:3:3",
+   "name": "노인장기요양 통합재가서비스",
+   "updated_date": "2026-03-20",
+   "field": "subcategory",
+   "before": "방문요양",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "단기보호",
+    "header": "중분류",
+    "page": 3,
+    "table": 0,
+    "row": 4,
+    "column": 1,
+    "serial": "5"
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     214.086,
+     150.159,
+     264.66999999999996
+    ],
+    "text": "단기보호",
+    "header": "중분류",
+    "source_page": 3,
+    "serial_cell": {
+     "bbox": [
+      150.159,
+      214.086,
+      181.342,
+      264.66999999999996
+     ],
+     "text": "5"
+    },
+    "name_inherited_from_page": 2
+   },
+   "agreed": true,
+   "original_sha256": "c600ec44c1201a7368f75610ec7c88975ef72f212ca354d33b4318143c9849cf",
+   "reason": null,
+   "source_row_page": 3,
+   "value": "단기보호",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "단기보호",
+   "review_note": "Additional explicitly authorized correction. Existing snapshot serial maps unique page3 row3..6 to exact middle-classification cell; merged service name starts on page2. All four existing subcategories incorrectly inherited 방문요양.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0078-1489574-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0078&list_no=1489574&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0078-1489574-1-p2.png",
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0078-1489574-1-p3.png"
+   ],
+   "continuation_proof": {
+    "row_page": 3,
+    "serial": "5",
+    "serial_cell": {
+     "bbox": [
+      150.159,
+      214.086,
+      181.342,
+      264.66999999999996
+     ],
+     "text": "5"
+    },
+    "name_and_type_source_page": 2,
+    "name_cell": {
+     "bbox": [
+      181.342,
+      670.7860000000001,
+      260.62,
+      767.401
+     ],
+     "text": "노인장기요양\n통합재가서비스"
+    },
+    "source_type_cell": {
+     "bbox": [
+      490.056,
+      670.7860000000001,
+      538.271,
+      767.401
+     ],
+     "text": "국가",
+     "header": "사업구분",
+     "clipped": false,
+     "source_page": 2,
+     "name_bbox": [
+      181.342,
+      670.7860000000001,
+      260.62,
+      767.401
+     ],
+     "source_name": "노인장기요양\n통합재가서비스",
+     "table_index": 0
+    }
+   }
+  },
+  {
+   "service_id": "0078:1489574:1:3:4",
+   "name": "노인장기요양 통합재가서비스",
+   "updated_date": "2026-03-20",
+   "field": "subcategory",
+   "before": "방문요양",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "복지용구",
+    "header": "중분류",
+    "page": 3,
+    "table": 0,
+    "row": 5,
+    "column": 1,
+    "serial": "6"
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     264.66999999999996,
+     150.159,
+     315.375
+    ],
+    "text": "복지용구",
+    "header": "중분류",
+    "source_page": 3,
+    "serial_cell": {
+     "bbox": [
+      150.159,
+      264.66999999999996,
+      181.342,
+      315.375
+     ],
+     "text": "6"
+    },
+    "name_inherited_from_page": 2
+   },
+   "agreed": true,
+   "original_sha256": "c600ec44c1201a7368f75610ec7c88975ef72f212ca354d33b4318143c9849cf",
+   "reason": null,
+   "source_row_page": 3,
+   "value": "복지용구",
+   "previous_reason": "ROW_OR_LAYOUT_UNCONFIRMED",
+   "decision": "approved",
+   "source_label": "복지용구",
+   "review_note": "Additional explicitly authorized correction. Existing snapshot serial maps unique page3 row3..6 to exact middle-classification cell; merged service name starts on page2. All four existing subcategories incorrectly inherited 방문요양.",
+   "original_path": "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\classification-review-2-20261015\\originals\\0078-1489574-1.pdf",
+   "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0078&list_no=1489574&seq=1",
+   "rendered_pages": [
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0078-1489574-1-p2.png",
+    "D:\\Codex\\Projects\\2026-10-11\\c-users-rumans-desktop-26-6\\outputs\\next-improvements-20261015\\classification\\0078-1489574-1-p3.png"
+   ],
+   "continuation_proof": {
+    "row_page": 3,
+    "serial": "6",
+    "serial_cell": {
+     "bbox": [
+      150.159,
+      264.66999999999996,
+      181.342,
+      315.375
+     ],
+     "text": "6"
+    },
+    "name_and_type_source_page": 2,
+    "name_cell": {
+     "bbox": [
+      181.342,
+      670.7860000000001,
+      260.62,
+      767.401
+     ],
+     "text": "노인장기요양\n통합재가서비스"
+    },
+    "source_type_cell": {
+     "bbox": [
+      490.056,
+      670.7860000000001,
+      538.271,
+      767.401
+     ],
+     "text": "국가",
+     "header": "사업구분",
+     "clipped": false,
+     "source_page": 2,
+     "name_bbox": [
+      181.342,
+      670.7860000000001,
+      260.62,
+      767.401
+     ],
+     "source_name": "노인장기요양\n통합재가서비스",
+     "table_index": 0
+    }
+   }
+  }
+ ]
+}

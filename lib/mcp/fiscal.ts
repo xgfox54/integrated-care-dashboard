@@ -22,14 +22,17 @@ import type { SqlDatabase } from "../sql-database.ts";
 import { unitNote } from "../fiscal/unit-check.ts";
 import { type Basis, type Coverage, decodeCursor, encodeCursor, type Envelope, fingerprint, LIMITS, McpToolError, pageLimit } from "./contract.ts";
 import { integratedCareClassVersion } from "../fiscal/classify.ts";
-import { INTEGRATED_CARE_NOTE } from "../fiscal/public.ts";
+import { EXCLUDED_DEPARTMENT_KEYS, INTEGRATED_CARE_NOTE } from "../fiscal/public.ts";
+import type { BudgetRevisionPin } from "../fiscal/budget-publication.ts";
+import { budgetDocumentCatalog } from "./budget-documents.ts";
+import { FISCAL_AMOUNT_NOTE, fiscalVerificationStatus, hasVerifiedAmounts, publicProjectDto } from "./fiscal-amounts.ts";
 import { activeRevisions, documentLinksForProjects, type RevisionRow, revisionDto, squashName, stageLabel, thousandDifference } from "../fiscal/budget-documents.ts";
 import { thousandOf } from "../imports/budget-pack.ts";
 import { departmentHistory } from "../fiscal/department-history.ts";
 
 const year = z.number().int().min(2000).max(2100);
-const date = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "YYYY-MM-DD 형식이어야 합니다.");
-const id = z.string().min(1).max(100);
+const date = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "YYYY-MM-DD 형식이어야 합니다.").refine((value) => { const parsed = new Date(value + "T00:00:00Z"); return Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value; }, "존재하지 않는 날짜입니다.");
+const id = z.string().min(1).max(LIMITS.idMax);
 const bundle = z.string().max(120).optional();
 const cursor = z.string().max(400).optional();
 const limit = z.number().int().min(1).max(LIMITS.listMax).optional();
@@ -95,7 +98,7 @@ const SOURCE_GAP = "지방재정365 세부사업별 세출현황의 공개값입
 
 /** 공개된 재정 snapshot 구성요소 ID. 없으면 null. */
 export async function fiscalComponent(db: SqlDatabase): Promise<string | null> {
-  const snapshots = await publishedSnapshots(db, { limit: 5 });
+  const snapshots = await publishedSnapshots(db, { limit: 2000 });
   return snapshots.length ? "fiscal:" + fingerprint(snapshots.map((snapshot) => snapshot.snapshot_id)) : null;
 }
 
@@ -153,11 +156,30 @@ async function usedSnapshots(db: SqlDatabase, snapshots: readonly SnapshotRow[],
 }
 
 /** 지역 ID를 검증된 재정주체로 바꾼다. 검증 매핑이 없으면 상위 자치단체로 대체하지 않고 거절한다. */
-async function entitiesForRegion(db: SqlDatabase, regionId: string): Promise<{ entityIds: string[]; candidates: string[] }> {
+interface RegionAdminUnit { readonly entityId: string; readonly deptPrefix: string; readonly name: string }
+
+const topicParticle = (word: string) => { const code = word.charCodeAt(word.length - 1) - 0xac00; return code >= 0 && code <= 11171 && code % 28 === 0 ? "는" : "은"; };
+const adminUnitNote = (unit: RegionAdminUnit) => unit.name + topicParticle(unit.name) + " 별도 재정주체가 없는 행정시·행정구라서, 상위 재정주체 세출 중 검증된 부서코드 앞자리(" + unit.deptPrefix.split(",").map((prefix) => prefix.trim()).join("·") + ") 부서의 예산만 보여 줍니다. 상위 본청 부서가 이 지역에 집행하는 사업은 포함되지 않습니다.";
+
+// 행정시·행정구(제주 서귀포시 등)는 웹 예산 화면과 같이 검증된 부서코드 앞자리 규칙(fiscal_admin_unit)으로만 좁힌다.
+async function adminUnitForRegion(db: SqlDatabase, regionId: string): Promise<RegionAdminUnit | null> {
+  const match = /^region:([^|]+)\|(.+)$/.exec(regionId);
+  if (!match) return null;
+  const parents = (await fiscalMappings(db, "region:" + match[1])).filter((mapping) => mapping.verification_status === "VERIFIED" && mapping.relation === "jurisdiction").map((mapping) => mapping.fiscal_entity_id);
+  if (!parents.length) return null;
+  const units = (await db.prepare("SELECT name, parent_entity_id, dept_prefix FROM fiscal_admin_unit WHERE verification_status = 'VERIFIED' ORDER BY unit_id").all<{ name: string; parent_entity_id: string; dept_prefix: string }>()).results;
+  const key = (value: string) => value.replace(/\s/g, "");
+  const unit = units.find((row) => parents.includes(row.parent_entity_id) && key(row.name) === key(match[2]));
+  return unit ? { entityId: unit.parent_entity_id, deptPrefix: unit.dept_prefix, name: unit.name } : null;
+}
+
+async function entitiesForRegion(db: SqlDatabase, regionId: string): Promise<{ entityIds: string[]; candidates: string[]; adminUnit?: RegionAdminUnit }> {
   const mappings = await fiscalMappings(db, regionId);
   const verified = mappings.filter((mapping) => mapping.verification_status === "VERIFIED" && mapping.relation === "jurisdiction");
   const candidates = mappings.filter((mapping) => mapping.verification_status !== "VERIFIED").map((mapping) => mapping.mapping_id + ": " + mapping.basis);
   if (!verified.length) {
+    const adminUnit = await adminUnitForRegion(db, regionId);
+    if (adminUnit) return { entityIds: [adminUnit.entityId], candidates: [], adminUnit };
     throw new McpToolError("MAPPING_REQUIRED", "이 지역에 검증된 재정주체 매핑이 없습니다. 상위 자치단체 전체를 이 지역 값으로 대신하지 않습니다." + (candidates.length ? " 확인 전 후보: " + candidates.join(" / ") : ""));
   }
   return { entityIds: verified.map((mapping) => mapping.fiscal_entity_id), candidates };
@@ -171,20 +193,22 @@ function departmentCode(value: string): string {
 }
 
 async function noSnapshot(make: Make, mode: string, reason: string | null) {
-  const keyScope = mode === "all_fields";
   return make({
     status: "UNAVAILABLE",
-    reason_code: keyScope ? "KEY_REQUIRED" : reason ?? "NO_PUBLISHED_SNAPSHOT",
-    message: keyScope
-      ? "사회복지·보건·부서별 조회는 자치단체 전체 세출 수집이 필요하며, 지방재정365 발급 인증키 등록 전이라 제공하지 않습니다."
-      : "요청한 회계연도·기준일 범위에 공개된 재정 snapshot이 없습니다. get_fiscal_catalog(catalog_type=\"available_reference_date\")로 가용 기준일을 확인하세요.",
+    reason_code: reason ?? "NO_PUBLISHED_SNAPSHOT",
+    requested_mode: mode,
+    message: "요청한 회계연도·기준일·모드 범위에 공개된 재정 snapshot이 없습니다. get_fiscal_catalog(catalog_type=\"available_reference_date\")로 가용 기준일을 확인하세요. 원문 예산서는 별도 도구 search_budget_lines로 조회할 수 있습니다.",
     items: [],
   }, { coverage: { scope: "fiscal", complete: false, gaps: ["공개 snapshot 없음"] }, warnings: ["빈 결과는 예산·지출이 0이라는 뜻이 아닙니다."] });
 }
 
-export async function getFiscalCatalog(db: SqlDatabase, args: Args<"get_fiscal_catalog">, make: Make, pin: readonly string[] | null = null) {
+export async function getFiscalCatalog(db: SqlDatabase, args: Args<"get_fiscal_catalog">, make: Make, pin: readonly string[] | null = null, budgetPin: BudgetRevisionPin = null) {
   const fiscalYear = args.fiscal_year ? String(args.fiscal_year) : undefined;
-  const snapshots = await publishedSnapshots(db, { fiscalYear, snapshotIds: pin });
+  if (args.catalog_type === "budget_document") {
+    if (args.region_id) throw new McpToolError("INPUT_CONFLICT", "budget_document 목록은 fiscal_entity_id·fiscal_year로만 거릅니다. 문서 발행지역 검색은 search_budget_lines를 쓰세요.");
+    return budgetDocumentCatalog(db, args, make, budgetPin);
+  }
+  const snapshots = await publishedSnapshots(db, { fiscalYear, snapshotIds: pin, limit: 2000 });
   const size = pageLimit(args.limit);
   const bound = fingerprint(["catalog", args.catalog_type, fiscalYear ?? "", args.region_id ?? "", args.fiscal_entity_id ?? "", snapshots.map((snapshot) => snapshot.snapshot_id)]);
   const offset = decodeCursor(args.cursor, bound);
@@ -196,18 +220,6 @@ export async function getFiscalCatalog(db: SqlDatabase, args: Args<"get_fiscal_c
     return make(history, {
       coverage: { scope: "department_history", complete: true, gaps: [], fiscal_years: history.fiscal_years },
       warnings: [history.basis, "원천은 부서명을 제공하지 않아 부서코드만 돌려줍니다."],
-    });
-  }
-  if (args.catalog_type === "budget_document") {
-    // 관리자가 승인·공개한 예산서 편성 단계 목록. 문서 단계 비교(compare_budget_periods, comparison_basis=document_stage)의 document_revision_id를 여기서 고른다.
-    if (args.region_id) throw new McpToolError("INPUT_CONFLICT", "budget_document 목록은 fiscal_entity_id·fiscal_year로만 거릅니다.");
-    const rows = (await activeRevisions(db, { entityId: args.fiscal_entity_id, year: fiscalYear })).map(revisionDto);
-    const page = rows.slice(offset, offset + size);
-    const next = offset + page.length < rows.length ? encodeCursor(offset + page.length, bound) : null;
-    return make(page, {
-      coverage: { scope: "published_budget_documents", complete: next === null, gaps: rows.length ? [] : ["조건에 맞는 공개 예산서 없음"] },
-      warnings: ["예산서 금액은 그 문서 편성 단계(본예산·추경 등)의 값이며 단위는 문서 표시(천원)입니다. 문서마다 수록 범위(국·과)가 scope에 있습니다. 지방재정365 기준일 예산현액과 섞지 마세요."],
-      nextCursor: next,
     });
   }
   if (args.catalog_type === "available_reference_date") {
@@ -241,10 +253,10 @@ export async function getFiscalCatalog(db: SqlDatabase, args: Args<"get_fiscal_c
   const filter: ProjectFilter = { entityId: args.fiscal_entity_id };
   let warnings: string[] = [];
   if (args.region_id) {
-    const { entityIds, candidates } = await entitiesForRegion(db, args.region_id);
+    const { entityIds, candidates, adminUnit } = await entitiesForRegion(db, args.region_id);
     if (args.fiscal_entity_id && !entityIds.includes(args.fiscal_entity_id)) throw new McpToolError("INPUT_CONFLICT", "fiscal_entity_id가 region_id의 검증된 재정주체가 아닙니다.");
-    Object.assign(filter, { entityId: args.fiscal_entity_id ?? entityIds[0] });
-    warnings = candidates.length ? ["확인 전 하위 매핑 후보가 있습니다: " + candidates.join(" / ")] : [];
+    Object.assign(filter, { entityId: args.fiscal_entity_id ?? entityIds[0], ...(adminUnit ? { adminUnit: { entityId: adminUnit.entityId, deptPrefix: adminUnit.deptPrefix } } : {}) });
+    warnings = [...(adminUnit ? [adminUnitNote(adminUnit)] : []), ...(candidates.length ? ["확인 전 하위 매핑 후보가 있습니다: " + candidates.join(" / ")] : [])];
   }
   const rows = await fiscalCatalog(db, catalogIds, args.catalog_type, filter);
   const page = rows.slice(offset, offset + size);
@@ -258,7 +270,7 @@ export async function getFiscalCatalog(db: SqlDatabase, args: Args<"get_fiscal_c
   });
 }
 
-export async function findBudgetProjects(db: SqlDatabase, args: Args<"find_budget_projects">, make: Make, pin: readonly string[] | null = null) {
+export async function findBudgetProjects(db: SqlDatabase, args: Args<"find_budget_projects">, make: Make, pin: readonly string[] | null = null, budgetPin: BudgetRevisionPin = null) {
   const mode = args.mode as FiscalMode;
   // 웹과 같은 규칙: 통합돌봄 분류를 마쳤으면 통합돌봄은 전체 세출 가운데 분류된 사업, 사회복지는 사회복지 분야 + 통합돌봄 사업.
   const classVersion = await integratedCareClassVersion(db);
@@ -269,6 +281,8 @@ export async function findBudgetProjects(db: SqlDatabase, args: Args<"find_budge
   const snapshotIds = choice.snapshots.map((item) => item.snapshot_id);
   const filter: { -readonly [K in keyof ProjectFilter]: ProjectFilter[K] } = {
     entityId: args.fiscal_entity_id,
+    fiscalYear: String(args.fiscal_year),
+    excludedDepartmentKeys: EXCLUDED_DEPARTMENT_KEYS,
     departmentCodes: args.department_ids?.map(departmentCode),
     accountCodes: args.account_ids,
     query: args.query,
@@ -282,11 +296,21 @@ export async function findBudgetProjects(db: SqlDatabase, args: Args<"find_budge
   }
   const warnings = [await unitNote(db, snapshotIds)];
   if (args.region_id) {
-    const { entityIds, candidates } = await entitiesForRegion(db, args.region_id);
+    const { entityIds, candidates, adminUnit } = await entitiesForRegion(db, args.region_id);
     if (filter.entityId && !entityIds.includes(filter.entityId)) throw new McpToolError("INPUT_CONFLICT", "fiscal_entity_id가 region_id의 검증된 재정주체가 아닙니다.");
     filter.entityId = filter.entityId ?? entityIds[0];
+    if (adminUnit) {
+      filter.adminUnit = { entityId: adminUnit.entityId, deptPrefix: adminUnit.deptPrefix };
+      warnings.push(adminUnitNote(adminUnit));
+    }
     if (candidates.length) warnings.push("확인 전 하위 매핑 후보는 적용하지 않았습니다: " + candidates.join(" / "));
   }
+  const departmentEntities = [...new Set((args.department_ids ?? []).flatMap((value) => { const match = /^lofin:dept:(\d+):\d+$/.exec(value); return match ? ["lofin:laf:" + match[1]] : []; }))];
+  if (departmentEntities.length > 1 || (filter.entityId && departmentEntities.some((entity) => entity !== filter.entityId))) {
+    throw new McpToolError("INPUT_CONFLICT", "부서 ID의 재정주체와 조회 기관이 다릅니다. 같은 기관의 부서만 선택하세요.");
+  }
+  if (!filter.entityId && departmentEntities.length === 1) filter.entityId = departmentEntities[0];
+  if (filter.departmentCodes?.length && !filter.entityId) throw new McpToolError("FISCAL_ENTITY_REQUIRED", "숫자 부서코드는 기관 사이에 반복될 수 있습니다. fiscal_entity_id를 함께 지정하거나 카탈로그의 전체 부서 ID를 쓰세요.");
   if (choice.fallback_used) warnings.push("요청 기준일(" + choice.requested_reference_date + ") 자료가 없는 범위는 그 이전 가장 가까운 공개본을 썼습니다.");
   const { used, matches } = await usedSnapshots(db, choice.snapshots, filter);
   if (used.length > 1) {
@@ -296,26 +320,44 @@ export async function findBudgetProjects(db: SqlDatabase, args: Args<"find_budge
   const size = pageLimit(args.limit);
   const bound = fingerprint(["projects", snapshotIds, filter]);
   const offset = decodeCursor(args.cursor, bound);
+  const verifiedIds = args.include_summary ? (await fiscalVerificationStatus(db, snapshotIds)).verified_scopes.map((row) => row.snapshot_id) : [];
   const [{ rows, total }, summary] = await Promise.all([
     snapshotProjects(db, snapshotIds, filter, offset, size),
-    args.include_summary ? snapshotSummary(db, snapshotIds, filter) : Promise.resolve(null),
+    args.include_summary ? snapshotSummary(db, verifiedIds, { ...filter, verifiedAmountsOnly: true }) : Promise.resolve(null),
   ]);
   const next = offset + rows.length < total ? encodeCursor(offset + rows.length, bound) : null;
   const careBasis = classVersion && (mode === "integrated_care" || mode === "social_welfare") ? INTEGRATED_CARE_NOTE : null;
   // 공개 예산서(편성 단계 문서)에 같은 재정주체·연도·회계·세부사업명 행이 있으면 그 단계 ID와 BudgetLine ID를 붙인다(금액은 문서 단계 값).
-  const links = await documentLinksForProjects(db, rows);
+  const links = await documentLinksForProjects(db, rows, budgetPin);
   if (links.size) warnings.push("budget_documents는 관리자가 승인한 공개 예산서의 편성 단계 금액(천원 표시)입니다. 지방재정365 예산현액(기준일 현액)과 뜻이 달라 대신 쓰지 않으며, 세부사업명으로 맞춘 결과입니다.");
-  return make({ mode, items: rows.map((row) => ({ ...projectDto(row), budget_documents: links.get(row.fiscal_project_id) ?? [] })), summary, classification_basis: mode === "integrated_care" && careBasis ? careBasis : used[0].classification_basis, ...(careBasis ? { integrated_care_basis: careBasis } : {}) }, {
+  const unknownDate = used.some((item) => item.effective_reference_date === null);
+  const mixedDates = new Set(used.map((item) => item.effective_reference_date)).size > 1 || new Set(used.map((item) => item.requested_reference_date)).size > 1;
+  const overlap = summary ? summary.matching_rows !== summary.unique_projects : false;
+  const blockedSummary = mixedDates || unknownDate || overlap;
+  const summaryDateProblem = mixedDates ? "MIXED_REFERENCE_DATES" : unknownDate ? "REFERENCE_DATE_UNCONFIRMED" : null;
+  const safeSummary = summary ? {
+    ...summary, status: blockedSummary || summary.included_rows === 0 ? "UNAVAILABLE" : summary.included_rows < total ? "PARTIAL" : "AVAILABLE",
+    aggregation_scope: "verified_rows_in_requested_scope", matching_rows: total,
+    included_rows: blockedSummary ? 0 : summary.included_rows,
+    excluded_rows: blockedSummary ? total : total - summary.included_rows,
+    excluded_reason: summaryDateProblem ?? (overlap ? "OVERLAPPING_PROJECT_OBSERVATIONS" : "미검증 금액 또는 예산현액·지출액 결측"),
+    ...(blockedSummary ? { current_budget_krw: null, public_expenditure_krw: null, unspent_difference_krw: null, execution_rate_pct: null, execution_rate_null_reason: summaryDateProblem ?? "OVERLAPPING_PROJECT_OBSERVATIONS" } : {}),
+  } : null;
+  const unverifiedPage = rows.filter((row) => !hasVerifiedAmounts(row)).length;
+  warnings.push(FISCAL_AMOUNT_NOTE);
+  warnings.push('동일하거나 비슷한 사업명이 서로 다른 부서·사업코드로 수록될 수 있습니다. 총 건수는 coverage.total_count를 확인하고 next_cursor가 있으면 이어 조회하세요. 반환된 한 페이지의 행 수를 전체 건수로 단정하거나 문장부호 차이만으로 다른 사업을 누락하지 마세요. 문서 부서 표시명은 시군구 재정주체 매핑의 검증값이 아닙니다.');
+  if (total === 0) warnings.push("공개 snapshot은 있지만 요청한 연도·지역·분류·검색조건에 맞는 사업 행을 찾지 못했습니다. 실제 사업 부재나 예산 0원을 뜻하지 않습니다.");
+  return make({ status: total === 0 ? "NO_MATCHES" : "AVAILABLE", reason_code: total === 0 ? "NO_MATCHING_PROJECTS_IN_PUBLISHED_SCOPE" : null, requested_fiscal_year: args.fiscal_year, requested_region_id: args.region_id ?? null, mode, items: rows.map((row) => ({ ...publicProjectDto(row), budget_documents: (links.get(row.fiscal_project_id) ?? []).map((link) => ({ ...link, relationship_status: "CANDIDATE_NAME_MATCH", same_project_verified: false })) })), summary: safeSummary, classification_basis: mode === "integrated_care" && careBasis ? careBasis : used[0].classification_basis, ...(careBasis ? { integrated_care_basis: careBasis } : {}) }, {
     basis: setBasis(used, choice.requested_reference_date),
-    coverage: setCoverage(used, { total_count: total, fallback_used: choice.fallback_used }, matches),
+    coverage: { ...setCoverage(used, { total_count: total, fallback_used: choice.fallback_used, unverified_amount_rows_in_page: unverifiedPage }, matches), complete: unverifiedPage === 0 && !next && used.every((item) => item.complete === 1), gaps: [...setCoverage(used).gaps, ...(unverifiedPage ? ["이 페이지에 단위 미검증 금액이 있어 null로 제공합니다."] : [])] },
     warnings,
-    evidence: rows.slice(0, 5).map((row) => projectDto(row).evidence),
+    evidence: rows.slice(0, 5).map((row) => publicProjectDto(row).evidence),
     nextCursor: next,
   });
 }
 
 async function observationFor(db: SqlDatabase, projectIds: readonly string[], fiscalYear: string, referenceDate: string | undefined, windowDays: number, pin: readonly string[] | null) {
-  const snapshots = await publishedSnapshots(db, { fiscalYear, snapshotIds: pin });
+  const snapshots = await publishedSnapshots(db, { fiscalYear, snapshotIds: pin, limit: 2000 });
   const earliest = referenceDate ? new Date(Date.parse(referenceDate + "T00:00:00Z") - windowDays * 86_400_000).toISOString().slice(0, 10) : "";
   const usable = snapshots.filter((snapshot) => !referenceDate || (snapshot.requested_reference_date <= referenceDate && snapshot.requested_reference_date >= earliest));
   const found = new Map<string, { row: ProjectRecord; snapshot: SnapshotRow }>();
@@ -335,14 +377,14 @@ export async function getBudgetExecution(db: SqlDatabase, args: Args<"get_budget
   const items = ids.map((projectId) => {
     const hit = found.get(projectId);
     return hit
-      ? { ...projectDto(hit.row), snapshot_id: hit.snapshot.snapshot_id, requested_reference_date: args.reference_date ?? null, effective_reference_date: hit.snapshot.effective_reference_date, fallback_used: Boolean(args.reference_date && hit.snapshot.requested_reference_date !== args.reference_date) }
+      ? { ...publicProjectDto(hit.row), snapshot_id: hit.snapshot.snapshot_id, requested_reference_date: args.reference_date ?? null, effective_reference_date: hit.snapshot.effective_reference_date, fallback_used: Boolean(args.reference_date && hit.snapshot.requested_reference_date !== args.reference_date) }
       : { fiscal_project_id: projectId, status: "NOT_FOUND", reason: "요청 연도·기준일 범위의 공개 snapshot에 이 재정사업이 없습니다." };
   });
   const dates = new Set([...found.values()].map((hit) => hit.snapshot.requested_reference_date));
   return make(items, {
     basis: { requested_reference_date: args.reference_date ?? null, effective_reference_date: dates.size === 1 ? [...found.values()][0].snapshot.effective_reference_date : null, news_date_basis: null },
-    coverage: { scope: "requested_fiscal_projects", complete: found.size === ids.length, gaps: found.size === ids.length ? [] : ["일부 재정사업을 찾지 못했습니다."], fallback_policy: policy },
-    warnings: [await unitNote(db, [...found.values()].map((hit) => hit.snapshot.snapshot_id)), ...(dates.size > 1 ? ["항목마다 기준일이 다릅니다. 서로 다른 날의 값을 하나의 합계로 묶지 마세요."] : [])],
+    coverage: { scope: "requested_fiscal_projects", complete: found.size === ids.length && [...found.values()].every((hit) => hasVerifiedAmounts(hit.row)), gaps: [...(found.size === ids.length ? [] : ["일부 재정사업을 찾지 못했습니다."]), ...([...found.values()].some((hit) => !hasVerifiedAmounts(hit.row)) ? ["단위 미검증 금액을 null로 제공합니다."] : [])], fallback_policy: policy },
+    warnings: [await unitNote(db, [...found.values()].map((hit) => hit.snapshot.snapshot_id)), FISCAL_AMOUNT_NOTE, ...(dates.size > 1 ? ["항목마다 기준일이 다릅니다. 서로 다른 날의 값을 하나의 합계로 묶지 마세요."] : [])],
   });
 }
 
@@ -402,10 +444,10 @@ async function crossYearPairs(db: SqlDatabase, ids: readonly string[], leftYear:
   }));
 }
 
-export async function compareBudgetPeriods(db: SqlDatabase, args: Args<"compare_budget_periods">, make: Make, pin: readonly string[] | null = null) {
+export async function compareBudgetPeriods(db: SqlDatabase, args: Args<"compare_budget_periods">, make: Make, pin: readonly string[] | null = null, budgetPin: BudgetRevisionPin = null) {
   const selections = [args.project_selection.fiscal_project_ids, args.project_selection.budget_line_ids, args.project_selection.detail_project_query].filter((item) => item !== undefined).length;
   if (selections !== 1) throw new McpToolError("INPUT_INVALID", "project_selection에는 fiscal_project_ids·budget_line_ids·detail_project_query 가운데 하나만 넣습니다.");
-  if (args.comparison_basis === "document_stage" || args.left.document_revision_id || args.right.document_revision_id) return compareDocumentStages(db, args, make);
+  if (args.comparison_basis === "document_stage" || args.left.document_revision_id || args.right.document_revision_id) return compareDocumentStages(db, args, make, budgetPin);
   if (!args.project_selection.fiscal_project_ids) throw new McpToolError("INPUT_INVALID", "기준일·연말 비교는 fiscal_project_ids로 고릅니다(budget_line_ids·detail_project_query는 예산서 단계 비교 전용).");
   if (args.left.account_id || args.right.account_id || (args.left.scope && args.left.scope !== "total") || (args.right.scope && args.right.scope !== "total")) {
     throw new McpToolError("SCOPE_FILTER_NOT_AVAILABLE", "회계·범위 조건은 재정사업 ID에 이미 포함되어 있어 따로 지정할 수 없습니다.");
@@ -430,6 +472,12 @@ export async function compareBudgetPeriods(db: SqlDatabase, args: Args<"compare_
     if (!a || !b) {
       return { fiscal_project_id: projectId, comparable: false, reason: !a && !b ? "양쪽 모두 자료 없음" : !a ? "왼쪽 기간 자료 없음" : "오른쪽 기간 자료 없음", mapping, note: "자료에서 빠졌다고 사업 폐지·신설로 확정하지 않습니다." };
     }
+    if (!hasVerifiedAmounts(a.row) || !hasVerifiedAmounts(b.row)) {
+      return { fiscal_project_id: projectId, name: b.row.name, comparable: false, reason: "UNIT_VERIFICATION_REQUIRED", mapping,
+        left: { reference_date: a.snapshot.effective_reference_date, snapshot_id: a.snapshot.snapshot_id, amount_status: hasVerifiedAmounts(a.row) ? "VERIFIED_OFFICIAL_SCREEN" : "NOT_VERIFIED" },
+        right: { reference_date: b.snapshot.effective_reference_date, snapshot_id: b.snapshot.snapshot_id, amount_status: hasVerifiedAmounts(b.row) ? "VERIFIED_OFFICIAL_SCREEN" : "NOT_VERIFIED" },
+        current_budget_change_krw: null, current_budget_change_pct: null, net_reported_expenditure_change_krw: null };
+    }
     const budgetChange = subtractWon(b.row.current_budget_krw, a.row.current_budget_krw);
     const expenditureChange = subtractWon(b.row.public_expenditure_krw, a.row.public_expenditure_krw);
     const growth = budgetChange !== null && a.row.current_budget_krw !== null ? executionRate(budgetChange, a.row.current_budget_krw) : { value: null, reason: "BUDGET_UNKNOWN" as const };
@@ -444,7 +492,7 @@ export async function compareBudgetPeriods(db: SqlDatabase, args: Args<"compare_
     };
   });
   return make(items, {
-    coverage: { scope: "requested_fiscal_projects", complete: items.every((item) => item.comparable), gaps: [], comparison_basis: args.comparison_basis },
+    coverage: { scope: "requested_fiscal_projects", complete: items.every((item) => item.comparable), gaps: items.every((item) => item.comparable) ? [] : ["일부 사업은 검증·기간·매칭 조건이 맞지 않아 비교할 수 없습니다."], comparison_basis: args.comparison_basis },
     warnings: [
       "지출액은 기준일까지의 누적 공개값이라, 두 날짜의 차이는 그 기간 개별 지출 거래의 합계가 아니라 보고값의 순변동입니다(정정·환입으로 음수일 수 있음).",
       ...(leftYear === rightYear ? [] : ["연도 간 비교는 같은 재정주체·회계·세부사업코드로 맞춘 결과입니다. 코드가 같아도 같은 사업이라는 확인은 아니며, 부서·분류가 바뀌었거나 후보가 여럿이면 비교하지 않습니다. 편성단계는 양쪽 모두 지방재정365 세출현황(예산현액)입니다."]),
@@ -459,7 +507,7 @@ export async function compareBudgetPeriods(db: SqlDatabase, args: Args<"compare_
  * 세부사업명(같은 이름이 여럿이면 부서·단위사업까지)으로 짝을 짓는다. 문서 범위 밖이거나 이름이 바뀐 경우 폐지·신설로 확정하지 않는다.
  * 오른쪽이 추경이고 「기정예산액」 칸이 있으면, 왼쪽 단계 금액과 오른쪽 기정예산액이 같은지도 알려 준다(사이에 다른 변경이 있었는지 판단 근거).
  */
-async function compareDocumentStages(db: SqlDatabase, args: Args<"compare_budget_periods">, make: Make) {
+async function compareDocumentStages(db: SqlDatabase, args: Args<"compare_budget_periods">, make: Make, pin: BudgetRevisionPin) {
   if (args.comparison_basis !== "document_stage") throw new McpToolError("MIXED_BASIS", "document_revision_id를 쓰는 비교는 comparison_basis=document_stage여야 합니다.");
   if (!args.left.document_revision_id || !args.right.document_revision_id) {
     throw new McpToolError("DOCUMENT_REVISION_REQUIRED", "예산서 단계 비교는 양쪽 모두 document_revision_id가 필요합니다. 예산서 단계 금액과 지방재정365 기준일 현액은 뜻이 달라 한 비교로 묶지 않습니다. 단계 목록은 get_fiscal_catalog(catalog_type=budget_document)에 있습니다.");
@@ -469,7 +517,7 @@ async function compareDocumentStages(db: SqlDatabase, args: Args<"compare_budget
     throw new McpToolError("SCOPE_FILTER_NOT_AVAILABLE", "회계·범위는 예산서 단계에 이미 정해져 있어 따로 지정할 수 없습니다.");
   }
   if (args.left.document_revision_id === args.right.document_revision_id) throw new McpToolError("INPUT_CONFLICT", "같은 편성 단계끼리는 비교하지 않습니다.");
-  const revisions = await activeRevisions(db, { revisionIds: [args.left.document_revision_id, args.right.document_revision_id] });
+  const revisions = await activeRevisions(db, { revisionIds: [args.left.document_revision_id, args.right.document_revision_id], pin });
   const left = revisions.find((row) => row.revision_id === args.left.document_revision_id);
   const right = revisions.find((row) => row.revision_id === args.right.document_revision_id);
   if (!left || !right) throw new McpToolError("NOT_FOUND", "공개 중인 예산서 단계가 아닙니다: " + [!left ? args.left.document_revision_id : "", !right ? args.right.document_revision_id : ""].filter(Boolean).join(", "));
@@ -496,6 +544,7 @@ async function compareDocumentStages(db: SqlDatabase, args: Args<"compare_budget
   type Target = { key: string; name: string; department?: string; unit?: string; fiscal_project_id?: string; budget_line_id?: string; problem?: string };
   const selection = args.project_selection;
   const warnings: string[] = [];
+  let truncated = false;
   let targets: Target[];
   if (selection.fiscal_project_ids) {
     const ids = [...new Set(selection.fiscal_project_ids)];
@@ -525,17 +574,16 @@ async function compareDocumentStages(db: SqlDatabase, args: Args<"compare_budget
       targets.push({ key, name: line.name, department: line.department, unit: line.unit });
     }
     if (targets.length > LIMITS.fiscalIdsMax) {
+      truncated = true;
       warnings.push("검색어에 맞는 세부사업이 " + targets.length + "건이라 앞 " + LIMITS.fiscalIdsMax + "건만 비교했습니다. 검색어를 좁혀 주세요.");
       targets = targets.slice(0, LIMITS.fiscalIdsMax);
     }
   }
-  /** 이름으로 찾고, 여럿이면 부서·단위사업까지 같은 것만 남긴다. */
+  /** 선택한 행의 부서·단위가 알려져 있으면 후보가 하나여도 그 범위를 먼저 확인한다. */
   const pick = (details: readonly Detail[], target: Target): Detail[] => {
     const named = details.filter((row) => squashName(row.name) === squashName(target.name));
-    if (named.length <= 1 || !target.department) return named;
-    const sameDept = named.filter((row) => squashName(row.department) === squashName(target.department ?? ""));
-    if (sameDept.length <= 1) return sameDept;
-    return sameDept.filter((row) => squashName(row.unit) === squashName(target.unit ?? ""));
+    const sameDept = target.department ? named.filter((row) => squashName(row.department) === squashName(target.department!)) : named;
+    return target.unit ? sameDept.filter((row) => squashName(row.unit) === squashName(target.unit!)) : sameDept;
   };
   const rightDto = revisionDto(right);
   const preColumn = rightDto.previous_column === "pre_revision_budget";
@@ -552,7 +600,7 @@ async function compareDocumentStages(db: SqlDatabase, args: Args<"compare_budget
     const baseAmount = thousandOf(a[0].amount_thousand_krw);
     const preRevision = preColumn ? b[0].previous_amount_thousand_krw : null;
     return {
-      ...base, comparable: true,
+      ...base, comparable: true, relationship_status: "CANDIDATE_NAME_MATCH", same_project_verified: false,
       left: { budget_line_id: a[0].line_id, amount_thousand_krw: a[0].amount_thousand_krw, page: a[0].page },
       right: { budget_line_id: b[0].line_id, amount_thousand_krw: b[0].amount_thousand_krw, pre_revision_amount_thousand_krw: preRevision, document_change_thousand_krw: preColumn ? b[0].change_amount_thousand_krw : null, page: b[0].page },
       change_thousand_krw: change,
@@ -565,7 +613,9 @@ async function compareDocumentStages(db: SqlDatabase, args: Args<"compare_budget
     ? stageLabel(left.stage, left.supplementary_round) + " → " + stageLabel(right.stage, right.supplementary_round) + "(같은 회계연도의 편성 단계 비교)"
     : left.fiscal_year + "년 " + stageLabel(left.stage, left.supplementary_round) + " ↔ " + right.fiscal_year + "년 " + stageLabel(right.stage, right.supplementary_round) + "(연도가 다른 문서 비교)";
   return make({ comparable: true, stage_relation: stageNote, left: revisionDto(left), right: rightDto, unit: "천원(문서 표시 단위)", items }, {
-    coverage: { scope: "document_stage", complete: items.every((item) => item.comparable), gaps: [], comparison_basis: "document_stage", left_scope: left.scope_text, right_scope: right.scope_text },
+    coverage: { scope: "document_stage", complete: !truncated && items.every((item) => item.comparable), gaps: truncated ? ["검색 결과 일부만 비교했습니다. 검색어를 좁혀 주세요."] : [], comparison_basis: "document_stage", left_scope: left.scope_text, right_scope: right.scope_text },
+    truncated,
+    evidence: [left, right].map((row) => ({ document_revision_id: row.revision_id, ...revisionDto(row).source })),
     warnings: [
       "예산서 단계 금액끼리의 비교입니다. 지방재정365 예산현액·지출액(기준일 값)과 섞지 않았습니다.",
       "세부사업명으로 맞춘 결과이며(같은 이름이 여럿이면 부서·단위사업까지), 이름이 같아도 사업 내용이 같다는 확인은 아닙니다.",

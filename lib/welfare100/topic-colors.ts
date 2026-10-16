@@ -1,0 +1,17 @@
+export const TOPIC_COLORS: Readonly<Record<string, string>> = {
+  생활지원: 'var(--welfare-topic-living)',
+  신체건강: 'var(--welfare-topic-health)',
+  정신건강: 'var(--welfare-topic-mental)',
+  주거: 'var(--welfare-topic-housing)',
+  일자리: 'var(--welfare-topic-jobs)',
+  '문화·여가': 'var(--welfare-topic-culture)',
+  '안전·위기': 'var(--welfare-topic-safety)',
+  '임신·출산': 'var(--welfare-topic-pregnancy)',
+  보육: 'var(--welfare-topic-childcare)',
+  교육: 'var(--welfare-topic-education)',
+  '입양·위탁': 'var(--welfare-topic-adoption)',
+  '보호·돌봄': 'var(--welfare-topic-care)',
+  서민금융: 'var(--welfare-topic-finance)',
+  법률: 'var(--welfare-topic-law)',
+  에너지: 'var(--welfare-topic-energy)',
+};

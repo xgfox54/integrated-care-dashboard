@@ -10,15 +10,16 @@ import {
   correctionFrom,
   matchesSearch,
   namesForSuggestion,
-  parseSearch,
   rebuildQuery,
-  relevanceScore,
   termMatches,
   type ParsedSearch,
   type SearchHelp,
 } from "@/lib/search-terms";
+import { parseWelfareSearch as parseSearch, welfareSearchExpansions, welfareSearchScore } from "@/lib/welfare100/search";
 import { trackEvent } from "@/lib/welfare100/client-events";
 import { loadCatalog, loadFullCatalog, type CatalogEntry } from "@/lib/welfare100/payload";
+import { TOPIC_COLORS } from "@/lib/welfare100/topic-colors";
+import { readableWelfareSummary } from "@/lib/welfare100/readable-text";
 import { catalogRegions } from "@/lib/welfare100/regions";
 import { normalizeName, type FilterKind } from "@/lib/usage/codes";
 import { markUsageInternalNavigation, setUsageHandoff, usageError, usageErrorCode, usageFilter, usagePage, usagePerf } from "@/lib/usage/track";
@@ -26,6 +27,9 @@ import { useSearchUsage } from "@/lib/usage/use-search-usage";
 import { watchVisitorRegion, type VisitorRegion } from "@/lib/visitor-location";
 import { parseTargetGroup, targetGroupOf, textsMatchTarget } from "@/lib/target-groups";
 import CompareTray from "./CompareTray";
+import { RegistryLocationButton } from "./RegistryLocationButton";
+import { RegistrySearchOptions, type RegistrySearchFilters } from "./RegistrySearchOptions";
+import searchTools from "./RegistrySearchTools.module.css";
 import styles from "./RegistryCatalog.module.css";
 
 // Adapted from hosungseo/korea100 RegistryCatalog (MIT License).
@@ -38,7 +42,7 @@ interface RegistryCatalogProps {
 
 /** auto: 검색어가 있으면 관련도순, 없으면 기본순 */
 type SortMode = "auto" | "priority" | "name";
-type Scope = "전체" | "주요 제도" | "중앙부처" | "지자체";
+type Scope = RegistrySearchFilters["scope"];
 
 const PAGE_SIZE = 30;
 const MAX_COMPARE = 3;
@@ -48,24 +52,6 @@ const ALL_SIDO = "전체 시도";
 const ALL_SIGUNGU = "시도 전체";
 const SCOPES: Scope[] = ["전체", "주요 제도", "중앙부처", "지자체"];
 const SCOPE_COLORS: Record<Scope, string> = { 전체: "var(--jeju-text-muted)", "주요 제도": "var(--jeju-primary)", 중앙부처: "var(--jeju-blue-deep)", 지자체: "var(--jeju-warning)" };
-
-export const TOPIC_COLORS: Record<string, string> = {
-  생활지원: "var(--jeju-primary)",
-  신체건강: "var(--jeju-blue-dark)",
-  정신건강: "var(--jeju-blue-deep)",
-  주거: "var(--jeju-orange-deep)",
-  일자리: "var(--jeju-warning)",
-  "문화·여가": "var(--jeju-danger)",
-  "안전·위기": "var(--jeju-danger)",
-  "임신·출산": "var(--jeju-danger)",
-  보육: "var(--jeju-orange-dark)",
-  교육: "var(--jeju-blue-dark)",
-  "입양·위탁": "var(--jeju-blue-deep)",
-  "보호·돌봄": "var(--jeju-orange-deep)",
-  서민금융: "var(--jeju-blue-deep)",
-  법률: "var(--jeju-text-muted)",
-  에너지: "var(--jeju-orange-deep)",
-};
 
 const LIFECYCLE_COLORS = ["var(--jeju-danger)", "var(--jeju-orange-dark)", "var(--jeju-orange-deep)", "var(--jeju-green-dark)", "var(--jeju-blue-dark)", "var(--jeju-blue-dark)", "var(--jeju-blue-deep)"];
 const HOUSEHOLD_COLORS = ["var(--jeju-primary)", "var(--jeju-blue-dark)", "var(--jeju-orange-deep)", "var(--jeju-orange-dark)", "var(--jeju-blue-deep)", "var(--jeju-text-muted)"];
@@ -287,11 +273,17 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
     if (sortMode === "name") return found.sort((left, right) => left.name.localeCompare(right.name, "ko"));
     if (sortMode === "priority") return found.sort(byPriority);
     // 관련도순: 제도명 일치 > 분야 일치 > 그 밖의 일치. 같으면 기본순.
-    const scores = new Map(found.map((entry) => [entry.slug, relevanceScore({ name: entry.name, category: [entry.category, ...entry.topics].join(" ") }, parsed)]));
+    const scores = new Map(found.map((entry) => [entry.slug, welfareSearchScore({ name: entry.name, category: [entry.category, ...entry.topics].join(" "), searchText: entry.searchText }, filters.query, entry.org === "중앙부처")]));
     return found.sort((left, right) => (scores.get(right.slug) ?? 0) - (scores.get(left.slug) ?? 0) || byPriority(left, right));
   }, [filters, list, parsed, sortMode]);
 
   const visible = filtered.slice(0, visibleCount);
+  const searchExpansions = useMemo(() => welfareSearchExpansions(filters.query), [filters.query]);
+  const resultScope = useMemo(() => ({
+    central: filtered.filter((entry) => entry.org === "중앙부처").length,
+    provincial: filtered.filter((entry) => entry.org === "지자체" && !entry.sigungu).length,
+    municipal: filtered.filter((entry) => entry.org === "지자체" && Boolean(entry.sigungu)).length,
+  }), [filtered]);
 
   // 0건일 때 도움말: 전체 대장에 없는 단어는 오타로 보고 고칠 말을, 두 단어 이상이면 하나씩 뺀 결과 수를 알려 준다.
   const noResults = entries !== null && hasQuery && filtered.length === 0;
@@ -388,34 +380,43 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
         복지제도100 · 복지제도 대장
       </h1>
       <div className={styles.statBand}>
-        <div className={styles.searchBox}>
-          <label htmlFor="registry-search">검색</label>
-          <input
-            id="registry-search"
-            type="search"
-            value={filters.query}
-            placeholder="제도명 · 개요 · 담당기관 · 지역 · 법령"
-            onChange={(event) => update({ query: event.target.value })}
-          />
-          <div className="shrink-0 px-1">
-            <SearchOperatorHelp align="end" />
+        <div className={searchTools.searchArea}>
+          <RegistryLocationButton onRegion={(sido) => choose({ sido, sigungu: ALL_SIGUNGU })} />
+          <div className={styles.searchBox}>
+            <label htmlFor="registry-search">검색</label>
+            <input
+              id="registry-search"
+              type="search"
+              value={filters.query}
+              placeholder="제도명 · 개요 · 담당기관 · 지역 · 법령"
+              onChange={(event) => update({ query: event.target.value })}
+            />
+            <div className="shrink-0 px-1">
+              <SearchOperatorHelp align="end" />
+            </div>
+            {filters.query ? (
+              <button type="button" aria-label="검색어 지우기" title="검색어 지우기" onClick={() => update({ query: "" })}>
+                ×
+              </button>
+            ) : (
+              <span>{entries ? "전체 색인 " + list.length.toLocaleString("ko-KR") + "건" : "색인 불러오는 중"}</span>
+            )}
+            <div className="shrink-0">
+              <RegistrySearchOptions filters={filters} regions={regions} categories={categoryOrder} lifecycles={lifecycleOrder} households={householdOrder} provisions={provisions} onChange={choose} />
+            </div>
           </div>
-          {filters.query ? (
-            <button type="button" aria-label="검색어 지우기" title="검색어 지우기" onClick={() => update({ query: "" })}>
-              ×
-            </button>
-          ) : (
-            <span>{entries ? "전체 색인 " + list.length.toLocaleString("ko-KR") + "건" : "색인 불러오는 중"}</span>
-          )}
         </div>
         <div className={styles.stats} aria-label="복지제도 대장 통계">
           <RegistryStat value={list.length} label="복지제도" />
           <RegistryStat value={stats.central} label="중앙부처" />
           <RegistryStat value={stats.local} label="지자체" />
-          <RegistryStat value={stats.talk} label="복지톡 DB 원문 연결" accent />
+          <RegistryStat value={stats.talk} label="매뉴얼 연결 제도" accent />
         </div>
       </div>
 
+      <p className={styles.sourceNote}>
+        전체 대장은 등록 항목 수이며, 주요 제도 100은 상세 해설 묶음입니다. 매뉴얼 연결 제도 수는 후보·자료목록을 포함하며 내용 검증 완료 건수가 아닙니다.
+      </p>
       <div className={styles.body}>
         <aside className={styles.rail} aria-label="복지제도 필터">
           <div className={styles.railHeading}>분야 · 복지로 관심주제</div>
@@ -560,6 +561,18 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
             </div>
           </div>
 
+          {entries && regionLabel && (
+            <p className={styles.sourceNote} aria-label="검색 결과 지역 범위">
+              {regionLabel} 선택 결과: 시·군·구 등록 {resultScope.municipal.toLocaleString("ko-KR")}건 · 광역 공통 {resultScope.provincial.toLocaleString("ko-KR")}건 · 중앙부처 {resultScope.central.toLocaleString("ko-KR")}건.
+              목록에 포함됐다는 이유만으로 해당 지역의 실제 제공 여부나 개인별 신청 자격이 확정되지는 않습니다.
+            </p>
+          )}
+          {searchExpansions.length > 0 && (
+            <p className={styles.sourceNote} role="status">
+              생활용어로 함께 찾음: {searchExpansions.map((item) => item.input + " → " + item.related.join("·")).join(" / ")}.
+              관련 용어 검색은 같은 제도나 수급 자격의 판정이 아닙니다.
+            </p>
+          )}
           {error ? (
             <div className={styles.empty}>
               <strong>{error}</strong>
@@ -641,7 +654,7 @@ export default function RegistryCatalog({ categoryOrder, lifecycleOrder, househo
           {entries && (
             <p className={styles.sourceNote}>
               출처: 복지로 복지서비스(중앙부처 {stats.central.toLocaleString("ko-KR")}건·지자체 {stats.local.toLocaleString("ko-KR")}건, {asOf} 수집) ·
-              복지톡 DB 사업안내 매뉴얼. &lsquo;주요 제도 100&rsquo;은 복지톡 DB 원문으로 병목·개선점까지 정리한 제도입니다.
+              복지톡 DB 사업안내 매뉴얼. &lsquo;주요 제도 100&rsquo;의 업무상 유의점·개선 의견은 편집자 해설이며, 공식 사실과 구분해 확인하세요.
             </p>
           )}
         </div>
@@ -734,7 +747,7 @@ function RegistryRow({
       <td className={styles.nameCell}>
         <a href={"/welfare100/" + entry.slug} onClick={onOpen}>
           <strong>{entry.name}</strong>
-          <span>{entry.oneLiner}</span>
+          <span>{readableWelfareSummary(entry.oneLiner)}</span>
         </a>
       </td>
       <td className={styles.orgCell} data-org={entry.org}>
@@ -777,16 +790,16 @@ function MobileRegistryRow({
 }) {
   const tone = entry.curated ? "verified" : entry.sourceCount > 0 ? "linked" : "review";
   return (
-    <article>
+    <article style={{ "--category-color": TOPIC_COLORS[entry.category] ?? "var(--jeju-text-muted)" } as CSSProperties}>
       <span className={styles.mobileNumber}>{entry.priority.toString().padStart(2, "0")}</span>
       <a href={"/welfare100/" + entry.slug} onClick={onOpen}>
         <span className={styles.mobileTitleLine}>
           <strong>{entry.name}</strong>
           <i data-tone={tone} aria-label={entry.curated ? "주요 제도" : entry.sourceCount > 0 ? "복지톡 DB 원문 연결" : "복지로 원문"} />
         </span>
-        <span className={styles.mobileDescription}>{entry.oneLiner}</span>
+        <span className={styles.mobileDescription}>{readableWelfareSummary(entry.oneLiner)}</span>
         <span className={styles.mobileMeta}>
-          {regionText(entry)} · {entry.category} · {entry.provision.join("·")} · 노드 {entry.processNodeCount}
+          {regionText(entry)} · <span className={styles.categoryBadge}>{entry.category}</span> · {entry.provision.join("·")} · 노드 {entry.processNodeCount}
         </span>
       </a>
       <input

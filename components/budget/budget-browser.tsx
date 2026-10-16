@@ -288,13 +288,8 @@ export function BudgetBrowser() {
     // 부문은 고른 부서에 있는 것만 보이므로 기관·부서는 그대로 두고, 분야가 바뀌면 그 분야에 없는 회계만 뒤에서 비운다.
     setDraft((current) => ({ ...current, mode, part: part?.code ?? "" }));
   };
-  useEffect(() => {
-    if (options.data && draft.account && !options.data.filters.accounts.some((account) => account.code === draft.account)) {
-      // 서버가 돌려준 회계 선택지가 바뀌면 더는 유효하지 않은 사용자 선택만 정리한다.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setDraft((current) => ({ ...current, account: "" }));
-    }
-  }, [options.data, draft.account]);
+  // 분야·기관을 바꿔 고른 회계가 새 목록에 없으면 빈 값으로 본다(목록을 받는 동안에는 그대로 둔다).
+  const draftAccount = draft.account && (!options.data || options.data.filters.accounts.some((account) => account.code === draft.account)) ? draft.account : "";
 
   // 광역단위별 세부사업 수(지도 색)·예산 합계(상위 목록). 한 광역단위에 원천 코드가 여럿이면 합친다.
   const regional = useMemo(() => {
@@ -472,7 +467,7 @@ export function BudgetBrowser() {
           <BudgetSourceNote />
         </section>
       ) : null}
-      <form className="rounded-xl border border-border bg-card p-4 sm:p-5" role="search" aria-label="복지예산 검색" onSubmit={(event) => { event.preventDefault(); usageClick("budget_query"); setApplied({ ...draft, part: draftPart, page: 1 }); }}>
+      <form className="rounded-xl border border-border bg-card p-4 sm:p-5" role="search" aria-label="복지예산 검색" onSubmit={(event) => { event.preventDefault(); usageClick("budget_query"); setApplied({ ...draft, account: draftAccount, part: draftPart, page: 1 }); }}>
         <h2 className="text-(length:--jeju-h3-size) font-extrabold text-(--jeju-text-strong)">조회 조건</h2>
         {applied.targetGroup && targetGroupOf(applied.targetGroup) ? (
           <p className="mt-2 flex flex-wrap items-center gap-2 text-(length:--jeju-text-sm)">
@@ -522,7 +517,7 @@ export function BudgetBrowser() {
           </div>
           <div className="grid gap-1.5">
             <Label htmlFor="budget-account">회계</Label>
-            <NativeSelect id="budget-account" className="w-full" value={draft.account} disabled={!options.data} aria-busy={options.loading} onChange={(event) => setDraft({ ...draft, account: event.target.value })}>
+            <NativeSelect id="budget-account" className="w-full" value={draftAccount} disabled={!options.data} aria-busy={options.loading} onChange={(event) => setDraft({ ...draft, account: event.target.value })}>
               <NativeSelectOption value="">전체 회계</NativeSelectOption>
               {(filters?.accounts ?? []).map((account) => <NativeSelectOption key={account.code} value={account.code}>{account.name} ({account.code})</NativeSelectOption>)}
             </NativeSelect>

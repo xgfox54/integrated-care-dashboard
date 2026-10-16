@@ -8,15 +8,32 @@ import { duplicateRepresentativeSql, PRESS_FROM_JOINS, PUBLIC_PRESS_CLAUSES, REL
 import type { LedgerRow } from "../official-ledger.ts";
 import type { SqlDatabase } from "../sql-database.ts";
 import { applyWikiEdit, type PublicWikiEdit } from "../wiki-edits.ts";
+import { canonicalMunicipalitySql, canonicalProgramRegion } from "./regions.ts";
+import { ftsPhrase, searchFtsReady } from "./search-fts.ts";
+import { compactSearchSql, compactSearchText } from "./search-text.ts";
 
 export const INTEGRATED_SIDO = "전남광주통합특별시";
 const CANONICAL_SIDO_SQL = "CASE WHEN sido IN ('광주광역시', '전라남도') THEN '전남광주통합특별시' ELSE sido END";
+// 원본 지역 필드는 시행사업/WIKI 식별자에 포함된다. SELECT 값은 보존하고 범위 판정만 정규화한다.
+const CANONICAL_SIGUNGU_SQL = canonicalMunicipalitySql(CANONICAL_SIDO_SQL, "sigungu");
+const CANONICAL_DOCUMENT_MUNICIPALITY_SQL = canonicalMunicipalitySql(
+  "CASE WHEN province IN ('광주광역시', '전라남도') THEN '전남광주통합특별시' ELSE province END", "municipality",
+);
 const SERVICE_COLUMNS =
   `service_id AS serviceId, ${CANONICAL_SIDO_SQL} AS sido, sigungu, category, subcategory, name, description, target, ` +
   "detail_target AS detailTarget, application_method AS applicationMethod, provider, type, serial, detail_url AS detailUrl, updated_date AS updatedDate";
 const PRESS_ITEM_COLUMNS =
   "i.item_id, i.title, i.canonical_url, i.published_date, i.published_at, i.publication_precision, i.discovered_at, i.categories, i.classification_basis, " +
   "o.organization_id AS org_id, o.name AS org_name, o.org_type, o.sido AS org_sido, o.sigungu AS org_sigungu, s.registry_version, " + RELATED_COLUMNS;
+
+const PROGRAM_SEARCH_FIELDS = ["name", "description", "target", "provider", "subcategory"] as const;
+const compactProgramText = compactSearchText;
+const compactProgramSql = compactSearchSql;
+// 정규화 검색어는 official_service_search(0113 마이그레이션 트리거)에 미리 저장한다. 없는 행만 원래 식으로 계산하므로 결과는 같다.
+const PROGRAM_COMPACT_FIELDS = PROGRAM_SEARCH_FIELDS.map((field) => "COALESCE(c." + field + "_c, " + compactProgramSql(field) + ")");
+const PROGRAM_FROM = "official_service_snapshot LEFT JOIN official_service_search c ON c.snapshot_id = official_service_snapshot.id";
+// 전문 인덱스 후보에서 출발한다(CROSS JOIN은 SQLite에서 왼쪽 표를 바깥 반복으로 고정한다).
+const PROGRAM_FTS_FROM = "official_service_search c CROSS JOIN official_service_snapshot ON official_service_snapshot.id = c.snapshot_id";
 
 export function sidoAliases(sido: string): readonly string[] {
   return sido === INTEGRATED_SIDO ? [INTEGRATED_SIDO, "광주광역시", "전라남도"] : [sido];
@@ -154,16 +171,17 @@ export class McpData {
     }, edits.get(record.serviceId)));
   }
 
-  async programs(runId: string, filter: ProgramFilter, offset: number, limit: number): Promise<{ rows: ServiceRow[]; total: number }> {
+  async programs(runId: string, filter: ProgramFilter, offset: number, limit: number, options: { readonly withTotal?: boolean } = {}): Promise<{ rows: ServiceRow[]; total: number }> {
     const clauses = ["sync_run_id = ?"];
     const binds: unknown[] = [runId];
+    const region = canonicalProgramRegion(filter.sido, filter.sigungu);
     if (filter.sido) {
       clauses.push(`sido IN (${marks(sidoAliases(filter.sido).length)})`);
       binds.push(...sidoAliases(filter.sido));
     }
-    if (filter.sigungu) {
-      clauses.push(filter.includeAncestorScope ? "(sigungu = ? OR sigungu = '')" : "sigungu = ?");
-      binds.push(filter.sigungu);
+    if (region.sigungu) {
+      clauses.push(filter.includeAncestorScope ? `(${CANONICAL_SIGUNGU_SQL} = ? OR ${CANONICAL_SIGUNGU_SQL} = '')` : `${CANONICAL_SIGUNGU_SQL} = ?`);
+      binds.push(region.sigungu);
     }
     if (filter.categories.length) {
       clauses.push(`(${filter.categories.map(() => "(category = ? AND (? = '' OR subcategory = ?))").join(" OR ")})`);
@@ -177,17 +195,32 @@ export class McpData {
       }
     }
     for (const token of filter.queryTokens) {
-      clauses.push("(name LIKE ? ESCAPE '\\' OR description LIKE ? ESCAPE '\\' OR target LIKE ? ESCAPE '\\' OR provider LIKE ? ESCAPE '\\' OR subcategory LIKE ? ESCAPE '\\')");
+      // 낱말 사이는 기존 AND를 유지한다. 각 낱말의 띄어쓰기·가운뎃점 표기 차이만 허용한다.
+      const compact = compactProgramText(token);
+      const fieldMatches = PROGRAM_SEARCH_FIELDS.map((field, index) => compact
+        ? `(${field} LIKE ? ESCAPE '\\' OR instr(${PROGRAM_COMPACT_FIELDS[index]}, ?) > 0)`
+        : `${field} LIKE ? ESCAPE '\\'`);
+      clauses.push("(" + fieldMatches.join(" OR ") + ")");
       const pattern = `%${escapeLike(token)}%`;
-      binds.push(pattern, pattern, pattern, pattern, pattern);
+      binds.push(...PROGRAM_SEARCH_FIELDS.flatMap(() => compact ? [pattern, compact] : [pattern]));
     }
     const where = clauses.join(" AND ");
+    // 3글자 이상 낱말이 있으면 전문 인덱스로 후보를 먼저 좁힌다. 위의 낱말 조건은 그대로 남아 최종 판정을 한다.
+    const ftsTerms = filter.queryTokens.map((token) => ftsPhrase(compactProgramText(token))).filter((term): term is string => term !== null);
+    const useFts = ftsTerms.length > 0 && await searchFtsReady(this.db, "official_service_search");
+    const from = useFts ? PROGRAM_FTS_FROM : PROGRAM_FROM;
+    const scopedWhere = useFts ? "c.rowid IN (SELECT rowid FROM official_service_search_fts WHERE official_service_search_fts MATCH ?) AND " + where : where;
+    const scopedBinds = useFts ? [ftsTerms.join(" "), ...binds] : binds;
+    const compactName = compactProgramText(filter.queryTokens.join(""));
+    const relevanceOrder = compactName ? `CASE WHEN ${PROGRAM_COMPACT_FIELDS[0]} = ? THEN 0 WHEN instr(${PROGRAM_COMPACT_FIELDS[0]}, ?) > 0 THEN 1 ELSE 2 END, ` : "";
+    const orderBinds = compactName ? [compactName, compactName] : [];
     const [total, records] = await Promise.all([
-      this.db.prepare(`SELECT COUNT(*) AS total FROM official_service_snapshot WHERE ${where}`).bind(...binds).first<{ total: number }>(),
-      this.db.prepare(`SELECT ${SERVICE_COLUMNS} FROM official_service_snapshot WHERE ${where} ORDER BY sido, sigungu, name, service_id LIMIT ? OFFSET ?`)
-        .bind(...binds, limit, offset).all<OfficialService>(),
+      options.withTotal === false ? null : this.db.prepare(`SELECT COUNT(*) AS total FROM ${from} WHERE ${scopedWhere}`).bind(...scopedBinds).first<{ total: number }>(),
+      this.db.prepare(`SELECT ${SERVICE_COLUMNS} FROM ${from} WHERE ${scopedWhere} ORDER BY ${relevanceOrder}sido, sigungu, name, service_id LIMIT ? OFFSET ?`)
+        .bind(...scopedBinds, ...orderBinds, limit, offset).all<OfficialService>(),
     ]);
-    return { rows: await this.normalize(records.results), total: total?.total ?? 0 };
+    const rows = await this.normalize(records.results);
+    return { rows, total: total?.total ?? rows.length };
   }
 
   /**
@@ -214,10 +247,11 @@ export class McpData {
 
   async sourceDocuments(runId: string, sido: string, sigungu: string): Promise<SourceDocument[]> {
     const aliases = sidoAliases(sido);
+    const region = canonicalProgramRegion(sido, sigungu);
     const result = await this.db.prepare(
       "SELECT document_id, title, province, municipality, published_at, data_as_of, detail_url FROM official_source_document " +
-        `WHERE sync_run_id = ? AND province IN (${marks(aliases.length)}) AND (? = '' OR municipality = ? OR municipality = '') ORDER BY municipality DESC, document_id LIMIT 10`,
-    ).bind(runId, ...aliases, sigungu, sigungu).all<SourceDocument>();
+        `WHERE sync_run_id = ? AND province IN (${marks(aliases.length)}) AND (? = '' OR ${CANONICAL_DOCUMENT_MUNICIPALITY_SQL} = ? OR ${CANONICAL_DOCUMENT_MUNICIPALITY_SQL} = '') ORDER BY municipality DESC, document_id LIMIT 10`,
+    ).bind(runId, ...aliases, region.sigungu, region.sigungu).all<SourceDocument>();
     return result.results;
   }
 
@@ -234,16 +268,17 @@ export class McpData {
 
   async regionProgramCount(runId: string, sido: string, sigungu: string): Promise<number> {
     const aliases = sidoAliases(sido);
+    const region = canonicalProgramRegion(sido, sigungu);
     const row = await this.db.prepare(
-      `SELECT COUNT(*) AS total FROM official_service_snapshot WHERE sync_run_id = ? AND sido IN (${marks(aliases.length)}) AND (? = '' OR sigungu = ?)`,
-    ).bind(runId, ...aliases, sigungu, sigungu).first<{ total: number }>();
+      `SELECT COUNT(*) AS total FROM official_service_snapshot WHERE sync_run_id = ? AND sido IN (${marks(aliases.length)}) AND (? = '' OR ${CANONICAL_SIGUNGU_SQL} = ?)`,
+    ).bind(runId, ...aliases, region.sigungu, region.sigungu).first<{ total: number }>();
     return row?.total ?? 0;
   }
 
   async regionMunicipalities(runId: string, sido: string): Promise<string[]> {
     const aliases = sidoAliases(sido);
     const result = await this.db.prepare(
-      `SELECT DISTINCT sigungu FROM official_service_snapshot WHERE sync_run_id = ? AND sido IN (${marks(aliases.length)}) AND sigungu <> '' ORDER BY sigungu`,
+      `SELECT DISTINCT ${CANONICAL_SIGUNGU_SQL} AS sigungu FROM official_service_snapshot WHERE sync_run_id = ? AND sido IN (${marks(aliases.length)}) AND ${CANONICAL_SIGUNGU_SQL} <> '' ORDER BY sigungu`,
     ).bind(runId, ...aliases).all<{ sigungu: string }>();
     return result.results.map((row) => row.sigungu);
   }
@@ -257,7 +292,7 @@ export class McpData {
 
   async knowledgeTotals(runId: string): Promise<{ rows: number; documents: number; sido: number; sigungu: number }> {
     const row = await this.db.prepare(
-      `SELECT COUNT(*) AS rows, COUNT(DISTINCT ${CANONICAL_SIDO_SQL}) AS sido, COUNT(DISTINCT CASE WHEN sigungu <> '' THEN ${CANONICAL_SIDO_SQL} || '|' || sigungu END) AS sigungu, ` +
+      `SELECT COUNT(*) AS rows, COUNT(DISTINCT ${CANONICAL_SIDO_SQL}) AS sido, COUNT(DISTINCT CASE WHEN (${CANONICAL_SIGUNGU_SQL}) <> '' THEN ${CANONICAL_SIDO_SQL} || '|' || (${CANONICAL_SIGUNGU_SQL}) END) AS sigungu, ` +
         "(SELECT COUNT(*) FROM official_source_document WHERE sync_run_id = ?) AS documents FROM official_service_snapshot WHERE sync_run_id = ?",
     ).bind(runId, runId).first<{ rows: number; documents: number; sido: number; sigungu: number }>();
     return row ?? { rows: 0, documents: 0, sido: 0, sigungu: 0 };

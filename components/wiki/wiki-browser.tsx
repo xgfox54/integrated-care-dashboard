@@ -7,7 +7,7 @@ import { SearchOperatorHelp } from "@/components/search/search-operator-help";
 import { ZeroResultHelp } from "@/components/search/zero-result-help";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { RefreshIcon, SearchIcon } from "@/components/ui/jeju-icons";
+import { CheckIcon, ChevronLeftIcon, ChevronRightIcon, FileIcon, RefreshIcon, SearchIcon } from "@/components/ui/jeju-icons";
 import { Label } from "@/components/ui/label";
 import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select";
 import { Spinner } from "@/components/ui/spinner";
@@ -81,7 +81,7 @@ function SelectField({
   return (
     <div className={"grid min-w-0 gap-1.5 " + (className ?? "")}>
       <Label htmlFor={id}>{label}</Label>
-      <NativeSelect id={id} value={value} disabled={disabled} onChange={(event) => onChange(event.target.value)} className="w-full">
+      <NativeSelect id={id} value={value} disabled={disabled} onChange={(event) => onChange(event.target.value)} className="w-full [&_select]:h-(--jeju-control-h-lg)">
         <NativeSelectOption value="">{placeholder}</NativeSelectOption>
         {values.map((option) => (
           <NativeSelectOption key={option} value={option}>
@@ -235,14 +235,23 @@ export function WikiBrowser() {
       setSelectedKey(key);
       setAnnouncement(row.name + " 설명을 표시했습니다.");
     }
-    // 설명 첫머리가 화면 밖(휴대폰에서는 목록 위쪽)이면 그곳으로 옮긴다.
+    // 설명 첫머리가 화면 밖이면 그곳으로 옮긴다. 목록으로 돌아가는 버튼으로 선택 위치를 다시 찾을 수 있다.
     window.requestAnimationFrame(() => {
       const top = detailRef.current?.getBoundingClientRect().top ?? 0;
       if (top < 0 || top > window.innerHeight) {
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        detailRef.current?.focus({ preventScroll: true });
         detailRef.current?.scrollIntoView({ block: "start", behavior: reduceMotion ? "auto" : "smooth" });
       }
     });
+  };
+
+  const returnToResults = () => {
+    const target = listRef.current?.querySelector<HTMLAnchorElement>('a[aria-current="page"]') ?? listRef.current;
+    if (!target) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    target.focus({ preventScroll: true });
+    target.scrollIntoView({ block: "center", behavior: reduceMotion ? "auto" : "smooth" });
   };
 
   const sidoValues = withCurrent(options?.sidoList ?? [], filters.sido);
@@ -260,17 +269,24 @@ export function WikiBrowser() {
   };
 
   return (
-    <main className="mx-auto grid max-w-(--jeju-main-max-wide) gap-5 px-4 py-6 sm:px-6 lg:grid-cols-[360px_minmax(0,1fr)]">
-      <aside className={`${hasSelection ? "order-2" : ""} space-y-4 lg:order-none lg:sticky lg:top-4 lg:self-start print:hidden`}>
-        <div>
-          <h1 className="text-(length:--jeju-h1-size) leading-(--jeju-leading-tight) font-extrabold text-(--jeju-text-strong)">통합돌봄 WIKI</h1>
-          <p className="mt-2 text-(length:--jeju-text-sm) leading-relaxed text-muted-foreground">
-            보건복지부 원자료를 기준으로 작성하고, 사업명이 정확히 일치할 때만 보완 설명을 연결합니다.
+    <main className="mx-auto max-w-(--jeju-main-max-wide) space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+      <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="min-w-0">
+          <p className="mb-2 text-(length:--jeju-text-sm) font-bold text-(--jeju-secondary-strong)">지역과 분야로 찾는 돌봄 안내</p>
+          <h1 className="text-(length:--jeju-h1-size) leading-(--jeju-leading-tight) font-extrabold tracking-tight text-(--jeju-text-strong) sm:text-(length:--jeju-text-3xl)">통합돌봄 WIKI</h1>
+          <p className="mt-3 text-(length:--jeju-text-base) leading-relaxed text-muted-foreground">
+            우리 지역의 통합돌봄 사업을 찾고, 지원 내용과 신청 정보를 살펴보세요.
           </p>
         </div>
+        <span className="inline-flex w-fit shrink-0 items-center gap-2 rounded-(--jeju-radius-pill) border border-border bg-card px-3 py-2 text-(length:--jeju-text-xs) font-medium text-(--jeju-text-body)">
+          <FileIcon className="text-primary" />
+          보건복지부 원자료 기준
+        </span>
+      </header>
 
-        <div className="grid gap-3" role="search" aria-label="WIKI 사업 검색">
-          <div className="grid gap-1.5">
+      <section className="rounded-(--jeju-radius-lg) border border-border bg-card p-4 sm:p-5 print:hidden" role="search" aria-label="WIKI 사업 검색">
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,2fr)] lg:gap-6">
+          <div className="grid min-w-0 content-start gap-1.5">
             <div className="flex items-center gap-1">
               <Label htmlFor="wiki-search">WIKI 사업 검색</Label>
               <SearchOperatorHelp />
@@ -283,11 +299,11 @@ export function WikiBrowser() {
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="사업명, 지역, 분야 검색"
-                className="pl-9"
+                className="h-(--jeju-control-h-lg) bg-(--jeju-surface-inset) pl-9"
               />
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-x-2 gap-y-3">
+          <div className="grid min-w-0 grid-cols-2 gap-3 sm:grid-cols-3">
             <SelectField
               id="wiki-sido"
               label="광역시·도"
@@ -313,129 +329,185 @@ export function WikiBrowser() {
               values={categoryValues}
               placeholder="전체 선택"
               disabled={!options}
-              className="col-span-2"
+              className="col-span-2 sm:col-span-1"
               onChange={(value) => changeFilters({ category: value })}
             />
           </div>
+        </div>
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-border pt-3">
+          <p className="min-w-0 text-(length:--jeju-text-xs) leading-relaxed text-muted-foreground [overflow-wrap:anywhere]">
+            {keyword || hasFilters ? (
+              <><span className="font-bold text-(--jeju-text-body)">현재 검색 조건</span><span className="mx-2" aria-hidden="true">/</span>{[keyword ? `“${keyword}”` : "", filters.sido, filters.sigungu, filters.category].filter(Boolean).join(" · ")}</>
+            ) : "사업명으로 검색하거나 지역·분야를 선택해 목록을 좁혀보세요."}
+          </p>
           {keyword || hasFilters ? (
-            <Button type="button" variant="outline" size="sm" className="justify-self-start" onClick={resetConditions}>
+            <Button type="button" variant="ghost" size="sm" className="shrink-0" onClick={resetConditions}>
               <RefreshIcon />
               조건 초기화
             </Button>
           ) : null}
         </div>
+      </section>
 
-        <p className="text-(length:--jeju-text-sm) text-muted-foreground" role="status" aria-live="polite">
-          {selected && catalogPhase === "loading"
-            ? "선택한 사업을 먼저 표시했습니다. 사업 목록을 불러오는 중입니다."
-            : catalogPhase === "loading"
-              ? keyword || hasFilters ? "검색 결과를 불러오는 중입니다." : "사업 목록을 불러오는 중입니다."
-              : catalogPhase === "error"
-                ? "사업 목록을 불러오지 못했습니다. 선택한 사업 내용은 계속 확인할 수 있습니다."
-                : `${NUMBER_FORMAT.format(catalogTotalCount)}개 WIKI 항목 중 ${NUMBER_FORMAT.format(shownCount)}개 표시${loadingMore ? " · 이어서 불러오는 중" : ""}`}
-        </p>
-
-        {noResults ? (
-          <div className="rounded-lg border border-dashed border-(--jeju-border-strong) bg-card px-3 py-5 text-center">
-            <p className="font-extrabold text-(--jeju-text-strong)">{keyword ? "검색 결과가 없습니다." : "조건에 맞는 사업이 없습니다."}</p>
-            {hasFilters ? (
-              <p className="mt-1 text-(length:--jeju-text-sm) text-muted-foreground">광역시·도, 기초시·군·구, 사업 분류 선택을 넓혀 보세요.</p>
-            ) : null}
-            {keyword ? (
-              <ZeroResultHelp
-                help={catalogSearchHelp}
-                onSearch={setQuery}
-                crossLinks={[{ label: "복지제도100에서", href: welfareSearchHref(keyword), count: welfareCount }]}
-                className="mt-3"
-              />
-            ) : null}
-          </div>
-        ) : null}
-
-        <nav
-          ref={listRef}
-          onScroll={loadIfScrolled}
-          aria-label="통합돌봄 WIKI 사업 목록"
-          className="max-h-[62vh] space-y-2 overflow-y-auto p-0.5 pr-1"
-        >
-          {services.map((row) => {
-            const active = serviceWikiKey(row) === selectedKey;
-            return (
-              <a
-                key={serviceWikiKey(row)}
-                href={wikiHref(row)}
-                aria-current={active ? "page" : undefined}
-                onClick={(event) => openService(event, row)}
-                className={`block rounded-lg border px-3 py-2 text-(length:--jeju-text-sm) no-underline outline-none transition-colors focus-visible:shadow-(--jeju-focus-ring) ${
-                  active
-                    ? "border-primary bg-(--jeju-primary-tint) text-primary forced-colors:border-[Highlight]"
-                    : "border-border bg-card text-(--jeju-text-body) hover:border-primary hover:bg-(--jeju-primary-tint)"
-                }`}
-              >
-                <span className="block leading-snug font-bold">{row.name}</span>
-                <span className="mt-1 block text-(length:--jeju-text-xs) text-muted-foreground">
-                  {[row.sido, row.sigungu].filter(Boolean).join(" · ") || "전국"}
-                </span>
-              </a>
-            );
-          })}
-          {hasMore ? (
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              className="w-full"
-              disabled={loadingMore}
-              onClick={requestMore}
-            >
-              {loadingMore ? "불러오는 중" : moreFailed ? "목록을 더 불러오지 못했습니다 · 다시 시도" : "더 보기"}
-            </Button>
-          ) : null}
-        </nav>
-        <p className="sr-only" aria-live="polite">{announcement}</p>
-      </aside>
-
-      <div ref={detailRef} className={`scroll-mt-4 ${hasSelection ? "order-1 lg:order-none" : ""}`}>
-        {selected ? (
-          <ServiceDetails key={serviceWikiKey(selected)} row={selected} />
-        ) : hasSelection && !selectionResolved ? (
-          <div className="flex min-h-40 items-center justify-center gap-2 rounded-xl border border-border bg-card p-8 text-(length:--jeju-text-sm) text-muted-foreground" role="status">
-            <Spinner label="선택한 사업 내용을 불러오는 중입니다." />
-            선택한 사업 내용을 불러오는 중입니다.
-          </div>
-        ) : hasSelection && selectedPhase === "error" ? (
-          <div role="alert" className="rounded-xl border border-border bg-card p-8 text-center">
-            <h2 className="text-(length:--jeju-h3-size) font-extrabold text-destructive">선택한 사업을 불러오지 못했습니다.</h2>
-            <p className="mt-2 text-(length:--jeju-text-sm) text-muted-foreground">잠시 후 다시 시도하거나 왼쪽 검색에서 사업을 찾아보세요.</p>
-          </div>
-        ) : hasSelection ? (
-          <div className="rounded-xl border border-dashed border-(--jeju-border-strong) bg-card p-8 text-center">
-            <h2 className="text-(length:--jeju-h3-size) font-extrabold text-(--jeju-text-strong)">해당 사업을 현재 데이터에서 찾지 못했습니다.</h2>
-            <p className="mt-2 text-(length:--jeju-text-sm) text-muted-foreground">왼쪽 검색에서 같은 사업명을 다시 찾아보세요.</p>
-          </div>
-        ) : (
-          <div className="rounded-xl border border-border bg-card p-8">
-            <h2 className="text-(length:--jeju-h2-size) font-extrabold text-(--jeju-text-strong)">사업 설명을 선택해 주세요.</h2>
-            <p className="mt-2 max-w-2xl text-(length:--jeju-text-sm) leading-relaxed text-muted-foreground">
-              왼쪽 목록에서 사업을 고르면 보건복지부 통합돌봄 사업안내에 수록된 해당 행으로
-              사업명, 사업개요, 사업내용을 작성합니다. 원자료에서 대상이 확인될 때만 신청조건을 표시하며,
-              복지로와 복지톡 DB는 사업명이 정확히 일치하는 경우에만 보완 설명으로 연결합니다.
+      <div className="grid items-start gap-6 lg:grid-cols-[320px_minmax(0,1fr)] xl:grid-cols-[352px_minmax(0,1fr)] print:block">
+        <aside className="min-w-0 rounded-(--jeju-radius-lg) border border-border bg-card lg:sticky lg:top-4 print:hidden" aria-labelledby="wiki-results-heading">
+          <div className="border-b border-border px-4 py-4">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h2 id="wiki-results-heading" className="text-(length:--jeju-h3-size) font-extrabold text-(--jeju-text-strong)">사업 목록</h2>
+              {catalogPhase === "ready" ? <span className="rounded-(--jeju-radius-pill) bg-(--jeju-primary-tint) px-2.5 py-1 text-(length:--jeju-text-xs) font-bold tabular-nums text-primary">{NUMBER_FORMAT.format(catalogTotalCount)}개</span> : null}
+            </div>
+            <p className="mt-2 text-(length:--jeju-text-xs) leading-relaxed text-muted-foreground" role="status" aria-live="polite">
+              {selected && catalogPhase === "loading"
+                ? "선택한 사업을 먼저 표시했습니다. 사업 목록을 불러오는 중입니다."
+                : catalogPhase === "loading"
+                  ? keyword || hasFilters ? "검색 결과를 불러오는 중입니다." : "사업 목록을 불러오는 중입니다."
+                  : catalogPhase === "error"
+                    ? "사업 목록을 불러오지 못했습니다. 선택한 사업 내용은 계속 확인할 수 있습니다."
+                    : `${NUMBER_FORMAT.format(shownCount)}개 표시${loadingMore ? " · 이어서 불러오는 중" : " · 사업을 선택해 설명을 확인하세요"}`}
             </p>
-            <ol className="mt-5 grid gap-3 sm:grid-cols-3">
-              {[
-                ["기준", "보건복지부", "해당 지자체 사업안내의 사업별 원문"],
-                ["보완 1", "복지로", "정확히 같은 사업명의 공식 서비스 설명"],
-                ["보완 2", "복지톡 DB", "정확히 같은 사업명의 사업안내 설명 · 기준연도는 개별 출처 확인"],
-              ].map(([step, title, body]) => (
-                <li key={step} className="rounded-lg border border-border bg-(--jeju-surface-inset) p-3 text-(length:--jeju-text-sm)">
-                  <span className="font-extrabold text-primary">{step}</span>
-                  <strong className="ml-2 text-(--jeju-text-strong)">{title}</strong>
-                  <p className="mt-1 text-muted-foreground">{body}</p>
-                </li>
-              ))}
-            </ol>
           </div>
-        )}
+
+          <nav
+            ref={listRef}
+            onScroll={loadIfScrolled}
+            tabIndex={0}
+            aria-label="통합돌봄 WIKI 사업 목록"
+            className="scrollbar-thin min-h-0 max-h-80 overflow-y-auto overscroll-y-contain p-2 outline-none focus-visible:shadow-(--jeju-focus-ring) lg:max-h-[calc(100dvh-12rem)]"
+          >
+            {noResults ? (
+              <div className="rounded-lg bg-(--jeju-surface-inset) px-3 py-6 text-center">
+                <p className="font-extrabold text-(--jeju-text-strong)">{keyword ? "검색 결과가 없습니다." : "조건에 맞는 사업이 없습니다."}</p>
+                {hasFilters ? (
+                  <p className="mt-1 text-(length:--jeju-text-sm) text-muted-foreground">광역시·도, 기초시·군·구, 사업 분류 선택을 넓혀 보세요.</p>
+                ) : null}
+                {keyword ? (
+                  <ZeroResultHelp
+                    help={catalogSearchHelp}
+                    onSearch={setQuery}
+                    crossLinks={[{ label: "복지제도100에서", href: welfareSearchHref(keyword), count: welfareCount }]}
+                    className="mt-3"
+                  />
+                ) : null}
+              </div>
+            ) : null}
+
+            {catalogPhase === "loading" && services.length === 0 ? (
+              <div className="space-y-2 p-1" aria-hidden="true">
+                {[0, 1, 2].map((item) => <div key={item} className="space-y-3 rounded-lg bg-(--jeju-surface-inset) p-4 motion-safe:animate-pulse"><div className="h-3 w-3/4 rounded bg-border" /><div className="h-2.5 w-1/2 rounded bg-border" /></div>)}
+              </div>
+            ) : null}
+            <ul className="space-y-1">
+              {services.map((row) => {
+                const active = serviceWikiKey(row) === selectedKey;
+                return (
+                  <li key={serviceWikiKey(row)}>
+                    <a
+                      href={wikiHref(row)}
+                      aria-current={active ? "page" : undefined}
+                      aria-controls="wiki-detail"
+                      onClick={(event) => openService(event, row)}
+                      className={`block min-w-0 rounded-lg border-l-2 px-3 py-3 text-(length:--jeju-text-base) no-underline outline-none transition-colors focus-visible:shadow-(--jeju-focus-ring) ${
+                        active
+                          ? "border-primary bg-(--jeju-primary-tint) text-primary forced-colors:border-[Highlight]"
+                          : "border-transparent text-(--jeju-text-body) hover:border-(--jeju-border-strong) hover:bg-(--jeju-surface-inset)"
+                      }`}
+                    >
+                      <span className="flex items-start justify-between gap-2">
+                        <span className="min-w-0 leading-relaxed font-bold [overflow-wrap:anywhere]">{row.name}</span>
+                        {active ? <CheckIcon className="mt-1 size-4" /> : <ChevronRightIcon className="mt-1 size-4 text-(--jeju-text-faint)" />}
+                      </span>
+                      <span className="mt-1.5 block text-(length:--jeju-text-xs) leading-relaxed text-muted-foreground [overflow-wrap:anywhere]">
+                        {[row.sido, row.sigungu].filter(Boolean).join(" · ") || "전국"}
+                      </span>
+                      <span className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-(length:--jeju-text-xs)">
+                        {row.category ? <span className={`max-w-full rounded px-1.5 py-0.5 leading-relaxed [overflow-wrap:anywhere] ${active ? "bg-card text-primary" : "bg-(--jeju-control-bg) text-muted-foreground"}`}>{row.category}</span> : null}
+                        {active ? <span className="font-bold">선택한 사업</span> : null}
+                      </span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+            {hasMore ? (
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="mt-3 h-auto min-h-(--jeju-control-h-sm) w-full whitespace-normal py-2"
+                disabled={loadingMore}
+                onClick={requestMore}
+              >
+                {loadingMore ? "불러오는 중" : moreFailed ? "목록을 더 불러오지 못했습니다 · 다시 시도" : "더 보기"}
+              </Button>
+            ) : null}
+          </nav>
+          <p className="sr-only" aria-live="polite">{announcement}</p>
+        </aside>
+
+        <div ref={detailRef} id="wiki-detail" role="region" aria-label="통합돌봄 사업 설명" tabIndex={-1} className="min-w-0 scroll-mt-4 rounded-(--jeju-radius-lg) outline-none focus-visible:shadow-(--jeju-focus-ring)">
+          {hasSelection ? (
+            <div className="mb-3 flex flex-wrap items-center justify-between gap-2 print:hidden">
+              <p className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">선택한 사업 안내</p>
+              <Button type="button" variant="ghost" size="sm" onClick={returnToResults}><ChevronLeftIcon />목록으로 돌아가기</Button>
+            </div>
+          ) : null}
+          {selected ? (
+            <ServiceDetails key={serviceWikiKey(selected)} row={selected} />
+          ) : hasSelection && !selectionResolved ? (
+            <div className="flex min-h-40 items-center justify-center gap-2 rounded-xl border border-border bg-card p-8 text-(length:--jeju-text-sm) text-muted-foreground" role="status">
+              <Spinner label="선택한 사업 내용을 불러오는 중입니다." />
+              선택한 사업 내용을 불러오는 중입니다.
+            </div>
+          ) : hasSelection && selectedPhase === "error" ? (
+            <div role="alert" className="rounded-xl border border-border bg-card p-8 text-center">
+              <h2 className="text-(length:--jeju-h3-size) font-extrabold text-destructive">선택한 사업을 불러오지 못했습니다.</h2>
+              <p className="mt-2 text-(length:--jeju-text-sm) text-muted-foreground">잠시 후 다시 시도하거나 상단 검색에서 사업을 찾아보세요.</p>
+            </div>
+          ) : hasSelection ? (
+            <div className="rounded-xl border border-dashed border-(--jeju-border-strong) bg-card p-8 text-center">
+              <h2 className="text-(length:--jeju-h3-size) font-extrabold text-(--jeju-text-strong)">해당 사업을 현재 데이터에서 찾지 못했습니다.</h2>
+              <p className="mt-2 text-(length:--jeju-text-sm) text-muted-foreground">상단 검색에서 같은 사업명을 다시 찾아보세요.</p>
+            </div>
+          ) : (
+            <div className="rounded-(--jeju-radius-lg) border border-border bg-card p-5 sm:p-8">
+              <span className="mb-5 flex size-12 items-center justify-center rounded-(--jeju-radius-lg) bg-(--jeju-primary-tint) text-primary" aria-hidden="true"><FileIcon className="size-6" /></span>
+              <h2 className="max-w-2xl text-(length:--jeju-text-2xl) leading-snug font-extrabold tracking-tight text-(--jeju-text-strong)">어떤 통합돌봄 사업을 찾고 계신가요?</h2>
+              <p className="mt-3 max-w-2xl text-(length:--jeju-text-base) leading-7 text-muted-foreground">
+                목록에서 사업을 선택해 주세요. 확인된 지원 내용과 신청 정보, 공식 출처를 함께 보여드립니다.
+              </p>
+              <ol className="mt-7 grid gap-5 border-y border-border py-6 sm:grid-cols-3">
+                {[
+                  ["01", "지역 선택", "광역시·도와 기초시·군·구로 우리 지역의 사업을 찾으세요."],
+                  ["02", "사업 찾아보기", "사업명이나 분야로 검색하고 목록에서 관심 사업을 선택하세요."],
+                  ["03", "내용과 근거 확인", "사업 개요와 지원 내용을 읽고 연결된 원문도 확인하세요."],
+                ].map(([step, title, body]) => (
+                  <li key={step} className="min-w-0">
+                    <span className="text-(length:--jeju-text-xs) font-extrabold tabular-nums text-(--jeju-secondary-strong)">{step}</span>
+                    <h3 className="mt-2 text-(length:--jeju-text-base) font-bold text-(--jeju-text-strong)">{title}</h3>
+                    <p className="mt-2 text-(length:--jeju-text-sm) leading-relaxed text-muted-foreground">{body}</p>
+                  </li>
+                ))}
+              </ol>
+              <details className="mt-5 text-(length:--jeju-text-sm)">
+                <summary className="cursor-pointer rounded py-1 font-bold text-(--jeju-text-body) outline-none focus-visible:shadow-(--jeju-focus-ring)">자료·출처 확인 기준</summary>
+                <p className="mt-3 leading-relaxed text-muted-foreground">보건복지부 원자료를 기준으로 작성하고, 원자료에서 대상이 확인될 때만 신청조건을 표시합니다. 보완 설명은 사업명이 정확히 일치하는 경우에만 연결합니다.</p>
+                <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+                  {[
+                    ["기준", "보건복지부", "해당 지자체 사업안내의 사업별 원문"],
+                    ["보완 1", "복지로", "정확히 같은 사업명의 공식 서비스 설명"],
+                    ["보완 2", "복지톡 DB", "정확히 같은 사업명의 사업안내 설명 · 기준연도는 개별 출처 확인"],
+                  ].map(([step, title, body]) => (
+                    <li key={step} className="min-w-0 rounded-lg bg-(--jeju-surface-inset) p-3 text-(length:--jeju-text-sm)">
+                      <span className="font-extrabold text-primary">{step}</span>
+                      <strong className="ml-2 text-(--jeju-text-strong)">{title}</strong>
+                      <p className="mt-1 leading-relaxed text-muted-foreground">{body}</p>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            </div>
+          )}
+        </div>
       </div>
     </main>
   );

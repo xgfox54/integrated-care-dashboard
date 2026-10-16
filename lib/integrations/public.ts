@@ -1,6 +1,9 @@
 // 공개 조회: 웹 화면(/care, 위키 사업 상세)과 공개 MCP가 같은 함수를 써서 건수·기준일·출처·상태가 같게 나오게 한다.
 // 확정(VERIFIED)되지 않은 사업–기관·사업–법령·사업–정부24 관계는 확정 관계로 돌려주지 않고 대기 건수만 알린다.
 import type { SqlDatabase } from "../sql-database.ts";
+import { gov24Dto, type Gov24Row } from "../mcp/gov24.ts";
+import { compactSearchSql, compactSearchText } from "../mcp/search-text.ts";
+import { hydrateGov24Details } from "./gov24-detail-hydration.ts";
 import { institutionsPerThousandElderly, type Indicator, type KosisAggregate, legalCodesForRegion, type Observation, regionSeries, type SeriesPoint } from "./kosis.ts";
 
 export type DataState = "COLLECTED" | "NOT_COLLECTED" | "AUTH_REQUIRED" | "SOURCE_ERROR" | "LINK_UNVERIFIED" | "COLLECTING";
@@ -172,9 +175,10 @@ export async function careInstitutions(db: SqlDatabase, regionId: string, asOf: 
     where.push("EXISTS (SELECT 1 FROM ltc_institution_service s WHERE s.admin_sym = i.admin_sym AND s.presence = 'PRESENT' AND " + SERVICE_GROUP_SQL + " = ?)");
     binds.push(options.group);
   }
-  if (options.query) {
-    where.push("i.admin_nm LIKE ? ESCAPE '\\'");
-    binds.push("%" + options.query.replace(/[\\%_]/g, (match) => "\\" + match) + "%");
+  for (const token of (options.query ?? "").trim().split(/\s+/).filter(Boolean)) {
+    // D1 limits LIKE pattern bytes; literal INSTR also keeps % and _ literal.
+    where.push("INSTR(" + compactSearchSql("i.admin_nm") + ", ?) > 0");
+    binds.push(compactSearchText(token));
   }
   const total = await db.prepare("SELECT COUNT(*) AS n FROM ltc_institution i WHERE " + where.join(" AND ")).bind(...binds).first<{ n: number }>();
   const rows = await db.prepare("SELECT i.admin_sym, i.admin_nm, i.designated_on, i.sigungu_code, i.presence, i.last_seen_at, i.detail_status, (SELECT name FROM region_code r WHERE r.code_type = 'LEGAL_DONG' AND r.code = i.sigungu_code ORDER BY r.valid_from DESC LIMIT 1) AS region_name FROM ltc_institution i WHERE " + where.join(" AND ") + " ORDER BY i.admin_nm, i.admin_sym LIMIT ? OFFSET ?")
@@ -222,7 +226,7 @@ export async function careInstitution(db: SqlDatabase, institutionId: string, to
       search: { title: "국민건강보험공단 장기요양기관 검색 서비스", url: "https://www.data.go.kr/data/15059029/openapi.do", last_seen_on: day(Number(row.last_seen_at)) },
       detail: { title: "국민건강보험공단 장기요양기관 시설별 상세조회 서비스", url: "https://www.data.go.kr/data/15058856/openapi.do", fetched_on: day(row.detail_fetched_at === null ? null : Number(row.detail_fetched_at)) },
     },
-    notes: ["원천의 '실시간' 표기는 정보 갱신 방식을 뜻하며 빈자리·즉시 이용 가능·통합돌봄 참여 확정을 뜻하지 않습니다.", "협약기간이 지난 관계는 '협약기간 종료'로 따로 표시합니다."],
+    notes: ["PRESENT는 마지막 수집일의 검색 목록에 등록되어 있었다는 뜻입니다. 현재 운영 중이라는 검증값이 아니며 detail_status=NOT_COLLECTED이면 운영 상태·주소·연락처 등 상세는 미확인입니다.", "원천의 '실시간' 표기는 정보 갱신 방식을 뜻하며 빈자리·즉시 이용 가능·통합돌봄 참여 확정을 뜻하지 않습니다.", "협약기간이 지난 관계는 '협약기간 종료'로 따로 표시합니다."],
   };
 }
 
@@ -242,43 +246,43 @@ async function linksFor(db: SqlDatabase, kind: "GOV24" | "LAW", targetId: string
   return rows.results.filter((row) => row.target_id === targetId || keyParts(row.target_id).at(-1) === parts.at(-1));
 }
 
-export async function programPublicInfo(db: SqlDatabase, targetId: string) {
+export async function programPublicInfo(db: SqlDatabase, targetId: string, options: { readonly includeLaw?: boolean } = {}) {
   const sources = await integrationStatus(db);
   const govSource = sources.find((source) => source.dataset_key === "mois.gov24_list");
   const lawSource = sources.find((source) => source.dataset_key === "moleg.law");
-  const [govLinks, lawLinks] = await Promise.all([linksFor(db, "GOV24", targetId), linksFor(db, "LAW", targetId)]);
+  const [govLinks, lawLinks] = await Promise.all([linksFor(db, "GOV24", targetId), options.includeLaw === false ? Promise.resolve([]) : linksFor(db, "LAW", targetId)]);
   const verifiedGov = govLinks.filter((link) => link.status === "VERIFIED");
-  const services = verifiedGov.length ? await db.prepare("SELECT * FROM gov24_service WHERE service_id IN (" + placeholders(verifiedGov.length) + ")").bind(...verifiedGov.map((link) => link.source_id)).all<Record<string, string | number | null>>() : { results: [] };
+  const services = verifiedGov.length ? await db.prepare("SELECT * FROM gov24_service WHERE presence = 'PRESENT' AND service_id IN (" + placeholders(verifiedGov.length) + ")").bind(...verifiedGov.map((link) => link.source_id)).all<Gov24Row>() : { results: [] };
+  const hydratedServices = await hydrateGov24Details(db, services.results);
   const verifiedLaw = lawLinks.filter((link) => link.status === "VERIFIED");
   const laws = verifiedLaw.length ? await db.prepare("SELECT * FROM law_reference WHERE ref_id IN (" + placeholders(verifiedLaw.length) + ")").bind(...verifiedLaw.map((link) => link.source_id)).all<Record<string, string | null>>() : { results: [] };
-  const govState: DataState = verifiedGov.length ? "COLLECTED" : govLinks.length ? "LINK_UNVERIFIED" : govSource?.state === "COLLECTED" ? "LINK_UNVERIFIED" : govSource?.state ?? "NOT_COLLECTED";
+  const govState: DataState = services.results.length ? "COLLECTED" : verifiedGov.length ? "NOT_COLLECTED" : govLinks.length ? "LINK_UNVERIFIED" : govSource?.state === "COLLECTED" ? "LINK_UNVERIFIED" : govSource?.state ?? "NOT_COLLECTED";
   const lawState: DataState = verifiedLaw.length ? "COLLECTED" : lawLinks.length ? "LINK_UNVERIFIED" : lawSource?.state ?? "NOT_COLLECTED";
   return {
     target_id: targetId,
     gov24: {
       state: govState, state_label: STATE_LABELS[govState],
       pending_candidates: govLinks.filter((link) => link.status === "CANDIDATE" || link.status === "REVIEW_REQUIRED").length,
+      verified_links_without_present_source: verifiedGov.filter((link) => !services.results.some((row) => row.service_id === link.source_id)).length,
       last_collected_at: govSource?.last_success_at ?? null,
-      services: services.results.map((row) => {
+      services: hydratedServices.map((row) => {
         const link = verifiedGov.find((entry) => entry.source_id === row.service_id);
         return {
-          service_id: row.service_id, id_system: "정부24 공공서비스 서비스ID", name: row.name, org_name: row.org_name, field: row.field, support_type: row.support_type,
-          purpose: row.purpose, target: row.target, criteria: row.criteria, benefit: row.benefit, apply_method: row.apply_method, apply_deadline: row.apply_deadline,
-          required_documents: row.required_documents, reception: row.reception, contact: row.contact, online_url: row.online_url, detail_url: row.detail_url,
-          modified_at: row.modified_at, presence: row.presence, collected_on: day(Number(row.last_seen_at)), detail_status: row.detail_status,
+          ...gov24Dto(row), id_system: "정부24 공공서비스 서비스ID",
+          modified_at: row.modified_at, collected_on: day(Number(row.last_seen_at)),
           conflicts: link?.conflict_json ? JSON.parse(link.conflict_json) as unknown : null, reviewed_on: day(link?.reviewed_at ?? null),
-          source: { title: "행정안전부 대한민국 공공서비스(혜택) 정보(공공데이터포털 15113968)", url: "https://www.data.go.kr/data/15113968/openapi.do" },
+          verified_link_id: link?.link_id ?? null,
         };
       }),
     },
     legal_basis: {
-      state: lawState, state_label: STATE_LABELS[lawState],
+      state: options.includeLaw === false ? "DISABLED" : lawState, state_label: options.includeLaw === false ? "MCP 제공 중지" : STATE_LABELS[lawState],
       pending_candidates: lawLinks.filter((link) => link.status === "CANDIDATE" || link.status === "REVIEW_REQUIRED").length,
       references: laws.results.map((row) => ({
         law_name: row.law_name, law_kind: row.law_kind, law_id: row.law_id, version_id: row.law_mst, article: row.article, promulgated_on: row.promulgated_on, effective_on: row.effective_on,
         query_date: row.query_date, version_status: row.version_status, article_status: row.article_status, official_url: row.official_url, upcoming_note: row.upcoming_note, retrieved_via: row.retrieved_via,
       })),
-      note: "관리자가 근거로 확인한 연결만 보입니다. 조문 인용 확인은 법률 해석의 정확성을 보장하지 않습니다.",
+      note: options.includeLaw === false ? "법령 데이터는 보존되어 있으며 MCP에서 조회할 수 없습니다." : "관리자가 근거로 확인한 연결만 보입니다. 조문 인용 확인은 법률 해석의 정확성을 보장하지 않습니다.",
     },
   };
 }

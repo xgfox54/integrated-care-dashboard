@@ -1,6 +1,10 @@
 .detail {
+  --welfare-support-note-gap: calc(var(--jeju-space-1) / 2);
   min-height: 100svh;
   background: var(--jeju-surface);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
 }
 
 /* 상세 화면 위쪽 막대: 왼쪽 통합검색, 오른쪽 같은 묶음 제도 옮겨 다니기. 폭이 모자라면 오른쪽 묶음이 다음 줄 오른쪽으로 내려간다. */
@@ -41,7 +45,7 @@
   background: var(--jeju-surface);
   padding: 0 8px;
   color: var(--jeju-text);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .searchRegions select:disabled {
@@ -72,7 +76,7 @@
   background: transparent;
   padding: 0 10px;
   color: var(--jeju-text);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 /* 입력칸 테두리는 검색 상자가 그린다. 포커스는 상자 전체에 제주 포커스 링으로 보여 준다. */
@@ -92,7 +96,7 @@
   background: var(--jeju-primary);
   padding: 0 14px;
   color: var(--jeju-on-fill);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -108,7 +112,7 @@
 .switcher > span {
   flex-shrink: 0;
   color: var(--jeju-text-muted);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
 }
 
@@ -120,7 +124,7 @@
   background: var(--jeju-surface);
   padding: 0 10px;
   color: var(--jeju-text);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .switcherCommands {
@@ -138,7 +142,7 @@
   border: 1px solid var(--jeju-border-strong);
   background: var(--jeju-surface);
   color: var(--jeju-text);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 620;
   text-decoration: none;
 }
@@ -146,7 +150,7 @@
 .switcher > strong {
   color: var(--jeju-text-muted);
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 560;
 }
 
@@ -174,7 +178,7 @@
   flex-wrap: wrap;
   margin-bottom: 7px;
   color: var(--jeju-text-muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .priority {
@@ -185,9 +189,14 @@
 
 .category {
   padding: 2px 7px;
-  border: 1px solid color-mix(in srgb, var(--jeju-primary) 34%, transparent);
-  color: var(--jeju-primary-hover);
+  border: 1px solid transparent;
+  background: var(--category-color);
+  color: var(--jeju-on-fill);
   font-weight: 650;
+}
+
+@media (forced-colors: active) {
+  .category { border-color: CanvasText; }
 }
 
 .verificationBadge {
@@ -197,7 +206,7 @@
   padding: 3px 8px;
   background: var(--jeju-hairline);
   color: var(--jeju-text-muted);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 650;
 }
 
@@ -236,8 +245,9 @@
   max-width: 780px;
   margin: 8px 0 0;
   color: var(--jeju-text-muted);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.65;
+  white-space: pre-line;
 }
 
 .detailActions {
@@ -264,7 +274,7 @@
   border-radius: 0;
   background: var(--jeju-surface);
   color: var(--jeju-text);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 650;
   text-decoration: none;
   cursor: pointer;
@@ -304,7 +314,7 @@
 .detailStats strong {
   display: block;
   color: var(--jeju-text);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 720;
   line-height: 1.25;
 }
@@ -320,7 +330,7 @@
 .detailStats span {
   display: block;
   color: var(--jeju-text-muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .processSection,
@@ -348,7 +358,7 @@
 .sectionHeading time {
   margin: 2px 0 0;
   color: var(--jeju-text-muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .legend {
@@ -356,7 +366,7 @@
   align-items: center;
   gap: 12px;
   color: var(--jeju-text-muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .legend span {
@@ -416,7 +426,7 @@
   border-left: 3px solid var(--jeju-warning);
   background: var(--jeju-warning-tint);
   color: var(--jeju-warning);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.5;
 }
 
@@ -437,7 +447,7 @@
   padding: 10px;
   border-bottom: 1px solid var(--jeju-border);
   color: var(--jeju-text);
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .procedureFallback li span {
@@ -448,7 +458,7 @@
   background: var(--jeju-blue-light-strong);
   color: var(--jeju-primary-hover);
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .canvasSection {
@@ -491,7 +501,7 @@
 .canvasBlock h3 {
   margin: 0 0 8px;
   color: var(--jeju-text-muted);
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 700;
 }
 
@@ -507,8 +517,9 @@
 .canvasBlock p,
 .canvasBlock li {
   color: var(--jeju-text-muted);
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.65;
+  white-space: pre-line;
 }
 
 .canvasBlock p {
@@ -545,19 +556,20 @@
 .legalRows strong,
 .legalRows a {
   color: var(--jeju-text);
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 650;
   text-decoration: none;
 }
 
 .legalRows span {
   color: var(--jeju-text-muted);
-  font-size: 12px;
+  font-size: 15px;
+  white-space: pre-line;
 }
 
 .legalRows small {
   color: var(--jeju-text-muted);
-  font-size: 12px;
+  font-size: 13px;
   text-align: right;
 }
 
@@ -573,13 +585,13 @@
 
 .authorityList strong {
   color: var(--jeju-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 650;
 }
 
 .authorityList span {
   color: var(--jeju-text-muted);
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.45;
 }
 
@@ -594,7 +606,7 @@
   padding: 4px 8px;
   border: 1px solid color-mix(in srgb, var(--jeju-primary) 32%, transparent);
   color: var(--jeju-primary-hover);
-  font-size: 12px;
+  font-size: 15px;
   text-decoration: none;
 }
 
@@ -605,6 +617,7 @@
 
 .supportRows {
   display: grid;
+  margin-top: var(--welfare-support-note-gap);
   border-top: 1px solid var(--jeju-border);
 }
 
@@ -618,14 +631,14 @@
 
 .supportRows strong {
   color: var(--jeju-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 650;
   line-height: 1.65;
 }
 
 .longText {
   color: var(--jeju-text-body);
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.7;
   white-space: pre-line;
   overflow-wrap: anywhere;
@@ -638,7 +651,7 @@
   border: 1px solid var(--jeju-border-strong);
   background: var(--jeju-surface);
   color: var(--jeju-primary-hover);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 650;
   cursor: pointer;
 }
@@ -646,7 +659,7 @@
 .mutedNote {
   margin-top: 8px !important;
   color: var(--jeju-text-muted);
-  font-size: 12px !important;
+  font-size: 13px !important;
 }
 
 .metaList {
@@ -665,14 +678,14 @@
 
 .metaList dt {
   color: var(--jeju-text-muted);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 650;
 }
 
 .metaList dd {
   margin: 0;
   color: var(--jeju-text);
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.55;
   overflow-wrap: anywhere;
 }
@@ -705,7 +718,7 @@
 .bokjiroOriginal summary {
   padding: 7px 10px;
   color: var(--jeju-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 650;
   cursor: pointer;
 }
@@ -738,26 +751,43 @@
 
 .talkRefs header strong {
   color: var(--jeju-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 680;
 }
 
 .talkRefs header span {
   color: var(--jeju-text-muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .talkRefs em {
   color: var(--jeju-primary-hover);
-  font-size: 12px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 650;
 }
 
 .talkRefs p {
   color: var(--jeju-text-body) !important;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.talkRefs .talkRefPlace {
+  color: var(--jeju-text) !important;
+  font-weight: 650;
+}
+
+.talkRefs blockquote {
+  margin: 0;
+  padding: 8px 10px;
+  border-left: 3px solid color-mix(in srgb, var(--jeju-primary) 45%, transparent);
+  background: color-mix(in srgb, var(--jeju-primary) 5%, var(--jeju-surface));
+  color: var(--jeju-text-body);
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-line;
   overflow-wrap: anywhere;
 }
 
@@ -768,7 +798,7 @@
   padding: 15px 32px 28px;
   border-top: 1px solid var(--jeju-border);
   color: var(--jeju-text-muted);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.55;
 }
 
@@ -855,7 +885,7 @@
   .switcher select {
     width: 100%;
     height: 36px;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .switcherCommands {
@@ -865,7 +895,7 @@
   .switcherCommands a {
     min-height: 36px;
     padding: 5px 8px;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .titleBand {
@@ -879,7 +909,7 @@
   .titleMeta {
     margin-bottom: 6px;
     color: var(--jeju-text-muted);
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .titleCopy h1 {
@@ -887,13 +917,9 @@
   }
 
   .titleCopy > p {
-    display: -webkit-box;
     margin-top: 5px;
-    overflow: hidden;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.5;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
   }
 
   .detailActions {
@@ -913,7 +939,7 @@
   .detailActions > a {
     min-height: 36px;
     padding: 6px 8px;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .detailStats {
@@ -928,11 +954,11 @@
   }
 
   .detailStats strong {
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .detailStats span {
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.3;
     word-break: keep-all;
   }
@@ -1004,7 +1030,7 @@
   }
 
   .detailStats strong {
-    font-size: 12px;
+    font-size: 13px;
   }
 }
 

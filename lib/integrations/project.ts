@@ -6,6 +6,18 @@ import { contentLinkForLegal, isoDate, legalLevel, isLegalCode } from "./region-
 const LEGAL_SOURCE = "공공데이터포털 행정안전부_행정표준코드_법정동코드(15077871)";
 const LEGAL_URL = "https://www.data.go.kr/data/15077871/openapi.do";
 
+// 목록을 매일 다시 읽어도 같은 버전의 상세를 요약 문구로 덮어쓰지 않는다. 원본 응답은
+// ext_record에 별도로 남기고, 이 조회 표에서는 버전이 맞는 상세만 우선한다.
+const GOV24_SAME_DETAIL_VERSION = "gov24_service.detail_status = 'COLLECTED' AND gov24_service.detail_modified_at IS NOT NULL AND gov24_service.detail_modified_at = COALESCE(excluded.modified_at, '') AND COALESCE(gov24_service.modified_at, '') = COALESCE(excluded.modified_at, '')";
+const GOV24_SHARED_FIELDS = ["purpose", "target", "criteria", "benefit", "apply_method", "apply_deadline", "reception", "contact"];
+const GOV24_DETAIL_FIELDS = ["required_documents", "online_url", "laws", "ordinances", "admin_rules"];
+const GOV24_CONTENT_UPDATES = [
+  ...GOV24_SHARED_FIELDS.map((field) => `${field} = CASE WHEN ${GOV24_SAME_DETAIL_VERSION} THEN gov24_service.${field} ELSE excluded.${field} END`),
+  ...GOV24_DETAIL_FIELDS.map((field) => `${field} = CASE WHEN ${GOV24_SAME_DETAIL_VERSION} THEN gov24_service.${field} ELSE NULL END`),
+  "detail_status = CASE WHEN " + GOV24_SAME_DETAIL_VERSION + " THEN 'COLLECTED' " +
+    "WHEN gov24_service.detail_status = 'COLLECTED' OR (COALESCE(gov24_service.modified_at, '') <> COALESCE(excluded.modified_at, '') AND gov24_service.detail_modified_at IS NOT NULL) THEN 'STALE' ELSE gov24_service.detail_status END",
+].join(", ");
+
 const v = (record: RecordInput, field: string): string | null => record.payload[field] ?? null;
 
 function telOf(record: RecordInput): string | null {
@@ -47,7 +59,7 @@ export async function projectPage(db: SqlDatabase, datasetKey: string, runId: st
           .bind(sym, v(record, "yoyangNm") ?? "", isoDate(v(record, "adptFrDt")) ?? (v(record, "adptFrDt") ?? ""), isoDate(v(record, "adptToDt")), now, now, runId));
       }
     } else if (datasetKey === "mois.gov24_list") {
-      statements.push(db.prepare("INSERT INTO gov24_service (service_id, name, org_name, org_code, org_type, user_type, field, support_type, purpose, target, criteria, benefit, apply_method, apply_deadline, reception, contact, detail_url, registered_at, modified_at, presence, first_seen_at, last_seen_at, list_run_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'PRESENT', ?, ?, ?) ON CONFLICT(service_id) DO UPDATE SET name = excluded.name, org_name = excluded.org_name, org_code = excluded.org_code, org_type = excluded.org_type, user_type = excluded.user_type, field = excluded.field, support_type = excluded.support_type, purpose = excluded.purpose, target = excluded.target, criteria = excluded.criteria, benefit = excluded.benefit, apply_method = excluded.apply_method, apply_deadline = excluded.apply_deadline, reception = excluded.reception, contact = excluded.contact, detail_url = excluded.detail_url, registered_at = excluded.registered_at, modified_at = excluded.modified_at, presence = 'PRESENT', last_seen_at = excluded.last_seen_at, list_run_id = excluded.list_run_id")
+      statements.push(db.prepare("INSERT INTO gov24_service (service_id, name, org_name, org_code, org_type, user_type, field, support_type, purpose, target, criteria, benefit, apply_method, apply_deadline, reception, contact, detail_url, registered_at, modified_at, presence, first_seen_at, last_seen_at, list_run_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'PRESENT', ?, ?, ?) ON CONFLICT(service_id) DO UPDATE SET name = excluded.name, org_name = excluded.org_name, org_code = excluded.org_code, org_type = excluded.org_type, user_type = excluded.user_type, field = excluded.field, support_type = excluded.support_type, " + GOV24_CONTENT_UPDATES + ", detail_url = excluded.detail_url, registered_at = excluded.registered_at, modified_at = excluded.modified_at, presence = 'PRESENT', last_seen_at = excluded.last_seen_at, list_run_id = excluded.list_run_id")
         .bind(record.recordId, v(record, "서비스명") ?? "", v(record, "소관기관명"), v(record, "소관기관코드"), v(record, "소관기관유형"), v(record, "사용자구분"), v(record, "서비스분야"), v(record, "지원유형"), v(record, "서비스목적요약"), v(record, "지원대상"), v(record, "선정기준"), v(record, "지원내용"), v(record, "신청방법"), v(record, "신청기한"), v(record, "접수기관"), v(record, "전화문의"), record.officialUrl ?? null, v(record, "등록일시"), v(record, "수정일시"), now, now, runId));
     } else if (datasetKey === "mois.gov24_detail") { // gitleaks:allow 데이터셋 이름
       // 재조회 기준은 목록의 수정일시다(상세 응답의 수정일시가 목록과 달라도 같은 서비스를 다시 부르지 않게).

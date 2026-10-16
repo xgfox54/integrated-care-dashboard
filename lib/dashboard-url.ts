@@ -71,3 +71,7 @@ export function dashboardCsvUrl(filters: FilterState): string {
   }
   return `/api/dataset/export?${params.toString()}`;
 }
+
+export function dashboardXlsxUrl(filters: FilterState): string {
+  return dashboardCsvUrl(filters).replace("/api/dataset/export?", "/api/dataset/export/xlsx?");
+}

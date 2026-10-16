@@ -4,7 +4,7 @@
 // countPress(동일 자료 묶음 대표 1건), 예산은 /api/budget과 같은 readBudget(사회복지, 대상자 묶음) 합계, 복지제도는 제도명 판정.
 import { after } from "next/server";
 
-import schema from "../ontology/welfare-v2/schema.json";
+import { ONTOLOGY_VERSION, ontologyMindmap } from "./ontology.ts";
 import { DATASET_CACHE_PREFIX, wikiEditsVersion, writeStoredEntries } from "./dataset-cache.ts";
 import { getD1 } from "./d1.ts";
 import { parseBudgetRequest, readBudget } from "./fiscal/public.ts";
@@ -98,10 +98,7 @@ async function readSource(): Promise<MindmapSource> {
       bySido: press.by_sido,
     },
     fiscal: { entityTotal: entityRegions.reduce((sum, row) => sum + row.count, 0), regions: entityRegions, integratedCare: care },
-    ontology: {
-      entities: schema.entity_types.map((entity) => ({ id: entity.id, status: entity.status, ...("note" in entity && typeof entity.note === "string" ? { note: entity.note } : {}) })),
-      relations: schema.relations.map((relation) => ({ id: relation.id, domain: relation.domain ?? "(여러 개체)", range: relation.range ?? "(여러 개체)", status: relation.status })),
-    },
+    ontology: ontologyMindmap(),
   };
 }
 
@@ -109,12 +106,12 @@ async function readSource(): Promise<MindmapSource> {
 // 계산 결과를 D1 dataset_response_cache에 보관한다. 15분이 지난 보관본은 그대로 먼저 보내고 응답 뒤에 새로 계산한다
 // (보도자료는 하루 4번 수집되므로 화면의 「집계」 시각으로 기준을 밝힌다).
 // 대상자 묶음 정의 판본을 열쇠에 넣어, 정의가 바뀌면 예전 집계를 쓰지 않는다.
-const STORED_NAME = "mindmap:source:" + TARGET_GROUP_DEFINITION_VERSION;
+const STORED_NAME = "mindmap:source:" + TARGET_GROUP_DEFINITION_VERSION + ":" + ONTOLOGY_VERSION;
 const STORED_KEY = DATASET_CACHE_PREFIX + STORED_NAME;
 const STORED_FRESH_SECONDS = 15 * 60;
 // 새 수집본이 들어오면 dataset_response_cache 보관본은 정리된다. 그때 첫 방문자가 전체 집계(약 18초)를 기다리지 않도록
 // 마지막으로 계산한 결과를 app_setting에 따로 두고 먼저 보낸 뒤 응답 뒤에 새로 계산한다.
-const LAST_GOOD_KEY = "mindmap_last_good:" + TARGET_GROUP_DEFINITION_VERSION;
+const LAST_GOOD_KEY = "mindmap_last_good:" + TARGET_GROUP_DEFINITION_VERSION + ":" + ONTOLOGY_VERSION;
 
 function refreshLater(): void {
   const refresh = () => computeAndStore().then(() => undefined, () => undefined);

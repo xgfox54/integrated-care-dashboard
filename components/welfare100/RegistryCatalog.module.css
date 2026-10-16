@@ -146,7 +146,6 @@
 }
 
 .railItem[aria-pressed="true"] {
-  border-left-color: var(--category-color);
   background: var(--jeju-primary-tint);
   color: var(--jeju-text);
   font-weight: 680;
@@ -160,8 +159,8 @@
 }
 
 .railItem i {
-  width: 8px;
-  height: 8px;
+  width: var(--jeju-space-3);
+  height: var(--jeju-space-3);
   flex-shrink: 0;
   border-radius: 2px;
   background: var(--category-color);
@@ -456,21 +455,22 @@
 }
 
 .nameCell strong {
-  overflow: hidden;
   color: var(--jeju-text);
   font-size: 13px;
   font-weight: 680;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
 }
 
 .nameCell span {
-  overflow: hidden;
   color: var(--jeju-text-muted);
   font-size: 12px;
   line-height: 1.4;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: pre-line;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
 }
 
 .categoryBadge {
@@ -478,8 +478,9 @@
   max-width: 100%;
   overflow: hidden;
   padding: 2px 7px;
-  border: 1px solid color-mix(in srgb, var(--category-color) 35%, transparent);
-  color: var(--category-color);
+  border: 1px solid transparent;
+  background: var(--category-color);
+  color: var(--jeju-on-fill);
   font-size: 12px;
   font-weight: 650;
   text-overflow: ellipsis;
@@ -1063,13 +1064,14 @@
   }
 
   .mobileDescription {
-    display: -webkit-box;
-    overflow: hidden;
+    display: block;
     color: var(--jeju-text-muted);
     font-size: 12px;
     line-height: 1.5;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    white-space: pre-line;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
   }
 
   .mobileMeta {
@@ -1149,6 +1151,12 @@
   .compareChips > span:nth-child(n + 3) {
     display: none;
   }
+}
+
+@media (forced-colors: active) {
+  .categoryBadge { border-color: CanvasText; }
+  .railItem i { border: 1px solid CanvasText; }
+  .railItem[aria-pressed="true"] { outline: 1px solid Highlight; outline-offset: -1px; }
 }
 
 @media print {

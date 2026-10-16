@@ -251,7 +251,7 @@ async function nextQueueItem(db: SqlDatabase, datasetKey: DatasetKey, now: numbe
       .bind(now - 30 * DAY).first<{ id: string; extra: string | null }>();
     return row ?? null;
   }
-  const row = await db.prepare("SELECT service_id AS id, modified_at AS extra FROM gov24_service WHERE presence = 'PRESENT' AND (detail_modified_at IS NULL OR detail_modified_at <> COALESCE(modified_at, '')) ORDER BY detail_fetched_at IS NOT NULL, service_id LIMIT 1").first<{ id: string; extra: string | null }>();
+  const row = await db.prepare("SELECT service_id AS id, modified_at AS extra FROM gov24_service WHERE presence = 'PRESENT' AND (detail_status = 'STALE' OR detail_modified_at IS NULL OR detail_modified_at <> COALESCE(modified_at, '')) ORDER BY detail_fetched_at IS NOT NULL, service_id LIMIT 1").first<{ id: string; extra: string | null }>();
   return row ?? null;
 }
 

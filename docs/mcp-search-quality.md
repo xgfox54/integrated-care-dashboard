@@ -1,0 +1,11 @@
+# MCP search quality gate
+
+All ten public search tools have equal weight: unified search, welfare catalog, implementation programs, manuals, 129 FAQ, news, statistics, fiscal API projects, budget document lines, and care institutions. Withheld law search tools are outside this published surface.
+
+Run `node scripts/mcp/evaluate-balanced-search.mjs MCP_URL OUTPUT_DIRECTORY` against a deployed read-only MCP endpoint. The current curated set has five cases per tool. Each domain must pass at least 95%; with five cases this requires all five to pass. Missing responses, unavailable schemas, unexpected errors and unverified fiscal amounts cannot pass as successful empty searches. The script exits unsuccessfully on a failed gate. Responses and per-case judgments are saved for replay. It uses no model API and creates no scheduled automation.
+
+This is a targeted search-contract regression gate, not a measurement of final generated-answer accuracy. Twenty-four cases check positive retrieval; other cases check regional/year constraints, excluded sources, or correctly declared gaps. Some cases reproduce defects found during this investigation and are not a held-out random sample. A 50/50 pass does not establish a population answer accuracy of 95%.
+
+For an actual final-answer accuracy claim, freeze the corpus revisions and a separate unseen representative question set, collect complete consumer answers with their tool traces, and have source-based human reviewers judge correctness, completeness, year/region/household/unit applicability, citations and appropriate refusal. Score each public search domain equally. Record unavailable-data cases separately rather than counting every refusal as a correct factual answer. The app's final-answer consumer is external to this MCP server; search relevance and `answerability=SUPPORTED` remain evidence-candidate assessments.
+
+Production improvements in MCP 1.10.2 preserve requested/excluded years in FAQ, distinguish filename years from applicable years, require all requested fact types and programs before complete support, discard explicit municipal manual mismatches, honor every budget search term, normalize care-institution spacing and reject government-form placeholders as substantive application methods.

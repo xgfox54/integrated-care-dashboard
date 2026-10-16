@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { ExternalLinkIcon } from "@/components/ui/jeju-icons";
 import { Spinner } from "@/components/ui/spinner";
 import { PublicInfoPanel } from "@/components/wiki/public-info-panel";
+import { LifecyclePanel } from "@/components/wiki/lifecycle-panel";
 import { WikiContext } from "@/components/wiki/wiki-context";
 import { WikiSourceCard, type WikiSource } from "@/components/wiki/wiki-source-card";
 import { serviceWikiKey, type ServiceRow } from "@/lib/dataset";
@@ -174,140 +175,156 @@ export function ServiceDetails({ row }: { readonly row: ServiceRow }) {
     : article.contentStatus === "verified-supplement"
       ? { label: "공식 보완자료 포함", variant: "info" as const }
       : { label: "보건복지부 원자료 기준", variant: "success" as const };
-  const linkClass = "inline-flex items-center gap-1 font-bold text-primary underline underline-offset-4";
+  const linkClass = "inline-flex max-w-full items-center gap-1.5 font-bold text-primary underline decoration-(--jeju-blue-light-strong) underline-offset-4 hover:decoration-current";
+  const fieldLabelClass = "text-(length:--jeju-text-sm) font-bold text-muted-foreground";
+  const fieldBodyClass = "mt-2 whitespace-pre-line leading-[1.85] text-(--jeju-text-body)";
 
   return (
-    <article className="space-y-4" aria-labelledby="wiki-service-name">
-      <header className="rounded-xl border border-border bg-card p-5">
-        <p className="text-(length:--jeju-text-sm) font-bold text-primary">
-          {[row.sido, row.sigungu].filter(Boolean).join(" · ") || "전국"}
-        </p>
-        <h2 id="wiki-service-name" className="mt-1 text-(length:--jeju-h1-size) leading-(--jeju-leading-tight) font-extrabold text-(--jeju-text-strong)">{row.name}</h2>
-        <p className="mt-2 text-(length:--jeju-text-sm) text-muted-foreground">
-          {[row.category, row.subcategory, row.type].filter(Boolean).join(" · ")}
-        </p>
-      </header>
-
-      <section className="rounded-xl border border-border bg-card p-5" aria-labelledby="official-description-heading">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <h3 id="official-description-heading" className="text-(length:--jeju-h3-size) font-extrabold text-(--jeju-text-strong)">사업 설명</h3>
-          <Badge variant={status.variant}>{status.label}</Badge>
-        </div>
-        <dl className="mt-4 grid gap-5 text-(length:--jeju-text-base)">
-          <div>
-            <dt className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">사업명</dt>
-            <dd className="mt-1 text-(length:--jeju-text-md) font-extrabold text-(--jeju-text-strong)">{article.name}</dd>
-          </div>
-          <div>
-            <dt className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">사업개요</dt>
-            <dd className="mt-1 leading-relaxed">{article.overview}</dd>
-          </div>
-          <div>
-            <dt className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">사업내용</dt>
-            <dd className="mt-1 whitespace-pre-line leading-relaxed">{article.content}</dd>
-          </div>
-          <div>
-            <dt className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">사업분야</dt>
-            <dd className="mt-1 leading-relaxed">{article.category || "원자료에 별도 기재 없음"}</dd>
-          </div>
-          <div>
-            <dt className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">사업구분</dt>
-            <dd className="mt-1 leading-relaxed">{article.type || "원자료에 별도 기재 없음"}</dd>
-          </div>
-          {article.applicationConditions ? (
-            <div>
-              <dt className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">신청조건</dt>
-              <dd className="mt-1 whitespace-pre-line leading-relaxed">{article.applicationConditions}</dd>
-              <p className="mt-1 text-(length:--jeju-text-xs) text-muted-foreground">{article.conditionsBasis}</p>
-            </div>
-          ) : null}
-          {displayRow.applicationMethod ? (
-            <div>
-              <dt className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">신청방법</dt>
-              <dd className="mt-1 whitespace-pre-line leading-relaxed">{displayRow.applicationMethod}</dd>
-            </div>
-          ) : null}
-        </dl>
-        <div className="mt-5 grid gap-3 border-t border-(--jeju-hairline) pt-4 text-(length:--jeju-text-sm) sm:grid-cols-2">
-          <div>
-            <p className="font-bold text-muted-foreground">제공기관</p>
-            <p className="mt-1 whitespace-pre-line">{displayRow.provider || "원자료에 별도 기재 없음"}</p>
-          </div>
-          <div>
-            <p className="font-bold text-muted-foreground">자료 기준</p>
-            <p className="mt-1">{row.updatedDate || "보건복지부 최신 수집본"}</p>
-          </div>
-        </div>
-        {row.detailUrl ? (
-          <a
-            href={row.detailUrl}
-            target="_blank"
-            rel="noreferrer"
-            className={`mt-4 text-(length:--jeju-text-sm) ${linkClass}`}
-          >
-            이 사업이 수록된 보건복지부 원문 확인
-            <ExternalLinkIcon />
-            <span className="sr-only">(새 창)</span>
-          </a>
-        ) : null}
-        {welfareSlug ? (
-          <p className="mt-3 text-(length:--jeju-text-sm)">
-            <a
-              href={"/welfare100/" + encodeURIComponent(welfareSlug)}
-              target="_blank"
-              rel="noopener"
-              onClick={() => usageClick("wiki_welfare100")}
-              className={linkClass}
-            >
-              복지제도100에서 세부 내용 확인하기
-              <ExternalLinkIcon />
-              <span className="sr-only">(새 창)</span>
-            </a>
-          </p>
-        ) : null}
-        {article.supplement ? (
-          <div className="mt-4 rounded-lg border border-border bg-(--jeju-surface-inset) p-3 text-(length:--jeju-text-sm)">
-            <p className="font-extrabold text-(--jeju-text-strong)">상세내용 보완 출처</p>
-            <p className="mt-1 text-muted-foreground">
-              {article.supplement.publisher} · {article.supplement.sourceTitle}
+    <article className="min-w-0 space-y-5 [overflow-wrap:anywhere]" aria-labelledby="wiki-service-name">
+      <div className="min-w-0 rounded-(--jeju-radius-lg) border border-border bg-card">
+        <header className="border-b border-border px-5 py-6 sm:px-8 sm:py-8">
+          <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+            <p className="flex min-w-0 items-center gap-2 text-(length:--jeju-text-sm) font-bold text-(--jeju-secondary-strong)">
+              <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-(--jeju-green)" />
+              <span>{[row.sido, row.sigungu].filter(Boolean).join(" · ") || "전국"}</span>
             </p>
-            <a
-              href={article.supplement.url}
-              target="_blank"
-              rel="noreferrer"
-              className={`mt-2 ${linkClass}`}
-            >
-              공식 보완자료 원문 확인
-              <ExternalLinkIcon />
-              <span className="sr-only">(새 창)</span>
-            </a>
+            <Badge variant={status.variant} className="max-w-full whitespace-normal leading-normal">{status.label}</Badge>
           </div>
-        ) : null}
-        {article.adminSource ? (
-          <div className="mt-4 rounded-lg border border-border bg-(--jeju-surface-inset) p-3 text-(length:--jeju-text-sm)">
-            <p className="font-extrabold text-(--jeju-text-strong)">관리자 보완 출처</p>
-            <p className="mt-1 text-muted-foreground">{article.adminSource.title}</p>
-            <a
-              href={article.adminSource.url}
-              target="_blank"
-              rel="noreferrer"
-              className={`mt-2 ${linkClass}`}
-            >
-              보완 출처 원문 확인
-              <ExternalLinkIcon />
-              <span className="sr-only">(새 창)</span>
-            </a>
+          <h2 id="wiki-service-name" className="mt-4 max-w-[32em] text-(length:--jeju-text-2xl) leading-[1.4] font-extrabold tracking-tight text-(--jeju-text-strong)">{row.name}</h2>
+          {[row.category, row.subcategory, row.type].some(Boolean) ? (
+            <p className="mt-3 text-(length:--jeju-text-sm) leading-relaxed text-muted-foreground">
+              {[row.category, row.subcategory, row.type].filter(Boolean).join(" · ")}
+            </p>
+          ) : null}
+        </header>
+
+        <section className="px-5 py-6 sm:px-8 sm:py-8" aria-labelledby="official-description-heading">
+          <div className="mx-auto max-w-[82ch]">
+            <h3 id="official-description-heading" className="flex items-center gap-2.5 text-(length:--jeju-h3-size) font-extrabold text-(--jeju-text-strong)">
+              <span aria-hidden="true" className="h-4 w-1 shrink-0 rounded-full bg-(--jeju-orange)" />
+              사업 설명
+            </h3>
+            <dl className="mt-6 grid min-w-0 grid-cols-1 gap-x-8 gap-y-6 text-(length:--jeju-text-base) sm:grid-cols-2">
+              <div className="min-w-0 sm:col-span-2">
+                <dt className={fieldLabelClass}>사업명</dt>
+                <dd className="mt-2 font-bold leading-relaxed text-(--jeju-text-strong)">{article.name}</dd>
+              </div>
+              <div className="min-w-0 border-t border-(--jeju-hairline) pt-6 sm:col-span-2">
+                <dt className={fieldLabelClass}>사업개요</dt>
+                <dd className="mt-2 text-(length:--jeju-text-md) leading-[1.85] text-(--jeju-text-strong)">{article.overview}</dd>
+              </div>
+              <div className="min-w-0 sm:col-span-2">
+                <dt className={fieldLabelClass}>사업내용</dt>
+                <dd className={fieldBodyClass}>{article.content}</dd>
+              </div>
+              <div className="min-w-0 border-t border-(--jeju-hairline) pt-5">
+                <dt className={fieldLabelClass}>사업분야</dt>
+                <dd className={fieldBodyClass}>{article.category || "원자료에 별도 기재 없음"}</dd>
+              </div>
+              <div className="min-w-0 border-t border-(--jeju-hairline) pt-5">
+                <dt className={fieldLabelClass}>사업구분</dt>
+                <dd className={fieldBodyClass}>{article.type || "원자료에 별도 기재 없음"}</dd>
+              </div>
+              {article.applicationConditions ? (
+                <div className="min-w-0 border-t border-(--jeju-hairline) pt-6 sm:col-span-2">
+                  <dt className={fieldLabelClass}>신청조건</dt>
+                  <dd className={fieldBodyClass}>{article.applicationConditions}</dd>
+                  <dd className="mt-2 text-(length:--jeju-text-xs) leading-relaxed text-muted-foreground">{article.conditionsBasis}</dd>
+                </div>
+              ) : null}
+              {displayRow.applicationMethod ? (
+                <div className="min-w-0 sm:col-span-2">
+                  <dt className={fieldLabelClass}>신청방법</dt>
+                  <dd className={fieldBodyClass}>{displayRow.applicationMethod}</dd>
+                </div>
+              ) : null}
+            </dl>
           </div>
-        ) : null}
-      </section>
+        </section>
+
+        <footer className="rounded-b-(--jeju-radius-lg) border-t border-border bg-(--jeju-surface-inset) px-5 py-5 sm:px-8 sm:py-6">
+          <div className="mx-auto max-w-[82ch]">
+            <dl className="grid min-w-0 gap-5 text-(length:--jeju-text-sm) sm:grid-cols-2">
+              <div className="min-w-0">
+                <dt className="font-bold text-muted-foreground">제공기관</dt>
+                <dd className="mt-1.5 whitespace-pre-line leading-relaxed text-(--jeju-text-body)">{displayRow.provider || "원자료에 별도 기재 없음"}</dd>
+              </div>
+              <LifecyclePanel serviceId={row.serviceId} fallbackBasis={row.updatedDate} />
+            </dl>
+            {row.detailUrl ? (
+              <p className="mt-4 text-(length:--jeju-text-sm) leading-relaxed">
+                <a
+                  href={row.detailUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={linkClass}
+                >
+                  <span className="min-w-0">이 사업이 수록된 보건복지부 원문 확인</span>
+                  <ExternalLinkIcon />
+                  <span className="sr-only">(새 창)</span>
+                </a>
+              </p>
+            ) : null}
+            {welfareSlug ? (
+              <p className="mt-3 text-(length:--jeju-text-sm) leading-relaxed">
+                <a
+                  href={"/welfare100/" + encodeURIComponent(welfareSlug)}
+                  target="_blank"
+                  rel="noopener"
+                  onClick={() => usageClick("wiki_welfare100")}
+                  className={linkClass}
+                >
+                  <span className="min-w-0">복지제도100에서 세부 내용 확인하기</span>
+                  <ExternalLinkIcon />
+                  <span className="sr-only">(새 창)</span>
+                </a>
+              </p>
+            ) : null}
+            {article.supplement ? (
+              <div className="mt-5 border-t border-border pt-4 text-(length:--jeju-text-sm) leading-relaxed">
+                <p className="font-bold text-(--jeju-text-strong)">상세내용 보완 출처</p>
+                <p className="mt-1 text-muted-foreground">
+                  {article.supplement.publisher} · {article.supplement.sourceTitle}
+                </p>
+                <a
+                  href={article.supplement.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`mt-2 ${linkClass}`}
+                >
+                  <span className="min-w-0">공식 보완자료 원문 확인</span>
+                  <ExternalLinkIcon />
+                  <span className="sr-only">(새 창)</span>
+                </a>
+              </div>
+            ) : null}
+            {article.adminSource ? (
+              <div className="mt-5 border-t border-border pt-4 text-(length:--jeju-text-sm) leading-relaxed">
+                <p className="font-bold text-(--jeju-text-strong)">관리자 보완 출처</p>
+                <p className="mt-1 text-muted-foreground">{article.adminSource.title}</p>
+                <a
+                  href={article.adminSource.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`mt-2 ${linkClass}`}
+                >
+                  <span className="min-w-0">보완 출처 원문 확인</span>
+                  <ExternalLinkIcon />
+                  <span className="sr-only">(새 창)</span>
+                </a>
+              </div>
+            ) : null}
+          </div>
+        </footer>
+      </div>
 
       <WikiContext implementationId={serviceWikiKey(row)} />
       <PublicInfoPanel implementationId={serviceWikiKey(row)} />
 
       {loading ? (
-        <p className="flex items-center gap-2 rounded-xl border border-border bg-card p-4 text-(length:--jeju-text-sm) text-muted-foreground">
+        <p className="flex min-w-0 items-start gap-2 rounded-(--jeju-radius-lg) border border-border bg-card px-5 py-4 text-(length:--jeju-text-sm) leading-relaxed text-muted-foreground">
           <Spinner label="보완 설명을 확인하는 중" />
-          사업명이 정확히 일치하는 보완 설명을 확인하고 있습니다.
+          <span className="min-w-0">사업명이 정확히 일치하는 보완 설명을 확인하고 있습니다.</span>
         </p>
       ) : source ? (
         <WikiSourceCard source={source} />

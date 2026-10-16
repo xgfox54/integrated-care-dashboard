@@ -32,6 +32,7 @@ const CACHE_PARAMETERS: Readonly<Record<string, readonly string[]>> = {
   "/api/dataset/summary": [],
   "/api/dataset/search": ["sido", "sigungu", "category", "subcategory", "type", "sort", "page", "size"],
   "/api/dataset/export": ["sido", "sigungu", "category", "subcategory", "type", "sort"],
+  "/api/dataset/export/xlsx": ["sido", "sigungu", "category", "subcategory", "type", "sort"],
   "/api/dataset/service": ["service"],
   "/api/dataset/bundle": ["scope", "part", "per", "size", "category"],
   "/api/wiki": ["name", "sido", "sigungu"],

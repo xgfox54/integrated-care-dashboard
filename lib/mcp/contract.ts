@@ -1,16 +1,20 @@
 // 공개 원격 MCP의 공통 계약: 도구 허용목록, 응답 봉투(schema 2.0), 커서, 안전한 오류.
-// 모든 도구는 저장된 공개 자료만 읽고, 외부 수집·쓰기·임의 URL/SQL을 실행하지 않는다.
+// 복지 도구는 저장된 공개 자료를 읽고, 법령 도구는 공식 OPEN API만 읽는다. 쓰기·임의 URL/SQL은 실행하지 않는다.
 
-import { CARE_RESOURCES_PUBLIC, CARE_TOOL_NAMES } from "../integrations/care-hold.ts";
+import { CARE_RESOURCES_MCP, CARE_TOOL_NAMES } from "../integrations/care-hold.ts";
 
 export const MCP_SCHEMA_VERSION = "2.0";
 // 공식 명칭(운영자 지정 2026-10-04). serverInfo.name과 표시용 title에 같은 이름을 쓴다.
 export const MCP_SERVER_NAME = "Korean Welfare MCP";
-export const MCP_SERVER_VERSION = "1.1.0";
+export const MCP_SERVER_VERSION = "1.13.5";
+export const LAW_MCP_PUBLIC: boolean = false;
+export const LAW_MCP_WITHHELD_MESSAGE = "법령정보 기능은 현재 MCP에서 제공하지 않습니다. 법령 데이터는 관리자 저장소에 보존되어 있습니다.";
+export const LAW_MCP_TOOL_NAMES: ReadonlySet<string> = new Set(["legal_research", "legal_analysis", "search_law", "get_law_text", "get_annexes", "search_decisions", "get_decision_text", "ordinance_radar", "discover_tools", "execute_tool"]);
 
-/** 공개 도구 32개(복지 22개 + 내장 법령 10개)의 명시적 허용목록. 여기 없는 이름은 등록하지 않는다. */
+/** 전체 도구 목록은 보존하고 공개 허용목록에서 법령 제공 중지를 적용한다. */
 export const MCP_TOOL_NAMES = [
   "search",
+  "search_welfare_services",
   "fetch",
   "find_programs",
   "get_entity",
@@ -19,10 +23,19 @@ export const MCP_TOOL_NAMES = [
   "get_sources",
   "get_dataset_status",
   "get_ontology_schema",
+  "search_manuals",
+  "get_manual_section",
+  "search_faq",
+  "get_faq",
+  "search_statistics",
+  "get_statistics_data",
+  "get_statistics_sources",
   "get_fiscal_catalog",
   "find_budget_projects",
   "get_budget_execution",
   "compare_budget_periods",
+  "search_budget_lines",
+  "get_budget_breakdown",
   "search_news",
   "get_news_metadata",
   "get_news_archive_status",
@@ -33,7 +46,7 @@ export const MCP_TOOL_NAMES = [
   "find_care_institutions",
   "get_care_institution",
   "get_program_public_info",
-  // 내장 법령 조회(korean-law-mcp 4.15.6, 외부 MCP 서버에 연결하지 않음)
+  // 동일 Worker에 내장한 korean-law-mcp 4.15.6 공개 도구. 외부 MCP 서버는 호출하지 않는다.
   "legal_research",
   "legal_analysis",
   "search_law",
@@ -48,15 +61,14 @@ export const MCP_TOOL_NAMES = [
 
 export type McpToolName = (typeof MCP_TOOL_NAMES)[number];
 
-// 예산·재정 자료 MCP 제외(2026-10-06 운영자 지시): 부서 분리·신설이 예산에 반영되지 않는 등 아직 정확하지 않은 부분이 많다.
-// 공개 /mcp에는 재정 도구 4개와 다른 도구 응답 속 예산 항목을 내보내지 않는다. 다시 열 때는 FISCAL_MCP_PUBLIC을 true로 바꾼다.
-// 사이트 안의 위키 화면은 같은 도구를 내부 호출(includeFiscal)로 써서 검토된 예산사업 연결을 계속 보여 준다.
-export const FISCAL_MCP_PUBLIC: boolean = false;
-export const FISCAL_TOOL_NAMES: ReadonlySet<string> = new Set(["get_fiscal_catalog", "find_budget_projects", "get_budget_execution", "compare_budget_periods"]);
+// 운영자 재활성화 지시(2026-10-09). API 금액은 공식 화면 단위 대조를 통과한 범위만 제공하고,
+// 승인된 예산서는 독립 원천으로 제공한다. MCP 입력으로 검증·활성 revision 조건을 해제할 수 없다.
+export const FISCAL_MCP_PUBLIC: boolean = true;
+export const FISCAL_TOOL_NAMES: ReadonlySet<string> = new Set(["get_fiscal_catalog", "find_budget_projects", "get_budget_execution", "compare_budget_periods", "search_budget_lines", "get_budget_breakdown"]);
 export const FISCAL_WITHHELD_MESSAGE = "예산·재정 정보는 정확도 검증이 끝날 때까지 이 MCP에서 제공하지 않습니다. 다른 자료로 예산을 추정하지 마세요.";
 
 /** 지금 공개 MCP에 실제로 등록하는 도구. 돌봄자원 보류(lib/integrations/care-hold.ts)와 예산 제외 동안 해당 도구는 빠진다. */
-export const PUBLIC_MCP_TOOL_NAMES: readonly McpToolName[] = MCP_TOOL_NAMES.filter((name) => (CARE_RESOURCES_PUBLIC || !CARE_TOOL_NAMES.has(name)) && (FISCAL_MCP_PUBLIC || !FISCAL_TOOL_NAMES.has(name)));
+export const PUBLIC_MCP_TOOL_NAMES: readonly McpToolName[] = MCP_TOOL_NAMES.filter((name) => (LAW_MCP_PUBLIC || !LAW_MCP_TOOL_NAMES.has(name)) && (CARE_RESOURCES_MCP || !CARE_TOOL_NAMES.has(name)) && (FISCAL_MCP_PUBLIC || !FISCAL_TOOL_NAMES.has(name)));
 
 export const LIMITS = {
   listDefault: 20,
@@ -66,6 +78,7 @@ export const LIMITS = {
   newsContextMax: 20,
   fiscalIdsMax: 50,
   queryMax: 100,
+  questionMax: 2000,
   idMax: 500,
   arrayMax: 10,
 } as const;
@@ -77,6 +90,10 @@ export interface BundleComponents {
   readonly links: string | null;
   /** 승인 반입된 문서 사실(HWP/HWPX). 없으면 null. */
   readonly documents: string | null;
+  /** 재정 API와 독립된 승인·활성 예산서 구성요소. */
+  readonly budget_documents: string | null;
+  /** 고정 커밋에서 반입 완료한 매뉴얼 전문 검색 구성요소. */
+  readonly manuals: string | null;
 }
 
 export interface Basis {

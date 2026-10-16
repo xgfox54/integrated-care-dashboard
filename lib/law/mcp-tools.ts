@@ -6,8 +6,16 @@ import { z } from "zod";
 import { LawApiClient } from "korean-law-mcp/lib/api-client";
 import { ErrorCodes, LawApiError, formatToolError } from "korean-law-mcp/lib/errors";
 import { truncateResponse } from "korean-law-mcp/lib/schemas";
+import { runWithRequestContext } from "korean-law-mcp/lib/session-state";
 import { maskToolText } from "korean-law-mcp/lib/tool-output";
-import type { McpTool } from "korean-law-mcp/lib/types";
+import { createReadOnlyRegistry } from "./registry.ts";
+import { SearchOrdinanceSchema, searchOrdinance } from "korean-law-mcp/tools/ordinance-search";
+import { GetOrdinanceSchema, getOrdinance } from "korean-law-mcp/tools/ordinance";
+import { SearchAdminRuleSchema, searchAdminRule, GetAdminRuleSchema, getAdminRule } from "korean-law-mcp/tools/admin-rule";
+import { GetBatchArticlesSchema, getBatchArticles } from "korean-law-mcp/tools/batch-articles";
+import { GetThreeTierSchema, getThreeTier } from "korean-law-mcp/tools/three-tier";
+import { CompareOldNewSchema, compareOldNew } from "korean-law-mcp/tools/comparison";
+import { SearchLawBulkSchema, searchLawBulk } from "korean-law-mcp/tools/search-bulk";
 import { SearchLawSchema as UpstreamSearchLawSchema, searchLaw } from "korean-law-mcp/tools/search";
 import { GetLawTextSchema as UpstreamGetLawTextSchema, getLawText } from "korean-law-mcp/tools/law-text";
 import { GetAnnexesSchema as UpstreamGetAnnexesSchema, getAnnexes } from "korean-law-mcp/tools/annex";
@@ -23,9 +31,6 @@ import { LegalAnalysisSchema as UpstreamLegalAnalysisSchema, legalAnalysis } fro
 import {
   DiscoverToolsSchema as UpstreamDiscoverToolsSchema,
   ExecuteToolSchema as UpstreamExecuteToolSchema,
-  discoverTools,
-  executeTool,
-  setAllToolsRef,
 } from "korean-law-mcp/tools/meta-tools";
 
 export const KOREAN_LAW_PACKAGE_VERSION = "4.15.6" as const;
@@ -111,9 +116,9 @@ function stripSecrets(value: unknown, depth = 0): unknown {
   if (depth > 8) return null;
   if (value === null || typeof value !== "object") return value;
   if (Array.isArray(value)) return value.map((item) => stripSecrets(item, depth + 1));
-  const clean: Record<string, unknown> = {};
+  const clean: Record<string, unknown> = Object.create(null);
   for (const [key, child] of Object.entries(value as Record<string, unknown>)) {
-    if (SECRET_KEYS.has(key.toLowerCase())) continue;
+    if (SECRET_KEYS.has(key.toLowerCase()) || ["__proto__", "constructor", "prototype"].includes(key)) continue;
     clean[key] = stripSecrets(child, depth + 1);
   }
   return clean;
@@ -357,15 +362,63 @@ const DEFINITIONS: readonly LawToolDefinition[] = [
   },
 ] as const;
 
-/** execute_tool이 직접 실행할 수 있는 도구. 메타 도구는 재귀 방지를 위해 제외한다. */
-const EXECUTABLE_TOOL_INDEX: McpTool[] = DEFINITIONS
-  .filter((definition) => definition.name !== "discover_tools" && definition.name !== "execute_tool")
-  .map((definition) => ({
-    name: definition.name,
-    description: definition.description,
-    schema: definition.upstreamSchema as McpTool["schema"],
-    handler: definition.handler as McpTool["handler"],
-  }));
+// 제주특별자치도의 행정시(제주시·서귀포시)는 지방의회가 없어 자체 조례가 없다.
+// 행정시 이름으로 찾으면 결과가 없으므로 도 조례로 바꿔 찾고, 바꾼 사실을 결과에 적는다.
+const ORDINANCE_PARENT_REGION: Readonly<Record<string, string>> = {
+  "서귀포시": "제주특별자치도",
+  "서귀포": "제주특별자치도",
+  "제주시": "제주특별자치도",
+  "제주도": "제주특별자치도",
+};
+
+export function normalizeOrdinanceQuery(query: string): { readonly query: string; readonly replaced: readonly string[] } {
+  const replaced: string[] = [];
+  const tokens = query.trim().split(/\s+/).filter(Boolean).map((token) => {
+    const parent = ORDINANCE_PARENT_REGION[token];
+    if (!parent) return token;
+    replaced.push(token);
+    return parent;
+  });
+  return { query: [...new Set(tokens)].join(" "), replaced };
+}
+
+async function searchOrdinanceByIssuer(client: LawApiClient, input: Parameters<typeof searchOrdinance>[1]): Promise<LooseToolResponse> {
+  const { query, replaced } = normalizeOrdinanceQuery(input.query);
+  const result = await (searchOrdinance as UpstreamHandler)(client, { ...input, query } as never);
+  if (!replaced.length) return result;
+  const note = "검색어 보정: " + replaced.join("·") + " → 제주특별자치도. 제주특별자치도의 행정시는 자체 조례가 없어 '" + query + "'(으)로 검색했습니다.";
+  return { ...result, content: [{ type: "text", text: note }, ...(result.content ?? [])] } as LooseToolResponse;
+}
+
+/** Approved specialized readers. Do not import the entire upstream tool registry. */
+const SPECIALIZED_TOOLS = [
+  { name: "search_ordinance", description: "자치법규·조례·규칙 검색(제주시·서귀포시는 제주특별자치도 조례로 검색)", schema: SearchOrdinanceSchema, handler: searchOrdinanceByIssuer },
+  { name: "get_ordinance", description: "자치법규·조례 본문과 특정 조문 조회", schema: GetOrdinanceSchema, handler: getOrdinance },
+  { name: "search_admin_rule", description: "행정규칙·훈령·예규·고시 검색과 연혁", schema: SearchAdminRuleSchema, handler: searchAdminRule },
+  { name: "get_admin_rule", description: "행정규칙 본문·절·조문 조회", schema: GetAdminRuleSchema, handler: getAdminRule },
+  { name: "get_batch_articles", description: "복수 법령 조문 일괄 조회(원본 실행 한도 적용)", schema: GetBatchArticlesSchema, handler: getBatchArticles },
+  { name: "get_three_tier", description: "법률·시행령·시행규칙 3단 비교", schema: GetThreeTierSchema, handler: getThreeTier },
+  { name: "compare_old_new", description: "법령 개정 전후 신구조문 대조", schema: CompareOldNewSchema, handler: compareOldNew },
+  { name: "search_law_bulk", description: "법령명 목록 일괄 검색과 개정 비교", schema: SearchLawBulkSchema, handler: searchLawBulk },
+] as const;
+
+const EXECUTABLE_REGISTRY = createReadOnlyRegistry<LawApiClient, LooseToolResponse>([
+  ...DEFINITIONS.filter((definition) => definition.name !== "discover_tools" && definition.name !== "execute_tool")
+    .map((definition) => ({ name: definition.name, description: definition.description, schema: definition.upstreamSchema, handler: definition.handler })),
+  ...SPECIALIZED_TOOLS.map((definition) => ({ ...definition, handler: definition.handler as UpstreamHandler })),
+]);
+
+/** Diagnostic catalog contains names only; it cannot mutate the registry. */
+export function getExecutableLawToolNames(): readonly string[] { return EXECUTABLE_REGISTRY.names; }
+
+async function discoverTools(_client: LawApiClient, input: { intent: string }): Promise<LooseToolResponse> {
+  return { content: [{ type: "text", text: EXECUTABLE_REGISTRY.discover(input.intent) }] };
+}
+
+async function executeTool(client: LawApiClient, input: { tool_name: string; params: Record<string, unknown> }): Promise<LooseToolResponse> {
+  if (serializableSize(input.params) > MAX_META_PARAMS_CHARS) throw new Error("params가 너무 큽니다.");
+  return EXECUTABLE_REGISTRY.execute(client, input.tool_name, stripSecrets(input.params));
+}
 
 const DEFINITION_BY_NAME: ReadonlyMap<LawToolName, LawToolDefinition> = new Map(
   DEFINITIONS.map((definition) => [definition.name, definition]),
@@ -386,19 +439,38 @@ export async function runLawTool(
   if (!definition) {
     return { content: [{ type: "text", text: `지원하지 않는 법령 도구입니다: ${name}` }], isError: true };
   }
-  const args = stripSecrets(rawArgs);
-  const client = createLawApiClient(options.apiKey?.trim() ?? "");
-  // execute_tool·discover_tools가 같은 런타임에 이식된 공개 핵심 도구만 다루게 한다.
-  setAllToolsRef(EXECUTABLE_TOOL_INDEX);
-  try {
-    const parsed = definition.upstreamSchema.parse(args);
-    const result = await definition.handler(client, parsed as never);
-    return publicText(result, args);
-  } catch (error) {
-    // 일반적인 입력 오류·법제처 장애는 도구 결과로 반환한다. 예상 밖 비-Error 값만 안전한 일반 오류로 기록한다.
-    if (!(error instanceof Error)) options.onUnexpectedError?.(new Error("법령 도구에서 알 수 없는 오류가 발생했습니다."), name);
-    return publicText(formatToolError(error, name) as LooseToolResponse, args);
+  // LawApiClient의 환경변수 fallback이나 클라이언트 입력에 의존하지 않는다.
+  // HTTP·MCP 모두 Worker의 LAW_OC에서 전달한 값이 없으면 외부 호출 전에 끝낸다.
+  const apiKey = options.apiKey?.trim();
+  if (!apiKey) {
+    return {
+      content: [{
+        type: "text",
+        text: JSON.stringify({
+          code: "LAW_API_NOT_CONFIGURED",
+          message: "운영 서버의 법제처 OPEN API 인증값(LAW_OC) 설정이 필요합니다.",
+        }),
+      }],
+      isError: true,
+    };
   }
+  const args = stripSecrets(rawArgs);
+  // upstream은 생성자 키보다 환경변수를 먼저 읽는다. 요청 컨텍스트에 서버 키를
+  // 고정해 이를 막고, 부모 요청의 실행 예산·취소 신호와 출력 마스킹도 유지한다.
+  return runWithRequestContext({ apiKey }, async () => {
+    try {
+      const client = createLawApiClient(apiKey);
+      // 공개 스키마와 원본 스키마를 모두 통과한 입력만 실행한다. 실행 가능 도구 목록은 불변 registry가 관리한다.
+      const validated = z.object(definition.publicShape).parse(args);
+      const parsed = definition.upstreamSchema.parse(validated);
+      const result = await definition.handler(client, parsed as never);
+      return publicText(result, args);
+    } catch (error) {
+      // 일반적인 입력 오류·법제처 장애는 도구 결과로 반환한다. 예상 밖 비-Error 값만 안전한 일반 오류로 기록한다.
+      if (!(error instanceof Error)) options.onUnexpectedError?.(new Error("법령 도구에서 알 수 없는 오류가 발생했습니다."), name);
+      return publicText(formatToolError(error, name) as LooseToolResponse, args);
+    }
+  });
 }
 
 export function registerLawTools(server: McpServer, options: RegisterLawToolsOptions = {}): LawToolName[] {

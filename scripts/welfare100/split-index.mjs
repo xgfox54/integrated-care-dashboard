@@ -21,14 +21,14 @@ export function splitCatalogIndex(index) {
   };
 }
 
-export function writeSplitIndex(outDir, index) {
+export function writeSplitIndex(outDir, index, registryPath = path.resolve(outDir, "../../../data/welfare100/usage-registry.json")) {
   const { lite, extra, registry } = splitCatalogIndex(index);
   const liteJson = JSON.stringify(lite);
   const extraJson = JSON.stringify(extra);
   const registryJson = JSON.stringify(registry);
   fs.writeFileSync(path.join(outDir, "index-lite.json"), liteJson);
   fs.writeFileSync(path.join(outDir, "index-extra.json"), extraJson);
-  fs.writeFileSync(path.resolve(outDir, "../../../data/welfare100/usage-registry.json"), registryJson);
+  fs.writeFileSync(registryPath, registryJson);
   return { liteBytes: Buffer.byteLength(liteJson), extraBytes: Buffer.byteLength(extraJson), registryBytes: Buffer.byteLength(registryJson) };
 }
 

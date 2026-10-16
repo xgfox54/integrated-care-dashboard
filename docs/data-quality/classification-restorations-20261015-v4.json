@@ -1,0 +1,103 @@
+{
+  "summary": {
+    "revision": "source-classifications-20261015-v4",
+    "total_rows": 12526,
+    "type_restored": 1,
+    "subcategory_restored": 0,
+    "unclassified_type_before": 153,
+    "unclassified_type_after": 152,
+    "blank_subcategory_before": 103,
+    "blank_subcategory_after": 103
+  },
+  "rows": [
+    {
+      "service_id": "0085:1489599:1:1:7",
+      "name": "누구나돌봄(재활돌봄 서비스)",
+      "updated_date": "2026-03",
+      "field": "type",
+      "before": "미분류",
+      "reason": "경기도의 2026년 누구나돌봄 광역 정책 및 재활돌봄 구성 항목과 파주시의 같은 연도 재활돌봄 제공기관 선정 공고를 교차 확인.",
+      "page": 1,
+      "source_label": "특화사업",
+      "original_sha256": "70142a5c797b1681c3af5cafa85b2281e20c98f7f6921260acb08a60b8b53f64",
+      "source_url": "https://www.mohw.go.kr/boardDownload.es?bid=0085&list_no=1489599&seq=1",
+      "value": "광역",
+      "revision": "source-classifications-20261015-v4",
+      "verification_method": "official_supplement_pdf_and_province_policy",
+      "supplementary_pdf": {
+        "url": "https://www.paju.go.kr/component/file/ND_fileDownload.do?id=a6a7e98a-8da9-4e38-82fe-1162163085c6",
+        "sha256": "b09f8a5d3c1891b5ca2dc56a0768c7e3eec103c01cb243f562432ff022ed7739",
+        "physical_page": 1,
+        "published_at": "2026-03-25"
+      },
+      "caution": "파주시 PDF의 소제목은 사회적 관계망 형성 프로그램으로 오기되어 있음. 공고 제목·시행 연도·선정표의 재활돌봄 사업명과 도 정책 자료를 함께 확인.",
+      "sources": [
+        {
+          "file": "paju-rehab.pdf",
+          "url": "https://www.paju.go.kr/component/file/ND_fileDownload.do?id=a6a7e98a-8da9-4e38-82fe-1162163085c6",
+          "status": 200,
+          "bytes": 54688,
+          "sha256": "b09f8a5d3c1891b5ca2dc56a0768c7e3eec103c01cb243f562432ff022ed7739"
+        },
+        {
+          "file": "paju-page.html",
+          "url": "https://www.paju.go.kr/user/board/BD_board.view.do?bbsCd=1022&q_ctgCd=4063&seq=20260325163523302",
+          "status": 200,
+          "bytes": 279076,
+          "sha256": "8a470e34b2801ffa32cfed13a944062c726a6d38fad9616ddf1f285b80b1d975"
+        },
+        {
+          "file": "gyeonggi-2026.html",
+          "url": "https://gnews.gg.go.kr/news/news_detail.do?number=202512181052231940C048&s_code=C048",
+          "status": 200,
+          "bytes": 78270,
+          "sha256": "2c24666a552ab66e3099e3322b43b1477ba79cc1ecd49d49ce65bb795a4e21e1"
+        },
+        {
+          "file": "gyeonggi-policy.html",
+          "url": "https://www.gg.go.kr/g-series/",
+          "status": 200,
+          "bytes": 133575,
+          "sha256": "85a2a9ac05f6f8ae59cf3e075a580abaee445b952d0bd2eae686be2bef48dd60"
+        }
+      ]
+    }
+  ],
+  "review_notes": {
+    "reviewed_at": "2026-10-15",
+    "scope": "256개 미확정 필드의 30개 원문 묶음을 분류하고 7개 지역의 추가 공식자료를 탐색. 전 항목의 신규 원문 개별 검수 완료는 아님.",
+    "approved_candidate": "0085:1489599:1:1:7",
+    "unresolved": [
+      {
+        "region": "군산시",
+        "count": 4,
+        "reason": "추가 공식 표에도 중분류 열이 없음",
+        "url": "https://www.gunsan.go.kr/main/m2996/view/9827809",
+        "status": "UNSUPPORTED_SUBCATEGORY"
+      },
+      {
+        "region": "양산시",
+        "count": 45,
+        "reason": "같은 연도의 사업별 중분류표 미확인"
+      },
+      {
+        "region": "중랑구",
+        "count": 44,
+        "reason": "같은 연도의 사업별 중분류표 미확인"
+      },
+      {
+        "region": "함평군",
+        "reason": "2026년 원문 PDF 직접 다운로드 오류. 예산의 도비 유무만으로 확정하지 않음"
+      },
+      {
+        "region": "보성군",
+        "reason": "동일 연도 지역 사업 원문 직접 검증 부족"
+      },
+      {
+        "region": "김해시",
+        "reason": "2022년 자료를 2026년 분류에 사용하지 않음"
+      }
+    ],
+    "actual_model_tests": 0
+  }
+}

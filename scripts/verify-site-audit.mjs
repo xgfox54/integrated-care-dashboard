@@ -8,21 +8,24 @@ if (!origin || !/^https?:\/\/(127\.0\.0\.1(?::\d+)?|integrated-care-national-das
   throw new Error("검증할 로컬 주소 또는 확인된 Sites 주소를 지정하세요.");
 }
 const results = [];
-async function request(path, json = true) {
+async function request(path, json = true, expectedStatus = 200) {
   const started = performance.now();
   const response = await fetch(origin + path, { signal: AbortSignal.timeout(30000) });
   const text = await response.text();
   const record = { path, status: response.status, elapsed_ms: Math.round(performance.now() - started), bytes: Buffer.byteLength(text) };
   results.push(record);
-  assert.equal(response.status, 200, `${path}: HTTP ${response.status}`);
+  assert.equal(response.status, expectedStatus, `${path}: HTTP ${response.status}`);
   return json ? JSON.parse(text) : text;
 }
 let failure;
 try {
-  for (const path of ["/", "/wiki", "/welfare100", "/mindmap", "/news", "/budget", "/law", "/sources", "/usage-policy"]) {
+  for (const path of ["/", "/wiki", "/welfare100", "/news", "/budget", "/sources", "/usage-policy"]) {
     const html = await request(path, false);
     assert.ok(html.includes("전국 통합돌봄"), `${path}: HTML 페이지 확인`);
+    assert.ok(!html.includes('href="/law"'), `${path}: 법령정보 메뉴 숨김`);
   }
+  await request("/law", false, 404);
+  await request("/mindmap", false, 404);
   const law = await request("/api/law");
   assert.equal(law.implementation, "embedded", "법령 조회는 외부 MCP가 아닌 내장형");
   assert.equal(law.package_version, "4.15.6", "고정된 korean-law-mcp 버전");

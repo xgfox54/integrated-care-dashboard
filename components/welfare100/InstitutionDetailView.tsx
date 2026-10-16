@@ -1,16 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import InstitutionSwitcher from "./InstitutionSwitcher";
 import ProcessExplorer from "./ProcessExplorer";
 import WelfareSearchBar from "./WelfareSearchBar";
 import { buildProcessLaneGroups } from "@/lib/welfare100/process-layout.mjs";
 import { formatProcessWarnings } from "@/lib/welfare100/process-warnings.mjs";
-import { bokjiroUrl, talkSourceCount } from "@/lib/welfare100/bokjiro";
-import type { BokjiroRaw } from "@/lib/welfare100/catalog-types";
+import { bokjiroUrl } from "@/lib/welfare100/bokjiro";
+import type { BokjiroRaw, TalkRefOriginal } from "@/lib/welfare100/catalog-types";
 import type { WelfareInstitution } from "@/lib/welfare100/model";
 import { lawUrl } from "@/lib/welfare100/law-url";
+import { manualReferenceEvidence, originalEvidenceNote, summarizeManualReferences } from "@/lib/welfare100/evidence-status";
+import { provisionReviewFor } from "@/lib/welfare100/provision-review";
+import { selectionFieldStatus } from "@/lib/welfare100/field-status";
 import type { CatalogEntry } from "@/lib/welfare100/payload";
+import { TOPIC_COLORS } from "@/lib/welfare100/topic-colors";
+import { readableWelfareSummary, readableWelfareText } from "@/lib/welfare100/readable-text";
 import styles from "./InstitutionDetail.module.css";
 
 // Adapted from hosungseo/korea100 InstitutionDetailView (MIT License).
@@ -21,6 +26,16 @@ const TOPIC_SOURCE_NOTE: Record<WelfareInstitution["topicSource"], string> = {
   추정: "복지로 관심주제가 없어 제도명·개요로 분류",
   편집: "복지톡 DB 원문 기준 편집 분류",
 };
+
+function originalPlace(original: TalkRefOriginal | undefined): string {
+  if (!original) return "원본 쪽: 원본 파일에서 찾지 못했습니다.";
+  if (original.basis === "document") return "원본 「" + original.file + "」 전체(" + original.pages + (original.format === "PDF" ? "쪽)" : "개 구역)");
+  const span = original.pageEnd ? original.page + "~" + original.pageEnd : String(original.page);
+  return "원본 「" + original.file + "」 " + (original.format === "PDF" ? span + "쪽" : "구역 " + span) + (original.basis === "context" ? " 부근" : "");
+}
+
+
+const compact = (value: string) => value.replace(/[\s·･ㆍ]/g, "");
 
 function switcherGroup(institution: WelfareInstitution, catalog: CatalogEntry[]): { label: string; entries: CatalogEntry[] } {
   if (institution.analysis === "curated") return { label: "주요 제도 100", entries: catalog.filter((entry) => entry.curated) };
@@ -44,7 +59,10 @@ export default function InstitutionDetailView({
   const process = institution.process;
   const processWarnings = formatProcessWarnings(process?.warnings);
   const curated = institution.analysis === "curated";
-  const talkCount = talkSourceCount(institution);
+  const manualSummary = summarizeManualReferences(institution.talkRefs, institution.name);
+  const talkCount = manualSummary.total_reference_count;
+  const linkSummaryText = "확정 연결 " + manualSummary.confirmed_reference_count + " · 후보 " + manualSummary.candidate_reference_count;
+  const provisionReview = provisionReviewFor(institution.slug);
   const stats = [
     { value: process?.nodes.length ?? 0, label: "절차 노드" },
     { value: process?.lanes.length ?? 0, label: "행위 레인" },
@@ -52,7 +70,7 @@ export default function InstitutionDetailView({
     { value: institution.canvas.legalBasis.length, label: "근거 법령·지침", accent: "verified" },
     curated
       ? { value: institution.canvas.bottlenecks.length, label: "병목 구간", accent: "warning" }
-      : { value: talkCount, label: "복지톡 DB 원문", accent: "verified" },
+      : { value: talkCount, label: "연결 자료 구간", accent: "linked" },
   ];
   const group = switcherGroup(institution, catalog);
   const relatedSlugs = new Map<string, string>();
@@ -73,18 +91,18 @@ export default function InstitutionDetailView({
           <div className={styles.titleCopy}>
             <div className={styles.titleMeta}>
               <span className={styles.priority}>NO {institution.priority.toString().padStart(2, "0")}</span>
-              <span className={styles.category}>{institution.category}</span>
-              <span>{institution.type}</span>
+              <span className={styles.category} style={{ "--category-color": TOPIC_COLORS[institution.category ?? ""] ?? "var(--jeju-text-muted)" } as CSSProperties}>{institution.category}</span>
+              <span>{provisionReview ? provisionReview.recipientProvision.join("·") : institution.type}</span>
               <span>{region}</span>
               {curated ? (
-                <span className={styles.verificationBadge} data-tone="verified">
+                <span className={styles.verificationBadge} data-tone="linked">
                   <i aria-hidden="true" />
-                  주요 제도 · 복지톡 DB 원문 {talkCount}건
+                  주요 제도 · {linkSummaryText}
                 </span>
               ) : (
                 <span className={styles.verificationBadge} data-tone={talkCount > 0 ? "linked" : "review"}>
                   <i aria-hidden="true" />
-                  복지로 원문{talkCount > 0 ? " · 복지톡 DB " + talkCount + "건" : ""}
+                  복지로 원문 · {linkSummaryText}
                 </span>
               )}
               {primaryBokjiro?.edit && !curated ? (
@@ -95,7 +113,7 @@ export default function InstitutionDetailView({
               ) : null}
             </div>
             <h1>{institution.name}</h1>
-            <p>{institution.oneLiner}</p>
+            <p>{readableWelfareSummary(institution.oneLiner)}</p>
           </div>
 
           <div className={styles.detailActions}>
@@ -124,15 +142,15 @@ export default function InstitutionDetailView({
             <h2>업무구조도</h2>
             <p>
               {curated
-                ? "노드 상태는 제도 흐름 설명용 편집 상태입니다"
+                ? "선행·설명 기준·후속·유의 단계는 제도 흐름의 편집 표기이며 실제 민원 처리상태가 아닙니다"
                 : "복지로 처리절차에 등록된 단계별 담당기관으로 그린 흐름입니다. 노드 상태는 설명용입니다"}
             </p>
           </div>
           <div className={styles.legend} aria-label="노드 상태 범례">
-            <span><i data-tone="done" />완료</span>
-            <span><i data-tone="current" />현재</span>
-            <span><i data-tone="risk" />위험·회귀</span>
-            <span><i data-tone="waiting" />대기</span>
+            <span><i data-tone="done" />선행</span>
+            <span><i data-tone="current" />설명 기준</span>
+            <span><i data-tone="risk" />유의·재검토</span>
+            <span><i data-tone="waiting" />후속</span>
           </div>
         </header>
 
@@ -165,12 +183,13 @@ export default function InstitutionDetailView({
 
 function LongText({ text, lines = 10 }: { text: string; lines?: number }) {
   const [open, setOpen] = useState(false);
-  const rows = text.split("\n");
-  const long = rows.length > lines || text.length > 700;
-  if (!long) return <span className={styles.longText}>{text}</span>;
+  const readable = readableWelfareText(text);
+  const rows = readable.split("\n");
+  const long = rows.length > lines || readable.length > 700;
+  if (!long) return <span className={styles.longText}>{readable}</span>;
   return (
     <span className={styles.longText}>
-      {open ? text : rows.slice(0, lines).join("\n").slice(0, 700) + " …"}
+      {open ? readable : rows.slice(0, lines).join("\n").slice(0, 700) + " …"}
       <button type="button" className={styles.moreButton} onClick={() => setOpen((value) => !value)} aria-expanded={open}>
         {open ? "접기" : "전체 보기"}
       </button>
@@ -203,11 +222,13 @@ function OnePageCanvas({
           <h2>한 장 캔버스</h2>
           <p>대상 · 급여 · 법령 · 조직 · 절차 · 예산 · 문서</p>
         </div>
-        <time dateTime={institution.asOfDate}>기준일 {institution.asOfDate}</time>
+        <time dateTime={institution.asOfDate}>편집·수집 기준일 {institution.asOfDate}</time>
       </header>
 
       <div className={styles.canvasGrid}>
         <CanvasBlock title="지원 요약" size="wide">
+          <p className={styles.mutedNote}>아래 금액·조건의 적용기간은 항목별 공식 근거를 확인해야 합니다. 편집·수집일은 최신성 검증일이 아닙니다.</p>
+          {!support.selection?.trim() && <p className={styles.mutedNote}>{selectionFieldStatus(support.selection).note}</p>}
           <div className={styles.supportRows}>
             {supportRows
               .filter(([, value]) => Boolean(value && value.trim()))
@@ -226,6 +247,14 @@ function OnePageCanvas({
           </div>
         </CanvasBlock>
 
+        {provisionReviewFor(institution.slug) && (
+          <CanvasBlock title="수혜자 제공유형 · 편집 분류" size="wide">
+            <p>{provisionReviewFor(institution.slug)?.recipientProvision.join(" · ")}</p>
+            <p>{provisionReviewFor(institution.slug)?.recipientDescription}</p>
+            <p>{provisionReviewFor(institution.slug)?.providerSettlement}</p>
+            <p className={styles.mutedNote}>{provisionReviewFor(institution.slug)?.basis} 분류 확인일: {provisionReviewFor(institution.slug)?.checkedAt}</p>
+          </CanvasBlock>
+        )}
         <CanvasBlock title="권한 관계">
           <div className={styles.authorityList}>
             {canvas.authorities.map((authority) => (
@@ -238,7 +267,7 @@ function OnePageCanvas({
         </CanvasBlock>
 
         <CanvasBlock title="목적과 법적 근거" size="wide">
-          <p>{canvas.purpose}</p>
+          <p>{readableWelfareText(canvas.purpose)}</p>
           {canvas.legalBasis.length > 0 ? (
             <div className={styles.legalRows}>
               {canvas.legalBasis.map((basis) => {
@@ -252,7 +281,7 @@ function OnePageCanvas({
                     ) : (
                       <strong>{basis.law}</strong>
                     )}
-                    <span>{basis.articles || "조문 미표기"}</span>
+                    <span>{basis.articles?.replace(/,\s*(?=제\d)/g, ",\n") || "조문 미표기"}</span>
                     <small>{basis.kind}</small>
                   </div>
                 );
@@ -264,34 +293,35 @@ function OnePageCanvas({
         </CanvasBlock>
 
         <CanvasBlock title="관계자">
-          <p>{canvas.stakeholders}</p>
+          <p>{readableWelfareText(canvas.stakeholders)}</p>
         </CanvasBlock>
 
         <CanvasBlock title="돈의 흐름">
-          <p>{canvas.moneyFlow}</p>
+          <p>{readableWelfareText(canvas.moneyFlow)}</p>
         </CanvasBlock>
 
         <CanvasBlock title="문서의 흐름">
-          <p>{canvas.docsFlow}</p>
+          <p>{readableWelfareText(canvas.docsFlow)}</p>
         </CanvasBlock>
 
         {institution.bokjiro && <BokjiroBlock raw={institution.bokjiro} institution={institution} />}
 
         {canvas.bottlenecks.length > 0 && (
-          <CanvasBlock title="병목" tone="warning">
+          <CanvasBlock title="업무상 유의점 · 편집자 해설" tone="warning">
+            <p className={styles.mutedNote}>공식 조사·민원 통계로 검증된 현황이 아니라 제도 이해를 위한 검토 의견입니다.</p>
             <ul>
               {canvas.bottlenecks.map((item) => (
-                <li key={item}>{item}</li>
+                <li key={item}>{readableWelfareText(item)}</li>
               ))}
             </ul>
           </CanvasBlock>
         )}
 
         {canvas.reformPoints.length > 0 && (
-          <CanvasBlock title="개선점" tone="accent" size="wide">
+          <CanvasBlock title="개선 의견 · 편집자 해설" tone="accent" size="wide">
             <ul className={styles.twoColumnList}>
               {canvas.reformPoints.map((item) => (
-                <li key={item}>{item}</li>
+                <li key={item}>{readableWelfareText(item)}</li>
               ))}
             </ul>
           </CanvasBlock>
@@ -323,20 +353,34 @@ function OnePageCanvas({
         <CanvasBlock title="복지톡 DB 원문" size="wide" tone={institution.talkRefs.length > 0 ? "accent" : undefined}>
           {institution.talkRefs.length > 0 ? (
             <div className={styles.talkRefs}>
-              {institution.talkRefs.map((ref) => (
+              <p className={styles.mutedNote}>
+                연결 확정은 제도와 자료의 관계에 대한 판정입니다. 인용문 원본 대조·현재 적용기준 검증과는 다릅니다. 연결 건수는 자료 구간 기준입니다.
+              </p>
+              {institution.talkRefs.map((ref) => {
+                const link = manualReferenceEvidence(ref, institution.name);
+                const original = ref.original;
+                const quote = original?.quote;
+                const showHeading = original?.basis !== "document" && ref.heading && !(quote && compact(quote).startsWith(compact(ref.heading)));
+                return (
                 <article key={ref.key + ":" + ref.line}>
                   <header>
                     <strong>
                       [{ref.key}] {ref.title}
                     </strong>
                     <span>
-                      {ref.match} · 원문 {ref.line.toLocaleString("ko-KR")}행{ref.count > 1 ? " · 언급 " + ref.count + "회" : ""}
+                      {link.link_label + (link.link_confirmed ? " · 연결 확정" : " · 검토 후보")} · {ref.match}{ref.count > 1 ? " · 언급 " + ref.count + "회" : ""}
                     </span>
                   </header>
-                  {ref.heading && <em>{ref.heading}</em>}
-                  <p>{ref.excerpt}</p>
+                  <p className={styles.talkRefPlace}>{originalPlace(original)}</p>
+                  {showHeading && <em>{ref.heading}</em>}
+                  {quote ? <blockquote>{quote}</blockquote> : original?.basis !== "document" && <p>{ref.excerpt}</p>}
+                  <p className={styles.mutedNote}>
+                    {originalEvidenceNote(original)} 연결 근거: {link.link_basis}{link.title_year_note ? " " + link.title_year_note : ""}
+                  </p>
                 </article>
-              ))}
+                );
+              })}
+              <p className={styles.mutedNote}>쪽은 원본 PDF 파일의 쪽 순서(PDF 뷰어에 표시되는 쪽)이며, 문서에 인쇄된 쪽 번호와 다를 수 있습니다.</p>
             </div>
           ) : (
             <p className={styles.mutedNote}>
@@ -350,7 +394,7 @@ function OnePageCanvas({
         <CanvasBlock title="현장 검증 필요" tone="field" size={curated ? "wide" : undefined}>
           <ul className={curated ? styles.twoColumnList : undefined}>
             {institution.fieldVerification.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item}>{readableWelfareText(item)}</li>
             ))}
           </ul>
         </CanvasBlock>
@@ -374,7 +418,7 @@ function BokjiroBlock({ raw, institution }: { raw: BokjiroRaw; institution: Welf
       </>,
     ],
     ["담당", raw.org === "중앙부처" ? [raw.inst, raw.dept].filter(Boolean).join(" ") : raw.dept ?? ""],
-    ["제공유형", raw.provision.join(" · ")],
+    ["복지로 원천 제공유형", raw.provision.join(" · ")],
     ["지원주기", raw.cycle.join(" · ")],
     ["신청방법", raw.applyMethods.join(" · ") + (raw.online ? " (복지로 온라인 신청 가능)" : "")],
     ["신청 주체", raw.applicants.join(" · ")],

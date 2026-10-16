@@ -10,3 +10,10 @@ export interface SqlDatabase {
   prepare(query: string): SqlStatement;
   batch(statements: SqlStatement[]): Promise<unknown[]>;
 }
+
+/** 계측용 래퍼가 원래 데이터베이스 객체를 알려 줄 때 쓰는 키. 실행 환경 캐시는 이 원본을 기준으로 한다. */
+export const UNDERLYING_DATABASE: unique symbol = Symbol.for("welfare.underlyingDatabase");
+
+export function databaseIdentity(db: object): object {
+  return ((db as Record<symbol, unknown>)[UNDERLYING_DATABASE] as object | undefined) ?? db;
+}

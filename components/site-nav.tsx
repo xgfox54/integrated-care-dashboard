@@ -6,19 +6,27 @@ import { CARE_RESOURCES_PUBLIC } from "@/lib/integrations/care-hold";
 import { markUsageNavigation } from "@/lib/usage/track";
 import { cn } from "@/lib/utils";
 
-// 점 색은 탭 순서에 주황·초록·파랑을 되풀이해 붙인다. 현재 화면 탭은 초록 채움 위에 흰 점으로 바뀐다.
-const NAV_ITEMS: readonly { href: string; label: string; dot?: string }[] = [
-  { href: "/", label: "대시보드", dot: "bg-(--jeju-orange)" },
-  { href: "/wiki", label: "통합돌봄 WIKI", dot: "bg-(--jeju-green)" },
-  { href: "/welfare100", label: "복지제도100", dot: "bg-(--jeju-blue)" },
-  { href: "/mindmap", label: "복지정보 관계성 지도", dot: "bg-(--jeju-orange)" },
-  { href: "/news", label: "복지뉴스", dot: "bg-(--jeju-green)" },
-  { href: "/budget", label: "복지예산", dot: "bg-(--jeju-blue)" },
-  { href: "/law", label: "법령정보", dot: "bg-(--jeju-orange)" },
-  { href: "/sources", label: "데이터 출처", dot: "bg-(--jeju-danger)" },
+const NAV_ITEMS: readonly { href: string; label: string }[] = [
+  { href: "/", label: "대시보드" },
+  { href: "/wiki", label: "통합돌봄 WIKI" },
+  { href: "/welfare100", label: "복지제도100" },
+  { href: "/news", label: "복지뉴스" },
+  { href: "/budget", label: "복지예산" },
+  { href: "/statistics", label: "복지통계" },
+  { href: "/welfaremcp", label: "복지정보MCP" },
+  { href: "/sources", label: "데이터 출처" },
   // 돌봄자원은 보류 중이라 메뉴에 내지 않는다(lib/integrations/care-hold.ts).
-  ...(CARE_RESOURCES_PUBLIC ? [{ href: "/care", label: "돌봄자원", dot: "bg-(--jeju-green)" }] : []),
+  ...(CARE_RESOURCES_PUBLIC ? [{ href: "/care", label: "돌봄자원" }] : []),
 ];
+
+// 공개된 일반 메뉴 순서대로 반복한다. 데이터 출처는 순환에서 빼고 항상 빨강을 쓴다.
+const NAV_DOT_COLORS = ["bg-(--jeju-orange)", "bg-(--jeju-green)", "bg-(--jeju-blue)"] as const;
+const NAV_ITEMS_WITH_DOTS = NAV_ITEMS.map((item, index, items) => ({
+  ...item,
+  dot: item.href === "/sources"
+    ? "bg-(--jeju-danger)"
+    : NAV_DOT_COLORS[items.slice(0, index).filter((previous) => previous.href !== "/sources").length % NAV_DOT_COLORS.length],
+}));
 
 /** 지금 보고 있는 화면의 메뉴인지. 복지제도 상세(/welfare100/…)도 복지제도100으로 본다. */
 function isCurrentPage(pathname: string, href: string): boolean {
@@ -33,7 +41,7 @@ export function SiteNav() {
   return (
     <nav aria-label="주요 메뉴" className="print:hidden">
       <ul className="flex flex-wrap items-center gap-1">
-        {NAV_ITEMS.map((item) => {
+        {NAV_ITEMS_WITH_DOTS.map((item) => {
           const current = isCurrentPage(pathname, item.href);
           return (
             <li key={item.href}>
@@ -49,12 +57,10 @@ export function SiteNav() {
                     : "text-(--jeju-text-body) hover:bg-(--jeju-primary-tint) hover:text-primary",
                 )}
               >
-                {item.dot ? (
-                  <span
-                    className={cn("mr-1.5 size-1.5 shrink-0 rounded-full", current ? "bg-(--jeju-on-fill)" : item.dot)}
-                    aria-hidden="true"
-                  />
-                ) : null}
+                <span
+                  className={cn("mr-1.5 size-1.5 shrink-0 rounded-full", current ? "bg-(--jeju-on-fill)" : item.dot)}
+                  aria-hidden="true"
+                />
                 {item.label}
               </a>
             </li>

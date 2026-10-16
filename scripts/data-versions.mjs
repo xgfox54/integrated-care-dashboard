@@ -33,17 +33,27 @@ export function computeBuildVersions(root) {
   const file = (...parts) => (existsSync(at(...parts)) ? [at(...parts)] : []);
   const isJson = (name) => name.endsWith(".json");
   const serverSource = (name) => /\.(ts|mts|mjs|json)$/.test(name) && !/\.test\.mjs$/.test(name);
+  const bundledData = (name) => isJson(name) && !/[\\/]manual-corpus[\\/]assets[\\/]/.test(name);
+  const data = {
+    welfare100Lite: hashFiles(root, file("public", "data", "welfare100", "index-lite.json")),
+    welfare100Extra: hashFiles(root, file("public", "data", "welfare100", "index-extra.json")),
+    welfare100Items: hashFiles(root, listFiles(at("public", "data", "welfare100", "items"), isJson)),
+    geoBoundaries: hashFiles(root, file("public", "data", "geo", "sido-boundaries.json")),
+    dashboardSummary: hashFiles(root, file("public", "data", "summary.json")),
+  };
+  const mcpSources = hashFiles(root, [
+    ...listFiles(at("lib"), serverSource),
+    ...listFiles(at("worker"), serverSource),
+    ...listFiles(at("drizzle"), (name) => name.endsWith(".sql")),
+    ...listFiles(at("data"), bundledData),
+  ]);
   return {
     datasetCache: hashFiles(root, [
       ...listFiles(at("lib"), serverSource),
       ...file("data", "official-spacing-corrections.json"),
+      ...file("data", "source-classification-restorations.json"),
     ]),
-    data: {
-      welfare100Lite: hashFiles(root, file("public", "data", "welfare100", "index-lite.json")),
-      welfare100Extra: hashFiles(root, file("public", "data", "welfare100", "index-extra.json")),
-      welfare100Items: hashFiles(root, listFiles(at("public", "data", "welfare100", "items"), isJson)),
-      geoBoundaries: hashFiles(root, file("public", "data", "geo", "sido-boundaries.json")),
-      dashboardSummary: hashFiles(root, file("public", "data", "summary.json")),
-    },
+    mcpCache: createHash("sha256").update(mcpSources + JSON.stringify(data)).digest("hex").slice(0, 12),
+    data,
   };
 }

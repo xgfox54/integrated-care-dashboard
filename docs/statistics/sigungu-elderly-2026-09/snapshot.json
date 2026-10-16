@@ -1,0 +1,2078 @@
+{
+ "period": "2026-09",
+ "referenceDate": "2026-09-30",
+ "checkedAt": "2026-10-14T14:15:04.495Z",
+ "source": "https://jumin.mois.go.kr/etcStatOldAge.do",
+ "sourceTitle": "행정안전부 주민등록 인구통계 · 지역별 고령 인구현황",
+ "coverage": "거주자·거주불명자·재외국민 포함, 외국인 제외(주민등록인구)",
+ "ageBasis": "만 65세 이상",
+ "records": [
+  {
+   "sido": "서울특별시",
+   "sigungu": "",
+   "code": "1100000000",
+   "level": "sido",
+   "total": 9279861,
+   "elderly": 1965896
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "종로구",
+   "code": "1111000000",
+   "level": "sigungu",
+   "total": 135842,
+   "elderly": 31477
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "중구",
+   "code": "1114000000",
+   "level": "sigungu",
+   "total": 117205,
+   "elderly": 27834
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "용산구",
+   "code": "1117000000",
+   "level": "sigungu",
+   "total": 199192,
+   "elderly": 40490
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "성동구",
+   "code": "1120000000",
+   "level": "sigungu",
+   "total": 274047,
+   "elderly": 55057
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "광진구",
+   "code": "1121500000",
+   "level": "sigungu",
+   "total": 330589,
+   "elderly": 64587
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "동대문구",
+   "code": "1123000000",
+   "level": "sigungu",
+   "total": 353511,
+   "elderly": 75230
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "중랑구",
+   "code": "1126000000",
+   "level": "sigungu",
+   "total": 376951,
+   "elderly": 91802
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "성북구",
+   "code": "1129000000",
+   "level": "sigungu",
+   "total": 420993,
+   "elderly": 89850
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "강북구",
+   "code": "1130500000",
+   "level": "sigungu",
+   "total": 277307,
+   "elderly": 76400
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "도봉구",
+   "code": "1132000000",
+   "level": "sigungu",
+   "total": 297772,
+   "elderly": 81033
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "노원구",
+   "code": "1135000000",
+   "level": "sigungu",
+   "total": 479643,
+   "elderly": 107838
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "은평구",
+   "code": "1138000000",
+   "level": "sigungu",
+   "total": 452390,
+   "elderly": 105804
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "서대문구",
+   "code": "1141000000",
+   "level": "sigungu",
+   "total": 299254,
+   "elderly": 63804
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "마포구",
+   "code": "1144000000",
+   "level": "sigungu",
+   "total": 355806,
+   "elderly": 63541
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "양천구",
+   "code": "1147000000",
+   "level": "sigungu",
+   "total": 419688,
+   "elderly": 87294
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "강서구",
+   "code": "1150000000",
+   "level": "sigungu",
+   "total": 547960,
+   "elderly": 117454
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "구로구",
+   "code": "1153000000",
+   "level": "sigungu",
+   "total": 382163,
+   "elderly": 88783
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "금천구",
+   "code": "1154500000",
+   "level": "sigungu",
+   "total": 222430,
+   "elderly": 51736
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "영등포구",
+   "code": "1156000000",
+   "level": "sigungu",
+   "total": 371156,
+   "elderly": 73462
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "동작구",
+   "code": "1159000000",
+   "level": "sigungu",
+   "total": 370341,
+   "elderly": 77448
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "관악구",
+   "code": "1162000000",
+   "level": "sigungu",
+   "total": 477073,
+   "elderly": 94733
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "서초구",
+   "code": "1165000000",
+   "level": "sigungu",
+   "total": 420794,
+   "elderly": 75528
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "강남구",
+   "code": "1168000000",
+   "level": "sigungu",
+   "total": 551907,
+   "elderly": 98431
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "송파구",
+   "code": "1171000000",
+   "level": "sigungu",
+   "total": 648138,
+   "elderly": 124458
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "강동구",
+   "code": "1174000000",
+   "level": "sigungu",
+   "total": 497709,
+   "elderly": 101822
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "",
+   "code": "1200000000",
+   "level": "sido",
+   "total": 3154398,
+   "elderly": 792256
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "목포시",
+   "code": "1211000000",
+   "level": "sigungu",
+   "total": 198797,
+   "elderly": 47910
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "여수시",
+   "code": "1213000000",
+   "level": "sigungu",
+   "total": 259570,
+   "elderly": 69002
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "순천시",
+   "code": "1215000000",
+   "level": "sigungu",
+   "total": 273175,
+   "elderly": 59166
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "나주시",
+   "code": "1217000000",
+   "level": "sigungu",
+   "total": 116743,
+   "elderly": 30986
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "광양시",
+   "code": "1219000000",
+   "level": "sigungu",
+   "total": 156147,
+   "elderly": 28568
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "동구",
+   "code": "1221000000",
+   "level": "sigungu",
+   "total": 105222,
+   "elderly": 26483
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "서구",
+   "code": "1224000000",
+   "level": "sigungu",
+   "total": 274282,
+   "elderly": 55702
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "남구",
+   "code": "1227000000",
+   "level": "sigungu",
+   "total": 204825,
+   "elderly": 48040
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "북구",
+   "code": "1230000000",
+   "level": "sigungu",
+   "total": 416528,
+   "elderly": 87581
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "광산구",
+   "code": "1233000000",
+   "level": "sigungu",
+   "total": 382461,
+   "elderly": 53099
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "담양군",
+   "code": "1271000000",
+   "level": "sigungu",
+   "total": 43778,
+   "elderly": 17011
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "곡성군",
+   "code": "1272000000",
+   "level": "sigungu",
+   "total": 27725,
+   "elderly": 11706
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "구례군",
+   "code": "1273000000",
+   "level": "sigungu",
+   "total": 24653,
+   "elderly": 10288
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "고흥군",
+   "code": "1274000000",
+   "level": "sigungu",
+   "total": 59034,
+   "elderly": 28558
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "보성군",
+   "code": "1275000000",
+   "level": "sigungu",
+   "total": 38243,
+   "elderly": 17126
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "화순군",
+   "code": "1276000000",
+   "level": "sigungu",
+   "total": 59793,
+   "elderly": 20041
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "장흥군",
+   "code": "1277000000",
+   "level": "sigungu",
+   "total": 33845,
+   "elderly": 14011
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "강진군",
+   "code": "1278000000",
+   "level": "sigungu",
+   "total": 31574,
+   "elderly": 13079
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "해남군",
+   "code": "1279000000",
+   "level": "sigungu",
+   "total": 61816,
+   "elderly": 24691
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "영암군",
+   "code": "1280000000",
+   "level": "sigungu",
+   "total": 49943,
+   "elderly": 16532
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "무안군",
+   "code": "1281000000",
+   "level": "sigungu",
+   "total": 95516,
+   "elderly": 20966
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "함평군",
+   "code": "1282000000",
+   "level": "sigungu",
+   "total": 29851,
+   "elderly": 12864
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "영광군",
+   "code": "1283000000",
+   "level": "sigungu",
+   "total": 53608,
+   "elderly": 17784
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "장성군",
+   "code": "1284000000",
+   "level": "sigungu",
+   "total": 43103,
+   "elderly": 15538
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "완도군",
+   "code": "1285000000",
+   "level": "sigungu",
+   "total": 44029,
+   "elderly": 17625
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "진도군",
+   "code": "1286000000",
+   "level": "sigungu",
+   "total": 27764,
+   "elderly": 11277
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "신안군",
+   "code": "1287000000",
+   "level": "sigungu",
+   "total": 42373,
+   "elderly": 16622
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "",
+   "code": "2600000000",
+   "level": "sido",
+   "total": 3228188,
+   "elderly": 848138
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "중구",
+   "code": "2611000000",
+   "level": "sigungu",
+   "total": 36010,
+   "elderly": 12745
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "서구",
+   "code": "2614000000",
+   "level": "sigungu",
+   "total": 100738,
+   "elderly": 32521
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "동구",
+   "code": "2617000000",
+   "level": "sigungu",
+   "total": 82988,
+   "elderly": 26660
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "영도구",
+   "code": "2620000000",
+   "level": "sigungu",
+   "total": 99959,
+   "elderly": 36453
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "부산진구",
+   "code": "2623000000",
+   "level": "sigungu",
+   "total": 363992,
+   "elderly": 90388
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "동래구",
+   "code": "2626000000",
+   "level": "sigungu",
+   "total": 270259,
+   "elderly": 66105
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "남구",
+   "code": "2629000000",
+   "level": "sigungu",
+   "total": 254990,
+   "elderly": 66061
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "북구",
+   "code": "2632000000",
+   "level": "sigungu",
+   "total": 260063,
+   "elderly": 70270
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "해운대구",
+   "code": "2635000000",
+   "level": "sigungu",
+   "total": 369448,
+   "elderly": 90714
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "사하구",
+   "code": "2638000000",
+   "level": "sigungu",
+   "total": 280853,
+   "elderly": 79222
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "금정구",
+   "code": "2641000000",
+   "level": "sigungu",
+   "total": 205257,
+   "elderly": 60763
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "강서구",
+   "code": "2644000000",
+   "level": "sigungu",
+   "total": 155165,
+   "elderly": 24181
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "연제구",
+   "code": "2647000000",
+   "level": "sigungu",
+   "total": 211692,
+   "elderly": 53079
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "수영구",
+   "code": "2650000000",
+   "level": "sigungu",
+   "total": 169566,
+   "elderly": 46964
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "사상구",
+   "code": "2653000000",
+   "level": "sigungu",
+   "total": 191631,
+   "elderly": 53977
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "기장군",
+   "code": "2671000000",
+   "level": "sigungu",
+   "total": 175577,
+   "elderly": 38035
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "",
+   "code": "2700000000",
+   "level": "sido",
+   "total": 2345828,
+   "elderly": 541991
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "중구",
+   "code": "2711000000",
+   "level": "sigungu",
+   "total": 102082,
+   "elderly": 18923
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "동구",
+   "code": "2714000000",
+   "level": "sigungu",
+   "total": 338592,
+   "elderly": 87819
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "서구",
+   "code": "2717000000",
+   "level": "sigungu",
+   "total": 163197,
+   "elderly": 49225
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "남구",
+   "code": "2720000000",
+   "level": "sigungu",
+   "total": 141804,
+   "elderly": 40515
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "북구",
+   "code": "2723000000",
+   "level": "sigungu",
+   "total": 406186,
+   "elderly": 86918
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "수성구",
+   "code": "2726000000",
+   "level": "sigungu",
+   "total": 407572,
+   "elderly": 86186
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "달서구",
+   "code": "2729000000",
+   "level": "sigungu",
+   "total": 512374,
+   "elderly": 112706
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "달성군",
+   "code": "2771000000",
+   "level": "sigungu",
+   "total": 251589,
+   "elderly": 48365
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "군위군",
+   "code": "2772000000",
+   "level": "sigungu",
+   "total": 22432,
+   "elderly": 11334
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "",
+   "code": "2800000000",
+   "level": "sido",
+   "total": 3068328,
+   "elderly": 608344
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "제물포구",
+   "code": "2812500000",
+   "level": "sigungu",
+   "total": 99174,
+   "elderly": 30550
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "영종구",
+   "code": "2815500000",
+   "level": "sigungu",
+   "total": 139382,
+   "elderly": 17032
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "미추홀구",
+   "code": "2817700000",
+   "level": "sigungu",
+   "total": 419583,
+   "elderly": 93544
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "연수구",
+   "code": "2818500000",
+   "level": "sigungu",
+   "total": 410511,
+   "elderly": 61130
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "남동구",
+   "code": "2820000000",
+   "level": "sigungu",
+   "total": 478372,
+   "elderly": 103793
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "부평구",
+   "code": "2823700000",
+   "level": "sigungu",
+   "total": 487060,
+   "elderly": 104703
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "계양구",
+   "code": "2824500000",
+   "level": "sigungu",
+   "total": 275766,
+   "elderly": 59962
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "서해구",
+   "code": "2827500000",
+   "level": "sigungu",
+   "total": 392114,
+   "elderly": 66359
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "검단구",
+   "code": "2829000000",
+   "level": "sigungu",
+   "total": 277639,
+   "elderly": 34533
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "강화군",
+   "code": "2871000000",
+   "level": "sigungu",
+   "total": 69469,
+   "elderly": 29400
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "옹진군",
+   "code": "2872000000",
+   "level": "sigungu",
+   "total": 19258,
+   "elderly": 7338
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "",
+   "code": "3000000000",
+   "level": "sido",
+   "total": 1443122,
+   "elderly": 288572
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "동구",
+   "code": "3011000000",
+   "level": "sigungu",
+   "total": 217857,
+   "elderly": 54687
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "중구",
+   "code": "3014000000",
+   "level": "sigungu",
+   "total": 223474,
+   "elderly": 56820
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "서구",
+   "code": "3017000000",
+   "level": "sigungu",
+   "total": 464189,
+   "elderly": 85116
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "유성구",
+   "code": "3020000000",
+   "level": "sigungu",
+   "total": 374328,
+   "elderly": 52551
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "대덕구",
+   "code": "3023000000",
+   "level": "sigungu",
+   "total": 163274,
+   "elderly": 39398
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "",
+   "code": "3100000000",
+   "level": "sido",
+   "total": 1086077,
+   "elderly": 214746
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "중구",
+   "code": "3111000000",
+   "level": "sigungu",
+   "total": 202430,
+   "elderly": 46744
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "남구",
+   "code": "3114000000",
+   "level": "sigungu",
+   "total": 304783,
+   "elderly": 57773
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "동구",
+   "code": "3117000000",
+   "level": "sigungu",
+   "total": 147352,
+   "elderly": 31223
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "북구",
+   "code": "3120000000",
+   "level": "sigungu",
+   "total": 213305,
+   "elderly": 30145
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "울주군",
+   "code": "3171000000",
+   "level": "sigungu",
+   "total": 218207,
+   "elderly": 48861
+  },
+  {
+   "sido": "세종특별자치시",
+   "sigungu": "",
+   "code": "3600000000",
+   "level": "sido",
+   "total": 390585,
+   "elderly": 50525
+  },
+  {
+   "sido": "세종특별자치시",
+   "sigungu": "세종특별자치시",
+   "code": "3611000000",
+   "level": "sigungu",
+   "total": 390585,
+   "elderly": 50525
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "",
+   "code": "4100000000",
+   "level": "sido",
+   "total": 13777186,
+   "elderly": 2567613
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "수원시",
+   "code": "4111000000",
+   "level": "sigungu",
+   "total": 1186308,
+   "elderly": 191753
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "성남시",
+   "code": "4113000000",
+   "level": "sigungu",
+   "total": 899160,
+   "elderly": 177558
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "의정부시",
+   "code": "4115000000",
+   "level": "sigungu",
+   "total": 462008,
+   "elderly": 97712
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안양시",
+   "code": "4117000000",
+   "level": "sigungu",
+   "total": 562140,
+   "elderly": 110202
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "부천시",
+   "code": "4119000000",
+   "level": "sigungu",
+   "total": 753731,
+   "elderly": 163538
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "광명시",
+   "code": "4121000000",
+   "level": "sigungu",
+   "total": 303707,
+   "elderly": 57860
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "평택시",
+   "code": "4122000000",
+   "level": "sigungu",
+   "total": 624536,
+   "elderly": 95036
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "동두천시",
+   "code": "4125000000",
+   "level": "sigungu",
+   "total": 86135,
+   "elderly": 24711
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안산시",
+   "code": "4127000000",
+   "level": "sigungu",
+   "total": 608343,
+   "elderly": 109552
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "고양시",
+   "code": "4128000000",
+   "level": "sigungu",
+   "total": 1056532,
+   "elderly": 208066
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "과천시",
+   "code": "4129000000",
+   "level": "sigungu",
+   "total": 81031,
+   "elderly": 13368
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "구리시",
+   "code": "4131000000",
+   "level": "sigungu",
+   "total": 188155,
+   "elderly": 37695
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "남양주시",
+   "code": "4136000000",
+   "level": "sigungu",
+   "total": 727066,
+   "elderly": 144402
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "오산시",
+   "code": "4137000000",
+   "level": "sigungu",
+   "total": 255729,
+   "elderly": 34743
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "시흥시",
+   "code": "4139000000",
+   "level": "sigungu",
+   "total": 515633,
+   "elderly": 76187
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "군포시",
+   "code": "4141000000",
+   "level": "sigungu",
+   "total": 248959,
+   "elderly": 52426
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "의왕시",
+   "code": "4143000000",
+   "level": "sigungu",
+   "total": 167093,
+   "elderly": 33698
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "하남시",
+   "code": "4145000000",
+   "level": "sigungu",
+   "total": 327373,
+   "elderly": 57129
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "용인시",
+   "code": "4146000000",
+   "level": "sigungu",
+   "total": 1090103,
+   "elderly": 193401
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "파주시",
+   "code": "4148000000",
+   "level": "sigungu",
+   "total": 536640,
+   "elderly": 96018
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "이천시",
+   "code": "4150000000",
+   "level": "sigungu",
+   "total": 227007,
+   "elderly": 44500
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안성시",
+   "code": "4155000000",
+   "level": "sigungu",
+   "total": 199288,
+   "elderly": 45922
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "김포시",
+   "code": "4157000000",
+   "level": "sigungu",
+   "total": 483599,
+   "elderly": 85801
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "화성시",
+   "code": "4159000000",
+   "level": "sigungu",
+   "total": 1001559,
+   "elderly": 123065
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "광주시",
+   "code": "4161000000",
+   "level": "sigungu",
+   "total": 401476,
+   "elderly": 79559
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "양주시",
+   "code": "4163000000",
+   "level": "sigungu",
+   "total": 298139,
+   "elderly": 57774
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "포천시",
+   "code": "4165000000",
+   "level": "sigungu",
+   "total": 140366,
+   "elderly": 41828
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "여주시",
+   "code": "4167000000",
+   "level": "sigungu",
+   "total": 113202,
+   "elderly": 33752
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "연천군",
+   "code": "4180000000",
+   "level": "sigungu",
+   "total": 43195,
+   "elderly": 14944
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "가평군",
+   "code": "4182000000",
+   "level": "sigungu",
+   "total": 61954,
+   "elderly": 21790
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "양평군",
+   "code": "4183000000",
+   "level": "sigungu",
+   "total": 127019,
+   "elderly": 43623
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "",
+   "code": "5100000000",
+   "level": "sido",
+   "total": 1506701,
+   "elderly": 421647
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "춘천시",
+   "code": "5111000000",
+   "level": "sigungu",
+   "total": 284801,
+   "elderly": 67299
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "원주시",
+   "code": "5113000000",
+   "level": "sigungu",
+   "total": 365634,
+   "elderly": 77714
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "강릉시",
+   "code": "5115000000",
+   "level": "sigungu",
+   "total": 205547,
+   "elderly": 58841
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "동해시",
+   "code": "5117000000",
+   "level": "sigungu",
+   "total": 85445,
+   "elderly": 23590
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "태백시",
+   "code": "5119000000",
+   "level": "sigungu",
+   "total": 36642,
+   "elderly": 12462
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "속초시",
+   "code": "5121000000",
+   "level": "sigungu",
+   "total": 78735,
+   "elderly": 21340
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "삼척시",
+   "code": "5123000000",
+   "level": "sigungu",
+   "total": 60057,
+   "elderly": 20161
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "홍천군",
+   "code": "5172000000",
+   "level": "sigungu",
+   "total": 65764,
+   "elderly": 24571
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "횡성군",
+   "code": "5173000000",
+   "level": "sigungu",
+   "total": 45417,
+   "elderly": 18611
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "영월군",
+   "code": "5175000000",
+   "level": "sigungu",
+   "total": 35570,
+   "elderly": 14114
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "평창군",
+   "code": "5176000000",
+   "level": "sigungu",
+   "total": 39854,
+   "elderly": 15507
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "정선군",
+   "code": "5177000000",
+   "level": "sigungu",
+   "total": 35137,
+   "elderly": 13081
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "철원군",
+   "code": "5178000000",
+   "level": "sigungu",
+   "total": 39593,
+   "elderly": 12321
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "화천군",
+   "code": "5179000000",
+   "level": "sigungu",
+   "total": 23023,
+   "elderly": 7070
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "양구군",
+   "code": "5180000000",
+   "level": "sigungu",
+   "total": 20322,
+   "elderly": 5955
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "인제군",
+   "code": "5181000000",
+   "level": "sigungu",
+   "total": 30636,
+   "elderly": 8776
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "고성군",
+   "code": "5182000000",
+   "level": "sigungu",
+   "total": 27203,
+   "elderly": 9844
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "양양군",
+   "code": "5183000000",
+   "level": "sigungu",
+   "total": 27321,
+   "elderly": 10390
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "",
+   "code": "4300000000",
+   "level": "sido",
+   "total": 1601942,
+   "elderly": 386397
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "청주시",
+   "code": "4311000000",
+   "level": "sigungu",
+   "total": 860937,
+   "elderly": 159361
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "충주시",
+   "code": "4313000000",
+   "level": "sigungu",
+   "total": 205581,
+   "elderly": 55492
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "제천시",
+   "code": "4315000000",
+   "level": "sigungu",
+   "total": 127880,
+   "elderly": 38723
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "보은군",
+   "code": "4372000000",
+   "level": "sigungu",
+   "total": 31566,
+   "elderly": 13733
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "옥천군",
+   "code": "4373000000",
+   "level": "sigungu",
+   "total": 50775,
+   "elderly": 19086
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "영동군",
+   "code": "4374000000",
+   "level": "sigungu",
+   "total": 43080,
+   "elderly": 17902
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "증평군",
+   "code": "4374500000",
+   "level": "sigungu",
+   "total": 36769,
+   "elderly": 8879
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "진천군",
+   "code": "4375000000",
+   "level": "sigungu",
+   "total": 85620,
+   "elderly": 18724
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "괴산군",
+   "code": "4376000000",
+   "level": "sigungu",
+   "total": 37074,
+   "elderly": 16480
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "음성군",
+   "code": "4377000000",
+   "level": "sigungu",
+   "total": 96203,
+   "elderly": 26675
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "단양군",
+   "code": "4380000000",
+   "level": "sigungu",
+   "total": 26457,
+   "elderly": 11342
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "",
+   "code": "4400000000",
+   "level": "sido",
+   "total": 2139558,
+   "elderly": 522398
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "천안시",
+   "code": "4413000000",
+   "level": "sigungu",
+   "total": 666700,
+   "elderly": 106785
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "공주시",
+   "code": "4415000000",
+   "level": "sigungu",
+   "total": 99424,
+   "elderly": 34201
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "보령시",
+   "code": "4418000000",
+   "level": "sigungu",
+   "total": 90916,
+   "elderly": 31592
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "아산시",
+   "code": "4420000000",
+   "level": "sigungu",
+   "total": 366594,
+   "elderly": 59842
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "서산시",
+   "code": "4421000000",
+   "level": "sigungu",
+   "total": 170634,
+   "elderly": 42367
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "논산시",
+   "code": "4423000000",
+   "level": "sigungu",
+   "total": 105661,
+   "elderly": 36736
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "계룡시",
+   "code": "4425000000",
+   "level": "sigungu",
+   "total": 45915,
+   "elderly": 7934
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "당진시",
+   "code": "4427000000",
+   "level": "sigungu",
+   "total": 172300,
+   "elderly": 40583
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "금산군",
+   "code": "4471000000",
+   "level": "sigungu",
+   "total": 48684,
+   "elderly": 19334
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "부여군",
+   "code": "4476000000",
+   "level": "sigungu",
+   "total": 57473,
+   "elderly": 25765
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "서천군",
+   "code": "4477000000",
+   "level": "sigungu",
+   "total": 46519,
+   "elderly": 21061
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "청양군",
+   "code": "4479000000",
+   "level": "sigungu",
+   "total": 29998,
+   "elderly": 13021
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "홍성군",
+   "code": "4480000000",
+   "level": "sigungu",
+   "total": 101926,
+   "elderly": 29503
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "예산군",
+   "code": "4481000000",
+   "level": "sigungu",
+   "total": 78010,
+   "elderly": 29509
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "태안군",
+   "code": "4482500000",
+   "level": "sigungu",
+   "total": 58804,
+   "elderly": 24165
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "",
+   "code": "5200000000",
+   "level": "sido",
+   "total": 1716229,
+   "elderly": 474184
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "전주시",
+   "code": "5211000000",
+   "level": "sigungu",
+   "total": 618328,
+   "elderly": 128260
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "군산시",
+   "code": "5213000000",
+   "level": "sigungu",
+   "total": 255575,
+   "elderly": 64935
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "익산시",
+   "code": "5214000000",
+   "level": "sigungu",
+   "total": 266458,
+   "elderly": 70809
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "정읍시",
+   "code": "5218000000",
+   "level": "sigungu",
+   "total": 100531,
+   "elderly": 34486
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "남원시",
+   "code": "5219000000",
+   "level": "sigungu",
+   "total": 73452,
+   "elderly": 26205
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "김제시",
+   "code": "5221000000",
+   "level": "sigungu",
+   "total": 81522,
+   "elderly": 30182
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "완주군",
+   "code": "5271000000",
+   "level": "sigungu",
+   "total": 100719,
+   "elderly": 27860
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "진안군",
+   "code": "5272000000",
+   "level": "sigungu",
+   "total": 25006,
+   "elderly": 10664
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "무주군",
+   "code": "5273000000",
+   "level": "sigungu",
+   "total": 23499,
+   "elderly": 9450
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "장수군",
+   "code": "5274000000",
+   "level": "sigungu",
+   "total": 21183,
+   "elderly": 8815
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "임실군",
+   "code": "5275000000",
+   "level": "sigungu",
+   "total": 25344,
+   "elderly": 11260
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "순창군",
+   "code": "5277000000",
+   "level": "sigungu",
+   "total": 27666,
+   "elderly": 10881
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "고창군",
+   "code": "5279000000",
+   "level": "sigungu",
+   "total": 49996,
+   "elderly": 21004
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "부안군",
+   "code": "5280000000",
+   "level": "sigungu",
+   "total": 46950,
+   "elderly": 19373
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "",
+   "code": "4700000000",
+   "level": "sido",
+   "total": 2491506,
+   "elderly": 713916
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "포항시",
+   "code": "4711000000",
+   "level": "sigungu",
+   "total": 486788,
+   "elderly": 122192
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "경주시",
+   "code": "4713000000",
+   "level": "sigungu",
+   "total": 242405,
+   "elderly": 72949
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "김천시",
+   "code": "4715000000",
+   "level": "sigungu",
+   "total": 132274,
+   "elderly": 40088
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "안동시",
+   "code": "4717000000",
+   "level": "sigungu",
+   "total": 151366,
+   "elderly": 46898
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "구미시",
+   "code": "4719000000",
+   "level": "sigungu",
+   "total": 402657,
+   "elderly": 61110
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "영주시",
+   "code": "4721000000",
+   "level": "sigungu",
+   "total": 96133,
+   "elderly": 33476
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "영천시",
+   "code": "4723000000",
+   "level": "sigungu",
+   "total": 93387,
+   "elderly": 34852
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "상주시",
+   "code": "4725000000",
+   "level": "sigungu",
+   "total": 88825,
+   "elderly": 35366
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "문경시",
+   "code": "4728000000",
+   "level": "sigungu",
+   "total": 64669,
+   "elderly": 25364
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "경산시",
+   "code": "4729000000",
+   "level": "sigungu",
+   "total": 262849,
+   "elderly": 60422
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "의성군",
+   "code": "4773000000",
+   "level": "sigungu",
+   "total": 47861,
+   "elderly": 24134
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "청송군",
+   "code": "4775000000",
+   "level": "sigungu",
+   "total": 24618,
+   "elderly": 11031
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "영양군",
+   "code": "4776000000",
+   "level": "sigungu",
+   "total": 15960,
+   "elderly": 7090
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "영덕군",
+   "code": "4777000000",
+   "level": "sigungu",
+   "total": 32477,
+   "elderly": 15001
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "청도군",
+   "code": "4782000000",
+   "level": "sigungu",
+   "total": 39954,
+   "elderly": 19125
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "고령군",
+   "code": "4783000000",
+   "level": "sigungu",
+   "total": 29374,
+   "elderly": 12309
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "성주군",
+   "code": "4784000000",
+   "level": "sigungu",
+   "total": 40246,
+   "elderly": 17344
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "칠곡군",
+   "code": "4785000000",
+   "level": "sigungu",
+   "total": 103288,
+   "elderly": 24089
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "예천군",
+   "code": "4790000000",
+   "level": "sigungu",
+   "total": 53256,
+   "elderly": 18927
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "봉화군",
+   "code": "4792000000",
+   "level": "sigungu",
+   "total": 28013,
+   "elderly": 13173
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "울진군",
+   "code": "4793000000",
+   "level": "sigungu",
+   "total": 46382,
+   "elderly": 16052
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "울릉군",
+   "code": "4794000000",
+   "level": "sigungu",
+   "total": 8724,
+   "elderly": 2924
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "",
+   "code": "4800000000",
+   "level": "sido",
+   "total": 3190549,
+   "elderly": 778644
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창원시",
+   "code": "4812000000",
+   "level": "sigungu",
+   "total": 984721,
+   "elderly": 215831
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "진주시",
+   "code": "4817000000",
+   "level": "sigungu",
+   "total": 333850,
+   "elderly": 77349
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "통영시",
+   "code": "4822000000",
+   "level": "sigungu",
+   "total": 115838,
+   "elderly": 33299
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "사천시",
+   "code": "4824000000",
+   "level": "sigungu",
+   "total": 107862,
+   "elderly": 30356
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "김해시",
+   "code": "4825000000",
+   "level": "sigungu",
+   "total": 533161,
+   "elderly": 92179
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "밀양시",
+   "code": "4827000000",
+   "level": "sigungu",
+   "total": 98171,
+   "elderly": 37273
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "거제시",
+   "code": "4831000000",
+   "level": "sigungu",
+   "total": 228629,
+   "elderly": 41200
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "양산시",
+   "code": "4833000000",
+   "level": "sigungu",
+   "total": 360962,
+   "elderly": 72679
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "의령군",
+   "code": "4872000000",
+   "level": "sigungu",
+   "total": 24520,
+   "elderly": 11292
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "함안군",
+   "code": "4873000000",
+   "level": "sigungu",
+   "total": 56522,
+   "elderly": 19929
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창녕군",
+   "code": "4874000000",
+   "level": "sigungu",
+   "total": 54046,
+   "elderly": 22477
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "고성군",
+   "code": "4882000000",
+   "level": "sigungu",
+   "total": 46662,
+   "elderly": 19072
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "남해군",
+   "code": "4884000000",
+   "level": "sigungu",
+   "total": 41032,
+   "elderly": 18250
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "하동군",
+   "code": "4885000000",
+   "level": "sigungu",
+   "total": 39524,
+   "elderly": 17881
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "산청군",
+   "code": "4886000000",
+   "level": "sigungu",
+   "total": 32608,
+   "elderly": 15169
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "함양군",
+   "code": "4887000000",
+   "level": "sigungu",
+   "total": 35036,
+   "elderly": 14935
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "거창군",
+   "code": "4888000000",
+   "level": "sigungu",
+   "total": 58712,
+   "elderly": 20449
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "합천군",
+   "code": "4889000000",
+   "level": "sigungu",
+   "total": 38693,
+   "elderly": 19024
+  },
+  {
+   "sido": "제주특별자치도",
+   "sigungu": "",
+   "code": "5000000000",
+   "level": "sido",
+   "total": 662373,
+   "elderly": 138349
+  },
+  {
+   "sido": "제주특별자치도",
+   "sigungu": "제주시",
+   "code": "5011000000",
+   "level": "sigungu",
+   "total": 484079,
+   "elderly": 93320
+  },
+  {
+   "sido": "제주특별자치도",
+   "sigungu": "서귀포시",
+   "code": "5013000000",
+   "level": "sigungu",
+   "total": 178294,
+   "elderly": 45029
+  }
+ ],
+ "failures": [],
+ "evidence": [
+  {
+   "province": "서울특별시",
+   "code": "1100000000",
+   "rows": 26,
+   "sha256": "d61d1a56eb02b1fb4f47d2e43e11257b539b8502b3492293d116ae5d664c531e"
+  },
+  {
+   "province": "전남광주통합특별시",
+   "code": "1200000000",
+   "rows": 28,
+   "sha256": "05694c919c8c95718ab6503350d7ace5c3420679ca6b428c06a249f209ff113b"
+  },
+  {
+   "province": "부산광역시",
+   "code": "2600000000",
+   "rows": 17,
+   "sha256": "6b5675b062ebe9a9a6d0ad96a21456de5e9d0dc51acb6c375317ae2af4360578"
+  },
+  {
+   "province": "대구광역시",
+   "code": "2700000000",
+   "rows": 10,
+   "sha256": "80b66a930f8ce54edd64de1371d4caa0ea745c06150845a210c72d71bfc22f98"
+  },
+  {
+   "province": "인천광역시",
+   "code": "2800000000",
+   "rows": 12,
+   "sha256": "3326c7c24955ecec23e8047b017c7cafe0740580267dec8f02633700706dfc0b"
+  },
+  {
+   "province": "대전광역시",
+   "code": "3000000000",
+   "rows": 6,
+   "sha256": "8592828320f5c8ffceabd02f7145b35eb92146bc980187bd7d0b9193dd7c5cb4"
+  },
+  {
+   "province": "울산광역시",
+   "code": "3100000000",
+   "rows": 6,
+   "sha256": "9fec00c15e892fa931eaf88d9da4a6388e47e4038c1286da05f7e292c5994c38"
+  },
+  {
+   "province": "세종특별자치시",
+   "code": "3600000000",
+   "rows": 2,
+   "sha256": "9132e08bd5a67d28da21205171abf6183e35d58c8e53206f5af29f755160ae84"
+  },
+  {
+   "province": "경기도",
+   "code": "4100000000",
+   "rows": 56,
+   "sha256": "cde785cba94b99deb8edc95537058cfef455a48143b4b1e63e1314702108716f"
+  },
+  {
+   "province": "강원특별자치도",
+   "code": "5100000000",
+   "rows": 19,
+   "sha256": "4d61e8cb03a9d304cd64ae01ec03552452cb0f5f03a7bca21bd2d308c29795b3"
+  },
+  {
+   "province": "충청북도",
+   "code": "4300000000",
+   "rows": 16,
+   "sha256": "f47a9fdd2e56a365c7a0eb047cc569f8f348cce6e32603279b1eab9015d5db6d"
+  },
+  {
+   "province": "충청남도",
+   "code": "4400000000",
+   "rows": 18,
+   "sha256": "cdcd96642cdcdcd2d9b276708afecce8d4602700684993573675fc1fcabd44db"
+  },
+  {
+   "province": "전북특별자치도",
+   "code": "5200000000",
+   "rows": 17,
+   "sha256": "bd7e5f6b786ad35f41e7a5fc388c628de035c879d828ba980051f72394debc0d"
+  },
+  {
+   "province": "경상북도",
+   "code": "4700000000",
+   "rows": 25,
+   "sha256": "3f3b12a005ce5cfb00a261a1177c498de3338e67bae2ce7c9be5834d79d46360"
+  },
+  {
+   "province": "경상남도",
+   "code": "4800000000",
+   "rows": 24,
+   "sha256": "f6014837b7e1173294b291a6ab9bf5c29edefc738e402e599b2c6ba6e93ec550"
+  },
+  {
+   "province": "제주특별자치도",
+   "code": "5000000000",
+   "rows": 3,
+   "sha256": "b6bfb9632f9e2c1f50098d5b8ab3753e211207845f625ef0839ffd7d9b675ccf"
+  }
+ ]
+}

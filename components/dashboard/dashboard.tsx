@@ -4,6 +4,7 @@ import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } fro
 
 import { DataStatus } from "@/components/dashboard/data-status";
 import { DetailSheet } from "@/components/dashboard/detail-sheet";
+import { DownloadXlsxButton } from "@/components/dashboard/download-xlsx-button";
 import { FilterPanel } from "@/components/dashboard/filter-panel";
 import type { KpiSummary } from "@/components/dashboard/kpi-cards";
 import { EmptyResults, ResultTable } from "@/components/dashboard/result-table";
@@ -446,6 +447,10 @@ export function Dashboard() {
               summary={search.regionSummary}
               totalRowCount={summary.totalCount}
               regionName={regionName}
+              selectedCategory={filters.category}
+              selectedType={filters.type}
+              onCategoryChange={(category) => changeFilters({ category, subcategory: "" })}
+              onTypeChange={(type) => changeFilters({ type })}
             />
           </Suspense>
 
@@ -455,6 +460,7 @@ export function Dashboard() {
                 검색 결과 {NUMBER_FORMAT.format(search.totalCount)}건
               </h2>
               <div className="flex flex-wrap gap-2 print:hidden">
+                <DownloadXlsxButton filters={filters} totalCount={search.totalCount} onNotice={setNotice} />
                 <Button type="button" variant="outline" size="sm" onClick={downloadCsv}>
                   <DownloadIcon />
                   검색결과 CSV 다운로드
@@ -562,7 +568,7 @@ export function Dashboard() {
             ) : compareDataset.phase === "error" ? (
               <DeferredPanel label="비교 데이터를 불러오지 못했습니다." />
             ) : (
-              <ComparePanel rows={compareDataset.rows} />
+              <ComparePanel rows={compareDataset.rows} dataAsOf={meta.dataAsOf} />
             )}
           </Suspense>
         </TabsContent>

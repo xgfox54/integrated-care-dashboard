@@ -25,6 +25,8 @@ export const PAGE_LABELS: Record<PageCode, string> = {
   news: "복지뉴스",
   budget: "복지예산",
   law: "법령정보",
+  welfaremcp: "복지정보MCP",
+  statistics: "복지통계",
   sources: "데이터 출처",
   usage_policy: "이용통계 안내",
 };
@@ -38,6 +40,8 @@ export const TAB_LABELS: Record<TabCode, string> = {
   news: "복지뉴스",
   budget: "복지예산",
   law: "법령정보",
+  welfaremcp: "복지정보MCP",
+  statistics: "복지통계",
   sources: "데이터 출처",
   usage_policy: "이용통계 안내",
 };

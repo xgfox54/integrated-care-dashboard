@@ -1,0 +1,70 @@
+{
+ "scope": "공식 정책 안내 페이지에서 연결된 과거 보도자료 3건 메타데이터 보강",
+ "discovery_url": "https://www.mohw.go.kr/menu.es?mid=a10716030000",
+ "records": [
+  {
+   "item_id": "src:mohw:press-rss:6305ce251ff17ef087a15fe69ea1b428",
+   "source_id": "src:mohw:press-rss",
+   "origin_id": "1490257",
+   "canonical_url": "https://www.mohw.go.kr/board.es?mid=a10503010100&bid=0027&list_no=1490257&act=view",
+   "title": "아동수당 대상·금액 확대, 4월부터 지급 시작",
+   "title_hash": "41b91dd9574bdeb801b1fd1b92924575",
+   "issued_by_org_id": "org:mohw",
+   "published_date": "2026-04-23",
+   "published_at": 1776917460,
+   "classification": {
+    "status": "WELFARE",
+    "categories": [
+     "child_care"
+    ],
+    "basis": "title_rule",
+    "dictionaryVersion": "press-dict-2026-10-06-r3"
+   },
+   "original_html_sha256": "4c94743f01a1c54c825538fd4162c1e0ec0b57a1493ddab77ab52dab69f060d7",
+   "checked_at": "2026-10-15T03:19:27.345Z"
+  },
+  {
+   "item_id": "src:mohw:press-rss:2bd7ef4f1bd7deebe2d761c5e7d82a56",
+   "source_id": "src:mohw:press-rss",
+   "origin_id": "1489763",
+   "canonical_url": "https://www.mohw.go.kr/board.es?mid=a10503010100&bid=0027&list_no=1489763&act=view",
+   "title": "아동수당 지역 지원 금액 확대근거 구체화",
+   "title_hash": "c2f07a00598bfe338b8974ed40b37420",
+   "issued_by_org_id": "org:mohw",
+   "published_date": "2026-03-24",
+   "published_at": 1774325760,
+   "classification": {
+    "status": "WELFARE",
+    "categories": [
+     "child_care",
+     "other_welfare"
+    ],
+    "basis": "title_rule",
+    "dictionaryVersion": "press-dict-2026-10-06-r3"
+   },
+   "original_html_sha256": "cc1b8b1ccf59fc7ed4a26aceb3ae4a1f4967befb5cb0da7d1e0a368c11a8566c",
+   "checked_at": "2026-10-15T03:19:27.352Z"
+  },
+  {
+   "item_id": "src:mohw:press-rss:2ddf35472acaed414c77172dd3ff6a5c",
+   "source_id": "src:mohw:press-rss",
+   "origin_id": "1488981",
+   "canonical_url": "https://www.mohw.go.kr/board.es?mid=a10503010100&bid=0027&list_no=1488981&act=view",
+   "title": "아동수당 확대로 양육 지원 강화된다...「아동수당법」 하위법령 개정안 입법예고",
+   "title_hash": "27c84915b1f5219693d7c9bcc4c62092",
+   "issued_by_org_id": "org:mohw",
+   "published_date": "2026-02-04",
+   "published_at": 1770169980,
+   "classification": {
+    "status": "WELFARE",
+    "categories": [
+     "child_care"
+    ],
+    "basis": "title_rule",
+    "dictionaryVersion": "press-dict-2026-10-06-r3"
+   },
+   "original_html_sha256": "de47987d672d89f2e870c5937bfca49ff253f7a4a59dcb156594332b95cf7b3c",
+   "checked_at": "2026-10-15T03:19:27.356Z"
+  }
+ ]
+}

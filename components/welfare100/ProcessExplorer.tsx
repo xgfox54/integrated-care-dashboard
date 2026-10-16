@@ -155,15 +155,11 @@ function ProcessNodeInspector({
           <strong>{node.deadline ?? "—"}</strong>
         </div>
         <div>
-          <span>확신도</span>
-          <strong>
-            {node.confidence === undefined
-              ? "—"
-              : `${Math.round(node.confidence * 100)}%`}
-          </strong>
+          <span>근거 표기</span>
+          <strong>{node.legal_basis?.length ? "조문 수록 · 원문 대조 필요" : "명시 근거 확인 필요"}</strong>
         </div>
         {node.blocker && (
-          <p><strong>병목</strong> · {node.blocker}</p>
+          <p><strong>검토 유의점</strong> · {node.blocker}</p>
         )}
       </div>
 
@@ -188,11 +184,11 @@ function ProcessNodeInspector({
 
 function statusMeta(status: ProcessNode["status"]) {
   const meta = {
-    done: { label: "완료", color: "var(--jeju-text-muted)" },
-    current: { label: "현재", color: "var(--jeju-primary-hover)" },
-    waiting: { label: "대기", color: "var(--jeju-text-muted)" },
-    risk: { label: "위험", color: "var(--jeju-warning)" },
-    loop: { label: "회귀", color: "var(--jeju-warning)" },
+    done: { label: "선행", color: "var(--jeju-text-muted)" },
+    current: { label: "설명 기준", color: "var(--jeju-primary-hover)" },
+    waiting: { label: "후속", color: "var(--jeju-text-muted)" },
+    risk: { label: "유의", color: "var(--jeju-warning)" },
+    loop: { label: "재검토", color: "var(--jeju-warning)" },
   };
   return meta[status];
 }

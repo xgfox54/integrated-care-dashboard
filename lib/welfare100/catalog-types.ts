@@ -6,16 +6,46 @@ export type WelfareOrg = "중앙부처" | "지자체";
 /** 분야를 정한 근거. */
 export type TopicSource = "복지로" | "보정" | "추정" | "편집";
 
+/** 복지톡 DB 연결이 가리키는 원본 파일의 위치와 그 쪽에서 그대로 옮긴 문장(scripts/welfare100/attach-manual-pages.mjs). */
+export interface TalkRefOriginal {
+  file: string;
+  format: "PDF" | "HWPX";
+  /** PDF는 파일의 쪽 순서(뷰어에 표시되는 쪽), HWPX는 구역 번호 */
+  page: number;
+  pageEnd?: number;
+  /** 원본 파일 전체 쪽(구역) 수 */
+  pages: number;
+  /** line: 연결된 줄을 그 쪽에서 찾음, name: 그 쪽에서 제도명을 찾음, context: 앞뒤 문장으로 쪽을 어림, document: 원본 파일 전체 */
+  basis: "line" | "name" | "context" | "document";
+  ocr: boolean;
+  /** OCR 쪽을 원본 PDF 화면과 대조해 쪽 위치를 확인한 날짜(data/welfare100/ocr-page-checks.json). 글자 교정은 뜻하지 않는다. */
+  ocrCheckedAt?: string;
+  /** 그 쪽의 문장을 그대로 옮긴 발췌. 표는 칸을 " | "로 이었다. */
+  quote: string | null;
+}
+
 /** 복지톡 DB(사업안내 매뉴얼)에서 찾은 관련 원문 구간. */
 export interface TalkRef {
   /** 매뉴얼 번호(01~39) */
   key: string;
   title: string;
+  /** 합본 Markdown 줄 번호. 원본 쪽 대조에만 쓰고 화면에는 보여 주지 않는다(편집 근거로 더한 연결은 0). */
   line: number;
   heading?: string;
   match: "제도명 일치" | "관련 언급";
   count: number;
   excerpt: string;
+  original?: TalkRefOriginal;
+  /** 주요 제도 설명을 정리한 근거 매뉴얼(record.src)에서 찾아 더한 연결 */
+  curatedSource?: true;
+  /** 원문 줄 검수 판정(data/welfare100/manual-link-reviews.json) 또는 지자체 사업 목록 줄 규칙 */
+  review?: TalkRefReview;
+}
+
+export interface TalkRefReview {
+  decision: "DIRECT" | "LIST_ENTRY" | "SAME_NAME_OTHER_CITY" | "RECHECK";
+  checkedAt: string;
+  source: "review" | "rule";
 }
 
 export type BokjiroStepCode = "001" | "002" | "003" | "004" | "005" | "006";

@@ -88,7 +88,7 @@ export async function listDueSources(db: SqlDatabase, nowSeconds: number, limit:
     `SELECT ${SOURCE_COLUMNS} FROM press_source s LEFT JOIN press_crawl_state c ON c.source_id = s.source_id ` +
       "WHERE s.collect_via = '" + via + "' AND s.enabled = 1 AND s.approval_status = 'POLICY_APPROVED' AND COALESCE(c.next_due_at, 0) <= ? AND COALESCE(c.lease_expires_at, 0) < ? " +
       "AND (COALESCE(c.collection_hold, '') = '' OR (c.hold_until IS NOT NULL AND c.hold_until <= ?)) " +
-      "ORDER BY COALESCE(c.next_due_at, 0) LIMIT ?",
+      "ORDER BY CASE WHEN COALESCE(c.consecutive_failures, 0) = 0 THEN 0 ELSE 1 END, COALESCE(c.next_due_at, 0), s.source_id LIMIT ?",
   ).bind(nowSeconds, nowSeconds, nowSeconds, limit).all<SourceRow>();
   return result.results.map(toSource);
 }

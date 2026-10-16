@@ -92,14 +92,20 @@ export async function removeRelayPc(db: SqlDatabase, name: string, nowSeconds: n
 
 /** 등록된 PC가 수집 목록을 받아 간 시각(관리자 화면 표시용). */
 export async function touchRelayPc(db: SqlDatabase, name: string, nowSeconds: number): Promise<void> {
-  const pcs = await readRelayPcs(db);
-  if (!pcs.some((pc) => pc.name === name)) return;
-  await writeRelayPcs(db, pcs.map((pc) => (pc.name === name ? { ...pc, lastSeenAt: nowSeconds } : pc)), nowSeconds);
+  // 환경변수로 등록된 PC도 기록한다. 전체 토큰 배열을 다시 쓰면 동시 등록·삭제를 덮어쓸 수 있다.
+  if (!relayPcName(name)) return;
+  await db.prepare("INSERT INTO app_setting (key, value, updated_at) VALUES (?, ?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = excluded.updated_at WHERE app_setting.updated_at <= excluded.updated_at")
+    .bind("press_pc_seen:" + name, String(nowSeconds), nowSeconds).run();
+}
+
+export async function readRelayHeartbeats(db: SqlDatabase): Promise<{ name: string; lastSeenAt: number }[]> {
+  const rows = await db.prepare("SELECT key, updated_at FROM app_setting WHERE key LIKE 'press_pc_seen:%'").all<{ key: string; updated_at: number }>();
+  return rows.results.map((row) => ({ name: row.key.slice("press_pc_seen:".length), lastSeenAt: row.updated_at }));
 }
 
 /** 관리자 화면: 등록 PC(토큰 해시는 빼고), 지금 차례를 잡은 PC, 중계 수집 Source 상태. */
 export async function readRelayStatus(db: SqlDatabase, envNames: readonly string[], nowSeconds: number) {
-  const [pcs, claim, sources] = await Promise.all([
+  const [pcs, claim, sources, heartbeats] = await Promise.all([
     readRelayPcs(db),
     readClaim(db),
     db.prepare(
@@ -107,11 +113,12 @@ export async function readRelayStatus(db: SqlDatabase, envNames: readonly string
         "FROM press_source s JOIN press_organization o ON o.organization_id = s.organization_id LEFT JOIN press_crawl_state c ON c.source_id = s.source_id " +
         "WHERE s.collect_via = 'relay' ORDER BY o.name",
     ).all<Record<string, unknown>>(),
+    readRelayHeartbeats(db),
   ]);
   return {
     pcs: [
-      ...envNames.map((name) => ({ name, created_at: null, last_seen_at: null, managed: "env" as const })),
-      ...pcs.map((pc) => ({ name: pc.name, created_at: pc.createdAt, last_seen_at: pc.lastSeenAt, managed: "admin" as const })),
+      ...envNames.map((name) => ({ name, created_at: null, last_seen_at: heartbeats.find((h) => h.name === name)?.lastSeenAt ?? null, managed: "env" as const })),
+      ...pcs.map((pc) => ({ name: pc.name, created_at: pc.createdAt, last_seen_at: heartbeats.find((h) => h.name === pc.name)?.lastSeenAt ?? pc.lastSeenAt, managed: "admin" as const })),
     ],
     claim: claim && claim.pc && claim.until > nowSeconds ? { pc: claim.pc, until: claim.until } : null,
     sources: sources.results,
@@ -164,12 +171,22 @@ export async function claimRelayJobs(db: SqlDatabase, pc: string, nowSeconds: nu
   if (!(await crawlerEnabled(db))) return { jobs: [], busyBy: null };
   const claim = await readClaim(db);
   if (claim && claim.pc && claim.pc !== pc && claim.until > nowSeconds) return { jobs: [], busyBy: claim.pc };
+  // 인증키는 서버 저장소에서만 사용할 수 있다. 잘못 중계로 넘어가 KEY_REQUIRED가 된 API만 복구한다.
+  // 접근 제한·관리자 보류·실행 중 lease는 해제하지 않으며 과거 시도/키 값은 건드리지 않는다.
+  const serverApi = "SELECT s.source_id FROM press_source s JOIN press_crawl_state c ON c.source_id = s.source_id " +
+    "WHERE s.adapter = 'OpenAPIAdapter' AND s.collect_via = 'relay' AND s.enabled = 1 AND s.approval_status = 'POLICY_APPROVED' " +
+    "AND c.safe_error = 'KEY_REQUIRED' AND c.collection_hold = '' AND c.lease_expires_at <= ? " +
+    "AND json_extract(CASE WHEN json_valid(s.adapter_profile) THEN s.adapter_profile ELSE '{}' END, '$.keyRef') IN ('data_go_kr', 'seoul_open_data')";
+  await db.batch([
+    db.prepare("UPDATE press_crawl_state SET next_due_at = ? WHERE source_id IN (" + serverApi + ")").bind(nowSeconds, nowSeconds),
+    db.prepare("UPDATE press_source SET collect_via = 'server' WHERE source_id IN (" + serverApi + ")").bind(nowSeconds),
+  ]);
   // Only the authenticated existing PC workflow can recover these verified routes. Keep failure audits intact.
-  const endpoints = VERIFIED_RELAY_ROUTES.map(() => "(s.source_id = ? AND s.endpoint_url = ?)").join(" OR ");
+  const endpoints = VERIFIED_RELAY_ROUTES.map((route) => `(s.source_id = ? AND s.endpoint_url = ? AND c.consecutive_failures >= ${route.length === 3 ? route[2] : 5})`).join(" OR ");
   const values = VERIFIED_RELAY_ROUTES.flatMap(([id, endpoint]) => [id, endpoint]);
   const eligible = "SELECT s.source_id FROM press_source s JOIN press_crawl_state c ON c.source_id = s.source_id " +
     "WHERE s.collect_via = 'server' AND s.approval_status = 'POLICY_APPROVED' AND s.enabled = 1 " +
-    "AND c.collection_hold = '' AND c.lease_expires_at <= ? AND c.consecutive_failures >= 5 " +
+    "AND c.collection_hold = '' AND c.lease_expires_at <= ? " +
     // 통신 실패를 원인별로 나누기 전(2026-10-09)에는 아래 네 가지가 모두 NETWORK_ERROR였다. 같은 회복 대상을 유지한다.
     "AND c.safe_error IN ('NETWORK_ERROR', 'RESPONSE_TIMEOUT', 'BODY_READ_TIMEOUT', 'BODY_READ_FAILED', 'DNS_ERROR', 'TLS_ERROR', 'FEED_EMPTY') AND (" + endpoints + ")";
   // D1 batch is transactional: schedule one recovery attempt, then switch the same eligible sources.

@@ -1,6 +1,6 @@
 import type { FilterState, ServiceRow } from "./dataset.ts";
 
-const CSV_COLUMNS: readonly (readonly [string, keyof ServiceRow])[] = [
+export const DATASET_EXPORT_COLUMNS: readonly (readonly [string, keyof ServiceRow])[] = [
   ["시도", "sido"],
   ["시군구", "sigungu"],
   ["대분류", "category"],
@@ -21,9 +21,9 @@ function csvCell(value: string): string {
 }
 
 export function toCsv(rows: readonly ServiceRow[]): string {
-  const header = CSV_COLUMNS.map(([label]) => csvCell(label)).join(",");
+  const header = DATASET_EXPORT_COLUMNS.map(([label]) => csvCell(label)).join(",");
   const body = rows.map((row) =>
-    CSV_COLUMNS.map(([, field]) => csvCell(String(row[field] ?? ""))).join(","),
+    DATASET_EXPORT_COLUMNS.map(([, field]) => csvCell(String(row[field] ?? ""))).join(","),
   );
   return `\uFEFF${[header, ...body].join("\r\n")}`;
 }

@@ -1,3 +1,7 @@
+import { redactCredentialText } from "./credential-redaction.ts";
+import { storeErrorKind } from "./store-errors.ts";
+export { redactCredentialValue } from "./credential-redaction.ts";
+
 export interface PublicErrorOptions {
   readonly code: string;
   readonly message: string;
@@ -20,13 +24,14 @@ const REDACTIONS: readonly (readonly [RegExp, string])[] = [
 ];
 
 export function redactLogText(value: string): string {
-  return REDACTIONS.reduce((current, [pattern, replacement]) => current.replace(pattern, replacement), value);
+  return REDACTIONS.reduce((current, [pattern, replacement]) => current.replace(pattern, replacement), redactCredentialText(value));
 }
 
 function errorDetails(error: unknown): string {
-  if (typeof error === "string") return redactLogText(error).slice(0, 4000);
+  // Exception messages/stacks can contain raw questions, SQL, URLs or unknown credential formats.
   if (!(error instanceof Error)) return "UnknownError";
-  return redactLogText(`${error.name}: ${error.message}\n${error.stack ?? ""}`).slice(0, 4000);
+  const allowed = new Set(["Error", "TypeError", "RangeError", "SyntaxError", "AbortError", "TimeoutError", "LawApiError", "McpToolError", "RequestBodyError"]);
+  return allowed.has(error.name) ? error.name : "Error";
 }
 
 export function logServerError(
@@ -37,10 +42,11 @@ export function logServerError(
   console.error(JSON.stringify({
     timestamp: new Date().toISOString(),
     requestId,
-    path: context.path,
+    path: redactLogText(context.path.split(/[?#]/, 1)[0]).slice(0, 200),
     status: context.status,
     code: context.code ?? "INTERNAL_ERROR",
     error: errorDetails(error),
+    ...(storeErrorKind(error) ? { store: storeErrorKind(error) } : {}),
   }));
   return requestId;
 }

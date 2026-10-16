@@ -1,3 +1,4 @@
+import { fetchBoundedResponse, DEFAULT_UPSTREAM_PAGE_BYTES } from "../upstream-response.ts";
 // 지방재정 정기 수집. 이 호스팅은 예약 작업을 돌리지 않으므로 방문 요청 뒤 남는 시간(waitUntil)에 한 단계씩 진행한다.
 // 매일 10시(한국시간) 이후 전날을 기준일로 범위마다 한 번 수집하며, 실패한 범위는 다음 날 다시 시도한다(무한 재시도 없음).
 // 광역별 전국 전체 세출처럼 큰 범위는 정의의 cadenceDays(예: 7)에 맞춘 기준일에만 받고, 매일 받는 범위를 막지 않도록 순서를 나눈다.
@@ -44,13 +45,7 @@ async function readLofinKey(): Promise<string | null> {
 }
 
 async function timedFetch(url: string, timeoutMs = FETCH_TIMEOUT_MS): Promise<FiscalResponse> {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), timeoutMs);
-  try {
-    return await fetch(url, { headers: { accept: "application/json" }, redirect: "manual", signal: controller.signal });
-  } finally {
-    clearTimeout(timer);
-  }
+  return fetchBoundedResponse(url, { timeoutMs, maxBytes: DEFAULT_UPSTREAM_PAGE_BYTES, headers: { accept: "application/json" } });
 }
 
 export async function fiscalWorkerDeps(): Promise<FiscalDeps> {

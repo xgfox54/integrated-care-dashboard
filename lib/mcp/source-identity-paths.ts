@@ -1,0 +1,37 @@
+// Nested region objects keep their existing shape; regions carry no source revision.
+const detailPaths = ["", "source", "sources", "program", "card", "metadata", "metadata.sources",
+  "related_application_sections", "related_application_sections.sources", "metadata.related_application_sections", "metadata.related_application_sections.sources",
+  "official_public_info.gov24.services", "official_public_info.gov24.services.source", "metadata.official_public_info.gov24.services",
+  "metadata.official_public_info.gov24.services.source", "document_facts.source", "metadata.document_facts.source"] as const;
+const fiscalPaths = ["", "items", "items.fiscal_entity", "items.evidence", "items.budget_documents", "items.budget_documents.source",
+  "fiscal_entity", "evidence", "budget_documents", "budget_documents.source"] as const;
+
+export const SOURCE_IDENTITY_PATHS: Readonly<Record<string, readonly string[]>> = {
+  search: ["results"],
+  search_faq: ["results"],
+  get_faq: detailPaths,
+  search_manuals: ["results", "results.sources"],
+  get_manual_section: detailPaths,
+  search_welfare_services: ["items", "items.source"],
+  fetch: [...detailPaths, "metadata.statistics.dataset", "metadata.root", "metadata.lines", "metadata.revision"],
+  find_programs: [""],
+  get_entity: [...detailPaths, "facts", "subcategories", "predecessors", "successors"],
+  get_eligibility: detailPaths,
+  get_welfare_context: [...detailPaths, "fiscal.linked_fiscal_projects", "news.items"],
+  get_program_public_info: ["gov24.services", "gov24.services.source"],
+  get_sources: ["", "document"],
+  get_ontology_schema: [""],
+  search_news: ["", "issued_by"],
+  get_news_metadata: ["", "issued_by"],
+  find_care_institutions: ["items", "institutions"],
+  get_care_institution: [""],
+  find_budget_projects: fiscalPaths,
+  get_budget_execution: fiscalPaths,
+  get_fiscal_catalog: ["", "fiscal_entity", "items"],
+  compare_budget_periods: ["", "left", "right", "items", "items.left", "items.right"],
+  search_budget_lines: ["items", "revisions", "revisions.fiscal_entity"],
+  get_budget_breakdown: ["root", "lines", "revision", "revision.fiscal_entity"],
+  search_statistics: ["items"],
+  get_statistics_data: ["dataset"],
+  get_statistics_sources: ["item", "portal_sites", "datasets"],
+} as const;

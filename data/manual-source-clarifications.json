@@ -1,0 +1,49 @@
+[
+  {
+    "id": "first-voucher-duration-conflict-20261015",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-0d5cde1744ecb603eec8",
+    "parsed_sha256": "a026b56bfb87fb319952be3ae1fc5ace687534bb01aed24db3547630efb1b992",
+    "original_sha256": "35f0a1012554491bb2f84dd18d9d8c172f1934429896d10c634c82ea815b9844",
+    "sections": [
+      {
+        "section_id": "5ea82719033ccc6a0d09",
+        "section_content_sha256": "4e9dcac49fd54c88fc1ba5cbd072c25a7e4c806f2dd1d7aa9a2754dc9d03bf7f"
+      },
+      {
+        "section_id": "010c438f03fd793ea33e",
+        "section_content_sha256": "8b507c1e7f551a3aeabb9c17bb3d6dac04a5e8aa4384ef4c705fd0a2e80a773a"
+      },
+      {
+        "section_id": "6fd750f41af9c0b7c4ac",
+        "section_content_sha256": "aaea589090c183c99ac18b9417b738d23616f54df83ff8286ff7988f53ef0320"
+      }
+    ],
+    "status": "SOURCE_CONFLICT_CLARIFIED",
+    "subject": "첫만남이용권 사용기간",
+    "warning": "원문 내부 기간 상충: 본문은 출생일부터 2년, 통지 서식은 1년으로 기재되어 있습니다. 서식의 1년을 현행 기준으로 답하지 말고, 본문과 공식 안내의 2년 및 현금지급 예외를 함께 확인하세요.",
+    "facts": [
+      "본문 물리10쪽(인쇄6쪽): 사용 종료일은 아동 출생일부터 2년.",
+      "물리93쪽(인쇄89쪽) 통지 서식: 1년 문구가 남아 있음.",
+      "원주시 공식 복지 안내도 2024년 1월 1일 이후 출생아의 출생일부터 2년 이내 사용으로 안내."
+    ],
+    "preferred_section_ids": [
+      "5ea82719033ccc6a0d09",
+      "6fd750f41af9c0b7c4ac",
+      "70e1800da39df8043f59"
+    ],
+    "physical_pages": [
+      10,
+      93
+    ],
+    "checked_at": "2026-10-15",
+    "source_urls": [
+      "https://www.wonju.go.kr/welfare/contents.do?key=4962"
+    ],
+    "source_quotes": [
+      "사용기간 : 출생일로부터 2년 이내 사용"
+    ],
+    "official_snapshot_sha256": "9db97409000e80f0f94c37463ffcc3772fa86e844445ff14a54c4f933bc558d0",
+    "whole_document_verified": false
+  }
+]

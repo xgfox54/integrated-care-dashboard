@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { index, integer, primaryKey, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { check, foreignKey, index, integer, primaryKey, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
 
 export const appSetting = sqliteTable("app_setting", {
   key: text("key").primaryKey(),
@@ -171,3 +171,140 @@ export const apiRateLimit = sqliteTable(
   },
   (table) => [index("api_rate_limit_expires_at_idx").on(table.expiresAt)],
 );
+
+// Deployment-pinned parsed manuals. FTS5 virtual tables and maintenance triggers
+// are declared in 0110_manual_corpus.sql because Drizzle has no FTS5 table model.
+export const manualCorpus = sqliteTable("manual_corpus", {
+  revision: text("revision").primaryKey().notNull(),
+  sourceRepository: text("source_repository").notNull(),
+  sourceCommit: text("source_commit").notNull(),
+  manifestSha256: text("manifest_sha256").notNull(),
+  manifestCreatedAt: integer("manifest_created_at").notNull(),
+  expectedDocuments: integer("expected_documents").notNull(),
+  expectedSections: integer("expected_sections").notNull(),
+  batchCount: integer("batch_count").notNull(),
+  nextBatch: integer("next_batch").notNull().default(0),
+  documentCount: integer("document_count").notNull().default(0),
+  sectionCount: integer("section_count").notNull().default(0),
+  status: text("status").notNull().default("STAGING"),
+  leaseToken: text("lease_token"),
+  leaseExpiresAt: integer("lease_expires_at"),
+  failureCount: integer("failure_count").notNull().default(0),
+  lastError: text("last_error"),
+  retryAfter: integer("retry_after"),
+  createdAt: integer("created_at").notNull(),
+  updatedAt: integer("updated_at").notNull(),
+  activatedAt: integer("activated_at"),
+}, (table) => [
+  check("manual_corpus_documents_positive", sql`${table.expectedDocuments} > 0`),
+  check("manual_corpus_sections_positive", sql`${table.expectedSections} > 0`),
+  check("manual_corpus_batches_positive", sql`${table.batchCount} > 0`),
+  check("manual_corpus_status_valid", sql`${table.status} IN ('STAGING','ACTIVE','SUPERSEDED')`),
+]);
+
+export const manualDocument = sqliteTable("manual_document", {
+  corpusRevision: text("corpus_revision").notNull().references(() => manualCorpus.revision),
+  documentId: text("document_id").notNull(),
+  sourceName: text("source_name").notNull(),
+  sourcePath: text("source_path").notNull(),
+  sha256: text("sha256").notNull(),
+  byteSize: integer("byte_size").notNull(),
+  documentYear: text("document_year"),
+  category: text("category").notNull(),
+  documentType: text("document_type").notNull(),
+  publisher: text("publisher").notNull(),
+  edition: text("edition").notNull(),
+  effectiveFrom: text("effective_from").notNull(),
+  effectiveTo: text("effective_to").notNull(),
+  topic: text("topic").notNull(),
+  authority: text("authority").notNull(),
+  sourceRole: text("source_role").notNull(),
+  jurisdiction: text("jurisdiction").notNull(),
+  sectionCount: integer("section_count").notNull(),
+}, (table) => [
+  primaryKey({ columns: [table.corpusRevision, table.documentId] }),
+  unique().on(table.corpusRevision, table.sourceName),
+]);
+
+export const manualSection = sqliteTable("manual_section", {
+  rowId: integer("row_id").primaryKey(),
+  corpusRevision: text("corpus_revision").notNull(),
+  sectionId: text("section_id").notNull(),
+  documentId: text("document_id").notNull(),
+  ordinal: integer("ordinal").notNull(),
+  nodeId: text("node_id").notNull(),
+  title: text("title").notNull(),
+  headingPath: text("heading_path").notNull(),
+  serviceNames: text("service_names").notNull(),
+  originalName: text("original_name").notNull(),
+  upstreamOriginalName: text("upstream_original_name").notNull(),
+  originalNameBasis: text("original_name_basis").notNull(),
+  originalNameLine: integer("original_name_line"),
+  startLine: integer("start_line").notNull(),
+  endLine: integer("end_line").notNull(),
+  content: text("content").notNull(),
+  contentHash: text("content_hash").notNull(),
+  sourceYear: text("source_year"),
+  sourceYearOrigin: text("source_year_origin").notNull(),
+  originalSearch: text("original_search").notNull(),
+  titleSearch: text("title_search").notNull(),
+  headingSearch: text("heading_search").notNull(),
+  searchText: text("search_text").notNull(),
+}, (table) => [
+  unique().on(table.corpusRevision, table.sectionId),
+  unique().on(table.corpusRevision, table.documentId, table.ordinal),
+  foreignKey({ columns: [table.corpusRevision, table.documentId], foreignColumns: [manualDocument.corpusRevision, manualDocument.documentId] }),
+  index("manual_section_document_idx").on(table.corpusRevision, table.documentId, table.ordinal),
+  check("manual_section_original_name_basis_valid", sql`${table.originalNameBasis} IN ('explicit_original_file_marker','upstream_metadata','mixed_original_files')`),
+]);
+
+export const manualActive = sqliteTable("manual_active", {
+  id: integer("id").primaryKey(),
+  revision: text("revision").references(() => manualCorpus.revision),
+  generation: integer("generation").notNull().default(0),
+  updatedAt: integer("updated_at").notNull(),
+}, (table) => [check("manual_active_singleton", sql`${table.id} = 1`)]);
+
+// Millisecond timestamps; one MOIS scope publishes all three age groups atomically.
+export const statisticsRefreshScope = sqliteTable("statistics_refresh_scope", {
+  scopeId: text("scope_id").primaryKey(),
+  resultJson: text("result_json"),
+  previousJson: text("previous_json"),
+  revision: text("revision"),
+  latestPeriod: text("latest_period"),
+  lastAttemptAt: integer("last_attempt_at"),
+  lastSuccessAt: integer("last_success_at"),
+  nextCheckAt: integer("next_check_at").notNull().default(0),
+  failureCount: integer("failure_count").notNull().default(0),
+  errorCode: text("error_code"),
+  stageJson: text("stage_json"),
+  updatedAt: integer("updated_at").notNull(),
+}, (table) => [check("statistics_refresh_failure_count_nonnegative", sql`${table.failureCount} >= 0`)]);
+
+export const statisticsRefreshWorker = sqliteTable("statistics_refresh_worker", {
+  id: integer("id").primaryKey(),
+  leaseToken: text("lease_token"),
+  leaseExpiresAt: integer("lease_expires_at"),
+  activeScope: text("active_scope"),
+  lastWakeAt: integer("last_wake_at"),
+  hostStateJson: text("host_state_json").notNull().default("{}"),
+}, (table) => [check("statistics_refresh_worker_singleton", sql`${table.id} = 1`)]);
+
+export const officialClassificationRestoration = sqliteTable("official_classification_restoration", {
+  revision: text("revision").notNull(),
+  serviceId: text("service_id").notNull(),
+  field: text("field").notNull(),
+  expectedName: text("expected_name").notNull(),
+  expectedUpdatedDate: text("expected_updated_date").notNull(),
+  beforeValue: text("before_value").notNull(),
+  afterValue: text("after_value").notNull(),
+  sourceLabel: text("source_label").notNull(),
+  sourceUrl: text("source_url").notNull(),
+  physicalPage: integer("physical_page").notNull(),
+  glyphSha256: text("glyph_sha256").notNull(),
+  originalPdfSha256: text("original_pdf_sha256"),
+  verificationMethod: text("verification_method").notNull().default("synap_glyph"),
+}, (table) => [
+  primaryKey({ columns: [table.revision, table.serviceId, table.field] }),
+  check("official_classification_field", sql`${table.field} IN ('type','subcategory')`),
+]);

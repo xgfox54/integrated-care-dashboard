@@ -1,4 +1,6 @@
+import { restoreReviewedClassifications } from "./source-classifications.ts";
 import type { OfficialService } from "./official-source.ts";
+import { verifiedBusinessTypeRestoration } from "./business-type.ts";
 import { restoreVerifiedSourceDistinctions } from "./official-source-restoration.ts";
 import { getVerifiedWikiSupplement } from "./wiki-verified-supplements.ts";
 
@@ -271,8 +273,10 @@ function repositorySubcategory(
   candidates: readonly (readonly [string, number])[],
 ): string {
   if (counts.has(service.subcategory)) return service.subcategory;
+  const unnumbered = service.subcategory.replace(/^\s*\d{1,2}[.)]?\s*/, "");
+  if (unnumbered !== service.subcategory && counts.has(unnumbered)) return unnumbered;
 
-  const valueKey = subcategoryKey(service.subcategory);
+  const valueKey = subcategoryKey(unnumbered);
   if (valueKey.length >= 2) {
     const exact = candidates.find(([value]) => subcategoryKey(value) === valueKey);
     if (exact) return exact[0];
@@ -346,9 +350,9 @@ export function alignToRepositoryTaxonomy(
       (left, right) =>
         subcategoryKey(right[0]).length - subcategoryKey(left[0]).length || right[1] - left[1],
     );
-  return services.map((service) => ({
+  return services.map((service) => restoreReviewedClassifications({
     ...service,
     subcategory: repositorySubcategory(service, subcategoryCounts, subcategoryCandidates),
-    type: repositoryType(service.type, types),
+    type: verifiedBusinessTypeRestoration(service.serviceId)?.type ?? repositoryType(service.type, types),
   }));
 }

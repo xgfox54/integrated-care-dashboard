@@ -28,11 +28,11 @@ interface NodeRect {
 }
 
 const STATUS_META = {
-  done: { label: "완료" },
-  current: { label: "현재" },
-  waiting: { label: "대기" },
-  risk: { label: "위험" },
-  loop: { label: "회귀" },
+  done: { label: "선행" },
+  current: { label: "설명 기준" },
+  waiting: { label: "후속" },
+  risk: { label: "유의" },
+  loop: { label: "재검토" },
 } as const;
 
 const EDGE_COLOR: Record<EdgeKind, string> = {

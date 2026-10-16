@@ -1,0 +1,6359 @@
+{
+ "summary": {
+  "type": {
+   "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW": 78,
+   "CLASSIFICATION_COLUMN_NOT_CONFIRMED": 53,
+   "ROW_OR_LAYOUT_UNCONFIRMED": 19,
+   "PARSER_OR_LAYOUT_DISAGREEMENT": 25,
+   "SOURCE_CELL_EMPTY": 7
+  },
+  "subcategory": {
+   "ROW_OR_LAYOUT_UNCONFIRMED": 6,
+   "CLASSIFICATION_COLUMN_NOT_CONFIRMED": 45,
+   "SOURCE_CELL_EMPTY": 52
+  }
+ },
+ "rows": [
+  {
+   "service_id": "0083:1489622:1:1:6",
+   "name": "방문형 의사 소견서 발급 지원",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     523.998,
+     327.602,
+     566.575,
+     370.515
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "34ba388e59010ca175010f729fc916725d7ce2d7d427e65407d12d80a3681855",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0083:1489621:1:3:5",
+   "name": "노인돌봄공백해소",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "기관자체",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     718.4464285714286,
+     256.23333333333335,
+     792.6829268292682,
+     294.23333333333335
+    ],
+    "text": "기관자체",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "8666fd4b85010d3352499429aa6e00f516016d5ec726b340cc759e487c9cae88",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0083:1489621:1:3:6",
+   "name": "빨래서비스",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "기관자체",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     718.4464285714286,
+     294.23333333333335,
+     792.6829268292682,
+     332.23333333333335
+    ],
+    "text": "기관자체",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "8666fd4b85010d3352499429aa6e00f516016d5ec726b340cc759e487c9cae88",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0085:1489602:1:4:3",
+   "name": "g-housing 리모델링사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     490.056,
+     245.37199999999996,
+     538.271,
+     303.98699999999997
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "e0e923836db1e6e86884af5e9dd00d181791cf40855f7796880e6881fbe5cef7",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0085:1489602:1:4:5",
+   "name": "읍면동 지보체사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     490.056,
+     366.559,
+     538.271,
+     425.055
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "e0e923836db1e6e86884af5e9dd00d181791cf40855f7796880e6881fbe5cef7",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0085:1489602:1:3:8",
+   "name": "이동세탁사업 서비스 제공",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     490.056,
+     508.843,
+     538.271,
+     553.315
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "e0e923836db1e6e86884af5e9dd00d181791cf40855f7796880e6881fbe5cef7",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0085:1489602:1:3:11",
+   "name": "장애인 보조기기 교부",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     490.056,
+     660.1179999999999,
+     538.271,
+     698.596
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "e0e923836db1e6e86884af5e9dd00d181791cf40855f7796880e6881fbe5cef7",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0085:1489602:1:3:13",
+   "name": "장애인 휠체어 등 수리지원",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     490.056,
+     737.074,
+     538.271,
+     779.867
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "e0e923836db1e6e86884af5e9dd00d181791cf40855f7796880e6881fbe5cef7",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0085:1489602:1:3:1",
+   "name": "통합돌봄 일상생활 지원사업(특화)",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     490.056,
+     89.30200000000002,
+     538.271,
+     127.77999999999997
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "e0e923836db1e6e86884af5e9dd00d181791cf40855f7796880e6881fbe5cef7",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0085:1489602:1:4:1",
+   "name": "통합돌봄 주거환경개선사업(특화)",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     490.056,
+     89.30200000000002,
+     538.271,
+     186.87599999999998
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "e0e923836db1e6e86884af5e9dd00d181791cf40855f7796880e6881fbe5cef7",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0085:1489589:1:1:2",
+   "name": "일차의료 방문진료 수가 시범사업",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "노인",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     478.7830000000001,
+     140.12699999999995,
+     538.271,
+     174.889
+    ],
+    "text": "노인",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "a5ba5561090f42a073ecb7daa45b2a2f0da1c4658016e30fdaa637276fe8d463",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0085:1489599:1:1:7",
+   "name": "누구나돌봄(재활돌봄 서비스)",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화사업",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     490.056,
+     686.129,
+     538.271,
+     762.006
+    ],
+    "text": "특화사업",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "70142a5c797b1681c3af5cafa85b2281e20c98f7f6921260acb08a60b8b53f64",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0091:1489707:1:4:5",
+   "name": "긴급돌봄 지원사업",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "32604b09cd9543e14a269fee8bc3f02338d79d1a52e910b272a0efa849b04692",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489707:1:4:4",
+   "name": "노인맞춤돌봄서비스",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "32604b09cd9543e14a269fee8bc3f02338d79d1a52e910b272a0efa849b04692",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489707:1:6:6",
+   "name": "독거노인장애인 응급안전안심서비스",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 6,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "32604b09cd9543e14a269fee8bc3f02338d79d1a52e910b272a0efa849b04692",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0091:1489707:1:1:4",
+   "name": "방문복약상담",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "32604b09cd9543e14a269fee8bc3f02338d79d1a52e910b272a0efa849b04692",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489707:1:3:8",
+   "name": "방문요양",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "32604b09cd9543e14a269fee8bc3f02338d79d1a52e910b272a0efa849b04692",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489707:1:8:4",
+   "name": "의료급여 사례관리",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 8,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "32604b09cd9543e14a269fee8bc3f02338d79d1a52e910b272a0efa849b04692",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489707:1:1:1",
+   "name": "장기요양 재택의료센터 시범사업",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "32604b09cd9543e14a269fee8bc3f02338d79d1a52e910b272a0efa849b04692",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489707:1:8:5",
+   "name": "재가의료급여 사업",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 8,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "32604b09cd9543e14a269fee8bc3f02338d79d1a52e910b272a0efa849b04692",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489707:1:3:6",
+   "name": "정신건강사업",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "32604b09cd9543e14a269fee8bc3f02338d79d1a52e910b272a0efa849b04692",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489707:1:4:1",
+   "name": "주야간보호",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "32604b09cd9543e14a269fee8bc3f02338d79d1a52e910b272a0efa849b04692",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489707:1:3:4",
+   "name": "치매검사비지원",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "32604b09cd9543e14a269fee8bc3f02338d79d1a52e910b272a0efa849b04692",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489707:1:3:2",
+   "name": "치매선별검사",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "32604b09cd9543e14a269fee8bc3f02338d79d1a52e910b272a0efa849b04692",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489707:1:3:3",
+   "name": "치매진단검사",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "32604b09cd9543e14a269fee8bc3f02338d79d1a52e910b272a0efa849b04692",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489707:1:8:6",
+   "name": "통합사례관리사업",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 8,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "32604b09cd9543e14a269fee8bc3f02338d79d1a52e910b272a0efa849b04692",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489707:1:1:2",
+   "name": "퇴원환자 지역사회 연계",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "32604b09cd9543e14a269fee8bc3f02338d79d1a52e910b272a0efa849b04692",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489705:1:3:5",
+   "name": "가사서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     539.53,
+     538.271,
+     755.174
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0091:1489705:1:5:5",
+   "name": "간단집수리",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     434.764,
+     538.271,
+     517.953
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0091:1489705:1:4:5",
+   "name": "긴급돌봄 지원사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 2,
+   "g_matches": 2,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489705:1:5:1",
+   "name": "독거노인장애인 응급안전안심서비스 사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 5,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0091:1489705:1:4:3",
+   "name": "방문목욕·이미용 서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     353.254,
+     538.271,
+     435.963
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0091:1489705:1:1:1",
+   "name": "방문의료지원사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     110.99900000000002,
+     538.271,
+     162.78200000000004
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0091:1489705:1:4:6",
+   "name": "식사지원서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     673.184,
+     538.271,
+     747.982
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0091:1489705:1:5:2",
+   "name": "인공지능 통합돌봄",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 5,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0091:1489705:1:7:4",
+   "name": "장애인 건강주치의 시범사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 7,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     275.818,
+     538.271,
+     337.91
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0091:1489705:1:7:6",
+   "name": "장애인 보조기기 교부사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 7,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     463.053,
+     538.271,
+     550.318
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0091:1489705:1:7:5",
+   "name": "장애인 치과주치의 시범사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 7,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     337.91,
+     538.271,
+     463.053
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0091:1489705:1:7:7",
+   "name": "지역사회중심 재활사업 (CBR) 운영",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 7,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     550.318,
+     538.271,
+     587.357
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0091:1489705:1:2:4",
+   "name": "찾아가는 마을주치의 사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     283.61,
+     538.271,
+     404.198
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0091:1489705:1:1:3",
+   "name": "찾아가는 방문복약 상담",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     227.51099999999997,
+     538.271,
+     292.36
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0091:1489705:1:2:5",
+   "name": "찾아가는 우리동네 건강지킴이 사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     404.198,
+     538.271,
+     536.893
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0091:1489705:1:6:1",
+   "name": "찾아가는 통합돌봄 버스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     89.30200000000002,
+     538.271,
+     214.44500000000005
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0091:1489705:1:5:3",
+   "name": "케어안심주택 「가야이음채」",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     293.55899999999997,
+     538.271,
+     351.575
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0091:1489705:1:5:6",
+   "name": "클린버스(대청소) 사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     517.953,
+     538.271,
+     601.262
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0091:1489705:1:5:4",
+   "name": "퇴원환자 회복지원을 위한 단기거주 ‘중간집’",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     351.575,
+     538.271,
+     434.764
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "cb60f6de823c90eb29d8dc18fa82332cb39577c2fb0e82682c744111dcd42dc8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0091:1489708:1:2:1",
+   "name": "가사지원 서비스",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:3:8",
+   "name": "간단 집수리",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:1:15",
+   "name": "건강백세 운동교실",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:15",
+   "name": "고독사 예방 및 관리사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:12",
+   "name": "긴급돌봄 서비스",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:10",
+   "name": "노인맞춤돌봄서비스",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:1:6",
+   "name": "노인시력 찾아드리기사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:3:10",
+   "name": "대청소",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:13",
+   "name": "독거노인 ․장애인 응급 안전 안심서비스",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:4",
+   "name": "동행지원",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:1:14",
+   "name": "만성질환건강관리사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:3:2",
+   "name": "발달장애인 주간활동서비스 사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:3:3",
+   "name": "발달재활서비스",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:1:9",
+   "name": "방문건강관리사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:2",
+   "name": "방문목욕 서비스",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:1:13",
+   "name": "방문보건 의료비 등 지원사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:1:3",
+   "name": "복약상담",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:3",
+   "name": "식사지원",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:1:4",
+   "name": "암 환자 의료비 지원",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:18",
+   "name": "의료급여 사례관리",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:7",
+   "name": "이동지원 돌봄택시",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:6",
+   "name": "이웃돌봄(돌봄활동가)",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:1:12",
+   "name": "인공관절수술비 등 지원사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:11",
+   "name": "일상돌봄서비스 사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:1:1",
+   "name": "장기요양 재택의료센터",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:16",
+   "name": "장애인 보장구 지원(의료급여)",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:3:4",
+   "name": "장애인보조기기 교부 사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:3:5",
+   "name": "장애인보조기기 및 편의설비 지원",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:3:6",
+   "name": "장애인보조기기 수리비 지원",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:3:7",
+   "name": "장애인생활이동지원센터 운영",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:3:1",
+   "name": "장애인활동지원사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:8",
+   "name": "재가 장기요양서비스",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:19",
+   "name": "재가의료급여 사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:9",
+   "name": "저소득 에너지효율 개선사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:1:7",
+   "name": "정신건강 심리상담 바우처사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:1:11",
+   "name": "지역사회중심재활사업(CBR)",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:5",
+   "name": "찾아가는 경남형 통합돌봄버스",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:1:10",
+   "name": "치매안심센터사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:3:11",
+   "name": "케어안심주택",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:3:9",
+   "name": "클린버스",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:14",
+   "name": "통합사례관리사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:1:2",
+   "name": "퇴원환자 지역사회 연계",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:1:8",
+   "name": "틀니·임플란트지원사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:2:17",
+   "name": "푸드뱅크운영",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489708:1:1:5",
+   "name": "희귀질환자 의료비 지원사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "2d1415f02ee8cdac626ef06cff1f8c7d8aebfa00ad2aa9710e26679ba225d347",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0091:1489702:1:9:5",
+   "name": "가사지원 서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 9,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "지역\n특화",
+    "header": "<u>사업</u>\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0091:1489702:1:5:7",
+   "name": "노인맞춤돌봄서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "전국",
+    "header": "<u>사업</u>\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0091:1489702:1:9:7",
+   "name": "방문목욕 서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 9,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "지역\n특화",
+    "header": "<u>사업</u>\n구분",
+    "inherited": true
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0091:1489702:1:5:3",
+   "name": "방문목욕(차량내 목욕/가정내목욕)",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "전국",
+    "header": "<u>사업</u>\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0091:1489702:1:10:3",
+   "name": "방문복약 상담",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 10,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "지역\n특화",
+    "header": "<u>사업</u>\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0091:1489702:1:10:1",
+   "name": "식사지원 서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 10,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "지역\n특화",
+    "header": "<u>사업</u>\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0091:1489702:1:5:5",
+   "name": "주야간보호",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "전국",
+    "header": "<u>사업</u>\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0091:1489702:1:10:2",
+   "name": "퇴원환자 지역사회 연계",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 10,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "지역\n특화",
+    "header": "<u>사업</u>\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0091:1489702:1:5:8",
+   "name": "해피콜서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "지역\n특화",
+    "header": "<u>사업</u>\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "e7078e48d4aeb1f94050d2bde896fd139a2e6107d48b35301fbc5f9e5c50ad78",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0091:1489703:1:1:3",
+   "name": "한의약 취약계층 방문진료",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "보건소\n자체",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     316.813,
+     538.271,
+     374.231
+    ],
+    "text": "보건소\n자체",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "cb9659008a8c51424f9a7cfc0a9226c8d1fcd4adca886a69a0d335ae1ee3b93b",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0077:1489746:1:5:10",
+   "name": "퇴원환자 연계",
+   "updated_date": "2026-03-23",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": {
+    "bbox": [
+     491.016,
+     434.045,
+     536.1115,
+     500.333
+    ],
+    "text": "지자체\n지자체",
+    "header": "국가/\n지자체",
+    "method": "EXPLICIT_HEADER_AND_CLOSED_NAME_ROW"
+   },
+   "agreed": false,
+   "original_sha256": "945139322e58ecc38f28c00aed52ecf19960cf9935ab26544a90d6778b42cfd5",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0077:1489742:1:5:12",
+   "name": "퇴원환자연계",
+   "updated_date": "2026-03-23",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "국가/\n지자체",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     491.016,
+     545.284,
+     536.1115,
+     581.004
+    ],
+    "text": "",
+    "header": "국가/\n지자체",
+    "method": "EXPLICIT_HEADER_AND_CLOSED_NAME_ROW"
+   },
+   "agreed": false,
+   "original_sha256": "9ae1fb321068f3c2464b2b6f41c2bce066853374c765f7e02ab10d740b68bcc9",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0080:1489580:1:4:12",
+   "name": "방문건강관리",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "연계서비",
+    "header": "구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     50.373,
+     757.212,
+     95.349,
+     785.98
+    ],
+    "text": "연계서비",
+    "clipped": false,
+    "header": "구분"
+   },
+   "agreed": true,
+   "original_sha256": "711ed348e1b2d50c51a4893c8df61e0218f7d2580fbb1d28dcda2d6381913e92",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0080:1489581:1:4:12",
+   "name": "방문건강관리",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "연계서비",
+    "header": "구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     50.373,
+     757.212,
+     95.349,
+     785.98
+    ],
+    "text": "연계서비",
+    "clipped": false,
+    "header": "구분"
+   },
+   "agreed": true,
+   "original_sha256": "a467c1d6ad2468fed302b04255a3205485ed9b779266ae653fe8ab7b94dc3be8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0076:1489553:1:4:8",
+   "name": "재가의료급여사업",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 0,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": {
+    "bbox": [
+     176.44642857142858,
+     387.24,
+     210.44642857142858,
+     429.24
+    ],
+    "text": "연계",
+    "header": "유형"
+   },
+   "agreed": false,
+   "original_sha256": "c30d1e44cb2a7645bb89b546007c5e75ea50aef65c287a74c4627fb7b64b3e68",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0076:1489555:1:5:6",
+   "name": "고령장애인 통합돌봄 체계 구축",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 0,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": {
+    "bbox": [
+     176.41666666666666,
+     254.24,
+     210.41666666666666,
+     299.3243243243243
+    ],
+    "text": "연계",
+    "header": "유형"
+   },
+   "agreed": false,
+   "original_sha256": "95c6cf68ba880e89118644e6a73e903ac983d3a02cb6fcf89f247d43e4cfdef4",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0076:1489555:1:2:3",
+   "name": "일차의료 방문진료 수가 시범사업",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 0,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": {
+    "bbox": [
+     176.44642857142858,
+     175.24,
+     210.44642857142858,
+     217.24
+    ],
+    "text": "연계",
+    "header": "유형"
+   },
+   "agreed": false,
+   "original_sha256": "95c6cf68ba880e89118644e6a73e903ac983d3a02cb6fcf89f247d43e4cfdef4",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0076:1489561:1:3:8",
+   "name": "장애인복지관서비스",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 0,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": {
+    "bbox": [
+     194.45,
+     417.24,
+     232.45,
+     447.24
+    ],
+    "text": "연계",
+    "header": "유형"
+   },
+   "agreed": false,
+   "original_sha256": "aee9584bdeeb6f04f5ff720b6a6a6502f1a4efbad6ca4adf7d7cc7d66913842d",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0075:1489545:1:7:8",
+   "name": "건강생활지원(건강관리실)",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 7,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     747.502
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:7:9",
+   "name": "건강생활지원(물리치료실)",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 7,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     747.502
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:5:12",
+   "name": "경로식당(저소득 어르신무료급식 지원사업)",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     401.321,
+     150.159,
+     762.965
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:7:4",
+   "name": "고독사 예방 및 관리사업",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 7,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     747.502
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:7:1",
+   "name": "구민정보화교육",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 7,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     747.502
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:7:10",
+   "name": "기능회복사업",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 7,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     747.502
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:5:13",
+   "name": "노인맞춤돌봄 서비스",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     401.321,
+     150.159,
+     762.965
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:5:10",
+   "name": "도시락·밑반찬 배달",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     401.321,
+     150.159,
+     762.965
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:6:10",
+   "name": "독거어르신 안전 관리 솔루션 IoT 운영",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     766.561
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:6:1",
+   "name": "돌봄SOS (동행지원)",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     766.561
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:6:2",
+   "name": "돌봄SOS (식사배달)",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     766.561
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:6:3",
+   "name": "돌봄SOS (일시재가)",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     766.561
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:6:8",
+   "name": "발달장애인 주간활동서비스",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     766.561
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:5:11",
+   "name": "서울밥상",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     401.321,
+     150.159,
+     762.965
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:8:1",
+   "name": "수동휄체어",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 8,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     110.99900000000002,
+     150.159,
+     455.142
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:8:3",
+   "name": "여가활동 지원사업",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 8,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     110.99900000000002,
+     150.159,
+     455.142
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:7:5",
+   "name": "우리동네돌봄단",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 7,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     747.502
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:8:5",
+   "name": "이동목욕사업",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 8,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     110.99900000000002,
+     150.159,
+     455.142
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:8:2",
+   "name": "이미용(커트)서비스",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 8,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     110.99900000000002,
+     150.159,
+     455.142
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:5:7",
+   "name": "일상돌봄서비스-병원동행",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     401.321,
+     150.159,
+     762.965
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:5:8",
+   "name": "일상돌봄서비스-심리지원",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     401.321,
+     150.159,
+     762.965
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:5:9",
+   "name": "일상돌봄서비스-재가돌봄+가사(A/C형)",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     401.321,
+     150.159,
+     762.965
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:7:11",
+   "name": "작은 영화관",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 7,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     747.502
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:5:2",
+   "name": "장기요양가족 휴가제",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     90.50099999999998,
+     150.159,
+     401.321
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:8:6",
+   "name": "장애인 상담사례 지원사업",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 8,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     110.99900000000002,
+     150.159,
+     455.142
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:7:6",
+   "name": "장애인 응급안전안심 서비스",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 7,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     747.502
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:6:9",
+   "name": "장애인거주시설 입소신청",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     766.561
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:6:11",
+   "name": "장애인보조기기 급여비 지원",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     766.561
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:5:5",
+   "name": "장애인활동지원 서비스 (6세~65세 미만)",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     90.50099999999998,
+     150.159,
+     401.321
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:5:4",
+   "name": "장애인활동지원 서비스 (방문목욕-가정)",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     90.50099999999998,
+     150.159,
+     401.321
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:5:3",
+   "name": "장애인활동지원 서비스 (방문목욕-차량)",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     90.50099999999998,
+     150.159,
+     401.321
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:5:6",
+   "name": "장애인활동지원 서비스 (보전급여-65세 이상)",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     90.50099999999998,
+     150.159,
+     401.321
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:7:3",
+   "name": "재난취약가구 생활시설 점검 및 정비",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 7,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     747.502
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:5:1",
+   "name": "주야간보호기관 내 단기보호 시범사업",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     90.50099999999998,
+     150.159,
+     401.321
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:7:2",
+   "name": "중랑구 디지털 상담소",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 7,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     747.502
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:8:4",
+   "name": "케어뱅크(주민돌봄봉사 연계)",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 8,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     110.99900000000002,
+     150.159,
+     455.142
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:8:7",
+   "name": "퇴원환자 단기 집중 서비스",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 8,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     110.99900000000002,
+     150.159,
+     455.142
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:7:7",
+   "name": "푸른상담실",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 7,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     747.502
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:6:4",
+   "name": "함께돌봄 일상지원-가사지원",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     766.561
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:6:7",
+   "name": "함께돌봄 일상지원-목욕지원",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     766.561
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:6:6",
+   "name": "함께돌봄 일상지원-식사지원",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     766.561
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:6:5",
+   "name": "함께돌봄 일상지원-이동지원",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     766.561
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:7:12",
+   "name": "희망온돌 취약계층 위기가구지원",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 7,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     747.502
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0075:1489545:1:6:12",
+   "name": "힐링원예교실",
+   "updated_date": "2026-06",
+   "field": "subcategory",
+   "before": "",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     89.30200000000002,
+     150.159,
+     766.561
+    ],
+    "text": "",
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "d467d00e19a8c360844a8f3b7176b8eb2cd4f165a4b4f2fac67d11e2f39b5151",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0081:1489585:1:4:6",
+   "name": "시 택시바우처사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "-",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     500.13100000000003,
+     315.135,
+     538.271,
+     414.267
+    ],
+    "text": "-",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": false,
+   "original_sha256": "6355c2eb7a24c6d7c85ec6d6452c4fea6e2f56b6f207b7e16315bc8093727b67",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0081:1489585:1:5:7",
+   "name": "신격호 롯데 행복드림사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "-",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     500.13100000000003,
+     555.712,
+     538.271,
+     623.917
+    ],
+    "text": "-",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": false,
+   "original_sha256": "6355c2eb7a24c6d7c85ec6d6452c4fea6e2f56b6f207b7e16315bc8093727b67",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0081:1489585:1:6:10",
+   "name": "장애인 정보통신보조기기 보급사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "-",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     500.13100000000003,
+     730.481,
+     538.271,
+     799.525
+    ],
+    "text": "-",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": false,
+   "original_sha256": "6355c2eb7a24c6d7c85ec6d6452c4fea6e2f56b6f207b7e16315bc8093727b67",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0081:1489585:1:4:7",
+   "name": "장애인 콜택시사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "-",
+    "header": "사업\n구분",
+    "inherited": true
+   },
+   "geometry": {
+    "bbox": [
+     500.13100000000003,
+     315.135,
+     538.271,
+     414.267
+    ],
+    "text": "-",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": false,
+   "original_sha256": "6355c2eb7a24c6d7c85ec6d6452c4fea6e2f56b6f207b7e16315bc8093727b67",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0081:1489585:1:2:8",
+   "name": "정신재활시설운영",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "-",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     500.13100000000003,
+     707.706,
+     538.271,
+     788.857
+    ],
+    "text": "-",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": false,
+   "original_sha256": "6355c2eb7a24c6d7c85ec6d6452c4fea6e2f56b6f207b7e16315bc8093727b67",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0078:1489567:1:1:6",
+   "name": "치매검진사업",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "저국",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     504.209,
+     428.411,
+     552.423,
+     473.362
+    ],
+    "text": "저국",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "2f7cc8b7e8b409051b318d6fd7ced469cc6d18ed23ec448cae2664e5dd2e457e",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0078:1489574:1:3:1",
+   "name": "노인장기요양 통합재가서비스",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "c600ec44c1201a7368f75610ec7c88975ef72f212ca354d33b4318143c9849cf",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0078:1489574:1:3:2",
+   "name": "노인장기요양 통합재가서비스",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "c600ec44c1201a7368f75610ec7c88975ef72f212ca354d33b4318143c9849cf",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0078:1489574:1:3:3",
+   "name": "노인장기요양 통합재가서비스",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "c600ec44c1201a7368f75610ec7c88975ef72f212ca354d33b4318143c9849cf",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0078:1489574:1:3:4",
+   "name": "노인장기요양 통합재가서비스",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "c600ec44c1201a7368f75610ec7c88975ef72f212ca354d33b4318143c9849cf",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0078:1489572:1:2:14",
+   "name": "안전과 안부를 잇는 1인가구 지켜 DREAM",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "연수구\n(복지정책과)",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     488.617,
+     512.679,
+     536.831,
+     551.3969999999999
+    ],
+    "text": "연수구\n(복지정책과)",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "abc15fdbfa32f194e7faaead4664650c1001cf82778190dd4a348b907f74b8c8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0078:1489572:1:2:13",
+   "name": "연수SOS꾸러미지원",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "연수구\n(복지정책과)",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     488.617,
+     465.93,
+     536.831,
+     512.679
+    ],
+    "text": "연수구\n(복지정책과)",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "abc15fdbfa32f194e7faaead4664650c1001cf82778190dd4a348b907f74b8c8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0078:1489572:1:1:19",
+   "name": "저소득층 건강검진 지원",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "연수구\n(복지정책과)",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     488.617,
+     716.336,
+     536.831,
+     747.742
+    ],
+    "text": "연수구\n(복지정책과)",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "abc15fdbfa32f194e7faaead4664650c1001cf82778190dd4a348b907f74b8c8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0078:1489572:1:2:19",
+   "name": "저장강박증 의심가구 주거환경 개선",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "연수구\n(복지정책과)",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     488.617,
+     714.538,
+     536.831,
+     757.811
+    ],
+    "text": "연수구\n(복지정책과)",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "abc15fdbfa32f194e7faaead4664650c1001cf82778190dd4a348b907f74b8c8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0078:1489572:1:2:17",
+   "name": "주거환경 개선사업",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 2,
+   "g_matches": 2,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "abc15fdbfa32f194e7faaead4664650c1001cf82778190dd4a348b907f74b8c8",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0078:1489572:1:2:18",
+   "name": "홈케어 메이트 사업",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "연수구\n(복지정책과)",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     488.617,
+     677.379,
+     536.831,
+     714.538
+    ],
+    "text": "연수구\n(복지정책과)",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "abc15fdbfa32f194e7faaead4664650c1001cf82778190dd4a348b907f74b8c8",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0078:1489568:1:2:1",
+   "name": "가사지원 서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     89.30200000000002,
+     538.271,
+     194.78700000000003
+    ],
+    "text": "",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": false,
+   "original_sha256": "81adb132e8276c950e078499aa82ac9b98ecb0ffa10d8cac8dee739b06879c3a",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0078:1489568:1:2:5",
+   "name": "공감돌봄",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     350.856,
+     538.271,
+     415.585
+    ],
+    "text": "",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": false,
+   "original_sha256": "81adb132e8276c950e078499aa82ac9b98ecb0ffa10d8cac8dee739b06879c3a",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0078:1489568:1:2:4",
+   "name": "방문목욕 등 개인위생",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     312.019,
+     538.271,
+     350.856
+    ],
+    "text": "",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": false,
+   "original_sha256": "81adb132e8276c950e078499aa82ac9b98ecb0ffa10d8cac8dee739b06879c3a",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0078:1489568:1:2:2",
+   "name": "식사지원 서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     194.78700000000003,
+     538.271,
+     253.40300000000002
+    ],
+    "text": "",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": false,
+   "original_sha256": "81adb132e8276c950e078499aa82ac9b98ecb0ffa10d8cac8dee739b06879c3a",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0078:1489568:1:5:2",
+   "name": "의료급여 사례관리",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     271.023,
+     538.271,
+     322.807
+    ],
+    "text": "",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": false,
+   "original_sha256": "81adb132e8276c950e078499aa82ac9b98ecb0ffa10d8cac8dee739b06879c3a",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0078:1489568:1:2:3",
+   "name": "이동지원 서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     253.40300000000002,
+     538.271,
+     312.019
+    ],
+    "text": "",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": false,
+   "original_sha256": "81adb132e8276c950e078499aa82ac9b98ecb0ffa10d8cac8dee739b06879c3a",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0078:1489570:1:10:1",
+   "name": "AI 안부확인 돌봄서비스",
+   "updated_date": "2026-03-20",
+   "field": "subcategory",
+   "before": "",
+   "page": 10,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     103.40828000000002,
+     150.159,
+     294.158
+    ],
+    "text": "",
+    "clipped": false,
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "b02050bd1868d34cd52f5420843520bb553e0ce8a5a82a271b7bddb820124dfc",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0078:1489570:1:10:2",
+   "name": "돌봄플러그 지원사업",
+   "updated_date": "2026-03-20",
+   "field": "subcategory",
+   "before": "",
+   "page": 10,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     99.187,
+     103.40828000000002,
+     150.159,
+     294.158
+    ],
+    "text": "",
+    "clipped": false,
+    "header": "중분류"
+   },
+   "agreed": false,
+   "original_sha256": "b02050bd1868d34cd52f5420843520bb553e0ce8a5a82a271b7bddb820124dfc",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0089:1489690:1:4:6",
+   "name": "AI돌봄서비스",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     528.676,
+     399.403,
+     561.538,
+     429.25
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "61a9562d03a0b74c1aa79618fc9e0b951c86f95836aeab548e2b28a30b49145b",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489690:1:3:8",
+   "name": "가사지원 서비스",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     528.676,
+     383.461,
+     561.538,
+     449.269
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "61a9562d03a0b74c1aa79618fc9e0b951c86f95836aeab548e2b28a30b49145b",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489690:1:4:4",
+   "name": "거동불편 어르신 식사배달 지원사업",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     528.676,
+     248.12900000000002,
+     561.538,
+     286.966
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "61a9562d03a0b74c1aa79618fc9e0b951c86f95836aeab548e2b28a30b49145b",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489690:1:3:7",
+   "name": "고령 및 거동불편 노인 목욕지원",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     528.676,
+     344.743,
+     561.538,
+     383.461
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "61a9562d03a0b74c1aa79618fc9e0b951c86f95836aeab548e2b28a30b49145b",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489690:1:3:9",
+   "name": "대청소 서비스",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     528.676,
+     449.269,
+     561.538,
+     496.976
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "61a9562d03a0b74c1aa79618fc9e0b951c86f95836aeab548e2b28a30b49145b",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489690:1:4:1",
+   "name": "독거 어르신 병원동행 서비스",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     528.676,
+     58.13599999999997,
+     561.538,
+     170.57299999999998
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "61a9562d03a0b74c1aa79618fc9e0b951c86f95836aeab548e2b28a30b49145b",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489690:1:1:4",
+   "name": "방문맞춤 운동",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     528.676,
+     253.043,
+     561.538,
+     282.89099999999996
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "61a9562d03a0b74c1aa79618fc9e0b951c86f95836aeab548e2b28a30b49145b",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489690:1:4:2",
+   "name": "영양지원",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     528.676,
+     170.57299999999998,
+     561.538,
+     200.42100000000005
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "61a9562d03a0b74c1aa79618fc9e0b951c86f95836aeab548e2b28a30b49145b",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489690:1:1:12",
+   "name": "의료급여 수급자 다제약물관리",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     528.676,
+     692.0029999999999,
+     561.538,
+     730.721
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "61a9562d03a0b74c1aa79618fc9e0b951c86f95836aeab548e2b28a30b49145b",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489690:1:3:6",
+   "name": "이동목욕 서비스",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     528.676,
+     314.89599999999996,
+     561.538,
+     344.743
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "61a9562d03a0b74c1aa79618fc9e0b951c86f95836aeab548e2b28a30b49145b",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489690:1:4:5",
+   "name": "이미용서비스",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     528.676,
+     286.966,
+     561.538,
+     399.403
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "61a9562d03a0b74c1aa79618fc9e0b951c86f95836aeab548e2b28a30b49145b",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489690:1:4:10",
+   "name": "주거환경 개선",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     528.676,
+     765.722,
+     561.538,
+     811.632
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "61a9562d03a0b74c1aa79618fc9e0b951c86f95836aeab548e2b28a30b49145b",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489690:1:5:3",
+   "name": "케어안심 주택 (중간집)",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     528.676,
+     153.67200000000003,
+     561.538,
+     201.38
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "61a9562d03a0b74c1aa79618fc9e0b951c86f95836aeab548e2b28a30b49145b",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489690:1:1:11",
+   "name": "퇴원환자 지역사회 연계",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 3,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     528.676,
+     608.215,
+     561.538,
+     692.0029999999999
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "61a9562d03a0b74c1aa79618fc9e0b951c86f95836aeab548e2b28a30b49145b",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489690:1:4:3",
+   "name": "홀로사는 남자어르신 밑반찬배달사업",
+   "updated_date": "2026-05",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     528.676,
+     200.42100000000005,
+     561.538,
+     248.12900000000002
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "61a9562d03a0b74c1aa79618fc9e0b951c86f95836aeab548e2b28a30b49145b",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489682:1:3:6",
+   "name": "장애인체력인증센터",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "미운영",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     498.57199999999995,
+     445.912,
+     538.271,
+     461.615
+    ],
+    "text": "미운영",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "10b91261159e31ab1c40bba941fa9955afc5e35899c00557a475849747626485",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489694:1:3:6",
+   "name": "주거환경 개선",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     507.087,
+     351.456,
+     541.029,
+     386.697
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "ed8d020c955f3103beffda01dad196f27e307ee886060a6a7db516856a85b01c",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489688:1:3:4",
+   "name": "노인무료급식",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "전라\n남도",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "8cc36c2666b2d489c9cf2c592a6b1105688a9e3b8f1078d0a431a84ac2d143f3",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0089:1489688:1:4:1",
+   "name": "복지기동대",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "전나\n남도",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "8cc36c2666b2d489c9cf2c592a6b1105688a9e3b8f1078d0a431a84ac2d143f3",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0089:1489695:1:1:9",
+   "name": "건강드림 행복버스",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     511.285,
+     429.25,
+     535.512,
+     460.536
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "e7c5296c2fc96c5c6664052e21b29b2a2b9147732d843fdccae7307c034f6972",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489695:1:1:6",
+   "name": "방문구강 건강관리",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     511.285,
+     314.65599999999995,
+     535.512,
+     355.891
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "e7c5296c2fc96c5c6664052e21b29b2a2b9147732d843fdccae7307c034f6972",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489695:1:1:1",
+   "name": "방문의료지원사업",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     511.285,
+     123.10500000000002,
+     535.512,
+     167.93600000000004
+    ],
+    "text": "특화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "e7c5296c2fc96c5c6664052e21b29b2a2b9147732d843fdccae7307c034f6972",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0089:1489695:1:2:10",
+   "name": "방문이미용 서비스",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "e7c5296c2fc96c5c6664052e21b29b2a2b9147732d843fdccae7307c034f6972",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0089:1489695:1:2:4",
+   "name": "병원안심동행",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특 화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "e7c5296c2fc96c5c6664052e21b29b2a2b9147732d843fdccae7307c034f6972",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0089:1489695:1:2:21",
+   "name": "우리동네 복지기동대",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "e7c5296c2fc96c5c6664052e21b29b2a2b9147732d843fdccae7307c034f6972",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0089:1489695:1:2:9",
+   "name": "장애인 및 노인 무료 세탁서비스",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "e7c5296c2fc96c5c6664052e21b29b2a2b9147732d843fdccae7307c034f6972",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0089:1489695:1:2:24",
+   "name": "장애인 임대주택 운영",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "e7c5296c2fc96c5c6664052e21b29b2a2b9147732d843fdccae7307c034f6972",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0089:1489695:1:2:20",
+   "name": "주거환경개선",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "e7c5296c2fc96c5c6664052e21b29b2a2b9147732d843fdccae7307c034f6972",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0089:1489695:1:2:5",
+   "name": "지역특화 방문목욕",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특 화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "e7c5296c2fc96c5c6664052e21b29b2a2b9147732d843fdccae7307c034f6972",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0089:1489695:1:2:1",
+   "name": "지역특화 식사지원",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "e7c5296c2fc96c5c6664052e21b29b2a2b9147732d843fdccae7307c034f6972",
+   "reason": "PARSER_OR_LAYOUT_DISAGREEMENT"
+  },
+  {
+   "service_id": "0089:1489695:1:1:5",
+   "name": "퇴원환자 지역사회 연계사업",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특 화",
+    "header": "사업\n구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     511.285,
+     279.05499999999995,
+     535.512,
+     314.65599999999995
+    ],
+    "text": "특 화",
+    "clipped": false,
+    "header": "사업\n구분"
+   },
+   "agreed": true,
+   "original_sha256": "e7c5296c2fc96c5c6664052e21b29b2a2b9147732d843fdccae7307c034f6972",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489666:1:4:3",
+   "name": "AI안부전화(케어콜)서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:4:6",
+   "name": "가사간병지원사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:1:12",
+   "name": "가정간호서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:2:6",
+   "name": "건강백세 운동교실",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:2:13",
+   "name": "고령자복지주택입주(주거인프라 연계 돌봄서비스시범사업)",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:2:14",
+   "name": "기초주거급여 지원",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:3:14",
+   "name": "긴급돌봄서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:2:11",
+   "name": "낙상예방 작업치료",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:3:11",
+   "name": "노인맞춤 돌봄서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:3:2",
+   "name": "노인맞춤형주거 관리서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:3:2",
+   "name": "노인맞춤형주거 관리서비스",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 3,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     83.595,
+     101.529,
+     109.141,
+     383.58
+    ],
+    "text": "",
+    "clipped": false,
+    "header": "중분\n류"
+   },
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0088:1489666:1:1:10",
+   "name": "노인의치(틀니)임플란트 지원사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 3,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:2:12",
+   "name": "단기입주형 케어안심주택입주",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:2:10",
+   "name": "대청소 방역서비스",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:3:12",
+   "name": "독거노인장애인응급안전안심서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:4:2",
+   "name": "맞춤형 통합사례관리",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:2:3",
+   "name": "방문건강 관리사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:2:4",
+   "name": "스마트 어르신 건강관리사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:3:1",
+   "name": "에너지효율 개선사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:3:1",
+   "name": "에너지효율 개선사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 3,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     83.595,
+     101.529,
+     109.141,
+     383.58
+    ],
+    "text": "",
+    "clipped": false,
+    "header": "중분\n류"
+   },
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0088:1489666:1:1:11",
+   "name": "요양병원 퇴원환자 지원사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:4:7",
+   "name": "의료급여 장애인 보조기기 지원",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:1:5",
+   "name": "일차의료만성질환관리사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:1:4",
+   "name": "일차의료방문진료 수가시범사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:1:3",
+   "name": "장기요양 재택의료센터",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:2:8",
+   "name": "장기요양 통합재가서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:3:4",
+   "name": "장애인 주택개조 지원사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:3:4",
+   "name": "장애인 주택개조 지원사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 3,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     83.595,
+     101.529,
+     109.141,
+     383.58
+    ],
+    "text": "",
+    "clipped": false,
+    "header": "중분\n류"
+   },
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0088:1489666:1:1:13",
+   "name": "장애인건강주치의",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:4:8",
+   "name": "장애인생활 이동지원센터",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:2:1",
+   "name": "장애인치과주치의",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:4:5",
+   "name": "장애인활동지원",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:3:13",
+   "name": "재가노인 식사배달사업(도시락배달지원)",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:3:15",
+   "name": "재가의료급여사업(의료급여수급자)",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:2:7",
+   "name": "재가장기요양서비스(노인장기요양보험)",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:3:3",
+   "name": "저소득층 그린 리모델링 사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:3:3",
+   "name": "저소득층 그린 리모델링 사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 3,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     83.595,
+     101.529,
+     109.141,
+     383.58
+    ],
+    "text": "",
+    "clipped": false,
+    "header": "중분\n류"
+   },
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0088:1489666:1:3:5",
+   "name": "저소득층 이사비 지원사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:3:5",
+   "name": "저소득층 이사비 지원사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 3,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     83.595,
+     101.529,
+     109.141,
+     383.58
+    ],
+    "text": "",
+    "clipped": false,
+    "header": "중분\n류"
+   },
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0088:1489666:1:1:8",
+   "name": "정신건강사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:2:9",
+   "name": "주거환경 개선 서비스",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 2,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:1:9",
+   "name": "중독관리사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:2:5",
+   "name": "지역사회 중심 재활지원사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:3:6",
+   "name": "취약계층 에너지 사업 및 가스안전 장치 보급사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:3:6",
+   "name": "취약계층 에너지 사업 및 가스안전 장치 보급사업",
+   "updated_date": "2026-03",
+   "field": "subcategory",
+   "before": "",
+   "page": 3,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "",
+    "header": "중분류",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     83.595,
+     101.529,
+     109.141,
+     383.58
+    ],
+    "text": "",
+    "clipped": false,
+    "header": "중분\n류"
+   },
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "SOURCE_CELL_EMPTY"
+  },
+  {
+   "service_id": "0088:1489666:1:1:6",
+   "name": "치매관리사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:1:7",
+   "name": "치매관리주치의 시범사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489666:1:4:4",
+   "name": "특별교통수단 이동지원센터 (장애인 콜택시)",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 2,
+   "g_matches": 1,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "98e29eb1e0ca84f5adcdd5a88477808300cc074e230d9f9c480bc9cd67fa67ff",
+   "reason": "CLASSIFICATION_COLUMN_NOT_CONFIRMED"
+  },
+  {
+   "service_id": "0088:1489670:1:2:13",
+   "name": "이동지원 서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "8259420d4e6cf49f45c8f3005ed019bb566c2e1dfe5442f9af3e4430e170ffa9",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0088:1489675:1:4:6",
+   "name": "자원봉사센터",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "임실군\n자원봉사센터",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     475.904,
+     299.193,
+     538.271,
+     346.061
+    ],
+    "text": "임실군\n자원봉사센터",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "b40a94be99eb3c11dc0c09874bda5089ef3eacc2fad62d91d8f0d404aec3dc65",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489674:1:2:5",
+   "name": "가사지원 서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화사업",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     487.298,
+     269.46500000000003,
+     535.392,
+     324.365
+    ],
+    "text": "특화사업",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "a58011efd4affec79fc359e068b2fe56028c66ae133ce9f55068208ec157efda",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489674:1:3:2",
+   "name": "계남 고령자주택 지원",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화사업",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     487.29800000000006,
+     133.894,
+     535.392,
+     175.48800000000006
+    ],
+    "text": "특화사업",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "a58011efd4affec79fc359e068b2fe56028c66ae133ce9f55068208ec157efda",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489674:1:2:4",
+   "name": "도시락배달 서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화사업",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     487.298,
+     220.43899999999996,
+     535.392,
+     269.46500000000003
+    ],
+    "text": "특화사업",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "a58011efd4affec79fc359e068b2fe56028c66ae133ce9f55068208ec157efda",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489674:1:2:3",
+   "name": "독거노인 공동돌봄",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화사업",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     487.298,
+     171.53200000000004,
+     535.392,
+     220.43899999999996
+    ],
+    "text": "특화사업",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "a58011efd4affec79fc359e068b2fe56028c66ae133ce9f55068208ec157efda",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489674:1:2:2",
+   "name": "병원 동행 서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화사업",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     487.298,
+     122.62599999999998,
+     535.392,
+     171.53200000000004
+    ],
+    "text": "특화사업",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "a58011efd4affec79fc359e068b2fe56028c66ae133ce9f55068208ec157efda",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489674:1:3:4",
+   "name": "조호물품 지원",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화사업",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     487.29800000000006,
+     217.08299999999997,
+     535.392,
+     258.677
+    ],
+    "text": "특화사업",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "a58011efd4affec79fc359e068b2fe56028c66ae133ce9f55068208ec157efda",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489674:1:3:1",
+   "name": "주거환경 개선사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화사업",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     487.29800000000006,
+     73.71900000000005,
+     535.392,
+     133.894
+    ],
+    "text": "특화사업",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "a58011efd4affec79fc359e068b2fe56028c66ae133ce9f55068208ec157efda",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489674:1:2:6",
+   "name": "주민도움센터 지원사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화사업",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     487.298,
+     324.365,
+     535.392,
+     373.272
+    ],
+    "text": "특화사업",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "a58011efd4affec79fc359e068b2fe56028c66ae133ce9f55068208ec157efda",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489674:1:2:1",
+   "name": "퇴원환자 지역사회 연계사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화사업",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     487.298,
+     73.71900000000005,
+     535.392,
+     122.62599999999998
+    ],
+    "text": "특화사업",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "a58011efd4affec79fc359e068b2fe56028c66ae133ce9f55068208ec157efda",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489674:1:2:12",
+   "name": "행복우편 배달 서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "특화사업",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     487.298,
+     620.561,
+     535.392,
+     669.4680000000001
+    ],
+    "text": "특화사업",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "a58011efd4affec79fc359e068b2fe56028c66ae133ce9f55068208ec157efda",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489665:1:5:11",
+   "name": "장애인 이동기기 수리지원",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "기타",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     487.298,
+     616.486,
+     535.392,
+     662.156
+    ],
+    "text": "기타",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "bde803c25fa449fcea5ae00f15b1a8bcedd9732c2a38337780812fa5c885dab3",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489665:1:6:1",
+   "name": "장애인 전용 목욕탕",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "기타",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     487.298,
+     104.88499999999999,
+     535.392,
+     172.731
+    ],
+    "text": "기타",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "bde803c25fa449fcea5ae00f15b1a8bcedd9732c2a38337780812fa5c885dab3",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489665:1:5:12",
+   "name": "장애인 지역사회 자립지원 시범사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "기타",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     487.298,
+     662.156,
+     535.392,
+     710.822
+    ],
+    "text": "기타",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "bde803c25fa449fcea5ae00f15b1a8bcedd9732c2a38337780812fa5c885dab3",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489665:1:5:10",
+   "name": "저소득 거동불편 장애인도시락 배달사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "기타",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     487.298,
+     570.696,
+     535.392,
+     616.486
+    ],
+    "text": "기타",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "bde803c25fa449fcea5ae00f15b1a8bcedd9732c2a38337780812fa5c885dab3",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489665:1:6:2",
+   "name": "전북특별자치도 장애인복지관 운영",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "기타",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     487.298,
+     172.731,
+     535.392,
+     224.87400000000002
+    ],
+    "text": "기타",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "bde803c25fa449fcea5ae00f15b1a8bcedd9732c2a38337780812fa5c885dab3",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489665:1:6:3",
+   "name": "전북특별자치도 장애인종합지원센터",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 6,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "기타",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     487.298,
+     224.87400000000002,
+     535.392,
+     273.42100000000005
+    ],
+    "text": "기타",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "bde803c25fa449fcea5ae00f15b1a8bcedd9732c2a38337780812fa5c885dab3",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0088:1489665:1:5:13",
+   "name": "전주시 장애인 복지관 운영",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "기타",
+    "header": "사업구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     487.298,
+     710.822,
+     535.392,
+     755.893
+    ],
+    "text": "기타",
+    "clipped": false,
+    "header": "사업구분"
+   },
+   "agreed": true,
+   "original_sha256": "bde803c25fa449fcea5ae00f15b1a8bcedd9732c2a38337780812fa5c885dab3",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0087:1489660:1:1:15",
+   "name": "방문영양관리(영양플랫폼 사업)",
+   "updated_date": "2026-03-20",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "a3777f2144c2a5a542425fdba5e4654d8e279c1a57fad6a1685c5b2952e5bf80",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0086:1489639:1:1:4",
+   "name": "AI·IoT 기반 어르신 건강관리사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "da2791b3ae41ce2e51a3ce4b52fbadcafab559d33dad187911b1e07641a6d621",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0086:1489640:1:1:14",
+   "name": "심뇌혈관질환 예방관리사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "7d8e7c41abd9a7fe2cb1ef7e8a7221944497f90d0847b69971b347c71457fa04",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0086:1489643:1:5:12",
+   "name": "시각장애인가정 가스자동화차단기 지원사업",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 5,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "0a62762f54e4dfcdbd92a8088061d10d2860c2c220d55b4500cd87d7dbd70361",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0086:1489643:1:2:14",
+   "name": "자살위험자 응급개입치료비 지원",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 2,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "0a62762f54e4dfcdbd92a8088061d10d2860c2c220d55b4500cd87d7dbd70361",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0086:1489645:1:1:7",
+   "name": "정신건강 관리",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 1,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "공통_연",
+    "header": "구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     50.373,
+     750.739,
+     95.349,
+     786.34
+    ],
+    "text": "공통_연",
+    "clipped": false,
+    "header": "구분"
+   },
+   "agreed": true,
+   "original_sha256": "ccd67252b366ee7af78a9a3a2131ee24c1fef1337aec0d3ef16ff1b1ec39bb35",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0086:1489647:1:4:10",
+   "name": "재가노인지원서비스",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "65f6373e68de6f5a008de1a234f0eea502ca69eead2857171a2e030df1f21085",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0086:1489647:1:3:16",
+   "name": "주야간보호",
+   "updated_date": "2026-03",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 1,
+   "g_matches": 1,
+   "kordoc": {
+    "text": "공통_연",
+    "header": "구분",
+    "inherited": false
+   },
+   "geometry": {
+    "bbox": [
+     50.373,
+     747.982,
+     95.349,
+     783.583
+    ],
+    "text": "공통_연",
+    "clipped": false,
+    "header": "구분"
+   },
+   "agreed": true,
+   "original_sha256": "65f6373e68de6f5a008de1a234f0eea502ca69eead2857171a2e030df1f21085",
+   "reason": "SOURCE_LABEL_REQUIRES_SCOPE_REVIEW"
+  },
+  {
+   "service_id": "0086:1489648:1:4:2",
+   "name": "국가보훈대상자 택시바우처(보훈콜)",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 4,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "6351f84afe767074c3d47b28470e8fd554602dc03414eb278c2def81e84d4042",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  },
+  {
+   "service_id": "0086:1489648:1:3:4",
+   "name": "주야간보호기관 내 단기보호서비스",
+   "updated_date": "2026-04",
+   "field": "type",
+   "before": "미분류",
+   "page": 3,
+   "k_matches": 0,
+   "g_matches": 0,
+   "kordoc": null,
+   "geometry": null,
+   "agreed": false,
+   "original_sha256": "6351f84afe767074c3d47b28470e8fd554602dc03414eb278c2def81e84d4042",
+   "reason": "ROW_OR_LAYOUT_UNCONFIRMED"
+  }
+ ]
+}

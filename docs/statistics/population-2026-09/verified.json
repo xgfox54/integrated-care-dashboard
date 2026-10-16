@@ -1,0 +1,540 @@
+{
+  "period": "2026-09",
+  "referenceDate": "2026-09-30",
+  "checkedAt": "2026-10-10T07:29:02.567133+00:00",
+  "title": "행정안전부 주민등록 지역별 연령층 인구",
+  "unit": "명",
+  "coverage": "거주자·거주불명자·재외국민 포함, 외국인 제외",
+  "geography": "전국 및 16개 시도; 시군구는 이번 원문에서 확보하지 않음",
+  "ageBasis": "만 나이",
+  "ageDefinitionSource": "https://kosis.kr/civilComplaint/qnaDetail.do?boardIdx=22124",
+  "groups": [
+    {
+      "id": "middleAged",
+      "name": "중장년층",
+      "minAge": 40,
+      "maxAge": 64,
+      "derivation": "같은 월·지역·성별 총인구 − (0~9세+10~19세+20~29세+30~39세) −65세 이상. 연령 전체의 정확한 여집합; 분할추정·보간 없음."
+    },
+    {
+      "id": "elderly",
+      "name": "노년층",
+      "minAge": 65,
+      "maxAge": null,
+      "derivation": "원문65세 이상 값 그대로"
+    },
+    {
+      "id": "children",
+      "name": "아동",
+      "minAge": 0,
+      "maxAge": 17,
+      "derivation": "원문 아동(0~17세) 값 그대로"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://jumin.mois.go.kr/ageStatMonth.do",
+      "preservedPath": "docs/statistics/population-2026-09/mois-age-202609.web.txt",
+      "representation": "web retrieval extracted text (not original HTML bytes)",
+      "sha256": "bf70feaaba87993d3303824fd01fee654048136154c37bcda4bcff75d5ddbfc6"
+    },
+    {
+      "url": "https://jumin.mois.go.kr/etcStatChYouth.do",
+      "preservedPath": "docs/statistics/population-2026-09/mois-child-202609.web.txt",
+      "representation": "web retrieval extracted text (not original HTML bytes)",
+      "sha256": "d74b07d4ec3fcd8b307e5b2593e1fb45ea965cc498ace2380a58cb026085f618"
+    },
+    {
+      "url": "https://jumin.mois.go.kr/etcStatOldAge.do",
+      "preservedPath": "docs/statistics/population-2026-09/mois-elderly-202609.web.txt",
+      "representation": "web retrieval extracted text (not original HTML bytes)",
+      "sha256": "2e3a95b97ada45e2b2113d76b1ba4f314971118b2db113e487947e98425bee88"
+    }
+  ],
+  "checks": [
+    "모든 원문 기준월2026-09 일치",
+    "원문3종별 전체·남·여 총인구 모든지역 일치",
+    "연령대11개 합=총인구",
+    "모든연령대·연령층 계=남+여",
+    "각시도 합=전국 (총인구/남녀/연령층)",
+    "중장년여집합 유효범위·아동유효범위 확인"
+  ],
+  "records": [
+    {
+      "regionCode": "0000000000",
+      "region": "전국",
+      "level": "national",
+      "totalPopulation": 51082431,
+      "malePopulation": 25409927,
+      "femalePopulation": 25672504,
+      "middleAged": {
+        "total": 20073399,
+        "male": 10145296,
+        "female": 9928103
+      },
+      "elderly": {
+        "total": 11313616,
+        "male": 5063084,
+        "female": 6250532
+      },
+      "children": {
+        "total": 6514409,
+        "male": 3340148,
+        "female": 3174261
+      },
+      "sourceAgeUnder40": {
+        "total": 19695416,
+        "male": 10201547,
+        "female": 9493869
+      }
+    },
+    {
+      "regionCode": "1100000000",
+      "region": "서울특별시",
+      "level": "sido",
+      "totalPopulation": 9279861,
+      "malePopulation": 4464956,
+      "femalePopulation": 4814905,
+      "middleAged": {
+        "total": 3458206,
+        "male": 1698341,
+        "female": 1759865
+      },
+      "elderly": {
+        "total": 1965896,
+        "male": 869250,
+        "female": 1096646
+      },
+      "children": {
+        "total": 1004676,
+        "male": 515109,
+        "female": 489567
+      },
+      "sourceAgeUnder40": {
+        "total": 3855759,
+        "male": 1897365,
+        "female": 1958394
+      }
+    },
+    {
+      "regionCode": "1200000000",
+      "region": "전남광주통합특별시",
+      "level": "sido",
+      "totalPopulation": 3154398,
+      "malePopulation": 1577522,
+      "femalePopulation": 1576876,
+      "middleAged": {
+        "total": 1229900,
+        "male": 635193,
+        "female": 594707
+      },
+      "elderly": {
+        "total": 792256,
+        "male": 348460,
+        "female": 443796
+      },
+      "children": {
+        "total": 409097,
+        "male": 209359,
+        "female": 199738
+      },
+      "sourceAgeUnder40": {
+        "total": 1132242,
+        "male": 593869,
+        "female": 538373
+      }
+    },
+    {
+      "regionCode": "2600000000",
+      "region": "부산광역시",
+      "level": "sido",
+      "totalPopulation": 3228188,
+      "malePopulation": 1567445,
+      "femalePopulation": 1660743,
+      "middleAged": {
+        "total": 1235433,
+        "male": 610231,
+        "female": 625202
+      },
+      "elderly": {
+        "total": 848138,
+        "male": 370528,
+        "female": 477610
+      },
+      "children": {
+        "total": 375553,
+        "male": 192419,
+        "female": 183134
+      },
+      "sourceAgeUnder40": {
+        "total": 1144617,
+        "male": 586686,
+        "female": 557931
+      }
+    },
+    {
+      "regionCode": "2700000000",
+      "region": "대구광역시",
+      "level": "sido",
+      "totalPopulation": 2345828,
+      "malePopulation": 1147870,
+      "femalePopulation": 1197958,
+      "middleAged": {
+        "total": 931093,
+        "male": 457301,
+        "female": 473792
+      },
+      "elderly": {
+        "total": 541991,
+        "male": 235016,
+        "female": 306975
+      },
+      "children": {
+        "total": 297982,
+        "male": 152835,
+        "female": 145147
+      },
+      "sourceAgeUnder40": {
+        "total": 872744,
+        "male": 455553,
+        "female": 417191
+      }
+    },
+    {
+      "regionCode": "2800000000",
+      "region": "인천광역시",
+      "level": "sido",
+      "totalPopulation": 3068328,
+      "malePopulation": 1531539,
+      "femalePopulation": 1536789,
+      "middleAged": {
+        "total": 1234202,
+        "male": 623412,
+        "female": 610790
+      },
+      "elderly": {
+        "total": 608344,
+        "male": 274884,
+        "female": 333460
+      },
+      "children": {
+        "total": 405640,
+        "male": 207781,
+        "female": 197859
+      },
+      "sourceAgeUnder40": {
+        "total": 1225782,
+        "male": 633243,
+        "female": 592539
+      }
+    },
+    {
+      "regionCode": "3000000000",
+      "region": "대전광역시",
+      "level": "sido",
+      "totalPopulation": 1443122,
+      "malePopulation": 718442,
+      "femalePopulation": 724680,
+      "middleAged": {
+        "total": 552266,
+        "male": 275504,
+        "female": 276762
+      },
+      "elderly": {
+        "total": 288572,
+        "male": 128779,
+        "female": 159793
+      },
+      "children": {
+        "total": 189979,
+        "male": 97800,
+        "female": 92179
+      },
+      "sourceAgeUnder40": {
+        "total": 602284,
+        "male": 314159,
+        "female": 288125
+      }
+    },
+    {
+      "regionCode": "3100000000",
+      "region": "울산광역시",
+      "level": "sido",
+      "totalPopulation": 1086077,
+      "malePopulation": 559903,
+      "femalePopulation": 526174,
+      "middleAged": {
+        "total": 455599,
+        "male": 232671,
+        "female": 222928
+      },
+      "elderly": {
+        "total": 214746,
+        "male": 100557,
+        "female": 114189
+      },
+      "children": {
+        "total": 151870,
+        "male": 78141,
+        "female": 73729
+      },
+      "sourceAgeUnder40": {
+        "total": 415732,
+        "male": 226675,
+        "female": 189057
+      }
+    },
+    {
+      "regionCode": "3600000000",
+      "region": "세종특별자치시",
+      "level": "sido",
+      "totalPopulation": 390585,
+      "malePopulation": 194516,
+      "femalePopulation": 196069,
+      "middleAged": {
+        "total": 156570,
+        "male": 78568,
+        "female": 78002
+      },
+      "elderly": {
+        "total": 50525,
+        "male": 23166,
+        "female": 27359
+      },
+      "children": {
+        "total": 81453,
+        "male": 41482,
+        "female": 39971
+      },
+      "sourceAgeUnder40": {
+        "total": 183490,
+        "male": 92782,
+        "female": 90708
+      }
+    },
+    {
+      "regionCode": "4100000000",
+      "region": "경기도",
+      "level": "sido",
+      "totalPopulation": 13777186,
+      "malePopulation": 6915350,
+      "femalePopulation": 6861836,
+      "middleAged": {
+        "total": 5560084,
+        "male": 2813622,
+        "female": 2746462
+      },
+      "elderly": {
+        "total": 2567613,
+        "male": 1170706,
+        "female": 1396907
+      },
+      "children": {
+        "total": 1919587,
+        "male": 981243,
+        "female": 938344
+      },
+      "sourceAgeUnder40": {
+        "total": 5649489,
+        "male": 2931022,
+        "female": 2718467
+      }
+    },
+    {
+      "regionCode": "5100000000",
+      "region": "강원특별자치도",
+      "level": "sido",
+      "totalPopulation": 1506701,
+      "malePopulation": 758046,
+      "femalePopulation": 748655,
+      "middleAged": {
+        "total": 578762,
+        "male": 296202,
+        "female": 282560
+      },
+      "elderly": {
+        "total": 421647,
+        "male": 190796,
+        "female": 230851
+      },
+      "children": {
+        "total": 175961,
+        "male": 90255,
+        "female": 85706
+      },
+      "sourceAgeUnder40": {
+        "total": 506292,
+        "male": 271048,
+        "female": 235244
+      }
+    },
+    {
+      "regionCode": "4300000000",
+      "region": "충청북도",
+      "level": "sido",
+      "totalPopulation": 1601942,
+      "malePopulation": 817036,
+      "femalePopulation": 784906,
+      "middleAged": {
+        "total": 622847,
+        "male": 322014,
+        "female": 300833
+      },
+      "elderly": {
+        "total": 386397,
+        "male": 175993,
+        "female": 210404
+      },
+      "children": {
+        "total": 203518,
+        "male": 104481,
+        "female": 99037
+      },
+      "sourceAgeUnder40": {
+        "total": 592698,
+        "male": 319029,
+        "female": 273669
+      }
+    },
+    {
+      "regionCode": "4400000000",
+      "region": "충청남도",
+      "level": "sido",
+      "totalPopulation": 2139558,
+      "malePopulation": 1099177,
+      "femalePopulation": 1040381,
+      "middleAged": {
+        "total": 833166,
+        "male": 441786,
+        "female": 391380
+      },
+      "elderly": {
+        "total": 522398,
+        "male": 236989,
+        "female": 285409
+      },
+      "children": {
+        "total": 282845,
+        "male": 145410,
+        "female": 137435
+      },
+      "sourceAgeUnder40": {
+        "total": 783994,
+        "male": 420402,
+        "female": 363592
+      }
+    },
+    {
+      "regionCode": "5200000000",
+      "region": "전북특별자치도",
+      "level": "sido",
+      "totalPopulation": 1716229,
+      "malePopulation": 855441,
+      "femalePopulation": 860788,
+      "middleAged": {
+        "total": 661037,
+        "male": 340253,
+        "female": 320784
+      },
+      "elderly": {
+        "total": 474184,
+        "male": 209288,
+        "female": 264896
+      },
+      "children": {
+        "total": 207580,
+        "male": 106559,
+        "female": 101021
+      },
+      "sourceAgeUnder40": {
+        "total": 581008,
+        "male": 305900,
+        "female": 275108
+      }
+    },
+    {
+      "regionCode": "4700000000",
+      "region": "경상북도",
+      "level": "sido",
+      "totalPopulation": 2491506,
+      "malePopulation": 1262247,
+      "femalePopulation": 1229259,
+      "middleAged": {
+        "total": 979758,
+        "male": 508957,
+        "female": 470801
+      },
+      "elderly": {
+        "total": 713916,
+        "male": 318789,
+        "female": 395127
+      },
+      "children": {
+        "total": 291559,
+        "male": 151021,
+        "female": 140538
+      },
+      "sourceAgeUnder40": {
+        "total": 797832,
+        "male": 434501,
+        "female": 363331
+      }
+    },
+    {
+      "regionCode": "4800000000",
+      "region": "경상남도",
+      "level": "sido",
+      "totalPopulation": 3190549,
+      "malePopulation": 1609503,
+      "femalePopulation": 1581046,
+      "middleAged": {
+        "total": 1312701,
+        "male": 672408,
+        "female": 640293
+      },
+      "elderly": {
+        "total": 778644,
+        "male": 348319,
+        "female": 430325
+      },
+      "children": {
+        "total": 418372,
+        "male": 215664,
+        "female": 202708
+      },
+      "sourceAgeUnder40": {
+        "total": 1099204,
+        "male": 588776,
+        "female": 510428
+      }
+    },
+    {
+      "regionCode": "5000000000",
+      "region": "제주특별자치도",
+      "level": "sido",
+      "totalPopulation": 662373,
+      "malePopulation": 330934,
+      "femalePopulation": 331439,
+      "middleAged": {
+        "total": 271775,
+        "male": 138833,
+        "female": 132942
+      },
+      "elderly": {
+        "total": 138349,
+        "male": 61564,
+        "female": 76785
+      },
+      "children": {
+        "total": 98737,
+        "male": 50589,
+        "female": 48148
+      },
+      "sourceAgeUnder40": {
+        "total": 252249,
+        "male": 130537,
+        "female": 121712
+      }
+    }
+  ]
+}

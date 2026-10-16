@@ -1,4 +1,5 @@
 import { getD1 } from "./d1";
+import { JEJU_ADMIN_CITIES, JEJU_PROVINCE, adminCitySigunguValues } from "./admin-city.ts";
 import { PUBLIC_KNOWLEDGE_RUN_SQL } from "./platform/public-pin";
 import {
   type FilterState,
@@ -126,19 +127,16 @@ async function loadLatestRun(): Promise<LatestRun | null> {
   return run ?? null;
 }
 
-let latestRunMemo: { readonly promise: Promise<LatestRun | null>; readonly expiresAt: number } | null = null;
+// 진행 중인 Promise를 요청 사이에 공유하면 Workers에서 먼저 시작한 요청이 끝날 때 뒤 요청이 멈출 수 있다
+// (배포 직후 /api/dataset/search 'code had hung' 취소 사례). 끝난 결과값만 기억한다.
+let latestRunMemo: { readonly value: LatestRun | null; readonly expiresAt: number } | null = null;
 
 /** 웹이 공개하는 수집 실행(활성 통합 공개본의 실행, 공개본이 없으면 가장 최근 성공 실행). 30초 동안 기억해 두고, fresh면 새로 읽는다(수집 직후 미리 계산용). */
-export function readLatestRun(fresh = false): Promise<LatestRun | null> {
-  const now = Date.now();
-  if (!fresh && latestRunMemo && now < latestRunMemo.expiresAt) return latestRunMemo.promise;
-  const promise = loadLatestRun();
-  const memo = { promise, expiresAt: now + LATEST_RUN_TTL_MS };
-  latestRunMemo = memo;
-  promise.catch(() => {
-    if (latestRunMemo === memo) latestRunMemo = null;
-  });
-  return promise;
+export async function readLatestRun(fresh = false): Promise<LatestRun | null> {
+  if (!fresh && latestRunMemo && Date.now() < latestRunMemo.expiresAt) return latestRunMemo.value;
+  const value = await loadLatestRun();
+  latestRunMemo = { value, expiresAt: Date.now() + LATEST_RUN_TTL_MS };
+  return value;
 }
 
 const latestRun = () => readLatestRun();
@@ -163,15 +161,19 @@ function addSidoFilter(parts: string[], values: unknown[], sido: string): void {
   }
 }
 
+function addSigunguFilter(parts: string[], values: unknown[], filters: FilterState): void {
+  if (!filters.sigungu) return;
+  const accepted = adminCitySigunguValues(filters.sido, filters.sigungu);
+  parts.push(accepted.length > 1 ? "sigungu IN (" + accepted.map(() => "?").join(", ") + ")" : "sigungu = ?");
+  values.push(...accepted);
+}
+
 function searchWhere(filters: FilterState, includeRegion = true): SearchWhere {
   const parts = ["sync_run_id = ?"];
   const values: unknown[] = [];
   if (includeRegion) {
     addSidoFilter(parts, values, filters.sido);
-    if (filters.sigungu) {
-      parts.push("sigungu = ?");
-      values.push(filters.sigungu);
-    }
+    addSigunguFilter(parts, values, filters);
   }
   if (filters.category) {
     parts.push("category = ?");
@@ -324,10 +326,7 @@ function regionOnlyWhere(filters: FilterState): SearchWhere {
   const parts = ["sync_run_id = ?"];
   const values: unknown[] = [];
   addSidoFilter(parts, values, filters.sido);
-  if (filters.sigungu) {
-    parts.push("sigungu = ?");
-    values.push(filters.sigungu);
-  }
+  addSigunguFilter(parts, values, filters);
   return { sql: parts.join(" AND "), values };
 }
 
@@ -455,6 +454,9 @@ export async function readOfficialDatasetSummary(): Promise<{
   const sigunguBySido: Record<string, string[]> = {};
   for (const row of municipalities) {
     (sigunguBySido[row.sido] ??= []).push(row.sigungu);
+  }
+  if (sigunguBySido[JEJU_PROVINCE]) {
+    sigunguBySido[JEJU_PROVINCE] = [...new Set([...sigunguBySido[JEJU_PROVINCE], ...JEJU_ADMIN_CITIES])];
   }
   const categoryCounts = rowsToRecord(categories);
   return {

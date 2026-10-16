@@ -3,6 +3,8 @@
 import { sha256Hex } from "../press/normalize.ts";
 import type { SqlDatabase } from "../sql-database.ts";
 import { DOCUMENT_PREDICATES, type DocumentPredicate } from "./pack.ts";
+import { canonicalMunicipalitySql } from "../mcp/regions.ts";
+import { compactSearchSql, compactSearchText } from "../mcp/search-text.ts";
 
 export interface DocFactRow {
   readonly import_id: string;
@@ -137,14 +139,27 @@ export async function documentEvidence(db: SqlDatabase, facts: readonly DocFactR
 }
 
 /** 문서가 정의한 사업(docprog:) 검색. 낱말은 모두 포함(AND). */
-export async function searchDocumentPrograms(db: SqlDatabase, words: readonly string[], pin: DocPin, limit = 5): Promise<{ subject_id: string; subject_label: string; subject_sido: string; subject_sigungu: string }[]> {
+export async function searchDocumentPrograms(db: SqlDatabase, words: readonly string[], pin: DocPin, limit = 5, scope?: { sido: string; sigungu: string; includeAncestorScope: boolean }): Promise<{ subject_id: string; subject_label: string; subject_sido: string; subject_sigungu: string }[]> {
   const { clause, binds } = visible(pin, null);
-  const like = words.map(() => "(s.subject_label || ' ' || s.subject_sido || ' ' || s.subject_sigungu || ' ' || s.value_text) LIKE ? ESCAPE '\\'");
-  const escaped = words.map((word) => "%" + word.replace(/[\\%_]/g, (char) => "\\" + char) + "%");
+  const content = "(s.subject_label || ' ' || s.subject_sido || ' ' || s.subject_sigungu || ' ' || s.value_text)";
+  const like = words.map(() => "(" + content + " LIKE ? ESCAPE '\\' OR instr(" + compactSearchSql(content) + ", ?) > 0)");
+  const escaped = words.flatMap((word) => ["%" + word.replace(/[\\%_]/g, (char) => "\\" + char) + "%", compactSearchText(word)]);
+  const regionBinds: string[] = [];
+  let regionClause = "";
+  if (scope?.sido) {
+    const sido = "CASE WHEN s.subject_sido IN ('광주광역시','전라남도') THEN '전남광주통합특별시' ELSE s.subject_sido END";
+    const municipality = canonicalMunicipalitySql(sido, "s.subject_sigungu");
+    const own = "(" + sido + " = ?" + (scope.sigungu ? " AND (" + municipality + " = ?" + (scope.includeAncestorScope ? " OR " + municipality + " = ''" : "") + ")" : "") + ")";
+    regionBinds.push(scope.sido, ...(scope.sigungu ? [scope.sigungu] : []));
+    regionClause = " AND (" + own + (scope.includeAncestorScope ? " OR s.subject_sido IN ('','전국')" : "") + ")";
+  }
+  const name = compactSearchSql("MIN(s.subject_label)");
+  const query = compactSearchText(words.join(""));
+  const order = query ? "CASE WHEN " + name + " = ? THEN 0 WHEN instr(" + name + ", ?) > 0 THEN 1 ELSE 2 END, " : "";
   return (await db.prepare(
     "SELECT s.subject_id, MIN(s.subject_label) AS subject_label, MIN(s.subject_sido) AS subject_sido, MIN(s.subject_sigungu) AS subject_sigungu " + FACT_FROM +
-      " WHERE s.subject_id LIKE 'docprog:%' AND " + clause + " AND " + NOT_BLOCKED + (like.length ? " AND " + like.join(" AND ") : "") + " GROUP BY s.subject_id ORDER BY subject_label LIMIT ?",
-  ).bind(...binds, ...escaped, limit).all<{ subject_id: string; subject_label: string; subject_sido: string; subject_sigungu: string }>()).results;
+      " WHERE s.subject_id LIKE 'docprog:%' AND " + clause + " AND " + NOT_BLOCKED + (like.length ? " AND " + like.join(" AND ") : "") + regionClause + " GROUP BY s.subject_id ORDER BY " + order + "subject_label LIMIT ?",
+  ).bind(...binds, ...escaped, ...regionBinds, ...(query ? [query, query] : []), limit).all<{ subject_id: string; subject_label: string; subject_sido: string; subject_sigungu: string }>()).results;
 }
 
 export async function documentSourceRows(db: SqlDatabase, sourceId: string, pin: DocPin, runId: string | null): Promise<DocFactRow[]> {

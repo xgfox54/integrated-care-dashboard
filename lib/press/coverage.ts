@@ -2,7 +2,7 @@ import type { SqlDatabase } from "../sql-database.ts";
 import { duplicateRepresentativeSql, PRESS_FROM_JOINS, PUBLIC_PRESS_CLAUSES } from "./query.ts";
 import { publicNewsClause } from "../platform/public-pin.ts";
 import { MAX_SCHEDULE_GAP_HOURS, PRESS_COLLECTION_HOURS_KST, PRESS_SCHEDULE_LABEL, previousCollectionSlot } from "./schedule.ts";
-import { readRelayPcs } from "./relay.ts";
+import { readRelayPcs, readRelayHeartbeats } from "./relay.ts";
 import { COLLECTION_TARGET } from "./operations.ts";
 import { readSchedulerSignal } from "./tick.ts";
 
@@ -38,6 +38,12 @@ interface SourceStatusRow {
   readonly safe_error: string | null;
   readonly collection_hold: string | null;
   readonly hold_until: number | null;
+  readonly lease_token: string | null;
+  readonly lease_expires_at: number | null;
+  readonly run_status: string | null;
+  readonly run_started_at: number | null;
+  readonly run_http_status: number | null;
+  readonly run_error_code: string | null;
 }
 
 /**
@@ -80,8 +86,8 @@ export async function readPressCoverage(db: SqlDatabase, nowSeconds: number) {
     db.prepare(
       "SELECT s.source_id, s.organization_id, o.name AS organization_name, o.org_type, s.method, s.interval_minutes, s.verification_status, s.approval_status, s.technical_status, s.enabled, " +
         "c.last_success_at, c.latest_item_date, s.registry_version, c.window_items, c.window_oldest, c.window_newest, c.window_measured_at, " +
-        "s.collect_via, c.last_attempt_at, c.next_due_at, c.safe_error, c.collection_hold, c.hold_until FROM press_source s JOIN press_organization o ON o.organization_id = s.organization_id " +
-        "LEFT JOIN press_crawl_state c ON c.source_id = s.source_id ORDER BY s.source_id",
+        "s.collect_via, c.last_attempt_at, c.next_due_at, c.safe_error, c.collection_hold, c.hold_until, c.lease_token, c.lease_expires_at, r.status AS run_status, r.started_at AS run_started_at, r.http_status AS run_http_status, r.error_code AS run_error_code FROM press_source s JOIN press_organization o ON o.organization_id = s.organization_id " +
+        "LEFT JOIN press_crawl_state c ON c.source_id = s.source_id LEFT JOIN press_collection_run r ON r.rowid = (SELECT rowid FROM press_collection_run WHERE source_id = s.source_id ORDER BY started_at DESC, rowid DESC LIMIT 1) ORDER BY s.source_id",
     ).all<SourceStatusRow>(),
     db.prepare(
       "SELECT COUNT(*) AS total, SUM(CASE WHEN status IN ('succeeded', 'not_modified') THEN 1 ELSE 0 END) AS succeeded, SUM(CASE WHEN coverage_note = 'GAP_POSSIBLE' THEN 1 ELSE 0 END) AS gaps, SUM(CASE WHEN coverage_note = 'GAP_RECOVERED' THEN 1 ELSE 0 END) AS recovered FROM press_collection_run WHERE started_at >= ?",
@@ -102,16 +108,22 @@ export async function readPressCoverage(db: SqlDatabase, nowSeconds: number) {
   const verified = new Set(rows.filter((row) => row.verification_status === "ENDPOINT_VERIFIED").map((row) => row.organization_id));
   const active = rows.filter((row) => row.approval_status === "POLICY_APPROVED" && row.enabled === 1);
   const normal = new Set(active.filter((row) => row.technical_status === "NORMAL" && (row.last_success_at ?? 0) >= since).map((row) => row.organization_id));
-  const [signal, pcs] = await Promise.all([readSchedulerSignal(db), readRelayPcs(db)]);
+  const [signal, pcs, heartbeats] = await Promise.all([readSchedulerSignal(db), readRelayPcs(db), readRelayHeartbeats(db)]);
   const slotAt = previousCollectionSlot(nowSeconds);
   const held = (row: SourceStatusRow) => Boolean(row.collection_hold) && !(row.hold_until !== null && row.hold_until <= nowSeconds);
   // 회차별 현황(작업지시서 11-F): 24시간 안에 한 번 성공했다고 네 회차를 모두 정상으로 보지 않는다.
   const slotStatus = (via: string) => {
     const group = active.filter((row) => (row.collect_via ?? "server") === via);
-    const succeeded = group.filter((row) => (row.last_success_at ?? 0) >= slotAt).length;
-    const failed = group.filter((row) => (row.last_success_at ?? 0) < slotAt && (row.last_attempt_at ?? 0) >= slotAt && !held(row)).length;
-    const onHold = group.filter((row) => (row.last_success_at ?? 0) < slotAt && held(row)).length;
-    return { sources: group.length, succeeded, failed, held: onHold, not_run: group.length - succeeded - failed - onHold };
+    const counts = { sources: group.length, succeeded: 0, failed: 0, held: 0, running: 0, not_run: 0 };
+    for (const row of group) {
+      if (row.lease_token && (row.lease_expires_at ?? 0) > nowSeconds) counts.running++;
+      else if (held(row)) counts.held++;
+      else if ((row.run_started_at ?? 0) >= slotAt && ["succeeded", "not_modified"].includes(row.run_status ?? "")) counts.succeeded++;
+      else if ((row.run_started_at ?? 0) >= slotAt && row.run_status === "failed") counts.failed++;
+      else if (row.lease_token && (row.lease_expires_at ?? 0) <= nowSeconds && (row.last_attempt_at ?? 0) >= slotAt) counts.failed++;
+      else counts.not_run++;
+    }
+    return { ...counts, completion: counts.running || counts.not_run ? "IN_PROGRESS" : counts.failed || counts.held ? "ERRORS_REMAIN" : "ALL_SUCCEEDED", basis: "현재 활성 대상과 최근 실제 시도 기준. 과거 회차의 고정 대상 원장은 아직 없습니다." };
   };
   const dueServer = active.filter((row) => (row.collect_via ?? "server") === "server" && (row.next_due_at ?? 0) <= nowSeconds && !held(row));
   const dueRelay = active.filter((row) => row.collect_via === "relay" && (row.next_due_at ?? 0) <= nowSeconds && !held(row));
@@ -121,7 +133,8 @@ export async function readPressCoverage(db: SqlDatabase, nowSeconds: number) {
   for (const row of active) byOrg.set(row.organization_id, [...(byOrg.get(row.organization_id) ?? []), row]);
   const success24h = [...byOrg.entries()].filter(([, group]) => group.some((row) => (row.last_success_at ?? 0) >= since)).map(([id]) => id);
   const currentNormal = [...byOrg.entries()].filter(([, group]) => group.every((row) => row.technical_status === "NORMAL" && !held(row) && (row.last_success_at ?? 0) >= since)).map(([id]) => id);
-  const lastPcSeen = pcs.reduce<number | null>((latest, pc) => (pc.lastSeenAt && (!latest || pc.lastSeenAt > latest) ? pc.lastSeenAt : latest), null);
+  const pcSignals = [...new Map([...pcs.map((pc) => ({ name: pc.name, lastSeenAt: pc.lastSeenAt })), ...heartbeats].map((pc) => [pc.name, pc])).values()];
+  const lastPcSeen = pcSignals.reduce<number | null>((latest, pc) => (pc.lastSeenAt && (!latest || pc.lastSeenAt > latest) ? pc.lastSeenAt : latest), null);
   const scheduler = {
     mode: "pc_scheduler_with_request_fallback",
     measured_at: isoOf(nowSeconds),
@@ -131,7 +144,7 @@ export async function readPressCoverage(db: SqlDatabase, nowSeconds: number) {
     last_work_at: signal?.lastWorkAt ? isoOf(signal.lastWorkAt) : "",
     stale: !signal || nowSeconds - signal.lastTickAt > SCHEDULER_STALE_SECONDS,
     stale_after_minutes: SCHEDULER_STALE_SECONDS / 60,
-    relay_pcs: pcs.map((pc) => ({ name: pc.name, last_seen_at: isoOf(pc.lastSeenAt) })),
+    relay_pcs: pcSignals.map((pc) => ({ name: pc.name, last_seen_at: isoOf(pc.lastSeenAt) })),
     relay_pc_last_seen_at: isoOf(lastPcSeen),
     server_due_backlog: dueServer.length,
     server_oldest_due_at: isoOf(oldest(dueServer)),
@@ -176,6 +189,10 @@ export async function readPressCoverage(db: SqlDatabase, nowSeconds: number) {
       source_id: row.source_id, organization_id: row.organization_id, organization_name: row.organization_name, organization_type: row.org_type,
       method: row.method, verification_status: row.verification_status,
       approval_status: row.approval_status, technical_status: row.technical_status, enabled: row.enabled === 1,
+      collect_via: row.collect_via ?? "server", last_attempt_at: isoOf(row.last_attempt_at),
+      error_code: row.run_error_code || row.safe_error || "", http_status: row.run_http_status ?? null,
+      next_retry_at: row.safe_error ? isoOf(row.next_due_at) : "", hold: row.collection_hold ?? "", held_until: isoOf(row.hold_until),
+      running: Boolean(row.lease_token) && (row.lease_expires_at ?? 0) > nowSeconds,
       last_success_at: isoOf(row.last_success_at), latest_item_date: row.latest_item_date ?? "",
       retention_window: { oldest_date: row.window_oldest || null, newest_date: row.window_newest || null, measured_at: isoOf(row.window_measured_at), ...assessRetention(row.window_items ?? 0, row.window_oldest ?? "", row.window_newest ?? "") },
     })),

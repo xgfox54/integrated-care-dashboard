@@ -1,3 +1,4 @@
+import { fetchBoundedResponse, DEFAULT_UPSTREAM_PAGE_BYTES } from "../upstream-response.ts";
 // 외부 연계 정기 수집. 이 호스팅은 예약 작업(cron)을 돌리지 않으므로 방문 요청 뒤 남는 시간(waitUntil)에 한 단계씩 잇는다.
 // 방문이 없으면 수집도 멈춘다(상시 자동수집이 아님). 정시 실행이 필요하면 Sites 예약 기능을 운영자 동의 뒤 붙인다.
 import { getD1 } from "../d1";
@@ -8,26 +9,23 @@ import { readIntegrationKey } from "./keys";
 import { mapKosisRegions } from "./kosis";
 import { advanceGov24Matching } from "./matching";
 import { advanceRun, DATASET_SPECS, type IntegrationDeps, startRun } from "./runner";
-import { CARE_DATASET_KEYS, CARE_RESOURCES_PUBLIC } from "./care-hold.ts";
+import { CARE_DATASET_KEYS, CARE_RESOURCES_COLLECTED } from "./care-hold.ts";
 
 const CHECK_INTERVAL_MS = 30_000;
 const FETCH_TIMEOUT_MS = 15_000;
 /** 법정동코드 API의 시·도 코드(행정표준코드관리시스템 2026-10-05 선택 목록). 폐지된 29·46도 원천이 0건을 주는지 확인하려고 넣는다. */
 export const LTC_SIDO_CODES = ["11", "12", "26", "27", "28", "29", "30", "31", "36", "41", "43", "44", "46", "47", "48", "50", "51", "52"] as const;
-// 돌봄자원(장기요양·KOSIS)은 보류 동안 배경 수집에서 뺀다(lib/integrations/care-hold.ts).
-const ORDER: readonly DatasetKey[] = (["mois.legal_dong", "nhis.ltc_search", "mois.gov24_list", "kosis.stats", "nhis.ltc_detail", "mois.gov24_detail"] as DatasetKey[]).filter((key) => CARE_RESOURCES_PUBLIC || !CARE_DATASET_KEYS.has(key));
+// 돌봄자원(장기요양·KOSIS)은 CARE_RESOURCES_COLLECTED가 꺼져 있으면 배경 수집에서 뺀다(lib/integrations/care-hold.ts).
+const ORDER: readonly DatasetKey[] = (["mois.legal_dong", "nhis.ltc_search", "mois.gov24_list", "kosis.stats", "nhis.ltc_detail", "mois.gov24_detail"] as DatasetKey[]).filter((key) => CARE_RESOURCES_COLLECTED || !CARE_DATASET_KEYS.has(key));
 let lastCheckAt = 0;
 let active = false;
 const owner = "w-" + Math.random().toString(36).slice(2, 10);
 
 async function timedFetch(url: string) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
-  try {
-    return await fetch(url, { headers: { accept: "application/json, application/xml;q=0.9, */*;q=0.5", "user-agent": "integrated-care-dashboard/1.0 (+https://integrated-care-national-dashboard.xgfox54.chatgpt.site/sources)" }, redirect: "manual", signal: controller.signal });
-  } finally {
-    clearTimeout(timer);
-  }
+  return fetchBoundedResponse(url, {
+    timeoutMs: FETCH_TIMEOUT_MS, maxBytes: DEFAULT_UPSTREAM_PAGE_BYTES,
+    headers: { accept: "application/json, application/xml;q=0.9, */*;q=0.5", "user-agent": "integrated-care-dashboard/1.0 (+https://integrated-care-national-dashboard.xgfox54.chatgpt.site/sources)" },
+  });
 }
 
 export function integrationWorkerDeps(): IntegrationDeps {

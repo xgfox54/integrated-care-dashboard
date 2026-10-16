@@ -1,133 +1,523 @@
 {
   "contract": "welfare-v2",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "compatible_core": "기존 개체 ID(service:/region:/category:/org:/news:)와 predicate 의미를 유지한다",
   "entity_types": [
     {
       "id": "ProgramImplementation",
       "prefix": "service:",
       "status": "IMPLEMENTED",
-      "source": "official_service_snapshot(보건복지부 통합돌봄 사업안내)"
+      "source": "official_service_snapshot(보건복지부 통합돌봄 사업안내)",
+      "label": "통합돌봄 시행사업",
+      "description": "한 지역에서 시행되는 사업 한 건(보건복지부 사업안내의 한 행).",
+      "gate": "always",
+      "mcp": {
+        "id": "implementation",
+        "prefix": "service:",
+        "label": "시행사업",
+        "description": "한 지역에서 시행되는 사업 한 건(보건복지부 사업안내의 한 행).",
+        "order": 0,
+        "read_tools": [
+          "find_programs",
+          "get_entity",
+          "get_relationships",
+          "get_eligibility",
+          "get_sources"
+        ],
+        "access_mode": "direct"
+      }
     },
     {
       "id": "Region",
       "prefix": "region:",
-      "status": "IMPLEMENTED"
+      "status": "IMPLEMENTED",
+      "label": "지역",
+      "description": "시·도 또는 시·도|시·군·구.",
+      "gate": "always",
+      "mcp": {
+        "id": "region",
+        "prefix": "region:",
+        "label": "지역",
+        "description": "시·도 또는 시·도|시·군·구.",
+        "order": 4,
+        "read_tools": [
+          "get_entity",
+          "get_relationships"
+        ],
+        "access_mode": "direct"
+      }
     },
     {
       "id": "ServiceType",
       "prefix": "category:",
-      "status": "IMPLEMENTED"
+      "status": "IMPLEMENTED",
+      "label": "서비스 분류",
+      "description": "대분류 또는 대분류|중분류.",
+      "gate": "always",
+      "mcp": {
+        "id": "service_type",
+        "prefix": "category:",
+        "label": "사업분류",
+        "description": "대분류 또는 대분류|중분류.",
+        "order": 5,
+        "read_tools": [
+          "get_entity"
+        ],
+        "access_mode": "direct"
+      }
     },
     {
       "id": "Organization",
       "prefix": "org:",
       "status": "IMPLEMENTED",
-      "source": "press_organization 시드(행정안전부 지자체 누리집으로 교차 확인)"
+      "source": "press_organization 시드(행정안전부 지자체 누리집으로 교차 확인)",
+      "label": "기관",
+      "description": "보도자료 발행기관 레지스트리(시드).",
+      "gate": "always",
+      "mcp": {
+        "id": "organization",
+        "prefix": "org:",
+        "label": "행정기관",
+        "description": "보도자료 발행기관 레지스트리(시드).",
+        "order": 6,
+        "read_tools": [
+          "get_entity",
+          "get_relationships"
+        ],
+        "access_mode": "direct"
+      }
     },
     {
       "id": "FiscalEntity",
       "prefix": "lofin:laf:",
       "status": "IMPLEMENTED",
-      "source": "fiscal_entity(지방재정365 자치단체 코드)"
+      "source": "fiscal_entity(지방재정365 자치단체 코드)",
+      "label": "재정주체(자치단체)",
+      "description": "지방재정365 자치단체 코드. 콘텐츠 지역(region:)과 별개이며 검증 매핑으로만 연결.",
+      "gate": "fiscal",
+      "mcp": {
+        "id": "fiscal_entity",
+        "prefix": "lofin:laf:",
+        "label": "재정주체",
+        "description": "지방재정365 자치단체 코드. 콘텐츠 지역(region:)과 별개이며 검증 매핑으로만 연결.",
+        "order": 12,
+        "read_tools": [
+          "get_fiscal_catalog"
+        ],
+        "access_mode": "direct"
+      }
     },
     {
       "id": "FiscalDepartment",
       "prefix": "lofin:dept:",
       "status": "IMPLEMENTED",
-      "note": "원천이 부서명을 주지 않아 코드만"
+      "note": "원천이 부서명을 주지 않아 코드만",
+      "label": "예산 부서",
+      "description": "원천이 부서명을 주지 않아 코드만",
+      "gate": "internal",
+      "mcp": null
     },
     {
       "id": "FiscalProject",
       "prefix": "fp:",
-      "status": "IMPLEMENTED"
+      "status": "IMPLEMENTED",
+      "label": "예산 세부사업",
+      "description": "지방재정365 세부사업(연도:자치단체:회계:부서:사업코드). find_budget_projects로 조회.",
+      "gate": "fiscal",
+      "mcp": {
+        "id": "fiscal_project",
+        "prefix": "fp:",
+        "label": "재정사업",
+        "description": "지방재정365 세부사업(연도:자치단체:회계:부서:사업코드). find_budget_projects로 조회.",
+        "order": 9,
+        "read_tools": [
+          "find_budget_projects",
+          "get_budget_execution"
+        ],
+        "access_mode": "direct"
+      }
     },
     {
       "id": "FiscalObservation",
       "prefix": "fo:",
-      "status": "IMPLEMENTED"
+      "status": "IMPLEMENTED",
+      "label": "예산·지출 수치",
+      "description": "기준일별 예산현액·공개 지출액 한 건. get_sources로 원천 필드 확인.",
+      "gate": "fiscal",
+      "mcp": {
+        "id": "fiscal_observation",
+        "prefix": "fo:",
+        "label": "재정 관측",
+        "description": "기준일별 예산현액·공개 지출액 한 건. get_sources로 원천 필드 확인.",
+        "order": 15,
+        "read_tools": [
+          "get_sources"
+        ],
+        "access_mode": "direct"
+      }
     },
     {
       "id": "BudgetDocument",
       "status": "NOT_IMPLEMENTED",
-      "note": "예산서 원문 미수집"
+      "note": "예산서 원문 미수집",
+      "label": "예산서",
+      "description": "예산서 원문 미수집",
+      "gate": "internal",
+      "mcp": null
     },
     {
       "id": "BudgetRevision",
-      "status": "NOT_IMPLEMENTED"
+      "status": "IMPLEMENTED",
+      "label": "예산 변경(추경)",
+      "description": "get_fiscal_catalog(catalog_type=budget_document)가 반환하는 활성 문서 단계.",
+      "gate": "fiscal",
+      "mcp": {
+        "id": "budget_revision",
+        "prefix": "brev-",
+        "label": "예산서 편성 단계",
+        "description": "get_fiscal_catalog(catalog_type=budget_document)가 반환하는 활성 문서 단계.",
+        "order": 10,
+        "read_tools": [
+          "get_fiscal_catalog"
+        ],
+        "access_mode": "direct"
+      }
     },
     {
       "id": "BudgetLine",
-      "status": "NOT_IMPLEMENTED"
+      "status": "IMPLEMENTED",
+      "label": "예산서 항목",
+      "description": "search_budget_lines·get_budget_breakdown·get_sources로 조회하는 문서 계층 행.",
+      "gate": "fiscal",
+      "mcp": {
+        "id": "budget_line",
+        "prefix": "bl-",
+        "label": "예산서 행",
+        "description": "search_budget_lines·get_budget_breakdown·get_sources로 조회하는 문서 계층 행.",
+        "order": 11,
+        "read_tools": [
+          "search_budget_lines",
+          "get_budget_breakdown",
+          "get_sources"
+        ],
+        "access_mode": "direct"
+      }
     },
     {
       "id": "FundingSource",
       "status": "PARTIAL",
-      "note": "원천 국비·시도비·시군구비·기타 칸만, 완전성 미확인"
+      "note": "원천 국비·시도비·시군구비·기타 칸만, 완전성 미확인",
+      "label": "재원",
+      "description": "원천 국비·시도비·시군구비·기타 칸만, 완전성 미확인",
+      "gate": "internal",
+      "mcp": null
     },
     {
       "id": "FundingComponent",
-      "status": "NOT_IMPLEMENTED"
+      "status": "NOT_IMPLEMENTED",
+      "label": "재원 구성",
+      "description": "재원 구성",
+      "gate": "internal",
+      "mcp": null
     },
     {
       "id": "NewsArticle",
       "status": "NOT_COLLECTED",
-      "note": "민간 기사 미수집"
+      "note": "민간 기사 미수집",
+      "label": "언론 기사",
+      "description": "민간 기사 미수집",
+      "gate": "internal",
+      "mcp": null
     },
     {
       "id": "NewsPublisher",
-      "status": "NOT_COLLECTED"
+      "status": "NOT_COLLECTED",
+      "label": "언론사",
+      "description": "언론사",
+      "gate": "internal",
+      "mcp": null
     },
     {
       "id": "OfficialPublication",
       "status": "PARTIAL",
-      "note": "보도자료 유형만"
+      "note": "보도자료 유형만",
+      "label": "공식 발간물",
+      "description": "보도자료 유형만",
+      "gate": "internal",
+      "mcp": null
     },
     {
       "id": "PressRelease",
       "prefix": "news:",
       "status": "IMPLEMENTED",
-      "note": "메타데이터만(본문 없음)"
+      "note": "메타데이터만(본문 없음)",
+      "label": "보도자료",
+      "description": "메타데이터만 보관(본문·요약 없음).",
+      "gate": "always",
+      "mcp": {
+        "id": "press_release",
+        "prefix": "news:",
+        "label": "공식 보도자료",
+        "description": "메타데이터만 보관(본문·요약 없음).",
+        "order": 7,
+        "read_tools": [
+          "search_news",
+          "get_news_metadata",
+          "get_entity"
+        ],
+        "access_mode": "direct"
+      }
     },
     {
       "id": "RegionCode",
       "prefix": "region_code:",
       "status": "IMPLEMENTED",
-      "note": "법정동·행정동·통계지역·재정기관 코드를 체계별·적용기간별로 분리(region_code·region_code_map). 법정동코드만으로 재정기관 관계를 확정하지 않음"
+      "note": "법정동·행정동·통계지역·재정기관 코드를 체계별·적용기간별로 분리(region_code·region_code_map). 법정동코드만으로 재정기관 관계를 확정하지 않음",
+      "label": "지역 코드",
+      "description": "법정동·행정동·통계지역·재정기관 코드를 체계별·적용기간별로 분리(region_code·region_code_map). 법정동코드만으로 재정기관 관계를 확정하지 않음",
+      "gate": "internal",
+      "mcp": null
     },
     {
       "id": "StatisticalTable",
       "prefix": "kosis:",
       "status": "PARTIAL",
-      "note": "KOSIS 통계표(기관ID·표ID·항목·분류·단위·주기·지역 수준). 관리자가 메타데이터를 확인한 표만 수집"
+      "note": "KOSIS 통계표(기관ID·표ID·항목·분류·단위·주기·지역 수준). 관리자가 메타데이터를 확인한 표만 수집",
+      "label": "통계표",
+      "description": "KOSIS 통계표(기관ID·표ID·항목·분류·단위·주기·지역 수준). 관리자가 메타데이터를 확인한 표만 수집",
+      "gate": "internal",
+      "mcp": null
     },
     {
       "id": "StatisticalObservation",
       "status": "PARTIAL",
-      "note": "KOSIS 수치. 결측·비공개를 0으로 바꾸지 않음(value_status)"
+      "note": "KOSIS 수치. 결측·비공개를 0으로 바꾸지 않음(value_status)",
+      "label": "통계 수치",
+      "description": "KOSIS 수치. 결측·비공개를 0으로 바꾸지 않음(value_status)",
+      "gate": "internal",
+      "mcp": null
     },
     {
       "id": "CareProvider",
       "prefix": "ltc:",
       "status": "IMPLEMENTED",
-      "note": "국민건강보험공단 장기요양기관(기관기호 원천 체계 유지, 다른 기관 DB ID와 동일시하지 않음)"
+      "note": "국민건강보험공단 장기요양기관(기관기호 원천 체계 유지, 다른 기관 DB ID와 동일시하지 않음)",
+      "label": "장기요양기관",
+      "description": "기관기호로 조회하는 장기요양기관. 현재 운영·빈자리 여부는 보증하지 않습니다.",
+      "gate": "care",
+      "mcp": {
+        "id": "care_provider",
+        "prefix": "ltc:",
+        "label": "장기요양기관",
+        "description": "기관기호로 조회하는 장기요양기관. 현재 운영·빈자리 여부는 보증하지 않습니다.",
+        "order": 18,
+        "read_tools": [
+          "find_care_institutions",
+          "get_care_institution"
+        ],
+        "access_mode": "direct"
+      }
     },
     {
       "id": "CareServiceType",
       "status": "IMPLEMENTED",
-      "note": "장기요양 기관유형코드(활용가이드 코드표)"
+      "note": "장기요양 기관유형코드(활용가이드 코드표)",
+      "label": "장기요양 기관 유형",
+      "description": "장기요양 기관유형코드(활용가이드 코드표)",
+      "gate": "internal",
+      "mcp": null
     },
     {
       "id": "PublicBenefitService",
       "prefix": "gov24:",
       "status": "IMPLEMENTED",
-      "note": "정부24 공공서비스(서비스ID 원천 체계 유지)"
+      "note": "정부24 공공서비스(서비스ID 원천 체계 유지)",
+      "label": "정부24 공공서비스",
+      "description": "원천 서비스ID로 조회하는 독립 서비스. 시행사업과의 동일성은 별도 승인된 연결만 인정하며 목록과 상세를 구분합니다.",
+      "gate": "always",
+      "mcp": {
+        "id": "gov24_service",
+        "prefix": "gov24_service:",
+        "label": "정부24 공공서비스",
+        "description": "원천 서비스ID로 조회하는 독립 서비스. 시행사업과의 동일성은 별도 승인된 연결만 인정하며 목록과 상세를 구분합니다.",
+        "order": 1,
+        "read_tools": [
+          "search_welfare_services",
+          "fetch",
+          "get_entity",
+          "get_sources"
+        ],
+        "access_mode": "direct"
+      }
     },
     {
       "id": "LegalProvision",
       "prefix": "law:",
       "status": "PARTIAL",
-      "note": "법제처 법령·조문 식별자·버전·시행일(조문 본문은 해시만). korean-law-mcp 4.15.6 로컬 수집 묶음으로만 들어옴"
+      "note": "법제처 법령·조문 식별자·버전·시행일(조문 본문은 해시만). korean-law-mcp 4.15.6 로컬 수집 묶음에서 반입하며 기존 4.15.5 묶음도 호환. 실시간 조회 원문은 저장하지 않음",
+      "label": "법령 조문",
+      "description": "법제처 법령·조문 식별자·버전·시행일(조문 본문은 해시만). korean-law-mcp 4.15.6 로컬 수집 묶음에서 반입하며 기존 4.15.5 묶음도 호환. 실시간 조회 원문은 저장하지 않음",
+      "gate": "internal",
+      "mcp": null
+    },
+    {
+      "id": "Welfare100Service",
+      "prefix": "welfare100_service:",
+      "status": "IMPLEMENTED",
+      "label": "복지제도100 사업",
+      "description": "웹 복지제도100과 같은 저장 대장. search_welfare_services·fetch·get_entity·get_eligibility·get_welfare_context·get_sources로 원필드·출처·대장 기준일을 조회합니다.",
+      "gate": "always",
+      "mcp": {
+        "id": "welfare100_service",
+        "prefix": "welfare100_service:",
+        "label": "복지제도100 사업",
+        "description": "웹 복지제도100과 같은 저장 대장. search_welfare_services·fetch·get_entity·get_eligibility·get_welfare_context·get_sources로 원필드·출처·대장 기준일을 조회합니다.",
+        "order": 2,
+        "read_tools": [
+          "search_welfare_services",
+          "fetch",
+          "get_entity",
+          "get_eligibility",
+          "get_sources"
+        ],
+        "access_mode": "direct"
+      }
+    },
+    {
+      "id": "ManualSection",
+      "prefix": "manual:",
+      "status": "IMPLEMENTED",
+      "label": "복지 매뉴얼 본문 구간",
+      "description": "고정 커밋의 파싱 원문. search_manuals·get_manual_section·fetch·get_sources로 읽고 내부 원문명·연도 추론 근거·Markdown 줄 번호를 확인합니다. 자격 판정이나 PDF 페이지 확인값이 아닙니다.",
+      "gate": "always",
+      "mcp": {
+        "id": "manual_section",
+        "prefix": "manual:",
+        "label": "복지 매뉴얼 본문 구간",
+        "description": "고정 커밋의 파싱 원문. search_manuals·get_manual_section·fetch·get_sources로 읽고 내부 원문명·연도 추론 근거·Markdown 줄 번호를 확인합니다. 자격 판정이나 PDF 페이지 확인값이 아닙니다.",
+        "order": 3,
+        "read_tools": [
+          "search_manuals",
+          "get_manual_section",
+          "fetch",
+          "get_sources"
+        ],
+        "access_mode": "direct"
+      }
+    },
+    {
+      "id": "SourceDocument",
+      "prefix": "mohw-doc:",
+      "status": "IMPLEMENTED",
+      "label": "원자료 문서",
+      "description": "근거(evidence)로만 제공.",
+      "gate": "always",
+      "mcp": {
+        "id": "source_document",
+        "prefix": "mohw-doc:",
+        "label": "원자료 문서",
+        "description": "근거(evidence)로만 제공.",
+        "order": 8,
+        "read_tools": [],
+        "access_mode": "evidence_only"
+      }
+    },
+    {
+      "id": "DocumentProgram",
+      "prefix": "docprog:",
+      "status": "IMPLEMENTED",
+      "label": "문서 정의 사업",
+      "description": "승인 반입된 공고·안내 문서가 정의한 사업. 보건복지부 사업안내에 없는 사업일 수 있음.",
+      "gate": "always",
+      "mcp": {
+        "id": "document_program",
+        "prefix": "docprog:",
+        "label": "문서 정의 사업",
+        "description": "승인 반입된 공고·안내 문서가 정의한 사업. 보건복지부 사업안내에 없는 사업일 수 있음.",
+        "order": 13,
+        "read_tools": [
+          "fetch",
+          "get_entity",
+          "get_eligibility"
+        ],
+        "access_mode": "direct"
+      }
+    },
+    {
+      "id": "DocumentSource",
+      "prefix": "doc:",
+      "status": "IMPLEMENTED",
+      "label": "반입 문서",
+      "description": "HWP/HWPX 원문 한 건(원문 버전 source_version_id 단위). get_sources(subject_type=document)로 조회.",
+      "gate": "always",
+      "mcp": {
+        "id": "document_source",
+        "prefix": "doc:",
+        "label": "반입 문서",
+        "description": "HWP/HWPX 원문 한 건(원문 버전 source_version_id 단위). get_sources(subject_type=document)로 조회.",
+        "order": 14,
+        "read_tools": [
+          "get_sources"
+        ],
+        "access_mode": "direct"
+      }
+    },
+    {
+      "id": "OfficialFaq",
+      "prefix": "faq129:",
+      "status": "IMPLEMENTED",
+      "label": "공식 자주 묻는 질문",
+      "description": "129 공식 질문과 답변. 작성일 기준 원문이며 현행 제도 여부는 별도 확인합니다.",
+      "gate": "always",
+      "mcp": {
+        "id": "official_faq",
+        "prefix": "faq129:",
+        "label": "공식 자주 묻는 질문",
+        "description": "129 공식 질문과 답변. 작성일 기준 원문이며 현행 제도 여부는 별도 확인합니다.",
+        "order": 16,
+        "read_tools": [
+          "search_faq",
+          "get_faq",
+          "fetch"
+        ],
+        "access_mode": "direct"
+      }
+    },
+    {
+      "id": "WelfareStatistic",
+      "status": "PARTIAL",
+      "label": "복지통계 항목",
+      "description": "search_statistics가 반환한 dataset_id를 사용합니다. 출처별 식별자 체계를 유지하며 수치 연결 여부를 구분합니다.",
+      "gate": "always",
+      "mcp": {
+        "id": "welfare_statistic",
+        "prefix": null,
+        "label": "복지통계",
+        "description": "search_statistics가 반환한 dataset_id를 사용합니다. 출처별 식별자 체계를 유지하며 수치 연결 여부를 구분합니다.",
+        "order": 17,
+        "read_tools": [
+          "search_statistics",
+          "get_statistics_data",
+          "get_statistics_sources"
+        ],
+        "access_mode": "direct"
+      }
+    },
+    {
+      "id": "NewsCategory",
+      "status": "IMPLEMENTED",
+      "label": "복지뉴스 분야",
+      "description": "복지뉴스 분야",
+      "gate": "internal",
+      "mcp": null
+    },
+    {
+      "id": "LiteralText",
+      "status": "IMPLEMENTED",
+      "label": "원문 문구",
+      "description": "원문 문구",
+      "gate": "internal",
+      "mcp": null
     }
   ],
   "relations": [
@@ -135,134 +525,555 @@
       "id": "located_in",
       "domain": "ProgramImplementation",
       "range": "Region",
-      "status": "IMPLEMENTED"
+      "status": "IMPLEMENTED",
+      "mcp": {
+        "id": "located_in",
+        "domain": "implementation",
+        "range": "region",
+        "assertion_type": "source_field",
+        "order": 13
+      },
+      "label": "소재 지역",
+      "gate": "always",
+      "get_relationships": true,
+      "description": "소재 지역"
     },
     {
       "id": "classified_as",
       "domain": "ProgramImplementation",
       "range": "ServiceType",
-      "status": "IMPLEMENTED"
+      "status": "IMPLEMENTED",
+      "mcp": {
+        "id": "classified_as",
+        "domain": "implementation",
+        "range": "service_type",
+        "assertion_type": "source_field",
+        "order": 14
+      },
+      "label": "서비스 분류",
+      "gate": "always",
+      "get_relationships": true,
+      "description": "서비스 분류"
     },
     {
       "id": "fiscalProjectFor",
       "domain": "FiscalProject",
       "range": "ProgramImplementation",
       "status": "IMPLEMENTED",
-      "note": "cross_domain_link, 관리자 검토(VERIFIED)만 공개, 금액 배분 없음"
+      "note": "cross_domain_link, 관리자 검토(VERIFIED)만 공개, 금액 배분 없음",
+      "label": "예산 세부사업 연결",
+      "gate": "internal",
+      "mcp": null,
+      "get_relationships": false,
+      "description": "cross_domain_link, 관리자 검토(VERIFIED)만 공개, 금액 배분 없음"
     },
     {
       "id": "observesFiscalProject",
       "domain": "FiscalObservation",
       "range": "FiscalProject",
       "status": "IMPLEMENTED",
-      "note": "누적 관측 날짜끼리 합산 금지"
+      "note": "누적 관측 날짜끼리 합산 금지",
+      "label": "세부사업 예산·지출 수치",
+      "gate": "internal",
+      "mcp": null,
+      "get_relationships": false,
+      "description": "누적 관측 날짜끼리 합산 금지"
     },
     {
       "id": "reportedByFiscalEntity",
       "domain": "FiscalProject",
       "range": "FiscalEntity",
-      "status": "IMPLEMENTED"
+      "status": "IMPLEMENTED",
+      "label": "공시 재정주체",
+      "gate": "internal",
+      "mcp": null,
+      "get_relationships": false,
+      "description": "공시 재정주체"
     },
     {
       "id": "assignedToFiscalDepartment",
       "domain": "FiscalProject",
       "range": "FiscalDepartment",
       "status": "IMPLEMENTED",
-      "note": "유효기간 미보유(해당 연도 관측 기준)"
+      "note": "유효기간 미보유(해당 연도 관측 기준)",
+      "label": "담당 예산 부서",
+      "gate": "internal",
+      "mcp": null,
+      "get_relationships": false,
+      "description": "유효기간 미보유(해당 연도 관측 기준)"
     },
     {
       "id": "documentedInBudget",
-      "status": "NOT_IMPLEMENTED"
+      "status": "NOT_IMPLEMENTED",
+      "label": "예산서 수록",
+      "gate": "internal",
+      "mcp": null,
+      "get_relationships": false,
+      "description": "예산서 수록"
     },
     {
       "id": "hasFundingComponent",
-      "status": "NOT_IMPLEMENTED"
+      "status": "NOT_IMPLEMENTED",
+      "label": "재원 구성",
+      "gate": "internal",
+      "mcp": null,
+      "get_relationships": false,
+      "description": "재원 구성"
     },
     {
       "id": "mentionsInTitle",
       "status": "PARTIAL",
-      "note": "get_welfare_context의 제목 일치 후보(검증 안 됨)로만"
+      "note": "get_welfare_context의 제목 일치 후보(검증 안 됨)로만",
+      "label": "제목 속 언급",
+      "gate": "internal",
+      "mcp": null,
+      "get_relationships": false,
+      "description": "get_welfare_context의 제목 일치 후보(검증 안 됨)로만"
     },
     {
       "id": "classifiedAs(news)",
       "domain": "PressRelease",
       "range": "NewsCategory",
       "status": "IMPLEMENTED",
-      "note": "제목 키워드 분류, 공식 분류 아님"
+      "note": "제목 키워드 분류, 공식 분류 아님",
+      "mcp": {
+        "id": "classified_as_topic",
+        "domain": "press_release",
+        "range": "news_category",
+        "assertion_type": "keyword_classification",
+        "note": "제목 키워드 분류이며 확정 사실이 아닙니다.",
+        "order": 20
+      },
+      "label": "복지뉴스 분야 분류",
+      "gate": "always",
+      "get_relationships": true,
+      "description": "제목 키워드 분류, 공식 분류 아님"
     },
     {
       "id": "issuedBy",
       "domain": "PressRelease",
       "range": "Organization",
-      "status": "IMPLEMENTED"
+      "status": "IMPLEMENTED",
+      "mcp": {
+        "id": "issued_by",
+        "domain": "press_release",
+        "range": "organization",
+        "assertion_type": "source_registry",
+        "order": 19
+      },
+      "label": "발행 기관",
+      "gate": "always",
+      "get_relationships": true,
+      "description": "발행 기관"
     },
     {
       "id": "repostedBy",
-      "status": "NOT_IMPLEMENTED"
+      "status": "NOT_IMPLEMENTED",
+      "label": "재게시 기관",
+      "gate": "internal",
+      "mcp": null,
+      "get_relationships": false,
+      "description": "재게시 기관"
     },
     {
       "id": "reposts/corrects/withdraws",
       "status": "NOT_IMPLEMENTED",
-      "note": "관련 묶음(related_group)만, 확정 관계 아님"
+      "note": "관련 묶음(related_group)만, 확정 관계 아님",
+      "label": "재게시·정정·철회",
+      "gate": "internal",
+      "mcp": null,
+      "get_relationships": false,
+      "description": "관련 묶음(related_group)만, 확정 관계 아님"
     },
     {
       "id": "has_jurisdiction",
       "domain": "Organization",
       "range": "Region",
-      "status": "IMPLEMENTED"
+      "status": "IMPLEMENTED",
+      "mcp": {
+        "id": "has_jurisdiction",
+        "domain": "organization",
+        "range": "region",
+        "assertion_type": "registry_seed",
+        "order": 18
+      },
+      "label": "관할 지역",
+      "gate": "always",
+      "get_relationships": true,
+      "description": "관할 지역"
     },
     {
       "id": "part_of",
       "domain": "Region|Organization",
       "range": "Region|Organization",
-      "status": "IMPLEMENTED"
+      "status": "IMPLEMENTED",
+      "mcp": {
+        "id": "part_of",
+        "domain": "region|organization",
+        "range": "region|organization",
+        "assertion_type": "region_hierarchy|registry_seed",
+        "order": 17
+      },
+      "label": "상위 지역·기관",
+      "gate": "always",
+      "get_relationships": true,
+      "description": "상위 지역·기관"
     },
     {
       "id": "codeMapsTo",
       "domain": "RegionCode",
       "range": "RegionCode|Region",
       "status": "IMPLEMENTED",
-      "note": "relation SAME·PART_OF·PREDECESSOR, valid_from·valid_to·근거·검증 상태"
+      "note": "relation SAME·PART_OF·PREDECESSOR, valid_from·valid_to·근거·검증 상태",
+      "label": "코드 대응",
+      "gate": "internal",
+      "mcp": null,
+      "get_relationships": false,
+      "description": "relation SAME·PART_OF·PREDECESSOR, valid_from·valid_to·근거·검증 상태"
     },
     {
       "id": "observesRegion",
       "domain": "StatisticalObservation",
       "range": "RegionCode",
-      "status": "PARTIAL"
+      "status": "PARTIAL",
+      "label": "지역 통계 수치",
+      "gate": "internal",
+      "mcp": null,
+      "get_relationships": false,
+      "description": "지역 통계 수치"
     },
     {
       "id": "providerLocatedIn",
       "domain": "CareProvider",
       "range": "RegionCode",
       "status": "IMPLEMENTED",
-      "note": "원천 시도·시군구 코드"
+      "note": "원천 시도·시군구 코드",
+      "label": "기관 소재지",
+      "gate": "internal",
+      "mcp": null,
+      "get_relationships": false,
+      "description": "원천 시도·시군구 코드"
     },
     {
       "id": "providesCareService",
       "domain": "CareProvider",
       "range": "CareServiceType",
-      "status": "IMPLEMENTED"
+      "status": "IMPLEMENTED",
+      "label": "제공 기관 유형",
+      "gate": "internal",
+      "mcp": null,
+      "get_relationships": false,
+      "description": "제공 기관 유형"
     },
     {
       "id": "hasAgreementWith",
       "domain": "CareProvider",
       "range": "Organization",
       "status": "PARTIAL",
-      "note": "협약 의료기관명·협약기간(현행·종료·원천 목록에서 빠짐 구분). 의료기관 ID 미제공"
+      "note": "협약 의료기관명·협약기간(현행·종료·원천 목록에서 빠짐 구분). 의료기관 ID 미제공",
+      "label": "협약 기관",
+      "gate": "internal",
+      "mcp": null,
+      "get_relationships": false,
+      "description": "협약 의료기관명·협약기간(현행·종료·원천 목록에서 빠짐 구분). 의료기관 ID 미제공"
     },
     {
       "id": "sameProgramAs",
       "domain": "ProgramImplementation",
       "range": "PublicBenefitService",
       "status": "PARTIAL",
-      "note": "program_ext_link GOV24. 자동 판정은 CANDIDATE, 관리자 확인(VERIFIED)만 공개"
+      "note": "program_ext_link GOV24. 자동 판정은 CANDIDATE, 관리자 확인(VERIFIED)만 공개",
+      "label": "같은 사업 대응",
+      "gate": "internal",
+      "mcp": null,
+      "get_relationships": false,
+      "description": "program_ext_link GOV24. 자동 판정은 CANDIDATE, 관리자 확인(VERIFIED)만 공개"
     },
     {
       "id": "legalBasis",
       "domain": "ProgramImplementation",
       "range": "LegalProvision",
       "status": "PARTIAL",
-      "note": "program_ext_link LAW. 조문 존재 확인과 근거 판단은 별도, 관리자 확인만 공개"
+      "note": "program_ext_link LAW. 조문 존재 확인과 근거 판단은 별도, 관리자 확인만 공개",
+      "label": "법적 근거",
+      "gate": "internal",
+      "mcp": null,
+      "get_relationships": false,
+      "description": "program_ext_link LAW. 조문 존재 확인과 근거 판단은 별도, 관리자 확인만 공개"
+    },
+    {
+      "id": "succeeded_by",
+      "domain": "Organization",
+      "range": "Organization",
+      "status": "IMPLEMENTED",
+      "label": "기관 승계",
+      "mcp": {
+        "id": "succeeded_by",
+        "domain": "organization",
+        "range": "organization",
+        "assertion_type": "official_succession",
+        "kinds": [
+          "MERGE",
+          "SPLIT",
+          "RENAME",
+          "TRANSFER"
+        ],
+        "note": "효력일·근거와 함께 기록. 과거 게시물의 발행기관은 바꾸지 않음",
+        "order": 0
+      },
+      "gate": "always",
+      "get_relationships": false,
+      "description": "기관 승계"
+    },
+    {
+      "id": "target_group",
+      "domain": "ProgramImplementation|DocumentProgram",
+      "range": "LiteralText",
+      "status": "IMPLEMENTED",
+      "label": "지원대상",
+      "mcp": {
+        "id": "target_group",
+        "label": "지원대상",
+        "domain": "implementation|document_program",
+        "range": "text",
+        "assertion_type": "document_field",
+        "order": 1
+      },
+      "gate": "always",
+      "get_relationships": false,
+      "description": "지원대상"
+    },
+    {
+      "id": "eligibility",
+      "domain": "ProgramImplementation|DocumentProgram",
+      "range": "LiteralText",
+      "status": "IMPLEMENTED",
+      "label": "신청자격",
+      "mcp": {
+        "id": "eligibility",
+        "label": "신청자격",
+        "domain": "implementation|document_program",
+        "range": "text",
+        "assertion_type": "document_field",
+        "order": 2
+      },
+      "gate": "always",
+      "get_relationships": false,
+      "description": "신청자격"
+    },
+    {
+      "id": "exclusion",
+      "domain": "ProgramImplementation|DocumentProgram",
+      "range": "LiteralText",
+      "status": "IMPLEMENTED",
+      "label": "제외대상",
+      "mcp": {
+        "id": "exclusion",
+        "label": "제외대상",
+        "domain": "implementation|document_program",
+        "range": "text",
+        "assertion_type": "document_field",
+        "order": 3
+      },
+      "gate": "always",
+      "get_relationships": false,
+      "description": "제외대상"
+    },
+    {
+      "id": "benefit_item",
+      "domain": "ProgramImplementation|DocumentProgram",
+      "range": "LiteralText",
+      "status": "IMPLEMENTED",
+      "label": "지원내용",
+      "mcp": {
+        "id": "benefit_item",
+        "label": "지원내용",
+        "domain": "implementation|document_program",
+        "range": "text",
+        "assertion_type": "document_field",
+        "order": 4
+      },
+      "gate": "always",
+      "get_relationships": false,
+      "description": "지원내용"
+    },
+    {
+      "id": "benefit_amount",
+      "domain": "ProgramImplementation|DocumentProgram",
+      "range": "LiteralText",
+      "status": "IMPLEMENTED",
+      "label": "지원금액",
+      "mcp": {
+        "id": "benefit_amount",
+        "label": "지원금액",
+        "domain": "implementation|document_program",
+        "range": "text",
+        "assertion_type": "document_field",
+        "order": 5
+      },
+      "gate": "always",
+      "get_relationships": false,
+      "description": "지원금액"
+    },
+    {
+      "id": "operating_period",
+      "domain": "ProgramImplementation|DocumentProgram",
+      "range": "LiteralText",
+      "status": "IMPLEMENTED",
+      "label": "지원기간",
+      "mcp": {
+        "id": "operating_period",
+        "label": "지원기간",
+        "domain": "implementation|document_program",
+        "range": "text",
+        "assertion_type": "document_field",
+        "order": 6
+      },
+      "gate": "always",
+      "get_relationships": false,
+      "description": "지원기간"
+    },
+    {
+      "id": "application_period",
+      "domain": "ProgramImplementation|DocumentProgram",
+      "range": "LiteralText",
+      "status": "IMPLEMENTED",
+      "label": "접수기간",
+      "mcp": {
+        "id": "application_period",
+        "label": "접수기간",
+        "domain": "implementation|document_program",
+        "range": "text",
+        "assertion_type": "document_field",
+        "order": 7
+      },
+      "gate": "always",
+      "get_relationships": false,
+      "description": "접수기간"
+    },
+    {
+      "id": "application_method",
+      "domain": "ProgramImplementation|DocumentProgram",
+      "range": "LiteralText",
+      "status": "IMPLEMENTED",
+      "label": "신청방법",
+      "mcp": {
+        "id": "application_method",
+        "label": "신청방법",
+        "domain": "implementation|document_program",
+        "range": "text",
+        "assertion_type": "document_field",
+        "order": 8
+      },
+      "gate": "always",
+      "get_relationships": false,
+      "description": "신청방법"
+    },
+    {
+      "id": "application_place",
+      "domain": "ProgramImplementation|DocumentProgram",
+      "range": "LiteralText",
+      "status": "IMPLEMENTED",
+      "label": "신청장소",
+      "mcp": {
+        "id": "application_place",
+        "label": "신청장소",
+        "domain": "implementation|document_program",
+        "range": "text",
+        "assertion_type": "document_field",
+        "order": 9
+      },
+      "gate": "always",
+      "get_relationships": false,
+      "description": "신청장소"
+    },
+    {
+      "id": "required_documents",
+      "domain": "ProgramImplementation|DocumentProgram",
+      "range": "LiteralText",
+      "status": "IMPLEMENTED",
+      "label": "제출서류",
+      "mcp": {
+        "id": "required_documents",
+        "label": "제출서류",
+        "domain": "implementation|document_program",
+        "range": "text",
+        "assertion_type": "document_field",
+        "order": 10
+      },
+      "gate": "always",
+      "get_relationships": false,
+      "description": "제출서류"
+    },
+    {
+      "id": "procedure",
+      "domain": "ProgramImplementation|DocumentProgram",
+      "range": "LiteralText",
+      "status": "IMPLEMENTED",
+      "label": "지원절차",
+      "mcp": {
+        "id": "procedure",
+        "label": "지원절차",
+        "domain": "implementation|document_program",
+        "range": "text",
+        "assertion_type": "document_field",
+        "order": 11
+      },
+      "gate": "always",
+      "get_relationships": false,
+      "description": "지원절차"
+    },
+    {
+      "id": "provider",
+      "domain": "ProgramImplementation|DocumentProgram",
+      "range": "LiteralText",
+      "status": "IMPLEMENTED",
+      "label": "담당기관",
+      "mcp": {
+        "id": "provider",
+        "label": "담당기관",
+        "domain": "implementation|document_program",
+        "range": "text",
+        "assertion_type": "document_field",
+        "order": 12
+      },
+      "gate": "always",
+      "get_relationships": false,
+      "description": "담당기관"
+    },
+    {
+      "id": "has_service_type",
+      "domain": "ProgramImplementation",
+      "range": "LiteralText",
+      "status": "IMPLEMENTED",
+      "label": "사업구분 문구",
+      "mcp": {
+        "id": "has_service_type",
+        "domain": "implementation",
+        "range": "literal(사업구분)",
+        "assertion_type": "source_field",
+        "order": 15
+      },
+      "gate": "always",
+      "get_relationships": false,
+      "description": "사업구분 문구"
+    },
+    {
+      "id": "provided_by_text",
+      "domain": "ProgramImplementation",
+      "range": "LiteralText",
+      "status": "IMPLEMENTED",
+      "label": "제공기관 문구",
+      "mcp": {
+        "id": "provided_by_text",
+        "domain": "implementation",
+        "range": "literal(제공기관 문구)",
+        "assertion_type": "source_field",
+        "order": 16
+      },
+      "gate": "always",
+      "get_relationships": false,
+      "description": "제공기관 문구"
     }
   ]
 }

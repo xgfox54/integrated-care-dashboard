@@ -1,5 +1,7 @@
 // 복지로 복지서비스(중앙부처·지자체)와 복지톡 DB 매뉴얼을 합쳐 복지제도 대장 정적 데이터를 만든다.
 // 실행: node --experimental-strip-types scripts/welfare100/build-catalog.mjs --raw ../bokjiro --manuals ../manuals
+// 재연결 점검: --from-items public/data/welfare100/items --out <임시 폴더> 는 복지로 원자료 대신 이미 만든 사업 파일의
+// 원자료(raw)로 매뉴얼 매칭부터 검수 판정 적용까지 다시 돌린다. 복지로 원자료가 없는 환경에서 재현성을 확인하는 용도다.
 import fs from "node:fs";
 import path from "node:path";
 
@@ -7,6 +9,7 @@ import { BOKJIRO_AS_OF, expandBokjiro, toCatalogRow } from "../../lib/welfare100
 import { lawUrl } from "../../lib/welfare100/law-url.ts";
 import { HOUSEHOLD_ORDER, LIFECYCLE_ORDER, TOPIC_ORDER, expandRecord } from "../../lib/welfare100/model.ts";
 import { writeSplitIndex } from "./split-index.mjs";
+import { listRowMismatch, manualLinkAllowed } from "./manual-link-scope.mjs";
 
 const argv = process.argv.slice(2);
 const arg = (name, fallback) => {
@@ -18,6 +21,9 @@ const RAW = path.resolve(SITE, arg("raw", "../bokjiro"));
 const MANUALS = path.resolve(SITE, arg("manuals", "../manuals"));
 const OUT = path.resolve(SITE, arg("out", "public/data/welfare100"));
 const DATA = path.resolve(SITE, "data/welfare100");
+const FROM_ITEMS = arg("from-items", "") ? path.resolve(SITE, arg("from-items", "")) : "";
+if (FROM_ITEMS && path.resolve(OUT, "items") === FROM_ITEMS) throw new Error("--from-items와 --out이 같은 폴더를 가리킵니다. 출력 폴더는 지우고 다시 만들므로 다른 폴더를 쓰세요.");
+const REGISTRY_PATH = OUT === path.resolve(SITE, "public/data/welfare100") ? path.join(DATA, "usage-registry.json") : path.join(OUT, "usage-registry.json");
 
 const readJson = (file) => JSON.parse(fs.readFileSync(file, "utf8").replace(/^\uFEFF/, ""));
 
@@ -219,7 +225,7 @@ function splitAddr(addr, org) {
 
 // ---------------------------------------------------------------- load 복지로
 const listItems = new Map();
-for (const file of fs.readdirSync(path.join(RAW, "list")).sort()) {
+for (const file of FROM_ITEMS ? [] : fs.readdirSync(path.join(RAW, "list")).sort()) {
   const page = readJson(path.join(RAW, "list", file));
   for (const item of page.c) if (!listItems.has(item.WLFARE_INFO_ID)) listItems.set(item.WLFARE_INFO_ID, { ...item, org: "중앙부처" });
   for (const item of page.l) if (!listItems.has(item.WLFARE_INFO_ID)) listItems.set(item.WLFARE_INFO_ID, { ...item, org: "지자체" });
@@ -325,11 +331,21 @@ for (const [id, item] of listItems) {
   });
 }
 if (missing.length > 0) console.warn("상세 미수집", missing.length, missing.slice(0, 10).join(","));
+const mergedNames = new Map();
+if (FROM_ITEMS) {
+  for (const file of fs.readdirSync(FROM_ITEMS).filter((name) => name.endsWith(".json")).sort()) {
+    const payload = readJson(path.join(FROM_ITEMS, file));
+    if (payload.kind === "auto") rawById.set(payload.raw.id, { ...payload.raw, talkRefs: [], priority: 0 });
+    else if (payload.kind === "curated" && payload.extra.bokjiro) rawById.set(payload.extra.bokjiroIds[0], { ...payload.extra.bokjiro, talkRefs: [], priority: 0 });
+    else if (payload.kind === "alias" && payload.name) mergedNames.set(file.replace(/\.json$/, ""), payload.name);
+  }
+}
 
 // ---------------------------------------------------------------- 최신 자료 반영(data/welfare100/bokjiro-edits.json)
 // 복지로 원자료가 지난 내용일 때 확인한 최신 자료로 고치거나 지운다. 복지로 자료를 다시 받아도 이 파일이 다시 적용된다.
+// 재연결 점검의 사업 파일에는 이미 반영돼 있으므로 다시 적용하지 않는다.
 const EDITABLE_FIELDS = new Set(["name", "summary", "target", "selection", "benefit", "applyText", "contacts", "websites", "forms", "applyMethods", "startDate", "endDate"]);
-const bokjiroEdits = readJson(path.join(DATA, "bokjiro-edits.json"));
+const bokjiroEdits = FROM_ITEMS ? {} : readJson(path.join(DATA, "bokjiro-edits.json"));
 for (const entry of bokjiroEdits.remove ?? []) {
   if (!rawById.delete(entry.id)) console.warn("삭제 대상이 복지로 목록에 없음", entry.id, entry.name);
 }
@@ -434,7 +450,11 @@ const matchNames = new Map();
 for (const raw of rawById.values()) matchNames.set(raw.id, raw.edit?.previousName ? [raw.name, raw.edit.previousName] : [raw.name]);
 for (const program of programs) {
   const names = [program.name];
-  for (const id of curatedMap[program.slug]?.merge ?? []) if (rawById.has(id)) names.push(rawById.get(id).name);
+  for (const id of curatedMap[program.slug]?.merge ?? []) {
+    const name = rawById.get(id)?.name ?? mergedNames.get(id);
+    if (name) names.push(name);
+    else if (FROM_ITEMS) console.warn("재연결 점검: 합쳐진 복지로 사업 이름 없음", program.slug, id);
+  }
   matchNames.set("curated:" + program.slug, names);
 }
 const automaton = new AhoCorasick();
@@ -549,6 +569,11 @@ function excerptAt(key, line, isHeading, pattern) {
 function talkRefsFor(owner, limit = 3) {
   const byManual = matches.get(owner);
   if (!byManual) return [];
+  const sido = rawById.get(owner)?.sido ?? "";
+  const sigungu = rawById.get(owner)?.sigungu ?? "";
+  const refLine = (hit) => hit.headingLine || hit.line;
+  // 점수 상위 limit개를 먼저 고른 뒤 범위 규칙·검수 제외를 적용한다. 제외한 자리를 다음 순위 연결이 채우면
+  // 다시 만들 때마다 검수하지 않은 연결이 새로 생기므로, 빈자리는 비워 둔다.
   return [...byManual]
     .map(([key, hit]) => {
       let score = (hit.headingLine ? 100 : 0) + (hit.level === 0 ? 40 : hit.level === 1 ? 20 : 0) + Math.min(hit.count, 30);
@@ -557,6 +582,7 @@ function talkRefsFor(owner, limit = 3) {
     })
     .sort((a, b) => b.score - a.score || a.key.localeCompare(b.key))
     .slice(0, limit)
+    .filter(({ key, hit }) => manualLinkAllowed(key, sido, owner, refLine(hit), manualLines.get(key)?.[refLine(hit) - 1]) && !listRowMismatch(key, manualLines.get(key)?.[refLine(hit) - 1], sido, sigungu))
     .map(({ key, hit }) => {
       const useHeading = Boolean(hit.headingLine);
       const line = useHeading ? hit.headingLine : hit.line;
@@ -578,10 +604,10 @@ for (const raw of rawById.values()) raw.talkRefs = talkRefsFor(raw.id);
 // ---------------------------------------------------------------- priority and payloads
 const ko = (a, b) => a.localeCompare(b, "ko");
 let priority = 100;
-const central = [...rawById.values()].filter((raw) => raw.org === "중앙부처" && !aliasOf.has(raw.id)).sort((a, b) => ko(a.name, b.name));
+const central = [...rawById.values()].filter((raw) => raw.org === "중앙부처" && !aliasOf.has(raw.id)).sort((a, b) => ko(a.name, b.name) || ko(a.id, b.id));
 const local = [...rawById.values()]
   .filter((raw) => raw.org === "지자체" && !aliasOf.has(raw.id))
-  .sort((a, b) => ko(a.sido, b.sido) || ko(a.sigungu ?? "", b.sigungu ?? "") || ko(a.name, b.name));
+  .sort((a, b) => ko(a.sido, b.sido) || ko(a.sigungu ?? "", b.sigungu ?? "") || ko(a.name, b.name) || ko(a.id, b.id));
 for (const raw of [...central, ...local]) raw.priority = ++priority;
 
 fs.rmSync(OUT, { recursive: true, force: true });
@@ -624,7 +650,7 @@ for (const meta of [...programs].sort((a, b) => a.no - b.no)) {
     sido,
     sigungu,
     bokjiro: primary ? { ...primary, talkRefs: [], priority: meta.no } : undefined,
-    bokjiroIds: merged.map((raw) => raw.id),
+    bokjiroIds: entry.merge.filter((id) => rawById.has(id) || mergedNames.has(id)),
     talkRefs: talkRefsFor("curated:" + meta.slug),
     relatedServices: entry.related
       .filter((id) => rawById.has(id))
@@ -634,7 +660,10 @@ for (const meta of [...programs].sort((a, b) => a.no - b.no)) {
   validate(institution);
   rows.push(toCatalogRow(institution));
   writeItem(meta.slug, { kind: "curated", meta, record, extra });
-  for (const raw of merged) writeItem(raw.id, { kind: "alias", slug: meta.slug });
+  for (const id of entry.merge) {
+    const name = rawById.get(id)?.name ?? mergedNames.get(id);
+    writeItem(id, { kind: "alias", slug: meta.slug, ...(name ? { name } : {}) });
+  }
 }
 for (const raw of [...central, ...local]) {
   const institution = expandBokjiro(raw);
@@ -651,7 +680,7 @@ const index = {
 };
 const indexJson = JSON.stringify(index);
 fs.writeFileSync(path.join(OUT, "index.json"), indexJson);
-const splitBytes = writeSplitIndex(OUT, index);
+const splitBytes = writeSplitIndex(OUT, index, REGISTRY_PATH);
 
 const count = (predicate) => rows.filter(predicate).length;
 if (problems.length > 0) {
@@ -676,3 +705,6 @@ console.log(
     1,
   ),
 );
+
+// 복지톡 DB 연결(합본 Markdown 줄)에 원본 파일·PDF 쪽·원문 발췌를 붙인다. 화면은 줄 번호 대신 이 값을 보여 준다.
+await import("./attach-manual-pages.mjs");

@@ -29,7 +29,7 @@ import { searchResponseBody } from "./search-response";
 import { cachedWikiEdits } from "./wiki-edit-store";
 import { logServerError } from "./errors";
 import { getD1 } from "./d1";
-import { failureCode, recordOptionalIndex } from "./optional-index";
+import { failureCode, markOptionalIndexPending, recordOptionalIndex } from "./optional-index";
 
 export type SummaryDataset = Awaited<ReturnType<typeof readOfficialDatasetSummary>>;
 
@@ -111,11 +111,24 @@ export async function bundleBodyJson(request: BundleRequest): Promise<DatasetJso
  * 지역별 첫 쪽 검색 결과를 미리 계산해 D1에 보관하고 지난 보관본을 지운다.
  * 이미 최신 보관본이 있으면 건너뛰므로 여러 번 불러도 된다.
  */
-export async function warmDatasetCache(): Promise<void> {
+export interface DatasetWarmOptions { readonly maxBundles?: number; readonly budgetMs?: number }
+
+let backgroundWarmActive = false;
+let nextBackgroundWarmAt = 0;
+
+export async function advanceDatasetCacheInBackground(): Promise<void> {
+  if (backgroundWarmActive || Date.now() < nextBackgroundWarmAt) return;
+  backgroundWarmActive = true;
+  nextBackgroundWarmAt = Date.now() + 60_000;
+  try { await warmDatasetCache({ maxBundles: 1, budgetMs: 5000 }); }
+  finally { backgroundWarmActive = false; }
+}
+
+export async function warmDatasetCache(options: DatasetWarmOptions = {}): Promise<void> {
   // 선택 인덱스: 실패해도 다음 작업(보도자료·재정·공개본)을 멈추지 않고 상태에 실패를 남긴다(T33).
   const now = () => Math.floor(Date.now() / 1000);
   try {
-    const runId = await warmDatasetCacheOnce();
+    const runId = await warmDatasetCacheOnce(options);
     if (runId) await recordOptionalIndex(getD1(), "dataset_response_cache", { ok: true, runId }, now());
   } catch (error) {
     logServerError(error, { path: "dataset-cache/warm", status: 500 });
@@ -123,21 +136,28 @@ export async function warmDatasetCache(): Promise<void> {
   }
 }
 
-async function warmDatasetCacheOnce(): Promise<string | null> {
+async function warmDatasetCacheOnce(options: DatasetWarmOptions): Promise<string | null> {
+  const deadline = Date.now() + Math.max(0, options.budgetMs ?? Infinity);
+  const maxBundles = Math.max(0, Math.floor(options.maxBundles ?? Infinity));
+  let completed = 0;
   const run = await readLatestRun(true);
   if (!run) return null;
   const version = wikiEditsVersion(await cachedWikiEdits());
   const fresh = await listFreshKeys(run.id, version);
   const summary = await readOfficialDatasetSummary();
+  const pageSize = DEFAULT_SEARCH_PAGE_SIZE;
+  const { bundles } = planRegionBundles(summary.summary.sigunguBySido, null, pageSize);
+  const requiredKeys = ["summary", ...bundles.map(bundle => bundleKey({ ...bundle, pageSize, category: "" }))];
+  if (requiredKeys.every(key => fresh.has(key))) return run.id;
+  await markOptionalIndexPending(getD1(), "dataset_response_cache", Math.floor(Date.now() / 1000));
   if (!fresh.has("summary")) {
     await writeStoredEntries([{ key: "summary", body: JSON.stringify(summary) }], run.id, version);
   }
-  const pageSize = DEFAULT_SEARCH_PAGE_SIZE;
-  const { bundles } = planRegionBundles(summary.summary.sigunguBySido, null, pageSize);
   for (const bundle of bundles) {
     const request: BundleRequest = { scope: bundle.scope, part: bundle.part, per: bundle.per, pageSize, category: "" };
     const key = bundleKey(request);
     if (fresh.has(key)) continue;
+    if (completed >= maxBundles || Date.now() >= deadline) return null;
     const body = await computeBundle(request, summary.summary.sigunguBySido);
     await writeStoredEntries(
       [
@@ -147,7 +167,10 @@ async function warmDatasetCacheOnce(): Promise<string | null> {
       run.id,
       version,
     );
+    completed++;
   }
+  const stored = await listFreshKeys(run.id, version);
+  if (!requiredKeys.every(key => stored.has(key))) return null;
   await pruneStaleEntries(run.id, version);
   return run.id;
 }

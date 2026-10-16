@@ -74,25 +74,8 @@ function query(path: string, params: Record<string, string>): string {
 
 const sum = (nodes: readonly { readonly count?: number }[]) => nodes.reduce((total, node) => total + (node.count ?? 0), 0);
 
-/** 복지 마인드맵 구조의 개체 유형 한글 이름(스키마 id → 화면 이름). */
-export const ENTITY_LABELS: Readonly<Record<string, string>> = {
-  ProgramImplementation: "통합돌봄 시행사업", Region: "지역", ServiceType: "서비스 분류", Organization: "기관",
-  FiscalEntity: "재정주체(자치단체)", FiscalDepartment: "예산 부서", FiscalProject: "예산 세부사업", FiscalObservation: "예산·지출 수치",
-  BudgetDocument: "예산서", BudgetRevision: "예산 변경(추경)", BudgetLine: "예산서 항목", FundingSource: "재원", FundingComponent: "재원 구성",
-  NewsArticle: "언론 기사", NewsPublisher: "언론사", NewsCategory: "복지뉴스 분야", OfficialPublication: "공식 발간물", PressRelease: "보도자료",
-  RegionCode: "지역 코드", StatisticalTable: "통계표", StatisticalObservation: "통계 수치", CareProvider: "장기요양기관",
-  CareServiceType: "장기요양 기관 유형", PublicBenefitService: "정부24 공공서비스", LegalProvision: "법령 조문",
-};
-
-/** 복지 마인드맵 구조의 관계 한글 이름. */
-export const RELATION_LABELS: Readonly<Record<string, string>> = {
-  located_in: "소재 지역", classified_as: "서비스 분류", fiscalProjectFor: "예산 세부사업 연결", observesFiscalProject: "세부사업 예산·지출 수치",
-  reportedByFiscalEntity: "공시 재정주체", assignedToFiscalDepartment: "담당 예산 부서", documentedInBudget: "예산서 수록", hasFundingComponent: "재원 구성",
-  mentionsInTitle: "제목 속 언급", "classifiedAs(news)": "복지뉴스 분야 분류", issuedBy: "발행 기관", repostedBy: "재게시 기관",
-  "reposts/corrects/withdraws": "재게시·정정·철회", has_jurisdiction: "관할 지역", part_of: "상위 지역·기관", codeMapsTo: "코드 대응",
-  observesRegion: "지역 통계 수치", providerLocatedIn: "기관 소재지", providesCareService: "제공 기관 유형", hasAgreementWith: "협약 기관",
-  sameProgramAs: "같은 사업 대응", legalBasis: "법적 근거",
-};
+export { ENTITY_LABELS, RELATION_LABELS } from "./ontology.ts";
+import { ENTITY_LABELS, RELATION_LABELS } from "./ontology.ts";
 
 const STATUS_LABELS: Readonly<Record<string, string>> = { IMPLEMENTED: "구현", PARTIAL: "일부 구현", NOT_IMPLEMENTED: "미구현", NOT_COLLECTED: "미수집" };
 

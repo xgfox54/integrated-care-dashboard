@@ -4,6 +4,7 @@
 import type { SqlDatabase, SqlStatement } from "../sql-database.ts";
 import { sha256OfBytes, validatePack, type ImportProblem, type ValidatedPack } from "./pack.ts";
 import { BUDGET_IMPORT_FORMAT, validateBudgetArchive } from "./budget-pack.ts";
+import { blockingFindings, scanSensitiveText } from "../privacy-guard.ts";
 import { budgetReport, readActiveBudgetRevisions, stageBudgetStatements, staleBudgetDocuments, switchActiveBudget, unknownFiscalEntities } from "./budget-store.ts";
 
 export const CHUNK_MAX_BYTES = 512 * 1024;
@@ -148,6 +149,8 @@ export async function finalizeImport(db: SqlDatabase, importId: string, subjects
     if (budget) {
       if (!budget.ok) return finish("rejected", report(budget.problems));
       const { pack } = budget;
+      const budgetSensitive = blockingFindings(scanSensitiveText(JSON.stringify(pack)));
+      if (budgetSensitive.length) return finish("rejected", report(budgetSensitive.map((finding) => ({ code: "SENSITIVE_DATA_DETECTED", path: "data/budget", field: finding.kind + " " + finding.count + "건" }))));
       if (pack.artifactId !== row.artifact_id) return finish("rejected", report([{ code: "ARTIFACT_ID_MISMATCH", path: "manifest.json", field: "artifact_id" }]));
       const unknown = await unknownFiscalEntities(db, pack);
       if (unknown.length) return finish("rejected", report(unknown.map((id) => ({ code: "FISCAL_ENTITY_UNKNOWN", path: "data/budget/documents.jsonl", field: id }))));
@@ -161,6 +164,8 @@ export async function finalizeImport(db: SqlDatabase, importId: string, subjects
     const result = await validatePack(archive);
     if (!result.ok) return finish("rejected", report(result.problems));
     const { pack } = result;
+    const sensitive = blockingFindings(scanSensitiveText(JSON.stringify([pack.statements, pack.evidence, pack.sources])));
+    if (sensitive.length) return finish("rejected", report(sensitive.map((finding) => ({ code: "SENSITIVE_DATA_DETECTED", path: "data/knowledge", field: finding.kind + " " + finding.count + "건" }))));
     if (pack.artifactId !== row.artifact_id) return finish("rejected", report([{ code: "ARTIFACT_ID_MISMATCH", path: "manifest.json", field: "artifact_id" }]));
     const missing = await missingSubjects(pack, subjects);
     if (missing.length) return finish("rejected", report(missing.map((id) => ({ code: "SUBJECT_NOT_FOUND", path: "data/knowledge/statements.jsonl", field: id }))));

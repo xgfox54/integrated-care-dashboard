@@ -1,0 +1,620 @@
+[
+  {
+    "verification_id": "manual-table-20261012-emergency-9",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-43b248aa94461d761958",
+    "section_id": "82914d12bf22c5d95e0d",
+    "section_content_sha256": "3307bafa68d05490311d475909b1c431743ae9df1f24ce00df3afa391d83d59a",
+    "parsed_sha256": "4405cd5ff8478bbae57da0b9f7d9c5085f3b720dd7e2160e5dedec3c07b01410",
+    "original_sha256": "13c8c580647454780cf5b0b0a477721bb9575a88f44325595f80e97bd4241908",
+    "original_name": "[매뉴얼-긴급복지] 2026년+긴급복지지원사업+안내.pdf",
+    "physical_page": 9,
+    "printed_page": "ix",
+    "image_sha256": "33c99866836b4e9b2dd1ec26b44e85112102e95bdbdce7346903a18dc46e8c2e",
+    "reviewed_at": "2026-10-12",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "2026년 변경 후 생계지원 1~6인: 월 783000,1286600,1644000,1994600,2324400,2636700원. 7인부터 1인 추가 301000원. 변경 전 금액과 구분.",
+      "금융재산 표 단위는 천원. 변경 후 1~6인 8564,10199,11359,12494,13556,14555천원. 7인부터 1인 추가 960천원."
+    ],
+    "required_source_tokens": [
+      "변경 전",
+      "변경 후",
+      "783,000",
+      "301,000",
+      "960천원"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261012-emergency-61",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-43b248aa94461d761958",
+    "section_id": "988c8f2ee4c3a728601c",
+    "section_content_sha256": "d1f72458cca12757c1e1a63cc33dde3e70d2b9926570dd1630a8f06529922c80",
+    "parsed_sha256": "4405cd5ff8478bbae57da0b9f7d9c5085f3b720dd7e2160e5dedec3c07b01410",
+    "original_sha256": "13c8c580647454780cf5b0b0a477721bb9575a88f44325595f80e97bd4241908",
+    "original_name": "[매뉴얼-긴급복지] 2026년+긴급복지지원사업+안내.pdf",
+    "physical_page": 61,
+    "printed_page": "47",
+    "image_sha256": "0cb7af90525b40177fd385fc86a56df7b4712180c30b1749c9577420adbc6dd2",
+    "reviewed_at": "2026-10-12",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "2026년 1~6인 월 지원금 783000,1286600,1644000,1994600,2324400,2636700원. 7인부터 1인 추가 301000원.",
+      "보험금 수령 제외 문구의 각주32: 질병·부상 등으로 치료비 수준의 보험금만 수령한 경우 생계지원 가능.",
+      "3개월분 일시 지급이 아니라 매월 지급."
+    ],
+    "required_source_tokens": [
+      "783,000",
+      "301,000",
+      "32) 질병, 부상 등으로 치료비 수준의 보험금만 수령한 경우에는 생계지원 가능",
+      "일시에 지급하지 않음"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261012-livelihood-14",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-4b1fb458abb8e4cecee2",
+    "section_id": "0e342dacb43406680c23",
+    "section_content_sha256": "5d264f5b39ec8ada441d2940cd5a29fb38532250db5a248faa51a03cfa4e53a9",
+    "parsed_sha256": "ef9b5687024a224b48580c15079f3ee5276c001318d979e6196a1a5164bfbce7",
+    "original_sha256": "798294eeec0328df1f2104effad3c6f89f3d6acc0b99a1ed0992732e659a47d4",
+    "original_name": "01.[매뉴얼-공적급여] 2026년도+국민기초생활보장+사업안내★.pdf",
+    "physical_page": 14,
+    "printed_page": "xii",
+    "image_sha256": "f52099187b0eb292632e34dbed57cf29fce4a629be11ce10b95bc41e16f75d17",
+    "reviewed_at": "2026-10-12",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "2026년 기준중위소득 1~7인 2564238,4199292,5359036,6494738,7556719,8555952,9515150원. 8인부터 1인 추가 959198원.",
+      "생계32%,의료40%,주거48%,교육50% 선정기준을 구분. 생계급여 1~7인 820556,1343773,1714892,2078316,2418150,2737905,3044848원."
+    ],
+    "required_source_tokens": [
+      "2026년도 기준 중위소득",
+      "2,564,238",
+      "959,198",
+      "3,044,848"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261012-livelihood-77",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-4b1fb458abb8e4cecee2",
+    "section_id": "fc78d3160bd478bf0506",
+    "section_content_sha256": "3d236f27e678d64ea88b82ea024a1b9a5c75c8c5bec81b6bb4ac39f033d2b449",
+    "parsed_sha256": "ef9b5687024a224b48580c15079f3ee5276c001318d979e6196a1a5164bfbce7",
+    "original_sha256": "798294eeec0328df1f2104effad3c6f89f3d6acc0b99a1ed0992732e659a47d4",
+    "original_name": "01.[매뉴얼-공적급여] 2026년도+국민기초생활보장+사업안내★.pdf",
+    "physical_page": 77,
+    "printed_page": "51",
+    "image_sha256": "d07b58be20b06a85a4ff9b382621fc3977957c91d93648f83ccbd5e06766c1f2",
+    "reviewed_at": "2026-10-12",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "2026년 기준중위소득 7인 9515150원. 8인부터 1인 추가 959198원.",
+      "소득평가액 및 재산 소득환산액이 음수이면 0원 처리. 생계32% 이하와 의료40% 이하를 구분."
+    ],
+    "required_source_tokens": [
+      "9,515,150",
+      "959,198",
+      "0원으로 처리",
+      "32% 이하",
+      "40% 이하"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261012-livelihood-147",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-4b1fb458abb8e4cecee2",
+    "section_id": "892bbabf8c805c418615",
+    "section_content_sha256": "3fdd8cc8a08ac0abdd958165b394b302dcc5b602ccda529427c412f80f5ee8da",
+    "parsed_sha256": "ef9b5687024a224b48580c15079f3ee5276c001318d979e6196a1a5164bfbce7",
+    "original_sha256": "798294eeec0328df1f2104effad3c6f89f3d6acc0b99a1ed0992732e659a47d4",
+    "original_name": "01.[매뉴얼-공적급여] 2026년도+국민기초생활보장+사업안내★.pdf",
+    "physical_page": 147,
+    "printed_page": "121",
+    "image_sha256": "52ff56abf280b91010e408da62dea8fca05618fb8538f913901075598cd3032a",
+    "reviewed_at": "2026-10-12",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "사용대차: 부양의무자 전체 A×100%; 부양의무자 부분·제3자 전체 A×78%; 제3자 부분 A×20%. A는 4급지 기준임대료60%.",
+      "7인 이상 가구는 가구원 2인 증가마다 기준임대료10% 증가, 천원 미만 절사."
+    ],
+    "required_source_tokens": [
+      "A×100%",
+      "A×78%",
+      "A×20%",
+      "99,216",
+      "천원 미만"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261012-housing-19",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-b7ca6e7e18b458e0402c",
+    "section_id": "dedd371b802763e745e4",
+    "section_content_sha256": "a796e6100787166c1c3140d5c790329381bc1d0c1f8983cef942cfa4d0da616e",
+    "parsed_sha256": "ac4b253a8ee2eaf15bcb2b778e79d88d02014decff39f14e61aa85d528e26c94",
+    "original_sha256": "02d343163bf950ac361c397bce42b019babffbbd34ff68c03dd58764103d782e",
+    "original_name": "03.[매뉴얼-공적급여] 2026년 주거급여 사업안내★.pdf",
+    "physical_page": 19,
+    "printed_page": "xi",
+    "image_sha256": "bf74911ae237e2011772ae82eced6f12b40ed610ab9883697e34a3eb6257c9a4",
+    "reviewed_at": "2026-10-12",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "2026년 기준임대료 원/월. 1인 1~4급지369000,300000,247000,212000. 6~7인699000,568000,463000,402000.",
+      "7인 이상 가구원2인 증가마다10% 증가, 천원 단위 이하 절사.",
+      "수선유지 경보수590만원3년,중보수1095만원5년,대보수1601만원7년.",
+      "도서지역 수선비10% 가산에서 제주도 본섬 제외. 장애인380만원·고령자50만원 중복 불가, 장애인 추가지원 적용."
+    ],
+    "required_source_tokens": [
+      "2026년",
+      "699,000",
+      "402,000",
+      "590만원",
+      "제주도 본섬 제외",
+      "중복지원은 불가"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261012-pension-13",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-497b841700247f8e9816",
+    "section_id": "ad83ea5251ec135be138",
+    "section_content_sha256": "62c6cbeddcfbb46b760336615fcb5dfbe41b4ff6b725260157244db500f46350",
+    "parsed_sha256": "cf9ba3b5da1e81cc5e9ec8bce769a9c9ecb2b2126ee2f147a667d80ce3f6a25e",
+    "original_sha256": "45ddef1f98769182cf8f208ab4934610488974ad7a98c8c0a21d397e8a21447b",
+    "original_name": "05.[매뉴얼-공적급여] 2026년+기초연금+사업안내(개정)★.pdf",
+    "physical_page": 13,
+    "printed_page": "iii",
+    "image_sha256": "c4fd81289548ff67524932947cad9026f3003d29630163afe9efcc8a2359acc4",
+    "reviewed_at": "2026-10-12",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "2025년 선정기준 단독2280000원·부부3648000원과 2026년 단독2470000원·부부3952000원을 구분.",
+      "상시근로소득 공제는2026년116만원. 기준연금액2026년월349700원.",
+      "상담 단계에서 수급 여부를 사전 판단하여 확정적으로 안내하지 않도록 유의."
+    ],
+    "required_source_tokens": [
+      "2025년(현행)",
+      "2026년(개정안)",
+      "2,470,000원",
+      "3,952,000원",
+      "116만원",
+      "349,700원"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261012-pension-23",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-497b841700247f8e9816",
+    "section_id": "1e4c614a418fc8152a03",
+    "section_content_sha256": "7e045d64e6794e77228c671d82433fd41c8a4d3c1d5e31c57c8256a2bae396fb",
+    "parsed_sha256": "cf9ba3b5da1e81cc5e9ec8bce769a9c9ecb2b2126ee2f147a667d80ce3f6a25e",
+    "original_sha256": "45ddef1f98769182cf8f208ab4934610488974ad7a98c8c0a21d397e8a21447b",
+    "original_name": "05.[매뉴얼-공적급여] 2026년+기초연금+사업안내(개정)★.pdf",
+    "physical_page": 23,
+    "printed_page": "3",
+    "image_sha256": "bff3b2678d58fc4dcd3f4ee1a494d29927fda62ba43c950c1ea5133e3d9e5307",
+    "reviewed_at": "2026-10-12",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "만65세 이상, 소득인정액이 선정기준액 이하. 단독2470000원·부부3952000원.",
+      "소득평가액 각주1:0.7×(상시근로소득−116만원)+기타소득. 각주2:금융재산2000만원 공제, 연 소득환산율÷12월; 고급자동차·회원권 가액은 월100%."
+    ],
+    "required_source_tokens": [
+      "65세 이상",
+      "이하인 자",
+      "2,470,000원",
+      "3,952,000원",
+      "116만원",
+      "2,000만원",
+      "월 100%"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261012-jeju-care-8",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-30ded375ead506383cd8",
+    "section_id": "3da32b38366c3297eefa",
+    "section_content_sha256": "6db0c2381b1dcbaac16e58976388b3ea531c20c45f8d7644bf5b4bed18c4a3bb",
+    "parsed_sha256": "6621cb0ca20c2eb29d795d2ed1de6d1835d95c67e336ab1b7858566ff3ce2987",
+    "original_sha256": "839d83e79938fb92737c9faeb708e56042a32e39bfb3caac0875c652e32a7285",
+    "original_name": "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).pdf",
+    "physical_page": 8,
+    "printed_page": "15–16",
+    "image_sha256": "44f929434ad23b79c93704c35b440d76a02546e950c9572a0d69b18bf2965862",
+    "reviewed_at": "2026-10-12",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "2023~2026년 추진경과가 한 절에 혼재하므로 연도별 사실을 구분. 2026년1월 무상지원기준 기준중위소득120% 이하.",
+      "2026년1월 단가 일시재가2시간43000원·4시간70000원, 방문목욕89000원, 식사지원10000원."
+    ],
+    "required_source_tokens": [
+      "<2026년>",
+      "120% 이하",
+      "2시간43,000원",
+      "4시간70,000원",
+      "89,000원",
+      "10,000원"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261015-orig-235f5ad3f1a4b1fdeef1-46",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-73a60fc1f8adff28437f",
+    "section_id": "4702d0d2b9386659599d",
+    "section_content_sha256": "20de403222cf29db8811a025225df5deefc11328f610aa842556fd3ff35a25dc",
+    "parsed_sha256": "46e76691542874e36e8be7697d65663257aa354d7b6729a6f69798acf4d9f218",
+    "original_sha256": "235f5ad3f1a4b1fdeef1a773ea17c1fe5b0451761c059091ced234fa520e4305",
+    "original_name": "4.[매뉴얼-아동] 2026년도+부모급여+사업안내.pdf",
+    "physical_page": 46,
+    "printed_page": "6",
+    "image_sha256": "53b0ddee82ca4818210b9f67da094b946e49666ed4d582014f9a39e9ecd049cc",
+    "reviewed_at": "2026-10-15",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "2026년 부모급여 현금은 0세 월 100만원, 1세 월 50만원. 보육료와 현금급여를 전액 중복 지급하는 뜻이 아니다.",
+      "2026년 0세(0세반) 보육료 58.4만원과 차액 41.6만원을 구분. 1세(0세반) 58.4만원, 1세(1세반) 51.5만원은 차액 없음. 입·퇴소와 상·하위반 편성에 따른 정산금은 별도이다."
+    ],
+    "required_source_tokens": [
+      "100만원",
+      "50만원",
+      "58.4만원",
+      "41.6만원",
+      "차액 없음"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261015-orig-235f5ad3f1a4b1fdeef1-47",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-73a60fc1f8adff28437f",
+    "section_id": "d1b043d899bfdc1c96fd",
+    "section_content_sha256": "70c3d99c9729ccd0d9bae30c74d842713a7320ce956bc7e51e27d39386693c58",
+    "parsed_sha256": "46e76691542874e36e8be7697d65663257aa354d7b6729a6f69798acf4d9f218",
+    "original_sha256": "235f5ad3f1a4b1fdeef1a773ea17c1fe5b0451761c059091ced234fa520e4305",
+    "original_name": "4.[매뉴얼-아동] 2026년도+부모급여+사업안내.pdf",
+    "physical_page": 47,
+    "printed_page": "7",
+    "image_sha256": "6d2e1521c2e72d70863d9fdae754296d8be661da16fba806f95f1e32c7471adf",
+    "reviewed_at": "2026-10-15",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "2026년 표: 종일제 아이돌봄 시간당 12,790원, 최대 200시간 지원. 부모급여 현금과 종일제 아이돌봄을 서로 다른 열로 구분."
+    ],
+    "required_source_tokens": [
+      "2026년",
+      "12,790원",
+      "200시간"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261015-orig-235f5ad3f1a4b1fdeef1-98",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-73a60fc1f8adff28437f",
+    "section_id": "d027007c2ecf0d933d93",
+    "section_content_sha256": "9bbf2ad94414fe8fc587c3952c2b2d3bb886d7194ece30841af0cdb073f6d472",
+    "parsed_sha256": "46e76691542874e36e8be7697d65663257aa354d7b6729a6f69798acf4d9f218",
+    "original_sha256": "235f5ad3f1a4b1fdeef1a773ea17c1fe5b0451761c059091ced234fa520e4305",
+    "original_name": "4.[매뉴얼-아동] 2026년도+부모급여+사업안내.pdf",
+    "physical_page": 98,
+    "printed_page": "58",
+    "image_sha256": "c506fa696f13a4c118196bf98bac99c74d8b094290780a54f46cbd55f1750bb7",
+    "reviewed_at": "2026-10-15",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "출생일 포함 60일 이내 현금급여 신청은 출생월부터 소급. 60일째가 토·일·공휴일이면 그 다음날까지 인정.",
+      "친생부모 확인 소송절차 등의 기간 제외와 재난·감염병·입원 등 불가피한 사유의 예외를 구분. 후자는 아동복지심의위원회 또는 지방보육정책위원회 심의를 거쳐 인정하는 조건이다."
+    ],
+    "required_source_tokens": [
+      "60일 이내",
+      "그 다음날",
+      "심의를 거쳐 인정"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261015-orig-35f0a1012554491bb2f8-9",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-0d5cde1744ecb603eec8",
+    "section_id": "5ea82719033ccc6a0d09",
+    "section_content_sha256": "4e9dcac49fd54c88fc1ba5cbd072c25a7e4c806f2dd1d7aa9a2754dc9d03bf7f",
+    "parsed_sha256": "a026b56bfb87fb319952be3ae1fc5ace687534bb01aed24db3547630efb1b992",
+    "original_sha256": "35f0a1012554491bb2f84dd18d9d8c172f1934429896d10c634c82ea815b9844",
+    "original_name": "5.[매뉴얼-아동] 2026년+첫만남이용권+사업안내.pdf",
+    "physical_page": 9,
+    "printed_page": "5",
+    "image_sha256": "e4e36cb7ad6dd042e95e4a7d6430a3fed8ffbe69a70df9348a499609866b8494",
+    "reviewed_at": "2026-10-15",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "2024년 1월 1일 이후 출생아부터 첫째 200만원, 둘째 이상 300만원. 다둥이도 출생순위를 확인한다.",
+      "국민행복카드 바우처 지급이 원칙이며, 시설 보호 아동·보호자가 수형자인 경우 등 현금지급 예외는 각 조건을 함께 확인한다."
+    ],
+    "required_source_tokens": [
+      "200만원",
+      "300만원",
+      "24.1.1"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261015-orig-35f0a1012554491bb2f8-10",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-0d5cde1744ecb603eec8",
+    "section_id": "5ea82719033ccc6a0d09",
+    "section_content_sha256": "4e9dcac49fd54c88fc1ba5cbd072c25a7e4c806f2dd1d7aa9a2754dc9d03bf7f",
+    "parsed_sha256": "a026b56bfb87fb319952be3ae1fc5ace687534bb01aed24db3547630efb1b992",
+    "original_sha256": "35f0a1012554491bb2f84dd18d9d8c172f1934429896d10c634c82ea815b9844",
+    "original_name": "5.[매뉴얼-아동] 2026년+첫만남이용권+사업안내.pdf",
+    "physical_page": 10,
+    "printed_page": "6",
+    "image_sha256": "30cccb25e521b9742b2b025787d32d88960ca0254b1408ada54eef42aa114dc2",
+    "reviewed_at": "2026-10-15",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "본문의 첫만남이용권 사용 종료일은 출생일부터 2년이다. 2026년 1월 1일 출생아 예시는 2027년 12월 31일까지 사용, 2028년 1월 1일 0시 소멸이다.",
+      "바로 다음 절의 디딤씨앗통장 현금지급 예외와 함께 읽어야 한다. 같은 책 물리93쪽 서식의 1년 문구와 충돌한다."
+    ],
+    "required_source_tokens": [
+      "2년",
+      "2027년 12월 31일",
+      "2028년 1월 1일"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261015-orig-35f0a1012554491bb2f8-31",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-0d5cde1744ecb603eec8",
+    "section_id": "2e91849af280f54473cf",
+    "section_content_sha256": "19d150bcb792bae996ef68e78200e2317b830c7e2af93188e772a5de1a7d55f5",
+    "parsed_sha256": "a026b56bfb87fb319952be3ae1fc5ace687534bb01aed24db3547630efb1b992",
+    "original_sha256": "35f0a1012554491bb2f84dd18d9d8c172f1934429896d10c634c82ea815b9844",
+    "original_name": "5.[매뉴얼-아동] 2026년+첫만남이용권+사업안내.pdf",
+    "physical_page": 31,
+    "printed_page": "27",
+    "image_sha256": "f3d1bb237fbd95f52513be7ce6ce06123d85bc725d7c4c365ea939b6006af0ac",
+    "reviewed_at": "2026-10-15",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "첫만남이용권을 디딤씨앗통장에 지급하는 경우 출생순위와 상관없이 200만원이라는 각주를 확인했다.",
+      "같은 쪽 하단의 디딤씨앗통장 개요는 2023년 아동분야 사업안내를 참조한다. 그 개요의 소득기준을 2026년 전체 디딤씨앗통장 사업 기준으로 사용하지 않는다."
+    ],
+    "required_source_tokens": [
+      "출생순위와 상관",
+      "200만원",
+      "2023년"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261015-orig-35f0a1012554491bb2f8-93",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-0d5cde1744ecb603eec8",
+    "section_id": "010c438f03fd793ea33e",
+    "section_content_sha256": "8b507c1e7f551a3aeabb9c17bb3d6dac04a5e8aa4384ef4c705fd0a2e80a773a",
+    "parsed_sha256": "a026b56bfb87fb319952be3ae1fc5ace687534bb01aed24db3547630efb1b992",
+    "original_sha256": "35f0a1012554491bb2f84dd18d9d8c172f1934429896d10c634c82ea815b9844",
+    "original_name": "5.[매뉴얼-아동] 2026년+첫만남이용권+사업안내.pdf",
+    "physical_page": 93,
+    "printed_page": "89",
+    "image_sha256": "64c7cb07837955e8a95b486de2c267915cb967546a57bbcc04a7b7013bbfaa09",
+    "reviewed_at": "2026-10-15",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "서식에 사용기간 1년이라는 문구가 실제로 남아 있으나 본문 물리10쪽 2년과 상충한다. 이 기록은 1년을 현행 기준으로 확인한 것이 아니며 source_clarifications의 본문·공식 안내 대조를 함께 사용한다."
+    ],
+    "required_source_tokens": [
+      "1년",
+      "사용기간"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261015-orig-e4d3ea5acaa7e6a3f4dd-51",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-e2925ac8a6658a510921",
+    "section_id": "33140b908bf22b533e23",
+    "section_content_sha256": "2deb9015bbeaec4f5242fa300bd1667446be9e8ed079a07629336e2ffd8ca56f",
+    "parsed_sha256": "a5bb17ffe57cb3c67084d3a3cb12dfa7b6ce8c5cd44cbd9b8acaac099619bec2",
+    "original_sha256": "e4d3ea5acaa7e6a3f4dd7ffacf20f015f7c1f94218566d878b79d5858f46059f",
+    "original_name": "[매뉴얼-장애]제6권 2026년+장애인연금+사업안내.pdf",
+    "physical_page": 51,
+    "printed_page": "15",
+    "image_sha256": "bc53ffea0c7fdf679179dc19a1c19cff22c16b07c4d3913fbf21f55be4666b19",
+    "reviewed_at": "2026-10-15",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "장애인연금 기초급여는 18세부터 65세가 되는 전달까지 수급권을 유지한 자를 대상으로 한다. 이어지는 과거 연도별 금액을 현재 지급액과 혼동하지 않는다."
+    ],
+    "required_source_tokens": [
+      "65세가 되는 전달",
+      "기초급여"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261015-orig-e4d3ea5acaa7e6a3f4dd-56",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-e2925ac8a6658a510921",
+    "section_id": "5cbbf1de7201eca52c97",
+    "section_content_sha256": "9c64524ef64701c796af5d6ed81b162f7771060f800e209804c5662f38c46be9",
+    "parsed_sha256": "a5bb17ffe57cb3c67084d3a3cb12dfa7b6ce8c5cd44cbd9b8acaac099619bec2",
+    "original_sha256": "e4d3ea5acaa7e6a3f4dd7ffacf20f015f7c1f94218566d878b79d5858f46059f",
+    "original_name": "[매뉴얼-장애]제6권 2026년+장애인연금+사업안내.pdf",
+    "physical_page": 56,
+    "printed_page": "20",
+    "image_sha256": "a3cabaf3b228dc3548b57d9af6bdb01ceee928db101fb5ae30dae58eb552371e",
+    "reviewed_at": "2026-10-15",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "2026년 부가급여 표: 일반재가 생계·의료수급 65세 미만 9만원, 65세 이상 439700원. 일반 차상위 8만원, 차상위 초과 65세 미만 3만원·65세 이상 5만원.",
+      "부가급여에는 부부감액·초과분 감액을 적용하지 않는다. 일반 보장시설수급자와 급여특례자를 구분하며, 선정기준액 초과 시 부가급여만 지급할 수 없다."
+    ],
+    "required_source_tokens": [
+      "439,700원",
+      "9만원",
+      "초과분 감액을 적용안함"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261015-orig-e4d3ea5acaa7e6a3f4dd-57",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-e2925ac8a6658a510921",
+    "section_id": "376468842fe1c94ff34c",
+    "section_content_sha256": "e35601cdccf353ef292ec0e7952565500b83e795d7bf89af5d040711c21d6329",
+    "parsed_sha256": "a5bb17ffe57cb3c67084d3a3cb12dfa7b6ce8c5cd44cbd9b8acaac099619bec2",
+    "original_sha256": "e4d3ea5acaa7e6a3f4dd7ffacf20f015f7c1f94218566d878b79d5858f46059f",
+    "original_name": "[매뉴얼-장애]제6권 2026년+장애인연금+사업안내.pdf",
+    "physical_page": 57,
+    "printed_page": "21",
+    "image_sha256": "a48a4f88e9241ca9ca0419245713f732a022e4dfb688d4b2c83a51dc78564411",
+    "reviewed_at": "2026-10-15",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "2026년 기초급여 표에서 단독 또는 부부 중 1인수급 349700원, 부부 2인 모두 수급 시 각각 279760원을 구분. 차상위 초과에는 최고액 표시와 초과분 감액 여부가 있다.",
+      "각주1: 65세 이상 일반재가 생계·의료급여 수급자의 부가급여 439700원은 기초연금 수령액의 생계급여 차감에 따른 전체 수급액 감소분 보전이다."
+    ],
+    "required_source_tokens": [
+      "349,700원",
+      "279,760원",
+      "439,700원",
+      "감소분"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261015-orig-80fa7735a330b130d237-10",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-9b3ecb5e36c8d7cd6e7e",
+    "section_id": "3b9a27707bd9a0caf9eb",
+    "section_content_sha256": "e3e39b9a17a3e4b3dd6b3aae0bf04b6702607ad566262f73f6f6d330dccdf56f",
+    "parsed_sha256": "5a604d75003f0b97129f618a33e28248913786f3bd3b744615a001c880670732",
+    "original_sha256": "80fa7735a330b130d237912e8ca05a3dd50502f463189f733ebc890f703db3f4",
+    "original_name": "3.[매뉴얼-돌봄] 2026년+노인맞춤돌봄서비스+사업안내(개정).pdf",
+    "physical_page": 10,
+    "printed_page": "4",
+    "image_sha256": "5a1dbc3237aaa21a6fb74cc452707d67f784f7acc09aa513e0f71b0cc798afe8",
+    "reviewed_at": "2026-10-15",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "노인맞춤돌봄은 65세 이상이며 65세 미만 예외승인은 불가하다. 소득자격은 기초생활수급자·차상위계층·기초연금수급자 중 하나와 돌봄 필요성을 함께 확인한다.",
+      "유사중복사업은 원칙적으로 우선 제공하지만 시장·군수·구청장이 필요하다고 인정하는 예외를 함께 읽는다."
+    ],
+    "required_source_tokens": [
+      "65세 미만",
+      "예외승인 불가",
+      "또는",
+      "시장･군수･구청장"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261015-orig-80fa7735a330b130d237-11",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-9b3ecb5e36c8d7cd6e7e",
+    "section_id": "3b9a27707bd9a0caf9eb",
+    "section_content_sha256": "e3e39b9a17a3e4b3dd6b3aae0bf04b6702607ad566262f73f6f6d330dccdf56f",
+    "parsed_sha256": "5a604d75003f0b97129f618a33e28248913786f3bd3b744615a001c880670732",
+    "original_sha256": "80fa7735a330b130d237912e8ca05a3dd50502f463189f733ebc890f703db3f4",
+    "original_name": "3.[매뉴얼-돌봄] 2026년+노인맞춤돌봄서비스+사업안내(개정).pdf",
+    "physical_page": 11,
+    "printed_page": "5",
+    "image_sha256": "2b2ee681c72665ce3180eceb773b0c0fa827b6ad4dcd0e16cb606e41251a9f58",
+    "reviewed_at": "2026-10-15",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "장기요양등급을 포기하고 노인맞춤돌봄을 신청하는 것은 원칙적으로 불가. 유효기간 만료자는 신청 가능하고, 등급포기자는 본인 요청과 시장·군수·구청장의 필요 인정이 모두 있는 경우 예외적으로 신청 가능.",
+      "가사·간병, 보훈재가복지, 장애인활동지원 등 유사중복 자격과 실제 제공 내용 확인을 누락하지 않는다."
+    ],
+    "required_source_tokens": [
+      "유효기간 만료자",
+      "등급포기자",
+      "요청하고"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261015-orig-80fa7735a330b130d237-35",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-9b3ecb5e36c8d7cd6e7e",
+    "section_id": "0c83df12796c759f4122",
+    "section_content_sha256": "5fc935ffb6891b9ab5ea40c1ab4ca0b46a7097f0a68d1c7ada3781af8d1698e7",
+    "parsed_sha256": "5a604d75003f0b97129f618a33e28248913786f3bd3b744615a001c880670732",
+    "original_sha256": "80fa7735a330b130d237912e8ca05a3dd50502f463189f733ebc890f703db3f4",
+    "original_name": "3.[매뉴얼-돌봄] 2026년+노인맞춤돌봄서비스+사업안내(개정).pdf",
+    "physical_page": 35,
+    "printed_page": "29",
+    "image_sha256": "156fc5292c2e513dd6d0105e52160106ca10244a830b76e14bb77e5b74d9b707",
+    "reviewed_at": "2026-10-15",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "본문에서 장기요양 유효기간 만료자 예외와 등급포기자 요청·시장군수구청장 필요 인정 조건이 반복 확인된다."
+    ],
+    "required_source_tokens": [
+      "유효기간 만료자",
+      "등급포기자"
+    ]
+  },
+  {
+    "verification_id": "manual-table-20261015-orig-80fa7735a330b130d237-35-qa",
+    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "document_id": "md-9b3ecb5e36c8d7cd6e7e",
+    "section_id": "1107feeb317441721f38",
+    "section_content_sha256": "fcec72e97f3d3d526755b4d2a55feab87428ec944aca929430341136d7b0a131",
+    "parsed_sha256": "5a604d75003f0b97129f618a33e28248913786f3bd3b744615a001c880670732",
+    "original_sha256": "80fa7735a330b130d237912e8ca05a3dd50502f463189f733ebc890f703db3f4",
+    "original_name": "3.[매뉴얼-돌봄] 2026년+노인맞춤돌봄서비스+사업안내(개정).pdf",
+    "physical_page": 35,
+    "printed_page": "29",
+    "image_sha256": "156fc5292c2e513dd6d0105e52160106ca10244a830b76e14bb77e5b74d9b707",
+    "reviewed_at": "2026-10-15",
+    "verification_scope": "SELECTED_TABLE_AND_FOOTNOTE_FACTS",
+    "whole_section_verified": false,
+    "current_policy_verified": false,
+    "verified_facts": [
+      "같은 쪽 Q&A: 배우자 한 명이 장기요양 수급 중이어도 다른 배우자의 서비스 신청은 가능하며 공동생활공간과 제공 범위·횟수를 고려한다. 직역연금 수급자는 지자체 필요 인정과 심의를 거친 예외가 있다."
+    ],
+    "required_source_tokens": [
+      "직역연금 수급자",
+      "노인맞춤돌봄협의체 심의"
+    ]
+  }
+]

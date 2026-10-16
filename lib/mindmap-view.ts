@@ -139,7 +139,7 @@ export function buildExploreTree({ source, welfareBranch, welfareEntries }: Expl
     };
   }).sort((a, b) => (b.count ?? 0) - (a.count ?? 0));
 
-  // 필요한 서비스별: 대분류 → 중분류
+  // 통합돌봄 서비스별: 대분류 → 중분류
   const services = pick("svc").children?.map((category) => convert(category, "care", "service", (node) => {
     if (node.id.split("/").length !== 2) return undefined;
     const regions = categoryRegions.get(node.label);
@@ -171,7 +171,9 @@ export function buildExploreTree({ source, welfareBranch, welfareEntries }: Expl
   }) ?? [];
 
   const welfare = welfareBranch ? convert(welfareBranch, "people", "welfare") : null;
-  const fiscal = convert(pick("fiscal"), "data", "budget");
+  const fiscalSource = pick("fiscal");
+  // 예산 분류 기록은 원천에 보존하고, 관계성 지도·목록·검색에서는 지역별 예산 가지만 보여 준다.
+  const fiscal = convert({ ...fiscalSource, children: fiscalSource.children?.filter((node) => node.id !== "fiscal/care") }, "data", "budget");
   const news = convert(pick("news"), "data", "news");
   const onto = pick("onto");
 
@@ -181,7 +183,7 @@ export function buildExploreTree({ source, welfareBranch, welfareEntries }: Expl
       note: "공개 원문 문구로 묶은 대상자. 한 사업이 여러 묶음에 들 수 있습니다.",
     },
     {
-      id: "service", label: "필요한 서비스별", family: "care", icon: "service", count: source.services.total, unit: "건", href: query("/", {}), children: services,
+      id: "service", label: "통합돌봄 서비스별", family: "care", icon: "service", count: source.services.total, unit: "건", href: query("/", {}), children: services,
       note: "보건복지부 통합돌봄 사업안내의 서비스 대분류 → 중분류",
       related: [{ key: "services", label: "통합돌봄 사업", count: source.services.total, unit: "건", href: query("/", {}) }],
       links: [{ label: "통합돌봄 사업 보기", href: query("/", {}) }],
@@ -195,7 +197,7 @@ export function buildExploreTree({ source, welfareBranch, welfareEntries }: Expl
     welfare
       ? { ...welfare, id: "welfare", label: "복지제도별", links: [{ label: "복지제도 보기", href: "/welfare100" }], related: [{ key: "welfare", label: "복지제도", count: welfare.count ?? 0, unit: "개", href: "/welfare100" }] }
       : { id: "welfare", label: "복지제도별", family: "people", icon: "welfare", href: "/welfare100", note: "복지제도 대장을 불러오는 중입니다." },
-    { ...fiscal, id: "budget", label: "예산·현황", links: [{ label: "복지예산 보기", href: "/budget" }] },
+    { ...fiscal, id: "budget", label: "복지예산별", links: [{ label: "복지예산 보기", href: "/budget" }] },
     { ...news, id: "news", label: "뉴스·자료", links: [{ label: "복지뉴스 보기", href: "/news" }], related: [{ key: "news", label: "공식 보도자료", count: source.news.total, unit: "건", href: "/news" }] },
   ];
   // 복지제도100 가지의 하위 ID(w100/...)는 그대로 두고 맨 위만 welfare로 바꾼다.

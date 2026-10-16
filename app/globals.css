@@ -17,9 +17,11 @@
 @source "../components/budget";
 @source "../components/care";
 @source "../components/dashboard";
+@source "../components/law";
 @source "../components/mindmap";
 @source "../components/press";
 @source "../components/search";
+@source "../components/statistics";
 @source "../components/usage";
 @source "../components/welfare100";
 @source "../components/wiki";
@@ -166,6 +168,12 @@
 
 /* 인쇄 — 조작 요소는 각 화면의 print:hidden이 뺀다. 오른쪽 상세 패널이 열려 있으면 패널 내용만 인쇄한다
  * (@jeju/jeju-theme의 @media print와 같은 규칙). */
+.mcp-review-dashboard {
+  --jeju-target-min: 44px;
+  --jeju-input-h: var(--jeju-target-min);
+  padding-right: calc(var(--jeju-target-min) + var(--jeju-space-5) + var(--jeju-space-3));
+}
+
 @media print {
   body {
     background-color: var(--jeju-surface);

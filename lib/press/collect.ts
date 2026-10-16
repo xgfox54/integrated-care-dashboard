@@ -556,7 +556,8 @@ async function collectOnce(db: SqlDatabase, request: CollectRequest, deps: Colle
   if (looksLikeWafBlock(body)) {
     const blocked = await fail({ errorCode: "WAF_BLOCKED", technicalStatus: "BLOCKED", httpStatus: response.status, retryAfterSeconds: 0 });
     // 서버(해외 클라우드)가 막힌 것이면 이 Source를 PC 중계 수집으로 돌리고 다음 PC 수집 때 바로 가져오게 한다(운영자 승인 2026-10-06).
-    if (request.trigger !== "relay") {
+    // 인증키 API는 PC에 키를 전달하지 않으므로 중계로 자동 전환하지 않는다.
+    if (request.trigger !== "relay" && (source.adapter !== "OpenAPIAdapter" || parseOpenApiProfile(source.adapterProfile)?.keyRef === "none")) {
       await db.batch([
         db.prepare("UPDATE press_source SET collect_via = 'relay' WHERE source_id = ?").bind(source.sourceId),
         db.prepare("UPDATE press_crawl_state SET next_due_at = 0 WHERE source_id = ?").bind(source.sourceId),

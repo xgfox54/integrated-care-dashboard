@@ -1,4 +1,6 @@
+import { reviewedClassificationOf } from "./source-classifications.ts";
 import type { OfficialService } from "./official-source.ts";
+import { OFFICIAL_BUSINESS_TYPES } from "./business-type.ts";
 
 export interface OfficialCoverage {
   readonly category: number;
@@ -115,9 +117,9 @@ export function assessOfficialDataset(
   let unclassifiedTypeCount = 0;
   if (baselineServices.length > 0) {
     const baselineSubcategories = new Set(baselineServices.map((service) => service.subcategory));
-    const baselineTypes = new Set(baselineServices.map((service) => service.type));
+    const baselineTypes = new Set([...baselineServices.map((service) => service.type), ...OFFICIAL_BUSINESS_TYPES]);
     invalidSubcategoryCount = services.filter(
-      (service) => !baselineSubcategories.has(service.subcategory),
+      (service) => !baselineSubcategories.has(service.subcategory) && reviewedClassificationOf(service)?.subcategory?.value !== service.subcategory,
     ).length;
     invalidTypeCount = services.filter((service) => !baselineTypes.has(service.type)).length;
     if (invalidSubcategoryCount > 0) {
