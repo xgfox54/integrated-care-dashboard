@@ -104,10 +104,10 @@ function saveCsv(result: StatisticsResult, seriesId: string, periods: readonly s
   const anchor = document.createElement("a"); anchor.href = url; anchor.download = `welfare-statistics-${result.dataset.table_code}.csv`; anchor.click(); window.setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-export function StatisticsExplorer({ groups, aliases, snapshots, initialId }: { groups: readonly StatisticsCatalogGroup[]; aliases: Readonly<Record<string, string>>; snapshots: readonly StatisticsResult[]; initialId: string }) {
+export function StatisticsExplorer({ groups, aliases, snapshots, initialId, initialQuery = "", initialCategory = "", initialPage }: { groups: readonly StatisticsCatalogGroup[]; aliases: Readonly<Record<string, string>>; snapshots: readonly StatisticsResult[]; initialId: string; initialQuery?: string; initialCategory?: string; initialPage?: number }) {
   const canonicalInitialId = resolveAlias(aliases, initialId);
-  const [query, setQuery] = useState(""); const [category, setCategory] = useState("");
-  const [page, setPage] = useState(() => Math.floor(Math.max(0, groups.findIndex(group => group.item.id === canonicalInitialId)) / PAGE_SIZE));
+  const [query, setQuery] = useState(initialQuery); const [category, setCategory] = useState(initialCategory);
+  const [page, setPage] = useState(() => initialPage !== undefined ? Math.max(0, initialPage - 1) : Math.floor(Math.max(0, groups.findIndex(group => group.item.id === canonicalInitialId)) / PAGE_SIZE));
   const [selectedId, setSelectedId] = useState(canonicalInitialId);
   const [results, setResults] = useState<Record<string, StatisticsResult>>(() => Object.fromEntries(snapshots.map(result => [result.dataset.id, result])));
   const [settled, setSettled] = useState({ key: "", error: "" }); const [retry, setRetry] = useState(0);
@@ -130,16 +130,22 @@ export function StatisticsExplorer({ groups, aliases, snapshots, initialId }: { 
   const points = invalidPeriod ? [] : (series?.points ?? []).filter(p => (!fromYear || p.period >= fromYear) && (!toYear || p.period <= toYear));
   const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE)); const currentPage = Math.min(page, pageCount - 1);
 
+  function writeListState(nextQuery: string, nextCategory: string, nextPage: number) {
+    const url = new URL(window.location.href);
+    for (const [key, value] of [["q", nextQuery.trim()], ["cat", nextCategory], ["page", nextPage > 0 ? String(nextPage + 1) : ""]] as const) if (value) url.searchParams.set(key, value); else url.searchParams.delete(key);
+    window.history.replaceState(null, "", url);
+  }
   function select(id: string) { const canonicalId = resolveAlias(aliases, id); setSelectedId(canonicalId); setSeriesChoice(null); setFromYear(""); setToYear(""); const url = new URL(window.location.href); if (canonicalId) url.searchParams.set("id", canonicalId); else url.searchParams.delete("id"); window.history.replaceState(null, "", url); }
   function updateFilters(nextQuery: string, nextCategory: string) {
     const firstPage = filterGroups(groups, nextQuery, nextCategory).slice(0, PAGE_SIZE);
-    setQuery(nextQuery); setCategory(nextCategory); setPage(0);
+    setQuery(nextQuery); setCategory(nextCategory); setPage(0); writeListState(nextQuery, nextCategory, 0);
     select(firstPage.find(group => group.item.id === selectedId)?.item.id ?? firstPage[0]?.item.id ?? "");
   }
-  function changePage(nextPage: number) { setPage(nextPage); select(filtered[nextPage * PAGE_SIZE]?.item.id ?? ""); }
+  function changePage(nextPage: number) { setPage(nextPage); writeListState(query, category, nextPage); select(filtered[nextPage * PAGE_SIZE]?.item.id ?? ""); }
   function reveal(id: string) {
     const canonicalId = resolveAlias(aliases, id);
-    setQuery(""); setCategory(""); setPage(Math.floor(Math.max(0, groups.findIndex(group => group.item.id === canonicalId)) / PAGE_SIZE)); select(canonicalId);
+    const nextPage = Math.floor(Math.max(0, groups.findIndex(group => group.item.id === canonicalId)) / PAGE_SIZE);
+    setQuery(""); setCategory(""); setPage(nextPage); writeListState("", "", nextPage); select(canonicalId);
   }
   useEffect(() => {
     const onPop = () => { const id = new URL(window.location.href).searchParams.get("id") ?? canonicalInitialId; const canonicalId = resolveAlias(aliases, id); const index = groups.findIndex(group => group.item.id === canonicalId); const fallbackIndex = Math.max(0, groups.findIndex(group => group.item.id === canonicalInitialId)); const nextIndex = index < 0 ? fallbackIndex : index; setSelectedId(groups[nextIndex]?.item.id ?? ""); setPage(Math.floor(nextIndex / PAGE_SIZE)); setQuery(""); setCategory(""); setSeriesChoice(null); setFromYear(""); setToYear(""); };

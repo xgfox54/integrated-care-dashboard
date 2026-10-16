@@ -1,5 +1,6 @@
 import { manualSourceClarifications } from "./source-clarifications.ts";
 import { manualPlainText } from "./plain-text.ts";
+import { replacePrivateSymbols } from "../text-symbols.mjs";
 import type { SqlDatabase } from "../sql-database.ts";
 import { positiveQueryTerms, refineWelfareQuery } from "../mcp/query-refiner.ts";
 import { manualSearchText, readableManualRevision } from "./store.ts";
@@ -225,7 +226,7 @@ function sourceCitation(row: SectionRow, corpus: ManualCorpusSummary): ManualSou
     source_year: row.source_year, source_year_basis: row.source_year ? "filename_inferred" : "unknown", source_year_origin: row.source_year_origin,
     applicable_year: null, publisher: row.publisher, publisher_verified: false, authority: row.authority, authority_verified: false,
     source_role: row.source_role, jurisdiction: row.jurisdiction, jurisdiction_verified: false,
-    location: { basis: "parsed_markdown_lines", start_line: row.start_line, end_line: row.end_line, heading_path: row.heading_path, physical_page: null, physical_page_verified: false },
+    location: { basis: "parsed_markdown_lines", start_line: row.start_line, end_line: row.end_line, heading_path: replacePrivateSymbols(row.heading_path), physical_page: null, physical_page_verified: false },
     content_sha256: row.content_hash, document_sha256: row.document_sha256,
   };
 }
@@ -324,7 +325,7 @@ export async function searchManualSections(db: SqlDatabase, query: ManualSearchQ
     const bodyChars = manualBodyChars(content);
     return {
       id: MANUAL_SECTION_PREFIX + corpus.revision + ":" + row.section_id, entity_type: "manual_section", content_scope: "parsed_manual_section",
-      revision: corpus.revision, section_id: row.section_id, document_id: row.document_id, title: row.title || row.heading_path || row.original_name,
+      revision: corpus.revision, section_id: row.section_id, document_id: row.document_id, title: replacePrivateSymbols(row.title || row.heading_path || row.original_name),
       excerpt: plainExcerpt(content, plan.details.length ? plan.details : plan.core),
       score: Math.max(0, Math.min(235, Math.round(row.rank_value))), body_chars: bodyChars, body_available: bodyChars >= MANUAL_BODY_MIN_CHARS,
       sources: [sourceCitation(row, corpus)], warnings: [...warningsOf(row), ...(bodyChars < MANUAL_BODY_MIN_CHARS ? ["EMPTY_SOURCE_BODY: 이 구간은 제목·표·이미지 자리표시만 있어 본문 근거로 쓸 수 없습니다. 같은 문서의 인접 구간이나 원문을 확인하세요."] : [])],
@@ -345,7 +346,7 @@ export async function searchManualSections(db: SqlDatabase, query: ManualSearchQ
     seen.add(next.section_id);
     hits.push({
       id: MANUAL_SECTION_PREFIX + corpus.revision + ":" + next.section_id, entity_type: "manual_section", content_scope: "parsed_manual_section",
-      revision: corpus.revision, section_id: next.section_id, document_id: next.document_id, title: next.title || next.heading_path || next.original_name,
+      revision: corpus.revision, section_id: next.section_id, document_id: next.document_id, title: replacePrivateSymbols(next.title || next.heading_path || next.original_name),
       excerpt: plainExcerpt(next.content, plan.details.length ? plan.details : plan.core),
       score: Math.max(0, Math.min(235, Math.round(row.rank_value) - 4)), body_chars: manualBodyChars(next.content), body_available: true,
       continued_from: MANUAL_SECTION_PREFIX + corpus.revision + ":" + row.section_id,
@@ -386,8 +387,8 @@ export async function getManualSection(db: SqlDatabase, id: string, options: Man
   const next = offset + returned < row.total_chars ? offset + returned : null;
   return {
     id, entity_type: "manual_section", content_scope: "parsed_manual_section", revision: corpus.revision,
-    section_id: row.section_id, document_id: row.document_id, title: row.title || row.heading_path || row.original_name,
-    text: row.text, offset, returned_chars: returned, total_chars: row.total_chars, next_offset: next, truncated: next !== null,
+    section_id: row.section_id, document_id: row.document_id, title: replacePrivateSymbols(row.title || row.heading_path || row.original_name),
+    text: replacePrivateSymbols(row.text), offset, returned_chars: returned, total_chars: row.total_chars, next_offset: next, truncated: next !== null,
     image_content_available: false, sources: [sourceCitation(row, corpus)], warnings: warningsOf(row),
   };
 }

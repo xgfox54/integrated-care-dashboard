@@ -38,4 +38,11 @@ export const VERIFIED_RELAY_ROUTES = [
   ["src:www.yeoncheon.go.kr:press", "https://www.yeoncheon.go.kr/www/selectBbsNttList.do?bbsNo=29&key=3398", 1],
   ["src:www.yp21.go.kr:press", "https://www.yp21.go.kr/www/selectBbsNttList.do?bbsNo=2&key=1112", 1],
   ["src:www.yeosu.go.kr:press", "https://www.yeosu.go.kr/www/govt/news/release/press", 1],
+  // 2026-10-16: hosted collection repeatedly timed out; the same endpoints answered in 1-2s from a domestic PC and the
+  // current profiles parsed them on the server the same day. Evidence: outputs/press-relay-20261016.
+  ["src:www.jeongeup.go.kr:press", "https://www.jeongeup.go.kr/board/list.jeongeup?boardId=BBS_0000019&menuCd=DOM_000000101002001000&contentsSid=16&cpath=", 1],
+  ["src:www.gangjin.go.kr:press", "https://www.gangjin.go.kr/www/government/news/press", 1],
+  ["src:www.jindo.go.kr:press", "https://www.jindo.go.kr/home/board/B0016.cs?m=626", 1],
+  ["src:daejeon:press", "https://www.daejeon.go.kr/drh/board/boardNormalList.do?boardId=normal_0189&menuSeq=1632", 1],
+  ["src:media.asan.go.kr:press", "https://media.asan.go.kr/", 1],
 ] as const;

@@ -214,13 +214,29 @@ export function BudgetBrowser() {
       ...(part ? { mode: part.mode, part: part.code } : {}),
       region: (params.get("region") ?? "").trim().slice(0, 20),
       entity: (params.get("entity") ?? "").trim().slice(0, 40),
+      department: (params.get("department") ?? "").trim().slice(0, 40),
+      account: (params.get("account") ?? "").trim().slice(0, 20),
+      date: (params.get("date") ?? "").trim().slice(0, 10),
       q: (params.get("q") ?? "").trim().slice(0, 60),
       targetGroup: parseTargetGroup(params.get("target_group") ?? "") ?? "",
     };
-    if (next.mode === EMPTY.mode && !next.part && !next.region && !next.entity && !next.q && !next.targetGroup) return;
-    const frame = window.requestAnimationFrame(() => { setDraft(next); setApplied({ ...next, page: 1 }); });
+    const page = Math.min(10000, Math.max(1, Math.trunc(Number(params.get("page")) || 1)));
+    if (next.mode === EMPTY.mode && !next.part && !next.region && !next.entity && !next.department && !next.account && !next.date && !next.q && !next.targetGroup && page === 1) return;
+    const frame = window.requestAnimationFrame(() => { setDraft(next); setApplied({ ...next, page }); });
     return () => window.cancelAnimationFrame(frame);
   }, []);
+  // 적용한 검색 조건을 주소에 남겨 다른 메뉴에 다녀오거나 새로고침해도 같은 결과로 돌아온다.
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (applied.part) params.set("part", applied.part);
+    else if (applied.mode !== EMPTY.mode) params.set("mode", applied.mode);
+    for (const key of ["date", "region", "entity", "department", "account", "q"] as const) if (applied[key]) params.set(key, applied[key]);
+    if (applied.targetGroup) params.set("target_group", applied.targetGroup);
+    if (applied.page > 1) params.set("page", String(applied.page));
+    const search = params.toString();
+    const next = window.location.pathname + (search ? "?" + search : "") + window.location.hash;
+    if (next !== window.location.pathname + window.location.search + window.location.hash) window.history.replaceState(window.history.state, "", next);
+  }, [applied]);
   // 나눠 받기: 합계·지도·목록(view=main)을 먼저 받아 보여 주고, 큰 조건 목록(view=filters)은 따로 받는다.
   const result = useBudgetJson<BudgetData>(budgetResultPath(applied));
   const options = useBudgetJson<{ readonly filters: FilterOptions }>(budgetFiltersPath(draft));

@@ -1,0 +1,310 @@
+{
+ "checkedAt": "2026-10-16",
+ "scope": "데스크탑 round3에서 미확정으로 남은 법령 7행의 공식 원문 재확인. 광명 1행은 사용자가 제공한 광명시 공식 보도자료로 확정.",
+ "entries": [
+  {
+   "id": "LEGAL-00314",
+   "item": "WLF00004128",
+   "from": {
+    "name": "광주광역시 저소득주민 생활안정 지원 조례",
+    "article": "제4조 및 제5조"
+   },
+   "previousStatus": "PENDING",
+   "status": "VERIFIED",
+   "action": "CORRECT",
+   "note": "신규 통합특별시 조례 부칙상 2027-01-01까지 구 광주광역시 조례가 유효함을 확인하고, 국가법령정보센터 게시 2018 시행본을 현행 원문으로 연결했습니다.",
+   "to": [
+    {
+     "name": "광주광역시 저소득주민 생활안정지원 조례",
+     "kind": "조례",
+     "url": "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1343434",
+     "article": "제4조·제5조",
+     "scopeNote": "「전남광주통합특별시 저소득주민 생활안정지원 조례」 부칙 제1조·제2조에 따라 2027-01-01 폐지 전까지 효력이 있는 조례입니다. 국가법령정보센터에 게시된 2018-04-01 시행본을 현행 원문으로 표시하며, 2018년 이후 개정 연혁은 확인하지 못했습니다."
+    }
+   ],
+   "previousTo": [
+    {
+     "name": "광주광역시 저소득주민 생활안정지원 조례",
+     "kind": "조례",
+     "url": "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1343434",
+     "article": "제4조·제5조",
+     "scopeNote": "공식 2018-04-01 시행 연혁의 지원범위·대상·금액 조문을 확인했습니다. 최종 개정본 여부는 추가 확인이 필요합니다. 신규 통합특별시 조례는 부칙상 2027-01-01 시행이므로 현행으로 대체하지 않았습니다."
+    }
+   ],
+   "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2156049",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1343434"
+   ]
+  },
+  {
+   "id": "LEGAL-00324",
+   "item": "WLF00001518",
+   "from": {
+    "name": "광주광역시 저소득주민 생활안정에 관한 조례",
+    "article": ""
+   },
+   "previousStatus": "PENDING",
+   "status": "VERIFIED",
+   "action": "CORRECT",
+   "note": "신규 통합특별시 조례 부칙상 2027-01-01까지 구 광주광역시 조례가 유효함을 확인하고, 국가법령정보센터 게시 2018 시행본을 현행 원문으로 연결했습니다.",
+   "to": [
+    {
+     "name": "광주광역시 저소득주민 생활안정지원 조례",
+     "kind": "조례",
+     "url": "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1343434",
+     "article": "제4조~제6조",
+     "scopeNote": "「전남광주통합특별시 저소득주민 생활안정지원 조례」 부칙 제1조·제2조에 따라 2027-01-01 폐지 전까지 효력이 있는 조례입니다. 국가법령정보센터에 게시된 2018-04-01 시행본을 현행 원문으로 표시하며, 2018년 이후 개정 연혁은 확인하지 못했습니다."
+    }
+   ],
+   "previousTo": [
+    {
+     "name": "광주광역시 저소득주민 생활안정지원 조례",
+     "kind": "조례",
+     "url": "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1343434",
+     "article": "제4조~제6조",
+     "scopeNote": "공식 2018-04-01 시행 연혁의 지원범위·대상·금액 조문을 확인했습니다. 최종 개정본 여부는 추가 확인이 필요합니다. 신규 통합특별시 조례는 부칙상 2027-01-01 시행이므로 현행으로 대체하지 않았습니다."
+    }
+   ],
+   "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2156049",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1343434"
+   ]
+  },
+  {
+   "id": "LEGAL-00349",
+   "item": "WLF00001597",
+   "from": {
+    "name": "광주광역시 참전유공자 예우 및 지원 조례 등",
+    "article": ""
+   },
+   "previousStatus": "PENDING",
+   "status": "VERIFIED",
+   "action": "LIMITED",
+   "note": "보훈명예수당 근거를 「광주광역시 국가보훈대상자 예우 및 지원 조례」 제8조로 확인했습니다. 제8조 대상에 없는 독립유공자·생존 애국지사 수당 근거는 미확인으로 남깁니다.",
+   "to": [
+    {
+     "name": "광주광역시 참전유공자 예우 및 지원 조례",
+     "kind": "조례",
+     "url": "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1992153",
+     "article": "제3조·제5조",
+     "scopeNote": "구 광주 거주 65세 이상 등록 참전유공자 명예수당 부분만 확인했습니다. 지급액은 시·구 협의사항입니다."
+    },
+    {
+     "name": "광주광역시 국가보훈대상자 예우 및 지원 조례",
+     "kind": "조례",
+     "url": "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2069379",
+     "article": "제8조",
+     "scopeNote": "2025-09-23 개정본의 보훈명예수당 조문입니다. 65세 이상 전몰군경 등의 유족, 미참전 전상·공상군경, 4·19혁명 유공자와 유족, 특수임무유공자와 유족이 대상이며 지급액은 시와 자치구가 협의해 정합니다."
+    },
+    {
+     "name": "독립유공자·생존 애국지사 수당 근거",
+     "kind": "조례",
+     "reviewNote": "사업 안내의 독립유공자 및 유족, 생존 애국지사 월 20만원은 국가보훈대상자 조례 제8조 대상에 없어 근거를 확정하지 못했습니다."
+    }
+   ],
+   "previousTo": [
+    {
+     "name": "광주광역시 참전유공자 예우 및 지원 조례",
+     "kind": "조례",
+     "url": "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1992153",
+     "article": "제3조·제5조",
+     "scopeNote": "구 광주 거주 65세 이상 등록 참전유공자 명예수당 부분만 확인했습니다. 지급액은 시·구 협의사항입니다."
+    },
+    {
+     "name": "그 밖의 국가유공자·독립유공자 지원 근거",
+     "kind": "조례",
+     "reviewNote": "원자료의 '등'에 포함된 다른 급여 근거는 확정하지 못했습니다. 참전명예수당 조례를 복합사업 전체 근거로 확대하지 않습니다."
+    }
+   ],
+   "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1992153",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2069379"
+   ]
+  },
+  {
+   "id": "LEGAL-00195",
+   "item": "WLF00004449",
+   "from": {
+    "name": "시도 조례 및 시행계획",
+    "article": ""
+   },
+   "previousStatus": "PENDING",
+   "status": "VERIFIED",
+   "action": "CORRECT",
+   "note": "재해구호법의 이재민 정의·구호 종류와 경상남도 재해구호기금 조례 현행본을 확인했습니다. 고성군 해당 연도 시행계획 원문은 확인하지 못했습니다.",
+   "to": [
+    {
+     "name": "재해구호법",
+     "kind": "법률",
+     "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=259439",
+     "article": "제2조·제4조",
+     "scopeNote": "2024-07-31 시행 현행본입니다. 제2조제1호 이재민 정의가 사업 대상 문구와 같고, 제4조가 임시주거시설·생활필수품·장사 지원 등 구호 종류와 현금 구호를 정합니다."
+    },
+    {
+     "name": "경상남도 재해구호기금 운용·관리 조례",
+     "kind": "조례",
+     "url": "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1719755",
+     "scopeNote": "2022-08-04 개정 현행본입니다. 재해구호기금 운용 근거이며 고성군의 해당 연도 시행계획 원문은 확인하지 못했습니다."
+    }
+   ],
+   "previousTo": [
+    {
+     "name": "경상남도 재해구호기금 운용·관리 조례(2020년 첨부)",
+     "kind": "공식 사업자료",
+     "url": "https://www.bokjiro.go.kr/ssis-tbu/CmmFileUtil/siteQnaInfoDownload.do?atcflId=3369GOWF15GOWF153369&atcflSn=1",
+     "scopeNote": "법령 조문이 아닌 공식 사업자료입니다. 2020년 첨부 조례의 문서 정체를 확인한 자료이며 현재 시행계획으로 간주하지 않습니다."
+    },
+    {
+     "name": "고성군 재해구호 해당 연도 시행계획",
+     "kind": "공식 사업자료",
+     "reviewNote": "공식 첨부는 2020.10.8 조례4851까지의 조례. 요청된 시도 시행계획 문서는 아니며 최신 시행계획을 확인하지 못함. 오래된 조례 첨부를 현행 계획으로 대체하지 않음."
+    }
+   ],
+   "sources": [
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=259439",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1719755"
+   ]
+  },
+  {
+   "id": "LEGAL-00360",
+   "item": "WLF00001322",
+   "from": {
+    "name": "광주광역시 광산구 행여사망자 처리요령",
+    "article": ""
+   },
+   "previousStatus": "PENDING",
+   "status": "VERIFIED",
+   "action": "CORRECT",
+   "note": "무연고 사망자 장례는 광산구 공영장례 지원 조례와 장사법 제12조, 노숙인 시설 보호는 노숙인복지법 제10조로 확인했습니다. 2016 처리요령은 현재 유효성을 확인하지 못해 참고 자료로 남깁니다.",
+   "to": [
+    {
+     "name": "전남광주통합특별시 광산구 공영장례 지원 조례",
+     "kind": "조례",
+     "url": "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2143263",
+     "article": "제2조·제4조·제6조",
+     "scopeNote": "2026-07-01 시행 현행본입니다. 무연고 사망자 정의와 장례 지원 대상·내용을 정합니다."
+    },
+    {
+     "name": "장사 등에 관한 법률",
+     "kind": "법률",
+     "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=259173",
+     "article": "제12조",
+     "scopeNote": "무연고 시신을 조례에 따라 장례 후 매장·화장하도록 정한 상위 근거입니다."
+    },
+    {
+     "name": "노숙인 등의 복지 및 자립지원에 관한 법률",
+     "kind": "법률",
+     "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=268883",
+     "article": "제10조",
+     "scopeNote": "노숙인복지시설에 의한 보호 등 주거지원 근거입니다. 귀가여비 세부 기준은 보건복지부 노숙인 등의 복지사업 안내에 따르며 지침 원문은 대조하지 못했습니다."
+    },
+    {
+     "name": "광주광역시광산구행여사망자처리요령(2016년 기재본)",
+     "kind": "공식 사업자료",
+     "url": "https://www.bokjiro.go.kr/ssis-tbu/CmmFileUtil/siteQnaInfoDownload.do?atcflId=7386GOWF14GOWF147386&atcflSn=1",
+     "scopeNote": "법령 조문이 아닌 참고 자료입니다. 1988년 제정·2016년 기재 개정본으로 현재 유효성은 확인하지 못했습니다."
+    }
+   ],
+   "previousTo": [
+    {
+     "name": "광주광역시광산구행여사망자처리요령(2016년 기재본)",
+     "kind": "공식 사업자료",
+     "url": "https://www.bokjiro.go.kr/ssis-tbu/CmmFileUtil/siteQnaInfoDownload.do?atcflId=7386GOWF14GOWF147386&atcflSn=1",
+     "scopeNote": "법령 조문이 아닌 공식 사업자료입니다. 행여사망자 인수·매장/화장·기관통보·대장관리만. 살아있는 행려자 귀향여비·시설입소 근거가 아님. 현재 유효성은 추가 확인이 필요합니다."
+    }
+   ],
+   "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2143263",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=259173",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=268883"
+   ]
+  },
+  {
+   "id": "LEGAL-00190",
+   "item": "WLF00000140",
+   "from": {
+    "name": "부랑인 복지사업 운영안내 행려자 처리요령",
+    "article": ""
+   },
+   "previousStatus": "PENDING",
+   "status": "VERIFIED",
+   "action": "LIMITED",
+   "note": "복지로 첨부가 빈 파일인 처리요령 대신 노숙인복지법을 상위 근거로 연결했습니다. 귀가여비 지급 기준이 있는 보건복지부 지침 원문은 대조하지 못했습니다.",
+   "to": [
+    {
+     "name": "노숙인 등의 복지 및 자립지원에 관한 법률",
+     "kind": "법률",
+     "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=268883",
+     "scopeNote": "행려자·노숙인 보호와 귀가 지원 사업의 상위 법률입니다. 귀가여비 지급 기준은 보건복지부 「노숙인 등의 복지사업 안내」에 있으며 지침 원문은 대조하지 못했습니다. 원자료가 인용한 행려자 처리요령은 복지로 첨부가 빈 파일이라 연결하지 않았습니다."
+    }
+   ],
+   "previousTo": [
+    {
+     "name": "부랑인 복지사업 운영안내 행려자 처리요령",
+     "kind": "고시·지침",
+     "reviewNote": "복지로 해당 이름의 첨부 링크는 실제 파일명 첨부파일없음.hwp, 파싱된 본문이 빈 1페이지. 문서 근거로 사용할 수 없음."
+    }
+   ],
+   "sources": [
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=268883",
+    "https://www.bokjiro.go.kr/ssis-tbu/CmmFileUtil/siteQnaInfoDownload.do?atcflId=20240627UUWBM1540040091554009&atcflSn=1"
+   ]
+  },
+  {
+   "id": "LEGAL-00150",
+   "item": "WLF00006413",
+   "from": {
+    "name": "광명시 1인가구지원 조례, 광명시-대한적십자사 경기도지사 민관협력 업무협약(2024.07.19.)",
+    "article": ""
+   },
+   "previousStatus": "PENDING",
+   "status": "VERIFIED",
+   "action": "CORRECT",
+   "note": "광명시 공식 보도자료(2026-04-01)가 광명시 1인 가구 지원 기본 조례를 사업 근거로 명시하고 광명시·대한적십자사 공동 운영을 확인했습니다. 원자료의 2024.07.19. 협약 원문은 확인하지 못해 근거로 연결하지 않았습니다.",
+   "to": [
+    {
+     "name": "광명시 1인 가구 지원 기본 조례",
+     "kind": "조례",
+     "url": "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1640873",
+     "scopeNote": "광명시 공식 보도자료(2026-04-01)가 이 조례를 황금도시락 사업의 근거로 명시합니다. 지원금액·선정기준 같은 세부 조건은 조례 조문이 아니라 사업 안내에 따릅니다."
+    },
+    {
+     "name": "광명시 황금도시락 사업 운영 보도자료(2026-04-01)",
+     "kind": "공식 사업자료",
+     "url": "https://news.gm.go.kr/bbs/view.html?idxno=7846&sc_category=",
+     "scopeNote": "법령 조문이 아닌 광명시 공식 보도자료입니다. 2026년 292명 대상, 연 1회 광명사랑화폐 10만원, 중위소득 100%·재산 1억6천만원·금융재산 700만원 이하 기준과 광명시·대한적십자사 공동 운영을 확인했습니다. 원자료가 적은 2024.07.19. 협약 원문은 확인하지 못했습니다."
+    },
+    {
+     "name": "광명시 황금도시락 2026 운영 발표",
+     "kind": "공식 사업자료",
+     "url": "https://www.redcross.or.kr/gyeonggi/pt/pst/selectPstInfo.do?bbsId=1003&mi=1045&pstSn=501904",
+     "scopeNote": "법령 조문이 아닌 공식 사업자료입니다. 공식 적십자사 운영발표이며 2024년 업무협약서 원문은 아닙니다."
+    }
+   ],
+   "previousTo": [
+    {
+     "name": "광명시 1인 가구 지원 기본 조례",
+     "kind": "조례",
+     "url": "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1640873",
+     "scopeNote": "공식 문서명·관할·원문 연결을 확인했습니다. 개별 사업의 지원금액·선정조건 전체를 검증했다는 뜻은 아닙니다. 원자료의 복합 인용을 문서별로 분리했으며, 조문 번호의 문서별 배분은 확정하지 않았습니다."
+    },
+    {
+     "name": "광명시 황금도시락 2026 운영 발표",
+     "kind": "공식 사업자료",
+     "url": "https://www.redcross.or.kr/gyeonggi/pt/pst/selectPstInfo.do?bbsId=1003&mi=1045&pstSn=501904",
+     "scopeNote": "법령 조문이 아닌 공식 사업자료입니다. 공식 적십자사 운영발표이며 2024년 업무협약서 원문은 아닙니다."
+    },
+    {
+     "name": "광명시-대한적십자사 경기도지사 민관협력 업무협약(2024.07.19.)",
+     "kind": "행정규칙",
+     "reviewNote": "원자료의 복수 문서에서 분리한 미확인 근거입니다. 관할에 맞는 공식 문서와 개별 조문을 확정하지 못해 직접 연결을 보류합니다."
+    }
+   ],
+   "sources": [
+    "https://news.gm.go.kr/bbs/view.html?idxno=7846&sc_category=",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1640873",
+    "https://www.redcross.or.kr/gyeonggi/pt/pst/selectPstInfo.do?bbsId=1003&mi=1045&pstSn=501904"
+   ]
+  }
+ ]
+}

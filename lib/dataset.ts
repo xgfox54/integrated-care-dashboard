@@ -1,6 +1,7 @@
 import { matchesSearch, parseSearch, searchableText } from "./search-terms.ts";
 import { restoreVerifiedSourceDistinctions } from "./official-source-restoration.ts";
 import { serviceMatchesTarget } from "./target-groups.ts";
+import { replacePrivateSymbols } from "./text-symbols.mjs";
 
 export interface ServiceRow {
   id: number;
@@ -107,7 +108,7 @@ function text(source: Record<string, unknown>, ...keys: string[]): string {
   for (const key of keys) {
     const value = source[key];
     if (value === undefined || value === null) continue;
-    const normalized = String(value).trim();
+    const normalized = replacePrivateSymbols(String(value)).trim();
     if (normalized) return normalized;
   }
   return "";

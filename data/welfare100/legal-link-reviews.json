@@ -555,13 +555,14 @@
    "item": "WLF00003921",
    "name": "저출산고령사회 기본법",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "구 법령명·현행 법령 대응 확인",
-   "note": "구법과 현행 인구전략기본법의 제명·시행일을 확인했습니다. 일반 정책근거이며 개별 사업의 지급조건을 보증하지 않습니다.",
+   "note": "복합 인용의 모자보건법과 제11조를 분리하고 기준일 현행 원문을 대조했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "CORRECTED",
    "sources": [
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286727"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -615,14 +616,16 @@
    "item": "WLF00004334",
    "name": "참전유공자 지원 조례, 국가보훈대상자 예우 및 지원에 관한 조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "폐지된 참전 조례 병기를 현행 통합 조례로 정리하고 잘못된 월 18만원을 대상별 현행 금액으로 수정했습니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1969893",
     "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2102671"
-   ]
+   ],
+   "action": "CORRECTED"
   },
   {
    "id": "LEGAL-00126",
@@ -656,10 +659,15 @@
    "item": "WLF00001816",
    "name": "장사 등에 관한 법령",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령 URL 경로 불일치",
-   "note": "올바른 공식 문서 종류의 URL로 교체하고 실제 도착 문서를 확인",
-   "field": "$.raw.laws[0]"
+   "note": "법령을 특정하지 않은 장사 등에 관한 법령 표기를 해당 군의 공식 공영장례 조례로 대체했습니다.",
+   "field": "$.raw.laws[0]",
+   "action": "REPLACED_VERIFIED_BASIS",
+   "checkedAt": "2026-10-16",
+   "sources": [
+    "https://www.elis.go.kr/alrpop/alrDtlsPop?alrNo=42830102206047&histNo=001"
+   ]
   },
   {
    "id": "LEGAL-00130",
@@ -722,10 +730,15 @@
    "item": "WLF00006755",
    "name": "아이돌봄지원법",
    "article": "제4조",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "조문 원문 확인 미완료",
-   "note": "공식 현행 원문과 필요 시 해당 연혁의 조·항·호를 대조",
-   "field": "$.raw.laws[0]"
+   "note": "불완전하거나 사업과 맞지 않는 법조문 대신 해당 긴급돌봄 사업의 2026년 직접 공식안내를 연결했습니다.",
+   "field": "$.raw.laws[0]",
+   "action": "REPLACED_OFFICIAL_SOURCE",
+   "checkedAt": "2026-10-16",
+   "sources": [
+    "https://www.jeongseon.go.kr/portal/openadmin/adminnews/notice?articleSeq=306350"
+   ]
   },
   {
    "id": "LEGAL-00137",
@@ -771,14 +784,16 @@
    "item": "WLF00006107",
    "name": "「모자보건법」",
    "article": "제9조",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "조문 제목 차이·내용 검토",
-   "note": "복합 원자료의 실제 문서 경계를 구분하고 국가법령의 확인된 조문을 연결했습니다. 구법의 분산 이동은 목적별 일반근거로 한정하고 미확인 조례는 별도로 보존합니다.",
+   "note": "경기도 조례 제5조와 2026년 공식 교통비 사업안내를 대조했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "CORRECT_SCOPED",
+   "action": "CORRECTED",
    "sources": [
     "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286727",
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2078241",
+    "https://www.gg.go.kr/contents/contents.do?ciIdx=987341&menuId=1534192"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -787,14 +802,16 @@
    "item": "WLF00006107",
    "name": "「모자보건법」",
    "article": "제10조",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "조문 제목 차이·내용 검토",
-   "note": "복합 원자료의 실제 문서 경계를 구분하고 국가법령의 확인된 조문을 연결했습니다. 구법의 분산 이동은 목적별 일반근거로 한정하고 미확인 조례는 별도로 보존합니다.",
+   "note": "경기도 조례 제5조와 2026년 공식 교통비 사업안내를 대조했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "CORRECT_SCOPED",
+   "action": "CORRECTED",
    "sources": [
     "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286727",
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2078241",
+    "https://www.gg.go.kr/contents/contents.do?ciIdx=987341&menuId=1534192"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -830,13 +847,14 @@
    "item": "WLF00003981",
    "name": "저출산 고령사회기본법",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "구 법령명·현행 법령 대응 확인",
-   "note": "구법과 현행 인구전략기본법의 제명·시행일을 확인했습니다. 일반 정책근거이며 개별 사업의 지급조건을 보증하지 않습니다.",
+   "note": "현행 과천시 조례의 정확한 제명과 임신·출산 지원 조문으로 정정했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "CORRECTED",
    "sources": [
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2125061"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -845,13 +863,14 @@
    "item": "WLF00005139",
    "name": "저출산 고령사회기본법",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "구 법령명·현행 법령 대응 확인",
-   "note": "구법과 현행 인구전략기본법의 제명·시행일을 확인했습니다. 일반 정책근거이며 개별 사업의 지급조건을 보증하지 않습니다.",
+   "note": "현행 과천시 조례의 정확한 제명과 임신·출산 지원 조문으로 정정했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "CORRECTED",
    "sources": [
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2125061"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -860,14 +879,17 @@
    "item": "WLF00006413",
    "name": "광명시 1인가구지원 조례, 광명시-대한적십자사 경기도지사 민관협력 업무협약(2024.07.19.)",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "광명시 공식 보도자료(2026-04-01)가 광명시 1인 가구 지원 기본 조례를 사업 근거로 명시하고 광명시·대한적십자사 공동 운영을 확인했습니다. 원자료의 2024.07.19. 협약 원문은 확인하지 못해 근거로 연결하지 않았습니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
-    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1640873"
-   ]
+    "https://news.gm.go.kr/bbs/view.html?idxno=7846&sc_category=",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1640873",
+    "https://www.redcross.or.kr/gyeonggi/pt/pst/selectPstInfo.do?bbsId=1003&mi=1045&pstSn=501904"
+   ],
+   "action": "CORRECT"
   },
   {
    "id": "LEGAL-00151",
@@ -936,14 +958,16 @@
    "item": "WLF00001394",
    "name": "군포시 수도급수조례 및 하수도조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "축약된 하수도조례를 군포시 현행 사용 조례 제23조로 연결했습니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
-    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2106135"
-   ]
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2106135",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1901187"
+   ],
+   "action": "CORRECTED"
   },
   {
    "id": "LEGAL-00173",
@@ -1019,12 +1043,13 @@
    "item": "WLF00004586",
    "name": "장애인활동 지원에 관한 법률 시행규칙",
    "article": "제45조",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "제목 미확인·삭제 여부 검토",
-   "note": "장애인활동 지원에 관한 법률 시행규칙 제45조는 2016-12-30 삭제되었습니다. 용인시 2026년 안내문 1쪽에는 법령 인용이 없어 대체 조문을 확정하지 못했습니다.",
+   "note": "삭제 조문을 제거하고 실제 2026년 신청안내와 시 조례의 일반 활동보조 근거를 구분해 연결했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "REPLACED_OFFICIAL_SOURCE",
    "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1584257",
     "https://www.bokjiro.go.kr/ssis-tbu/twata/CmmFileUtil/getDownload.do?atcflId=20260605UUWBM1757480195514798&atcflSn=1&wlfareInfoId=WLF00004586"
    ],
    "checkedAt": "2026-10-16"
@@ -1049,13 +1074,14 @@
    "item": "WLF00003986",
    "name": "「저출산·고령사회기본법」",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "구 법령명·현행 법령 대응 확인",
-   "note": "구법과 현행 인구전략기본법의 제명·시행일을 확인했습니다. 일반 정책근거이며 개별 사업의 지급조건을 보증하지 않습니다. 구법의 제8~10조는 여러 현행 조문으로 분산 이동해 연속범위로 옮기지 않았습니다. 원자료 인용: 제8조 내지 제10조",
+   "note": "산후조리 지원과 도우미 자격 조문을 문서명에서 분리했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "CORRECTED",
    "sources": [
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286727"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -1076,40 +1102,50 @@
    "item": "WLF00006087",
    "name": "주거기본법, 경상남도 인구정책 기본 조례, 경상남도 주거 기본 조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "분리 과정에서 행정규칙으로 남은 주거기본법을 법률로 바로잡았습니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=280141",
     "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2112887",
     "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2174787"
-   ]
+   ],
+   "action": "CORRECTED"
   },
   {
    "id": "LEGAL-00189",
    "item": "WLF00004724",
    "name": "청년기본법, 경상남도 청년 기본 조례, 경상남도 청년주거 지원 조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "청년기본법 제20조의 일반 주거지원 근거와 문서 종류를 확인했습니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=277289",
     "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2043761",
     "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1612143"
-   ]
+   ],
+   "action": "CORRECTED"
   },
   {
    "id": "LEGAL-00190",
    "item": "WLF00000140",
    "name": "부랑인 복지사업 운영안내 행려자 처리요령",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령 URL 경로 불일치",
-   "note": "올바른 공식 문서 종류의 URL로 교체하고 실제 도착 문서를 확인",
-   "field": "$.raw.laws[0]"
+   "note": "복지로 첨부가 빈 파일인 처리요령 대신 노숙인복지법을 상위 근거로 연결했습니다. 귀가여비 지급 기준이 있는 보건복지부 지침 원문은 대조하지 못했습니다.",
+   "field": "$.raw.laws[0]",
+   "action": "LIMITED",
+   "checkedAt": "2026-10-16",
+   "sources": [
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=268883",
+    "https://www.bokjiro.go.kr/ssis-tbu/CmmFileUtil/siteQnaInfoDownload.do?atcflId=20240627UUWBM1540040091554009&atcflSn=1"
+   ]
   },
   {
    "id": "LEGAL-00192",
@@ -1146,12 +1182,16 @@
    "item": "WLF00004449",
    "name": "시도 조례 및 시행계획",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "재해구호법의 이재민 정의·구호 종류와 경상남도 재해구호기금 조례 현행본을 확인했습니다. 고성군 해당 연도 시행계획 원문은 확인하지 못했습니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
-   "sources": []
+   "sources": [
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=259439",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1719755"
+   ],
+   "action": "CORRECT"
   },
   {
    "id": "LEGAL-00197",
@@ -1287,14 +1327,16 @@
    "item": "WLF00001438",
    "name": "통영시 교육경비 보조에 관한 조례 및 방침",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "공식 첨부4쪽 계획의2026년6개사립유치원 월5만원/인 교육과정지원 직접확인.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
+    "https://www.bokjiro.go.kr/ssis-tbu/CmmFileUtil/siteQnaInfoDownload.do?atcflId=20260609UUWBM1046110195965279&atcflSn=1",
     "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1721571"
-   ]
+   ],
+   "action": "REPLACED_OFFICIAL_SOURCE"
   },
   {
    "id": "LEGAL-00213",
@@ -1428,13 +1470,13 @@
    "item": "WLF00005071",
    "name": "제12조",
    "article": "제12조",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "조문 원문 확인 미완료",
-   "note": "원자료 법명이 누락되었습니다. 실제 신청서에 법률 인용이 없어 치매관리법 제12조로 복원할 의도된 근거를 확정하지 못했습니다.",
+   "note": "법명이 없는 제12조 표기를 추정 법률에 연결하지 않고 현재 시 보건소 공식 사업안내로 대체했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "REPLACED_OFFICIAL_SOURCE",
    "sources": [
-    "https://www.bokjiro.go.kr/ssis-tbu/twata/CmmFileUtil/getDownload.do?atcflId=20250527UUWBM1439230139569874&atcflSn=1&wlfareInfoId=WLF00005071"
+    "https://www.gumi.go.kr/health/contents.do?mid=0303030000"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -1473,12 +1515,13 @@
    "item": "WLF00006118",
    "name": "안동시 주거복지지원조례",
    "article": "제24조",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "조문 원문 확인 미완료",
-   "note": "복합 원자료의 실제 문서 경계를 구분하고 국가법령의 확인된 조문을 연결했습니다. 구법의 분산 이동은 목적별 일반근거로 한정하고 미확인 조례는 별도로 보존합니다.",
+   "note": "안동시 제7조제6호가 실제 존재하는 일반 사업근거임을 확인했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "CORRECT_SCOPED",
+   "action": "CORRECTED",
    "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1818311",
     "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286735"
    ],
    "checkedAt": "2026-10-16"
@@ -1613,13 +1656,14 @@
    "item": "WLF00002785",
    "name": "저출산고령사회 기본법",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "구 법령명·현행 법령 대응 확인",
-   "note": "구법과 현행 인구전략기본법의 제명·시행일을 확인했습니다. 일반 정책근거이며 개별 사업의 지급조건을 보증하지 않습니다.",
+   "note": "복합 인용의 모자보건법과 제11조를 분리하고 기준일 현행 원문을 대조했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "CORRECTED",
    "sources": [
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286727"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -1640,13 +1684,15 @@
    "item": "WLF00001638",
    "name": "저출산 고령사회 기본법",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "구 법령명·현행 법령 대응 확인",
-   "note": "구법과 현행 인구전략기본법의 제명·시행일을 확인했습니다. 일반 정책근거이며 개별 사업의 지급조건을 보증하지 않습니다. 구법의 제8~10조는 여러 현행 조문으로 분산 이동해 연속범위로 옮기지 않았습니다. 원자료 인용: 제8조 및 제10조",
+   "note": "법률과 사업분류가 합쳐진 잘못된 제명을 분리하고 부산시 확대지원의 공식 구 보건소 안내로 대체했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "REPLACED_OFFICIAL_SOURCE",
    "sources": [
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286727",
+    "https://www.saha.go.kr/health/contents.do?mId=0402020000"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -1769,13 +1815,13 @@
    "item": "WLF00000871",
    "name": "사회복지사업법",
    "article": "제15조",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "제목 미확인·삭제 여부 검토",
-   "note": "사회복지사업법 제15조제2항은 삭제된 인용입니다. 부산 동구 행사 결과보고 미리보기에는 법령 근거가 없으며 배포용 HWP 전체 본문을 확보하지 못해 대체 조문을 확정하지 못했습니다.",
+   "note": "삭제된 사회복지사업법 조문 대신 해당 연도 동구 제작 행사 포스터를 연결했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "REPLACED_OFFICIAL_SOURCE",
    "sources": [
-    "https://www.bokjiro.go.kr/ssis-tbu/twata/CmmFileUtil/getDownload.do?atcflId=6702GOWF14GOWF146702&atcflSn=1&wlfareInfoId=WLF00000871"
+    "https://bsdongguvc.or.kr/bbs/board.php?bo_table=notice_&wr_id=84"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -1839,14 +1885,16 @@
    "item": "WLF00000904",
    "name": "부산광역시 해운대구 참전유공자 예우 및 지원에 관한 조례 및 참전유공자 명예수당 지급 계획",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "해당사업 공식복지로 첨부17쪽 PDF 직접확인. 원문표지에는 비공개(5) 표시가 있지만 현재 복지로에서 공개배포된 첨부이며 보안우회 없이 다운로드함.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
+    "https://www.bokjiro.go.kr/ssis-tbu/CmmFileUtil/siteQnaInfoDownload.do?atcflId=20260612UUWBM1050230196673853&atcflSn=1",
     "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1755791"
-   ]
+   ],
+   "action": "REPLACED_OFFICIAL_SOURCE"
   },
   {
    "id": "LEGAL-00260",
@@ -2031,28 +2079,32 @@
    "item": "WLF00002560",
    "name": "서울특별시 동작구 참전유공자 예우 및 지원에 관한 조례 및 서울특별시 동작구 국가보훈대상자 예우 및 지",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "잘린 제명을 완성하고 현재 시행 중인 규칙의 사망위로금 조문으로 연결했습니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
-    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2082399"
-   ]
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2082399",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2088053"
+   ],
+   "action": "CORRECTED"
   },
   {
    "id": "LEGAL-00276",
    "item": "WLF00002208",
    "name": "장애인복지법/서울시 서대문구 장애인이동기기 수리지원에 관한 조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "장애인복지법을 법률로 분류하고 일반 보조기구 지원 조문을 확인했습니다. 지역 수리비 조건은 지방조례와 구분합니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=290211",
     "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1541871"
-   ]
+   ],
+   "action": "CORRECTED"
   },
   {
    "id": "LEGAL-00278",
@@ -2102,13 +2154,14 @@
    "item": "WLF00005692",
    "name": "저출산고령사회 기본법",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "구 법령명·현행 법령 대응 확인",
-   "note": "구법과 현행 인구전략기본법의 제명·시행일을 확인했습니다. 일반 정책근거이며 개별 사업의 지급조건을 보증하지 않습니다.",
+   "note": "복합 인용의 모자보건법과 제11조를 분리하고 기준일 현행 원문을 대조했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "CORRECTED",
    "sources": [
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286727"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -2179,14 +2232,16 @@
    "item": "WLF00002528",
    "name": "울산광역시동구폐기물관리에 관한 조례, 울산광역시동구음식물류폐기물발생억제,수집.운반및재활용에",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "잘린 음식물류 폐기물 조례명을 공식 제명으로 완성하고 감면 조문을 확인했습니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
-    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2117345"
-   ]
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2117345",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1423643"
+   ],
+   "action": "CORRECTED"
   },
   {
    "id": "LEGAL-00290",
@@ -2208,14 +2263,15 @@
    "item": "WLF00000905",
    "name": "울산광역시 중구 저소득층 국민건강보험료 및 노인장기요양보험료 지원 조례 및 시행규칙",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "확인되지 않은 시행규칙 병기를 제거하고 실제 절차를 규정한 현행 조례로 연결했습니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
     "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1824243"
-   ]
+   ],
+   "action": "REPLACED_VERIFIED_BASIS"
   },
   {
    "id": "LEGAL-00293",
@@ -2463,11 +2519,15 @@
    "item": "WLF00004185",
    "name": "전라남도 경력단절여성등의 경제활동촉진에 관한 조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "행정구역 개편·구 조례 적용범위 검토",
-   "note": "공식 자치법규 검색과 통합특별시 대체 제명 검색을 실시했으나 이 인용에 대응하는 문서·승계 범위를 확정하지 못했습니다. 통합특별시 특별법 부칙 제10조에 따라 종전 조례·규칙은 새 조례·규칙 시행 전까지 종전에 적용되던 지역에 한정해 적용됩니다. 이 사업의 적용지역·세부조건은 별도 확인이 필요합니다.",
+   "note": "폐지·제명변경 이력과 현행 제3조의 일반 지원 근거를 확인했습니다. 바우처 금액을 조례로 추정하지 않습니다.",
    "field": "$.raw.laws[0]",
-   "checkedAt": "2026-10-16"
+   "checkedAt": "2026-10-16",
+   "action": "CORRECTED",
+   "sources": [
+    "https://www.elis.go.kr/alrpop/alrDtlsPop?alrNo=46000023000094&histNo=003"
+   ]
   },
   {
    "id": "LEGAL-00310",
@@ -2534,22 +2594,31 @@
    "item": "WLF00004128",
    "name": "광주광역시 저소득주민 생활안정 지원 조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "행정구역 개편·구 조례 적용범위 검토",
-   "note": "공식 자치법규 검색과 통합특별시 대체 제명 검색을 실시했으나 이 인용에 대응하는 문서·승계 범위를 확정하지 못했습니다. 통합특별시 특별법 부칙 제10조에 따라 종전 조례·규칙은 새 조례·규칙 시행 전까지 종전에 적용되던 지역에 한정해 적용됩니다. 이 사업의 적용지역·세부조건은 별도 확인이 필요합니다.",
+   "note": "신규 통합특별시 조례 부칙상 2027-01-01까지 구 광주광역시 조례가 유효함을 확인하고, 국가법령정보센터 게시 2018 시행본을 현행 원문으로 연결했습니다.",
    "field": "$.raw.laws[0]",
-   "checkedAt": "2026-10-16"
+   "checkedAt": "2026-10-16",
+   "action": "CORRECT",
+   "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2156049",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1343434"
+   ]
   },
   {
    "id": "LEGAL-00315",
    "item": "WLF00006156",
    "name": "광주광역시 저출산 대책 및 지원에 관한 조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "행정구역 개편·구 조례 적용범위 검토",
-   "note": "공식 자치법규 검색과 통합특별시 대체 제명 검색을 실시했으나 이 인용에 대응하는 문서·승계 범위를 확정하지 못했습니다. 통합특별시 특별법 부칙 제10조에 따라 종전 조례·규칙은 새 조례·규칙 시행 전까지 종전에 적용되던 지역에 한정해 적용됩니다. 이 사업의 적용지역·세부조건은 별도 확인이 필요합니다.",
+   "note": "폐지된 구 제명 대신 현재 공식 제명과 산후조리비 제24조제1항을 확인했습니다.",
    "field": "$.raw.laws[0]",
-   "checkedAt": "2026-10-16"
+   "checkedAt": "2026-10-16",
+   "action": "CORRECTED",
+   "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2059167"
+   ]
   },
   {
    "id": "LEGAL-00316",
@@ -2631,11 +2700,15 @@
    "item": "WLF00000461",
    "name": "전라남도 민주화운동 관련자 예우 및 지원에 관한 조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "행정구역 개편·구 조례 적용범위 검토",
-   "note": "공식 자치법규 검색과 통합특별시 대체 제명 검색을 실시했으나 이 인용에 대응하는 문서·승계 범위를 확정하지 못했습니다. 통합특별시 특별법 부칙 제10조에 따라 종전 조례·규칙은 새 조례·규칙 시행 전까지 종전에 적용되던 지역에 한정해 적용됩니다. 이 사업의 적용지역·세부조건은 별도 확인이 필요합니다.",
+   "note": "직접 조회가 깨진 법령정보센터 주소 대신 최신 전문이 확인되는 공식 ELIS 원문으로 연결했습니다.",
    "field": "$.raw.laws[0]",
-   "checkedAt": "2026-10-16"
+   "checkedAt": "2026-10-16",
+   "action": "CORRECTED",
+   "sources": [
+    "https://www.elis.go.kr/alrpop/alrDtlsPop?alrNo=46000007008198&histNo=004"
+   ]
   },
   {
    "id": "LEGAL-00322",
@@ -2657,13 +2730,13 @@
    "item": "WLF00003871",
    "name": "제32조(사립유치원에 대한 지원)",
    "article": "제32조",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "조문 원문 확인 미완료",
-   "note": "사립유치원 지원은 유아교육법 시행령 제32조와 부합하나 실제 2022년 지원계획 6쪽에는 해당 인용이 없어 누락 법명 복원을 보류합니다.",
+   "note": "법명이 누락된 제32조를 임의 복원하지 않고 2026년 교육청 직접 계획에 연결했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "REPLACED_OFFICIAL_SOURCE",
    "sources": [
-    "https://www.bokjiro.go.kr/ssis-tbu/twata/CmmFileUtil/getDownload.do?atcflId=5760GOWF16GOWF165760&atcflSn=1&wlfareInfoId=WLF00003871"
+    "https://www.jne.go.kr/sse/na/ntt/selectNttInfo.do?mi=792&bbsId=384&nttSn=5163919"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -2672,11 +2745,16 @@
    "item": "WLF00001518",
    "name": "광주광역시 저소득주민 생활안정에 관한 조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "행정구역 개편·구 조례 적용범위 검토",
-   "note": "공식 자치법규 검색과 통합특별시 대체 제명 검색을 실시했으나 이 인용에 대응하는 문서·승계 범위를 확정하지 못했습니다. 통합특별시 특별법 부칙 제10조에 따라 종전 조례·규칙은 새 조례·규칙 시행 전까지 종전에 적용되던 지역에 한정해 적용됩니다. 이 사업의 적용지역·세부조건은 별도 확인이 필요합니다.",
+   "note": "신규 통합특별시 조례 부칙상 2027-01-01까지 구 광주광역시 조례가 유효함을 확인하고, 국가법령정보센터 게시 2018 시행본을 현행 원문으로 연결했습니다.",
    "field": "$.raw.laws[0]",
-   "checkedAt": "2026-10-16"
+   "checkedAt": "2026-10-16",
+   "action": "CORRECT",
+   "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2156049",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1343434"
+   ]
   },
   {
    "id": "LEGAL-00325",
@@ -2788,21 +2866,31 @@
    "item": "WLF00002309",
    "name": "전라남도 노인에 대한 성인용보행기 지원 조례 및 시행규칙",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "행정구역 개편·구 조례 적용범위 검토",
-   "note": "통합 전 조례의 존속·승계 경과규정과 실제 사업 적용지역을 확인",
-   "field": "$.raw.laws[0]"
+   "note": "공식 조례와 시행규칙의 지원범위 및 보조율을 확인하여 미확정 상태를 해소했습니다.",
+   "field": "$.raw.laws[0]",
+   "action": "CORRECTED",
+   "checkedAt": "2026-10-16",
+   "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1672653",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1406606"
+   ]
   },
   {
    "id": "LEGAL-00334",
    "item": "WLF00002401",
    "name": "전라남도 여성기업 지원에 관한 조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "행정구역 개편·구 조례 적용범위 검토",
-   "note": "공식 자치법규 검색과 통합특별시 대체 제명 검색을 실시했으나 이 인용에 대응하는 문서·승계 범위를 확정하지 못했습니다. 통합특별시 특별법 부칙 제10조에 따라 종전 조례·규칙은 새 조례·규칙 시행 전까지 종전에 적용되던 지역에 한정해 적용됩니다. 이 사업의 적용지역·세부조건은 별도 확인이 필요합니다.",
+   "note": "승계 조례 제7조를 확인하고 2026년 직접 모집공고의 지원액도 수정했습니다.",
    "field": "$.raw.laws[0]",
-   "checkedAt": "2026-10-16"
+   "checkedAt": "2026-10-16",
+   "action": "CORRECTED",
+   "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2174301"
+   ]
   },
   {
    "id": "LEGAL-00335",
@@ -2824,13 +2912,14 @@
    "item": "WLF00002870",
    "name": "「저출산·고령사회기본법」",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "구 법령명·현행 법령 대응 확인",
-   "note": "구법과 현행 인구전략기본법의 제명·시행일을 확인했습니다. 일반 정책근거이며 개별 사업의 지급조건을 보증하지 않습니다. 구법의 제8~10조는 여러 현행 조문으로 분산 이동해 연속범위로 옮기지 않았습니다. 원자료 인용: 제4조, 제8조, 제10조",
+   "note": "입원아동돌봄의 일반 육아·돌봄서비스 지원 조문을 확인했습니다. 세부 지원시간·대상까지 조례에 규정된 것은 아닙니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "CORRECTED",
    "sources": [
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2059167"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -2899,11 +2988,15 @@
    "item": "WLF00005766",
    "name": "전라남도 친환경농산물 꾸러미 지원 조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "행정구역 개편·구 조례 적용범위 검토",
-   "note": "공식 자치법규 검색과 통합특별시 대체 제명 검색을 실시했으나 이 인용에 대응하는 문서·승계 범위를 확정하지 못했습니다. 통합특별시 특별법 부칙 제10조에 따라 종전 조례·규칙은 새 조례·규칙 시행 전까지 종전에 적용되던 지역에 한정해 적용됩니다. 이 사업의 적용지역·세부조건은 별도 확인이 필요합니다.",
+   "note": "현행 꾸러미 지원 조례의 대상별 조문과 종전 조례 승계를 확인했습니다.",
    "field": "$.raw.laws[0]",
-   "checkedAt": "2026-10-16"
+   "checkedAt": "2026-10-16",
+   "action": "CORRECTED",
+   "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2155931"
+   ]
   },
   {
    "id": "LEGAL-00343",
@@ -2925,11 +3018,15 @@
    "item": "WLF00005767",
    "name": "전라남도 친환경농산물 꾸러미 지원 조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "행정구역 개편·구 조례 적용범위 검토",
-   "note": "공식 자치법규 검색과 통합특별시 대체 제명 검색을 실시했으나 이 인용에 대응하는 문서·승계 범위를 확정하지 못했습니다. 통합특별시 특별법 부칙 제10조에 따라 종전 조례·규칙은 새 조례·규칙 시행 전까지 종전에 적용되던 지역에 한정해 적용됩니다. 이 사업의 적용지역·세부조건은 별도 확인이 필요합니다.",
+   "note": "현행 꾸러미 지원 조례의 대상별 조문과 종전 조례 승계를 확인했습니다.",
    "field": "$.raw.laws[0]",
-   "checkedAt": "2026-10-16"
+   "checkedAt": "2026-10-16",
+   "action": "CORRECTED",
+   "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2155931"
+   ]
   },
   {
    "id": "LEGAL-00345",
@@ -2996,11 +3093,16 @@
    "item": "WLF00001597",
    "name": "광주광역시 참전유공자 예우 및 지원 조례 등",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "행정구역 개편·구 조례 적용범위 검토",
-   "note": "공식 자치법규 검색과 통합특별시 대체 제명 검색을 실시했으나 이 인용에 대응하는 문서·승계 범위를 확정하지 못했습니다. 통합특별시 특별법 부칙 제10조에 따라 종전 조례·규칙은 새 조례·규칙 시행 전까지 종전에 적용되던 지역에 한정해 적용됩니다. 이 사업의 적용지역·세부조건은 별도 확인이 필요합니다.",
+   "note": "보훈명예수당 근거를 「광주광역시 국가보훈대상자 예우 및 지원 조례」 제8조로 확인했습니다. 제8조 대상에 없는 독립유공자·생존 애국지사 수당 근거는 미확인으로 남깁니다.",
    "field": "$.raw.laws[0]",
-   "checkedAt": "2026-10-16"
+   "checkedAt": "2026-10-16",
+   "action": "LIMITED",
+   "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1992153",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2069379"
+   ]
   },
   {
    "id": "LEGAL-00350",
@@ -3037,13 +3139,14 @@
    "item": "WLF00006157",
    "name": "저출산고령사회기본법",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "구 법령명·현행 법령 대응 확인",
-   "note": "구법과 현행 인구전략기본법의 제명·시행일을 확인했습니다. 일반 정책근거이며 개별 사업의 지급조건을 보증하지 않습니다. 구법의 제8~10조는 여러 현행 조문으로 분산 이동해 연속범위로 옮기지 않았습니다. 원자료 인용: 제8조 및 제10조",
+   "note": "출생축하금 지원 조문을 분리했습니다. 지급액은 매년 세부계획에서 정하므로 조례로 임의 추정하지 않습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "CORRECTED",
    "sources": [
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2059167"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -3097,28 +3200,31 @@
    "item": "WLF00000230",
    "name": "고흥군 인구정책 지원 조례,전라남도 출산 및 양육 지원에 관한 조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "잘못 연결된 현행 제8조를 결혼지원 및 신청절차 조문으로 수정했습니다. 미확인 도 조례 대신 실제 군 조례를 직접 근거로 제시합니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
     "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2119791"
-   ]
+   ],
+   "action": "REPLACED_VERIFIED_BASIS"
   },
   {
    "id": "LEGAL-00357",
    "item": "WLF00003615",
    "name": "고흥군 다문화가족 지원에 관한 조례, 다문화가족지원법",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "다문화가족지원법의 종류와 센터 설치·운영 조문을 확인했습니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
-    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2079797"
-   ]
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2079797",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=281953"
+   ],
+   "action": "CORRECTED"
   },
   {
    "id": "LEGAL-00358",
@@ -3155,10 +3261,17 @@
    "item": "WLF00001322",
    "name": "광주광역시 광산구 행여사망자 처리요령",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령 URL 경로 불일치",
-   "note": "올바른 공식 문서 종류의 URL로 교체하고 실제 도착 문서를 확인",
-   "field": "$.raw.laws[0]"
+   "note": "무연고 사망자 장례는 광산구 공영장례 지원 조례와 장사법 제12조, 노숙인 시설 보호는 노숙인복지법 제10조로 확인했습니다. 2016 처리요령은 현재 유효성을 확인하지 못해 참고 자료로 남깁니다.",
+   "field": "$.raw.laws[0]",
+   "action": "CORRECT",
+   "checkedAt": "2026-10-16",
+   "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2143263",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=259173",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=268883"
+   ]
   },
   {
    "id": "LEGAL-00361",
@@ -3252,15 +3365,16 @@
    "item": "WLF00005955",
    "name": "「저출산·고령사회기본법」",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "구 법령명·현행 법령 대응 확인",
-   "note": "복합 원자료의 실제 문서 경계를 구분하고 국가법령의 확인된 조문을 연결했습니다. 구법의 분산 이동은 목적별 일반근거로 한정하고 미확인 조례는 별도로 보존합니다.",
+   "note": "복합 인용에서 누락된 광양시 보육 조례 원문을 확인했습니다. 일반 비용보조 조문과 24시간 사업 세부조건은 구분합니다.",
    "field": "$.raw.laws[0]",
-   "action": "CORRECT_SCOPED",
+   "action": "CORRECTED",
    "sources": [
     "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
     "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286057",
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286013"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286013",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2009271"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -3269,15 +3383,16 @@
    "item": "WLF00005955",
    "name": "「저출산·고령사회기본법」",
    "article": "제8조",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "조문 제목 차이·내용 검토",
-   "note": "복합 원자료의 실제 문서 경계를 구분하고 국가법령의 확인된 조문을 연결했습니다. 구법의 분산 이동은 목적별 일반근거로 한정하고 미확인 조례는 별도로 보존합니다.",
+   "note": "복합 인용에서 누락된 광양시 보육 조례 원문을 확인했습니다. 일반 비용보조 조문과 24시간 사업 세부조건은 구분합니다.",
    "field": "$.raw.laws[0]",
-   "action": "CORRECT_SCOPED",
+   "action": "CORRECTED",
    "sources": [
     "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
     "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286057",
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286013"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286013",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2009271"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -3286,16 +3401,17 @@
    "item": "WLF00005955",
    "name": "「저출산·고령사회기본법」",
    "article": "제28조의2",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "조문 제목 차이·내용 검토",
-   "note": "복합 원자료의 실제 문서 경계를 구분하고 국가법령의 확인된 조문을 연결했습니다. 구법의 분산 이동은 목적별 일반근거로 한정하고 미확인 조례는 별도로 보존합니다.",
+   "note": "복합 인용에서 누락된 광양시 보육 조례 원문을 확인했습니다. 일반 비용보조 조문과 24시간 사업 세부조건은 구분합니다.",
    "field": "$.raw.laws[0]",
-   "action": "CORRECT_SCOPED",
+   "action": "CORRECTED",
    "checkedAt": "2026-10-16",
    "sources": [
     "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
     "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286057",
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286013"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286013",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2009271"
    ]
   },
   {
@@ -3303,13 +3419,14 @@
    "item": "WLF00004051",
    "name": "저출산고령사회기본법",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "구 법령명·현행 법령 대응 확인",
-   "note": "구법과 현행 인구전략기본법의 제명·시행일을 확인했습니다. 일반 정책근거이며 개별 사업의 지급조건을 보증하지 않습니다.",
+   "note": "복합 인용의 모자보건법과 제11조를 분리하고 기준일 현행 원문을 대조했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "CORRECTED",
    "sources": [
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286727"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -3318,13 +3435,15 @@
    "item": "WLF00004182",
    "name": "저출산, 고령사회기본법",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "구 법령명·현행 법령 대응 확인",
-   "note": "구법과 현행 인구전략기본법의 제명·시행일을 확인했습니다. 일반 정책근거이며 개별 사업의 지급조건을 보증하지 않습니다. 구법의 제8~10조는 여러 현행 조문으로 분산 이동해 연속범위로 옮기지 않았습니다. 원자료 인용: 제8조, 제10조",
+   "note": "산후조리업 신고 조문을 산모지원 근거로 잘못 연결한 부분을 정정하고 이용권법을 별도 문서로 분리했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "CORRECTED",
    "sources": [
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286727",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=257855"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -3476,11 +3595,15 @@
    "item": "WLF00005713",
    "name": "전라남도 여성농어업인 육성 지원조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "행정구역 개편·구 조례 적용범위 검토",
-   "note": "공식 자치법규 검색과 통합특별시 대체 제명 검색을 실시했으나 이 인용에 대응하는 문서·승계 범위를 확정하지 못했습니다. 통합특별시 특별법 부칙 제10조에 따라 종전 조례·규칙은 새 조례·규칙 시행 전까지 종전에 적용되던 지역에 한정해 적용됩니다. 이 사업의 적용지역·세부조건은 별도 확인이 필요합니다.",
+   "note": "현행 여성농어업인 지원 조례와 부칙을 확인했습니다. 군별 금액을 통합 조례만으로 변경하지 않습니다.",
    "field": "$.raw.laws[0]",
-   "checkedAt": "2026-10-16"
+   "checkedAt": "2026-10-16",
+   "action": "CORRECTED",
+   "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2137265"
+   ]
   },
   {
    "id": "LEGAL-00387",
@@ -3562,13 +3685,14 @@
    "item": "WLF00001466",
    "name": "저출산고령사회 기본법",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "구 법령명·현행 법령 대응 확인",
-   "note": "구법과 현행 인구전략기본법의 제명·시행일을 확인했습니다. 일반 정책근거이며 개별 사업의 지급조건을 보증하지 않습니다.",
+   "note": "복합 인용의 모자보건법과 제11조를 분리하고 기준일 현행 원문을 대조했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "CORRECTED",
    "sources": [
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286727"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -3577,11 +3701,15 @@
    "item": "WLF00006033",
    "name": "전라남도 여성농어업인 육성 지원조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "행정구역 개편·구 조례 적용범위 검토",
-   "note": "공식 자치법규 검색과 통합특별시 대체 제명 검색을 실시했으나 이 인용에 대응하는 문서·승계 범위를 확정하지 못했습니다. 통합특별시 특별법 부칙 제10조에 따라 종전 조례·규칙은 새 조례·규칙 시행 전까지 종전에 적용되던 지역에 한정해 적용됩니다. 이 사업의 적용지역·세부조건은 별도 확인이 필요합니다.",
+   "note": "현행 여성농어업인 지원 조례와 부칙을 확인했습니다. 군별 금액을 통합 조례만으로 변경하지 않습니다.",
    "field": "$.raw.laws[0]",
-   "checkedAt": "2026-10-16"
+   "checkedAt": "2026-10-16",
+   "action": "CORRECTED",
+   "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2137265"
+   ]
   },
   {
    "id": "LEGAL-00394",
@@ -3858,11 +3986,15 @@
    "item": "WLF00006137",
    "name": "전라남도해남군조례 제3418호(2025.7.1. 전부개정)",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "행정구역 개편·구 조례 적용범위 검토",
-   "note": "공식 자치법규 검색과 통합특별시 대체 제명 검색을 실시했으나 이 인용에 대응하는 문서·승계 범위를 확정하지 못했습니다. 통합특별시 특별법 부칙 제10조에 따라 종전 조례·규칙은 새 조례·규칙 시행 전까지 종전에 적용되던 지역에 한정해 적용됩니다. 이 사업의 적용지역·세부조건은 별도 확인이 필요합니다.",
+   "note": "조례번호만 있던 인용을 정확한 해남군 조례명·공식 원문으로 연결했습니다.",
    "field": "$.raw.laws[0]",
-   "checkedAt": "2026-10-16"
+   "checkedAt": "2026-10-16",
+   "action": "CORRECTED",
+   "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2049579"
+   ]
   },
   {
    "id": "LEGAL-00417",
@@ -3976,13 +4108,13 @@
    "item": "WLF00006540",
    "name": "장애인복지법",
    "article": "제30조",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "조문 제목 차이·내용 검토",
-   "note": "오인용 확인: 장애인복지법 제30조는 경제적 부담의 경감입니다. 범죄예방 책무의 직접 근거로 연결하지 않습니다. 의도된 사업 근거는 확인이 필요합니다.",
+   "note": "잘못된 장애인복지법 제30조 표제를 제거하고 실제 군산시 공식 사업자료로 대체했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "REPLACED_OFFICIAL_SOURCE",
    "sources": [
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=290211"
+    "https://www.gunsan.go.kr/upload_data/board_data/BBS_0000391/177424508156428.pdf"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -4021,14 +4153,16 @@
    "item": "WLF00004129",
    "name": "남원시 상수도급수 조례 및 남원시 하수도급수 조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "존재하지 않는 하수도급수 제명을 실제 하수도 사용 조례와 감면 조문으로 정정했습니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
-    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2093187"
-   ]
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2093187",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2093189"
+   ],
+   "action": "CORRECTED"
   },
   {
    "id": "LEGAL-00432",
@@ -4138,14 +4272,17 @@
    "item": "WLF00000451",
    "name": "정읍시 복지급여 등 지급에 관한 조례, 정읍시 효행장려 및 지원에 관한 조례시행규칙",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "효행장려금을 규정하지 않은 일반 복지급여 조례 대신 실제 효행장려 조례 제5조와 시행규칙 제2·3조로 연결했습니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1849119",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1173519",
     "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1217292"
-   ]
+   ],
+   "action": "REPLACED_VERIFIED_BASIS"
   },
   {
    "id": "LEGAL-00441",
@@ -4179,14 +4316,17 @@
    "item": "WLF00006554",
    "name": "제주특별자치도 주거기본 조례 및 인구정책 新전략사업(주거분야)",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "공식복지로 첨부14쪽 원문확인. 후속2차모집 공식발표 확인.3차공고URL은 발견했으나 공식페이지 프로그램오류로본문미확인,따라서 최초공고를 최신차수로 주장하지않음.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
+    "https://jeju.go.kr/lifecycle/notice/allnews.htm?act=view&page=2&seq=2017503",
+    "https://www.bokjiro.go.kr/ssis-tbu/CmmFileUtil/siteQnaInfoDownload.do?atcflId=20260709UUWBM1621530200546885&atcflSn=1",
     "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2026753"
-   ]
+   ],
+   "action": "REPLACED_OFFICIAL_SOURCE"
   },
   {
    "id": "LEGAL-00445",
@@ -4223,15 +4363,22 @@
    "item": "WLF00005237",
    "name": "초중등교육법, 난민법, 장애인 등에 대한 특수교육법 ,제주특별자치도교육청 탈북가정청소년 교육지원에 관한 조례, 제주특별자치도교육청 다자녀 학생 교육비 지원에 관한 조례",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "문서 종류가 잘못된 세 법률을 분리하고 2026년 변경계획의 대상별 금액을 대조했습니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
+    "https://www.jje.go.kr/board/view.jje?boardId=BBS_0000819&dataSid=1467802&menuCd=DOM_000000106007001000&paging=ok&startPage=1",
+    "https://www.jje.go.kr/board/download.jje?boardId=BBS_0000819&command=update&dataSid=1467802&fileSid=1391828&menuCd=DOM_000000106007001000&paging=ok&startPage=1",
+    "https://www.bokjiro.go.kr/ssis-tbu/CmmFileUtil/siteQnaInfoDownload.do?atcflId=20260720UUWBM1701050201743334&atcflSn=1",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=283903",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=188376",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=276191",
     "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1289480",
     "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1642865"
-   ]
+   ],
+   "action": "CORRECTED"
   },
   {
    "id": "LEGAL-00449",
@@ -4267,14 +4414,16 @@
    "item": "WLF00002966",
    "name": "제주특별자치도 노인 틀니 보청기 지원 조례,어르신 틀니 보청기 지원 지침",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "제주도공식첨부69쪽지침에서 제주시사업비84백만원과지원조건직접확인.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
+    "https://www.bokjiro.go.kr/ssis-tbu/CmmFileUtil/siteQnaInfoDownload.do?atcflId=20260709UUWBM1717580200564834&atcflSn=1",
     "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=1280245"
-   ]
+   ],
+   "action": "REPLACED_OFFICIAL_SOURCE"
   },
   {
    "id": "LEGAL-00453",
@@ -4444,27 +4593,30 @@
    "item": "WLF00005659",
    "name": "천안시 출산장려및입양가정지원에 관한 조례, 저출산 고령사회기본법",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "구 법령명으로 분리되어 남은 문서를 현행 인구전략기본법의 일반 정책 근거로 정리했습니다. 프리미엄 바우처의 직접 지급규정으로 단정하지 않습니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
-    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2095473"
-   ]
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2095473",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+   ],
+   "action": "CORRECTED"
   },
   {
    "id": "LEGAL-00467",
    "item": "WLF00001747",
    "name": "저출산고령사회기본법",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "구 법령명·현행 법령 대응 확인",
-   "note": "구법과 현행 인구전략기본법의 제명·시행일을 확인했습니다. 일반 정책근거이며 개별 사업의 지급조건을 보증하지 않습니다.",
+   "note": "교복비 인용의 잘못된 제8~11조 범위를 현행 제10~13조로 정정했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "CORRECTED",
    "sources": [
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2095473"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -4473,27 +4625,30 @@
    "item": "WLF00005647",
    "name": "천안시 출산장려 및 입양가정 지원에 관한 조례, 저출산 고령사회 기법",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "법령명 오탈자와 현행 제명을 정리하고 천안시 임산부 교통비 제23~25조를 확인했습니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
-    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2095473"
-   ]
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2095473",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+   ],
+   "action": "CORRECTED"
   },
   {
    "id": "LEGAL-00470",
    "item": "WLF00006594",
    "name": "저출산고령사회기본법",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "구 법령명·현행 법령 대응 확인",
-   "note": "구법과 현행 인구전략기본법의 제명·시행일을 확인했습니다. 일반 정책근거이며 개별 사업의 지급조건을 보증하지 않습니다.",
+   "note": "제명과 조문 범위를 분리해 정확한 현행 조례에 연결했습니다.",
    "field": "$.raw.laws[0]",
-   "action": "LIMITED",
+   "action": "CORRECTED",
    "sources": [
-    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721"
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=286721",
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2095473"
    ],
    "checkedAt": "2026-10-16"
   },
@@ -4648,14 +4803,16 @@
    "item": "WLF00006568",
    "name": "충주시 헌혈 권장 조례, 혈액관리법",
    "article": "조문 미수록",
-   "status": "PENDING",
+   "status": "VERIFIED",
    "type": "법령명과 URL 대상 불일치 후보",
-   "note": "복합 문서명을 개별 공식 문서로 분리. 확인되지 않은 협약·계획·문서 조각은 재검토 상태로 보존.",
+   "note": "혈액관리법을 법률로 바로잡고 국가·지자체 헌혈 장려의 일반 조문을 확인했습니다.",
    "field": "$.raw.laws[0]",
    "checkedAt": "2026-10-16",
    "sources": [
-    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2175651"
-   ]
+    "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2175651",
+    "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=238113"
+   ],
+   "action": "CORRECTED"
   },
   {
    "id": "LEGAL-00182",

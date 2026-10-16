@@ -11,6 +11,7 @@ import { applyLegalLinkReviews } from "./legal-link-reviews.mjs";
 import { HOUSEHOLD_ORDER, LIFECYCLE_ORDER, TOPIC_ORDER, expandRecord } from "../../lib/welfare100/model.ts";
 import { writeSplitIndex } from "./split-index.mjs";
 import { listRowMismatch, manualLinkAllowed } from "./manual-link-scope.mjs";
+import { replacePrivateSymbolsDeep } from "../../lib/text-symbols.mjs";
 
 const argv = process.argv.slice(2);
 const arg = (name, fallback) => {
@@ -362,6 +363,7 @@ for (const [id, entry] of Object.entries(bokjiroEdits.edit ?? {})) {
 }
 
 // ---------------------------------------------------------------- curated 100
+for (const [id, raw] of rawById) rawById.set(id, replacePrivateSymbolsDeep(raw));
 for (const raw of rawById.values()) raw.laws = applyLegalLinkReviews(raw.id, raw.laws);
 const manualTitles = readJson(path.join(DATA, "manuals.json"));
 const programs = readJson(path.join(DATA, "programs.json"));
@@ -604,7 +606,7 @@ fs.mkdirSync(path.join(OUT, "items"), { recursive: true });
 const rows = [];
 let bytes = 0;
 const writeItem = (slug, payload) => {
-  const json = JSON.stringify(payload);
+  const json = JSON.stringify(replacePrivateSymbolsDeep(payload));
   bytes += Buffer.byteLength(json);
   fs.writeFileSync(path.join(OUT, "items", slug + ".json"), json);
 };

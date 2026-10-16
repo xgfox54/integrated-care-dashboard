@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ChevronDownIcon, ChevronUpIcon } from "@/components/ui/jeju-icons";
+import { MenuBackButton } from "@/components/menu-back-button";
 
 export function PageScrollControls() {
   const move = (edge: "top" | "bottom") => {
@@ -17,9 +18,10 @@ export function PageScrollControls() {
 
   return (
     <nav
-      aria-label="페이지 위아래 이동"
-      className="fixed top-1/2 right-2 z-(--jeju-z-sticky) flex -translate-y-1/2 flex-col gap-2 print:hidden sm:right-4"
+      aria-label="이전 메뉴·페이지 위아래 이동"
+      className="fixed top-1/2 right-2 z-(--jeju-z-sticky) flex -translate-y-1/2 flex-col items-end gap-2 print:hidden sm:right-4"
     >
+      <MenuBackButton />
       <Button
         type="button"
         variant="outline"

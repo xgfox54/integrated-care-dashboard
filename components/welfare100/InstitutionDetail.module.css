@@ -644,18 +644,6 @@
   overflow-wrap: anywhere;
 }
 
-.moreButton {
-  display: inline-block;
-  margin-left: 6px;
-  padding: 1px 6px;
-  border: 1px solid var(--jeju-border-strong);
-  background: var(--jeju-surface);
-  color: var(--jeju-primary-hover);
-  font-size: 13px;
-  font-weight: 650;
-  cursor: pointer;
-}
-
 .mutedNote {
   margin-top: 8px !important;
   color: var(--jeju-text-muted);

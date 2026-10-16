@@ -41,11 +41,15 @@ interface KoreaVectorMapProps {
   readonly title?: string;
   readonly description?: string;
   readonly fixedLayout?: boolean;
+  /** 지역 값 표시. 기본은 대시보드의 사업 건수(예: 12건). */
+  readonly formatValue?: (value: number) => string;
+  /** 색 단계를 나눌 최솟값. 비율처럼 값이 좁은 범위에 모일 때 쓴다. 기본 0. */
+  readonly minimum?: number;
 }
 
-function regionTone(count: number, maximum: number): string {
+function regionTone(count: number, maximum: number, minimum = 0): string {
   if (count === 0 || maximum === 0) return "fill-[var(--map-region-empty)]";
-  const ratio = count / maximum;
+  const ratio = maximum > minimum ? (count - minimum) / (maximum - minimum) : 1;
   if (ratio < 0.34) return "fill-[var(--map-region-low)]";
   if (ratio < 0.67) return "fill-[var(--map-region-medium)]";
   return "fill-[var(--map-region-high)]";
@@ -61,6 +65,8 @@ export function KoreaVectorMap({
   title = "대한민국 광역단위 사업 현황 지도",
   description = "원하는 지역을 클릭하거나 키보드로 선택하면 해당 광역단위 현황이 대시보드 검색 조건에 반영됩니다.",
   fixedLayout = false,
+  formatValue = (value) => NUMBER_FORMAT.format(value) + "건",
+  minimum = 0,
 }: KoreaVectorMapProps) {
   const [hoveredRegionId, setHoveredRegionId] = useState<RegionId | null>(null);
   const [focusedRegionId, setFocusedRegionId] = useState<RegionId | null>(null);
@@ -103,7 +109,7 @@ export function KoreaVectorMap({
         </div>
         {highlightedRegion ? (
           <p className="shrink-0 rounded-full bg-(--jeju-primary-tint) px-3 py-1 text-(length:--jeju-text-sm) font-extrabold tabular-nums text-primary">
-            {NUMBER_FORMAT.format(highlightedRegion.count)}건
+            {formatValue(highlightedRegion.count)}
           </p>
         ) : null}
       </div>
@@ -132,7 +138,7 @@ export function KoreaVectorMap({
             <g
               key={region.id}
               aria-disabled={disabled}
-              aria-label={`${region.fullName} ${NUMBER_FORMAT.format(region.count)}건`}
+              aria-label={region.fullName + " " + formatValue(region.count)}
               aria-pressed={selected}
               data-region-id={region.id}
               onBlur={() => setFocusedRegionId(null)}
@@ -148,7 +154,7 @@ export function KoreaVectorMap({
                 disabled && "cursor-not-allowed",
               )}
             >
-              <title>{`${region.fullName} ${NUMBER_FORMAT.format(region.count)}건`}</title>
+              <title>{region.fullName + " " + formatValue(region.count)}</title>
               {paths.map((location) => (
                 <path
                   key={location.id}
@@ -156,7 +162,7 @@ export function KoreaVectorMap({
                   vectorEffect="non-scaling-stroke"
                   className={cn(
                     "stroke-[var(--map-region-border)] [stroke-linejoin:round] [stroke-width:1.25] transition-[fill,stroke,filter,opacity] duration-150 ease-out motion-reduce:transition-none",
-                    regionTone(region.count, maximum),
+                    regionTone(region.count, maximum, minimum),
                     muted && "opacity-35",
                     selected &&
                       "fill-(--jeju-primary) stroke-(--jeju-surface) [filter:drop-shadow(0_7px_8px_color-mix(in_srgb,var(--jeju-primary)_30%,transparent))] [stroke-width:2.25]",

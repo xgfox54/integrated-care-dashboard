@@ -10,6 +10,7 @@ import { COMBINED_REVISION, ORIGINALS_REVISION, combinedManualLines, createManua
 import { listRowMismatch, listRowRegion, MANUAL_LINK_REVIEWS, manualLinkAllowed, manualLinkReview, manualLinkReviewState, REGION_LIST_MANUALS, talkSourceKeys } from "./manual-link-scope.mjs";
 import { writeSplitIndex } from "./split-index.mjs";
 import { resolveManualSourceOverride } from "./manual-source-overrides.mjs";
+import { replacePrivateSymbolsDeep } from "../../lib/text-symbols.mjs";
 
 const argv = process.argv.slice(2);
 const check = argv.includes("--check");
@@ -130,7 +131,7 @@ for (const file of fs.readdirSync(ITEMS).filter((name) => name.endsWith(".json")
     else delete ref.original;
     report.push({ item: file.replace(/\.json$/, ""), name, key: ref.key, title: ref.title, line: ref.line, match: ref.match, curatedSource: Boolean(ref.curatedSource), outcome, file: result.original?.file ?? null, page: result.original?.page ?? null, pageEnd: result.original?.pageEnd ?? null, basis: result.original?.basis ?? null, ocr: result.original?.ocr ?? null, ocrCheckedAt: result.original?.ocrCheckedAt ?? null, expectedPage: result.expectedPage ?? null, quote: result.original?.quote ?? null, previousExcerpt: ref.excerpt, heading: ref.heading ?? null });
   }
-  const after = JSON.stringify(payload);
+  const after = JSON.stringify(replacePrivateSymbolsDeep(payload));
   if (after !== before) {
     changedFiles += 1;
     pendingWrites.push([target, after]);

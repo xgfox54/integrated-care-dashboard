@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type CSSProperties } from "react";
+import type { CSSProperties } from "react";
 import InstitutionSwitcher from "./InstitutionSwitcher";
 import ProcessExplorer from "./ProcessExplorer";
 import WelfareSearchBar from "./WelfareSearchBar";
@@ -181,20 +181,8 @@ export default function InstitutionDetailView({
   );
 }
 
-function LongText({ text, lines = 10 }: { text: string; lines?: number }) {
-  const [open, setOpen] = useState(false);
-  const readable = readableWelfareText(text);
-  const rows = readable.split("\n");
-  const long = rows.length > lines || readable.length > 700;
-  if (!long) return <span className={styles.longText}>{readable}</span>;
-  return (
-    <span className={styles.longText}>
-      {open ? readable : rows.slice(0, lines).join("\n").slice(0, 700) + " …"}
-      <button type="button" className={styles.moreButton} onClick={() => setOpen((value) => !value)} aria-expanded={open}>
-        {open ? "접기" : "전체 보기"}
-      </button>
-    </span>
-  );
+function LongText({ text }: { text: string }) {
+  return <span className={styles.longText}>{readableWelfareText(text)}</span>;
 }
 
 function OnePageCanvas({

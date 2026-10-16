@@ -6,7 +6,7 @@ import { mergePopulationPages, parsePopulationPage, POPULATION_PAGE_URLS, type P
 import { claimStatisticsWorker, releaseStatisticsWorker, publishedResults, POPULATION_SCOPE, STATISTICS_DAY, STATISTICS_HOUR, STATISTICS_LEASE_GUARD,
   type StatisticsScopeRow } from "./store.ts";
 import type { StatisticsDataset, StatisticsResult } from "./types.ts";
-import { indexApiUrl, parseIndexApi, indexApiTables, mergeIndexApiTables } from "./index-api.ts";
+import { indexApiUrl, parseIndexApi, indexApiTables, mergeIndexApiTables, IndexFormatError } from "./index-api.ts";
 import { USER_AGENT, PACE_MS, SourceError, apiMessage, apiMessageCode, fetchSource } from "./refresh-source.ts";
 import { readIndexStage, appendIndexStage, indexStageParts } from "./refresh-index-stage.ts";
 import { INDEX_API_SERIES } from "./index-verified-data.ts";
@@ -159,8 +159,8 @@ export async function runStatisticsRefresh(db: SqlDatabase, dependencies: Statis
           if (key && INDEX_API_SERIES[expected[0].id]) {
             if ((indexHost.retry_after ?? 0) > now()) throw new SourceError("SOURCE_RATE_LIMITED", indexHost.retry_after);
             const tables = indexApiTables(expected[0]);
-            // 직전 시도가 응답 시간 초과였던 표는 다음 한 번을 12초까지 기다린다(전체 실행 예산 안에서만).
-            const requestTimeout = dependencies.timeoutMs === undefined && (expected[0].id === "stat:2764" || scope.error_code === "SOURCE_TIMEOUT" || indexStage?.long_timeout) ? 12_000 : timeoutMs;
+            // 직전 시도가 응답 시간 초과였던 표는 다음 한 번을 18초까지 기다린다(전체 실행 예산 안에서만).
+            const requestTimeout = dependencies.timeoutMs === undefined && (expected[0].id === "stat:2764" || scope.error_code === "SOURCE_TIMEOUT" || indexStage?.long_timeout) ? 18_000 : timeoutMs;
             const parts: StatisticsDataset[] = indexStage ? indexStageParts(indexStage, expected[0], now()) : [];
             for (const table of tables) {
               if (parts.some(part => part.table_code === table.table_code)) continue;
@@ -220,7 +220,7 @@ export async function runStatisticsRefresh(db: SqlDatabase, dependencies: Statis
         const initialApiRetry = key && INDEX_API_SERIES[scope.scope_id] && !scope.last_success_at && scope.failure_count === 0 && sourceCode(error) === "SOURCE_API_UNAVAILABLE";
         const retryMs = initialApiRetry ? 30_000 : Math.min(STATISTICS_DAY, STATISTICS_HOUR * 2 ** Math.min(scope.failure_count, 5));
         const next = Math.max(now() + retryMs, error instanceof SourceError ? error.retryAfter : 0);
-        await guardRun("UPDATE statistics_refresh_scope SET failure_count = failure_count + 1, error_code = ?, error_detail = ?, next_check_at = ?, stage_json = ?, updated_at = ? WHERE scope_id = ?", [sourceCode(error), error instanceof SourceError ? error.detail : null, next, indexStage?.parts.length ? JSON.stringify(indexStage) : null, now(), scope.scope_id]);
+        await guardRun("UPDATE statistics_refresh_scope SET failure_count = failure_count + 1, error_code = ?, error_detail = ?, next_check_at = ?, stage_json = ?, updated_at = ? WHERE scope_id = ?", [sourceCode(error), error instanceof SourceError || error instanceof IndexFormatError ? error.detail : null, next, indexStage?.parts.length ? JSON.stringify(indexStage) : null, now(), scope.scope_id]);
         summary.failed++;
       }
     }
