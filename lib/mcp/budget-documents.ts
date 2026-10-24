@@ -27,7 +27,7 @@ export const BUDGET_DOCUMENT_TOOL_SHAPES = {
     release_bundle_id: z.string().max(120).optional(), cursor, limit,
   },
 } as const;
-type Args<K extends keyof typeof BUDGET_DOCUMENT_TOOL_SHAPES> = z.objectOutputType<(typeof BUDGET_DOCUMENT_TOOL_SHAPES)[K], z.ZodTypeAny>;
+type Args<K extends keyof typeof BUDGET_DOCUMENT_TOOL_SHAPES> = z.output<z.ZodObject<(typeof BUDGET_DOCUMENT_TOOL_SHAPES)[K]>>;
 
 export const BUDGET_DOCUMENT_NOTE = "승인·활성화된 예산서의 문서 단계 금액입니다. 본예산·추경·기정액·전년도액을 구분하고 문서 scope 밖으로 확대하지 마세요. 문서 title·scope의 부서명은 등록 메타데이터이며 원문 머리말·현행 부서명·조직 이력·시군구 재정주체 연결의 검증값이 아닙니다. MAPPING_REQUIRED를 문서 표시명으로 해소하지 마세요. 승인 반입은 모든 산출식·합계의 검산 완료를 뜻하지 않습니다(server_checks·checks·annotations 확인). 상위 총액과 하위 내역·재원을 다시 더하지 마세요.";
 const LOCATOR_NOTE = "쪽수는 KorDoc 파싱 결과의 문서 위치이며 실제 인쇄 쪽수 검증을 뜻하지 않습니다. table_id·block_id·row_index와 원문을 함께 확인하세요.";

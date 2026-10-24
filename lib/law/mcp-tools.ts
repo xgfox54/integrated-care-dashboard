@@ -215,7 +215,7 @@ function publicText(value: LooseToolResponse, args: unknown): { content: { type:
 const query = z.string().trim().min(1).max(2_000);
 const short = z.string().trim().min(1).max(100);
 const identifier = z.string().trim().min(1).max(300);
-const optionsRecord = z.record(z.unknown()).optional();
+const optionsRecord = z.record(z.string(), z.unknown()).optional();
 
 const DEFINITIONS: readonly LawToolDefinition[] = [
   {
@@ -355,7 +355,7 @@ const DEFINITIONS: readonly LawToolDefinition[] = [
     description: "discover_tools에서 확인한 법령 도구를 이름과 파라미터로 실행합니다. 메타 도구 자체는 재귀 실행할 수 없습니다.",
     publicShape: {
       tool_name: z.string().trim().min(1).max(100),
-      params: z.record(z.unknown()).refine((value) => serializableSize(value) <= MAX_META_PARAMS_CHARS, "params가 너무 큽니다."),
+      params: z.record(z.string(), z.unknown()).refine((value) => serializableSize(value) <= MAX_META_PARAMS_CHARS, "params가 너무 큽니다."),
     },
     upstreamSchema: UpstreamExecuteToolSchema,
     handler: executeTool as UpstreamHandler,

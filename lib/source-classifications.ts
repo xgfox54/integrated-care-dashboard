@@ -2,7 +2,7 @@ import { z } from 'zod';
 import reviewed from '../data/source-classification-restorations.json' with { type: 'json' };
 
 const changeSchema = z.object({ before: z.string(), value: z.string().min(1) }).readonly();
-const sourceSchema = z.object({ revision: z.string(), rows: z.record(z.object({ name: z.string().min(1), updated_date: z.string().min(1), fields: z.object({ type: changeSchema.optional(), subcategory: changeSchema.optional() }).strict() })) });
+const sourceSchema = z.object({ revision: z.string(), rows: z.record(z.string(), z.object({ name: z.string().min(1), updated_date: z.string().min(1), fields: z.object({ type: changeSchema.optional(), subcategory: changeSchema.optional() }).strict() })) });
 const registry = sourceSchema.parse(reviewed);
 export const SOURCE_CLASSIFICATION_REVISION = registry.revision;
 

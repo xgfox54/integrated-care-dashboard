@@ -7,7 +7,7 @@ import { currentStatisticsCatalog, currentStatisticsStatus } from "../statistics
 import { statisticsSourceDate } from "../statistics/source-date.ts";
 
 export const STATISTICS_TOOL_NAMES = ["search_statistics", "get_statistics_data", "get_statistics_sources"] as const;
-type Register = <Shape extends z.ZodRawShape>(name: McpToolName, title: string, description: string, shape: Shape, handler: (args: z.objectOutputType<Shape, z.ZodTypeAny>) => Promise<object>) => void;
+type Register = <Shape extends z.ZodRawShape>(name: McpToolName, title: string, description: string, shape: Shape, handler: (args: z.output<z.ZodObject<Shape>>) => Promise<object>) => void;
 export function registerStatisticsTools({ db, register, wrap }: { db: SqlDatabase; register: Register; wrap: (data: unknown, options?: { evidence?: readonly unknown[]; warnings?: readonly string[]; coverage?: { scope: string; complete: boolean; gaps: readonly string[] } }) => Promise<object> }) {
   register("search_statistics", "복지통계 찾기", "보건복지부 통계·KOSIS 복지 통계(31종)·지역별 연령 인구를 검색합니다. data_available=true 항목의 dataset_id를 get_statistics_data에 전달해 수치를 조회하세요.", {
     query: z.string().max(200).optional(), kind: z.enum(["indicator", "approved", "portal", "population", "kosis"]).optional(), category: z.string().max(30).optional(),

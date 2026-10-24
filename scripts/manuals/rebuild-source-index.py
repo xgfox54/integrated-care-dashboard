@@ -12,6 +12,7 @@ import argparse
 import dataclasses
 import datetime
 import hashlib
+import importlib.util
 import json
 import os
 import platform
@@ -19,6 +20,7 @@ import re
 import sqlite3
 import subprocess
 import sys
+import tempfile
 import types
 from pathlib import Path
 
@@ -30,7 +32,8 @@ def sha256(data: bytes) -> str:
 
 
 def git_blob_sha1(data: bytes) -> str:
-    return hashlib.sha1(b"blob " + str(len(data)).encode("ascii") + b"\0" + data).hexdigest()
+    result = subprocess.run(["git", "hash-object", "--stdin"], input=data, check=True, capture_output=True)
+    return result.stdout.decode("ascii").strip()
 
 
 def save_json(path: Path, value: object) -> None:
@@ -93,7 +96,13 @@ def load_reviewed_builder(root: Path, inputs: dict[str, bytes]) -> types.ModuleT
         module.__file__ = str(root / path)
         module.__package__ = "welfare_search"
         sys.modules[qualified] = module
-        exec(compile(inputs[path], str(root / path), "exec"), module.__dict__)
+        with tempfile.TemporaryDirectory(prefix="reviewed-indexer-") as directory:
+            verified_path = Path(directory) / (name + ".py")
+            verified_path.write_bytes(inputs[path])
+            spec = importlib.util.spec_from_file_location(qualified, verified_path)
+            if spec is None or spec.loader is None:
+                raise ImportError("Cannot load the verified indexer module: " + qualified)
+            spec.loader.exec_module(module)
         setattr(package, name, module)
     return sys.modules["welfare_search.build"]
 

@@ -90,7 +90,7 @@ export const FISCAL_TOOL_SHAPES = {
 } as const;
 
 type Shapes = typeof FISCAL_TOOL_SHAPES;
-type Args<K extends keyof Shapes> = z.objectOutputType<Shapes[K], z.ZodTypeAny>;
+type Args<K extends keyof Shapes> = z.output<z.ZodObject<Shapes[K]>>;
 type Make = <T>(payload: T, options: { basis?: Basis; coverage: Coverage; warnings?: string[]; evidence?: readonly unknown[]; nextCursor?: string | null; truncated?: boolean }) => Envelope<T>;
 
 const MODE_SCOPE: Record<FiscalMode, string> = { integrated_care: "integrated_care", social_welfare: "all_fields", health: "all_fields", department: "all_fields" };

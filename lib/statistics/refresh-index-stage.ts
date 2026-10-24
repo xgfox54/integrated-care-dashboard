@@ -8,7 +8,7 @@ import type { StatisticsDataset } from "./types.ts";
 const MAX_STAGE = 500_000;
 const SOURCE_FIELDS = ["지표코드", "통계표코드", "통계표명", "단위", "출처", "주기코드", "갱신일", "입력예정일", "주석",
   "항목그룹코드", "항목코드", "분류1코드", "분류2코드", "분류3코드", "항목그룹이름", "항목이름", "분류1이름", "분류2이름", "분류3이름", "시점", "값"] as const;
-const sourceRows = z.array(z.record(z.unknown()));
+const sourceRows = z.array(z.record(z.string(), z.unknown()));
 const stageSchema = z.object({
   version: z.literal(1), started_at: z.number().finite(), source_revision: z.string(),
   published_revision: z.string().nullable(), long_timeout: z.boolean(),

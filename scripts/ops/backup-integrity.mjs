@@ -27,7 +27,7 @@ export function rehearsePublicBackup(directory) {
  const integrity = inspectPublicBackup(directory);
  if (integrity.errors.length) throw new Error(integrity.errors.join(' / '));
  const rows = z.object({ rows: z.array(z.object({ serviceId: z.string().min(1), name: z.string().min(1), sido: z.string(), category: z.string(), type: z.string(), subcategory: z.string() }).passthrough()) }).parse(JSON.parse(readFileSync(join(directory, 'services.json'), 'utf8'))).rows;
- const summary = z.object({ summary: z.object({ totalCount: z.number().int(), regionCounts: z.record(z.number()), categoryCounts: z.record(z.number()) }) }).parse(JSON.parse(readFileSync(join(directory, 'dataset-summary.json'), 'utf8'))).summary;
+ const summary = z.object({ summary: z.object({ totalCount: z.number().int(), regionCounts: z.record(z.string(), z.number()), categoryCounts: z.record(z.string(), z.number()) }) }).parse(JSON.parse(readFileSync(join(directory, 'dataset-summary.json'), 'utf8'))).summary;
  const statistics = z.array(z.object({ ok: z.literal(true), dataset: z.object({ id: z.string(), periods: z.array(z.string()).min(1), series: z.array(z.object({ id: z.string(), points: z.array(z.unknown()) })).min(1) }) }).passthrough()).parse(JSON.parse(readFileSync(join(directory, 'statistics.json'), 'utf8')));
  const status = JSON.parse(readFileSync(join(directory, 'statistics-status.json'), 'utf8')).status;
  const expectedStats = status.datasets.map(row => row.id).sort();

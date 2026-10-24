@@ -11,7 +11,7 @@ import { LAW_MCP_PUBLIC, LAW_MCP_WITHHELD_MESSAGE } from "./contract.ts";
 
 export const INTEGRATION_TOOL_NAMES = ["get_integration_status", "get_care_demand", "find_care_institutions", "get_care_institution", "get_program_public_info"] as const;
 
-type Register = <Shape extends z.ZodRawShape>(name: McpToolName, title: string, description: string, shape: Shape, handler: (args: z.objectOutputType<Shape, z.ZodTypeAny>) => Promise<object>) => void;
+type Register = <Shape extends z.ZodRawShape>(name: McpToolName, title: string, description: string, shape: Shape, handler: (args: z.output<z.ZodObject<Shape>>) => Promise<object>) => void;
 
 export interface IntegrationToolHelpers {
   readonly register: Register;

@@ -4,12 +4,12 @@ import { KOSIS_DATASETS } from "./kosis.ts";
 import { SourceError } from "./refresh-source.ts";
 import type { StatisticsDataset } from "./types.ts";
 
-const selectionSchema = z.object({ items: z.array(z.string()), classes: z.record(z.array(z.string())), omit_item_name: z.boolean(), ancestors: z.record(z.array(z.string())), virtual_classes: z.array(z.string()) }).strict();
+const selectionSchema = z.object({ items: z.array(z.string()), classes: z.record(z.string(), z.array(z.string())), omit_item_name: z.boolean(), ancestors: z.record(z.string(), z.array(z.string())), virtual_classes: z.array(z.string()) }).strict();
 const stageSchema = z.object({
   kind: z.literal("kosis-api-v1"), started: z.number(), revision: z.string().nullable(), contract: z.string(),
-  frequencies: z.record(z.enum(["Y", "F", "IR"])),
-  selections: z.record(selectionSchema),
-  history_required: z.record(z.boolean()),
+  frequencies: z.record(z.string(), z.enum(["Y", "F", "IR"])),
+  selections: z.record(z.string(), selectionSchema),
+  history_required: z.record(z.string(), z.boolean()),
   parts: z.array(z.object({ table: z.string(), frequency: z.string(), body: z.string(), selection: selectionSchema }).strict()).max(4),
 }).strict();
 export async function refreshKosis(expected: StatisticsDataset, rawStage: string | null, revision: string | null, key: string | null,

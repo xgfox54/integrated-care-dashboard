@@ -657,7 +657,7 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
     title: string,
     description: string,
     shape: Shape,
-    handler: (args: z.objectOutputType<Shape, z.ZodTypeAny>) => Promise<object>,
+    handler: (args: z.output<z.ZodObject<Shape>>) => Promise<object>,
   ): void {
     // 보류된 도구(돌봄자원·예산)는 등록하지 않는다(lib/integrations/care-hold.ts, contract.ts FISCAL_MCP_PUBLIC).
     if (!EXECUTABLE_MCP_TOOL_NAMES.includes(name) && !(fiscalOn && FISCAL_TOOL_NAMES.has(name))) return;
@@ -670,7 +670,7 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
       const versioned = name === "fetch" ? { ...payload, metadata: { ...metadata, server_version: MCP_SERVER_VERSION } } : payload;
       return decorateSourceIdentities(name, versioned, { gates: { fiscal: fiscalOn, care: CARE_RESOURCES_MCP, law: LAW_MCP_PUBLIC } });
     });
-    server.registerTool(name, { title, description, inputSchema: shape, annotations: { title, ...ANNOTATIONS, ...(name === "get_statistics_data" ? { openWorldHint: true } : {}) } }, (async (args: z.objectOutputType<Shape, z.ZodTypeAny>, extra: { requestId?: string | number }) => {
+    server.registerTool(name, { title, description, inputSchema: shape, annotations: { title, ...ANNOTATIONS, ...(name === "get_statistics_data" ? { openWorldHint: true } : {}) } }, (async (args: z.output<z.ZodObject<Shape>>, extra: { requestId?: string | number }) => {
       const started = Date.now();
       let failed = false;
       let cache: "HIT" | "MISS" | undefined;
@@ -1472,12 +1472,13 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
   });
 
   // 7. get_sources
+  const sourceSubjectSchema: z.ZodType<"implementation" | "gov24_service" | "welfare100_service" | "manual_section" | "region" | "organization" | "press_release" | "fiscal_observation" | "budget_line" | "document"> = fiscalOn
+    ? z.enum(["implementation", "gov24_service", "welfare100_service", "manual_section", "region", "organization", "press_release", "fiscal_observation", "budget_line", "document"])
+    : z.enum(["implementation", "gov24_service", "welfare100_service", "manual_section", "region", "organization", "press_release", "document"]);
   register("get_sources", "출처 조회", fiscalOn
     ? "시행사업·매뉴얼 구간(manual_section)·지역·기관·보도자료·공개 재정 관측(fiscal_observation)·승인 반입 문서(document, doc:…)·활성 예산서 행(budget_line)의 원문 출처와 근거 위치를 돌려줍니다. 미검증 재정 원값은 null로 제공합니다."
     : "시행사업·매뉴얼 구간(manual_section)·지역·기관·보도자료·승인 반입 문서(document, doc:…)의 출처와 근거 범위를 돌려줍니다.", {
-    subject_type: fiscalOn
-      ? z.enum(["implementation", "gov24_service", "welfare100_service", "manual_section", "region", "organization", "press_release", "fiscal_observation", "budget_line", "document"])
-      : z.enum(["implementation", "gov24_service", "welfare100_service", "manual_section", "region", "organization", "press_release", "document"]),
+    subject_type: sourceSubjectSchema,
     subject_id: z.string().min(1).max(LIMITS.idMax),
     snapshot_id: snapshotInput,
     release_bundle_id: bundleInput,
@@ -2119,7 +2120,7 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
   // 메타 도구 2: execute_tool (Korean Law MCP 패턴: 전문 복지 도구 2-hop 실행)
   register("execute_tool", "복지 도구 실행", "discover_tools로 확인한 복지 도구를 이름(tool_name)과 파라미터(params)로 실행합니다. 메타 도구 재귀 호출과 비활성 도구(돌봄자원·법령)는 차단됩니다.", {
     tool_name: z.string().trim().min(1).max(100).describe("실행할 복지 도구 이름 (예: get_manual_section, get_faq, compare_budget_periods, get_budget_breakdown)"),
-    params: z.record(z.unknown()).optional().describe("도구에 전달할 파라미터 객체"),
+    params: z.record(z.string(), z.unknown()).optional().describe("도구에 전달할 파라미터 객체"),
   }, async ({ tool_name, params }) => {
     const target = tool_name.trim();
     if (META_MCP_TOOL_NAMES.has(target)) {
