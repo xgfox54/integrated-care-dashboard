@@ -7,7 +7,7 @@ import {
   ArrowRightIcon, BuildingIcon, ChevronDownIcon, ExternalLinkIcon, FileIcon,
   InfoIcon, SearchIcon, UsersIcon,
 } from "@/components/ui/jeju-icons";
-import { PUBLIC_MCP_TOOL_NAMES } from "@/lib/mcp/contract";
+import { EXECUTABLE_MCP_TOOL_NAMES, PUBLIC_MCP_TOOL_NAMES } from "@/lib/mcp/contract";
 
 export const metadata: Metadata = {
   title: "복지정보MCP · 소개와 설치 방법 | 전국 통합돌봄 사업 총괄 대시보드",
@@ -86,7 +86,7 @@ export default function WelfareMcpPage() {
               평소 쓰는 말로 질문하고, 출처와 기준일을 함께 확인하세요.
             </p>
             <div className="mt-5 flex flex-wrap gap-2 text-(length:--jeju-text-sm) font-bold">
-              <span className="rounded-full bg-(--jeju-primary-tint) px-3 py-1 text-primary">공개 도구 {PUBLIC_MCP_TOOL_NAMES.length}개</span>
+              <span className="rounded-full bg-(--jeju-primary-tint) px-3 py-1 text-primary">핵심 노출 도구 {PUBLIC_MCP_TOOL_NAMES.length}개 · 전체 실행 도구 {EXECUTABLE_MCP_TOOL_NAMES.length}개</span>
               <span className="rounded-full bg-(--jeju-green-light) px-3 py-1 text-(--jeju-secondary-strong)">조회 전용</span>
               <span className="rounded-full bg-(--jeju-surface-inset) px-3 py-1 text-(--jeju-text-body)">출처·기준일 확인</span>
             </div>
@@ -238,7 +238,7 @@ export default function WelfareMcpPage() {
           </div>
           <div className="rounded-(--jeju-radius-lg) bg-(--jeju-primary-tint) p-4 text-(length:--jeju-text-sm) leading-relaxed sm:p-5">
             <h3 className="flex items-center gap-2 font-extrabold text-primary"><InfoIcon />제공 자료와 이용 한도</h3>
-            <p className="mt-2">법령·판례·조문 조회는 현재 MCP에서 제공하지 않습니다. 복지사업·매뉴얼·FAQ·예산·통계·보도자료는 그대로 조회할 수 있습니다.</p>
+            <p className="mt-2">돌봄자원(장기요양기관·돌봄 수요)과 법령·판례·조문 조회는 현재 MCP에서 제공하지 않습니다. 복지사업·매뉴얼·FAQ·예산·통계·보도자료는 그대로 조회할 수 있습니다.</p>
             <p className="mt-2">Claude·Perplexity·Gemini 공용 주소 연결에는 인증키가 필요하지 않습니다. 기존 apikey 헤더나 ?oc=가 있다면 제거해도 됩니다. 한도는 출구 IP당 분당 120회, Claude 경로 전체 분당 300회이며 도구 호출만 셉니다. 여러 이용자가 같은 출구 IP를 쓰면 한도를 함께 사용합니다.</p>
           </div>
         </div>

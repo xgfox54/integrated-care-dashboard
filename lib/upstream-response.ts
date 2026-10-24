@@ -20,6 +20,49 @@ export interface BoundedUpstreamResponse {
 }
 export const DEFAULT_UPSTREAM_PAGE_BYTES = 8 * 1024 * 1024;
 
+export async function readBoundedResponseText(response: Response, maxBytes: number, signal: AbortSignal): Promise<string> {
+  if (!Number.isSafeInteger(maxBytes) || maxBytes < 1) throw new RangeError("Invalid upstream byte limit");
+  const declared = response.headers.get("content-length");
+  if (declared && /^\d+$/.test(declared) && Number(declared) > maxBytes) {
+    if (response.body) void response.body.cancel().catch(() => undefined);
+    throw new UpstreamResponseError("UPSTREAM_BODY_TOO_LARGE");
+  }
+  if (!response.body) return "";
+  const reader = response.body.getReader();
+  let removeAbort = () => {};
+  const interrupted = new Promise<never>((_resolve, reject) => {
+    const abort = () => reject(new UpstreamResponseError("UPSTREAM_ABORTED", signal.reason?.name === "TimeoutError" ? "TimeoutError" : "AbortError"));
+    signal.addEventListener("abort", abort, { once: true });
+    removeAbort = () => signal.removeEventListener("abort", abort);
+    if (signal.aborted) abort();
+  });
+  const decoder = new TextDecoder();
+  const chunks: string[] = [];
+  let received = 0;
+  try {
+    while (true) {
+      const item = await Promise.race([reader.read(), interrupted]);
+      if (signal.aborted) throw new UpstreamResponseError("UPSTREAM_ABORTED", "AbortError");
+      if (item.done) break;
+      received += item.value.byteLength;
+      if (received > maxBytes) throw new UpstreamResponseError("UPSTREAM_BODY_TOO_LARGE");
+      chunks.push(decoder.decode(item.value, { stream: true }));
+    }
+    chunks.push(decoder.decode());
+    return chunks.join("");
+  } catch (error) {
+    void reader.cancel().catch(() => undefined);
+    if (error instanceof UpstreamResponseError) throw error;
+    if (typeof error === "object" && error !== null && "name" in error && (error.name === "AbortError" || error.name === "TimeoutError")) {
+      throw new UpstreamResponseError("UPSTREAM_ABORTED", error.name);
+    }
+    throw new UpstreamResponseError("UPSTREAM_READ_FAILED");
+  } finally {
+    removeAbort();
+    reader.releaseLock();
+  }
+}
+
 export async function fetchBoundedResponse(
   url: string,
   options: UpstreamReadOptions,
@@ -32,14 +75,12 @@ export async function fetchBoundedResponse(
   if (options.signal?.aborted) throw new UpstreamResponseError("UPSTREAM_ABORTED", "AbortError");
   const controller = new AbortController();
   let response: Response | undefined;
-  let reader: ReadableStreamDefaultReader<Uint8Array> | undefined;
   let stopped = false;
   let rejectBoundary!: (reason: UpstreamResponseError) => void;
   const boundary = new Promise<never>((_resolve, reject) => { rejectBoundary = reject; });
   const cancel = () => {
     controller.abort();
-    if (reader) void reader.cancel().catch(() => undefined);
-    else if (response?.body && !response.body.locked) void response.body.cancel().catch(() => undefined);
+    if (response?.body && !response.body.locked) void response.body.cancel().catch(() => undefined);
   };
   const stop = (error: UpstreamResponseError) => {
     if (stopped) return;
@@ -60,26 +101,7 @@ export async function fetchBoundedResponse(
       return value;
     });
     response = await Promise.race([pending, boundary]);
-    const declared = response.headers.get("content-length");
-    if (declared && /^\d+$/.test(declared) && Number(declared) > options.maxBytes) {
-      throw new UpstreamResponseError("UPSTREAM_BODY_TOO_LARGE");
-    }
-    const decoder = new TextDecoder();
-    const chunks: string[] = [];
-    let received = 0;
-    if (response.body) {
-      reader = response.body.getReader();
-      while (true) {
-        const item = await Promise.race([reader.read(), boundary]);
-        if (stopped) throw new UpstreamResponseError("UPSTREAM_INTERRUPTED");
-        if (item.done) break;
-        received += item.value.byteLength;
-        if (received > options.maxBytes) throw new UpstreamResponseError("UPSTREAM_BODY_TOO_LARGE");
-        chunks.push(decoder.decode(item.value, { stream: true }));
-      }
-    }
-    chunks.push(decoder.decode());
-    const text = chunks.join("");
+    const text = await Promise.race([readBoundedResponseText(response, options.maxBytes, controller.signal), boundary]);
     return { status: response.status, headers: new Headers(response.headers), text: async () => text };
   } catch (error) {
     stopped = true;
@@ -89,6 +111,5 @@ export async function fetchBoundedResponse(
   } finally {
     clearTimeout(timer);
     options.signal?.removeEventListener("abort", abort);
-    reader?.releaseLock();
   }
 }

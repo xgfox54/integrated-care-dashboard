@@ -16,6 +16,8 @@ import { usageClick, usageError, usageErrorCode, usageFilter } from "@/lib/usage
 import { useSearchUsage } from "@/lib/usage/use-search-usage";
 import { parseTargetGroup, targetGroupOf } from "@/lib/target-groups";
 import { budgetPartOf, type BudgetPart } from "@/lib/fiscal/parts";
+import { prefersDataSaving } from "@/lib/network-preferences";
+import { scheduleBudgetPrefetch } from "./budget-prefetch";
 
 // 예산서 상세내역(BudgetDocumentsPanel)은 2026-10-09 운영자 요청으로 화면에서 숨김. 반입 자료·API·컴포넌트는 보관한다.
 import { budgetDepartmentLabel, budgetDepartmentName, formatBudgetLocalTitle } from "./budget-departments";
@@ -117,7 +119,7 @@ function loadJson<T>(path: string): Promise<T> {
   const hit = responses.get(path);
   if (hit && Date.now() - hit.at < RESPONSE_TTL_MS) return hit.promise as Promise<T>;
   const entry: { at: number; promise: Promise<unknown>; value?: unknown } = { at: Date.now(), promise: Promise.resolve() };
-  entry.promise = fetch(path).then(async (response) => {
+  entry.promise = fetch(path, { mode: "cors", credentials: "same-origin" }).then(async (response) => {
     if (!response.ok) throw new Error(String(response.status));
     const value: unknown = await response.json();
     entry.value = value;
@@ -257,7 +259,9 @@ export function BudgetBrowser() {
       (!draft.region || department.region_code === draft.region) && (!draft.entity || ownedEntityIds.has(department.entity_id)));
     return { entities, departments };
   }, [catalogFilters, draft.region, draft.entity]);
-  const backgroundLoading = options.loading || catalog.loading || result.loading || kpi.loading || national.loading || appliedOptions.loading;
+  const resultLoading = result.loading || kpi.loading || national.loading;
+  const optionsLoading = options.loading || catalog.loading || appliedOptions.loading;
+  const currentSettled = !resultLoading && !optionsLoading && Boolean(result.data && kpi.data && national.data && options.data && catalog.data && appliedOptions.data);
   const loading = result.loading;
   const data = result.data;
   // 지도·지표·결과표는 다음 응답이 올 때까지 직전 값을 유지해 화면이 비지 않게 한다.
@@ -272,12 +276,21 @@ export function BudgetBrowser() {
       ...(data.total > data.size * applied.page ? [budgetResultPath({ ...applied, page: applied.page + 1 })] : []),
       ...data.modes.filter((mode) => mode.available && mode.id !== applied.mode && !HIDDEN_MODES.has(mode.id)).flatMap((mode) => [budgetResultPath({ ...applied, mode: mode.id, part: "", department: "", page: 1 }), budgetResultPath({ ...EMPTY, mode: mode.id, date: applied.date })]),
     ];
-    let active = true;
-    const timer = setTimeout(() => {
-      void targets.reduce<Promise<unknown>>((chain, target) => chain.then(() => active ? loadJson(target).catch(() => undefined) : undefined), Promise.resolve());
-    }, 600);
-    return () => { active = false; clearTimeout(timer); };
-  }, [data, applied]);
+    return scheduleBudgetPrefetch({
+      settled: currentSettled,
+      saveData: prefersDataSaving,
+      targets: [...new Set(targets)],
+      load: loadJson,
+      schedule: (run) => {
+        if (typeof window.requestIdleCallback === "function") {
+          const idle = window.requestIdleCallback(run, { timeout: 2000 });
+          return () => window.cancelIdleCallback(idle);
+        }
+        const timer = window.setTimeout(run, 600);
+        return () => window.clearTimeout(timer);
+      },
+    });
+  }, [data, applied, currentSettled]);
   const apply = (next: Partial<Filters>) => setApplied((current) => ({ ...current, ...next, page: next.page ?? 1 }));
   useSearchUsage({
     scope: "budget_project",
@@ -342,6 +355,16 @@ export function BudgetBrowser() {
   const department = appliedFilters?.departments.find((entry) => entry.code === applied.department);
   const departmentName = applied.department ? budgetDepartmentName(department?.fiscal_entity_name ?? "", applied.department) ?? "부서코드 " + applied.department : "";
   const localTitle = formatBudgetLocalTitle(localRegionTitle, departmentName);
+  const hasUnappliedChanges =
+    draft.q.trim() !== applied.q.trim() ||
+    draft.date !== applied.date ||
+    draft.region !== applied.region ||
+    draft.entity !== applied.entity ||
+    draft.department !== applied.department ||
+    draftAccount !== applied.account ||
+    draft.mode !== applied.mode ||
+    draftPart !== applied.part ||
+    draft.targetGroup !== applied.targetGroup;
   const searchFormRef = useRef<HTMLDivElement>(null);
   const selectRegion = (sido: string) => {
     const region = REGION_DEFINITIONS.find((definition) => definition.fullName === sido);
@@ -399,6 +422,7 @@ export function BudgetBrowser() {
               selectedSido={selectedSido}
               disabled={!national.last}
               onSelect={selectRegion}
+              colorTheme="orange"
               measureLabel="세부사업 수"
               title="대한민국 광역단위 복지예산 세부사업 지도"
               description="원하는 지역을 클릭하거나 키보드로 선택하면 해당 광역단위 예산이 아래 결과에 반영됩니다."
@@ -484,7 +508,14 @@ export function BudgetBrowser() {
         </section>
       ) : null}
       <form className="rounded-xl border border-border bg-card p-4 sm:p-5" role="search" aria-label="복지예산 검색" onSubmit={(event) => { event.preventDefault(); usageClick("budget_query"); setApplied({ ...draft, account: draftAccount, part: draftPart, page: 1 }); }}>
-        <h2 className="text-(length:--jeju-h3-size) font-extrabold text-(--jeju-text-strong)">조회 조건</h2>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h2 className="text-(length:--jeju-h3-size) font-extrabold text-(--jeju-text-strong)">조회 조건</h2>
+          {hasUnappliedChanges ? (
+            <p role="status" aria-live="polite" className="rounded-full bg-(--jeju-primary-tint) px-3 py-1 text-(length:--jeju-text-xs) font-bold text-primary">
+              조건이 변경되었습니다 · 「조회」를 눌러 결과에 적용하세요
+            </p>
+          ) : null}
+        </div>
         {applied.targetGroup && targetGroupOf(applied.targetGroup) ? (
           <p className="mt-2 flex flex-wrap items-center gap-2 text-(length:--jeju-text-sm)">
             <Badge variant="info">대상자: {targetGroupOf(applied.targetGroup)?.label}</Badge>
@@ -506,14 +537,14 @@ export function BudgetBrowser() {
           </div>
           <div className="grid gap-1.5">
             <Label htmlFor="budget-region">지역</Label>
-            <NativeSelect id="budget-region" className="w-full" value={draft.region} onChange={(event) => setDraft({ ...draft, region: event.target.value, entity: "", department: "", account: "" })}>
+            <NativeSelect id="budget-region" className="w-full" value={draft.region} disabled={!catalogFilters} aria-busy={catalog.loading} onChange={(event) => setDraft({ ...draft, region: event.target.value, entity: "", department: "", account: "" })}>
               <NativeSelectOption value="">전체 지역</NativeSelectOption>
               {regions.map((region) => <NativeSelectOption key={region.code} value={region.code}>{region.name} ({region.code})</NativeSelectOption>)}
             </NativeSelect>
           </div>
           <div className="grid gap-1.5">
             <Label htmlFor="budget-entity">기관(광역·기초·행정시·행정구)</Label>
-            <NativeSelect id="budget-entity" className="w-full" value={draft.entity} disabled={!draft.region || !catalogFilters} aria-busy={options.loading} onChange={(event) => setDraft({ ...draft, entity: event.target.value, department: "", account: "" })}>
+            <NativeSelect id="budget-entity" className="w-full" value={draft.entity} disabled={!draft.region || !catalogFilters} aria-busy={catalog.loading} onChange={(event) => setDraft({ ...draft, entity: event.target.value, department: "", account: "" })}>
               <NativeSelectOption value="">{draft.region ? "지역 전체 기관" : "지역을 먼저 고르세요"}</NativeSelectOption>
               {choices.entities.map((entity) => (
                 <NativeSelectOption key={entity.id} value={entity.id}>
@@ -567,7 +598,7 @@ export function BudgetBrowser() {
             {/* 로딩 표시는 조회 버튼 왼쪽 빈 공간에 띄워(PC) 버튼 자리를 바꾸지 않는다. 좁은 화면은 버튼 앞에 둔다. */}
             <div className="relative flex items-center gap-2">
               <span role="status" aria-live="polite" data-budget-loading className="pointer-events-none inline-flex items-center gap-1.5 whitespace-nowrap text-(length:--jeju-text-sm) font-bold text-(--jeju-secondary-strong) sm:absolute sm:top-1/2 sm:right-full sm:mr-3 sm:-translate-y-1/2">
-                {backgroundLoading ? (
+                {resultLoading ? (
                   <>
                     <Spinner aria-hidden="true" role="presentation" label="" className="size-4 border-current/25 border-t-current" />
                     로딩중
@@ -582,6 +613,9 @@ export function BudgetBrowser() {
             <Button type="button" variant="outline" onClick={() => { setDraft(EMPTY); setApplied(EMPTY); }}><RefreshIcon />검색조건 초기화</Button>
           </div>
         </div>
+        <p role="status" aria-live="polite" data-budget-options-status className="mt-2 text-(length:--jeju-text-sm) text-muted-foreground">
+          {optionsLoading ? "조회 조건 목록을 불러오고 있습니다." : !catalog.data || !options.data || !appliedOptions.data ? "조회 조건 목록을 불러오지 못했습니다. 페이지를 새로고침해 주세요." : null}
+        </p>
       </form>
       </div>
 

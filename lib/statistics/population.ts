@@ -24,7 +24,7 @@ export const POPULATION_REGION_COUNT = POPULATION_SNAPSHOT.records.filter(row =>
 export const POPULATION_SOURCE = {
   id: "mois-population", title: "행정안전부 주민등록 인구통계",
   url: "https://jumin.mois.go.kr/ageStatMonth.do",
-  scope: `전국·${POPULATION_REGION_COUNT}개 광역시·도의 중장년층·노년층·아동 인구와 비중 · 월별 공표자료 자동 확인`,
+  scope: `전국·${POPULATION_REGION_COUNT}개 광역시·도의 전체 인구수·중장년층·노년층·아동 인구와 비중 · 월별 공표자료 자동 확인`,
   checked_at: POPULATION_VERIFIED_AT,
 } as const;
 

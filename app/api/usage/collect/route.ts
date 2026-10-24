@@ -3,7 +3,7 @@ import { after } from "next/server";
 import { getD1 } from "@/lib/d1";
 import { isAdminRequest } from "@/lib/usage/admin-exclusion";
 import { runUsageCleanupIfDue } from "@/lib/usage/cleanup";
-import { MAX_REQUEST_BYTES } from "@/lib/usage/codes";
+import { readUsageBody } from "@/lib/usage/request-body";
 import { ingestUsageEvents, type SqlDatabase } from "@/lib/usage/ingest";
 import { isAllowedUsageFilter, resolveUsageEntity } from "@/lib/usage/registry";
 import { parseUsageEnvelope } from "@/lib/usage/schema";
@@ -28,22 +28,10 @@ function sameOrigin(request: Request): boolean {
   return request.headers.get("sec-fetch-site") === "same-origin";
 }
 
-async function readLimitedText(request: Request): Promise<string | null> {
-  const declared = Number(request.headers.get("content-length") ?? "0");
-  if (declared > MAX_REQUEST_BYTES) return null;
-  const buffer = await request.arrayBuffer();
-  if (buffer.byteLength === 0 || buffer.byteLength > MAX_REQUEST_BYTES) return null;
-  try {
-    return new TextDecoder("utf-8", { fatal: true }).decode(buffer);
-  } catch {
-    return null;
-  }
-}
-
 export async function POST(request: Request): Promise<Response> {
   if (!isAllowedCollectHost(new URL(request.url).hostname) || !sameOrigin(request)) return reply({ error: "forbidden" }, 403);
   if (!(await takeRateToken(request))) return reply({ error: "rate_limited" }, 429);
-  const text = await readLimitedText(request);
+  const text = await readUsageBody(request);
   if (text === null) return reply({ error: "too_large" }, 413);
   if (!(await readUsageEnabled())) return reply({ collecting: false });
   if (await isAdminRequest(request)) return reply({ collecting: true, excluded: true });

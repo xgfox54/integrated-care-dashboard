@@ -437,7 +437,7 @@ export function refineWelfareQuery(query: string, options: { currentYear?: numbe
   if (!queries.length) queries.push(positiveQueryTerms(text, fallbackTerms(text, [...mentions, ...yearMentions, ...region.mentions, ...amounts.mentions])).join(" "));
   const searchQueries = unique(queries.map((item) => item.replace(/\s+/g, " ").trim()).filter(Boolean)).slice(0, 8);
   const detailTerms = positiveQueryTerms(text, [...fallbackTerms(text, [...mentions, ...yearMentions, ...region.mentions, ...amounts.mentions]), "증명서", "확인서", "틀니", "임플란트", "장학금", "냉난방비", "인건비", "운영비", "설치비", "기능보강"])
-    .map((term) => stripQuestionEnding(term).replace(/(?<=[가-힣]{2})(?:에서는|으로는|에서|으로|까지|부터|에게|은|는|을|를|의|이|가|도|만|와|과)$/, "").replace(/(?<=[가-힣]{2})(?:에|되|하)$/, ""))
+    .map((term) => stripQuestionEnding(term).replace(/(?<=[가-힣]{2})(?:에서는|으로는|에서|으로|까지|부터|에게|은|는|을|를|의|이|가|도|만|와|과|및)$/, "").replace(/(?<=[가-힣]{2})(?:에|되|하)$/, ""))
     .filter((term) => term.length >= 2 && !QUESTION_WORDS.test(term) && !SEARCH_NOISE.test(term))
     .filter((term) => !/^(?:지원|사업|서비스|센터|시설|수급자|수급권자|발급|참여|이용|운영|지원대상|선정기준|제외하고|빼고)$/.test(term)).slice(0, 12);
   if (!searchQueries.length) warnings.push(mentions.length ? "NO_INCLUDED_PROGRAM" : "NO_SEARCH_TERMS");

@@ -169,6 +169,8 @@ export interface RelayJob {
 /** 수집 차례를 잡고 지금 받아 올 목록을 돌려준다. 다른 PC가 차례를 잡고 있으면 빈 목록과 그 PC 이름. */
 export async function claimRelayJobs(db: SqlDatabase, pc: string, nowSeconds: number): Promise<{ readonly jobs: readonly RelayJob[]; readonly busyBy: string | null }> {
   if (!(await crawlerEnabled(db))) return { jobs: [], busyBy: null };
+  const { ensurePressSlots } = await import('./jobs.ts');
+  await ensurePressSlots(db, nowSeconds);
   const claim = await readClaim(db);
   if (claim && claim.pc && claim.pc !== pc && claim.until > nowSeconds) return { jobs: [], busyBy: claim.pc };
   // 인증키는 서버 저장소에서만 사용할 수 있다. 잘못 중계로 넘어가 KEY_REQUIRED가 된 API만 복구한다.
@@ -236,6 +238,7 @@ export interface RelayResponse {
   readonly status: number;
   readonly contentType?: string;
   readonly bodyBase64?: string;
+  readonly retryAfterSeconds?: number;
 }
 
 function decodeBase64(value: string): Uint8Array<ArrayBuffer> {
@@ -254,7 +257,10 @@ function relayFetcher(responses: ReadonlyMap<string, RelayResponse>) {
     const nullBody = [101, 204, 205, 304].includes(uploaded.status);
     const bytes = !nullBody && uploaded.bodyBase64 ? decodeBase64(uploaded.bodyBase64) : null;
     if (bytes && bytes.length > RELAY_MAX_BYTES) throw new Error("응답이 너무 큽니다.");
-    return new Response(bytes, { status: uploaded.status, headers: uploaded.contentType ? { "content-type": uploaded.contentType } : {} });
+    const headers = new Headers();
+    if (uploaded.contentType) headers.set('content-type', uploaded.contentType);
+    if (uploaded.retryAfterSeconds !== undefined) headers.set('retry-after', String(uploaded.retryAfterSeconds));
+    return new Response(bytes, { status: uploaded.status, headers });
   };
 }
 

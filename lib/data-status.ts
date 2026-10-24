@@ -2,7 +2,7 @@ import { readOfficialSyncStatus } from "./official-sync-status.ts";
 import { readPressCoverage } from "./press/coverage.ts";
 import { currentStatisticsStatus } from "./statistics/store.ts";
 import { readManualCorpusState } from "./manuals/store.ts";
-import { FISCAL_MCP_PUBLIC, LAW_MCP_PUBLIC, LAW_MCP_WITHHELD_MESSAGE, MCP_SERVER_VERSION, PUBLIC_MCP_TOOL_NAMES } from "./mcp/contract.ts";
+import { CARE_MCP_WITHHELD_MESSAGE, CARE_RESOURCES_MCP, EXECUTABLE_MCP_TOOL_NAMES, FISCAL_MCP_PUBLIC, LAW_MCP_PUBLIC, LAW_MCP_WITHHELD_MESSAGE, MCP_SERVER_VERSION, PUBLIC_MCP_TOOL_NAMES } from "./mcp/contract.ts";
 import { SIGUNGU_ELDERLY_SNAPSHOT } from "./statistics/sigungu-elderly-verified.ts";
 import type { SqlDatabase } from "./sql-database.ts";
 import type { DataStatusReport, DomainId, DomainStatus } from "./data-status-paths.ts";
@@ -77,8 +77,9 @@ export async function readDataStatus(db: SqlDatabase, now = new Date()): Promise
     }),
     guard("mcp", "복지정보MCP", async () => ({
       domain: "mcp", label: "복지정보MCP", state: "정상", sourceAsOf: null, lastSuccessAt: null,
-      verification: "서버 " + MCP_SERVER_VERSION + " · 공개 조회 도구 " + PUBLIC_MCP_TOOL_NAMES.length + "개(읽기 전용)",
-      available: ["ChatGPT /chatgpt/mcp", "Claude·Perplexity·Gemini /claude/mcp"], limitations: LAW_MCP_PUBLIC ? [] : [LAW_MCP_WITHHELD_MESSAGE],
+      verification: "서버 " + MCP_SERVER_VERSION + " · 핵심 노출 도구 " + PUBLIC_MCP_TOOL_NAMES.length + "개 · 실행 가능 도구 " + EXECUTABLE_MCP_TOOL_NAMES.length + "개(읽기 전용)",
+      available: ["ChatGPT /chatgpt/mcp", "Claude·Perplexity·Gemini /claude/mcp"],
+      limitations: [...(LAW_MCP_PUBLIC ? [] : [LAW_MCP_WITHHELD_MESSAGE]), ...(CARE_RESOURCES_MCP ? [] : [CARE_MCP_WITHHELD_MESSAGE])],
     })),
     guard("law", "법령정보", async () => ({
       domain: "law", label: "법령정보", state: LAW_MCP_PUBLIC ? "정상" : "미제공", sourceAsOf: null, lastSuccessAt: null,

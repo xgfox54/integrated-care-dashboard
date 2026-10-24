@@ -277,42 +277,6 @@ export function PressBrowser() {
           <Button type="submit" size="sm" className="absolute inset-y-0 right-1.5 my-auto rounded-full active:translate-y-0!">검색</Button>
         </form>
 
-        <section aria-labelledby="press-org-type-heading">
-          <h2 id="press-org-type-heading" className="mb-2 text-(length:--jeju-text-sm) font-extrabold text-(--jeju-text-strong)">기관 유형</h2>
-          <div className="flex flex-wrap gap-1.5">
-            <button type="button" className={chipClass(!applied.organizationType)} aria-pressed={!applied.organizationType} onClick={() => apply({ organizationType: "" })}>전체</button>
-            {Object.entries(ORG_TYPE_LABELS).filter(([code]) => (regions?.by_organization_type?.[code] ?? 0) > 0 || applied.organizationType === code).map(([code, label]) => (
-              <button key={code} type="button" className={chipClass(applied.organizationType === code)} aria-pressed={applied.organizationType === code} onClick={() => toggle("organizationType", code)}>
-                {label}<span className="text-(length:--jeju-text-xs) opacity-75 tabular-nums">{regions?.by_organization_type?.[code]?.toLocaleString("ko-KR")}</span>
-              </button>
-            ))}
-          </div>
-        </section>
-
-        <section aria-labelledby="press-org-heading">
-          <h2 id="press-org-heading" className="mb-2 text-(length:--jeju-text-sm) font-extrabold text-(--jeju-text-strong)">발행기관 <span className="font-normal text-muted-foreground">(보도자료 많은 순)</span></h2>
-          {regions === null ? <p className="text-(length:--jeju-text-sm) text-muted-foreground">불러오는 중입니다.</p> : null}
-          <ul className="grid gap-1">
-            {shownOrganizations.map((organization, index) => {
-              const active = applied.organizationId === organization.organization_id;
-              return (
-                <li key={organization.organization_id} className={!showAllOrganizations && index >= ORGANIZATIONS_SHOWN_MOBILE ? "max-lg:hidden" : undefined}>
-                  <button type="button" aria-pressed={active} onClick={() => toggle("organizationId", organization.organization_id)}
-                    className={"flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-left text-(length:--jeju-text-sm) transition-colors " + (active ? "bg-(--jeju-primary-tint) font-bold text-(--jeju-primary-active)" : "text-(--jeju-text-body) hover:bg-muted")}>
-                    <span className="min-w-0 truncate">{organization.name}{organization.sido && organization.organization_type !== "METROPOLITAN" ? <span className="ml-1 text-(length:--jeju-text-xs) text-muted-foreground">{organization.sido.replace(/특별자치도|특별자치시|광역시|특별시|통합특별시|도$/, "")}</span> : null}</span>
-                    <span className="shrink-0 rounded-full bg-(--jeju-primary-tint) px-2 py-0.5 text-(length:--jeju-text-xs) font-bold tabular-nums text-(--jeju-primary)">{organization.count.toLocaleString("ko-KR")}</span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-          {organizations.length > ORGANIZATIONS_SHOWN_MOBILE ? (
-            <button type="button" className={(organizations.length > ORGANIZATIONS_SHOWN ? "" : "lg:hidden ") + "mt-1.5 w-full rounded-lg border border-dashed border-border py-2 text-(length:--jeju-text-sm) font-semibold text-(--jeju-text-body) hover:bg-muted"} aria-expanded={showAllOrganizations} onClick={() => setShowAllOrganizations(!showAllOrganizations)}>
-              {showAllOrganizations ? "접기 ▲" : `기관 더 보기 (전체 ${organizations.length.toLocaleString("ko-KR")}곳) ▼`}
-            </button>
-          ) : null}
-        </section>
-
         <details className="rounded-xl border border-border bg-card" open={Boolean(applied.sido)}>
           <summary className="cursor-pointer px-4 py-3 text-(length:--jeju-text-sm) font-extrabold text-(--jeju-text-strong)">지역으로 찾기</summary>
           <div className="grid gap-3 px-3 pb-3">
@@ -350,6 +314,42 @@ export function PressBrowser() {
           </div>
         </details>
 
+        <section aria-labelledby="press-org-type-heading">
+          <h2 id="press-org-type-heading" className="mb-2 text-(length:--jeju-text-sm) font-extrabold text-(--jeju-text-strong)">기관 유형</h2>
+          <div className="flex flex-wrap gap-1.5">
+            <button type="button" className={chipClass(!applied.organizationType)} aria-pressed={!applied.organizationType} onClick={() => apply({ organizationType: "" })}>전체</button>
+            {Object.entries(ORG_TYPE_LABELS).filter(([code]) => (regions?.by_organization_type?.[code] ?? 0) > 0 || applied.organizationType === code).map(([code, label]) => (
+              <button key={code} type="button" className={chipClass(applied.organizationType === code)} aria-pressed={applied.organizationType === code} onClick={() => toggle("organizationType", code)}>
+                {label}<span className="text-(length:--jeju-text-xs) opacity-75 tabular-nums">{regions?.by_organization_type?.[code]?.toLocaleString("ko-KR")}</span>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section aria-labelledby="press-org-heading">
+          <h2 id="press-org-heading" className="mb-2 text-(length:--jeju-text-sm) font-extrabold text-(--jeju-text-strong)">발행기관 <span className="font-normal text-muted-foreground">(보도자료 많은 순)</span></h2>
+          {regions === null ? <p className="text-(length:--jeju-text-sm) text-muted-foreground">불러오는 중입니다.</p> : null}
+          <ul className="grid gap-1">
+            {shownOrganizations.map((organization, index) => {
+              const active = applied.organizationId === organization.organization_id;
+              return (
+                <li key={organization.organization_id} className={!showAllOrganizations && index >= ORGANIZATIONS_SHOWN_MOBILE ? "max-lg:hidden" : undefined}>
+                  <button type="button" aria-pressed={active} onClick={() => toggle("organizationId", organization.organization_id)}
+                    className={"flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-left text-(length:--jeju-text-sm) transition-colors " + (active ? "bg-(--jeju-primary-tint) font-bold text-(--jeju-primary-active)" : "text-(--jeju-text-body) hover:bg-muted")}>
+                    <span className="min-w-0 truncate">{organization.name}{organization.sido && organization.organization_type !== "METROPOLITAN" ? <span className="ml-1 text-(length:--jeju-text-xs) text-muted-foreground">{organization.sido.replace(/특별자치도|특별자치시|광역시|특별시|통합특별시|도$/, "")}</span> : null}</span>
+                    <span className="shrink-0 rounded-full bg-(--jeju-primary-tint) px-2 py-0.5 text-(length:--jeju-text-xs) font-bold tabular-nums text-(--jeju-primary)">{organization.count.toLocaleString("ko-KR")}</span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+          {organizations.length > ORGANIZATIONS_SHOWN_MOBILE ? (
+            <button type="button" className={(organizations.length > ORGANIZATIONS_SHOWN ? "" : "lg:hidden ") + "mt-1.5 w-full rounded-lg border border-dashed border-border py-2 text-(length:--jeju-text-sm) font-semibold text-(--jeju-text-body) hover:bg-muted"} aria-expanded={showAllOrganizations} onClick={() => setShowAllOrganizations(!showAllOrganizations)}>
+              {showAllOrganizations ? "접기 ▲" : `기관 더 보기 (전체 ${organizations.length.toLocaleString("ko-KR")}곳) ▼`}
+            </button>
+          ) : null}
+        </section>
+
         <details className="rounded-xl border border-border bg-card">
           <summary className="cursor-pointer px-4 py-3 text-(length:--jeju-text-sm) font-extrabold text-(--jeju-text-strong)">수집 현황</summary>
           <div className="px-1 pb-1"><CoveragePanel coverage={coverage} /></div>
@@ -373,11 +373,11 @@ export function PressBrowser() {
           <div className="mt-3 flex flex-wrap items-center gap-1.5" aria-label="적용한 조건">
             {activeFilters.map((filter) => (
               <button key={filter.label} type="button" onClick={() => { if ("q" in filter.clear) setQuery(""); if ("sido" in filter.clear) setRegionDraft({ sido: "", sigungu: "", includeDescendants: false }); apply(filter.clear); }}
-                className="inline-flex items-center gap-1 rounded-full bg-(--jeju-primary-tint) px-3 py-1 text-(length:--jeju-text-xs) font-semibold text-(--jeju-primary-active) hover:bg-(--jeju-blue-light-strong)" aria-label={filter.label + " 조건 지우기"}>
+                className="inline-flex min-h-9 items-center gap-1.5 rounded-full bg-(--jeju-primary-tint) px-3.5 py-1.5 text-(length:--jeju-text-xs) font-semibold text-(--jeju-primary-active) outline-none hover:bg-(--jeju-blue-light-strong) focus-visible:shadow-(--jeju-focus-ring)" aria-label={filter.label + " 조건 지우기"}>
                 {filter.label}<span aria-hidden="true">×</span>
               </button>
             ))}
-            <button type="button" onClick={resetAll} className="inline-flex items-center gap-1 px-2 text-(length:--jeju-text-xs) font-semibold text-muted-foreground hover:text-(--jeju-text-strong)"><RefreshIcon className="size-3.5" />모두 지우기</button>
+            <button type="button" onClick={resetAll} className="inline-flex min-h-9 items-center gap-1 rounded-full px-2.5 py-1.5 text-(length:--jeju-text-xs) font-semibold text-muted-foreground outline-none hover:text-(--jeju-text-strong) focus-visible:shadow-(--jeju-focus-ring)"><RefreshIcon className="size-3.5" />모두 지우기</button>
           </div>
         ) : null}
 

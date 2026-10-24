@@ -188,11 +188,17 @@
 }
 
 .category {
+  display: inline-flex;
+  min-height: var(--jeju-space-6);
+  align-items: center;
+  justify-content: center;
   padding: 2px 7px;
   border: 1px solid transparent;
+  border-radius: var(--jeju-radius-sm);
   background: var(--category-color);
   color: var(--jeju-on-fill);
   font-weight: 650;
+  line-height: 1;
 }
 
 @media (forced-colors: active) {

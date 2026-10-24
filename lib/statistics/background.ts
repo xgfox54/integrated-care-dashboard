@@ -10,14 +10,17 @@ import { indexApiUrl, parseIndexApi, indexApiTables, mergeIndexApiTables, IndexF
 import { USER_AGENT, PACE_MS, SourceError, apiMessage, apiMessageCode, fetchSource } from "./refresh-source.ts";
 import { readIndexStage, appendIndexStage, indexStageParts } from "./refresh-index-stage.ts";
 import { INDEX_API_SERIES } from "./index-verified-data.ts";
+import { refreshKosis } from "./refresh-kosis.ts";
+import { KosisApiError, KosisFormatError, kosisJson } from "./kosis-api.ts";
 
 const POPULATION_KINDS: readonly PopulationPageKind[] = ["age", "older", "children"];
-interface HostState { next_request_at: number; robots?: { status: number; body: string; expires_at: number }; retry_after?: number; api_enabled?: boolean }
+interface HostState { next_request_at: number; robots?: { status: number; body: string; expires_at: number }; retry_after?: number; api_enabled?: boolean; api_contract?: string; request_timeout_ms?: number }
 interface PopulationStage { started_at: number; pages: readonly PopulationPageStage[]; source_hashes: Record<string, string> }
 export interface StatisticsRefreshDependencies {
   now?: () => number; fetcher?: (url: string, init?: RequestInit) => Promise<Response>;
   sleep?: (milliseconds: number) => Promise<void>; budgetMs?: number; timeoutMs?: number; maxSteps?: number;
   readIndexKey?: () => Promise<string | null>;
+  readKosisKey?: () => Promise<string | null>;
   scopeId?: string;
   force?: boolean;
 }
@@ -54,13 +57,14 @@ export async function runStatisticsRefresh(db: SqlDatabase, dependencies: Statis
   const budgetMs = Math.min(22_000, Math.max(10, dependencies.budgetMs ?? 22_000));
   const started = now(), wallStarted = Date.now(), deadline = started + budgetMs;
   const token = crypto.randomUUID();
-  if (dependencies.scopeId && !INDEX_API_SERIES[dependencies.scopeId]) throw new SourceError("SOURCE_NOT_ALLOWED");
+  if (dependencies.scopeId && !INDEX_API_SERIES[dependencies.scopeId] && !STATISTICS_DATASETS.some(dataset => dataset.kosis && dataset.id === dependencies.scopeId)) throw new SourceError("SOURCE_NOT_ALLOWED");
   const summary = { status: "idle", completed: 0, failed: 0, staged: 0 };
   const lease = await claimStatisticsWorker(db, started, token);
   if (!lease) return { ...summary, status: "busy_or_current" };
   const hosts = decodeHosts(lease.host_state_json);
   let key: string | null = null;
   let keyUnavailable = false;
+  let kosisKey: string | null = null, kosisKeyUnavailable = false;
   const remaining = () => Math.min(deadline - now(), budgetMs - (Date.now() - wallStarted));
   async function persistHosts(): Promise<void> {
     const owned = await db.prepare("UPDATE statistics_refresh_worker SET host_state_json = ? WHERE id = 1 AND lease_token = ? AND lease_expires_at > ? RETURNING id")
@@ -113,6 +117,24 @@ export async function runStatisticsRefresh(db: SqlDatabase, dependencies: Statis
     if (dependencies.readIndexKey) {
       try { key = await dependencies.readIndexKey(); } catch { keyUnavailable = true; }
     }
+    if (dependencies.readKosisKey) {
+      try { kosisKey = await dependencies.readKosisKey(); } catch { kosisKeyUnavailable = true; }
+    }
+    const kosisHost = hosts["https://kosis.kr"] ??= { next_request_at: 0 };
+    if (kosisKey && kosisHost.api_contract !== "20261017-v4") {
+      const ids = STATISTICS_DATASETS.filter(dataset => dataset.kosis).map(dataset => dataset.id);
+      await db.prepare("UPDATE statistics_refresh_scope SET next_check_at = MIN(next_check_at, ?), stage_json = NULL WHERE scope_id IN (" + ids.map(() => "?").join(",") + ") AND (last_success_at IS NULL OR error_code IS NOT NULL) AND " + STATISTICS_LEASE_GUARD)
+        .bind(now(), ...ids, token, now()).run();
+      kosisHost.api_contract = "20261017-v4";
+      await persistHosts();
+    }
+    if (kosisKey && kosisHost.request_timeout_ms !== 18_000) {
+      const ids = STATISTICS_DATASETS.filter(dataset => dataset.kosis).map(dataset => dataset.id);
+      await db.prepare("UPDATE statistics_refresh_scope SET next_check_at = MIN(next_check_at, ?) WHERE scope_id IN (" + ids.map(() => "?").join(",") + ") AND error_code = 'SOURCE_TIMEOUT' AND " + STATISTICS_LEASE_GUARD)
+        .bind(now(), ...ids, token, now()).run();
+      kosisHost.request_timeout_ms = 18_000;
+      await persistHosts();
+    }
     const indexHost = hosts["https://www.index.go.kr"] ??= { next_request_at: 0 };
     if (key && !indexHost.api_enabled) {
       const ids = Object.keys(INDEX_API_SERIES);
@@ -139,7 +161,9 @@ export async function runStatisticsRefresh(db: SqlDatabase, dependencies: Statis
       const stage = scope.scope_id === POPULATION_SCOPE ? decodeStage(scope.stage_json, now()) : null;
       let indexStage = key && INDEX_API_SERIES[expected[0].id]
         ? await readIndexStage(scope.stage_json, expected[0], scope.revision, now(), key) : null;
-      if (!stage?.pages.length && !indexStage?.parts.length) await guardRun("UPDATE statistics_refresh_scope SET last_attempt_at = ?, error_code = NULL, stage_json = NULL, updated_at = ? WHERE scope_id = ?", [now(), now(), scope.scope_id]);
+      let kosisStage = expected[0].kosis ? scope.stage_json : null;
+      if (!stage?.pages.length && !indexStage?.parts.length && !kosisStage) await guardRun("UPDATE statistics_refresh_scope SET last_attempt_at = ?, error_code = NULL, error_detail = NULL, stage_json = NULL, updated_at = ? WHERE scope_id = ?", [now(), now(), scope.scope_id]);
+      else await guardRun("UPDATE statistics_refresh_scope SET last_attempt_at = ?, updated_at = ? WHERE scope_id = ?", [now(), now(), scope.scope_id]);
       try {
         let datasets: readonly StatisticsDataset[];
         if (stage) {
@@ -155,8 +179,40 @@ export async function runStatisticsRefresh(db: SqlDatabase, dependencies: Statis
           datasets = mergePopulationPages(nextStage.pages, { now: now(), minimumPeriod });
         } else {
           let dataset: StatisticsDataset;
-          if (keyUnavailable && INDEX_API_SERIES[expected[0].id]) throw new SourceError("SOURCE_KEY_UNAVAILABLE");
-          if (key && INDEX_API_SERIES[expected[0].id]) {
+          if (expected[0].kosis) {
+            if (kosisKeyUnavailable) throw new SourceError("SOURCE_KEY_UNAVAILABLE");
+            dataset = await refreshKosis(saved[0]?.dataset ?? expected[0], kosisStage, scope.revision, kosisKey, now, async url => {
+              const host = hosts["https://kosis.kr"] ??= { next_request_at: 0 };
+              if ((host.retry_after ?? 0) > now()) throw new SourceError("SOURCE_RATE_LIMITED", host.retry_after);
+              const requestTimeout = dependencies.timeoutMs === undefined ? 18_000 : timeoutMs;
+              const target = new URL(url);
+              const phase = target.searchParams.get("type") === "PRD" ? "수록주기 조회" : target.searchParams.get("type") === "ITM" ? "항목·분류 조회" : target.searchParams.has("startPrdDe") ? "과거 수록값 조회" : "최신 수록값 조회";
+              let response: Awaited<ReturnType<typeof paced>>;
+              try { response = await paced(url, requestTimeout); }
+              catch (error) {
+                if (error instanceof SourceError && error.code === "SOURCE_TIMEOUT") throw new SourceError(error.code, 0, "KOSIS " + target.searchParams.get("tblId") + " · " + phase + " 응답 시간 초과 (" + requestTimeout / 1000 + "초)");
+                throw error;
+              }
+              if (response.status !== 200) {
+                if ([429, 503].includes(response.status)) { host.retry_after = Math.max(now() + STATISTICS_HOUR, response.retryAfter); await persistHosts(); }
+                throw new SourceError(response.status === 429 ? "SOURCE_RATE_LIMITED" : "SOURCE_API_UNAVAILABLE", response.retryAfter);
+              }
+              const encodedKey = kosisKey ?? "";
+              if (!encodedKey) throw new SourceError("SOURCE_KEY_REQUIRED");
+              const cleanBody = response.body.split(encodedKey).join("[KEY]").split(decodeURIComponent(encodedKey)).join("[KEY]");
+              try { kosisJson(cleanBody); }
+              catch (error) {
+                if (error instanceof KosisApiError && error.code === "SOURCE_RATE_LIMITED") { host.retry_after = now() + STATISTICS_HOUR; await persistHosts(); throw new SourceError("SOURCE_RATE_LIMITED", host.retry_after); }
+                throw error;
+              }
+              return cleanBody;
+            }, async value => {
+              kosisStage = value;
+              await guardRun("UPDATE statistics_refresh_scope SET stage_json = ?, next_check_at = ?, updated_at = ? WHERE scope_id = ?", [value, now(), now(), scope.scope_id]);
+              summary.staged++;
+            });
+          } else if (keyUnavailable && INDEX_API_SERIES[expected[0].id]) throw new SourceError("SOURCE_KEY_UNAVAILABLE");
+          else if (key && INDEX_API_SERIES[expected[0].id]) {
             if ((indexHost.retry_after ?? 0) > now()) throw new SourceError("SOURCE_RATE_LIMITED", indexHost.retry_after);
             const tables = indexApiTables(expected[0]);
             // 직전 시도가 응답 시간 초과였던 표는 다음 한 번을 18초까지 기다린다(전체 실행 예산 안에서만).
@@ -202,7 +258,7 @@ export async function runStatisticsRefresh(db: SqlDatabase, dependencies: Statis
           }) }];
         }
         const checkedAt = new Date(now()).toISOString();
-        const revision = (stage ? "mois-population:" : (key && datasets[0].index_api ? "index-api:" : "public-table:") + datasets[0].table_code + ":") + (await hash(JSON.stringify(datasets))).slice(0, 24);
+        const revision = (stage ? "mois-population:" : (datasets[0].kosis ? "kosis-api:" : key && datasets[0].index_api ? "index-api:" : "public-table:") + datasets[0].table_code + ":") + (await hash(JSON.stringify(datasets))).slice(0, 24);
         const results: StatisticsResult[] = datasets.map(dataset => {
           const baseline = verifiedStatistics(dataset.id)!;
           return { ...baseline, dataset, revision, checked_at: checkedAt, state: "LIVE", refresh_error: null,
@@ -220,7 +276,7 @@ export async function runStatisticsRefresh(db: SqlDatabase, dependencies: Statis
         const initialApiRetry = key && INDEX_API_SERIES[scope.scope_id] && !scope.last_success_at && scope.failure_count === 0 && sourceCode(error) === "SOURCE_API_UNAVAILABLE";
         const retryMs = initialApiRetry ? 30_000 : Math.min(STATISTICS_DAY, STATISTICS_HOUR * 2 ** Math.min(scope.failure_count, 5));
         const next = Math.max(now() + retryMs, error instanceof SourceError ? error.retryAfter : 0);
-        await guardRun("UPDATE statistics_refresh_scope SET failure_count = failure_count + 1, error_code = ?, error_detail = ?, next_check_at = ?, stage_json = ?, updated_at = ? WHERE scope_id = ?", [sourceCode(error), error instanceof SourceError || error instanceof IndexFormatError ? error.detail : null, next, indexStage?.parts.length ? JSON.stringify(indexStage) : null, now(), scope.scope_id]);
+        await guardRun("UPDATE statistics_refresh_scope SET failure_count = failure_count + 1, error_code = ?, error_detail = ?, next_check_at = ?, stage_json = ?, updated_at = ? WHERE scope_id = ?", [sourceCode(error), error instanceof SourceError || error instanceof IndexFormatError || error instanceof KosisFormatError || error instanceof KosisApiError ? error.detail : null, next, kosisStage ?? (indexStage?.parts.length ? JSON.stringify(indexStage) : null), now(), scope.scope_id]);
         summary.failed++;
       }
     }

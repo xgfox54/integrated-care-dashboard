@@ -1,4 +1,7 @@
 import type { PressFetcher } from "./collect.ts";
+import { readBoundedResponseText } from "../upstream-response.ts";
+
+export const MAX_PRESS_RESPONSE_BYTES = 2_000_000;
 
 class PressCancellationError extends Error {
   constructor(name: "AbortError" | "TimeoutError") {
@@ -40,11 +43,13 @@ export function timedPressFetcher(timeoutMs: number, deadlineAt?: number): Press
         discard() {
           clearTimeout(timer);
           controller.abort();
+          if (response.body && !response.body.locked) void response.body.cancel().catch(() => undefined);
         },
         async text() {
           try {
-            return await response.text();
+            return await readBoundedResponseText(response, MAX_PRESS_RESPONSE_BYTES, controller.signal);
           } catch (error) {
+            controller.abort();
             rethrowFetchError(error);
           } finally {
             clearTimeout(timer);

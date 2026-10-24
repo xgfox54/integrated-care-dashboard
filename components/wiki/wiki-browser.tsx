@@ -341,7 +341,7 @@ export function WikiBrowser() {
             ) : "사업명으로 검색하거나 지역·분야를 선택해 목록을 좁혀보세요."}
           </p>
           {keyword || hasFilters ? (
-            <Button type="button" variant="ghost" size="sm" className="shrink-0" onClick={resetConditions}>
+            <Button type="button" variant="outline" size="sm" className="min-h-11 shrink-0" onClick={resetConditions}>
               <RefreshIcon />
               조건 초기화
             </Button>
@@ -372,7 +372,7 @@ export function WikiBrowser() {
             onScroll={loadIfScrolled}
             tabIndex={0}
             aria-label="통합돌봄 WIKI 사업 목록"
-            className="scrollbar-thin min-h-0 max-h-80 overflow-y-auto overscroll-y-contain p-2 outline-none focus-visible:shadow-(--jeju-focus-ring) lg:max-h-[calc(100dvh-12rem)]"
+            className="scrollbar-thin min-h-0 p-2 outline-none focus-visible:shadow-(--jeju-focus-ring) lg:max-h-[calc(100dvh-12rem)] lg:overflow-y-auto lg:overscroll-y-contain"
           >
             {noResults ? (
               <div className="rounded-lg bg-(--jeju-surface-inset) px-3 py-6 text-center">
@@ -433,7 +433,7 @@ export function WikiBrowser() {
                 type="button"
                 variant="outline"
                 size="sm"
-                className="mt-3 h-auto min-h-(--jeju-control-h-sm) w-full whitespace-normal py-2"
+                className="mt-3 h-auto min-h-11 w-full whitespace-normal py-2.5"
                 disabled={loadingMore}
                 onClick={requestMore}
               >
@@ -448,7 +448,7 @@ export function WikiBrowser() {
           {hasSelection ? (
             <div className="mb-3 flex flex-wrap items-center justify-between gap-2 print:hidden">
               <p className="text-(length:--jeju-text-sm) font-bold text-muted-foreground">선택한 사업 안내</p>
-              <Button type="button" variant="ghost" size="sm" onClick={returnToResults}><ChevronLeftIcon />목록으로 돌아가기</Button>
+              <Button type="button" variant="ghost" size="sm" className="min-h-11" onClick={returnToResults}><ChevronLeftIcon />목록으로 돌아가기</Button>
             </div>
           ) : null}
           {selected ? (

@@ -24,12 +24,24 @@ const SECURITY_HEADERS: readonly (readonly [string, string])[] = [
   ["permissions-policy", "geolocation=(self), camera=(), microphone=(), browsing-topics=()"],
 ];
 
-export function secureResponse(response: Response): Response {
+export function scriptNoncePolicy(nonce: string): string {
+  if (!/^[A-Za-z0-9+/]{24}$/.test(nonce)) throw new RangeError("Invalid script nonce");
+  return CONTENT_SECURITY_POLICY.replace("script-src 'self' 'unsafe-inline'", "script-src 'self' 'nonce-" + nonce + "'; script-src-attr 'none'");
+}
+
+export function secureResponse(response: Response, nonce?: string): Response {
   const headers = new Headers(response.headers);
   for (const [name, value] of SECURITY_HEADERS) headers.set(name, value);
   headers.delete("access-control-allow-origin");
   if (headers.get("content-type")?.toLowerCase().startsWith("text/html")) {
-    headers.set("content-security-policy-report-only", CSP_REPORT_ONLY_POLICY);
+    if (nonce) {
+      headers.set("content-security-policy", scriptNoncePolicy(nonce));
+      headers.set("cache-control", "private, no-store");
+      headers.delete("etag");
+      headers.delete("content-security-policy-report-only");
+    } else {
+      headers.set("content-security-policy-report-only", CSP_REPORT_ONLY_POLICY);
+    }
   }
   return new Response(response.body, {
     status: response.status,

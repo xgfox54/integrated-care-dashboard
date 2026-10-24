@@ -475,14 +475,19 @@
 
 .categoryBadge {
   display: inline-flex;
+  min-height: var(--jeju-space-6);
   max-width: 100%;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   padding: 2px 7px;
   border: 1px solid transparent;
+  border-radius: var(--jeju-radius-sm);
   background: var(--category-color);
   color: var(--jeju-on-fill);
   font-size: 12px;
   font-weight: 650;
+  line-height: 1;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

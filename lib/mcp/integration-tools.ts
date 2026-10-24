@@ -4,6 +4,7 @@
 import { z } from "zod";
 
 import type { SqlDatabase } from "../sql-database.ts";
+import { CARE_DATASET_KEYS, CARE_RESOURCES_MCP } from "../integrations/care-hold.ts";
 import { careDemand, careInstitution, careInstitutions, integrationStatus, programPublicInfo, SERVICE_GROUP_LABELS, STATE_LABELS } from "../integrations/public.ts";
 import { decodeCursor, encodeCursor, fingerprint, LIMITS, McpToolError, type McpToolName, pageLimit } from "./contract.ts";
 import { LAW_MCP_PUBLIC, LAW_MCP_WITHHELD_MESSAGE } from "./contract.ts";
@@ -51,8 +52,11 @@ function checkRegion(regionId: string): void {
 }
 
 export function registerIntegrationTools({ register, db, wrap, today, lawRuntime }: IntegrationToolHelpers): void {
-  register("get_integration_status", "외부 연계 수집 현황", "법정동코드·장기요양기관(검색·상세)·정부24 공공서비스·KOSIS·법령 근거 반입 연계별 제공기관, 이용조건, 호출한도, 갱신주기, 마지막 성공 수집, 상태(미수집·인증키 필요·원천 장애)를 돌려줍니다. law_runtime은 내장 법령 도구의 실시간 조회 가능 여부입니다.", {}, async () => {
-    const rows = await integrationStatus(db);
+  register("get_integration_status", "외부 연계 수집 현황", "법정동코드·정부24 공공서비스 연계별 제공기관, 이용조건, 호출한도, 갱신주기, 마지막 성공 수집, 상태(미수집·인증키 필요·원천 장애)를 돌려줍니다.", {}, async () => {
+    const rows = (await integrationStatus(db)).filter((row) =>
+      (CARE_RESOURCES_MCP || !CARE_DATASET_KEYS.has(row.dataset_key)) &&
+      (LAW_MCP_PUBLIC || row.dataset_key !== "moleg.law"),
+    );
     return wrap({ datasets: rows, law_runtime: lawRuntimeDto(lawRuntime), legend: STATE_NOTE }, { coverage: { scope: "integration_status", complete: true, gaps: [] } });
   });
 

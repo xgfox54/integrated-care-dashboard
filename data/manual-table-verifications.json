@@ -1,7 +1,7 @@
 [
   {
     "verification_id": "manual-table-20261012-emergency-9",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-43b248aa94461d761958",
     "section_id": "82914d12bf22c5d95e0d",
     "section_content_sha256": "3307bafa68d05490311d475909b1c431743ae9df1f24ce00df3afa391d83d59a",
@@ -29,7 +29,7 @@
   },
   {
     "verification_id": "manual-table-20261012-emergency-61",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-43b248aa94461d761958",
     "section_id": "988c8f2ee4c3a728601c",
     "section_content_sha256": "d1f72458cca12757c1e1a63cc33dde3e70d2b9926570dd1630a8f06529922c80",
@@ -57,7 +57,7 @@
   },
   {
     "verification_id": "manual-table-20261012-livelihood-14",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-4b1fb458abb8e4cecee2",
     "section_id": "0e342dacb43406680c23",
     "section_content_sha256": "5d264f5b39ec8ada441d2940cd5a29fb38532250db5a248faa51a03cfa4e53a9",
@@ -84,7 +84,7 @@
   },
   {
     "verification_id": "manual-table-20261012-livelihood-77",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-4b1fb458abb8e4cecee2",
     "section_id": "fc78d3160bd478bf0506",
     "section_content_sha256": "3d236f27e678d64ea88b82ea024a1b9a5c75c8c5bec81b6bb4ac39f033d2b449",
@@ -112,7 +112,7 @@
   },
   {
     "verification_id": "manual-table-20261012-livelihood-147",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-4b1fb458abb8e4cecee2",
     "section_id": "892bbabf8c805c418615",
     "section_content_sha256": "3fdd8cc8a08ac0abdd958165b394b302dcc5b602ccda529427c412f80f5ee8da",
@@ -140,7 +140,7 @@
   },
   {
     "verification_id": "manual-table-20261012-housing-19",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-b7ca6e7e18b458e0402c",
     "section_id": "dedd371b802763e745e4",
     "section_content_sha256": "a796e6100787166c1c3140d5c790329381bc1d0c1f8983cef942cfa4d0da616e",
@@ -171,7 +171,7 @@
   },
   {
     "verification_id": "manual-table-20261012-pension-13",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-497b841700247f8e9816",
     "section_id": "ad83ea5251ec135be138",
     "section_content_sha256": "62c6cbeddcfbb46b760336615fcb5dfbe41b4ff6b725260157244db500f46350",
@@ -201,7 +201,7 @@
   },
   {
     "verification_id": "manual-table-20261012-pension-23",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-497b841700247f8e9816",
     "section_id": "1e4c614a418fc8152a03",
     "section_content_sha256": "7e045d64e6794e77228c671d82433fd41c8a4d3c1d5e31c57c8256a2bae396fb",
@@ -231,7 +231,7 @@
   },
   {
     "verification_id": "manual-table-20261012-jeju-care-8",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-30ded375ead506383cd8",
     "section_id": "3da32b38366c3297eefa",
     "section_content_sha256": "6db0c2381b1dcbaac16e58976388b3ea531c20c45f8d7644bf5b4bed18c4a3bb",
@@ -260,7 +260,7 @@
   },
   {
     "verification_id": "manual-table-20261015-orig-235f5ad3f1a4b1fdeef1-46",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-73a60fc1f8adff28437f",
     "section_id": "4702d0d2b9386659599d",
     "section_content_sha256": "20de403222cf29db8811a025225df5deefc11328f610aa842556fd3ff35a25dc",
@@ -288,7 +288,7 @@
   },
   {
     "verification_id": "manual-table-20261015-orig-235f5ad3f1a4b1fdeef1-47",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-73a60fc1f8adff28437f",
     "section_id": "d1b043d899bfdc1c96fd",
     "section_content_sha256": "70c3d99c9729ccd0d9bae30c74d842713a7320ce956bc7e51e27d39386693c58",
@@ -313,7 +313,7 @@
   },
   {
     "verification_id": "manual-table-20261015-orig-235f5ad3f1a4b1fdeef1-98",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-73a60fc1f8adff28437f",
     "section_id": "d027007c2ecf0d933d93",
     "section_content_sha256": "9bbf2ad94414fe8fc587c3952c2b2d3bb886d7194ece30841af0cdb073f6d472",
@@ -339,7 +339,7 @@
   },
   {
     "verification_id": "manual-table-20261015-orig-35f0a1012554491bb2f8-9",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-0d5cde1744ecb603eec8",
     "section_id": "5ea82719033ccc6a0d09",
     "section_content_sha256": "4e9dcac49fd54c88fc1ba5cbd072c25a7e4c806f2dd1d7aa9a2754dc9d03bf7f",
@@ -365,7 +365,7 @@
   },
   {
     "verification_id": "manual-table-20261015-orig-35f0a1012554491bb2f8-10",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-0d5cde1744ecb603eec8",
     "section_id": "5ea82719033ccc6a0d09",
     "section_content_sha256": "4e9dcac49fd54c88fc1ba5cbd072c25a7e4c806f2dd1d7aa9a2754dc9d03bf7f",
@@ -391,7 +391,7 @@
   },
   {
     "verification_id": "manual-table-20261015-orig-35f0a1012554491bb2f8-31",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-0d5cde1744ecb603eec8",
     "section_id": "2e91849af280f54473cf",
     "section_content_sha256": "19d150bcb792bae996ef68e78200e2317b830c7e2af93188e772a5de1a7d55f5",
@@ -417,7 +417,7 @@
   },
   {
     "verification_id": "manual-table-20261015-orig-35f0a1012554491bb2f8-93",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-0d5cde1744ecb603eec8",
     "section_id": "010c438f03fd793ea33e",
     "section_content_sha256": "8b507c1e7f551a3aeabb9c17bb3d6dac04a5e8aa4384ef4c705fd0a2e80a773a",
@@ -441,7 +441,7 @@
   },
   {
     "verification_id": "manual-table-20261015-orig-e4d3ea5acaa7e6a3f4dd-51",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-e2925ac8a6658a510921",
     "section_id": "33140b908bf22b533e23",
     "section_content_sha256": "2deb9015bbeaec4f5242fa300bd1667446be9e8ed079a07629336e2ffd8ca56f",
@@ -465,7 +465,7 @@
   },
   {
     "verification_id": "manual-table-20261015-orig-e4d3ea5acaa7e6a3f4dd-56",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-e2925ac8a6658a510921",
     "section_id": "5cbbf1de7201eca52c97",
     "section_content_sha256": "9c64524ef64701c796af5d6ed81b162f7771060f800e209804c5662f38c46be9",
@@ -491,7 +491,7 @@
   },
   {
     "verification_id": "manual-table-20261015-orig-e4d3ea5acaa7e6a3f4dd-57",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-e2925ac8a6658a510921",
     "section_id": "376468842fe1c94ff34c",
     "section_content_sha256": "e35601cdccf353ef292ec0e7952565500b83e795d7bf89af5d040711c21d6329",
@@ -518,7 +518,7 @@
   },
   {
     "verification_id": "manual-table-20261015-orig-80fa7735a330b130d237-10",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-9b3ecb5e36c8d7cd6e7e",
     "section_id": "3b9a27707bd9a0caf9eb",
     "section_content_sha256": "e3e39b9a17a3e4b3dd6b3aae0bf04b6702607ad566262f73f6f6d330dccdf56f",
@@ -545,7 +545,7 @@
   },
   {
     "verification_id": "manual-table-20261015-orig-80fa7735a330b130d237-11",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-9b3ecb5e36c8d7cd6e7e",
     "section_id": "3b9a27707bd9a0caf9eb",
     "section_content_sha256": "e3e39b9a17a3e4b3dd6b3aae0bf04b6702607ad566262f73f6f6d330dccdf56f",
@@ -571,7 +571,7 @@
   },
   {
     "verification_id": "manual-table-20261015-orig-80fa7735a330b130d237-35",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-9b3ecb5e36c8d7cd6e7e",
     "section_id": "0c83df12796c759f4122",
     "section_content_sha256": "5fc935ffb6891b9ab5ea40c1ab4ca0b46a7097f0a68d1c7ada3781af8d1698e7",
@@ -595,7 +595,7 @@
   },
   {
     "verification_id": "manual-table-20261015-orig-80fa7735a330b130d237-35-qa",
-    "corpus_revision": "sgw-8a8f0554c99e-v1",
+    "corpus_revision": "sgw-65832bd27306-v1",
     "document_id": "md-9b3ecb5e36c8d7cd6e7e",
     "section_id": "1107feeb317441721f38",
     "section_content_sha256": "fcec72e97f3d3d526755b4d2a55feab87428ec944aca929430341136d7b0a131",

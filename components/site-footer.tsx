@@ -22,6 +22,12 @@ export function SiteFooter() {
             으로 알려 주세요. 오류가 보인 화면 주소와 사업명을 함께 적어 주시면 빠르게 확인하겠습니다.
           </span>
         </p>
+        <p className="font-bold text-(--jeju-text-strong)">
+          운영 주체: 개인 운영 · 개인정보 문의 담당자: 사이트 운영자
+        </p>
+        <p>
+          이 사이트는 서귀포시 소속 직원의 개인 개발·업무 활용 사례입니다. 서귀포시 공식 사이트가 아닙니다.
+        </p>
         <p>
           본 대시보드는 전국 통합돌봄 관련 사업현황을 빠르게 검색·비교하기 위한 업무 참고용
           자료입니다. 실제 사업 시행 여부, 지원대상, 지원기준 및 세부내용은 보건복지부 및 해당
@@ -31,11 +37,14 @@ export function SiteFooter() {
           사업 수는 수혜자 수, 예산 규모, 서비스 공급량을 의미하지 않습니다. 데이터 원 출처와
           이용 근거는 데이터 출처 화면에서 확인할 수 있습니다.
         </p>
-        <p className="print:hidden">
+        <nav aria-label="개인정보와 이용통계 안내" className="flex flex-wrap gap-x-5 gap-y-2 print:hidden">
+          <a href="/privacy" className="font-bold text-(--jeju-text-strong) underline underline-offset-2 hover:text-primary">
+            개인정보처리방침
+          </a>
           <a href="/usage-policy" className="text-(--jeju-text-body) underline underline-offset-2 hover:text-primary">
             이용통계 수집 안내
           </a>
-        </p>
+        </nav>
       </div>
     </footer>
   );

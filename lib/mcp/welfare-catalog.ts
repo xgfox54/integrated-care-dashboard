@@ -86,7 +86,7 @@ export class WelfareCatalog {
         match_note: '검색 일치는 동일 제도나 개인별 수급 자격의 판정이 아닙니다.',
         source_kind: row.a ? 'curated_manual_catalog' : 'bokjiro_catalog',
         url: baseUrl + '/welfare100/' + encodeURIComponent(row.s),
-        rank: titleMatch(row) ? 180 : variants.length ? welfareRelevance(row.n, plan) : 120,
+        rank: titleMatch(row) ? 180 : variants.length ? welfareRelevance(row.n, plan) + (sigungu && row.sd === sido && row.sg === sigungu ? 12 : 0) : 120,
       })),
     };
   }

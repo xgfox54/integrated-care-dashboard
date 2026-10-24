@@ -28,3 +28,5 @@ export const FIRST_BUDGET_RESULT_PATH = budgetResultPath(EMPTY_BUDGET_FILTERS);
 export function budgetNationalPath(filters: BudgetFilters): string {
   return budgetResultPath({ ...EMPTY_BUDGET_FILTERS, mode: filters.mode });
 }
+
+export const FIRST_BUDGET_FILTERS_PATH = budgetFiltersPath(EMPTY_BUDGET_FILTERS);

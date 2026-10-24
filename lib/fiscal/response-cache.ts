@@ -19,13 +19,13 @@ async function sha256Hex(text: string): Promise<string> {
  */
 const MEMORY_LIMIT_CHARS = 16_000_000;
 interface MemoryEntry { readonly value: unknown; readonly size: number; readonly expiresAt: number }
-interface MemoryStore { readonly entries: Map<string, MemoryEntry>; size: number }
+interface MemoryStore { readonly entries: Map<string, MemoryEntry>; readonly pending: Map<string, Promise<void>>; size: number }
 const stores = new WeakMap<object, MemoryStore>();
 
 function storeFor(db: SqlDatabase): MemoryStore {
   let store = stores.get(db);
   if (!store) {
-    store = { entries: new Map(), size: 0 };
+    store = { entries: new Map(), pending: new Map(), size: 0 };
     stores.set(db, store);
   }
   return store;
@@ -61,9 +61,23 @@ export async function rememberedFor<T>(db: SqlDatabase, key: string, ttlMs: numb
   const store = storeFor(db);
   const hit = recall(store, "small:" + key);
   if (hit) return hit.value as T;
-  const value = await compute();
-  remember(store, "small:" + key, value, JSON.stringify(value ?? null).length, ttlMs);
-  return value;
+  const pending = store.pending.get(key);
+  if (pending) {
+    await pending;
+    return rememberedFor(db, key, ttlMs, compute);
+  }
+  const result = compute().then((value) => {
+    remember(store, "small:" + key, value, JSON.stringify(value ?? null).length, ttlMs);
+    return value;
+  });
+  // 완료 신호만 공유함. 실패는 원래 호출자에게 전달하고 후속 요청은 다시 읽음.
+  const settled = result.then(() => undefined, () => undefined);
+  store.pending.set(key, settled);
+  try {
+    return await result;
+  } finally {
+    if (store.pending.get(key) === settled) store.pending.delete(key);
+  }
 }
 
 export async function cachedBudgetPart<T>(db: SqlDatabase, parts: unknown, compute: () => Promise<T>): Promise<T> {

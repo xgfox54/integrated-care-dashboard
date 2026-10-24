@@ -92,6 +92,15 @@ export function reportToCsv(report: UsageReport): string {
     "",
   ];
   switch (report.view) {
+    case "visits":
+      lines.push(
+        ...table("방문 집계", ["전체 누적 방문 수", "집계 시작일", "선택 기간 방문 수", "직전 기간 방문 수", "기간 시작 전 누적", "기간 종료일 누적"],
+          [[report.total, report.since, report.current, report.previous, report.before, report.throughEnd]]),
+        ...table("일별 방문 내역", ["날짜", "수집 상태", "방문 수", "해당 일까지 누적 방문 수"],
+          report.series.map(row => [row.day, STATE_LABELS[meta.dayStates[row.day] ?? "before"], row.visits, row.cumulative])),
+        ...table("처음 진입한 메뉴", ["메뉴", "방문 수"], report.entries.map(row => [TAB_LABELS[row.tab], row.visits])),
+      );
+      break;
     case "overview":
       lines.push(
         ...table(

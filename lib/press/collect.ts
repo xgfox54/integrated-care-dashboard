@@ -1,15 +1,22 @@
 import { classifyTitle } from "./classify.ts";
+import { withdrawPressItem } from "./admin.ts";
+import { isExcludedPressTitle, TITLE_EXCLUSION_REASON } from "./title-exclusions.ts";
+import { applyVerifiedPressLinkCorrections, SEOCHO_SOURCE_ID } from "./link-corrections.ts";
 import { canonicalizeUrl, originIdOf, parsePublicationDate, sha256Hex } from "./normalize.ts";
 import { parseBoardProfile, parseHtmlBoard } from "./html-board.ts";
 import { parseOpenApiItems, parseOpenApiProfile, withApiKey, type ApiKeyRef } from "./open-api.ts";
 import { analyzeRobots, type RobotsAnalysis } from "./robots.ts";
 import { blockedBy, crawlerEnabled, readCrawlBlocks, recordRobotsAudit, requestIntervalSec, type CrawlBlock } from "./operations.ts";
 import { FeedFormatError, parseRssItems, type PressFeedItem } from "./rss.ts";
-import { isPressFetchFailure } from "./fetch.ts";
+import { isPressFetchFailure, MAX_PRESS_RESPONSE_BYTES } from "./fetch.ts";
+import { UpstreamResponseError } from "../upstream-response.ts";
 import { nextCollectionSlot } from "./schedule.ts";
+import { ensurePressSlots, startPressAttempt, finishPressAttempt } from "./jobs.ts";
+import { fencePressWrites, PressLeaseLostError } from "./jobs-fence.ts";
+import { retryAfterSeconds as parseRetryAfter, retryDelaySeconds } from "./retry-policy.ts";
 import { completesTitle, extractFullTitle, isTruncatedTitle, readStoredTitles, readTruncatedItems, recordTitleAttempt } from "./title-complete.ts";
 import {
-  claimCrawlLease, claimHostLease, insertItemStatement, readCrawlState, readExistingTitleHashes, readUrlsHeldElsewhere, releaseCrawlLease,
+  claimCrawlLease, claimHostLease, insertItemStatement, readCrawlState, readExistingItemIdsByUrl, readExistingTitleHashes, readUrlsHeldElsewhere, releaseCrawlLease,
   releaseHostLease, updateItemStatement, type CrawlState, type PressItemRecord, type PressSource,
 } from "./store.ts";
 import type { SqlDatabase } from "../sql-database.ts";
@@ -20,13 +27,9 @@ import type { SqlDatabase } from "../sql-database.ts";
 export const USER_AGENT = "IntegratedCareDashboard-PressArchive/1.0";
 // 처음 요청 + 재시도 1회. 같은 서버에 요청 간격(3초 이상)을 지키면서 응답 뒤 작업 시간(약 30초) 안에 끝나도록 한다.
 const MAX_ATTEMPTS = 2;
-const MAX_FEED_BYTES = 2_000_000;
+const MAX_FEED_BYTES = MAX_PRESS_RESPONSE_BYTES;
 const MAX_REJECTED_RATIO = 0.5;
 const MIN_ITEMS_FOR_DRIFT_CHECK = 4;
-const MAX_BACKOFF_SECONDS = 6 * 60 * 60;
-const RETRY_STEP_SECONDS = 30 * 60;
-/** 429·5xx 뒤 다음 시도까지 최소 대기(지침 10항 예시 30·60·120·300초 이상). */
-const MIN_BACKOFF_SECONDS: readonly number[] = [30, 60, 120, 300];
 /** 5xx가 이만큼 잇따르면 그 기관 수집을 SERVER_PAUSE_SECONDS 동안 멈춘다. */
 const SERVER_PAUSE_AFTER = 3;
 const SERVER_PAUSE_SECONDS = 24 * 3600;
@@ -123,11 +126,10 @@ export function redactUrl(address: string): string {
   }
 }
 
-function statusFailure(response: FetchResponseLike): Failure | null {
+function statusFailure(response: FetchResponseLike, now: number): Failure | null {
   const status = response.status;
   if (status === 304 || (status >= 200 && status < 300)) return null;
-  const retryAfter = Number.parseInt(response.headers.get("retry-after") ?? "", 10);
-  const retryAfterSeconds = Number.isFinite(retryAfter) && retryAfter > 0 ? Math.min(retryAfter, MAX_BACKOFF_SECONDS) : 0;
+  const retryAfterSeconds = parseRetryAfter(response.headers.get("retry-after"), now);
   if (status === 429) return { errorCode: "RATE_LIMITED", technicalStatus: "BLOCKED", httpStatus: status, retryAfterSeconds };
   if (status === 401 || status === 403) return { errorCode: "ACCESS_DENIED", technicalStatus: "BLOCKED", httpStatus: status, retryAfterSeconds: 0 };
   if (status === 404 || status === 410 || (status >= 300 && status < 400)) return { errorCode: "URL_CHANGED", technicalStatus: "URL_CHANGED", httpStatus: status, retryAfterSeconds: 0 };
@@ -153,6 +155,7 @@ function hasCollectionTime(deps: CollectDeps, waitSeconds = 0): boolean {
  * 호스팅 fetch 오류 문구는 표준이 아니어서, 알아볼 수 없는 연결 실패만 NETWORK_ERROR로 남긴다.
  */
 export function networkFailureCode(error: unknown, phase: "connect" | "body"): string {
+  if (error instanceof UpstreamResponseError && error.code === "UPSTREAM_BODY_TOO_LARGE") return "FEED_TOO_LARGE";
   const name = typeof error === "object" && error !== null && "name" in error ? String((error as { name: unknown }).name) : "";
   if (name === "TimeoutError" || name === "AbortError") return phase === "body" ? "BODY_READ_TIMEOUT" : "RESPONSE_TIMEOUT";
   if (phase === "body") return "BODY_READ_FAILED";
@@ -194,10 +197,10 @@ async function fetchWithRetry(source: PressSource, state: CrawlState, deps: Coll
         continue;
       }
       if (response.status < 500) {
-        const bad = statusFailure(response);
+        const bad = statusFailure(response, deps.now());
         return bad ? { kind: "failure", failure: bad } : { kind: "ok", response };
       }
-      if (last || !hasCollectionTime(deps, intervalSec * (attempt + 1))) return failure("SERVER_ERROR", "ERROR", response.status);
+      return failure("SERVER_ERROR", "ERROR", response.status, parseRetryAfter(response.headers.get("retry-after"), deps.now()));
     } catch (error) {
       if (!isPressFetchFailure(error)) throw error;
       if (last || !hasCollectionTime(deps, intervalSec * (attempt + 1))) return failure(networkFailureCode(error, "connect"), "ERROR");
@@ -217,8 +220,9 @@ export function suspiciousTitle(title: string): boolean {
 const MAX_PLAUSIBLE_TITLE = 150;
 
 async function toRecords(
-  items: readonly PressFeedItem[], source: PressSource, nowSeconds: number,
+  db: SqlDatabase, items: readonly PressFeedItem[], source: PressSource, nowSeconds: number,
 ): Promise<{ readonly records: PressItemRecord[]; readonly rejected: number }> {
+  if (source.sourceId === SEOCHO_SOURCE_ID) await applyVerifiedPressLinkCorrections(db, nowSeconds);
   const records: PressItemRecord[] = [];
   const seen = new Set<string>();
   let rejected = 0;
@@ -231,6 +235,10 @@ async function toRecords(
     }
     if (seen.has(canonicalUrl)) continue;
     seen.add(canonicalUrl);
+    if (isExcludedPressTitle(item.title)) {
+      await withdrawPressItem(db, canonicalUrl, TITLE_EXCLUSION_REASON, nowSeconds);
+      continue;
+    }
     const published = parsePublicationDate(item.pubDate, nowSeconds);
     const classification = classifyTitle(item.title);
     records.push({
@@ -254,7 +262,8 @@ async function toRecords(
       publicStatus: classification.status === "WELFARE" ? "PUBLIC" : "HIDDEN",
     });
   }
-  return { records, rejected };
+  const ids = await readExistingItemIdsByUrl(db, source.sourceId, records.map((record) => record.canonicalUrl));
+  return { records: records.map((record) => ({ ...record, itemId: ids.get(record.canonicalUrl) ?? record.itemId })), rejected };
 }
 
 async function saveRecords(db: SqlDatabase, records: readonly PressItemRecord[]): Promise<Pick<RunCounts, "created" | "updated" | "unchanged"> & { readonly createdIds: ReadonlySet<string> }> {
@@ -339,17 +348,12 @@ function holdFor(bad: Failure, failures: number, nowSeconds: number, relay: bool
 async function finishFailure(
   db: SqlDatabase, request: CollectRequest, state: CrawlState, token: string, bad: Failure, nowSeconds: number,
 ): Promise<void> {
-  // 실패하면 30분씩 늘려 다시 시도하되 다음 정기 시각을 넘기지 않는다. 서버가 Retry-After를 주면 그보다 앞당기지 않는다.
-  // 429·5xx는 30·60·120·300초 이상 기다린다(지침 10항).
   const failures = state.consecutiveFailures + 1;
-  const untilNextSlot = nextCollectionSlot(nowSeconds) - nowSeconds;
-  const retry = Math.min(RETRY_STEP_SECONDS * failures, untilNextSlot);
-  const minimum = bad.errorCode === "RATE_LIMITED" || bad.errorCode === "SERVER_ERROR" ? MIN_BACKOFF_SECONDS[Math.min(failures - 1, MIN_BACKOFF_SECONDS.length - 1)] : 0;
-  const delay = Math.min(Math.max(bad.retryAfterSeconds, retry, minimum), MAX_BACKOFF_SECONDS);
+  const delay = retryDelaySeconds({ failures, retryAfterSeconds: bad.retryAfterSeconds, nowSeconds });
   const hold = holdFor(bad, failures, nowSeconds, request.trigger === "relay");
   await db.batch([
     db.prepare(
-      "UPDATE press_crawl_state SET consecutive_failures = consecutive_failures + 1, safe_error = ?, next_due_at = ?, last_checked_at = ?, lease_token = '', lease_expires_at = 0 WHERE source_id = ? AND lease_token = ?",
+      "UPDATE press_crawl_state SET consecutive_failures = consecutive_failures + 1, safe_error = ?, next_due_at = ?, last_checked_at = ? WHERE source_id = ? AND lease_token = ?",
     ).bind(bad.errorCode, nowSeconds + delay, nowSeconds, request.source.sourceId, token),
     ...(hold ? [db.prepare("UPDATE press_crawl_state SET collection_hold = ?, hold_until = ?, hold_reason = ? WHERE source_id = ?").bind(hold.kind, hold.until, hold.reason, request.source.sourceId)] : []),
     db.prepare("UPDATE press_source SET technical_status = ? WHERE source_id = ?").bind(bad.technicalStatus, request.source.sourceId),
@@ -365,7 +369,7 @@ async function finishSuccess(
   await db.batch([
     db.prepare(
       "UPDATE press_crawl_state SET last_success_at = ?, latest_item_date = ?, etag = ?, last_modified = ?, last_item_count = ?, consecutive_failures = 0, safe_error = '', next_due_at = ?, last_checked_at = ?, " +
-        "last_seen_post_id = CASE WHEN ? = '' THEN last_seen_post_id ELSE ? END, collection_hold = '', hold_until = NULL, hold_reason = '', lease_token = '', lease_expires_at = 0 WHERE source_id = ? AND lease_token = ?",
+        "last_seen_post_id = CASE WHEN ? = '' THEN last_seen_post_id ELSE ? END, collection_hold = '', hold_until = NULL, hold_reason = '' WHERE source_id = ? AND lease_token = ?",
     ).bind(
       nowSeconds, latestDate, result.response.headers.get("etag") ?? state.etag, result.response.headers.get("last-modified") ?? state.lastModified,
       result.changed ? result.feedItems : state.lastItemCount, nextCollectionSlot(nowSeconds), nowSeconds, result.lastSeenPostId ?? "", result.lastSeenPostId ?? "", request.source.sourceId, token,
@@ -486,7 +490,7 @@ async function backfillPages(
       if (isPressFetchFailure(error)) break;
       throw error;
     }
-    const converted = await toRecords(items, source, deps.now());
+    const converted = await toRecords(db, items, source, deps.now());
     const oldest = converted.records.at(-1);
     if (!oldest) break;
     const { createdIds, ...counts } = await saveRecords(db, converted.records);
@@ -553,6 +557,10 @@ async function collectOnce(db: SqlDatabase, request: CollectRequest, deps: Colle
     return fail({ errorCode: networkFailureCode(error, "body"), technicalStatus: "ERROR", httpStatus: response.status, retryAfterSeconds: 0 });
   }
   audit.responseSize = new TextEncoder().encode(body).length;
+  if (audit.responseSize > MAX_FEED_BYTES) {
+    response.discard?.();
+    return fail({ errorCode: "FEED_TOO_LARGE", technicalStatus: "PARSER_ERROR", httpStatus: response.status, retryAfterSeconds: 0 });
+  }
   if (looksLikeWafBlock(body)) {
     const blocked = await fail({ errorCode: "WAF_BLOCKED", technicalStatus: "BLOCKED", httpStatus: response.status, retryAfterSeconds: 0 });
     // 서버(해외 클라우드)가 막힌 것이면 이 Source를 PC 중계 수집으로 돌리고 다음 PC 수집 때 바로 가져오게 한다(운영자 승인 2026-10-06).
@@ -580,7 +588,7 @@ async function collectOnce(db: SqlDatabase, request: CollectRequest, deps: Colle
     throw error;
   }
   if (feedItems.length === 0 && looksLikeCaptcha(body)) return fail(captcha);
-  const { records, rejected } = await toRecords(feedItems, source, deps.now());
+  const { records, rejected } = await toRecords(db, feedItems, source, deps.now());
   const driftCode = feedItems.length === 0
     ? "FEED_EMPTY"
     : feedItems.length >= MIN_ITEMS_FOR_DRIFT_CHECK && rejected / feedItems.length > MAX_REJECTED_RATIO ? "FEED_FIELD_DRIFT" : "";
@@ -591,6 +599,7 @@ async function collectOnce(db: SqlDatabase, request: CollectRequest, deps: Colle
   try {
     stored = await saveRecords(db, records);
   } catch (error) {
+    if (error instanceof PressLeaseLostError) throw error;
     if (!(error instanceof Error)) throw error;
     return fail({ errorCode: "DB_WRITE_FAILED", technicalStatus: "ERROR", httpStatus: response.status, retryAfterSeconds: 0 }, { ...NO_COUNTS, feedItems: feedItems.length, rejected });
   }
@@ -634,6 +643,7 @@ export async function collectPressSource(db: SqlDatabase, request: CollectReques
   const runId = deps.newId();
   // 관리자 전체 수집 스위치(GLOBAL_CRAWLER_ENABLED=false)면 어떤 요청도 보내지 않는다.
   if (!(await crawlerEnabled(db))) return { runId, sourceId: request.source.sourceId, status: "skipped_disabled", errorCode: "CRAWLER_DISABLED", httpStatus: 0, counts: NO_COUNTS };
+  await ensurePressSlots(db, deps.now());
   if (!(await claimCrawlLease(db, request.source.sourceId, token, deps.now()))) {
     return { runId, sourceId: request.source.sourceId, status: "skipped_locked", errorCode: "", httpStatus: 0, counts: NO_COUNTS };
   }
@@ -643,7 +653,19 @@ export async function collectPressSource(db: SqlDatabase, request: CollectReques
       return { runId, sourceId: request.source.sourceId, status: "skipped_host_busy", errorCode: "", httpStatus: 0, counts: NO_COUNTS };
     }
     try {
-      return await collectOnce(db, request, deps, token, runId);
+      const lease = { sourceId: request.source.sourceId, host, token, now: deps.now };
+      const fenced = fencePressWrites(db, lease);
+      if (request.trigger !== 'manual') {
+        const due = await db.prepare("SELECT 1 AS due FROM press_slot_job j JOIN press_crawl_state c ON c.source_id = j.source_id WHERE j.source_id = ? AND j.status <> 'succeeded' AND j.retryable = 1 AND j.closed_at IS NULL AND c.next_due_at <= ? AND (c.collection_hold = '' OR c.hold_until <= ?)").bind(request.source.sourceId, deps.now(), deps.now()).first<{ due: number }>();
+        if (!due) return { runId, sourceId: request.source.sourceId, status: 'skipped_locked', errorCode: 'NOT_DUE', httpStatus: 0, counts: NO_COUNTS };
+      }
+      const attempt = await startPressAttempt(fenced, lease, runId);
+      const summary = await collectOnce(fenced, request, deps, token, runId);
+      await finishPressAttempt(fenced, attempt, { status: summary.status, errorCode: summary.errorCode, now: deps.now() });
+      return summary;
+    } catch (error) {
+      if (error instanceof PressLeaseLostError) return { runId, sourceId: request.source.sourceId, status: 'failed', errorCode: 'LEASE_EXPIRED', httpStatus: 0, counts: NO_COUNTS };
+      throw error;
     } finally {
       await releaseHostLease(db, host, token, deps.now() + requestIntervalSec(request.source.requestIntervalSec));
     }

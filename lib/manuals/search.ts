@@ -233,7 +233,7 @@ function sourceCitation(row: SectionRow, corpus: ManualCorpusSummary): ManualSou
 
 function warningsOf(row: SectionRow): string[] {
   return [
-    ...manualSourceClarifications(row.corpus_revision, row.document_id, row.document_sha256, row.section_id, row.content_hash).map(item => item.status + ": " + item.warning),
+    ...manualSourceClarifications(row.document_id, row.document_sha256, row.section_id, row.content_hash).map(item => item.status + ": " + item.warning),
     "파싱본 근거 후보입니다. 파일명 연도·기관·관할 메타데이터는 적용연도나 개인 자격의 확인값이 아닙니다.",
     "위치는 Markdown 줄 번호입니다. PDF 물리 쪽수와 이미지 본문은 확인되지 않았습니다.",
     ...(row.original_name_basis === "mixed_original_files" ? ["여러 내부 원본 파일을 포함한 구간으로 단일 출처 연도를 지정하지 않았습니다."] : []),

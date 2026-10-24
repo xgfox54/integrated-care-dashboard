@@ -3,6 +3,7 @@
 import { sha256Hex } from "./normalize.ts";
 import { cleanText } from "./rss.ts";
 import type { SqlDatabase } from "../sql-database.ts";
+import { isExcludedPressTitle, withdrawExcludedPressItems } from "./title-exclusions.ts";
 
 export const TRUNCATED_TITLE = /(?:\.{2,}|…|⋯)\s*$/;
 /** 한 원문에서 제목을 찾지 못하면 이만큼만 다시 시도한다. */
@@ -88,5 +89,6 @@ export async function recordTitleAttempt(db: SqlDatabase, item: TruncatedItem, f
       .bind(full, (await sha256Hex(full)).slice(0, 32), item.item_id, item.title),
     mark,
   ]);
+  if (isExcludedPressTitle(full)) await withdrawExcludedPressItems(db, nowSeconds);
 }
 

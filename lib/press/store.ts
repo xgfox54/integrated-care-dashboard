@@ -88,7 +88,7 @@ export async function listDueSources(db: SqlDatabase, nowSeconds: number, limit:
     `SELECT ${SOURCE_COLUMNS} FROM press_source s LEFT JOIN press_crawl_state c ON c.source_id = s.source_id ` +
       "WHERE s.collect_via = '" + via + "' AND s.enabled = 1 AND s.approval_status = 'POLICY_APPROVED' AND COALESCE(c.next_due_at, 0) <= ? AND COALESCE(c.lease_expires_at, 0) < ? " +
       "AND (COALESCE(c.collection_hold, '') = '' OR (c.hold_until IS NOT NULL AND c.hold_until <= ?)) " +
-      "ORDER BY CASE WHEN COALESCE(c.consecutive_failures, 0) = 0 THEN 0 ELSE 1 END, COALESCE(c.next_due_at, 0), s.source_id LIMIT ?",
+      "ORDER BY COALESCE((SELECT MIN(j.slot_at) FROM press_slot_job j WHERE j.source_id = s.source_id AND j.status <> 'succeeded' AND j.retryable = 1 AND j.closed_at IS NULL), 9223372036854775807), COALESCE(c.next_due_at, 0), s.source_id LIMIT ?",
   ).bind(nowSeconds, nowSeconds, nowSeconds, limit).all<SourceRow>();
   return result.results.map(toSource);
 }
@@ -193,6 +193,18 @@ export async function readExistingTitleHashes(db: SqlDatabase, itemIds: readonly
     for (const row of result.results) hashes.set(row.item_id, row.title_hash);
   }
   return hashes;
+}
+
+/** 주소 정정 뒤에도 같은 Source의 기존 게시물 ID를 사용해 중복 저장을 막는다. */
+export async function readExistingItemIdsByUrl(db: SqlDatabase, sourceId: string, urls: readonly string[]): Promise<Map<string, string>> {
+  const ids = new Map<string, string>();
+  for (let start = 0; start < urls.length; start += ID_CHUNK) {
+    const chunk = urls.slice(start, start + ID_CHUNK);
+    const rows = await db.prepare(`SELECT canonical_url, item_id FROM press_item WHERE source_id = ? AND canonical_url IN (${chunk.map(() => "?").join(", ")})`)
+      .bind(sourceId, ...chunk).all<{ readonly canonical_url: string; readonly item_id: string }>();
+    for (const row of rows.results) ids.set(row.canonical_url, row.item_id);
+  }
+  return ids;
 }
 
 /** 다른 Source가 이미 같은 원문 주소로 저장한 보도자료(같은 기관의 게시판과 Open API 등). 먼저 본 Source의 항목 하나만 둔다. */

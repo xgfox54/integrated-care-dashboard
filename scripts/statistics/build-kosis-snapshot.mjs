@@ -37,6 +37,22 @@ const DATASETS = [
   { id: "kosis:public-hygiene", approved: "공중위생영업소실태보고", category: "보건·의료", tables: [{ id: "TX_117430022", nationalOnly: true }] },
   { id: "kosis:doctors", approved: "보건의료인력실태조사", category: "보건·의료", tables: [{ id: "DT_117110_A002" }] },
   { id: "kosis:organ-donation", approved: "장기등기증및이식통계", category: "보건·의료", tables: [{ id: "DT_117112_001" }] },
+  { id: "kosis:long-term-care-insurance", approved: "노인장기요양보험통계", category: "노인", welfare: true, tables: [{ id: "DT_35006_N007", nationalOnly: true }], note: "등급 판정 현황의 계에는 등급외도 포함됩니다. 인정자 수와 혼동하지 마세요." },
+  { id: "kosis:welfare-panel", approved: "한국복지패널조사", category: "사회보장", welfare: true, tables: [{ id: "DT_33109_N042" }], highlight: /^수급 \/ 전체$/, note: "조사 응답자의 공적연금 가입·수급 실태 비율이며 행정자료의 전체 수급자 수가 아닙니다." },
+  { id: "kosis:basic-livelihood", approved: "국민기초생활보장수급자현황", category: "사회보장", welfare: true, tables: [{ id: "DT_11714_N001" }] },
+  { id: "kosis:single-parent-survey", approved: "한부모가족실태조사", category: "사회보장", welfare: true, tables: [{ id: "DT_MOGE_3021300199" }], highlight: /전체 \/ 저소득지원가구$/, note: "한부모가족 조사 결과입니다. 사례수는 조사 가구 수이며 전체 한부모가구 수가 아닙니다." },
+  { id: "kosis:disability-life-panel", approved: "장애인삶패널조사", category: "장애인", welfare: true, tables: [{ id: "DT_438001_AD001" }], highlight: /전체 \/ 좋은 편이다$/, note: "패널조사의 전반적 건강상태입니다. 추정수는 해당 조사 모집단의 추정치이며 등록장애인 전체 수와 다릅니다." },
+  { id: "kosis:older-facilities", approved: "노인복지시설현황", category: "노인", welfare: true, tables: [{ id: "DT_117N_B00003" }] },
+  { id: "kosis:childcare-users", approved: "어린이집및이용자통계", category: "아동", welfare: true, tables: [{ id: "DT_15407_NN001" }, { id: "DT_15407_NN002" }] },
+  { id: "kosis:national-pension", approved: "국민연금통계", category: "노인", welfare: true, tables: [{ id: "DT_32202_B004", rowInclude: / \/ 합계$/ }] },
+  { id: "kosis:near-poor-families", approved: "차상위및한부모가족수급자현황", category: "사회보장", welfare: true, tables: [{ id: "DT_452001_A001" }], highlight: /계 \/ 12월$/, note: "월별 인원은 각 월의 수급 현황입니다. 같은 사람이 여러 달 포함될 수 있으므로 월별 값을 합산하지 마세요." },
+  { id: "kosis:pension-statistics", approved: "연금통계", category: "노인", welfare: true, tables: [{ id: "DT_1PEN_001" }], highlight: /총계 \/ 65세 이상 인구 \/ 연금수급자$/ },
+  { id: "kosis:disability-sports", approved: "장애인생활체육조사", category: "장애인", welfare: true, tables: [{ id: "DT_113_STBL_1029603", columnUnits: [[/^평균/, "점"], [/.*/, "%"]] }], highlight: /전체 \/ 평균/, note: "주관적 건강상태 응답 비율과 5점 만점 평균입니다. 평균은 점, 응답 비율은 %로 구분합니다." },
+  { id: "kosis:childcare-survey", approved: "보육실태조사", category: "아동", welfare: true, tables: [{ id: "DT_33107N_007" }], note: "영유아 가구의 가구원 수 구성비이며 전체 아동 인구수가 아닙니다." },
+  { id: "kosis:senior-jobs-survey", approved: "노인일자리및사회활동지원사업실태조사", category: "노인", welfare: true, tables: [{ id: "DT_464001_A003" }], highlight: /전체 \/ 평균$/, note: "노인일자리 참여자의 조사 결과입니다. 전체(명)는 조사 참여자 수, 평균은 월평균 급여액(만원)입니다." },
+  { id: "kosis:care-leavers-panel", approved: "지원·보호아동및자립준비청년패널조사", category: "아동", welfare: true, tables: [{ id: "DT_468001_C012" }], highlight: /전체 \/ ⑤ 보통$/, note: "자립준비청년의 삶의 만족도 조사입니다. 사례수는 조사 응답자 수이며 전체 대상자 인원수가 아닙니다." },
+  { id: "kosis:senior-work-life-panel", approved: "한국어르신의일과삶패널조사", category: "노인", welfare: true, tables: [{ id: "DT_464002_A038" }], note: "노인일자리 참여자의 주관적 건강 조사 결과입니다. 비참여자나 전체 노인의 값으로 해석하지 마세요." },
+  { id: "kosis:retirement-panel", approved: "국민노후보장패널조사", category: "노인", welfare: true, tables: [{ id: "DT_322001_C007" }], note: "60세 이상 조사 대상자의 공적연금 수급률입니다. 행정자료의 전체 수급자 수와 구분하세요." },
 ];
 
 function clean(text) { return String(text).replace(/\s+/g, " ").trim(); }
@@ -92,22 +108,27 @@ function readTable(evidence, options) {
       c += cell.colspan;
     }
   });
-  const timeStart = grid[0].findIndex(cell => cell.code === "TIME");
-  if (timeStart < 1) throw new Error(evidence.tblId + ": period header not found");
+  const rowTime = grid[0].findIndex(cell => cell.name === "TIME");
+  const timeStart = rowTime >= 0 ? evidence.table.rows[0].filter(cell => cell.kind === "header").length : grid[0].findIndex(cell => cell.code === "TIME");
+  if (timeStart < 0) throw new Error(evidence.tblId + ": period header not found");
   const valueCount = grid[0].length - timeStart;
   const columns = Array.from({ length: valueCount }, (_, j) => {
     const cells = [...new Set(grid.map(row => row[timeStart + j]).filter(Boolean))];
     const time = cells.find(cell => cell.code === "TIME");
-    if (!time) throw new Error(evidence.tblId + ": column without period");
-    return { ...parsePeriod(time.text), ...labelParts(cells.filter(cell => cell !== time).map(cell => cell.text)) };
+    if (!time && rowTime < 0) throw new Error(evidence.tblId + ": column without period");
+    return { ...(time ? parsePeriod(time.text) : {}), ...labelParts(cells.filter(cell => cell !== time).map(cell => cell.text)) };
   });
   const observed = [];
+  const previousHeaders = [];
   for (const row of rows) {
-    const headers = row.filter(cell => cell.kind === "header").map(cell => cell.text);
+    const headerCells = row.filter(cell => cell.kind === "header");
+    const headers = timeStart === 0 ? [evidence.title] : headerCells.map((cell, index) => clean(cell.text) || previousHeaders[index] || "");
+    headers.forEach((text, index) => { previousHeaders[index] = text; });
     const values = row.filter(cell => cell.kind === "value").map(cell => cell.text);
-    if (!headers.length) continue;
+    if (!headers.length || !values.length) continue;
     if (values.length !== valueCount) throw new Error(evidence.tblId + ": row width " + values.length + " != " + valueCount);
-    observed.push({ headers, values });
+    observed.push({ headers: rowTime >= 0 ? headers.filter((_, i) => i !== rowTime) : headers, values,
+      ...(rowTime >= 0 ? { time: parsePeriod(headers[rowTime]) } : {}) });
   }
   const nationalHead = options.nationalOnly ? observed.find(row => NATIONAL.has(clean(row.headers[0])))?.headers[0] : null;
   if (options.nationalOnly && !nationalHead) throw new Error(evidence.tblId + ": national row not found");
@@ -133,11 +154,11 @@ function buildDataset(config) {
       if (table.rowInclude && !table.rowInclude.test(row.headers.map(clean).join(" / "))) continue;
       if (table.rowExclude?.test(row.headers.map(clean).join(" / "))) continue;
       row.values.forEach((raw, j) => {
-        const column = columns[j];
+        const column = { ...columns[j], ...row.time };
         const colText = column.parts.join(" / ");
         if (table.colExclude?.test(colText)) return;
         if (table.colInclude && !table.colInclude.test(colText)) return;
-        const unit = rowLabel.unit ?? column.unit ?? meta.unit;
+        const unit = table.columnUnits?.find(([pattern]) => pattern.test(colText))?.[1] ?? rowLabel.unit ?? column.unit ?? meta.unit;
         if (!unit) throw new Error(table.id + ": unit missing for " + rowText);
         const base = [rowText, colText].filter(Boolean).join(" / ") || "전체";
         const label = config.tables.length > 1 ? meta.title + " · " + base : base;
@@ -158,17 +179,18 @@ function buildDataset(config) {
   const first = tables[0];
   const regional = tables.some(table => table.national_only);
   const latest = sortedPeriods.at(-1);
-  const highlight = rows.find(row => row.points.some(point => point.period === latest && point.value !== null)) ?? rows[0];
+  const highlight = (config.highlight ? rows.find(row => config.highlight.test(row.label)) : null)
+    ?? rows.find(row => row.points.some(point => point.period === latest && point.value !== null)) ?? rows[0];
   return {
     id: config.id, indicator_code: "", table_code: tables.map(table => table.tbl_id).join(", "), category: config.category,
     title: config.approved,
     description: tables.map(table => table.title).join(" · ") + " · KOSIS 공개 통계표 · 수록 " + sortedPeriods[0] + (sortedPeriods.length > 1 ? "~" + sortedPeriods.at(-1) : "") + "년",
-    note: "KOSIS 국가통계포털 공개 통계표에서 " + checked.slice(0, 10) + "에 확인한 값입니다. '-'는 자료 없음이며 0을 뜻하지 않습니다." + (regional ? " 이 화면은 전국 합계를 보여주며, 시·도별 값은 KOSIS 원문 표에서 확인할 수 있습니다." : ""),
+    note: "KOSIS 국가통계포털 공개 통계표에서 " + checked.slice(0, 10) + "에 확인한 값입니다. '-'는 자료 없음이며 0을 뜻하지 않습니다." + (regional ? " 이 화면은 전국 합계를 보여주며, 시·도별 값은 KOSIS 원문 표에서 확인할 수 있습니다." : "") + (config.note ? " " + config.note : ""),
     highlight_series_id: highlight.id, original_unit: unitFallback ?? "항목별 단위", table_title: tables.map(table => table.title).join(" · "),
     source_url: first.url, indicator_url: first.url,
     source_name: "「" + (first.statistic || config.approved) + "」 " + (first.organization || "보건복지부") + " · KOSIS 국가통계포털",
     source_notes: tables.map(table => table.title + ": 수록기간 " + (table.coverage ?? "원문 참조") + (table.updated_at ? " · 자료갱신일 " + table.updated_at : "")).join(" / ")
-      + " · KOSIS 화면에서 최근 10년 범위로 조회한 값입니다.",
+      + (config.welfare ? " · KOSIS 화면에서 선택·조회된 기간과 대표 통계표의 항목만 제공합니다. 원문 전체 수록기간과 이 화면의 조회기간은 다를 수 있습니다." : " · KOSIS 화면에서 최근 10년 범위로 조회한 값입니다."),
     periods: sortedPeriods, series: rows,
     kosis: { approved_title: config.approved, indicator_titles: config.indicators ?? [], checked_at: checked, tables },
   };

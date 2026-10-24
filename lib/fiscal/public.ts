@@ -133,10 +133,12 @@ async function adminUnits(db: SqlDatabase): Promise<AdminUnitRow[]> {
 export async function readBudget(db: SqlDatabase, request: BudgetRequest) {
   // 웹도 MCP처럼 활성 통합 공개본의 재정 snapshot만 본다(공개본이 없으면 공개 승인된 전체).
   // 공개 상태·분류 버전·공개 snapshot 목록·행정단위는 서로 기다릴 필요가 없어 한꺼번에 읽는다(승인 해제는 이 조회로 매번 바로 반영).
-  const signal = await db.prepare(BASE_SIGNAL_SQL).first<{ snapshots: string; units: string }>();
-  const [pin, classVersion, published, units] = await Promise.all([
+  const [signal, pin, classVersion] = await Promise.all([
+    db.prepare(BASE_SIGNAL_SQL).first<{ snapshots: string; units: string }>(),
     readWebPin(db),
     integratedCareClassVersion(db),
+  ]);
+  const [published, units] = await Promise.all([
     rememberedFor(db, "base:published:" + (signal?.snapshots ?? ""), SMALL_MEMO_MS, () => publishedSnapshots(db, { limit: 2000 })),
     rememberedFor(db, "base:units:" + (signal?.units ?? ""), SMALL_MEMO_MS, () => adminUnits(db)),
   ]);
@@ -181,7 +183,8 @@ export async function readBudget(db: SqlDatabase, request: BudgetRequest) {
   const fiscalYear = new Set(choice.snapshots.map((row) => row.fiscal_year)).size === 1 ? snapshot.fiscal_year : undefined;
   const fieldCodesOf = (mode: FiscalMode) => rememberedFor(db, "field-codes:" + mode + ":" + snapshot.fiscal_year, SMALL_MEMO_MS, () => modeFieldCodes(db, mode, snapshot.fiscal_year));
   // 세부 예산분야 목록은 사회복지·보건 두 분야의 부문을 함께 본다(같은 전체 세출 snapshot). 부서에 보건 사업이 있으면 보건의료도 보인다.
-  const partFieldCodes = [...((await fieldCodesOf("social_welfare")) ?? []), ...((await fieldCodesOf("health")) ?? [])];
+  const [socialFieldCodes, healthFieldCodes] = await Promise.all([fieldCodesOf("social_welfare"), fieldCodesOf("health")]);
+  const partFieldCodes = [...(socialFieldCodes ?? []), ...(healthFieldCodes ?? [])];
   const catalogReferenceDate = request.date || choice.snapshots.reduce((latest, row) => row.requested_reference_date > latest ? row.requested_reference_date : latest, "");
   const setMeta = choice.snapshots.map((item) => ({ scope_label: item.scope_label, requested_reference_date: item.requested_reference_date, complete: item.complete === 1, expected_count: item.expected_count }));
   const unit = request.entity.startsWith("admin:") ? units.find((row) => row.unit_id === request.entity) ?? null : null;

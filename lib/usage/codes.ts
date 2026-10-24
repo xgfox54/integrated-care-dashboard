@@ -5,7 +5,7 @@ export const USAGE_SCHEMA_VERSION = 1;
 /** 이용통계 안내의 판. 수집 범위나 방식이 바뀌면 올린다. 서버는 현재 판으로 보낸 요청만 받는다. */
 export const USAGE_POLICY_VERSION = "2026-10-10";
 
-export const PAGE_CODES = ["dashboard", "wiki", "welfare_list", "welfare_detail", "mindmap", "news", "budget", "law", "welfaremcp", "statistics", "sources", "usage_policy"] as const;
+export const PAGE_CODES = ["dashboard", "wiki", "welfare_list", "welfare_detail", "mindmap", "news", "budget", "law", "welfaremcp", "statistics", "info", "sources", "usage_policy"] as const;
 export type PageCode = (typeof PAGE_CODES)[number];
 
 /** 탭: 상단 메뉴 화면(메뉴 순서)과 대시보드 안의 검색 결과·지자체 비교 탭. */
@@ -20,6 +20,7 @@ export const TAB_CODES = [
   "law",
   "welfaremcp",
   "statistics",
+  "info",
   "sources",
   "usage_policy",
 ] as const;

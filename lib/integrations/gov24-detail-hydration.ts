@@ -22,7 +22,7 @@ const SHARED_DETAIL_FIELDS = {
   purpose: "서비스목적", target: "지원대상", criteria: "선정기준", benefit: "지원내용",
   apply_method: "신청방법", apply_deadline: "신청기한", reception: "접수기관명", contact: "문의처",
 } as const;
-const RAW_DATASET = "mois.gov24_detail";
+const RAW_DATASET = "mois.gov24_detail"; // gitleaks:allow public dataset identifier
 const LOOKUP_CHUNK = 80;
 
 interface RawDetail {
@@ -104,8 +104,8 @@ export async function hydrateGov24Details<T extends Gov24HydrationRow>(db: SqlDa
         "SELECT r.record_id, r.scope_key, r.record_hash, r.payload_json, r.official_url, r.source_updated_at, r.presence, r.last_seen_at, r.last_success_run_id, " +
         "u.run_id, u.dataset_key AS run_dataset_key, u.status AS run_status, u.started_at AS run_started_at, u.finished_at AS run_finished_at " +
         "FROM ext_record r LEFT JOIN ext_run u ON u.run_id = r.last_success_run_id " +
-        "WHERE r.dataset_key = ? AND r.record_id IN (" + chunk.map(() => "?").join(",") + ")",
-      ).bind("mois.gov24_detail", ...chunk).all<RawDetail>();
+        "WHERE r.dataset_key = 'mois.gov24_detail' AND r.record_id IN (" + chunk.map(() => "?").join(",") + ")", // gitleaks:allow public dataset identifier
+      ).bind(...chunk).all<RawDetail>();
       for (const raw of result.results) rawById.set(raw.record_id, raw);
     } catch {
       // 보완용 원문을 읽지 못해도 기존 공개 카드까지 실패시키지 않는다.

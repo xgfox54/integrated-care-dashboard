@@ -2,6 +2,7 @@ import type { SqlDatabase } from "../sql-database.ts";
 import { collectPressSource, type CollectDeps, type CollectSummary } from "./collect.ts";
 import { crawlerEnabled } from "./operations.ts";
 import { listDueSources, type PressSource } from "./store.ts";
+import { ensurePressSlots } from "./jobs.ts";
 
 // 정기 수집 실행(작업지시서 2026-10-08 P0). 이 호스팅은 예약 작업(scheduled)을 실행하지 않으므로,
 // 등록된 수집 PC의 예약 작업이 인증된 경로(/api/press/tick)로 이 함수를 불러 서버 직접 수집 대기열을 처리한다.
@@ -153,6 +154,7 @@ export async function runPressTick(
   if (!(await crawlerEnabled(db))) {
     status = "CRAWLER_DISABLED";
   } else {
+    await ensurePressSlots(db, startedAt);
     const tried = new Set<string>();
     while (summaries.length < maxSources && now() + MIN_ROUND_SECONDS <= deadlineAt) {
       const due = await listDueSources(db, now(), DUE_LOOKAHEAD);

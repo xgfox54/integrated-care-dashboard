@@ -1,5 +1,6 @@
 import type { SqlDatabase } from "./sql-database.ts";
 import { readBoundedJson } from "./request-body.ts";
+import { canonicalRequestPath } from "./request-path.ts";
 
 export interface ApiRatePolicy {
   readonly name: string;
@@ -14,6 +15,8 @@ export interface ApiRatePolicy {
 }
 
 const CHATGPT_MCP_POLICY: ApiRatePolicy = { name: "mcp", limit: 120, windowSeconds: 60, globalLimit: 300 };
+// Protocol handshakes stay outside tool quotas, but still consume bounded HTTP capacity.
+const MCP_TRANSPORT_POLICY: ApiRatePolicy = { name: "mcp-transport", limit: 600, windowSeconds: 60, globalLimit: 1800 };
 
 const API_RATE_POLICIES: Readonly<Record<string, ApiRatePolicy>> = {
   "/api/dataset/export": { name: "dataset-export", limit: 10, windowSeconds: 60 },
@@ -35,11 +38,13 @@ const API_RATE_POLICIES: Readonly<Record<string, ApiRatePolicy>> = {
   "/api/law": { name: "law", limit: 30, windowSeconds: 60 },
   "/api/statistics": { name: "statistics", limit: 60, windowSeconds: 60 },
   "/api/manuals/status": { name: "manual-status", limit: 60, windowSeconds: 60 },
+  "/api/press/status": { name: "press-status", limit: 120, windowSeconds: 60 },
+  "/api/press/status/detail": { name: "press-status-detail", limit: 60, windowSeconds: 60 },
   "/api/budget": { name: "budget", limit: 120, windowSeconds: 60 },
 };
 
 export function apiRatePolicy(pathname: string): ApiRatePolicy | null {
-  return API_RATE_POLICIES[pathname.replace(/\/+$/, "")] ?? null;
+  return API_RATE_POLICIES[canonicalRequestPath(pathname)] ?? null;
 }
 
 let mcpActivityMemo: { readonly at: number; readonly window: number; readonly active: boolean } | null = null;
@@ -101,6 +106,8 @@ export async function rateLimitFingerprint(request: Request, window = 0): Promis
 }
 
 export interface RateLimitContext {
+  /** Server-selected MCP HTTP admission, counted before body parsing; shared by both public endpoints. */
+  readonly transport?: boolean;
   /** Set only AFTER authentication by trusted server middleware, never from an arbitrary header. */
   readonly verifiedSubject?: string;
   /**
@@ -155,7 +162,8 @@ export async function enforceApiRateLimit(
   nowSeconds = Math.floor(Date.now() / 1000),
   context: RateLimitContext = {},
 ): Promise<Response | null> {
-  const policy = apiRatePolicy(new URL(request.url).pathname);
+  const routePolicy = apiRatePolicy(new URL(request.url).pathname);
+  const policy = context.transport && (routePolicy?.name === "mcp" || routePolicy?.name === "mcp-claude") ? MCP_TRANSPORT_POLICY : routePolicy;
   if (!policy) return null;
   const weight = context.weight === undefined ? 1 : context.weight;
   if (!Number.isSafeInteger(weight) || weight < 0) return unavailable();
@@ -187,7 +195,7 @@ export async function enforceApiRateLimit(
       ? (await db.batch(statements)).map((result) => (result as D1Result<{ request_count: number }>)?.results?.[0]?.request_count)
       : await Promise.all(statements.map(async (statement) => (await statement.first<{ request_count: number }>())?.request_count));
   };
-  if ((policy.name === "mcp" || policy.name === "mcp-claude") && context.reserveCalls) {
+  if ((policy.name === "mcp" || policy.name === "mcp-claude" || policy.name === "mcp-transport" || policy.name === "budget") && context.reserveCalls) {
     const size = context.reserveCalls;
     if (!Number.isSafeInteger(size) || size < 1 || size > 10) return unavailable();
     let leases = reservations.get(db);

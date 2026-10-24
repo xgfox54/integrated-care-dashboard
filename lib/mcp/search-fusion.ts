@@ -42,7 +42,7 @@ const NOISE_TITLE = [
 ];
 const FORM_REQUEST = /서식|양식|신청서|별지|작성\s*예시/;
 // 질문 의도를 나타내는 일반어. 세부조건 가산에서 빼야 다른 제도의 "구비서류"·"신청" 구간이 앞서지 않는다.
-const GENERIC_DETAIL_TERMS: ReadonlySet<string> = new Set(["서류", "구비서류", "신청", "신청서", "방법", "대상", "대상자", "기준", "절차", "금액", "여부", "가능", "조건", "자격", "기간", "문의", "예산", "안내", "지원"]);
+const GENERIC_DETAIL_TERMS: ReadonlySet<string> = new Set(["서류", "구비서류", "제출서류", "필요서류", "신청", "신청서", "신청방법", "신청절차", "신청자격", "신청조건", "신청대상", "신청기간", "신청서류", "방법", "대상", "대상자", "지원대상", "선정기준", "지원금액", "지원내용", "지원기준", "지원절차", "기준", "절차", "금액", "여부", "가능", "조건", "자격", "기간", "문의", "예산", "안내", "지원"]);
 
 export function isNoiseManualTitle(title: string): boolean {
   const plain = title.replace(/^\[매뉴얼\]\s*/, "").trim();

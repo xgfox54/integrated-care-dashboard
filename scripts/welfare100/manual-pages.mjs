@@ -4,8 +4,9 @@
 import fs from "node:fs";
 import path from "node:path";
 
-export const COMBINED_REVISION = "sgw-bdef4e9c1609-v1";
-export const ORIGINALS_REVISION = "sgw-originals-c9444df0dbe4-v1";
+const REVISIONS = JSON.parse(fs.readFileSync(new URL("../../data/welfare100/manual-corpus-revisions.json", import.meta.url), "utf8"));
+export const COMBINED_REVISION = REVISIONS.combined;
+export const ORIGINALS_REVISION = REVISIONS.original;
 const GRAM = 16;
 const SEPARATOR = "\u0001";
 const MODULUS = 2147483647;

@@ -11,7 +11,7 @@ export interface KosisTableMetadata {
   readonly url: string; readonly updated_at: string | null; readonly coverage: string | null; readonly checked_at: string; readonly national_only: boolean;
 }
 export interface KosisMetadata { readonly approved_title: string; readonly indicator_titles: readonly string[]; readonly checked_at: string; readonly tables: readonly KosisTableMetadata[] }
-export interface StatisticsSeries { readonly id: string; readonly label: string; readonly source_label: string; readonly unit: string; readonly source_url?: string; readonly points: readonly StatisticsPoint[]; readonly region?: PopulationRegion }
+export interface StatisticsSeries { readonly id: string; readonly label: string; readonly source_label: string; readonly unit: string; readonly source_url?: string; readonly points: readonly StatisticsPoint[]; readonly region?: PopulationRegion; readonly kosis_key?: string; readonly unit_source?: "api" | "verified_table" }
 export interface IndexTable { readonly table_code: string; readonly table_title: string; readonly original_unit: string; readonly frequency: "Y" | "R" | "U"; readonly source_url: string }
 export interface StatisticsSourceReview {
   readonly revision: string;
@@ -52,6 +52,7 @@ export interface StatisticsAutoRefresh {
   readonly check_due?: boolean;
   readonly overdue_seconds?: number;
   readonly failure_count?: number;
+  readonly continuation_pending?: boolean;
 }
 export interface StatisticsResult {
   readonly dataset: StatisticsDataset; readonly revision: string; readonly verified_at: string;
@@ -60,11 +61,11 @@ export interface StatisticsResult {
   readonly coverage: { readonly scope: string; readonly complete: boolean; readonly gaps: readonly string[] };
   readonly auto_refresh?: StatisticsAutoRefresh;
 }
-export type CatalogKind = "indicator" | "approved" | "portal" | "population";
+export type CatalogKind = "indicator" | "approved" | "portal" | "population" | "kosis";
 export interface StatisticsCatalogItem {
   readonly id: string; readonly kind: CatalogKind; readonly title: string; readonly category: string;
   readonly description: string; readonly source_url: string; readonly directory_url: string;
   readonly data_available: boolean; readonly dataset_id: string | null; readonly checked_at: string;
   readonly department?: string; readonly method?: string; readonly publication_schedule?: string;
-  readonly data_provider?: "index";
+  readonly data_provider?: "index" | "kosis";
 }

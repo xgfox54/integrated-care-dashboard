@@ -10,7 +10,7 @@ export async function manualOriginalProvenance(db: SqlDatabase, revision: string
   const original = OriginalSchema.parse(row);
   const inventory = pageInventory.find(item => item.original_sha256 === original.original_sha256);
   const section = sectionId ? await db.prepare('SELECT s.content_hash, d.sha256 FROM manual_section s JOIN manual_document d ON d.document_id=s.document_id AND d.corpus_revision=s.corpus_revision WHERE s.corpus_revision=? AND s.document_id=? AND s.section_id=?').bind(revision, documentId, sectionId).first<{ content_hash: string; sha256: string }>() : null;
-  const verifiedTables = section && sectionId ? manualTableVerifications(revision, documentId, section.sha256, original.original_sha256, sectionId, section.content_hash) : [];
+  const verifiedTables = section && sectionId ? manualTableVerifications(documentId, section.sha256, original.original_sha256, sectionId, section.content_hash) : [];
   return { status: original.official_url ? 'OFFICIAL_FILE_HASH_MATCHED' : 'RETAINED_ORIGINAL_IDENTIFIED', original, hash_basis: 'retained_original_manifest_and_parsed_file_hash', physical_section_page_verified: false, image_body_verified: false,
     retained_original_hash_checked_at: inventory?.retained_hash_checked_at ?? null,
     page_inventory: inventory ? { total_physical_pages: inventory.page_count, ocr_candidate_pages: inventory.ocr_candidate_pages, verification: 'PARSER_PAGE_INVENTORY_ONLY', note: 'OCR 후보 쪽은 그림·저문자·경고 영역으로 원본 이미지 대조가 필요합니다. 후보가 없는 쪽도 검수 완료라는 뜻은 아닙니다.' } : null,

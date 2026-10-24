@@ -175,6 +175,7 @@ function Invoke-ServerTicks([int]$UntilSeconds) {
 function Get-CombinedExitCode($Run) {
   if ($Run.failed -gt 0 -or $Run.serverTick.failed -gt 0 -or $Run.serverTick.error) { return 1 }
   if ($Run.deferred -gt 0 -or $Run.serverTick.deferred -gt 0 -or $null -eq $Run.serverTick.remainingDue -or $Run.serverTick.remainingDue -gt 0) { return 3 }
+  if ($Run.Contains('slotCompletion') -and ($Run.slotCompletion -ne 'ALL_SUCCEEDED' -or $Run.queueAllSucceeded -ne $true -or $null -eq $Run.queueOpenJobs -or $Run.queueOpenJobs -gt 0)) { return 3 }
   return 0
 }
 function Add-TickResult($Total, $Tick) {
@@ -200,11 +201,12 @@ $script:NetworkRetries = 0
 $watch = [Diagnostics.Stopwatch]::StartNew()
 $seen = New-Object 'System.Collections.Generic.HashSet[string]'
 $run = [ordered]@{
-  version = "2026-10-10-recovery-2"; runId = [Guid]::NewGuid().ToString("N")
+  version = "2026-10-19-recovery-3"; runId = [Guid]::NewGuid().ToString("N")
   startedAt = [DateTimeOffset]::Now.ToString("o"); completedAt = $null
   pc = $null; sourceAttempts = 0; succeeded = 0; failed = 0; deferred = 0
   newItems = 0; feedItems = 0; networkRetries = 0; batches = 0
   reason = ""; failedSources = @(); exitCode = 0
+  slotCompletion = 'UNVERIFIED'; queueOpenJobs = $null; queueAllSucceeded = $false; slotAt = $null
   serverTick = [ordered]@{ calls = 0; attempted = 0; succeeded = 0; failed = 0; deferred = 0; created = 0; lastStatus = ""; remainingDue = $null; error = ""; failedSources = @() }
 }
 $mutex = New-Object Threading.Mutex($false, "Local\IntegratedCarePressRelayCollector")
@@ -291,6 +293,13 @@ try {
     catch { $run.failed++; $exitCode = 1; Write-Log "수집 차례 반납 실패: 서버의 기존 만료 규칙으로 해제됩니다." }
   }
   if ($locked) {
+    try {
+      $finalStatus = Invoke-Dashboard 'GET' $null '/api/press/status/detail'
+      $run.slotCompletion = [string]$finalStatus.schedule.current_slot.combined.completion
+      $run.slotAt = [string]$finalStatus.schedule.current_slot.slot_at
+      $run.queueOpenJobs = $finalStatus.schedule.queue.open_jobs
+      $run.queueAllSucceeded = $finalStatus.schedule.queue.complete -eq $true
+    } catch { Write-Log '회차 완료 상태를 확인하지 못했습니다. 다음 예약에서 확인합니다.' }
     $exitCode = Get-CombinedExitCode $run
     $run.completedAt = [DateTimeOffset]::Now.ToString("o")
     $run.networkRetries = $script:NetworkRetries

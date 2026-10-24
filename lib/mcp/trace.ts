@@ -2,7 +2,7 @@ import { z } from "zod";
 import type { SqlDatabase } from "../sql-database.ts";
 import { REGION_DEFINITIONS } from "../region-statistics.ts";
 import { parseSearch } from "../search-terms.ts";
-import { PUBLIC_MCP_TOOL_NAMES } from "./contract.ts";
+import { EXECUTABLE_MCP_TOOL_NAMES } from "./contract.ts";
 import { refineWelfareQuery } from "./query-refiner.ts";
 import type { McpRoute, McpToolObservation } from "./usage.ts";
 
@@ -90,7 +90,7 @@ export async function createMcpTrace(observation: McpToolObservation, context: M
     : null;
   return {
     call_id: context.callId, request_id: context.requestId, started_at: Math.floor(context.startedAt / 1000), route: context.route,
-    tool: PUBLIC_MCP_TOOL_NAMES.some((name) => name === observation.tool) ? observation.tool : "__unknown__",
+    tool: EXECUTABLE_MCP_TOOL_NAMES.some((name) => name === observation.tool) ? observation.tool : "__unknown__",
     failed: Number(observation.failed), cache: observation.cache ?? null,
     duration_ms: Number.isFinite(observation.durationMs) ? Math.max(0, Math.round(observation.durationMs)) : 0,
     query_hash: hash,

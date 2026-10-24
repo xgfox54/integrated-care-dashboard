@@ -1,0 +1,2184 @@
+{
+  "schema_version": "actual-answer-benchmark-1",
+  "benchmark_id": "balanced-actual-answers-50-20261012",
+  "holdout_scope": "NEW_PROMPTS_NOT_SOURCE_DISJOINT",
+  "separate_from": [
+    "FAQ788",
+    "BALANCED_SEARCH_CONTRACT_REGRESSION"
+  ],
+  "target_model": {
+    "label": "5.6",
+    "reasoning_effort": "medium"
+  },
+  "threshold_percent": 95,
+  "questions_per_domain": 5,
+  "domains": [
+    "search",
+    "search_welfare_services",
+    "find_programs",
+    "search_manuals",
+    "search_faq",
+    "search_news",
+    "search_statistics",
+    "find_budget_projects",
+    "search_budget_lines",
+    "find_care_institutions"
+  ],
+  "review_protocol": "MANUAL_SOURCE_REVIEW_REQUIRED",
+  "status": "QUESTIONS_READY_ANSWERS_NOT_EVALUATED",
+  "instructions": "모델에는 question만 전달한다. 채점기준·예상출처·식별자는 전달하지 않는다. 이전 답변이나 정답을 재사용하지 않는다. 검토자는 실제 답변과 원문을 대조하고 검토근거를 남긴다. 검색성공을 정답으로 간주하지 않는다.",
+  "items": [
+    {
+      "id": "ANS-001",
+      "domain": "search",
+      "question": "서귀포에서 생활비가 급히 필요한 가구가 받을 수 있는 지원과 해운대구의 생활안정 사업은 같은 사업인가요? 지역과 근거를 나누어 설명해 주세요.",
+      "question_sha256": "d2bea3279f3742861a52c4b97307ba88bf2bc6d15873a23c82a147893fa1abb0",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/0/response/result/structuredContent",
+          "source_ids": [
+            "welfare100_service:seogwipo-warm-store",
+            "welfare100_service:WLF00001644",
+            "welfare100_service:WLF00001724"
+          ],
+          "source_urls": [
+            "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100/seogwipo-warm-store",
+            "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100/WLF00001644",
+            "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100/WLF00001724"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        },
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/1/response/result/structuredContent",
+          "source_ids": [
+            "welfare100_service:WLF00000007",
+            "welfare100_service:WLF00000903",
+            "welfare100_service:WLF00000904"
+          ],
+          "source_urls": [
+            "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100/WLF00000007",
+            "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100/WLF00000903",
+            "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100/WLF00000904"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "지역별 사업을 구별하고 다른 지역 지원을 거주지 사업으로 대체하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-002",
+      "domain": "search",
+      "question": "2026년 기초연금을 알아보고 있습니다. 매달 받는 금액과 신청서류를 구분해서 알려 주고, 금액을 단정할 수 없는 경우도 설명해 주세요.",
+      "question_sha256": "15e55fe6f77a203070cc1d8e909ac979717239c021aac2fe6b1348fffc027f99",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/4/response/result/structuredContent",
+          "source_ids": [
+            "manual:sgw-8a8f0554c99e-v1:9e7a149dd97f93b5f401",
+            "manual:sgw-8a8f0554c99e-v1:d1bbec02344cf7700da3",
+            "gov24_service:SSE000000170"
+          ],
+          "source_urls": [
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L9423-9458",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L9423-9458",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L5352-5443",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L5352-5443",
+            "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/SSE000000170"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        },
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/20/response/result/structuredContent",
+          "source_ids": [
+            "faq129:10557",
+            "faq129:1516",
+            "faq129:13927"
+          ],
+          "source_urls": [
+            "https://www.129.go.kr/faq/faq00.do?pageIndex=6#faq10557",
+            "https://www.129.go.kr/faq/faq00.do?pageIndex=2#faq1516",
+            "https://www.129.go.kr/faq/faq00.do?pageIndex=2#faq13927"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "지급액과 신청서류를 각각 확인하며 선정기준액을 지급액으로 혼동하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-003",
+      "domain": "search",
+      "question": "제주시 주민도 서귀포 온정가게를 바로 이용할 수 있나요? 확인된 적용지역과 아직 확인이 필요한 점을 알려 주세요.",
+      "question_sha256": "25a2030fbce5dfe880b170bbed1358d3ad591dedffe8b820495f4a59f1db08ff",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/2/response/result/structuredContent",
+          "source_ids": [],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        },
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/5/response/result/structuredContent",
+          "source_ids": [
+            "welfare100_service:seogwipo-warm-store"
+          ],
+          "source_urls": [
+            "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100/seogwipo-warm-store"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "서귀포 자료만으로 제주시 이용 자격을 확정하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-004",
+      "domain": "search",
+      "question": "2026년 자료로 2031년 기초연금 수령액을 계산해도 되나요? 지금 확인 가능한 범위만 설명해 주세요.",
+      "question_sha256": "c2e97d51ea886792e25d5933c7b4eaac47cbb474115393bbef2d015f6572b06e",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/3/response/result/structuredContent",
+          "source_ids": [
+            "manual:sgw-8a8f0554c99e-v1:2efcd6bf4383c73a6ef6",
+            "manual:sgw-8a8f0554c99e-v1:03a74dd1cad81a80ed28",
+            "manual:sgw-8a8f0554c99e-v1:18a2fe29b7905484fc21"
+          ],
+          "source_urls": [
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L4037-4082",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L4037-4082",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L598-663",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L598-663",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L4367-4416",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L4367-4416"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "현재 자료의 숫자를 미래 확정액으로 제시하지 않고 요청연도 미확인을 알린다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-005",
+      "domain": "search",
+      "question": "서귀포시의 청년 시험응시료 지원과 어르신 장수축하금은 지원대상이 어떻게 다른가요? 각각의 신청 안내 출처도 알려 주세요.",
+      "question_sha256": "f055957b4b279f38c17eaca089c59ec2b2de085bcd228d4f60caa26cb35068e3",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/6/response/result/structuredContent",
+          "source_ids": [
+            "welfare100_service:WLF00005964"
+          ],
+          "source_urls": [
+            "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100/WLF00005964"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        },
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/7/response/result/structuredContent",
+          "source_ids": [
+            "welfare100_service:WLF00005350"
+          ],
+          "source_urls": [
+            "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100/WLF00005350"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "두 제도의 대상과 안내 출처를 구분하며 제목만으로 세부 자격을 만들지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-006",
+      "domain": "search_welfare_services",
+      "question": "서귀포시에 사는 취업준비생입니다. 자격증 시험 응시료를 지원하는 사업을 찾아 대상과 신청방법을 알려 주세요.",
+      "question_sha256": "79bb789b67b63d2edc1627df7947c5486e608b99e012c19f757818de0850bc74",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/6/response/result/structuredContent",
+          "source_ids": [
+            "welfare100_service:WLF00005964"
+          ],
+          "source_urls": [
+            "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100/WLF00005964"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "저장 사업의 상세를 확인하고 기간·횟수·거주조건이 미확인인 부분을 표시한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-007",
+      "domain": "search_welfare_services",
+      "question": "서귀포 온정가게의 생필품 지원과 식사 지원은 어떤 차이가 있나요? 최신 적용 여부도 구분해 주세요.",
+      "question_sha256": "45f4ac5eb887fa80812bb8cbe8c1a81e250c67f832b8c5ada127bdded3abb7af",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/5/response/result/structuredContent",
+          "source_ids": [
+            "welfare100_service:seogwipo-warm-store"
+          ],
+          "source_urls": [
+            "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100/seogwipo-warm-store"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "두 지원을 구분하되 저장일과 현재 정책 검증을 혼동하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-008",
+      "domain": "search_welfare_services",
+      "question": "100세 생신을 맞는 서귀포시 어르신이 받을 수 있는 축하금이 있나요? 누가 신청할 수 있는지 근거를 확인해 주세요.",
+      "question_sha256": "2056466728207893048019ce706685134e0c84b7c63bab7228a95e6d794668a9",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/7/response/result/structuredContent",
+          "source_ids": [
+            "welfare100_service:WLF00005350"
+          ],
+          "source_urls": [
+            "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100/WLF00005350"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "사업 존재와 개인 자격 확정을 구분하고 상세 근거로 답한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-009",
+      "domain": "search_welfare_services",
+      "question": "제주시와 서귀포시의 온정가게 지원을 비교하고 싶습니다. 한쪽 자료만 있다면 어느 부분을 비교할 수 없는지도 알려 주세요.",
+      "question_sha256": "36011996e4f62c698e25d916837179add4a3a5f30433b0f3dffd70456dc94238",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/5/response/result/structuredContent",
+          "source_ids": [
+            "welfare100_service:seogwipo-warm-store"
+          ],
+          "source_urls": [
+            "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100/seogwipo-warm-store"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        },
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/8/response/result/structuredContent",
+          "source_ids": [],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "한쪽 검색 공백을 사업 부재로 확정하지 않고 지역간 비교 범위를 한정한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-010",
+      "domain": "search_welfare_services",
+      "question": "서귀포의 저소득 한부모가족에게 월동준비금과 자녀학습비 지원이 따로 있나요? 용도를 비교해 주세요.",
+      "question_sha256": "e8d1ac2f77071a12140f8f82cd7a98afc34d302b9ec0c477da4a8ea086220d01",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/0/response/result/structuredContent",
+          "source_ids": [
+            "welfare100_service:seogwipo-warm-store",
+            "welfare100_service:WLF00001644",
+            "welfare100_service:WLF00001724"
+          ],
+          "source_urls": [
+            "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100/seogwipo-warm-store",
+            "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100/WLF00001644",
+            "https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100/WLF00001724"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "별도 사업의 지원 용도를 구분하고 금액·중복수급은 상세 출처 없이는 확정하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-011",
+      "domain": "find_programs",
+      "question": "제주 통합돌봄 메뉴판에서 119안심콜은 어떤 서비스를 맡고 어느 기관이 제공하나요?",
+      "question_sha256": "d6714112dc73a8c6bdc3f7501091f4dca30cdd0589c47bfb7d7c108d2f6e2638",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/10/response/result/structuredContent",
+          "source_ids": [
+            "service:008414898301610|제주특별자치도|제주특별자치도|일상생활돌봄|기타|119안심콜서비스"
+          ],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "메뉴판 사업명·분류·제공기관을 확인하되 실제 이용 가능 여부와 구별한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-012",
+      "domain": "find_programs",
+      "question": "제주에서 ICT 융합 방문건강관리와 119안심콜은 같은 돌봄 사업인가요? 제공 목적을 비교해 주세요.",
+      "question_sha256": "d1bee73dee12ab0309a7a4115f37a7b59ec96853ee5d05eb77af74296f59e1cb",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/10/response/result/structuredContent",
+          "source_ids": [
+            "service:008414898301610|제주특별자치도|제주특별자치도|일상생활돌봄|기타|119안심콜서비스"
+          ],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        },
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/12/response/result/structuredContent",
+          "source_ids": [
+            "service:00841489830122|제주특별자치도|제주특별자치도|건강관리예방|건강관리|ict융합방문건강관리사업aiiot",
+            "service:00841489830123|제주특별자치도|제주특별자치도|건강관리예방|건강관리|ict융합방문건강관리사업방문건강관리사업",
+            "service:00841489830124|제주특별자치도|제주특별자치도|건강관리예방|건강관리|ict활용의료취약지원격협진사업"
+          ],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "명칭이 비슷하다는 이유로 별개 시행사업을 합치지 않고 근거 범위 내 비교한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-013",
+      "domain": "find_programs",
+      "question": "제주 ICT 융합 방문건강관리의 AI-IoT 사업과 일반 방문건강관리사업은 각각 어떻게 표시되어 있나요?",
+      "question_sha256": "2f0f2c07f7f15b437bddc8d91dc2a6ebde1e905c14e134b888850cec87345560",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/12/response/result/structuredContent",
+          "source_ids": [
+            "service:00841489830122|제주특별자치도|제주특별자치도|건강관리예방|건강관리|ict융합방문건강관리사업aiiot",
+            "service:00841489830123|제주특별자치도|제주특별자치도|건강관리예방|건강관리|ict융합방문건강관리사업방문건강관리사업",
+            "service:00841489830124|제주특별자치도|제주특별자치도|건강관리예방|건강관리|ict활용의료취약지원격협진사업"
+          ],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "별도 수록 항목과 분류를 보존하고 상세 미확인 사항은 구분한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-014",
+      "domain": "find_programs",
+      "question": "서귀포에 산다는 이유만으로 제주도 단위 119안심콜을 서귀포시 전용사업이라고 소개해도 되나요?",
+      "question_sha256": "2b40f56a0b1f718874361b47bca2b51a4d3c590548f1b5f293fcd09c24fbb6d0",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/10/response/result/structuredContent",
+          "source_ids": [
+            "service:008414898301610|제주특별자치도|제주특별자치도|일상생활돌봄|기타|119안심콜서비스"
+          ],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "광역 적용과 기초자치단체 전용 범위를 구분한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-015",
+      "domain": "find_programs",
+      "question": "제주 통합돌봄 메뉴판에서 사업이 검색되지 않으면 실제 운영하지 않는다고 보아도 되나요? 확인 범위를 설명해 주세요.",
+      "question_sha256": "b678fb61199890af87ca1339db8134c59a90815529297d828f77a870cdbec565",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/13/response/result/structuredContent",
+          "source_ids": [],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "메뉴판 수록범위의 한계를 설명하고 검색 없음과 실제 부재를 구분한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-016",
+      "domain": "search_manuals",
+      "question": "2026년 기초연금의 선정기준액과 실제 지급액은 어떻게 다른가요? 단독가구와 부부가구를 나누어 출처를 제시해 주세요.",
+      "question_sha256": "3962691efc57ca1adb82d0cc9336fef95e8778cd6daf4b63ebb195fd57061252",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/15/response/result/structuredContent",
+          "source_ids": [
+            "manual:sgw-8a8f0554c99e-v1:3fdd01c0ddfbcba38aed",
+            "manual:sgw-8a8f0554c99e-v1:ca1611456aa4a9f3c8f4",
+            "manual:sgw-8a8f0554c99e-v1:43b250afc64588c6d7ac"
+          ],
+          "source_urls": [
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L6121-6211",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EC%A2%85%ED%95%A9%EC%95%88%EB%82%B4%5D%20%EC%97%85%EB%AC%B4%EC%97%90%EB%B0%94%EB%A1%9C%EC%93%B0%EB%8A%94%20%EC%9D%8D%EB%A9%B4%EB%8F%99%EB%B3%B5%EC%A7%80%EB%A7%A4%EB%89%B4%EC%96%BC(2026%EB%85%84%20%EA%B8%B0%EC%A4%80)%E2%98%85.md#L11198-11282",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L1646-1715"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        },
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/3/response/result/structuredContent",
+          "source_ids": [
+            "manual:sgw-8a8f0554c99e-v1:2efcd6bf4383c73a6ef6",
+            "manual:sgw-8a8f0554c99e-v1:03a74dd1cad81a80ed28",
+            "manual:sgw-8a8f0554c99e-v1:18a2fe29b7905484fc21"
+          ],
+          "source_urls": [
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L4037-4082",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L4037-4082",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L598-663",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L598-663",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L4367-4416",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L4367-4416"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "서로 다른 금액 개념 및 가구유형을 분리하고 원문 적용연도를 확인한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-017",
+      "domain": "search_manuals",
+      "question": "2026년 장애인활동지원 신청은 누가 할 수 있고 어떤 절차를 거치나요? 매뉴얼의 해당 위치를 알려 주세요.",
+      "question_sha256": "da8d53f4706b747480ac113f1e2741b8801a5a7ce5c2839b3b1d0727231238ae",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/16/response/result/structuredContent",
+          "source_ids": [
+            "manual:sgw-8a8f0554c99e-v1:81c650d912a033890145",
+            "manual:sgw-8a8f0554c99e-v1:5e79f00bea67a076cd48",
+            "manual:sgw-8a8f0554c99e-v1:64f41089a467ded7aa7a"
+          ],
+          "source_urls": [
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EC%9E%A5%EC%95%A0%5D%20%EC%A0%9C5%EA%B6%8C%202026%EB%85%84%20%EC%9E%A5%EC%95%A0%EC%9D%B8%ED%99%9C%EB%8F%99%EC%A7%80%EC%9B%90%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4.md#L872-875",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EC%9E%A5%EC%95%A0%5D%20%EC%A0%9C5%EA%B6%8C%202026%EB%85%84%20%EC%9E%A5%EC%95%A0%EC%9D%B8%ED%99%9C%EB%8F%99%EC%A7%80%EC%9B%90%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4.md#L3-31",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EC%9E%A5%EC%95%A0%5D%20%EC%A0%9C5%EA%B6%8C%202026%EB%85%84%20%EC%9E%A5%EC%95%A0%EC%9D%B8%ED%99%9C%EB%8F%99%EC%A7%80%EC%9B%90%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4.md#L12494-12515"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "신청 대상과 선정 절차를 본문으로 확인하고 파싱 줄번호를 PDF 쪽수로 속이지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-018",
+      "domain": "search_manuals",
+      "question": "긴급복지 생계지원은 먼저 지원하고 나중에 조사하나요? 2026년 매뉴얼에서 원칙과 예외를 확인해 주세요.",
+      "question_sha256": "276430cc28d731db2fed3818463acd091a7a5694e7112290b4f6f24b831d5ca4",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/17/response/result/structuredContent",
+          "source_ids": [
+            "manual:sgw-8a8f0554c99e-v1:988c8f2ee4c3a728601c",
+            "manual:sgw-8a8f0554c99e-v1:24dbc3159b3d943c8c64",
+            "manual:sgw-8a8f0554c99e-v1:37d3da72fe1e2c7b20bd"
+          ],
+          "source_urls": [
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B8%B4%EA%B8%89%EB%B3%B5%EC%A7%80%5D%202026%EB%85%84%20%EA%B8%B4%EA%B8%89%EB%B3%B5%EC%A7%80%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85%20%EC%95%88%EB%82%B4.md#L1476-1578",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B8%B4%EA%B8%89%EB%B3%B5%EC%A7%80%5D%202026%EB%85%84%20%EA%B8%B4%EA%B8%89%EB%B3%B5%EC%A7%80%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85%20%EC%95%88%EB%82%B4.md#L475-541",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B8%B4%EA%B8%89%EB%B3%B5%EC%A7%80%5D%202026%EB%85%84%20%EA%B8%B4%EA%B8%89%EB%B3%B5%EC%A7%80%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85%20%EC%95%88%EB%82%B4.md#L3991-4021"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "원칙·예외를 원문과 대조하고 제목만으로 절차를 단정하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-019",
+      "domain": "search_manuals",
+      "question": "2025년 자료를 빼고 2026년 생계급여에서 장기입원 때 식비를 어떻게 공제하는지 설명해 주세요.",
+      "question_sha256": "7bf09b83f4fe97c0c1ee22aee1bd3bf8a7784a6d81b15e0a02e0f9c4d386b5c6",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/19/response/result/structuredContent",
+          "source_ids": [
+            "manual:sgw-8a8f0554c99e-v1:6e4a21740a54f1e3dc07",
+            "manual:sgw-8a8f0554c99e-v1:8f95e440137ab74e56fb",
+            "manual:sgw-8a8f0554c99e-v1:bd790a5e3e629fd803d1"
+          ],
+          "source_urls": [
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%EB%8F%84%20%EA%B5%AD%EB%AF%BC%EA%B8%B0%EC%B4%88%EC%83%9D%ED%99%9C%EB%B3%B4%EC%9E%A5%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4%E2%98%85.md#L10064-10086",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EC%A3%BC%EA%B1%B0%EA%B8%89%EC%97%AC%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4%E2%98%85.md#L8044-8106",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EC%84%9C%EA%B7%80%ED%8F%AC%EC%8B%9C%EC%97%85%EB%AC%B4-%EC%A2%85%ED%95%A9%EC%9E%90%EB%A3%8C%5D%202026%EB%85%84%20%EC%84%9C%EA%B7%80%ED%8F%AC%EC%8B%9C%20%EB%85%B8%EC%9D%B8%EB%B3%B5%EC%A7%80%20%EC%A2%85%ED%95%A9%EC%95%88%EB%82%B4%EC%84%9C.md#L943-1028"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "연도 제외조건과 공제 산정조건을 모두 보존한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-020",
+      "domain": "search_manuals",
+      "question": "기초연금 소득인정액 기준과 생계급여 금액을 같은 기준으로 비교해도 되나요? 2026년 안내를 근거로 차이를 설명해 주세요.",
+      "question_sha256": "f7b8b08eda76a6e78f01533cddeb53dbfd1227bf9943fd1764e00c688856b689",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/15/response/result/structuredContent",
+          "source_ids": [
+            "manual:sgw-8a8f0554c99e-v1:3fdd01c0ddfbcba38aed",
+            "manual:sgw-8a8f0554c99e-v1:ca1611456aa4a9f3c8f4",
+            "manual:sgw-8a8f0554c99e-v1:43b250afc64588c6d7ac"
+          ],
+          "source_urls": [
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L6121-6211",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EC%A2%85%ED%95%A9%EC%95%88%EB%82%B4%5D%20%EC%97%85%EB%AC%B4%EC%97%90%EB%B0%94%EB%A1%9C%EC%93%B0%EB%8A%94%20%EC%9D%8D%EB%A9%B4%EB%8F%99%EB%B3%B5%EC%A7%80%EB%A7%A4%EB%89%B4%EC%96%BC(2026%EB%85%84%20%EA%B8%B0%EC%A4%80)%E2%98%85.md#L11198-11282",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EA%B8%B0%EC%B4%88%EC%97%B0%EA%B8%88%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4(%EA%B0%9C%EC%A0%95)%E2%98%85.md#L1646-1715"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        },
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/19/response/result/structuredContent",
+          "source_ids": [
+            "manual:sgw-8a8f0554c99e-v1:6e4a21740a54f1e3dc07",
+            "manual:sgw-8a8f0554c99e-v1:8f95e440137ab74e56fb",
+            "manual:sgw-8a8f0554c99e-v1:bd790a5e3e629fd803d1"
+          ],
+          "source_urls": [
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%EB%8F%84%20%EA%B5%AD%EB%AF%BC%EA%B8%B0%EC%B4%88%EC%83%9D%ED%99%9C%EB%B3%B4%EC%9E%A5%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4%E2%98%85.md#L10064-10086",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EB%A7%A4%EB%89%B4%EC%96%BC-%EA%B3%B5%EC%A0%81%EA%B8%89%EC%97%AC%5D%202026%EB%85%84%20%EC%A3%BC%EA%B1%B0%EA%B8%89%EC%97%AC%20%EC%82%AC%EC%97%85%EC%95%88%EB%82%B4%E2%98%85.md#L8044-8106",
+            "https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/8a8f0554c99e9ab64f4d0886e8a71f8c5619df51/mcp-corpus-20261012/%5B%EC%84%9C%EA%B7%80%ED%8F%AC%EC%8B%9C%EC%97%85%EB%AC%B4-%EC%A2%85%ED%95%A9%EC%9E%90%EB%A3%8C%5D%202026%EB%85%84%20%EC%84%9C%EA%B7%80%ED%8F%AC%EC%8B%9C%20%EB%85%B8%EC%9D%B8%EB%B3%B5%EC%A7%80%20%EC%A2%85%ED%95%A9%EC%95%88%EB%82%B4%EC%84%9C.md#L943-1028"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "서로 다른 제도의 자격기준과 급여액을 직접 동일시하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-021",
+      "domain": "search_faq",
+      "question": "몸이 불편한 부모님 대신 기초연금을 신청하려면 어떻게 해야 하나요? 본인 신청과 다른 점을 알려 주세요.",
+      "question_sha256": "f6a1764e67349cadaa8bb1d173b72a761f95d2aae42a807b7cfa90f6af8677b8",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/site/data/faq129/faq129.json",
+          "artifact_sha256": "ac3aa2ca4e930e71f3dad6ed25b47580bb1d4c300ceb64512e0c01c0787a0762",
+          "json_pointer": "/items/14",
+          "source_ids": [
+            "faq129:1516"
+          ],
+          "source_urls": [
+            "https://www.129.go.kr/faq/faq00.do?pageIndex=2#faq1516"
+          ],
+          "inspection_status": "STORED_SOURCE_READ",
+          "limitations": "작성일 기준 원문. 현재 정책의 독립 검증 아님."
+        },
+        {
+          "artifact_path": "work/site/data/faq129/faq129.json",
+          "artifact_sha256": "ac3aa2ca4e930e71f3dad6ed25b47580bb1d4c300ceb64512e0c01c0787a0762",
+          "json_pointer": "/items/56",
+          "source_ids": [
+            "faq129:10557"
+          ],
+          "source_urls": [
+            "https://www.129.go.kr/faq/faq00.do?pageIndex=6#faq10557"
+          ],
+          "inspection_status": "STORED_SOURCE_READ",
+          "limitations": "작성일 기준 원문. 현재 정책의 독립 검증 아님."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "대리신청 대상·서류·방법을 FAQ 전체 답변과 대조한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-022",
+      "domain": "search_faq",
+      "question": "재난적의료비 지원을 신청했는데 언제 지급 결정이 나나요? 보통 기간과 연장되는 경우를 구분해 주세요.",
+      "question_sha256": "367cf563851a590b8a7df88257d9f2924683aa4ce9ec22ae2ac2ebabedcd18a6",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/site/data/faq129/faq129.json",
+          "artifact_sha256": "ac3aa2ca4e930e71f3dad6ed25b47580bb1d4c300ceb64512e0c01c0787a0762",
+          "json_pointer": "/items/444",
+          "source_ids": [
+            "faq129:2330"
+          ],
+          "source_urls": [
+            "https://www.129.go.kr/faq/faq00.do?pageIndex=45#faq2330"
+          ],
+          "inspection_status": "STORED_SOURCE_READ",
+          "limitations": "작성일 기준 원문. 현재 정책의 독립 검증 아님."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "기본 처리기간과 연장 예외를 빠짐없이 보존한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-023",
+      "domain": "search_faq",
+      "question": "결혼한 지 1년이 안 된 부부입니다. 난임시술비 지원과 원인불명 난임의 진단기간은 같은 조건인가요?",
+      "question_sha256": "1a5b061c58b11cf0c5c7214f16dedd7ca4c461072915c1cb62851fabec4f4b59",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/site/data/faq129/faq129.json",
+          "artifact_sha256": "ac3aa2ca4e930e71f3dad6ed25b47580bb1d4c300ceb64512e0c01c0787a0762",
+          "json_pointer": "/items/89",
+          "source_ids": [
+            "faq129:7170"
+          ],
+          "source_urls": [
+            "https://www.129.go.kr/faq/faq00.do?pageIndex=9#faq7170"
+          ],
+          "inspection_status": "STORED_SOURCE_READ",
+          "limitations": "작성일 기준 원문. 현재 정책의 독립 검증 아님."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "모든 정상검사 전제와 체외수정·인공수정의 기간·연령예외를 구분한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-024",
+      "domain": "search_faq",
+      "question": "외국인 배우자와 사실혼인 경우 난임시술비 서류에서 아포스티유와 번역이 모두 필수인가요?",
+      "question_sha256": "c0067d3115f66d6d53c0ed5669d2eacc592ae8182437995a1e0c36066048583a",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/site/data/faq129/faq129.json",
+          "artifact_sha256": "ac3aa2ca4e930e71f3dad6ed25b47580bb1d4c300ceb64512e0c01c0787a0762",
+          "json_pointer": "/items/216",
+          "source_ids": [
+            "faq129:14238"
+          ],
+          "source_urls": [
+            "https://www.129.go.kr/faq/faq00.do?pageIndex=22#faq14238"
+          ],
+          "inspection_status": "STORED_SOURCE_READ",
+          "limitations": "작성일 기준 원문. 현재 정책의 독립 검증 아님."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "서류 발급경로별 인증 OR와 필요시 공증·번역을 구분한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-025",
+      "domain": "search_faq",
+      "question": "아이 보청기 지원에서 대학병원급 병원이라는 말은 병원 이름만 보면 되나요? 검사와 치료 조건을 설명해 주세요.",
+      "question_sha256": "15e257787606835a743248b51e64cf356f1ad6e7d388748840e1a92606c45f3b",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/site/data/faq129/faq129.json",
+          "artifact_sha256": "ac3aa2ca4e930e71f3dad6ed25b47580bb1d4c300ceb64512e0c01c0787a0762",
+          "json_pointer": "/items/281",
+          "source_ids": [
+            "faq129:13140"
+          ],
+          "source_urls": [
+            "https://www.129.go.kr/faq/faq00.do?pageIndex=29#faq13140"
+          ],
+          "inspection_status": "STORED_SOURCE_READ",
+          "limitations": "작성일 기준 원문. 현재 정책의 독립 검증 아님."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "안전한 진정후 ABR과 연령별 언어검사·언어치료의 모두 조건을 보존한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-026",
+      "domain": "search_news",
+      "question": "2026년 10월 서귀포시의 노인맞춤돌봄 수행기관 모집 소식은 주민의 서비스 신청 공고와 같은 건가요?",
+      "question_sha256": "6c55a915d49e4ab6cbcdec7a61f7f706c17120b390589aca8fd31ff996721deb",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/25/response/result/structuredContent",
+          "source_ids": [
+            "news:src:www.seogwipo.go.kr:press:d0c7d943afee0936f5da0afd4252b98c"
+          ],
+          "source_urls": [
+            "https://www.seogwipo.go.kr/news/seogwiponews/sijungnews.htm?act=view&seq=155425393"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "수행기관 모집과 주민 이용신청을 구분하며 제목 이상의 내용은 원문 확인을 요구한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-027",
+      "domain": "search_news",
+      "question": "2026년 10월 대구 서구와 경남 고성군 통합돌봄 소식을 비교해 주세요. 발표기관과 날짜도 함께 적어 주세요.",
+      "question_sha256": "357c7b074efa7906defcf4b7d12571ffcfea7e6d77ecf18537ba7da215673fdf",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/27/response/result/structuredContent",
+          "source_ids": [
+            "news:src:www.dgs.go.kr:press:830b4ef099bc3946e9240d17a03749d2",
+            "news:src:www.goseong.go.kr:press:af3067e9a7b2e527ce268c0dc534201d",
+            "news:src:www.hwasun.go.kr:press:1a4faf05dbe0af3c52049c4d3da61979"
+          ],
+          "source_urls": [
+            "https://www.dgs.go.kr/portal/board/post/view.do?bcIdx=526&mid=0601080000&idx=252443",
+            "https://www.goseong.go.kr/board/view.goseong?boardId=BBS_0000196&menuCd=DOM_000000102002008000&dataSid=5839111",
+            "https://www.hwasun.go.kr/gallery.do?S=S01&M=020101000000&b_code=0000000001&act=view&list_no=21059"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "같은 이름의 지역을 혼동하지 않고 발행기관·발행일과 사업 주제를 구분한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-028",
+      "domain": "search_news",
+      "question": "서귀포 노인맞춤돌봄 수행기관 모집의 접수 마감일과 담당 연락처를 확인해 주세요. 제목만 수집된 자료라면 그렇게 알려 주세요.",
+      "question_sha256": "9800946e3c975de5547c8a62f8251ff64e495ef7b06746644762fd3dd72f0def",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/25/response/result/structuredContent",
+          "source_ids": [
+            "news:src:www.seogwipo.go.kr:press:d0c7d943afee0936f5da0afd4252b98c"
+          ],
+          "source_urls": [
+            "https://www.seogwipo.go.kr/news/seogwiponews/sijungnews.htm?act=view&seq=155425393"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "본문 미수집 상태에서 마감일·연락처를 만들어내지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-029",
+      "domain": "search_news",
+      "question": "2026년 10월 2일 이후 서귀포의 노인맞춤돌봄 소식만 찾고 있습니다. 그 이전 공고를 최신 검색결과로 포함해도 되나요?",
+      "question_sha256": "68bedee9bb24e5c1ed970f50534f1b5e551263476d42c831f6e0c2bbe2a3f37d",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/25/response/result/structuredContent",
+          "source_ids": [
+            "news:src:www.seogwipo.go.kr:press:d0c7d943afee0936f5da0afd4252b98c"
+          ],
+          "source_urls": [
+            "https://www.seogwipo.go.kr/news/seogwiponews/sijungnews.htm?act=view&seq=155425393"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        },
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/26/response/result/structuredContent",
+          "source_ids": [],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "발행일 필터를 수집일로 대신하지 않고 10월1일 공고를 요청기간에서 구별한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-030",
+      "domain": "search_news",
+      "question": "2031년 복지 보도자료가 검색되지 않으면 그해 사업이 없다고 볼 수 있나요? 현재 확인 범위를 알려 주세요.",
+      "question_sha256": "cf105295e7e064f49a177c8c1ecd43d720879c6020c8e2ad39a71673d2f240f7",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/28/response/result/structuredContent",
+          "source_ids": [],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "미래 자료 공백을 사업 부재·예산0으로 확정하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-031",
+      "domain": "search_statistics",
+      "question": "합계출산율과 출생아 수는 같은 통계인가요? 연결된 공식 통계표와 기준연도를 확인해 설명해 주세요.",
+      "question_sha256": "60e8be41734f835461e00677a0d5b111f505443a046c826a6cc362fdd774639d",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/30/response/result/structuredContent",
+          "source_ids": [
+            "indicator:33"
+          ],
+          "source_urls": [
+            "https://www.index.go.kr/unity/potal/main/EachDtlPageDetail.do?idx_cd=1428"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "통계 정의·단위·기준연도를 구분하고 목록 조회를 수치 조회로 가장하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-032",
+      "domain": "search_statistics",
+      "question": "노년부양비의 분모는 전체 인구인가요? 미래 연도 값이 있다면 실제 관측치인지도 알려 주세요.",
+      "question_sha256": "ed538032fc7384c0383708ea737f5105dc9a66d7e3eb3a3b0201d731f4a1fa47",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/31/response/result/structuredContent",
+          "source_ids": [
+            "stat:1430"
+          ],
+          "source_urls": [
+            "https://www.index.go.kr/unity/potal/main/EachDtlPageDetail.do?idx_cd=1430"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "생산가능인구100명당 정의와 미래 추계값을 명확히 구분한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-033",
+      "domain": "search_statistics",
+      "question": "기초생활보장 수급 현황의 두 통계 항목이 보이면 합산해도 되나요? 출처와 중복 여부를 확인해 주세요.",
+      "question_sha256": "e995777370a513a8e6d8f38418fa50d903eae5328142597253927c37a6ced0d5",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/32/response/result/structuredContent",
+          "source_ids": [
+            "stat:2760",
+            "approved:3",
+            "approved:11"
+          ],
+          "source_urls": [
+            "https://www.index.go.kr/unity/potal/main/EachDtlPageDetail.do?idx_cd=2760",
+            "https://www.mohw.go.kr/statList.es?mid=a10406010100&stts_nmss=ALL",
+            "https://www.mohw.go.kr/statList.es?mid=a10406010100&stts_nmss=ALL"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "출처별 목록을 독립 집단으로 합산하지 않고 동일 지표 여부를 확인한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-034",
+      "domain": "search_statistics",
+      "question": "제주도와 서귀포시의 고령인구 비중을 최신 같은 달 기준으로 비교하고 싶습니다. 시 단위 자료가 없으면 어떻게 표시해야 하나요?",
+      "question_sha256": "937122914d5ba07daccb2245b48e199a4917fb4bf403be8b2d6e2f38da9ae1e0",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/31/response/result/structuredContent",
+          "source_ids": [
+            "stat:1430"
+          ],
+          "source_urls": [
+            "https://www.index.go.kr/unity/potal/main/EachDtlPageDetail.do?idx_cd=1430"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "지역·기준월·연령·분모를 맞추며 도 단위를 시의 값으로 대체하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-035",
+      "domain": "search_statistics",
+      "question": "통계 검색에서 정신장애 유병률 수치가 나오지 않는데 0%라고 해석해도 되나요? 필요한 출처를 알려 주세요.",
+      "question_sha256": "f626cf0c175c635c24ac22e5e24f166bec47e66a8a2e0e7d33321a413144dec4",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/33/response/result/structuredContent",
+          "source_ids": [],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "미연결·미수집과 실제0을 구분하며 근거 없이 수치를 계산하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-036",
+      "domain": "find_budget_projects",
+      "question": "2026년 제주본청의 의료·요양 통합돌봄 사업은 예산과 집행액이 각각 얼마인가요? 단위 검증이 안 되면 숫자를 확정하지 말아 주세요.",
+      "question_sha256": "8d2b40e781d427fe99de3d1b7d99b2aa5b190e403b0b1b533744d11ca5198440",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/35/response/result/structuredContent",
+          "source_ids": [
+            "fp:2026:4900000:100:1045010:65000002023305CB",
+            "fp:2026:4900000:100:1105130:6500000202630238",
+            "fp:2026:4900000:100:3005407:6500000201930339"
+          ],
+          "source_urls": [
+            "https://www.lofin365.go.kr/lf/hub/QWGJK",
+            "https://www.lofin365.go.kr/lf/hub/QWGJK",
+            "https://www.lofin365.go.kr/lf/hub/QWGJK"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "예산현액·누계지출의 정의와 금액단위 검증상태를 함께 확인한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-037",
+      "domain": "find_budget_projects",
+      "question": "서귀포 통합돌봄 예산을 제주본청 전체 예산으로 대신 설명할 수 있나요? 재정주체 연결 여부를 확인해 주세요.",
+      "question_sha256": "61c976b1bb11698da93407ce7646da4db2eb7d9a9b271b01fd52aa58ffe25834",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/36/response/result/structuredContent",
+          "source_ids": [],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "재정주체 매핑 공백을 상위지역 전체 수치로 대체하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-038",
+      "domain": "find_budget_projects",
+      "question": "2026년 통합돌봄 사업의 본예산서 금액과 현재 예산현액이 다르면 어느 쪽이 맞나요? 기준시점과 의미를 구분해 주세요.",
+      "question_sha256": "6429f573f28b24dabe0cc941a85751555e63e472d117f7699281ca935fa693fb",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/35/response/result/structuredContent",
+          "source_ids": [
+            "fp:2026:4900000:100:1045010:65000002023305CB",
+            "fp:2026:4900000:100:1105130:6500000202630238",
+            "fp:2026:4900000:100:3005407:6500000201930339"
+          ],
+          "source_urls": [
+            "https://www.lofin365.go.kr/lf/hub/QWGJK",
+            "https://www.lofin365.go.kr/lf/hub/QWGJK",
+            "https://www.lofin365.go.kr/lf/hub/QWGJK"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        },
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/39/response/result/structuredContent",
+          "source_ids": [
+            "fp:2026:4900000:100:1045010:65000002023305CB",
+            "fp:2026:4900000:100:1105130:6500000202630238"
+          ],
+          "source_urls": [
+            "https://www.lofin365.go.kr/lf/hub/QWGJK",
+            "https://www.lofin365.go.kr/lf/hub/QWGJK"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "문서단계와 현액을 구분하고 후보 이름일치만으로 동일사업 연결을 확정하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-039",
+      "domain": "find_budget_projects",
+      "question": "제주 통합돌봄의 국비와 지방비를 나눠 보고 싶습니다. 재원 일부가 빠졌다면 나머지를 임의로 계산해도 되나요?",
+      "question_sha256": "ab03b17fa7358123f54d9d197e96703c89e7cd330ab1b065c916a1c2dc6e41a5",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/35/response/result/structuredContent",
+          "source_ids": [
+            "fp:2026:4900000:100:1045010:65000002023305CB",
+            "fp:2026:4900000:100:1105130:6500000202630238",
+            "fp:2026:4900000:100:3005407:6500000201930339"
+          ],
+          "source_urls": [
+            "https://www.lofin365.go.kr/lf/hub/QWGJK",
+            "https://www.lofin365.go.kr/lf/hub/QWGJK",
+            "https://www.lofin365.go.kr/lf/hub/QWGJK"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "누락 재원을 차액으로 배분하지 않고 합계 검증 여부를 표시한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-040",
+      "domain": "find_budget_projects",
+      "question": "2031년 제주 통합돌봄 예산자료가 아직 없다면 2026년 금액을 2031년 확정예산으로 써도 되나요?",
+      "question_sha256": "28de06a3eda5af36033bddc5059c50c4e7f9b7c73c1282c1d5d2c318eb6ff906",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/37/response/result/structuredContent",
+          "source_ids": [],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        },
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/35/response/result/structuredContent",
+          "source_ids": [
+            "fp:2026:4900000:100:1045010:65000002023305CB",
+            "fp:2026:4900000:100:1105130:6500000202630238",
+            "fp:2026:4900000:100:3005407:6500000201930339"
+          ],
+          "source_urls": [
+            "https://www.lofin365.go.kr/lf/hub/QWGJK",
+            "https://www.lofin365.go.kr/lf/hub/QWGJK",
+            "https://www.lofin365.go.kr/lf/hub/QWGJK"
+          ],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "미공표 연도에 이전연도 확정값을 대입하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-041",
+      "domain": "search_budget_lines",
+      "question": "금정구 2026년 본예산의 노인복지정책 업무추진 금액을 원 단위로 알려 주고 원문 단위도 함께 적어 주세요.",
+      "question_sha256": "3d4f5f72d761a9a3cf2d75319dbd777a6e945f839fc00ef88d26a28db2e0a2d5",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/40/response/result/structuredContent",
+          "source_ids": [
+            "bl-4ae144ae288ae247162d080e"
+          ],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "원문천원과 환산원을 구별하고 해당 문서단계·사업행을 확인한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-042",
+      "domain": "search_budget_lines",
+      "question": "금정구 노인복지정책 업무추진의 2026년 본예산과 전년도 예산액 차이는 얼마인가요? 비교 열의 의미도 설명해 주세요.",
+      "question_sha256": "016a053a4c245b4828e518d87f53d0fbc866eb0083f12191f8db5c3ea3440ce5",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/40/response/result/structuredContent",
+          "source_ids": [
+            "bl-4ae144ae288ae247162d080e"
+          ],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "전년도 예산액을 기정액으로 바꾸지 않고 비교증감 부호와 단위를 보존한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-043",
+      "domain": "search_budget_lines",
+      "question": "금정구 예산서의 노인복지정책 업무추진 금액은 실제로 집행된 돈인가요? 본예산과 지출을 구분해 주세요.",
+      "question_sha256": "4a9c289adca48ebca840a2bdbfd27f41659aac2dde60ef5151fbfdc95e3346ad",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/40/response/result/structuredContent",
+          "source_ids": [
+            "bl-4ae144ae288ae247162d080e"
+          ],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "문서단계 예산액을 실제지출로 혼동하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-044",
+      "domain": "search_budget_lines",
+      "question": "금정구 예산 항목의 근거로 표시된 14쪽을 PDF 인쇄 14쪽이라고 인용해도 되나요? 확인된 위치정보를 알려 주세요.",
+      "question_sha256": "f5ec1bb2d26bfe3a4d529791c1e29bdc7e1efa2555902b41a2a3a06988a8c807",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/40/response/result/structuredContent",
+          "source_ids": [
+            "bl-4ae144ae288ae247162d080e"
+          ],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "파싱 위치와 검증된 물리쪽수를 구분하고 표·행 식별자를 제공한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-045",
+      "domain": "search_budget_lines",
+      "question": "2026년 금정구 예산서에서 상위 사업 총액과 하위 산출내역을 더하면 전체 예산이 되나요? 중복 합산을 피하는 방법을 설명해 주세요.",
+      "question_sha256": "297cbc6ac2a7b6e3759db7fa2c79fb43e4a1782354e12c4f8716b5a2ec57f393",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/40/response/result/structuredContent",
+          "source_ids": [
+            "bl-4ae144ae288ae247162d080e"
+          ],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "상하위 계층 중복합산을 피하고 부분수록 범위를 전체부서 총액으로 확대하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-046",
+      "domain": "find_care_institutions",
+      "question": "강남구 세곡동의 행복케어재가센터가 방문요양과 방문목욕을 모두 제공하는지 확인해 주세요.",
+      "question_sha256": "80b958f6e41ffd9b8d07f09825c6e785fdd0b448aba1732f367135399901ebad",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/45/response/result/structuredContent",
+          "source_ids": [
+            "ltc:31168000154"
+          ],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "공식 등록된 서비스 종류를 구분하고 명칭만으로 추가서비스를 추정하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-047",
+      "domain": "find_care_institutions",
+      "question": "강남세곡 행복케어재가센터는 입소해서 사는 요양시설인가요, 집으로 방문하는 기관인가요?",
+      "question_sha256": "ad2733218023235ecb860e2d1cec29488e945065b0ff499737b9b25870e532e4",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/45/response/result/structuredContent",
+          "source_ids": [
+            "ltc:31168000154"
+          ],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        },
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/47/response/result/structuredContent",
+          "source_ids": [],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "재가서비스와 입소시설 유형을 구분한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-048",
+      "domain": "find_care_institutions",
+      "question": "강남세곡 행복케어와 강남세곡행복케어라는 검색 결과가 따로 나오면 서로 다른 기관인가요?",
+      "question_sha256": "a473c7f90ca1eb8d25b018df87e1da6bcccd2b96f82c598a0583ac51a808d86d",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/45/response/result/structuredContent",
+          "source_ids": [
+            "ltc:31168000154"
+          ],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        },
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/46/response/result/structuredContent",
+          "source_ids": [
+            "ltc:31168000154"
+          ],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "기관 식별자로 동일기관 여부를 확인하여 중복 집계하지 않는다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-049",
+      "domain": "find_care_institutions",
+      "question": "서귀포시 장기요양기관 검색에 자료 연결 미확인이라고 나오는데 기관 수를 0개라고 보고해도 되나요?",
+      "question_sha256": "7b35895cfd289d39fdecbd8f4fc15886545e664abef3b18756dab2ca211971c0",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/49/response/result/structuredContent",
+          "source_ids": [],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "연결 미확인·모르는 전체수와 실제0을 구분한다."
+        }
+      ]
+    },
+    {
+      "id": "ANS-050",
+      "domain": "find_care_institutions",
+      "question": "강남세곡 행복케어재가센터에 지금 빈자리가 있고 바로 이용할 수 있나요? 등록정보만으로 확인 가능한 범위를 알려 주세요.",
+      "question_sha256": "d6257e7b83ff534382483b1ebb8af80497a6a1884c57041be1e1fc5dd0ed9a68",
+      "expected_evidence": [
+        {
+          "artifact_path": "work/accuracy/runtime/production/responses.json",
+          "artifact_sha256": "2867d7d644aefca6fdf540b928fefede5273d2edccc247b9f2d8c77fd2d54b73",
+          "json_pointer": "/45/response/result/structuredContent",
+          "source_ids": [
+            "ltc:31168000154"
+          ],
+          "source_urls": [],
+          "inspection_status": "RECORDED_RETRIEVAL_READ",
+          "limitations": "검색 응답을 직접 읽어 위치를 확인함. 정답·현행정책 검증 아님. 채점자는 상세 또는 공식 원문을 별도 대조해야 함."
+        }
+      ],
+      "rubric": [
+        {
+          "id": "answer_correctness",
+          "requirement": "질문에 답한 핵심 주장과 수치·단위·조건·예외를 확인한 원문과 대조한다."
+        },
+        {
+          "id": "scope_and_time",
+          "requirement": "요청 지역·연도·대상·비교 범위를 유지하며 최신성과 검증 수준을 구분한다."
+        },
+        {
+          "id": "citations_and_limits",
+          "requirement": "실제 주장에 맞는 출처 위치를 제시하고 미확인·부분수록·오류를 숨기지 않는다."
+        },
+        {
+          "id": "case_specific",
+          "requirement": "등록존재와 실시간정원·대기·이용가능을 구분하며 미수집 상세를 명시한다."
+        }
+      ]
+    }
+  ]
+}

@@ -9,8 +9,8 @@ export function SiteHeader() {
         aria-hidden="true"
         className="absolute inset-x-0 bottom-0 h-0.5 bg-[linear-gradient(90deg,var(--jeju-blue)_0_34%,var(--jeju-green)_34%_67%,var(--jeju-orange)_67%)] print:hidden"
       />
-      <div className="mx-auto flex min-h-(--jeju-gnb-h) max-w-(--jeju-main-max-wide) flex-col gap-3 px-4 py-3 sm:px-6 md:flex-row md:items-center md:justify-between">
-        <div className="flex min-w-0 flex-col items-start gap-3 md:flex-row md:items-center md:gap-4">
+      <div className="mx-auto flex min-h-(--jeju-gnb-h) max-w-(--jeju-main-max-wide) flex-col gap-3 px-4 py-3 sm:px-6">
+        <div className="flex min-w-0 flex-col items-start gap-3 md:flex-row md:items-center md:justify-between md:gap-4">
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- Vinext's next/link runtime prevents navigation in this deployment target. */}
           <a
             href="/"
@@ -36,7 +36,20 @@ export function SiteHeader() {
           </a>
           <VisitCounter />
         </div>
-        <SiteNav />
+        <div className="flex min-w-0 items-center gap-4">
+          <div className="min-w-0 flex-1">
+            <SiteNav />
+          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element -- 36px 고정 높이 로고라 이미지 최적화 경로 없이 정적 파일을 바로 쓴다. */}
+          <img
+            src="/brand/seogwipo-vision-logo.png"
+            alt="시민과 함께, 행복과 희망의 서귀포시"
+            width={175}
+            height={36}
+            decoding="async"
+            className="hidden h-9 w-auto shrink-0 xl:block print:hidden"
+          />
+        </div>
       </div>
     </header>
   );

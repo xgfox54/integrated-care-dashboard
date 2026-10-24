@@ -1,5 +1,7 @@
 declare namespace Cloudflare {
   interface Env {
+    ADMIN_SETUP_TOKEN?: string;
+    PRESS_RELAY_TOKEN_SHA256?: string;
     DB?: D1Database;
     /** 배포된 매뉴얼 반입 조각은 이 내부 바인딩으로만 읽는다. */
     ASSETS?: Fetcher;

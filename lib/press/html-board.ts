@@ -141,6 +141,37 @@ interface Candidate {
   readonly inner: string;
 }
 
+/** 같은 공식 상세 경로와 게시물 번호가 확인된 실제 링크의 게시판·분류 조건을 보존한다. */
+function candidateUrl(profile: HtmlBoardProfile, candidate: Candidate): string {
+  const fallback = profile.url.replace("{id}", encodeURIComponent(candidate.id));
+  const href = /(?:^|\s)href\s*=\s*(?:"([^"]*)"|'([^']*)')/i.exec(candidate.attrs);
+  if (!href) return fallback;
+  const raw = cleanText(href[1] ?? href[2] ?? "");
+  if (!raw || raw.startsWith("#") || /^(?:javascript|data):/i.test(raw)) return fallback;
+  try {
+    const expected = new URL(fallback);
+    const actual = new URL(raw, expected);
+    if (actual.origin !== expected.origin || actual.pathname !== expected.pathname || actual.username || actual.password) return fallback;
+    const marker = "PRESS_ARTICLE_ID";
+    const template = new URL(profile.url.replace("{id}", marker));
+    const idKey = [...template.searchParams].find(([, value]) => value === marker)?.[0];
+    if (idKey && actual.searchParams.get(idKey) !== candidate.id) return fallback;
+    let corrected = false;
+    for (const [key, value] of expected.searchParams) {
+      if (key === idKey || !/^(?:cbIdx|bbsNo|boardId|board_id|bbsId|bid|a_no|key|menuNo|menuId|menu_id|mid)$/i.test(key)) continue;
+      const original = actual.searchParams.get(key);
+      if (original !== null && original !== value) {
+        expected.searchParams.set(key, original);
+        corrected = true;
+      }
+    }
+    return corrected ? expected.toString() : fallback;
+  } catch (error) {
+    if (error instanceof TypeError) return fallback;
+    throw error;
+  }
+}
+
 /** titleScope "before": 직전 게시물 링크 뒤부터 이 링크 앞까지에서 제목 정규식의 마지막 일치. */
 function titleBefore(html: string, profile: HtmlBoardProfile, from: number, to: number): { readonly title: string; readonly segment: string } {
   const segment = html.slice(Math.max(from, to - BEFORE_LIMIT), to);
@@ -167,7 +198,7 @@ export function parseHtmlBoard(html: string, profile: HtmlBoardProfile): PressFe
       if (items.has(candidate.id)) return;
       const before = titleBefore(html, profile, candidates[index - 1]?.end ?? 0, candidate.start);
       const title = before.title.slice(0, MAX_TITLE_CHARS);
-      if (title) items.set(candidate.id, { title, link: profile.url.replace("{id}", encodeURIComponent(candidate.id)), guid: candidate.id, pubDate: readDate(profile, before.segment) });
+      if (title) items.set(candidate.id, { title, link: candidateUrl(profile, candidate), guid: candidate.id, pubDate: readDate(profile, before.segment) });
       return;
     }
     const title = completeTitle(readTitle(profile, candidate.attrs, candidate.inner), candidate).slice(0, MAX_TITLE_CHARS);
@@ -178,7 +209,7 @@ export function parseHtmlBoard(html: string, profile: HtmlBoardProfile): PressFe
     const tableRow = tableRows.find((row) => row.index <= candidate.start && row.index + row[0].length > candidate.start);
     items.set(candidate.id, {
       title,
-      link: profile.url.replace("{id}", encodeURIComponent(candidate.id)),
+      link: candidateUrl(profile, candidate),
       guid: candidate.id,
       // 링크(또는 button) 안에 게시일이 있으면 그것을 먼저 쓴다. 들여쓰기가 긴 카드형 목록은 날짜가 구간 상한(4000자) 밖에 있을 수 있다.
       pubDate: profile.dateScope === "row"

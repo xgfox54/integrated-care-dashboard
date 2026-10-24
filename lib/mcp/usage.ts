@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { databaseIdentity, type SqlDatabase } from "../sql-database.ts";
-import { PUBLIC_MCP_TOOL_NAMES } from "./contract.ts";
+import { EXECUTABLE_MCP_TOOL_NAMES } from "./contract.ts";
 
 export interface McpCacheDetail {
   readonly status: "HIT" | "MISS" | "NOT_STORED" | "ERROR" | "BYPASS";
@@ -52,7 +52,7 @@ function buffer(db: SqlDatabase): BufferState {
 }
 
 function publicTool(tool: string): string {
-  return tool === "__request__" ? tool : PUBLIC_MCP_TOOL_NAMES.includes(tool as (typeof PUBLIC_MCP_TOOL_NAMES)[number]) ? tool : "__unknown__";
+  return tool === "__request__" ? tool : EXECUTABLE_MCP_TOOL_NAMES.includes(tool as (typeof EXECUTABLE_MCP_TOOL_NAMES)[number]) ? tool : "__unknown__";
 }
 
 function mergeRow(rows: Map<string, McpUsageRow>, hour: number, route: string, tool: string, increments: Partial<Record<Counter, number>>): void {

@@ -5,6 +5,8 @@ import { MAX_SCHEDULE_GAP_HOURS, PRESS_COLLECTION_HOURS_KST, PRESS_SCHEDULE_LABE
 import { readRelayPcs, readRelayHeartbeats } from "./relay.ts";
 import { COLLECTION_TARGET } from "./operations.ts";
 import { readSchedulerSignal } from "./tick.ts";
+import { readPressSlotStatus } from "./jobs.ts";
+import { readPressQueueStatus } from "./queue-status.ts";
 
 // 수집 범위·성공률을 분모와 함께 보여 준다. 등록 기관 수를 수집 성공률로 쓰지 않는다.
 
@@ -112,19 +114,7 @@ export async function readPressCoverage(db: SqlDatabase, nowSeconds: number) {
   const slotAt = previousCollectionSlot(nowSeconds);
   const held = (row: SourceStatusRow) => Boolean(row.collection_hold) && !(row.hold_until !== null && row.hold_until <= nowSeconds);
   // 회차별 현황(작업지시서 11-F): 24시간 안에 한 번 성공했다고 네 회차를 모두 정상으로 보지 않는다.
-  const slotStatus = (via: string) => {
-    const group = active.filter((row) => (row.collect_via ?? "server") === via);
-    const counts = { sources: group.length, succeeded: 0, failed: 0, held: 0, running: 0, not_run: 0 };
-    for (const row of group) {
-      if (row.lease_token && (row.lease_expires_at ?? 0) > nowSeconds) counts.running++;
-      else if (held(row)) counts.held++;
-      else if ((row.run_started_at ?? 0) >= slotAt && ["succeeded", "not_modified"].includes(row.run_status ?? "")) counts.succeeded++;
-      else if ((row.run_started_at ?? 0) >= slotAt && row.run_status === "failed") counts.failed++;
-      else if (row.lease_token && (row.lease_expires_at ?? 0) <= nowSeconds && (row.last_attempt_at ?? 0) >= slotAt) counts.failed++;
-      else counts.not_run++;
-    }
-    return { ...counts, completion: counts.running || counts.not_run ? "IN_PROGRESS" : counts.failed || counts.held ? "ERRORS_REMAIN" : "ALL_SUCCEEDED", basis: "현재 활성 대상과 최근 실제 시도 기준. 과거 회차의 고정 대상 원장은 아직 없습니다." };
-  };
+  const [slotStatus, queue] = await Promise.all([readPressSlotStatus(db, slotAt, nowSeconds), readPressQueueStatus(db, nowSeconds)]);
   const dueServer = active.filter((row) => (row.collect_via ?? "server") === "server" && (row.next_due_at ?? 0) <= nowSeconds && !held(row));
   const dueRelay = active.filter((row) => row.collect_via === "relay" && (row.next_due_at ?? 0) <= nowSeconds && !held(row));
   const oldest = (group: readonly SourceStatusRow[]) => group.length ? Math.min(...group.map((row) => row.next_due_at ?? 0)) : null;
@@ -182,7 +172,8 @@ export async function readPressCoverage(db: SqlDatabase, nowSeconds: number) {
     },
     schedule: {
       mode: scheduler.mode, slots_kst: PRESS_COLLECTION_HOURS_KST.map((hour) => `${String(hour).padStart(2, "0")}:00`), label: PRESS_SCHEDULE_LABEL, note: SCHEDULE_NOTE,
-      current_slot: { slot_at: isoOf(slotAt), server: slotStatus("server"), relay: slotStatus("relay") },
+      current_slot: { slot_at: isoOf(slotAt), ...slotStatus },
+      queue,
       scheduler,
     },
     sources: rows.map((row) => ({

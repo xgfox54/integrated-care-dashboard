@@ -1,0 +1,74 @@
+/* 사이트용 자동 테마. 제주 토큰 정본 사본과 브랜드 원색은 보존함. */
+:root {
+  color-scheme: light;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --jeju-bg: oklch(from var(--jeju-inverse-surface) calc(l * 0.7) c h);
+    --jeju-surface: var(--jeju-inverse-surface);
+    --jeju-surface-inset: color-mix(in srgb, var(--jeju-inverse-surface) 94%, var(--jeju-inverse-text));
+    --jeju-control-bg: color-mix(in srgb, var(--jeju-inverse-surface) 90%, var(--jeju-inverse-text));
+    --jeju-row-hover: color-mix(in srgb, var(--jeju-inverse-surface) 86%, var(--jeju-inverse-text));
+
+    --jeju-text-strong: var(--jeju-inverse-text);
+    --jeju-text: color-mix(in srgb, var(--jeju-inverse-text) 94%, var(--jeju-inverse-surface));
+    --jeju-text-body: color-mix(in srgb, var(--jeju-inverse-text) 88%, var(--jeju-inverse-surface));
+    --jeju-text-muted: color-mix(in srgb, var(--jeju-inverse-text) 76%, var(--jeju-inverse-surface));
+    --jeju-text-subtle: color-mix(in srgb, var(--jeju-inverse-text) 70%, var(--jeju-inverse-surface));
+    --jeju-text-faint: color-mix(in srgb, var(--jeju-inverse-text) 52%, var(--jeju-inverse-surface));
+
+    --jeju-border: color-mix(in srgb, var(--jeju-inverse-surface) 65%, var(--jeju-inverse-text));
+    --jeju-border-strong: color-mix(in srgb, var(--jeju-inverse-surface) 52%, var(--jeju-inverse-text));
+    --jeju-shell-border: var(--jeju-border);
+    --jeju-hairline: color-mix(in srgb, var(--jeju-inverse-surface) 75%, var(--jeju-inverse-text));
+
+    --jeju-primary: color-mix(in srgb, var(--jeju-blue) 40%, var(--jeju-inverse-text));
+    --jeju-blue-dark: color-mix(in srgb, var(--jeju-blue) 35%, var(--jeju-inverse-text));
+    --jeju-blue-deep: color-mix(in srgb, var(--jeju-blue) 25%, var(--jeju-inverse-text));
+    --jeju-blue-light: color-mix(in srgb, var(--jeju-blue) 18%, var(--jeju-inverse-surface));
+    --jeju-blue-light-strong: color-mix(in srgb, var(--jeju-blue) 32%, var(--jeju-inverse-surface));
+
+    --jeju-green-dark: color-mix(in srgb, var(--jeju-green) 40%, var(--jeju-inverse-text));
+    --jeju-green-deep: color-mix(in srgb, var(--jeju-green) 25%, var(--jeju-inverse-text));
+    --jeju-green-light: color-mix(in srgb, var(--jeju-green) 16%, var(--jeju-inverse-surface));
+    --jeju-green-light-strong: color-mix(in srgb, var(--jeju-green) 30%, var(--jeju-inverse-surface));
+
+    --jeju-orange-dark: color-mix(in srgb, var(--jeju-orange) 40%, var(--jeju-inverse-text));
+    --jeju-orange-deep: color-mix(in srgb, var(--jeju-orange) 25%, var(--jeju-inverse-text));
+    --jeju-orange-light: color-mix(in srgb, var(--jeju-orange) 16%, var(--jeju-inverse-surface));
+    --jeju-orange-light-strong: color-mix(in srgb, var(--jeju-orange) 30%, var(--jeju-inverse-surface));
+
+    --jeju-success: var(--jeju-green-dark);
+    --jeju-success-tint: var(--jeju-green-light);
+    --jeju-info: var(--jeju-primary);
+    --jeju-info-tint: var(--jeju-blue-light);
+    --jeju-warning: var(--jeju-orange-dark);
+    --jeju-warning-tint: var(--jeju-orange-light);
+    --jeju-danger: oklch(from var(--jeju-orange) 0.8 0.12 25);
+    --jeju-danger-tint: color-mix(in srgb, var(--jeju-danger) 16%, var(--jeju-inverse-surface));
+
+    --jeju-on-fill: var(--jeju-inverse-surface);
+    --jeju-disabled-bg: var(--jeju-surface-inset);
+    --jeju-disabled-border: var(--jeju-border);
+    --jeju-disabled-text: var(--jeju-text-subtle);
+    --jeju-readonly-bg: var(--jeju-surface-inset);
+    --jeju-focus-ring: 0 0 0 3px var(--jeju-primary);
+    --jeju-shadow: 0 1px 2px color-mix(in srgb, var(--jeju-bg) 60%, transparent);
+    --jeju-shadow-primary: 0 4px 12px color-mix(in srgb, var(--jeju-blue) 24%, transparent);
+    --jeju-shadow-pop: 0 14px 34px color-mix(in srgb, var(--jeju-bg) 80%, transparent);
+    --jeju-overlay: color-mix(in srgb, var(--jeju-bg) 80%, transparent);
+  }
+}
+
+@media screen and (prefers-color-scheme: dark) and (prefers-contrast: more) {
+  :root {
+    --jeju-text-muted: var(--jeju-text);
+    --jeju-text-subtle: var(--jeju-text-body);
+    --jeju-border: color-mix(in srgb, var(--jeju-inverse-text) 65%, var(--jeju-inverse-surface));
+    --jeju-border-strong: var(--jeju-text-muted);
+    --jeju-focus-ring: 0 0 0 4px var(--jeju-primary);
+  }
+}

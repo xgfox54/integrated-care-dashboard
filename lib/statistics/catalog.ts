@@ -1,21 +1,23 @@
 import { reviewStatisticsSource } from "./source-review.ts";
+import { totalPopulationDataset } from "./total-population.ts";
 import { OFFICIAL_REPORT_DATASETS } from "./official-reports.ts";
 import { CITY_POPULATION_CHECKED_AT, CITY_POPULATION_DATASET, CITY_POPULATION_SOURCE } from "./city-population.ts";
 import { STATISTICS_REFRESH_POLICY } from "./policy.ts";
 import { APPROVED_STATISTICS, STATISTICS_REVISION, VERIFIED_AT, VERIFIED_DATASETS } from "./verified-data.ts";
 import { POPULATION_DATASETS, POPULATION_REGION_COUNT, POPULATION_REVISION, POPULATION_SOURCE, POPULATION_VERIFIED_AT } from "./population.ts";
 import { KOSIS_CHECKED_AT, KOSIS_DATASETS } from "./kosis.ts";
+import { KOSIS_WELFARE_CHECKED_AT, KOSIS_WELFARE_DIRECTORY, KOSIS_WELFARE_URL } from "./kosis-welfare-directory.ts";
 import { INDEX_ADDITIONAL_DATASETS, INDEX_API_SERIES, INDEX_CHECKED_AT } from "./index-verified-data.ts";
 import type { CatalogKind, StatisticsCatalogItem, StatisticsDataset, StatisticsResult } from "./types.ts";
 
-const CATALOG_REVISION = "welfare-statistics-menu-2026-10-12-city";
-const DIRECTORY_CHECKED_AT = [VERIFIED_AT, POPULATION_VERIFIED_AT, INDEX_CHECKED_AT].sort().at(-1)!;
+const CATALOG_REVISION = "welfare-statistics-menu-2026-10-16-kosis-welfare";
+const DIRECTORY_CHECKED_AT = [VERIFIED_AT, POPULATION_VERIFIED_AT, INDEX_CHECKED_AT, KOSIS_WELFARE_CHECKED_AT].sort().at(-1)!;
 export const STATISTICS_SOURCES = [
   { id: "mohw-approved", title: "보건복지부 승인통계", url: "https://www.mohw.go.kr/statList.es?mid=a10406010100&stts_nmss=ALL", scope: "현행 승인통계 37종의 통계명·소관부서·작성방법·공표일정", checked_at: VERIFIED_AT },
   { id: "mohw-indicators", title: "보건복지부 e-나라지표", url: "https://www.mohw.go.kr/menu.es?mid=a10406020000", scope: "보건·복지·기타 지표 34종과 확인된 공개 통계표", checked_at: VERIFIED_AT },
   { id: "mohw-portals", title: "보건복지부 관련 주요 사이트", url: "https://www.mohw.go.kr/menu.es?mid=a10406030000", scope: "통계 관련 기관·서비스 11곳의 원문 안내", checked_at: VERIFIED_AT },
   POPULATION_SOURCE,
-  { id: "kosis-tables", title: "KOSIS 국가통계포털", url: "https://kosis.kr", scope: `보건복지부 승인통계 ${KOSIS_DATASETS.length}종의 공개 통계표 수치`, checked_at: KOSIS_CHECKED_AT },
+  { id: "kosis-tables", title: "KOSIS 국가통계포털", url: KOSIS_WELFARE_URL, scope: `복지 주제 ${KOSIS_WELFARE_DIRECTORY.length}종 목록 · 보건·복지 ${KOSIS_DATASETS.length}종의 대표 공개 통계표 수치`, checked_at: KOSIS_CHECKED_AT },
   { id: "index-api", title: "지표누리 Open API", url: "https://www.index.go.kr/unity/openApi/openApiMenual.do", scope: "복지·보건 지표의 연결 통계표 · 등록한 인증키로 서버에서 매일 확인", checked_at: INDEX_CHECKED_AT },
 ] as const;
 
@@ -70,7 +72,8 @@ const PORTALS = [
   ["ssc", "사회보장위원회", "https://www.ssc.go.kr", "사회보장 통계와 정책 자료"],
 ] as const;
 
-export const STATISTICS_DATASETS: readonly StatisticsDataset[] = [...(VERIFIED_DATASETS as readonly StatisticsDataset[]), ...INDEX_ADDITIONAL_DATASETS, ...POPULATION_DATASETS, ...KOSIS_DATASETS, ...OFFICIAL_REPORT_DATASETS, CITY_POPULATION_DATASET];
+const REGIONAL_POPULATION_DATASETS = [totalPopulationDataset(POPULATION_DATASETS[0]), ...POPULATION_DATASETS];
+export const STATISTICS_DATASETS: readonly StatisticsDataset[] = [...(VERIFIED_DATASETS as readonly StatisticsDataset[]), ...INDEX_ADDITIONAL_DATASETS, ...REGIONAL_POPULATION_DATASETS, ...KOSIS_DATASETS, ...OFFICIAL_REPORT_DATASETS, CITY_POPULATION_DATASET];
 function normalized(value: string): string { return value.normalize("NFKC").replace(/[\s·ㆍ()\[\]/_-]+/g, "").toLowerCase(); }
 function categoryOf(value: string): string { return value === "사회" ? "사회보장" : /보건|건강|질병/.test(value) ? "보건·의료" : value; }
 
@@ -93,11 +96,19 @@ export function statisticsCatalog(): StatisticsCatalogItem[] {
         description: row.department + " · " + row.method + " · 공표예정 " + row.publication_schedule,
         directory_url: STATISTICS_SOURCES[0].url, data_available: Boolean(dataset), dataset_id: dataset?.id ?? null, checked_at: VERIFIED_AT };
     }),
-    ...POPULATION_DATASETS.map((dataset): StatisticsCatalogItem => ({
+    ...REGIONAL_POPULATION_DATASETS.map((dataset): StatisticsCatalogItem => ({
       id: dataset.id, kind: "population", title: dataset.title, category: dataset.category, description: dataset.description,
       source_url: dataset.source_url, directory_url: POPULATION_SOURCE.url,
       data_available: true, dataset_id: dataset.id, checked_at: POPULATION_VERIFIED_AT,
     })),
+    ...KOSIS_WELFARE_DIRECTORY.map(([listId, title, category, datasetId]): StatisticsCatalogItem => {
+      const dataset = KOSIS_DATASETS.find(row => row.id === datasetId);
+      const directoryUrl = `https://kosis.kr/statisticsList/statisticsListIndex.do?parentId=${listId}.2&vwcd=MT_ZTITLE&menuId=M_01_01`;
+      return { id: "kosis-directory:" + listId, kind: "kosis", title, category, data_provider: "kosis",
+        description: dataset ? "KOSIS · " + dataset.description : "KOSIS 복지 주제에 수록된 파일 제공 통계입니다. 원문에서 조사연도별 파일을 확인하세요. 수치표는 이 사이트에 연결하지 않았습니다.",
+        source_url: dataset?.source_url ?? directoryUrl, directory_url: directoryUrl,
+        data_available: Boolean(dataset), dataset_id: dataset?.id ?? null, checked_at: KOSIS_WELFARE_CHECKED_AT };
+    }),
     ...PORTALS.map(([id, title, url, description]): StatisticsCatalogItem => ({ id: "portal:" + id, kind: "portal", title, category: "통계기관", description,
       source_url: url, directory_url: STATISTICS_SOURCES[2].url, data_available: false, dataset_id: null, checked_at: VERIFIED_AT })),
     { id: CITY_POPULATION_DATASET.id, kind: "population", title: CITY_POPULATION_DATASET.title,
@@ -118,7 +129,7 @@ export function searchStatistics(options: { query?: string; kind?: CatalogKind; 
   rows.sort((a,b) => Number(b.data_available) - Number(a.data_available) || Number(exact(b)) - Number(exact(a)) || relevance(b) - relevance(a) || a.title.localeCompare(b.title, "ko"));
   const offset = Math.max(0, options.offset ?? 0), limit = Math.min(100, Math.max(1, options.limit ?? 30));
   return { revision: CATALOG_REVISION, checked_at: DIRECTORY_CHECKED_AT, total: rows.length, items: rows.slice(offset, offset + limit), next_offset: offset + limit < rows.length ? offset + limit : null,
-    coverage: { scope: "mohw_statistics_directory_and_mois_population", complete: true, gaps: ["목록 수록과 수치 연결은 다릅니다. data_available=false는 원문 안내만 제공하며 0을 뜻하지 않습니다.", "공표일정은 관측연도나 실제 공표 완료일이 아닙니다.", "기존 ID 호환을 위해 API 목록은 출처별 항목을 유지합니다. 웹 통합 목록은 같은 통계의 중복 출처를 묶어 보여줍니다."] } };
+    coverage: { scope: "mohw_kosis_welfare_and_mois_population", complete: true, gaps: ["목록 수록과 수치 연결은 다릅니다. data_available=false는 원문 안내만 제공하며 0을 뜻하지 않습니다.", "KOSIS 복지 주제 31종의 목록과 연결한 대표 표만 제공하며 KOSIS 전체 통계표를 포함하지 않습니다.", "공표일정은 관측연도나 실제 공표 완료일이 아닙니다.", "기존 ID 호환을 위해 API 목록은 출처별 항목을 유지합니다. 웹 통합 목록은 같은 통계의 중복 출처를 묶어 보여줍니다."] } };
 }
 
 function rawVerifiedStatistics(id: string): StatisticsResult | null {
@@ -138,7 +149,7 @@ function rawVerifiedStatistics(id: string): StatisticsResult | null {
     coverage: { scope: "kosis_public_table_snapshot", complete: false, gaps: [
       "KOSIS 국가통계포털의 공개 통계표 화면에서 확인한 값입니다. 승인통계마다 대표 통계표를 연결했으며 같은 통계의 다른 표는 원문에서 확인하세요.",
       ...(dataset.kosis.tables.some(table => table.national_only) ? ["전국 합계만 제공합니다. 시·도별 값은 KOSIS 원문 표에서 확인하세요."] : []),
-      "KOSIS 수치는 자동 갱신 대상이 아닙니다. 새 공표 여부는 원문 표의 자료갱신일을 확인하세요."] },
+      "mode=verified는 배포 확인본입니다. 기본 조회는 KOSIS API로 검증한 최신 저장 자료와 자동 확인 상태를 제공합니다."] },
   };
   if (dataset.index_api) return { dataset, revision: "index-confirmed:" + dataset.table_code + ":2026-10-11", verified_at: INDEX_CHECKED_AT, checked_at: INDEX_CHECKED_AT,
     state: "VERIFIED_SNAPSHOT", warnings: [dataset.note], refresh_error: null, available_periods: dataset.periods,
@@ -149,15 +160,16 @@ function rawVerifiedStatistics(id: string): StatisticsResult | null {
 
 export function statisticsStatus() {
   return { revision: CATALOG_REVISION, status: "PARTIAL", directory_checked_at: DIRECTORY_CHECKED_AT, approved_statistics: APPROVED_STATISTICS.length, indicators: statisticsCatalog().filter(item => item.kind === "indicator").length, portals: PORTALS.length,
-    regional_population_tables: POPULATION_DATASETS.length, population_regions: POPULATION_REGION_COUNT, kosis_tables: KOSIS_DATASETS.length, kosis_checked_at: KOSIS_CHECKED_AT,
+    regional_population_tables: REGIONAL_POPULATION_DATASETS.length, population_regions: POPULATION_REGION_COUNT, kosis_tables: KOSIS_DATASETS.length, kosis_checked_at: KOSIS_CHECKED_AT,
+    kosis_welfare_statistics: KOSIS_WELFARE_DIRECTORY.length, kosis_welfare_connected: KOSIS_WELFARE_DIRECTORY.filter(row => row[3] !== null).length,
     connected_tables: STATISTICS_DATASETS.length, connected_series: STATISTICS_DATASETS.reduce((sum,d) => sum + d.series.length, 0),
     verified_observations: STATISTICS_DATASETS.reduce((sum,d) => sum + d.series.reduce((n,s) => n + s.points.length, 0), 0),
     datasets: STATISTICS_DATASETS.map(d => ({ id: d.id, title: d.title, periods: d.periods, table_code: d.table_code, source_url: d.source_url,
-      ...(d.population ? { population: d.population } : {}), refresh_mode: d.kosis || d.official_report ? "verified_snapshot" : "daily_background" })),
+      ...(d.population ? { population: d.population } : {}), refresh_mode: d.official_report ? "verified_snapshot" : "daily_background" })),
     refresh_policy: STATISTICS_REFRESH_POLICY,
     index_api_tables: Object.keys(INDEX_API_SERIES).length,
-    access: "지표누리 API는 관리자에 등록한 인증키를 서버에서 사용합니다. 공개 응답에는 키를 포함하지 않습니다. KOSIS와 주민등록인구는 공식 공개 통계표 확인본을 제공합니다.",
-    warnings: ["목록의 지표·승인통계에 대표 수치를 연결했으며 원문 전체 표를 제공하는 것은 아닙니다.", "승인통계 37종의 공표일정은 관측연도가 아닙니다.", "population:*의 연령별 인구는 전국·16개 광역시·도까지 제공합니다. 별도 city:seogwipo-population은 서귀포시 월말 총인구 확인본이며 시·군·구 연령별 인구는 미수록입니다.", "KOSIS 통계표 수치는 확인일 기준 저장본이며 자동 갱신 대상이 아닙니다.", "일반회계 예산 지표 목록은 기존 복지예산 데이터와 별개이며 합산하지 않습니다."] };
+    access: "지표누리·KOSIS API는 관리자에 등록한 인증키를 서버에서 사용합니다. 공개 응답에는 키를 포함하지 않습니다. 주민등록인구는 공식 공개 통계표를 확인합니다.",
+    warnings: ["목록의 지표·승인통계에 대표 수치를 연결했으며 원문 전체 표를 제공하는 것은 아닙니다.", "승인통계 37종의 공표일정은 관측연도가 아닙니다.", "population:*의 연령별 인구는 전국·16개 광역시·도까지 제공합니다. 별도 city:seogwipo-population은 서귀포시 월말 총인구 확인본이며 시·군·구 연령별 인구는 미수록입니다.", "KOSIS API 확인 실패 시 마지막 정상 수치를 유지합니다. 파일 통계는 원문 안내만 제공합니다.", "일반회계 예산 지표 목록은 기존 복지예산 데이터와 별개이며 합산하지 않습니다."] };
 }
 
 export function verifiedStatistics(id: string): StatisticsResult | null {

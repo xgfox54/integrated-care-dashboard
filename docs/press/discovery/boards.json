@@ -1314,8 +1314,8 @@
         "idParam": "bcIdx",
         "count": 11,
         "profile": {
-          "link": "View\\.do[^\"']*?[?&](?:amp;)?bcIdx=(?<id>[\\w-]+)",
-          "url": "https://www.seocho.go.kr/site/seocho/ex/bbs/View.do?cbIdx=57&bcIdx={id}",
+          "link": "View\\.do(?=[^\"']*[?&](?:amp;)?cbIdx=61(?:&|[\"']|$))[^\"']*?[?&](?:amp;)?bcIdx=(?<id>[\\w-]+)",
+          "url": "https://www.seocho.go.kr/site/seocho/ex/bbs/View.do?cbIdx=61&bcIdx={id}",
           "title": "text"
         },
         "samples": [

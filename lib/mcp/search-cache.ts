@@ -72,6 +72,33 @@ export function searchCacheInstanceId(instance: SearchCacheInstance = workerInst
   return instance.id;
 }
 
+const CACHE_QUERY_TAILS = /(?:\s+(?:좀|자세히|정확히|구체적으로|간단히))*\s+(?:알려\s*주세요|알려\s*줘요|알려\s*줘|알려\s*주실래요|설명해\s*주세요|설명해\s*줘|정리해\s*주세요|정리해\s*줘|확인해\s*주세요|확인해\s*줘|안내해\s*주세요|안내해\s*줘|찾아\s*주세요|찾아\s*줘|검색해\s*주세요|검색해\s*줘|부탁합니다|부탁해요|궁금합니다|궁금해요|어떻게\s*되나요|어떻게\s*하나요|무엇인가요|뭔가요|인가요|나요|까요)$/u;
+const CACHE_COMPOUND_INTENTS: readonly (readonly [RegExp, string])[] = [
+  [/신청\s*방법/g, "신청방법"],
+  [/신청\s*절차/g, "신청절차"],
+  [/신청\s*대상/g, "신청대상"],
+  [/신청\s*자격/g, "신청자격"],
+  [/신청\s*조건/g, "신청조건"],
+  [/신청\s*기간/g, "신청기간"],
+  [/신청\s*서류/g, "신청서류"],
+  [/구비\s*서류/g, "구비서류"],
+  [/제출\s*서류/g, "제출서류"],
+  [/지원\s*대상/g, "지원대상"],
+  [/지원\s*금액/g, "지원금액"],
+  [/지원\s*내용/g, "지원내용"],
+  [/지원\s*기준/g, "지원기준"],
+  [/선정\s*기준/g, "선정기준"],
+  [/본인\s*부담금/g, "본인부담금"],
+];
+
+export function normalizeSearchCacheQuery(query: string): string {
+  let normalized = query.normalize("NFKC").replace(/[?？!.。~'"“”‘’]+/g, " ").replace(/\s+/g, " ").trim();
+  const stripped = normalized.replace(CACHE_QUERY_TAILS, "").trim().replace(/(?<=[가-힣]{2})(?:은|는|이|가|을|를)$/, "").trim();
+  if (stripped.length >= 2) normalized = stripped;
+  for (const [pattern, replacement] of CACHE_COMPOUND_INTENTS) normalized = normalized.replace(pattern, replacement);
+  return normalized.replace(/\s+/g, " ").trim();
+}
+
 export async function searchCacheKey(parts: readonly unknown[]): Promise<SearchCacheKey> {
   const material = JSON.stringify(parts);
   const digest = async (label: string) => new Uint8Array(await crypto.subtle.digest("SHA-256", encoder.encode("mcp-search-cache:" + label + ":v2\u0000" + material)));

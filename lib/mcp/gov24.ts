@@ -113,8 +113,10 @@ export async function gov24DatasetState(db: SqlDatabase) {
 }
 
 async function readGov24DatasetState(db: SqlDatabase) {
-  const row = await db.prepare("SELECT COUNT(*) AS services, SUM(CASE WHEN detail_status = 'COLLECTED' AND COALESCE(detail_modified_at, '') = COALESCE(modified_at, '') THEN 1 ELSE 0 END) AS current_details, MAX(last_seen_at) AS last_collected, MAX(detail_fetched_at) AS last_detail, MAX(modified_at) AS last_modified, MAX(list_run_id) AS list_run FROM gov24_service WHERE presence = 'PRESENT'").first<Record<string, string | number | null>>();
-  const change = await db.prepare("SELECT COUNT(*) AS changes, MAX(changed_at) AS watermark FROM ext_record_change WHERE dataset_key IN ('mois.gov24_list','mois.gov24_detail')").first<Record<string, number | null>>();
+  const [row, change] = await Promise.all([
+    db.prepare("SELECT COUNT(*) AS services, SUM(CASE WHEN detail_status = 'COLLECTED' AND COALESCE(detail_modified_at, '') = COALESCE(modified_at, '') THEN 1 ELSE 0 END) AS current_details, MAX(last_seen_at) AS last_collected, MAX(detail_fetched_at) AS last_detail, MAX(modified_at) AS last_modified, MAX(list_run_id) AS list_run FROM gov24_service WHERE presence = 'PRESENT'").first<Record<string, string | number | null>>(),
+    db.prepare("SELECT COUNT(*) AS changes, MAX(changed_at) AS watermark FROM ext_record_change WHERE dataset_key IN ('mois.gov24_list','mois.gov24_detail')").first<Record<string, number | null>>(),
+  ]);
   return { revision: "gov24:" + fingerprint([row, change, GOV24_DETAIL_HYDRATION_VERSION]), status: row?.services ? "AVAILABLE" : "NOT_COLLECTED", services: Number(row?.services ?? 0), current_details: Number(row?.current_details ?? 0), latest_collection_at: row?.last_collected ? new Date(Number(row.last_collected) * 1000).toISOString() : null, snapshot_policy: "CURRENT_STORED_DATA_NOT_RELEASE_PINNED", note: "정부24는 독립 갱신 자료입니다. 회귀시험은 공개본 ID와 이 revision이 모두 같은지 확인해야 합니다. 상세 건수는 목록 건수와 다릅니다." };
 }
 
@@ -153,7 +155,11 @@ export function welfareRelevance(name: string, plan: SearchPlan): number {
   if (plan.excluded_programs.some((program) => policyNameKey(name) === policyNameKey(program))) return -100;
   const policyKey = policyNameKey(name);
   const exact = queries.some((query) => title === query || policyKey && policyKey === policyNameKey(query));
-  let score = exact ? 120 : queries.some((query) => title.startsWith(query)) ? 105 : queries.some((query) => title.includes(query)) ? 90 : 20;
+  const allTokensMatched = !exact && plan.search_queries.some((raw) => {
+    const words = raw.split(/\s+/).map(compactWelfareText).filter((word) => word.length >= 2);
+    return words.length >= 2 && words.every((word) => title.includes(word));
+  });
+  let score = exact ? 120 : queries.some((query) => title.startsWith(query)) ? 105 : queries.some((query) => title.includes(query)) ? 90 : allTokensMatched ? 88 : 20;
   const notes = welfareCandidateNotes(name, plan);
   if (notes.length) score -= notes.includes("SYSTEM_NAME_OVERLAP_REVIEW_REQUIRED") ? 60 : 40;
   if (!notes.length && explicitTitleDetail(name, plan)) score += 48;

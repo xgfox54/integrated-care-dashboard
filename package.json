@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=22.13.0"
+    "node": "^22.23.4 || ^24.22.1 || ^26.12.1"
   },
   "scripts": {
     "install:ci": "node scripts/install-ci.mjs",
     "dev": "node scripts/run-framework.mjs dev",
-    "prebuild": "node scripts/manuals/verify-public-corpus.mjs",
+    "prebuild": "node scripts/build-budget-department-labels.mjs && node scripts/manuals/verify-public-corpus.mjs",
     "build": "node scripts/run-framework.mjs build",
     "postbuild": "node scripts/manuals/verify-public-corpus.mjs --built",
     "start": "node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --ip 127.0.0.1 --inspector-port 0",
@@ -55,6 +55,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "fast-glob": "file:./shims/fast-glob",
     "@cloudflare/vite-plugin": "1.63.1",
     "@cloudflare/workers-types": "5.20261006.1",
     "@tailwindcss/postcss": "4.2.1",
@@ -66,7 +67,6 @@
     "@vitejs/plugin-rsc": "0.5.35",
     "eslint": "9.39.4",
     "eslint-config-next": "16.3.8",
-    "fast-glob": "file:./shims/fast-glob",
     "react-doctor": "0.9.17",
     "react-grab": "0.2.0",
     "react-scan": "0.5.7",
@@ -80,6 +80,7 @@
   },
   "overrides": {
     "fast-glob": "$fast-glob",
+    "markdown-it": "14.3.3",
     "undici": "7.29.1",
     "source-map-js": "1.2.2"
   },

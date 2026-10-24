@@ -275,14 +275,6 @@
   },
   {
    "item": "WLF00003912",
-   "key": "34",
-   "line": 7618,
-   "decision": "EXCLUDE",
-   "name": "공영장례 지원",
-   "line_sha256": "98f6892ad5e0c944"
-  },
-  {
-   "item": "WLF00003912",
    "key": "29",
    "line": 8118,
    "decision": "EXCLUDE",
@@ -1744,10 +1736,15 @@
   {
    "item": "just-give-food",
    "key": "24",
-   "line": 17,
+   "line": 12,
    "decision": "DIRECT",
    "name": "그냥드림",
-   "line_sha256": "ca6572fbaba6f37b"
+   "line_sha256": "ca6572fbaba6f37b",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 17,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "language-development",
@@ -2376,13 +2373,19 @@
   {
    "item": "unclaimed-funeral",
    "key": "34",
-   "line": 7484,
+   "line": 6929,
    "decision": "DIRECT",
    "to_key": "34",
-   "to_line": 7482,
+   "to_line": 6927,
    "name": "무연고 사망자 장례지원",
    "line_sha256": "d5a6537c0a8f6ec2",
-   "to_line_sha256": "5d3ebe532a59637b"
+   "to_line_sha256": "5d3ebe532a59637b",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 7484,
+    "to_line": 7482,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "unclaimed-funeral",
@@ -13198,26 +13201,28 @@
   {
    "item": "WLF00000412",
    "key": "24",
-   "line": 101,
+   "line": 136,
    "decision": "EXCLUDE",
    "name": "양구군 범죄피해자지원",
-   "line_sha256": "ed9fce241f53c2b2"
-  },
-  {
-   "item": "WLF00000788",
-   "key": "24",
-   "line": 309,
-   "decision": "EXCLUDE",
-   "name": "노숙인 지원",
-   "line_sha256": "69838e21d15a3f17"
+   "line_sha256": "ed9fce241f53c2b2",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 101,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00003464",
    "key": "24",
-   "line": 527,
+   "line": 669,
    "decision": "EXCLUDE",
    "name": "취약계층 긴급지원",
-   "line_sha256": "6ddbf29fa10cd065"
+   "line_sha256": "6ddbf29fa10cd065",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 527,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00006237",
@@ -16463,393 +16468,638 @@
   {
    "item": "WLF00002866",
    "key": "34",
-   "line": 196,
+   "line": 176,
    "decision": "EXCLUDE",
    "name": "장사등에 관한 지원",
-   "line_sha256": "524413de82d2d6b4"
+   "line_sha256": "524413de82d2d6b4",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 196,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00000798",
    "key": "34",
-   "line": 7156,
+   "line": 6593,
    "decision": "DIRECT",
    "name": "무연고 사망",
    "to_key": "34",
-   "to_line": 7482,
+   "to_line": 6927,
    "line_sha256": "5d3ebe532a59637b",
-   "to_line_sha256": "5d3ebe532a59637b"
+   "to_line_sha256": "5d3ebe532a59637b",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 7156,
+    "to_line": 7482,
+    "basis": "same_line_fingerprint",
+    "aligned_to_regenerated_link": true
+   }
   },
   {
    "item": "WLF00002448",
    "key": "34",
-   "line": 7156,
+   "line": 6593,
    "decision": "DIRECT",
    "name": "무연고 사망자 지원",
    "to_key": "34",
-   "to_line": 7482,
+   "to_line": 6927,
    "line_sha256": "5d3ebe532a59637b",
-   "to_line_sha256": "5d3ebe532a59637b"
+   "to_line_sha256": "5d3ebe532a59637b",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 7156,
+    "to_line": 7482,
+    "basis": "same_line_fingerprint",
+    "aligned_to_regenerated_link": true
+   }
   },
   {
    "item": "WLF00002799",
    "key": "34",
-   "line": 7156,
+   "line": 6593,
    "decision": "DIRECT",
    "name": "무연고 사망자 지원",
    "to_key": "34",
-   "to_line": 7482,
+   "to_line": 6927,
    "line_sha256": "5d3ebe532a59637b",
-   "to_line_sha256": "5d3ebe532a59637b"
+   "to_line_sha256": "5d3ebe532a59637b",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 7156,
+    "to_line": 7482,
+    "basis": "same_line_fingerprint",
+    "aligned_to_regenerated_link": true
+   }
   },
   {
    "item": "WLF00002836",
    "key": "34",
-   "line": 7156,
+   "line": 6593,
    "decision": "DIRECT",
    "name": "무연고사망자 지원",
    "to_key": "34",
-   "to_line": 7482,
+   "to_line": 6927,
    "line_sha256": "5d3ebe532a59637b",
-   "to_line_sha256": "5d3ebe532a59637b"
+   "to_line_sha256": "5d3ebe532a59637b",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 7156,
+    "to_line": 7482,
+    "basis": "same_line_fingerprint",
+    "aligned_to_regenerated_link": true
+   }
   },
   {
    "item": "WLF00004484",
    "key": "34",
-   "line": 7156,
+   "line": 6593,
    "decision": "DIRECT",
    "name": "무연고 사망자 지원",
    "to_key": "34",
-   "to_line": 7482,
+   "to_line": 6927,
    "line_sha256": "5d3ebe532a59637b",
-   "to_line_sha256": "5d3ebe532a59637b"
+   "to_line_sha256": "5d3ebe532a59637b",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 7156,
+    "to_line": 7482,
+    "basis": "same_line_fingerprint",
+    "aligned_to_regenerated_link": true
+   }
   },
   {
    "item": "WLF00000487",
    "key": "34",
-   "line": 7548,
+   "line": 6994,
    "decision": "DIRECT",
    "name": "무연고 사망자 공영장례 지원",
-   "line_sha256": "a70229a9c2915c60"
+   "line_sha256": "a70229a9c2915c60",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 7548,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00005707",
    "key": "34",
-   "line": 7548,
+   "line": 6994,
    "decision": "DIRECT",
    "name": "무연고 사망자 공영장례 지원",
-   "line_sha256": "a70229a9c2915c60"
+   "line_sha256": "a70229a9c2915c60",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 7548,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00000131",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00000356",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00000521",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00001345",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "평택시 화장 장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00001545",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장 장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00001789",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00001810",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "영천시 화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00002015",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "의왕시 화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00002098",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00002131",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00002167",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00002256",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "고흥군 화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00002282",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00002289",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00002305",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원 사업",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00002310",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00002449",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00002895",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00003012",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00003091",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00003095",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00003144",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00003344",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00003443",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "구리시 화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00003510",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00003596",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00003672",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00003694",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00003780",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00003932",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "경산시 화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00004144",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00004427",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00004524",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00004599",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00004685",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "이천시 화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00005345",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "청도군 화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00005395",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00005917",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "오산시 화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00006421",
    "key": "34",
-   "line": 8117,
+   "line": 7656,
    "decision": "EXCLUDE",
    "name": "동두천시 화장장려금 지원",
-   "line_sha256": "f3e9c537dd649ddb"
+   "line_sha256": "f3e9c537dd649ddb",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 8117,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00000024",
@@ -16965,14 +17215,6 @@
    "decision": "EXCLUDE",
    "name": "산후 건강관리 지원사업",
    "line_sha256": "57eada857f5e87a3"
-  },
-  {
-   "item": "WLF00005303",
-   "key": "34",
-   "line": 7618,
-   "decision": "EXCLUDE",
-   "name": "구리시 공영장례 지원",
-   "line_sha256": "98f6892ad5e0c944"
   },
   {
    "item": "WLF00005305",
@@ -21327,12 +21569,17 @@
   {
    "item": "WLF00000868",
    "key": "34",
-   "line": 7605,
+   "line": 7119,
    "decision": "PENDING",
    "name": "무연고 사망자 처리",
    "line_sha256": "1c33f0bb047fe210",
    "issue": "M00048",
-   "reason": "원본의 관련 목록·일반 지침·연계 언급으로만 유지. 전체 저장 코퍼스의 사업명 및 별칭 검색에서 이 항목의 관할·사업범위에 맞는 직접 절은 이번 검수에서 확정하지 않았다. 외부 공식 매뉴얼 부재를 의미하지 않는다."
+   "reason": "원본의 관련 목록·일반 지침·연계 언급으로만 유지. 전체 저장 코퍼스의 사업명 및 별칭 검색에서 이 항목의 관할·사업범위에 맞는 직접 절은 이번 검수에서 확정하지 않았다. 외부 공식 매뉴얼 부재를 의미하지 않는다.",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 7605,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00000870",
@@ -21343,16 +21590,6 @@
    "line_sha256": "5b6f354492be3149",
    "issue": "M00049",
    "reason": "원본의 관련 목록·일반 지침·연계 언급으로만 유지. 전체 저장 코퍼스의 사업명 및 별칭 검색에서 이 항목의 관할·사업범위에 맞는 직접 절은 이번 검수에서 확정하지 않았다. 외부 공식 매뉴얼 부재를 의미하지 않는다."
-  },
-  {
-   "item": "WLF00000886",
-   "key": "34",
-   "line": 7615,
-   "decision": "EXCLUDE",
-   "name": "(파주시)무연고 사망자 장례비 지원",
-   "line_sha256": "23d0260e55e4f513",
-   "issue": "M00050",
-   "reason": "별빛버스 운영사업의 지원대상에서 경기도를 명시적으로 제외한다. 파주시 장례비 지원의 직접 근거로 사용할 수 없다."
   },
   {
    "item": "WLF00001121",
@@ -21389,26 +21626,6 @@
    "to_key": "17",
    "to_line": 10412,
    "to_line_sha256": "0df81cf4a4d20f83"
-  },
-  {
-   "item": "WLF00001288",
-   "key": "34",
-   "line": 7615,
-   "decision": "EXCLUDE",
-   "name": "무연고사망자 장례비",
-   "line_sha256": "23d0260e55e4f513",
-   "issue": "M00099",
-   "reason": "무연고 사망자에 대한 국가 별빛버스 장례의식 지원과 논산시 장례비 지원은 별도 사업이다."
-  },
-  {
-   "item": "WLF00001340",
-   "key": "34",
-   "line": 7618,
-   "decision": "EXCLUDE",
-   "name": "양산시 공영장례 지원",
-   "line_sha256": "98f6892ad5e0c944",
-   "issue": "M00101",
-   "reason": "장사지원센터 별빛버스 운영사업은 양산시 공영장례의 자체 지원조건을 설명하지 않는다."
   },
   {
    "item": "WLF00001475",
@@ -21523,12 +21740,17 @@
   {
    "item": "WLF00002745",
    "key": "34",
-   "line": 7605,
+   "line": 7119,
    "decision": "PENDING",
    "name": "무연고 사망자 처리",
    "line_sha256": "1c33f0bb047fe210",
    "issue": "M00177",
-   "reason": "원본의 관련 목록·일반 지침·연계 언급으로만 유지. 전체 저장 코퍼스의 사업명 및 별칭 검색에서 이 항목의 관할·사업범위에 맞는 직접 절은 이번 검수에서 확정하지 않았다. 외부 공식 매뉴얼 부재를 의미하지 않는다."
+   "reason": "원본의 관련 목록·일반 지침·연계 언급으로만 유지. 전체 저장 코퍼스의 사업명 및 별칭 검색에서 이 항목의 관할·사업범위에 맞는 직접 절은 이번 검수에서 확정하지 않았다. 외부 공식 매뉴얼 부재를 의미하지 않는다.",
+   "migrated": {
+    "from_revision": "sgw-bdef4e9c1609-v1",
+    "line": 7605,
+    "basis": "same_line_fingerprint"
+   }
   },
   {
    "item": "WLF00002760",
@@ -21671,16 +21893,6 @@
    "reason": "원본의 관련 목록·일반 지침·연계 언급으로만 유지. 전체 저장 코퍼스의 사업명 및 별칭 검색에서 이 항목의 관할·사업범위에 맞는 직접 절은 이번 검수에서 확정하지 않았다. 외부 공식 매뉴얼 부재를 의미하지 않는다."
   },
   {
-   "item": "WLF00004244",
-   "key": "34",
-   "line": 7618,
-   "decision": "EXCLUDE",
-   "name": "공영장례 지원",
-   "line_sha256": "98f6892ad5e0c944",
-   "issue": "M00273",
-   "reason": "장사지원센터 별빛버스 운영사업은 의령군 공영장례의 자체 지원조건을 설명하지 않는다."
-  },
-  {
    "item": "WLF00004313",
    "key": "12",
    "line": 18111,
@@ -21761,16 +21973,6 @@
    "reason": "서귀포시 원본과 연락처를 명시하여 참고 관계로 유지. 도내 병원 지원 문구만으로 제주시의 세부 집행기준을 확정하지 않는다."
   },
   {
-   "item": "WLF00004834",
-   "key": "34",
-   "line": 7618,
-   "decision": "EXCLUDE",
-   "name": "공영장례 지원",
-   "line_sha256": "98f6892ad5e0c944",
-   "issue": "M00327",
-   "reason": "장사지원센터 별빛버스 운영사업은 세종시 공영장례의 자체 지원조건을 설명하지 않는다."
-  },
-  {
    "item": "WLF00005114",
    "key": "12",
    "line": 15529,
@@ -21819,16 +22021,6 @@
    "line_sha256": "66bb0a1deaa799df",
    "issue": "M00458",
    "reason": "원본의 관련 목록·일반 지침·연계 언급으로만 유지. 전체 저장 코퍼스의 사업명 및 별칭 검색에서 이 항목의 관할·사업범위에 맞는 직접 절은 이번 검수에서 확정하지 않았다. 외부 공식 매뉴얼 부재를 의미하지 않는다."
-  },
-  {
-   "item": "WLF00006011",
-   "key": "34",
-   "line": 7615,
-   "decision": "EXCLUDE",
-   "name": "무연고 사망자 장례비 지원",
-   "line_sha256": "23d0260e55e4f513",
-   "issue": "M00462",
-   "reason": "장사지원센터 별빛버스 운영사업은 사천시 장례비 지원의 자체 지원조건을 설명하지 않는다."
   },
   {
    "item": "WLF00006291",
@@ -21949,8 +22141,259 @@
    "line_sha256": "5d2da63567c4c5b4",
    "issue": "M00789",
    "reason": "저장 원본 쪽에 해당 제도의 대상·지원내용 또는 직접 절차가 실려 있다. 원본 쪽의 실제 본문을 근거로 유지."
+  },
+  {
+   "item": "WLF00003912",
+   "key": "34",
+   "line": 7145,
+   "decision": "EXCLUDE",
+   "name": "공영장례 지원",
+   "line_sha256": "d2891a2ad7c5c21b",
+   "carried_from": {
+    "revision": "sgw-bdef4e9c1609-v1",
+    "line": 7618,
+    "basis": "retired_exclusion_same_item_and_manual"
+   }
+  },
+  {
+   "item": "WLF00000788",
+   "key": "24",
+   "line": 359,
+   "decision": "EXCLUDE",
+   "name": "노숙인 지원",
+   "line_sha256": "2c553ca54b796f9f",
+   "carried_from": {
+    "revision": "sgw-bdef4e9c1609-v1",
+    "line": 309,
+    "basis": "retired_exclusion_same_item_and_manual"
+   }
+  },
+  {
+   "item": "WLF00005303",
+   "key": "34",
+   "line": 7145,
+   "decision": "EXCLUDE",
+   "name": "구리시 공영장례 지원",
+   "line_sha256": "d2891a2ad7c5c21b",
+   "carried_from": {
+    "revision": "sgw-bdef4e9c1609-v1",
+    "line": 7618,
+    "basis": "retired_exclusion_same_item_and_manual"
+   }
+  },
+  {
+   "item": "WLF00000886",
+   "key": "34",
+   "line": 7134,
+   "decision": "EXCLUDE",
+   "name": "(파주시)무연고 사망자 장례비 지원",
+   "line_sha256": "f536c6c734b32dbf",
+   "issue": "M00050",
+   "reason": "별빛버스 운영사업의 지원대상에서 경기도를 명시적으로 제외한다. 파주시 장례비 지원의 직접 근거로 사용할 수 없다.",
+   "carried_from": {
+    "revision": "sgw-bdef4e9c1609-v1",
+    "line": 7615,
+    "basis": "retired_exclusion_same_item_and_manual"
+   }
+  },
+  {
+   "item": "WLF00001288",
+   "key": "34",
+   "line": 7134,
+   "decision": "EXCLUDE",
+   "name": "무연고사망자 장례비",
+   "line_sha256": "f536c6c734b32dbf",
+   "issue": "M00099",
+   "reason": "무연고 사망자에 대한 국가 별빛버스 장례의식 지원과 논산시 장례비 지원은 별도 사업이다.",
+   "carried_from": {
+    "revision": "sgw-bdef4e9c1609-v1",
+    "line": 7615,
+    "basis": "retired_exclusion_same_item_and_manual"
+   }
+  },
+  {
+   "item": "WLF00001340",
+   "key": "34",
+   "line": 7145,
+   "decision": "EXCLUDE",
+   "name": "양산시 공영장례 지원",
+   "line_sha256": "d2891a2ad7c5c21b",
+   "issue": "M00101",
+   "reason": "장사지원센터 별빛버스 운영사업은 양산시 공영장례의 자체 지원조건을 설명하지 않는다.",
+   "carried_from": {
+    "revision": "sgw-bdef4e9c1609-v1",
+    "line": 7618,
+    "basis": "retired_exclusion_same_item_and_manual"
+   }
+  },
+  {
+   "item": "WLF00004244",
+   "key": "34",
+   "line": 7145,
+   "decision": "EXCLUDE",
+   "name": "공영장례 지원",
+   "line_sha256": "d2891a2ad7c5c21b",
+   "issue": "M00273",
+   "reason": "장사지원센터 별빛버스 운영사업은 의령군 공영장례의 자체 지원조건을 설명하지 않는다.",
+   "carried_from": {
+    "revision": "sgw-bdef4e9c1609-v1",
+    "line": 7618,
+    "basis": "retired_exclusion_same_item_and_manual"
+   }
+  },
+  {
+   "item": "WLF00004834",
+   "key": "34",
+   "line": 7145,
+   "decision": "EXCLUDE",
+   "name": "공영장례 지원",
+   "line_sha256": "d2891a2ad7c5c21b",
+   "issue": "M00327",
+   "reason": "장사지원센터 별빛버스 운영사업은 세종시 공영장례의 자체 지원조건을 설명하지 않는다.",
+   "carried_from": {
+    "revision": "sgw-bdef4e9c1609-v1",
+    "line": 7618,
+    "basis": "retired_exclusion_same_item_and_manual"
+   }
+  },
+  {
+   "item": "WLF00006011",
+   "key": "34",
+   "line": 7134,
+   "decision": "EXCLUDE",
+   "name": "무연고 사망자 장례비 지원",
+   "line_sha256": "f536c6c734b32dbf",
+   "issue": "M00462",
+   "reason": "장사지원센터 별빛버스 운영사업은 사천시 장례비 지원의 자체 지원조건을 설명하지 않는다.",
+   "carried_from": {
+    "revision": "sgw-bdef4e9c1609-v1",
+    "line": 7615,
+    "basis": "retired_exclusion_same_item_and_manual"
+   }
   }
  ],
- "corpus_revision": "sgw-bdef4e9c1609-v1",
- "round2_ledger": "manual-link-review-round2.json"
+ "corpus_revision": "sgw-w100c-65832bd27306-v1",
+ "round2_ledger": "manual-link-review-round2.json",
+ "retired_decisions": [
+  {
+   "item": "WLF00003912",
+   "key": "34",
+   "line": 7618,
+   "decision": "EXCLUDE",
+   "name": "공영장례 지원",
+   "line_sha256": "98f6892ad5e0c944",
+   "retired_reason": "MANUAL_REPLACED_LINE_NOT_FOUND",
+   "retired_at": "2026-10-19T13:16:06.587Z",
+   "retired_from_revision": "sgw-bdef4e9c1609-v1",
+   "carried_to_line": 7145
+  },
+  {
+   "item": "WLF00000788",
+   "key": "24",
+   "line": 309,
+   "decision": "EXCLUDE",
+   "name": "노숙인 지원",
+   "line_sha256": "69838e21d15a3f17",
+   "retired_reason": "MANUAL_REPLACED_LINE_NOT_FOUND",
+   "retired_at": "2026-10-19T13:16:06.587Z",
+   "retired_from_revision": "sgw-bdef4e9c1609-v1",
+   "carried_to_line": 359
+  },
+  {
+   "item": "WLF00005303",
+   "key": "34",
+   "line": 7618,
+   "decision": "EXCLUDE",
+   "name": "구리시 공영장례 지원",
+   "line_sha256": "98f6892ad5e0c944",
+   "retired_reason": "MANUAL_REPLACED_LINE_NOT_FOUND",
+   "retired_at": "2026-10-19T13:16:06.587Z",
+   "retired_from_revision": "sgw-bdef4e9c1609-v1",
+   "carried_to_line": 7145
+  },
+  {
+   "item": "WLF00000886",
+   "key": "34",
+   "line": 7615,
+   "decision": "EXCLUDE",
+   "name": "(파주시)무연고 사망자 장례비 지원",
+   "line_sha256": "23d0260e55e4f513",
+   "issue": "M00050",
+   "reason": "별빛버스 운영사업의 지원대상에서 경기도를 명시적으로 제외한다. 파주시 장례비 지원의 직접 근거로 사용할 수 없다.",
+   "retired_reason": "MANUAL_REPLACED_LINE_NOT_FOUND",
+   "retired_at": "2026-10-19T13:16:06.587Z",
+   "retired_from_revision": "sgw-bdef4e9c1609-v1",
+   "carried_to_line": 7134
+  },
+  {
+   "item": "WLF00001288",
+   "key": "34",
+   "line": 7615,
+   "decision": "EXCLUDE",
+   "name": "무연고사망자 장례비",
+   "line_sha256": "23d0260e55e4f513",
+   "issue": "M00099",
+   "reason": "무연고 사망자에 대한 국가 별빛버스 장례의식 지원과 논산시 장례비 지원은 별도 사업이다.",
+   "retired_reason": "MANUAL_REPLACED_LINE_NOT_FOUND",
+   "retired_at": "2026-10-19T13:16:06.587Z",
+   "retired_from_revision": "sgw-bdef4e9c1609-v1",
+   "carried_to_line": 7134
+  },
+  {
+   "item": "WLF00001340",
+   "key": "34",
+   "line": 7618,
+   "decision": "EXCLUDE",
+   "name": "양산시 공영장례 지원",
+   "line_sha256": "98f6892ad5e0c944",
+   "issue": "M00101",
+   "reason": "장사지원센터 별빛버스 운영사업은 양산시 공영장례의 자체 지원조건을 설명하지 않는다.",
+   "retired_reason": "MANUAL_REPLACED_LINE_NOT_FOUND",
+   "retired_at": "2026-10-19T13:16:06.587Z",
+   "retired_from_revision": "sgw-bdef4e9c1609-v1",
+   "carried_to_line": 7145
+  },
+  {
+   "item": "WLF00004244",
+   "key": "34",
+   "line": 7618,
+   "decision": "EXCLUDE",
+   "name": "공영장례 지원",
+   "line_sha256": "98f6892ad5e0c944",
+   "issue": "M00273",
+   "reason": "장사지원센터 별빛버스 운영사업은 의령군 공영장례의 자체 지원조건을 설명하지 않는다.",
+   "retired_reason": "MANUAL_REPLACED_LINE_NOT_FOUND",
+   "retired_at": "2026-10-19T13:16:06.587Z",
+   "retired_from_revision": "sgw-bdef4e9c1609-v1",
+   "carried_to_line": 7145
+  },
+  {
+   "item": "WLF00004834",
+   "key": "34",
+   "line": 7618,
+   "decision": "EXCLUDE",
+   "name": "공영장례 지원",
+   "line_sha256": "98f6892ad5e0c944",
+   "issue": "M00327",
+   "reason": "장사지원센터 별빛버스 운영사업은 세종시 공영장례의 자체 지원조건을 설명하지 않는다.",
+   "retired_reason": "MANUAL_REPLACED_LINE_NOT_FOUND",
+   "retired_at": "2026-10-19T13:16:06.587Z",
+   "retired_from_revision": "sgw-bdef4e9c1609-v1",
+   "carried_to_line": 7145
+  },
+  {
+   "item": "WLF00006011",
+   "key": "34",
+   "line": 7615,
+   "decision": "EXCLUDE",
+   "name": "무연고 사망자 장례비 지원",
+   "line_sha256": "23d0260e55e4f513",
+   "issue": "M00462",
+   "reason": "장사지원센터 별빛버스 운영사업은 사천시 장례비 지원의 자체 지원조건을 설명하지 않는다.",
+   "retired_reason": "MANUAL_REPLACED_LINE_NOT_FOUND",
+   "retired_at": "2026-10-19T13:16:06.587Z",
+   "retired_from_revision": "sgw-bdef4e9c1609-v1",
+   "carried_to_line": 7134
+  }
+ ]
 }

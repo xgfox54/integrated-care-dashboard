@@ -29,7 +29,7 @@ try {
   [void][Management.Automation.Language.Parser]::ParseFile($tempCollector, [ref]$parseTokens, [ref]$parseErrors)
   if ($parseErrors.Count -gt 0) { throw "수집기 구문 검사 실패. 기존 파일을 유지합니다." }
   $scriptText = [IO.File]::ReadAllText($tempCollector)
-  if (-not $scriptText.Contains('2026-10-10-recovery-2') -or -not $scriptText.Contains('/api/press/tick')) { throw "복구 버전 확인 실패. 기존 파일을 유지합니다." }
+  if (-not $scriptText.Contains('2026-10-19-recovery-3') -or -not $scriptText.Contains('/api/press/tick')) { throw "복구 버전 확인 실패. 기존 파일을 유지합니다." }
   if (Test-Path -LiteralPath $Collector) {
     $backup = $Collector + ".bak-" + (Get-Date -Format "yyyyMMdd-HHmmss") + "-" + [Guid]::NewGuid().ToString("N")
     [IO.File]::Replace($tempCollector, $Collector, $backup)

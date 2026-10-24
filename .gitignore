@@ -53,5 +53,6 @@ next-env.d.ts
 __pycache__/
 *.pyc
 
-# Original manual packs and internal capture-based evaluation are not public source.
 /data/manual-corpus/assets/
+/.omo/
+/quality/

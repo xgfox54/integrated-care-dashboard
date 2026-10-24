@@ -181,6 +181,7 @@ const NAV_TABS: Record<string, TabCode> = {
   "/law": "law",
   "/welfaremcp": "welfaremcp",
   "/statistics": "statistics",
+  "/info": "info",
   "/sources": "sources",
 };
 

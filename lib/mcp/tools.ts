@@ -20,6 +20,7 @@ import {
   EMPTY_BASIS,
   encodeCursor,
   type Envelope,
+  EXECUTABLE_MCP_TOOL_NAMES,
   FISCAL_TOOL_NAMES,
   FISCAL_WITHHELD_MESSAGE,
   fingerprint,
@@ -28,6 +29,7 @@ import {
   MCP_SERVER_VERSION,
   McpToolError,
   type McpToolName,
+  META_MCP_TOOL_NAMES,
   pageLimit,
   PUBLIC_MCP_TOOL_NAMES,
 } from "./contract.ts";
@@ -42,7 +44,7 @@ import { publishedSnapshots } from "../fiscal/query.ts";
 import { type BundleRow, readActiveBundle, readBundle } from "../platform/bundle.ts";
 import { verifiedLinksFor } from "../platform/links.ts";
 import { ONTOLOGY_VERSION, ontologyEntities, ontologyPredicates } from '../ontology.ts';
-import { CARE_RESOURCES_MCP } from '../integrations/care-hold.ts';
+import { CARE_MCP_WITHHELD_MESSAGE, CARE_RESOURCES_MCP } from '../integrations/care-hold.ts';
 import { ledgerTotals } from "../official-ledger.ts";
 import { readOptionalIndexes } from "../optional-index.ts";
 import { unitVerificationSql } from "../fiscal/unit-check.ts";
@@ -71,8 +73,25 @@ import { manualCorpusComponent, readManualCorpusState } from "../manuals/store.t
 import { getManualSection, relatedManualApplicationSections, searchManualSections } from "../manuals/search.ts";
 import { manualOriginalProvenance } from '../manuals/provenance.ts';
 import { manualAnswerContext, manualAnswerContextEvidence } from '../manuals/answer-context.ts';
-import { searchCacheKey, searchCacheWriteOf, trackSearchCacheWrite, type SearchResultCache } from "./search-cache.ts";
+import { normalizeSearchCacheQuery, searchCacheKey, searchCacheWriteOf, trackSearchCacheWrite, type SearchResultCache } from "./search-cache.ts";
 import { regionalCatalogBrowse, welfareCatalogFor, welfareCatalogText, WELFARE_CATALOG_PREFIX, type WelfareCatalogAssets } from './welfare-catalog.ts';
+import {
+  DEFAULT_AUTO_DETAIL_ITEMS,
+  DEFAULT_WELFARE_CHAIN_DEADLINE_MS,
+  detectWelfareResearchTask,
+  discoverWelfareTools,
+  executeAutoDetailChain,
+  formatSuggestedToolCalls,
+  isBlockedCareTool,
+  isBlockedLawTool,
+  MAX_AUTO_DETAIL_ITEMS,
+  raceWelfareDeadline,
+  startWelfareChainDeadline,
+  suggestFollowUpCallsForSearch,
+  toSuggestedToolCall,
+  WELFARE_RESEARCH_TASKS,
+  type WelfareToolDescriptor,
+} from "./tool-chains.ts";
 
 export interface McpToolContext {
   readonly welfareAssets?: WelfareCatalogAssets;
@@ -333,17 +352,65 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
   const fiscalOn = context.includeFiscal === true;
   const now = context.nowSeconds ?? (() => Math.floor(Date.now() / 1000));
   const registered: McpToolName[] = [];
+  const toolCatalog = new Map<McpToolName, WelfareToolDescriptor>();
+  const internalHandlers = new Map<McpToolName, (rawArgs: unknown) => Promise<object>>();
   let statePromise: Promise<PublicState> | null = null;
 
-  register('search_welfare_services', '복지제도100 사업 목록·검색', '복지제도100 웹과 같은 저장 대장을 조회합니다. region_id로 지역을 지정하고, 기본은 해당 지역 사업만 제공합니다. include_ancestor_scope=true이면 전국·광역 공통사업도 포함합니다. total_count·local_count와 next_offset으로 전체를 나누어 조회하고 반환한 welfare100_service: id를 fetch·get_welfare_context에 전달하세요. 대장 기준일은 적용연도가 아닙니다.', {
+  const autoDetailFields = {
+    auto_detail: z.boolean().optional().describe("true이면 상위 결과의 상세 도구(get_welfare_context·get_manual_section·get_faq·get_statistics_data 등)를 연속 호출해 chained_details에 함께 담습니다."),
+    detail_limit: z.number().int().min(1).max(MAX_AUTO_DETAIL_ITEMS).optional().describe("auto_detail=true일 때 자동 조회할 상위 후보 수(기본 2, 최대 3)"),
+  } as const;
+
+  async function invokeInternal(name: McpToolName, rawArgs: Record<string, unknown>): Promise<object> {
+    const fn = internalHandlers.get(name);
+    if (!fn) throw new McpToolError("TOOL_NOT_AVAILABLE", "현재 실행할 수 없는 도구입니다: " + name);
+    return fn(rawArgs);
+  }
+
+  async function attachOptionalChain<T extends object>(
+    basePayload: T,
+    candidates: readonly { readonly id?: string; readonly implementation_id?: string; readonly dataset_id?: string; readonly budget_line_id?: string; readonly institution_id?: string; readonly entity_type?: string }[],
+    options: { readonly autoDetail?: boolean; readonly detailLimit?: number; readonly question?: string; readonly releaseBundleId?: string; readonly regionId?: string | null },
+  ): Promise<T & { suggested_tool_calls: ReturnType<typeof suggestFollowUpCallsForSearch>; next_actions_text: string; chained_details?: Awaited<ReturnType<typeof executeAutoDetailChain>>["items"]; chain_summary?: Omit<Awaited<ReturnType<typeof executeAutoDetailChain>>, "items"> }> {
+    const suggested = suggestFollowUpCallsForSearch(candidates, {
+      question: options.question,
+      releaseBundleId: options.releaseBundleId,
+      regionId: options.regionId,
+    });
+    const nextActionsText = formatSuggestedToolCalls(suggested);
+    if (!options.autoDetail) {
+      return { ...basePayload, suggested_tool_calls: suggested, next_actions_text: nextActionsText };
+    }
+    const chained = await executeAutoDetailChain(candidates, invokeInternal, {
+      question: options.question,
+      releaseBundleId: options.releaseBundleId,
+      limit: options.detailLimit,
+    });
+    const { items, ...summary } = chained;
+    return {
+      ...basePayload,
+      suggested_tool_calls: suggested,
+      next_actions_text: nextActionsText,
+      chained_details: items,
+      chain_summary: summary,
+    };
+  }
+
+  register('search_welfare_services', '복지제도100 사업 목록·검색', '복지제도100 저장 대장을 지역·검색어로 조회합니다. include_ancestor_scope=true면 전국·광역 사업도 포함합니다. 반환된 welfare100_service: ID는 get_welfare_context·fetch로 읽거나 auto_detail=true로 즉시 연결하세요.', {
     query: questionInput.optional(), region_id: regionInput.optional(), include_ancestor_scope: z.boolean().optional(),
     offset: z.number().int().min(0).max(10000).optional(), limit: z.number().int().min(1).max(LIMITS.listMax).optional(),
+    ...autoDetailFields,
   }, async args => {
     if (args.region_id && args.region_id !== 'region:전국') parseRegionId(args.region_id);
     const plan = refineWelfareQuery(args.query ?? '', { currentYear: Number(kstDate(now()).slice(0, 4)) });
     if (args.region_id && plan.region_id && args.region_id !== plan.region_id) throw new McpToolError('INPUT_CONFLICT', '질문 지역과 region_id가 다릅니다.');
     const page = await requireWelfareCatalog().search({ ...plan, region_id: args.region_id ?? plan.region_id, include_ancestor_scope: args.include_ancestor_scope ?? false }, baseUrl, args.offset ?? 0, pageLimit(args.limit));
-    return { ...page, items: page.items.map(({ rank: _rank, ...item }) => item), server_version: MCP_SERVER_VERSION, scope: 'welfare100_web_catalog', personal_determination: false };
+    const items = page.items.map(({ rank: _rank, ...item }) => item);
+    return attachOptionalChain(
+      { ...page, items, server_version: MCP_SERVER_VERSION, scope: 'welfare100_web_catalog', personal_determination: false },
+      items,
+      { autoDetail: args.auto_detail, detailLimit: args.detail_limit, question: args.query, regionId: args.region_id ?? plan.region_id },
+    );
   });
 
   async function loadState(): Promise<PublicState> {
@@ -356,7 +423,10 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
       const snapshotIds = parsed.fiscal?.detail?.snapshot_ids;
       const linksWatermark = parsed.links?.detail?.reviewed_watermark;
       data.pin = { runId: active.knowledge_snapshot_id ? active.knowledge_snapshot_id.slice(3) : null, newsWatermark: typeof watermark === "number" ? watermark : 0, linksWatermark: typeof linksWatermark === "number" ? linksWatermark : 0 };
-      const [run, news] = await Promise.all([data.latestRun(), data.newsComponent()]);
+      const pinnedNews = typeof parsed.news?.detail?.registry_version === "string" && typeof parsed.news?.detail?.public_items === "number"
+        ? { registryVersion: parsed.news.detail.registry_version, publicItems: parsed.news.detail.public_items }
+        : null;
+      const [run, news] = await Promise.all([data.latestRun(), pinnedNews ? Promise.resolve(pinnedNews) : data.newsComponent()]);
       return {
         run, bundleId: active.bundle_id,
         components: { knowledge: active.knowledge_snapshot_id, fiscal: active.fiscal_snapshot_id, news: active.news_snapshot_id, links: active.link_snapshot_id, documents: parsed.documents?.id ?? null, budget_documents: parsed.budget_documents?.id ?? null, manuals: parsed.manuals?.id ?? null },
@@ -512,7 +582,7 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
     const section = await getManualSection(data.db, id, { revision: current.manualPin, offset, limit });
     if (!section) throw new McpToolError("NOT_FOUND", "이 공개본에서 매뉴얼 구간을 찾지 못했습니다. search 또는 search_manuals 결과의 manual: ID를 사용하세요.");
     const related = await relatedManualApplicationSections(data.db, section);
-    return { ...section, source_clarifications: manualSourceClarifications(section.revision, section.document_id, section.sources[0].document_sha256, section.section_id, section.sources[0].content_sha256), answer_context: manualAnswerContext(section, related), related_application_sections: related, answer_composition_instructions: '표는 적용 연도·행·열·단위를 구분하고 각주와 예외를 함께 읽으세요. source_clarifications는 원문 충돌을 공식 자료와 대조한 결과이므로 경고·우선 확인 구간·출처를 함께 반영하세요. selected_table_verifications는 기재된 사실만 원본 이미지로 확인한 결과이며 전체 절·현행 정책 검증이 아닙니다. 신청 절차의 대상·필수서류·신청 창구·방법을 관련 원문에서 함께 확인하세요. related_application_sections는 같은 원문에서 찾은 인접 서류·온라인 제한 근거이며 반드시 함께 읽으세요. 대리신청은 신청자와 대리인의 서류를 각각 구분하고, 온라인·대리신청 제한과 예외도 확인하세요. 이 구간에 없는 사항은 관련 FAQ 또는 매뉴얼을 추가 조회하고 미확인 사항을 단정하지 마세요.', original_provenance: await manualOriginalProvenance(data.db, section.revision, section.document_id, section.section_id) };
+    return { ...section, source_clarifications: manualSourceClarifications(section.document_id, section.sources[0].document_sha256, section.section_id, section.sources[0].content_sha256), answer_context: manualAnswerContext(section, related), related_application_sections: related, answer_composition_instructions: '표는 적용 연도·행·열·단위를 구분하고 각주와 예외를 함께 읽으세요. source_clarifications는 원문 충돌을 공식 자료와 대조한 결과이므로 경고·우선 확인 구간·출처를 함께 반영하세요. selected_table_verifications는 기재된 사실만 원본 이미지로 확인한 결과이며 전체 절·현행 정책 검증이 아닙니다. 신청 절차의 대상·필수서류·신청 창구·방법을 관련 원문에서 함께 확인하세요. related_application_sections는 같은 원문에서 찾은 인접 서류·온라인 제한 근거이며 반드시 함께 읽으세요. 대리신청은 신청자와 대리인의 서류를 각각 구분하고, 온라인·대리신청 제한과 예외도 확인하세요. 이 구간에 없는 사항은 관련 FAQ 또는 매뉴얼을 추가 조회하고 미확인 사항을 단정하지 마세요.', original_provenance: await manualOriginalProvenance(data.db, section.revision, section.document_id, section.section_id) };
   }
 
   function manualFetchCard(current: PublicState, section: Awaited<ReturnType<typeof manualSectionOf>>) {
@@ -590,7 +660,16 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
     handler: (args: z.objectOutputType<Shape, z.ZodTypeAny>) => Promise<object>,
   ): void {
     // 보류된 도구(돌봄자원·예산)는 등록하지 않는다(lib/integrations/care-hold.ts, contract.ts FISCAL_MCP_PUBLIC).
-    if (!PUBLIC_MCP_TOOL_NAMES.includes(name) && !(fiscalOn && FISCAL_TOOL_NAMES.has(name))) return;
+    if (!EXECUTABLE_MCP_TOOL_NAMES.includes(name) && !(fiscalOn && FISCAL_TOOL_NAMES.has(name))) return;
+    const schemaObj = z.object(shape).strict();
+    toolCatalog.set(name, { name, title, description, parameters: Object.keys(shape) });
+    internalHandlers.set(name, async (rawArgs: unknown) => {
+      const parsed = schemaObj.parse(rawArgs ?? {});
+      const payload = await handler(parsed);
+      const metadata = "metadata" in payload && typeof payload.metadata === "object" && payload.metadata !== null ? payload.metadata : {};
+      const versioned = name === "fetch" ? { ...payload, metadata: { ...metadata, server_version: MCP_SERVER_VERSION } } : payload;
+      return decorateSourceIdentities(name, versioned, { gates: { fiscal: fiscalOn, care: CARE_RESOURCES_MCP, law: LAW_MCP_PUBLIC } });
+    });
     server.registerTool(name, { title, description, inputSchema: shape, annotations: { title, ...ANNOTATIONS, ...(name === "get_statistics_data" ? { openWorldHint: true } : {}) } }, (async (args: z.objectOutputType<Shape, z.ZodTypeAny>, extra: { requestId?: string | number }) => {
       const started = Date.now();
       let failed = false;
@@ -623,13 +702,16 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
         context.observeTool?.({ tool: name, durationMs: Date.now() - started, failed, cache, cacheDetail, cacheWrite, arguments: args, response: responsePayload, callId: extra?.requestId === undefined ? undefined : String(extra.requestId), requestId: context.requestId });
       }
     }) as never);
-    registered.push(name);
+    if (PUBLIC_MCP_TOOL_NAMES.includes(name) || (fiscalOn && FISCAL_TOOL_NAMES.has(name) && PUBLIC_MCP_TOOL_NAMES.includes(name))) {
+      registered.push(name);
+    }
   }
 
   // 1. search
-  register("search", "통합 검색", "자연어 질문에서 사업명·지역·연도·의도를 분리하여 시행사업, 정부24 공공서비스, 복지 매뉴얼 본문 구간, 승인 문서, 예산서, 공식 보도자료와 복지통계를 찾습니다. query_plan과 근거의 적용연도를 확인하고 결과 id를 fetch에 전달하세요. 통계 수치는 get_statistics_data에서 조회합니다. 매뉴얼의 파일명 연도는 적용연도 확인값이 아닙니다. 결과 유무는 정답률·개인자격 판정이 아닙니다.", {
+  register("search", "통합 검색", "자연어 질문에서 사업명·지역·연도·의도를 분리해 시행사업·정부24·복지제도100·매뉴얼·129 FAQ·예산서·보도자료·통계를 찾습니다. auto_detail=true면 상위 후보의 상세를 자동 연속 조회합니다.", {
     query: questionInput.min(1).describe("사업명 또는 자연어 질문. 지역·포함/제외 연도·사업명·질문 의도를 자동 분리합니다."),
-  }, async ({ query }) => {
+    ...autoDetailFields,
+  }, async ({ query, auto_detail, detail_limit }) => {
     const current = await state();
     const plan = refineWelfareQuery(query, { currentYear: Number(kstDate(now()).slice(0, 4)) });
     const words = plan.search_tokens;
@@ -637,19 +719,39 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
     const cacheBypass = (reason: string) => context.searchCache ? { cache_detail: { status: "BYPASS" as const, reason } } : {};
     if (!words.length && !browse) {
       if (!query.trim()) throw new McpToolError("QUERY_EMPTY", "검색어를 입력해 주세요.");
-      return { results: [], query_plan: plan, release_bundle_id: current.bundleId, server_version: MCP_SERVER_VERSION, retrieval_status: "NO_USABLE_SEARCH_TERMS", answerability: "INSUFFICIENT", reason_codes: ["NO_USABLE_SEARCH_TERMS"], suggested_sources: suggestedSources(plan), web_search_fallback: webSearchFallback(plan, { answerability: "INSUFFICIENT", reason_codes: ["NO_USABLE_SEARCH_TERMS"] }), warnings: plan.warnings, ...cacheBypass("no_search_terms") };
+      return { results: [], query_plan: plan, release_bundle_id: current.bundleId, server_version: MCP_SERVER_VERSION, retrieval_status: "NO_USABLE_SEARCH_TERMS", answerability: "INSUFFICIENT", reason_codes: ["NO_USABLE_SEARCH_TERMS"], suggested_sources: suggestedSources(plan), suggested_tool_calls: [], next_actions_text: "", web_search_fallback: webSearchFallback(plan, { answerability: "INSUFFICIENT", reason_codes: ["NO_USABLE_SEARCH_TERMS"] }), warnings: plan.warnings, ...cacheBypass("no_search_terms") };
     }
     const region = plan.region_id && plan.region_id !== "region:전국" ? parseRegionId(plan.region_id) : { sido: "", sigungu: "" };
-    if (browse) {
-      const page = await requireWelfareCatalog().search(plan, baseUrl);
-      const assessment = { answerability: page.items.length ? 'SUPPORTED' as const : 'INSUFFICIENT' as const, reason_codes: page.items.length ? [] : ['COVERAGE_GAP'] };
-      return { results: fuseSearchCandidates(page.items.map(catalogCandidate), plan), query_plan: plan, release_bundle_id: current.bundleId, server_version: MCP_SERVER_VERSION, retrieval_status: page.items.length ? 'CANDIDATES_FOUND' : 'COVERAGE_GAP', ...assessment, suggested_sources: suggestedSources(plan), web_search_fallback: webSearchFallback(plan, assessment), welfare_catalog: { ...page, items: undefined, list_tool: 'search_welfare_services' }, warnings: ['지역 사업 목록입니다. 전국·광역 공통사업과 시 전용사업을 region_id로 구분하세요. 전체 목록은 search_welfare_services로 나누어 조회하세요.'], ...cacheBypass("regional_browse") };
-    }
     const cacheStarted = Date.now();
     const sensitiveQuery = scanSensitiveText(query).length > 0;
-    const cacheKey = context.searchCache && !sensitiveQuery ? await searchCacheKey(["search-v2", MCP_SERVER_VERSION, MCP_CACHE_BUILD, current.bundleId, current.manualPin, fiscalOn, Boolean(context.lawApiKey?.trim()), kstDate(now()), (await gov24DatasetState(data.db).catch(() => null))?.revision ?? null, query.replace(/\s+/g, " ").trim()]) : null;
+    const rehydrateCachedSearch = async (cachedValue: object) => {
+      const cached = cachedValue as { query_plan?: typeof plan; answerability?: "SUPPORTED" | "PARTIAL" | "INSUFFICIENT" | "CONFLICT"; reason_codes?: string[]; results?: { id?: string; entity_type?: string }[]; release_bundle_id?: string };
+      const base = cached.query_plan && cached.query_plan.raw_query !== query && cached.answerability && Array.isArray(cached.reason_codes)
+        ? { ...cachedValue, query_plan: plan, web_search_fallback: webSearchFallback(plan, { answerability: cached.answerability, reason_codes: cached.reason_codes }) }
+        : cachedValue;
+      if (!auto_detail) return base;
+      return attachOptionalChain(base, cached.results ?? [], { autoDetail: true, detailLimit: detail_limit, question: query, releaseBundleId: cached.release_bundle_id ?? current.bundleId, regionId: plan.region_id });
+    };
+    if (browse) {
+      const browseKey = context.searchCache && !sensitiveQuery ? await searchCacheKey(["search-browse-v2", MCP_SERVER_VERSION, MCP_CACHE_BUILD, current.bundleId, plan.region_id, plan.include_ancestor_scope]) : null;
+      const browseLookup = browseKey ? await context.searchCache!.get(browseKey) : null;
+      if (browseLookup?.value) return { ...(await rehydrateCachedSearch(browseLookup.value)), cache: "HIT", cache_detail: { status: "HIT", layer: browseLookup.layer }, timings_ms: { cache_hit: Date.now() - cacheStarted } };
+      const page = await requireWelfareCatalog().search(plan, baseUrl);
+      const assessment = { answerability: page.items.length ? 'SUPPORTED' as const : 'INSUFFICIENT' as const, reason_codes: page.items.length ? [] : ['COVERAGE_GAP'] };
+      const fusedBrowse = fuseSearchCandidates(page.items.map(catalogCandidate), plan);
+      const browseSuggestions = suggestFollowUpCallsForSearch(fusedBrowse, { question: query, releaseBundleId: current.bundleId, regionId: plan.region_id });
+      const browsePayload = { results: fusedBrowse, query_plan: plan, release_bundle_id: current.bundleId, server_version: MCP_SERVER_VERSION, retrieval_status: page.items.length ? 'CANDIDATES_FOUND' : 'COVERAGE_GAP', ...assessment, suggested_sources: suggestedSources(plan), suggested_tool_calls: browseSuggestions, next_actions_text: formatSuggestedToolCalls(browseSuggestions), web_search_fallback: webSearchFallback(plan, assessment), welfare_catalog: { ...page, items: undefined, list_tool: 'search_welfare_services' }, warnings: ['지역 사업 목록입니다. 전국·광역 공통사업과 시 전용사업을 region_id로 구분하세요. 전체 목록은 search_welfare_services로 나누어 조회하세요.'] };
+      const finalBrowse = auto_detail ? await attachOptionalChain(browsePayload, fusedBrowse, { autoDetail: true, detailLimit: detail_limit, question: query, releaseBundleId: current.bundleId, regionId: plan.region_id }) : browsePayload;
+      if (!browseKey || !browseLookup) return { ...finalBrowse, ...(sensitiveQuery ? cacheBypass("sensitive_query") : {}) };
+      const storedBrowse = context.searchCache!.put(browseKey, browsePayload);
+      const browseLookupFailed = browseLookup.miss === "lookup_error" || browseLookup.miss === "backend_cooldown";
+      const browseCacheDetail: McpCacheDetail = { status: browseLookupFailed ? "ERROR" : storedBrowse.reason ? "NOT_STORED" : "MISS", lookup: browseLookup.miss, ...(storedBrowse.reason ? { reason: storedBrowse.reason } : {}) };
+      return trackSearchCacheWrite({ ...finalBrowse, cache: "MISS", cache_detail: browseCacheDetail }, storedBrowse.write);
+    }
+    const preGov24State = context.searchCache && !sensitiveQuery ? await gov24DatasetState(data.db).catch(() => null) : null;
+    const cacheKey = context.searchCache && !sensitiveQuery ? await searchCacheKey(["search-v2", MCP_SERVER_VERSION, MCP_CACHE_BUILD, current.bundleId, current.manualPin, fiscalOn, Boolean(context.lawApiKey?.trim()), kstDate(now()), preGov24State?.revision ?? null, normalizeSearchCacheQuery(query)]) : null;
     const cacheLookup = cacheKey ? await context.searchCache!.get(cacheKey) : null;
-    if (cacheLookup?.value) return { ...cacheLookup.value, cache: "HIT", cache_detail: { status: "HIT", layer: cacheLookup.layer }, timings_ms: { cache_hit: Date.now() - cacheStarted } };
+    if (cacheLookup?.value) return { ...(await rehydrateCachedSearch(cacheLookup.value)), cache: "HIT", cache_detail: { status: "HIT", layer: cacheLookup.layer }, timings_ms: { cache_hit: Date.now() - cacheStarted } };
     const variants = [...new Set([plan.search_query, ...plan.search_queries])].slice(0, 3);
     const budgetQuery = budgetReferenceQuery(plan, region);
     const sourceErrors: { source: string; code: string }[] = [];
@@ -723,7 +825,7 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
       safe("documents", () => searchDocumentPrograms(data.db, words, current.documentPin, 12, { ...region, includeAncestorScope: plan.include_ancestor_scope }), []),
       safe("budget_documents", async () => fiscalOn && budgetQuery ? searchBudgetReferences(data.db, budgetQuery, current.budgetPin, baseUrl, { sido: region.sido, sigungu: region.sigungu, includeAncestorScope: plan.include_ancestor_scope, fiscalYear: plan.requested_year }) : [], []),
       safe("gov24", () => searchGov24Services(data.db, plan, 8), []),
-      safe("gov24_state", () => gov24DatasetState(data.db), { revision: null } as unknown as Awaited<ReturnType<typeof gov24DatasetState>>),
+      safe("gov24_state", async () => preGov24State ?? gov24DatasetState(data.db), { revision: null } as unknown as Awaited<ReturnType<typeof gov24DatasetState>>),
       safe("manuals", () => searchManualSections(data.db, plan, { revision: current.manualPin, limit: 8 }), []),
       safe("faq129", () => searchFaq129(data.db, plan, { limit: 4, nowMs: now() * 1000 }), { hits: [], program_mismatch_excluded: 0, available: false }),
       safe("law", lawLookup, { status: "ERROR", query: lawName, hits: [] as LawSearchHit[], articles: [] as string[] }),
@@ -734,7 +836,7 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
       .filter((row) => welfareRelevance(row.name, plan) >= 0)
       .sort((a, b) => programRank(b) - programRank(a)).slice(0, 8);
     const manualCandidate = ({ score, title, sources, warnings: sectionWarnings, ...item }: ManualSearchHit) => ({ ...item, title: "[매뉴얼] " + title, sources: sources.map(compactManualSource), url: sources[0].url, rank: score, context: [sources[0].document_title, sources[0].original_name, sources[0].location.heading_path].filter(Boolean).join(" "), ...(sectionSpecificWarnings(sectionWarnings).length ? { warnings: sectionSpecificWarnings(sectionWarnings) } : {}) });
-    const gov24Candidate = (service: Awaited<ReturnType<typeof searchGov24Services>>[number], rankPlan: typeof plan) => ({ id: service.id, title: "[정부24] " + service.name + " (" + (service.org_name ?? "기관 미확인") + ")", url: service.source.url, rank: gov24SearchRelevance(service, rankPlan), entity_type: "gov24_service", content_scope: service.content_scope, detail_status: service.detail_status, region_id: service.publisher_scope.region_id, publisher_scope: service.publisher_scope, year_evidence: service.year_evidence, relevance_notes: welfareCandidateNotes(service.name, rankPlan) });
+    const gov24Candidate = (service: Awaited<ReturnType<typeof searchGov24Services>>[number], rankPlan: typeof plan) => ({ id: service.id, title: "[정부24] " + service.name + " (" + (service.org_name ?? "기관 미확인") + ")", url: service.source.url, rank: gov24SearchRelevance(service, rankPlan), entity_type: "gov24_service", content_scope: service.content_scope, detail_status: service.detail_status, region_id: service.publisher_scope.region_id, publisher_scope: service.publisher_scope, year_evidence: service.year_evidence, ...(service.purpose ? { summary: service.purpose } : {}), ...(service.target ? { target_preview: service.target } : {}), ...(service.benefit ? { benefit_preview: service.benefit } : {}), ...(service.apply_method ? { apply_method_preview: service.apply_method } : {}), relevance_notes: welfareCandidateNotes(service.name, rankPlan) });
     const candidates = [
       ...(welfarePage?.items.map(catalogCandidate) ?? []),
       ...(/통계|수급자\s*수|수급률|인구|시설\s*현황|추이|경상의료비/.test(query) ? searchStatistics({ query, limit: 100 }, await currentStatisticsCatalog(data.db)).items.filter(item => item.kind === "indicator" || item.kind === "population").slice(0, 4).map(item => ({ id: item.id, title: "[복지통계] " + item.title, url: baseUrl + "/statistics?id=" + encodeURIComponent(item.id), rank: /통계|추이|수급률|인구/.test(query) ? 155 : 15, entity_type: "welfare_statistic", content_scope: item.kind === "population" ? "national_and_sido_resident_population" : item.data_available ? "national_statistical_table" : "official_directory_only" })) : []),
@@ -744,7 +846,7 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
         title: "[사업] " + row.name + " (" + regionLabel(row.sido, row.sigungu) + ")",
         url: wikiUrl(baseUrl, serviceWikiKey(row)),
         rank: programRank(row),
-        entity_type: "implementation", content_scope: "summary_card", region_id: regionIdOf(row.sido, row.sigungu), relevance_notes: welfareCandidateNotes(row.name, plan),
+        entity_type: "implementation", content_scope: "summary_card", region_id: regionIdOf(row.sido, row.sigungu), ...(row.description ? { summary: row.description } : {}), ...(row.target ? { target_preview: row.target } : {}), ...(row.applicationMethod ? { apply_method_preview: row.applicationMethod } : {}), relevance_notes: welfareCandidateNotes(row.name, plan),
       })),
       ...gov24.map((service) => gov24Candidate(service, plan)),
       ...documentPrograms.filter((row) => welfareRelevance(row.subject_label, plan) >= 0 && (!region.sido || plan.include_ancestor_scope && (!row.subject_sido || row.subject_sido === "전국") || row.subject_sido === region.sido && (!region.sigungu || plan.include_ancestor_scope && !canonicalProgramRegion(row.subject_sido, row.subject_sigungu).sigungu || row.subject_sigungu === region.sigungu))).map((row) => ({
@@ -808,6 +910,7 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
     const emptyBodyWarning = assessment.reason_codes.includes("EMPTY_SOURCE_BODY") ? ["EMPTY_SOURCE_BODY: 표·이미지만 있거나 제목만 있는 매뉴얼 구간은 근거로 쓰지 말고 인접 구간·원문을 확인하세요."] : [];
     const faqWarning = results.some((item) => item.entity_type === "official_faq") ? [FAQ129_NOTICE] : [];
     const lawWarning = plan.legal_intent && law.status !== "FOUND" ? [LAW_MCP_PUBLIC ? "법령 조회 상태: " + law.status + ". 국가법령정보센터 원문을 확인하세요." : LAW_MCP_WITHHELD_MESSAGE] : [];
+    const followUpCalls = suggestFollowUpCallsForSearch(results, { question: query, releaseBundleId: current.bundleId, regionId: plan.region_id });
     const payload = {
       results, query_plan: plan, release_bundle_id: current.bundleId, server_version: MCP_SERVER_VERSION, gov24_revision: gov24State.revision, manual_revision: current.manualPin || null,
       welfare_catalog: welfarePage ? { as_of: welfarePage.as_of, revision: welfarePage.revision, total_count: welfarePage.total_count, local_count: welfarePage.local_count, list_tool: 'search_welfare_services' } : { status: welfareCatalog ? 'UNAVAILABLE' : 'NOT_CONFIGURED' },
@@ -821,16 +924,19 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
       ...(retriedSources.length ? { retried_sources: retriedSources } : {}),
       web_search_fallback: webSearchFallback(plan, assessment),
       ...(assessment.answerability === "SUPPORTED" ? {} : { suggested_sources: suggestedSources(plan) }),
+      suggested_tool_calls: followUpCalls,
+      next_actions_text: formatSuggestedToolCalls(followUpCalls),
       warnings: [...plan.warnings, ...mismatchWarning, ...emptyBodyWarning, ...scopedCandidateWarning, ...budgetRegionWarning, ...lawWarning, ...faqWarning, "검색 결과는 근거 후보입니다. 금액·적격성·법령은 상세의 연도·지역·출처를 확인해야 합니다.", ...(manuals.length ? ["매뉴얼 출처는 저장소의 파싱본입니다. 내부 원문명·연도·줄 위치를 확인하고 파일명 연도를 적용연도로 단정하지 마세요.", ...MANUAL_COMMON_WARNINGS, "매뉴얼 출처 전체(커밋·파일 경로·해시)는 fetch 또는 get_manual_section에서 제공합니다."] : []), ...(retrievalStatus !== "CANDIDATES_FOUND" ? ["COVERAGE_GAP: 저장 자료에서 직접 근거를 찾지 못했습니다. 미수집·미수록·검색 미일치 가능성이 있으며 해당 제도가 없다는 뜻이 아닙니다. suggested_sources를 확인하세요."] : [])],
     };
-    if (!cacheKey || !cacheLookup) return { ...payload, ...cacheBypass("sensitive_query") };
+    const finalPayload = auto_detail ? await attachOptionalChain(payload, results, { autoDetail: true, detailLimit: detail_limit, question: query, releaseBundleId: current.bundleId, regionId: plan.region_id }) : payload;
+    if (!cacheKey || !cacheLookup) return { ...finalPayload, ...cacheBypass("sensitive_query") };
     // 일부 출처가 실패·시간 초과했거나 법령 조회가 실패한 결과는 다시 조회하면 달라질 수 있어 저장하지 않는다.
     const skipped = sourceErrors.length ? "source_error" : law.status === "ERROR" || law.status === "TIMEOUT" ? "law_unavailable" : null;
     const stored = skipped ? null : context.searchCache!.put(cacheKey, payload);
     const notStored = skipped ?? stored?.reason ?? null;
     const lookupFailed = cacheLookup.miss === "lookup_error" || cacheLookup.miss === "backend_cooldown";
     const cacheDetail: McpCacheDetail = { status: lookupFailed ? "ERROR" : notStored ? "NOT_STORED" : "MISS", lookup: cacheLookup.miss, ...(notStored ? { reason: notStored } : {}) };
-    return trackSearchCacheWrite({ ...payload, cache: "MISS", cache_detail: cacheDetail }, stored?.write ?? null);
+    return trackSearchCacheWrite({ ...finalPayload, cache: "MISS", cache_detail: cacheDetail }, stored?.write ?? null);
   });
 
 
@@ -840,7 +946,7 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
   }, async ({ id }) => {
     if (/^[a-z][a-z0-9+.-]*:\/\//i.test(id)) throw new McpToolError("ID_IS_URL", "URL은 받을 수 없습니다. search 결과의 id를 사용하세요.");
     const current = await state();
-    if (/^(stat|indicator|approved|portal|population):/.test(id)) {
+    if (/^(stat|indicator|approved|portal|population|kosis-directory):/.test(id)) {
       const item = statisticsCatalog().find(item => item.id === id);
       if (!item) throw new McpToolError("NOT_FOUND", "등록된 통계 항목을 찾지 못했습니다.");
       const result = item.data_available ? await readCurrentStatistics(data.db, id) : null;
@@ -881,6 +987,9 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
         id, title: (body.split("\n").find((line) => line.trim()) ?? "법령 원문").trim().slice(0, 120), text: Array.from(body).slice(0, 8000).join(""), url,
         metadata: { entity_type: "law", content_scope: "national_law_text_via_open_api", mst: match[1], article: match[2] ?? null, truncated: Array.from(body).length > 8000, release_bundle_id: current.bundleId, sources: [{ title: "국가법령정보센터", url }], warnings: ["법적 효력이 필요한 판단은 국가법령정보센터 원문과 시행일을 최종 확인하세요."] },
       };
+    }
+    if (id.startsWith("ltc:")) {
+      if (!CARE_RESOURCES_MCP) throw new McpToolError("CARE_MCP_DISABLED", CARE_MCP_WITHHELD_MESSAGE);
     }
     if (id.startsWith(GOV24_PREFIX)) {
       const service = await getGov24Service(data.db, id);
@@ -982,19 +1091,22 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
     throw new McpToolError("ID_NOT_SUPPORTED", "지원하지 않는 ID입니다. search 결과의 id(service:, gov24_service:, manual:, faq129:, law:, docprog:, bl- 또는 news:)를 사용하세요.");
   });
 
-  register("search_faq", "129 자주하는 질문 검색", "보건복지상담센터(129) 자주하는 질문 수록본(788건, 2024-10~2026-10 작성)을 검색합니다. 결과는 작성일 기준 공식 안내이며 written_date를 함께 인용하세요. freshness가 OUTDATED_OR_CONFLICTING_SOURCE이면 최신 사업안내·법령을 함께 확인하세요. 질문 제도와 다른 제도의 FAQ는 돌려주지 않습니다. match_quality=RELATED는 일상어로 다르게 물은 질문을 위한 관련 후보이므로 원문이 질문에 맞는지 확인한 뒤에만 근거로 쓰세요. id는 fetch 또는 get_faq로 읽습니다.", {
+  register("search_faq", "129 자주하는 질문 검색", "보건복지상담센터(129) 자주하는 질문 수록본을 검색합니다. 결과는 작성일(written_date) 기준 공식 안내이며 freshness를 확인하세요. id는 fetch·get_faq로 읽거나 auto_detail=true로 원문을 함께 받으세요.", {
     query: questionInput.min(1).describe("자연어 질문 또는 제도명"),
     limit: z.number().int().min(1).max(10).optional(),
-  }, async ({ query, limit }) => {
+    ...autoDetailFields,
+  }, async ({ query, limit, auto_detail, detail_limit }) => {
     const plan = refineWelfareQuery(query, { currentYear: Number(kstDate(now()).slice(0, 4)) });
     const result = await searchFaq129(data.db, plan, { limit: limit ?? 5, nowMs: now() * 1000 });
     if (!result.available) throw new McpToolError("FAQ_NOT_AVAILABLE", "129 자주하는 질문 자료가 아직 적재되지 않았습니다.");
-    return {
-      results: await Promise.all(result.hits.map(async (hit) => ({ ...hit, clarification_review: await faqReviewMetadata(data.db, hit.id, hit.content_sha256, kstDate(now())) }))), server_version: MCP_SERVER_VERSION, retrieval_status: result.hits.length ? "CANDIDATES_FOUND" : "COVERAGE_GAP",
+    const hits = await Promise.all(result.hits.map(async (hit) => ({ ...hit, clarification_review: await faqReviewMetadata(data.db, hit.id, hit.content_sha256, kstDate(now())) })));
+    const basePayload = {
+      results: hits, server_version: MCP_SERVER_VERSION, retrieval_status: hits.length ? "CANDIDATES_FOUND" : "COVERAGE_GAP",
       query_plan: { search_query: plan.search_query, programs: plan.programs, program_scope: plan.program_scope, detail_terms: plan.detail_terms, requested_year: plan.requested_year, requested_years: plan.requested_years, excluded_years: plan.excluded_years },
       program_mismatch_excluded: result.program_mismatch_excluded,
       warnings: [FAQ129_NOTICE, ...new Set(result.hits.flatMap((hit) => hit.warnings)), ...(result.program_mismatch_excluded ? ["PROGRAM_MISMATCH: 질문 제도와 다른 제도의 FAQ " + result.program_mismatch_excluded + "건을 제외했습니다."] : [])],
     };
+    return attachOptionalChain(basePayload, hits, { autoDetail: auto_detail, detailLimit: detail_limit, question: query });
   });
 
   register("get_faq", "129 자주하는 질문 읽기", "faq129: ID의 질문·답변 원문, 분야, 작성일, 신선도와 조건 확인 목록을 돌려줍니다. 조건·예외를 빠짐없이 반영하세요. authoritative_clarification이 있으면 공식 추가 확인의 기준·출처·자료 날짜와 남은 불확실성을 함께 읽고 원문 작성일과 구분하여 답변하세요. 원문과 모순된 날짜 예시나 불명확한 표는 임의로 확정하지 마세요.", {
@@ -1006,19 +1118,28 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
     return { ...detail, clarification_review: review, text: faq129Text(detail) + (review ? '\n보강자료 재확인 상태: ' + review.status + '. 출처 변경·재확인 실패·기한 도래 시 해당 공식 자료를 추가 확인하세요.' : ''), server_version: MCP_SERVER_VERSION, publisher: FAQ129_PUBLISHER, warnings: [FAQ129_NOTICE] };
   });
 
-  register("search_manuals", "복지 매뉴얼 본문 검색", "반입 완료한 복지 매뉴얼의 본문·절 제목을 검색합니다. 결과는 검토할 원문 근거이며 자격·금액 정답이 아닙니다. URL은 저장소의 고정 커밋 파싱본이며 공식 원본 URL이나 PDF 물리 쪽수로 해석하지 마세요.", {
+  register("search_manuals", "복지 매뉴얼 본문 검색", "반입된 복지 매뉴얼의 본문·절 제목을 검색합니다. URL은 고정 커밋 파싱본이며 PDF 쪽수가 아닙니다. manual: ID는 fetch·get_manual_section으로 읽거나 auto_detail=true로 즉시 연결하세요.", {
     query: questionInput.min(1),
     limit: z.number().int().min(1).max(20).optional(),
     release_bundle_id: bundleInput,
+    ...autoDetailFields,
   }, async (args) => {
     const current = await pinned(args);
     const plan = refineWelfareQuery(args.query, { currentYear: Number(kstDate(now()).slice(0, 4)) });
     const results = await searchManualSections(data.db, plan, { revision: current.manualPin, limit: args.limit ?? 10 });
     const assessment = assessAnswerability({ plan, results: results.map((hit) => ({ ...hit, relevance_score: hit.score, scope_flags: hit.body_available === false ? ["EMPTY_SOURCE_BODY"] : [] })), relaxed: false, legalStatus: "NOT_QUERIED" });
-    return envelope(current, now(), { results, query_plan: plan, manual_revision: current.manualPin || null, ...assessment, web_search_fallback: webSearchFallback(plan, assessment) }, {
+    const detailWarning = assessment.reason_codes.includes("INSUFFICIENT_DETAIL_EVIDENCE") && assessment.coverage.unmatched_detail_terms.length
+      ? ["INSUFFICIENT_DETAIL_EVIDENCE: 질문의 세부 조건(" + assessment.coverage.unmatched_detail_terms.join(", ") + ")이 반환된 매뉴얼 발췌문에서 확인되지 않았습니다. 원문 전체를 확인하거나 미확인 조건으로 안내하세요."]
+      : [];
+    const chainedData = await attachOptionalChain(
+      { results, query_plan: plan, manual_revision: current.manualPin || null, ...assessment, web_search_fallback: webSearchFallback(plan, assessment) },
+      results,
+      { autoDetail: args.auto_detail, detailLimit: args.detail_limit, question: args.query, releaseBundleId: current.bundleId },
+    );
+    return envelope(current, now(), chainedData, {
       evidence: results.flatMap((hit) => hit.sources),
       coverage: { scope: "parsed_manual_sections", complete: false, gaps: ["검색 후보이며 본문 적용연도·지역과 누락된 이미지 내용을 별도 확인해야 합니다."], returned_count: results.length },
-      warnings: [...plan.warnings, "검색 미일치는 제도 부재를 뜻하지 않습니다."],
+      warnings: [...plan.warnings, ...detailWarning, "검색 미일치는 제도 부재를 뜻하지 않습니다."],
     });
   });
 
@@ -1038,7 +1159,7 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
   });
 
   // 3. find_programs
-  register("find_programs", "시행사업 찾기", "지역·사업분류·대상자 묶음·검색어로 시행사업을 찾고, 일치 이유와 포괄 범위를 함께 돌려줍니다. 서로 다른 조건은 AND, 같은 배열 안의 값은 OR입니다. 대상자 묶음은 공개 원문 문구 일치이며 개인 자격 판정이 아닙니다.", {
+  register("find_programs", "시행사업 찾기", "지역·사업분류·대상자 묶음·검색어로 지자체 시행사업을 찾습니다. 반환된 implementation_id(service:)는 get_welfare_context·fetch로 상세를 확인하세요.", {
     region_id: regionInput.optional(),
     service_type_ids: z.array(z.string().max(100)).max(LIMITS.arrayMax).optional().describe("category:<대분류> 또는 category:<대분류>|<중분류>. get_ontology_schema(section=\"service_types\") 참조."),
     target_group_ids: z.array(z.enum(TARGET_GROUP_IDS)).max(LIMITS.arrayMax).optional().describe("대상자 묶음 ID. get_ontology_schema(section=\"target_groups\") 참조."),
@@ -1564,11 +1685,11 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
 
   // 재정 도구: 공개 원천·검증 범위·문서 편성단계를 구분한다.
   register("get_fiscal_catalog", "재정 카탈로그", "공개 snapshot에 실제로 있는 재정주체·부서코드·회계·분야/부문·가용 기준일, 관리자가 승인한 예산서 편성 단계(catalog_type=budget_document: document_revision_id·단계·수록 범위), 재정주체 하나의 부서코드 연도별 관측 이력과 연도 사이 사업 이관(catalog_type=department_history, fiscal_entity_id 필요)을 돌려줍니다. 코드·날짜를 추정하지 말고 이 목록에서 고르세요. region_id는 검증된 재정주체 매핑이 있을 때만 쓸 수 있습니다.", FISCAL_TOOL_SHAPES.get_fiscal_catalog, async (args) => { const current = await pinned(args); return getFiscalCatalog(data.db, args, envelopeFor(current), current.fiscalPin, current.budgetPin); });
-  register("find_budget_projects", "재정사업 찾기", "회계연도·모드별 세부사업과 예산현액·공개 지출액(원, 10진 문자열)을 돌려줍니다. 같은 재정주체·연도·회계·세부사업명의 공개 예산서 행이 있으면 budget_documents에 document_revision_id·budget_line_id·문서 단계 금액을 함께 줍니다. include_summary=true면 검증된 금액만의 부분 합계와 포함·제외 건수를 줍니다. 기준일 혼합·사업 중복이 있으면 합산하지 않습니다. 미검증 금액은 null입니다. 통합돌봄 모드는 세부사업명 규칙이며 공식 분류가 아닙니다. 명칭으로 찾은 문서 연결은 CANDIDATE_NAME_MATCH이며 같은 사업이라는 확인이 아닙니다. 숫자 부서코드는 fiscal_entity_id와 함께 지정하세요.", FISCAL_TOOL_SHAPES.find_budget_projects, async (args) => { const current = await pinned(args); return findBudgetProjects(data.db, args, envelopeFor(current), current.fiscalPin, current.budgetPin); });
-  register("get_budget_execution", "예산 집행 조회", "재정사업 ID(최대 50개)별 공식 화면 단위 검증을 통과한 예산현액·공개 지출액·차액·집행률과 실제 기준일을 돌려줍니다. 미검증 금액은 null이며 0원이 아닙니다. fallback_policy=latest_before(기본)는 요청일 이전 7일 안의 가장 가까운 공개본을 씁니다.", FISCAL_TOOL_SHAPES.get_budget_execution, async (args) => { const current = await pinned(args); return getBudgetExecution(data.db, args, envelopeFor(current), current.fiscalPin); });
+  register("find_budget_projects", "재정사업 찾기", "회계연도·모드별 세부사업과 검증된 예산현액·공개 지출액을 조회합니다. 연결 가능한 공개 예산서 행이 있으면 budget_documents에 함께 표시합니다. 미검증 금액은 null입니다.", FISCAL_TOOL_SHAPES.find_budget_projects, async (args) => { const current = await pinned(args); return findBudgetProjects(data.db, args, envelopeFor(current), current.fiscalPin, current.budgetPin); });
+  register("get_budget_execution", "예산 집행 조회", "재정사업 ID(최대 50개)의 공식 화면 검증 예산현액·공개 지출액·차액·집행률과 기준일을 조회합니다. 미검증 금액은 null입니다.", FISCAL_TOOL_SHAPES.get_budget_execution, async (args) => { const current = await pinned(args); return getBudgetExecution(data.db, args, envelopeFor(current), current.fiscalPin); });
   register("compare_budget_periods", "예산 기간 비교", "같은 재정사업의 두 기준일(같은 연도) 또는 두 연도 값을 비교해 예산현액 변화와 공개 지출액 순변동을 돌려줍니다. 연도가 다르면 같은 재정주체·회계·세부사업코드로 짝을 찾고(mapping), 부서·분류가 바뀌었거나 짝이 없거나 여럿이면 비교불가 사유를 돌려줍니다. 예산서 단계 비교는 comparison_basis=document_stage와 양쪽 document_revision_id(get_fiscal_catalog budget_document)로 하며, project_selection은 fiscal_project_ids·budget_line_ids·detail_project_query 가운데 하나입니다. 문서 단계 금액(천원)과 지방재정365 기준일 예산현액은 한 비교로 섞지 않습니다.", FISCAL_TOOL_SHAPES.compare_budget_periods, async (args) => { const current = await pinned(args); return compareBudgetPeriods(data.db, args, envelopeFor(current), current.fiscalPin, current.budgetPin); });
 
-  register("search_budget_lines", "예산서 세부사업·부기 검색", "승인·활성화된 예산서의 세부사업을 검색합니다. 기본 level=detail_project이며 item·sub_item·sub_item_detail 등 원문 계층을 선택할 수 있습니다. 연도·재정주체·발행지역·본예산/추경 단계·문서 revision으로 좁히고, 반환한 budget_line_id로 get_budget_breakdown을 호출하세요. 예산서가 독립 원천이므로 재정 API 미검증 여부와 무관하게 문서 단계 금액·검산 상태·출처를 제공합니다. 문서 금액을 예산현액으로 바꾸거나 행을 중복 합산하지 마세요.", BUDGET_DOCUMENT_TOOL_SHAPES.search_budget_lines, async (args) => { const current = await pinned(args); return searchBudgetLines(data.db, args, envelopeFor(current), current.budgetPin); });
+  register("search_budget_lines", "예산서 세부사업·부기 검색", "승인된 예산서의 세부사업·편성목·부기를 검색합니다. 반환한 budget_line_id를 get_budget_breakdown이나 fetch에 전달해 하위 산출내역을 확인하세요.", BUDGET_DOCUMENT_TOOL_SHAPES.search_budget_lines, async (args) => { const current = await pinned(args); return searchBudgetLines(data.db, args, envelopeFor(current), current.budgetPin); });
   register("get_budget_breakdown", "예산서 부기·산출내역", "검색 결과의 budget_line_id 아래 계층을 페이지별로 읽습니다. 세부사업·편성목·통계목·부기·산출식·문서 표시 금액(천원)·원 환산 문자열·재원·검산 상태·근거 위치를 제공합니다. root는 기준 행이고 lines에는 그 행과 하위 행이 포함됩니다. 합계는 자동 계산하지 않습니다. next_cursor가 있으면 같은 조건으로 이어서 조회하세요.", BUDGET_DOCUMENT_TOOL_SHAPES.get_budget_breakdown, async (args) => { const current = await pinned(args); return getBudgetBreakdown(data.db, args, envelopeFor(current), current.budgetPin); });
 
   // 14. search_news
@@ -1777,6 +1898,258 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
   });
 
   registerStatisticsTools({ db: data.db, register, wrap: async (value, options = {}) => envelope(await state(), now(), value, options) });
+
+  // 0. welfare_research (Korean Law MCP의 legal_research 대응: 다단계 자동 툴체이닝 원스톱 리서치)
+  register("welfare_research", "복지 복합 리서치(자동 체이닝)", "자연어 질문을 분석해 통합검색(search) 후 상위 근거의 상세 조회(get_welfare_context·get_manual_section·get_faq·get_statistics_data·get_budget_breakdown 등)와 작업별 보조 자료를 한 번에 연속 조회합니다.", {
+    query: questionInput.min(1).describe("자연어 복지 질문 또는 조사할 제도·지역·예산·통계 주제"),
+    task: z.enum(WELFARE_RESEARCH_TASKS).optional().describe("auto(기본: 질문 의도로 자동 선택), full_research(종합), eligibility_check(신청자격·절차), manual_verify(매뉴얼 원문), regional_compare(지역 사업·돌봄자원), budget_track(예산·집행), statistics_trend(통계 시계열)"),
+    region_id: regionInput.optional(),
+    fiscal_year: z.number().int().min(2000).max(2100).optional(),
+    detail_limit: z.number().int().min(1).max(MAX_AUTO_DETAIL_ITEMS).optional().describe("자동 상세 조회할 상위 후보 수(기본 2, 최대 3)"),
+    release_bundle_id: bundleInput,
+  }, async (args) => {
+    const current = await pinned(args);
+    const deadline = startWelfareChainDeadline(context.searchSourceDeadlineMs ? Math.max(8_000, context.searchSourceDeadlineMs + 4_000) : DEFAULT_WELFARE_CHAIN_DEADLINE_MS);
+    try {
+      const basePlan = refineWelfareQuery(args.query, { currentYear: Number(kstDate(now()).slice(0, 4)) });
+      const effectiveRegion = args.region_id ?? basePlan.region_id;
+      if (effectiveRegion && effectiveRegion !== "region:전국") parseRegionId(effectiveRegion);
+      const resolvedTask = (!args.task || args.task === "auto") ? detectWelfareResearchTask(args.query, basePlan) : args.task;
+      const detailLimit = args.detail_limit ?? DEFAULT_AUTO_DETAIL_ITEMS;
+      const stepsExecuted: { step: string; tool: McpToolName; status: "SUCCEEDED" | "TIMED_OUT" | "ERROR"; note?: string }[] = [];
+      const timedOutSections: { section: string; recovery_tool: McpToolName; recovery_params: Record<string, unknown>; message: string }[] = [];
+
+      // 1단계: 통합 검색 실행
+      const searchOutcome = await raceWelfareDeadline(deadline, () => invokeInternal("search", { query: args.query }));
+      if (!searchOutcome.ok) {
+        throw new McpToolError("CHAIN_SEARCH_FAILED", searchOutcome.error ?? "통합 검색 단계가 시간 한도를 넘겼습니다. search 도구로 다시 조회해 주세요.");
+      }
+      stepsExecuted.push({ step: "primary_search", tool: "search", status: "SUCCEEDED" });
+      const searchData = searchOutcome.value as {
+        results: { id: string; entity_type: string; title?: string }[];
+        query_plan: typeof basePlan;
+        retrieval_status: string;
+        answerability: string;
+        coverage: unknown;
+        reason_codes: string[];
+        warnings?: string[];
+      };
+
+      // task별 후보 우선순위 정렬
+      const candidates = [...(searchData.results ?? [])].sort((a, b) => {
+        const priority = (entityType: string): number => {
+          if (resolvedTask === "manual_verify") return entityType === "manual_section" ? 0 : 1;
+          if (resolvedTask === "eligibility_check") return ["implementation", "gov24_service", "welfare100_service", "official_faq", "manual_section"].indexOf(entityType) >= 0 ? 0 : 1;
+          if (resolvedTask === "statistics_trend") return entityType === "welfare_statistic" ? 0 : 1;
+          if (resolvedTask === "budget_track") return entityType === "budget_line" ? 0 : 1;
+          return 0;
+        };
+        return priority(a.entity_type) - priority(b.entity_type);
+      });
+
+      // 2단계: 상위 후보 자동 상세 체이닝
+      const chainedDetails = await executeAutoDetailChain(candidates, invokeInternal, {
+        question: args.query,
+        releaseBundleId: current.bundleId,
+        limit: detailLimit,
+        deadline,
+      });
+      for (const item of chainedDetails.items) {
+        stepsExecuted.push({ step: "auto_detail:" + item.id, tool: item.tool, status: item.status, ...(item.recovery_hint ? { note: item.recovery_hint } : {}) });
+        if (item.status === "TIMED_OUT") {
+          timedOutSections.push({ section: "상세 조회(" + item.id + ")", recovery_tool: item.tool, recovery_params: item.params, message: item.recovery_hint ?? "개별 도구로 조회하세요." });
+        }
+      }
+
+      // 3단계: task별 도메인 확장 체이닝
+      let regionalServices: unknown = null;
+      let careDemand: unknown = null;
+      let budgetProjects: unknown = null;
+      let budgetExecution: unknown = null;
+      let statisticsData: unknown = null;
+
+      if ((resolvedTask === "regional_compare" || (effectiveRegion && effectiveRegion !== "region:전국")) && !deadline.expired()) {
+        const regionId = effectiveRegion && effectiveRegion !== "region:전국" ? effectiveRegion : "region:제주특별자치도|서귀포시";
+        const [catalogLeg, careLeg] = await Promise.all([
+          raceWelfareDeadline(deadline, () => invokeInternal("search_welfare_services", { query: basePlan.search_query || undefined, region_id: regionId, include_ancestor_scope: true, limit: 10 })),
+          CARE_RESOURCES_MCP && resolvedTask === "regional_compare"
+            ? raceWelfareDeadline(deadline, () => invokeInternal("get_care_demand", { region_id: regionId }))
+            : Promise.resolve(null),
+        ]);
+        if (catalogLeg.ok) {
+          regionalServices = catalogLeg.value;
+          stepsExecuted.push({ step: "regional_catalog", tool: "search_welfare_services", status: "SUCCEEDED" });
+        } else if (catalogLeg.timedOut) {
+          timedOutSections.push({ section: "지역 복지제도100 목록", recovery_tool: "search_welfare_services", recovery_params: { region_id: regionId, include_ancestor_scope: true }, message: "시간 한도로 지역 대장 목록 응답이 지연되었습니다." });
+        }
+        if (careLeg) {
+          if (careLeg.ok) {
+            careDemand = (careLeg.value as { data?: unknown }).data ?? careLeg.value;
+            stepsExecuted.push({ step: "regional_care_demand", tool: "get_care_demand", status: "SUCCEEDED" });
+          } else if (careLeg.timedOut) {
+            timedOutSections.push({ section: "지역 돌봄 수요 통계", recovery_tool: "get_care_demand", recovery_params: { region_id: regionId }, message: "시간 한도로 지역 돌봄 수요 응답이 지연되었습니다." });
+          }
+        }
+      }
+
+      if (resolvedTask === "budget_track" && fiscalOn && !deadline.expired()) {
+        const fiscalYear = args.fiscal_year ?? basePlan.requested_year ?? 2026;
+        const projectsLeg = await raceWelfareDeadline(deadline, () =>
+          invokeInternal("find_budget_projects", {
+            fiscal_year: fiscalYear,
+            mode: "integrated_care",
+            ...(effectiveRegion && effectiveRegion !== "region:전국" ? { region_id: effectiveRegion } : {}),
+            ...(basePlan.search_query ? { query: basePlan.search_query.slice(0, LIMITS.queryMax) } : {}),
+            limit: 5,
+          }),
+        );
+        if (projectsLeg.ok) {
+          const projectData = (projectsLeg.value as { data?: { items?: { fiscal_project_id?: string }[] } }).data;
+          budgetProjects = projectData ?? projectsLeg.value;
+          stepsExecuted.push({ step: "budget_projects", tool: "find_budget_projects", status: "SUCCEEDED" });
+          const projectIds = (projectData?.items ?? []).map((row) => row.fiscal_project_id).filter((id): id is string => typeof id === "string").slice(0, 5);
+          if (projectIds.length && !deadline.expired()) {
+            const execLeg = await raceWelfareDeadline(deadline, () =>
+              invokeInternal("get_budget_execution", { fiscal_project_ids: projectIds, fiscal_year: fiscalYear }),
+            );
+            if (execLeg.ok) {
+              budgetExecution = (execLeg.value as { data?: unknown }).data ?? execLeg.value;
+              stepsExecuted.push({ step: "budget_execution", tool: "get_budget_execution", status: "SUCCEEDED" });
+            }
+          }
+        } else if (projectsLeg.timedOut) {
+          timedOutSections.push({ section: "재정사업 조회", recovery_tool: "find_budget_projects", recovery_params: { fiscal_year: fiscalYear, mode: "integrated_care" }, message: "시간 한도로 재정사업 목록 응답이 지연되었습니다." });
+        }
+      }
+
+      if (resolvedTask === "statistics_trend" && !deadline.expired()) {
+        const alreadyFetchedStat = chainedDetails.items.some((item) => item.entity_type === "welfare_statistic" && item.status === "SUCCEEDED");
+        if (!alreadyFetchedStat) {
+          const statSearchLeg = await raceWelfareDeadline(deadline, () =>
+            invokeInternal("search_statistics", { query: basePlan.search_query || args.query.slice(0, 100), data_only: true, limit: 3 }),
+          );
+          if (statSearchLeg.ok) {
+            stepsExecuted.push({ step: "statistics_search", tool: "search_statistics", status: "SUCCEEDED" });
+            const statItems = ((statSearchLeg.value as { data?: { items?: { dataset_id?: string; id?: string; data_available?: boolean }[] } }).data?.items ?? [])
+              .filter((row) => row.data_available && (row.dataset_id || row.id));
+            const firstStatId = statItems[0]?.dataset_id ?? statItems[0]?.id;
+            if (firstStatId && !deadline.expired()) {
+              const statDataLeg = await raceWelfareDeadline(deadline, () =>
+                invokeInternal("get_statistics_data", { statistics_id: firstStatId }),
+              );
+              if (statDataLeg.ok) {
+                statisticsData = (statDataLeg.value as { data?: unknown }).data ?? statDataLeg.value;
+                stepsExecuted.push({ step: "statistics_data", tool: "get_statistics_data", status: "SUCCEEDED" });
+              }
+            }
+          }
+        }
+      }
+
+      const followUpCalls = suggestFollowUpCallsForSearch(candidates, {
+        question: args.query,
+        releaseBundleId: current.bundleId,
+        regionId: effectiveRegion,
+      });
+      if (resolvedTask === "budget_track" && followUpCalls.length < 4) {
+        followUpCalls.push(toSuggestedToolCall(followUpCalls.length + 1, "get_fiscal_catalog", { catalog_type: "available_reference_date", fiscal_year: args.fiscal_year ?? 2026 }, "재정 데이터 가용 기준일·예산서 단계 확인"));
+      }
+
+      return envelope(current, now(), {
+        task_requested: args.task ?? "auto",
+        task_resolved: resolvedTask,
+        query_plan: searchData.query_plan,
+        chain_execution: {
+          header: chainedDetails.header,
+          steps_executed: stepsExecuted,
+          succeeded_details: chainedDetails.succeeded_count,
+          timed_out_sections: timedOutSections,
+          partial_result: timedOutSections.length > 0,
+        },
+        search: {
+          retrieval_status: searchData.retrieval_status,
+          answerability: searchData.answerability,
+          coverage: searchData.coverage,
+          reason_codes: searchData.reason_codes,
+          results: (searchData.results ?? []).slice(0, 10),
+        },
+        chained_details: chainedDetails.items,
+        ...(regionalServices ? { regional_welfare_catalog: regionalServices } : {}),
+        ...(careDemand ? { care_demand: careDemand } : {}),
+        ...(budgetProjects ? { budget_projects: budgetProjects } : {}),
+        ...(budgetExecution ? { budget_execution: budgetExecution } : {}),
+        ...(statisticsData ? { statistics_data: statisticsData } : {}),
+        suggested_tool_calls: followUpCalls,
+        next_actions_text: formatSuggestedToolCalls(followUpCalls),
+      }, {
+        coverage: {
+          scope: "welfare_research_chain",
+          complete: timedOutSections.length === 0 && searchData.answerability === "SUPPORTED",
+          gaps: [
+            ...(timedOutSections.map((item) => item.section + ": " + item.message)),
+            ...(searchData.retrieval_status !== "CANDIDATES_FOUND" ? ["검색 결과에서 직접 근거 후보를 찾지 못했습니다."] : []),
+          ],
+        },
+        warnings: [
+          ...(searchData.warnings ?? []),
+          ...(timedOutSections.length ? ["⏱ 체인 시간 한도로 일부 단계만 수집했습니다. 누락된 섹션은 안내된 개별 도구로 이어서 조회하세요."] : []),
+        ],
+      });
+    } finally {
+      deadline.dispose();
+    }
+  });
+
+  // 메타 도구 1: discover_tools (Korean Law MCP 패턴: 전문 복지 도구 탐색)
+  register("discover_tools", "복지 도구 찾기", "질문 의도·키워드(매뉴얼·129 FAQ·통계·예산·보도자료·온톨로지·출처 등)에 맞는 대시보드 복지 도구를 찾습니다. 1-hop 노출 도구는 직접 호출하고, 전문 도구는 execute_tool로 실행하세요.", {
+    intent: z.string().trim().min(1).max(200).describe("찾고자 하는 기능·도메인·도구명 (예: '예산 기간 비교', '매뉴얼 구간', '129 FAQ', '온톨로지 관계', '보도자료')"),
+  }, async ({ intent }) => {
+    const current = await state();
+    const discovered = discoverWelfareTools(intent, toolCatalog);
+    const withheld = [
+      ...(LAW_MCP_PUBLIC ? [] : [LAW_MCP_WITHHELD_MESSAGE]),
+      ...(CARE_RESOURCES_MCP ? [] : [CARE_MCP_WITHHELD_MESSAGE]),
+    ];
+    return envelope(current, now(), discovered, {
+      coverage: { scope: "welfare_tool_discovery", complete: true, gaps: withheld },
+      warnings: withheld,
+    });
+  });
+
+  // 메타 도구 2: execute_tool (Korean Law MCP 패턴: 전문 복지 도구 2-hop 실행)
+  register("execute_tool", "복지 도구 실행", "discover_tools로 확인한 복지 도구를 이름(tool_name)과 파라미터(params)로 실행합니다. 메타 도구 재귀 호출과 비활성 도구(돌봄자원·법령)는 차단됩니다.", {
+    tool_name: z.string().trim().min(1).max(100).describe("실행할 복지 도구 이름 (예: get_manual_section, get_faq, compare_budget_periods, get_budget_breakdown)"),
+    params: z.record(z.unknown()).optional().describe("도구에 전달할 파라미터 객체"),
+  }, async ({ tool_name, params }) => {
+    const target = tool_name.trim();
+    if (META_MCP_TOOL_NAMES.has(target)) {
+      throw new McpToolError("META_TOOL_RECURSION", "메타 도구(" + target + ")는 execute_tool로 재귀 실행할 수 없습니다.");
+    }
+    if (isBlockedLawTool(target)) {
+      throw new McpToolError("LAW_MCP_DISABLED", LAW_MCP_WITHHELD_MESSAGE);
+    }
+    if (isBlockedCareTool(target)) {
+      throw new McpToolError("CARE_MCP_DISABLED", CARE_MCP_WITHHELD_MESSAGE);
+    }
+    const rawParams = params ?? {};
+    if (JSON.stringify(rawParams).length > 50_000) {
+      throw new McpToolError("PARAMS_TOO_LARGE", "params 크기가 허용 상한(50,000자)을 넘었습니다.");
+    }
+    const fn = internalHandlers.get(target as McpToolName);
+    if (!fn) {
+      throw new McpToolError("TOOL_NOT_FOUND", "실행 가능한 복지 도구를 찾을 수 없습니다: " + target + ". discover_tools로 사용 가능한 도구와 입력 필드를 먼저 확인하세요.");
+    }
+    try {
+      return await fn(rawParams);
+    } catch (error) {
+      if (error instanceof McpToolError) throw error;
+      if (error instanceof z.ZodError) {
+        const detail = error.issues.map((issue) => (issue.path.join(".") || "params") + ": " + issue.message).join("; ");
+        throw new McpToolError("INVALID_TOOL_PARAMS", target + " 입력 형식 오류: " + detail);
+      }
+      throw error;
+    }
+  });
 
   return registered;
 }

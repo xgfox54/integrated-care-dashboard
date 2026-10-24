@@ -8,9 +8,9 @@ import { PATH_DOMAINS, type DataStatusReport, type DomainId } from "@/lib/data-s
 const STATE_CLASS: Record<string, string> = {
   정상: "bg-(--jeju-surface-inset) text-(--jeju-text-body)",
   "일부 제공": "bg-(--jeju-surface-inset) text-(--jeju-text-body)",
-  "갱신 지연": "bg-amber-50 text-amber-900",
+  "갱신 지연": "bg-(--jeju-orange-light) text-(--jeju-warning)",
   미제공: "bg-(--jeju-surface-inset) text-muted-foreground",
-  "확인 실패": "bg-red-50 text-red-900",
+  "확인 실패": "bg-(--jeju-surface-inset) text-(--jeju-danger)",
 };
 
 function shortDate(value: string | null): string {
@@ -37,8 +37,8 @@ export function DataStatusStrip() {
   const shown = report.domains.filter((entry) => domains.includes(entry.domain));
   return (
     <section aria-label="자료 상태" className="mx-auto mt-3 w-full max-w-7xl px-4 sm:px-6">
-      <details className="rounded-lg border border-border bg-card px-3 py-2 text-(length:--jeju-text-xs)">
-        <summary className="cursor-pointer select-none font-bold text-(--jeju-text-body)">
+      <details className="rounded-lg border border-border bg-card px-3 py-1.5 text-(length:--jeju-text-xs)">
+        <summary className="flex min-h-9 cursor-pointer select-none items-center gap-1 rounded font-bold text-(--jeju-text-body) outline-none focus-visible:shadow-(--jeju-focus-ring)">
           자료 조회 상태 · {shown.map((entry) => entry.label + " " + entry.state).join(" · ")} <span className="font-normal text-muted-foreground">(상태 조회 {shortDate(report.checkedAt)})</span>
         </summary>
         {shown.some((entry) => entry.domain === "welfare100") && (

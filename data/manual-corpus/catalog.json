@@ -1,10 +1,10 @@
 {
-  "revision": "sgw-8a8f0554c99e-v1",
+  "revision": "sgw-65832bd27306-v1",
   "documents": [
     {
       "document_id": "md-3a29a4a3933395701bb9",
       "source_name": "39.[서귀포시업무-시설현황] 제주도 내 사회복지시설·기관 전체 목록(2026.7.31.기준).md",
-      "source_path": "mcp-corpus-20261012/39.[서귀포시업무-시설현황] 제주도 내 사회복지시설·기관 전체 목록(2026.7.31.기준).md",
+      "source_path": "source-md/39.[서귀포시업무-시설현황] 제주도 내 사회복지시설·기관 전체 목록(2026.7.31.기준).md",
       "sha256": "672b34824c29d38f60b42373dc4323b8e70abef86d75ff6f28fdade5bc65d429",
       "byte_size": 269827,
       "document_year": "2026",
@@ -23,7 +23,7 @@
     {
       "document_id": "md-1df226c89702aa6886a8",
       "source_name": "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+      "source_path": "source-md/[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
       "sha256": "9b0f07a3209f8ab4539e125b5db00b06846073ed448b5a51853fde0a3ad1f0cb",
       "byte_size": 1965568,
       "document_year": "2026",
@@ -42,7 +42,7 @@
     {
       "document_id": "md-497b841700247f8e9816",
       "source_name": "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+      "source_path": "source-md/[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
       "sha256": "cf9ba3b5da1e81cc5e9ec8bce769a9c9ecb2b2126ee2f147a667d80ce3f6a25e",
       "byte_size": 681056,
       "document_year": "2026",
@@ -61,7 +61,7 @@
     {
       "document_id": "md-783eee3cec291d3698fa",
       "source_name": "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+      "source_path": "source-md/[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
       "sha256": "662d0970e0e5ae3021261e458d1a9e13d24bb03ce44037bb1862845ef16e7dd3",
       "byte_size": 1133057,
       "document_year": "2026",
@@ -80,7 +80,7 @@
     {
       "document_id": "md-9de43e685cc835d59c0d",
       "source_name": "[매뉴얼-공적급여] 2026년 재가 의료급여 사업운영 매뉴얼.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-공적급여] 2026년 재가 의료급여 사업운영 매뉴얼.md",
+      "source_path": "source-md/[매뉴얼-공적급여] 2026년 재가 의료급여 사업운영 매뉴얼.md",
       "sha256": "1bbb03879b808b74c006604bf3721d59c81d1141df8879d5742dfffc2b946c62",
       "byte_size": 434701,
       "document_year": "2026",
@@ -99,7 +99,7 @@
     {
       "document_id": "md-b7ca6e7e18b458e0402c",
       "source_name": "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+      "source_path": "source-md/[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
       "sha256": "ac4b253a8ee2eaf15bcb2b778e79d88d02014decff39f14e61aa85d528e26c94",
       "byte_size": 892780,
       "document_year": "2026",
@@ -118,7 +118,7 @@
     {
       "document_id": "md-302c782c6a601286cdf1",
       "source_name": "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+      "source_path": "source-md/[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
       "sha256": "9d3992b33cf92c84034c968e1c88bb681d213606edca0174e84188fb89eda809",
       "byte_size": 215333,
       "document_year": "2026",
@@ -137,7 +137,7 @@
     {
       "document_id": "md-4b1fb458abb8e4cecee2",
       "source_name": "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+      "source_path": "source-md/[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
       "sha256": "ef9b5687024a224b48580c15079f3ee5276c001318d979e6196a1a5164bfbce7",
       "byte_size": 1343228,
       "document_year": "2026",
@@ -154,11 +154,11 @@
       "section_count": 561
     },
     {
-      "document_id": "md-0e227f2026c948cfafcc",
-      "source_name": "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
-      "sha256": "e992707d4b16795238ca8d59c7bd537b2877ee4c1565e66c4961f5e09187b39f",
-      "byte_size": 74578,
+      "document_id": "md-5761a2ad7bcc5ed05f65",
+      "source_name": "[매뉴얼-기부식품] 2026 그냥드림 사업안내 최종(2026. 9월기준).md",
+      "source_path": "source-md/[매뉴얼-기부식품] 2026 그냥드림 사업안내 최종(2026. 9월기준).md",
+      "sha256": "d527498b6a9e02942cd899abf82e4663cd6596f460ce70c0b765a70d3198d352",
+      "byte_size": 79261,
       "document_year": "2026",
       "category": "매뉴얼-기부식품",
       "document_type": "업무매뉴얼",
@@ -170,12 +170,12 @@
       "authority": "primary",
       "source_role": "operational_manual",
       "jurisdiction": "national",
-      "section_count": 35
+      "section_count": 34
     },
     {
       "document_id": "md-bb046fe6aab5aa1d9ea9",
       "source_name": "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
+      "source_path": "source-md/[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
       "sha256": "33cb1d94e4fcffcf77c900cba31321c45dc6a73da0bd02d6a7f9472f97306497",
       "byte_size": 1040939,
       "document_year": "2026",
@@ -194,7 +194,7 @@
     {
       "document_id": "md-e7e74ede0a3eee011ec9",
       "source_name": "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md",
+      "source_path": "source-md/[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md",
       "sha256": "025a8232783b6b970e075566f33a05f6bdd387ea38ad9111a7638987a15fb708",
       "byte_size": 325601,
       "document_year": "2025",
@@ -213,7 +213,7 @@
     {
       "document_id": "md-43b248aa94461d761958",
       "source_name": "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+      "source_path": "source-md/[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
       "sha256": "4405cd5ff8478bbae57da0b9f7d9c5085f3b720dd7e2160e5dedec3c07b01410",
       "byte_size": 606669,
       "document_year": "2026",
@@ -232,7 +232,7 @@
     {
       "document_id": "md-0b3fc66f8b4cde307a42",
       "source_name": "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+      "source_path": "source-md/[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
       "sha256": "69a14fc1cf0e0830dfb794cc94c646a8b2eebe3186ead02e71e9c90e1ee5946a",
       "byte_size": 374480,
       "document_year": "2026",
@@ -251,7 +251,7 @@
     {
       "document_id": "md-18a534777591abce2ace",
       "source_name": "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+      "source_path": "source-md/[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
       "sha256": "5e0e7c6ef5b3776ceadc3a5027875b47435b86beeb8da0153b6efdf29463324d",
       "byte_size": 740354,
       "document_year": "2026",
@@ -270,7 +270,7 @@
     {
       "document_id": "md-c7077bf24cbc9934ff71",
       "source_name": "[매뉴얼-노인복지] 2026 노인보건복지사업안내(2권).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-노인복지] 2026 노인보건복지사업안내(2권).md",
+      "source_path": "source-md/[매뉴얼-노인복지] 2026 노인보건복지사업안내(2권).md",
       "sha256": "3ba27690dccbe17a9e30667fabcd4c69bb5eea80b9779b962f2c4aba21dda503",
       "byte_size": 849101,
       "document_year": "2026",
@@ -289,7 +289,7 @@
     {
       "document_id": "md-c12a604d0fbd87cbe2d5",
       "source_name": "[매뉴얼-노인복지] 2026년 독거노인 장애인 응급안전안심서비스 사업안내★.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-노인복지] 2026년 독거노인 장애인 응급안전안심서비스 사업안내★.md",
+      "source_path": "source-md/[매뉴얼-노인복지] 2026년 독거노인 장애인 응급안전안심서비스 사업안내★.md",
       "sha256": "268fb75d615872887ad5dd21a492474b676de8f9d240f0d70d9c07a55078baa3",
       "byte_size": 376877,
       "document_year": "2026",
@@ -308,7 +308,7 @@
     {
       "document_id": "md-7ba22fe44d8f28420894",
       "source_name": "[매뉴얼-돌봄] 2026년 가사간병 방문지원사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-돌봄] 2026년 가사간병 방문지원사업 안내.md",
+      "source_path": "source-md/[매뉴얼-돌봄] 2026년 가사간병 방문지원사업 안내.md",
       "sha256": "ed7a8db7a25cdbd2b1bc83a152b6058d8218e0363fa4fbd952a157d194856712",
       "byte_size": 486251,
       "document_year": "2026",
@@ -327,7 +327,7 @@
     {
       "document_id": "md-9d15e5654a330cf497c1",
       "source_name": "[매뉴얼-돌봄] 2026년 긴급돌봄 지원사업 안내 최종.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-돌봄] 2026년 긴급돌봄 지원사업 안내 최종.md",
+      "source_path": "source-md/[매뉴얼-돌봄] 2026년 긴급돌봄 지원사업 안내 최종.md",
       "sha256": "45de801c89c608597904a9dfd916045da2cb37069e5dd1d135b9c1c7593c7992",
       "byte_size": 569268,
       "document_year": "2026",
@@ -346,7 +346,7 @@
     {
       "document_id": "md-9b3ecb5e36c8d7cd6e7e",
       "source_name": "[매뉴얼-돌봄] 2026년 노인맞춤돌봄서비스 사업안내(개정).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-돌봄] 2026년 노인맞춤돌봄서비스 사업안내(개정).md",
+      "source_path": "source-md/[매뉴얼-돌봄] 2026년 노인맞춤돌봄서비스 사업안내(개정).md",
       "sha256": "5a604d75003f0b97129f618a33e28248913786f3bd3b744615a001c880670732",
       "byte_size": 410238,
       "document_year": "2026",
@@ -365,7 +365,7 @@
     {
       "document_id": "md-2c8ba667b7cffefbd052",
       "source_name": "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+      "source_path": "source-md/[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
       "sha256": "ce8e06e02c105df0dc9e7f56f7269a7f2444e6062dbba3ce4dd67ce5a2f05c0d",
       "byte_size": 703019,
       "document_year": "2026",
@@ -384,7 +384,7 @@
     {
       "document_id": "md-864b396dd87c141436e1",
       "source_name": "[매뉴얼-돌봄] 2026년 지역이음 사업안내(제주가치돌봄 관련)★.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-돌봄] 2026년 지역이음 사업안내(제주가치돌봄 관련)★.md",
+      "source_path": "source-md/[매뉴얼-돌봄] 2026년 지역이음 사업안내(제주가치돌봄 관련)★.md",
       "sha256": "a48aafc6a4c6e2c4a7b0ea361380b4d6bac3a9ed1c1116d35a1cb84636dff2ad",
       "byte_size": 202941,
       "document_year": "2026",
@@ -403,7 +403,7 @@
     {
       "document_id": "md-292a88e4d7111f672fd2",
       "source_name": "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+      "source_path": "source-md/[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
       "sha256": "899e696b47888b683013296156d5497595d73736fee00c5904b559b5fc7ccfc5",
       "byte_size": 594501,
       "document_year": "2026",
@@ -422,7 +422,7 @@
     {
       "document_id": "md-71a943dc9074b98bdde6",
       "source_name": "[매뉴얼-바우처] 2026년 제주지역자율형사회서비스투자사업 지침(하반기).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-바우처] 2026년 제주지역자율형사회서비스투자사업 지침(하반기).md",
+      "source_path": "source-md/[매뉴얼-바우처] 2026년 제주지역자율형사회서비스투자사업 지침(하반기).md",
       "sha256": "36b926caee2407acd064f28190e900f4ed526bdcaac52845a39ad6382146ebe1",
       "byte_size": 246832,
       "document_year": "2026",
@@ -441,7 +441,7 @@
     {
       "document_id": "md-9d1641140a9fea4287d1",
       "source_name": "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+      "source_path": "source-md/[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
       "sha256": "9b188d1de4f797c08342dfa5e02b1ff3a8ff7f57ff1e5d830d7b064a9b0b6c98",
       "byte_size": 756475,
       "document_year": "2026",
@@ -460,7 +460,7 @@
     {
       "document_id": "md-daf5e57efeb82843d492",
       "source_name": "[매뉴얼-보건소] 2026 장애인 건강보건관리 사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보건소] 2026 장애인 건강보건관리 사업 안내.md",
+      "source_path": "source-md/[매뉴얼-보건소] 2026 장애인 건강보건관리 사업 안내.md",
       "sha256": "e8a96c4aaece0780e91c3766169d55c05517689a6537f81ecbb06d07c83b39dc",
       "byte_size": 909931,
       "document_year": "2026",
@@ -479,7 +479,7 @@
     {
       "document_id": "md-12f10d6309fc6f0bedc2",
       "source_name": "[매뉴얼-보건소] 2026년 모자보건사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보건소] 2026년 모자보건사업 안내.md",
+      "source_path": "source-md/[매뉴얼-보건소] 2026년 모자보건사업 안내.md",
       "sha256": "0f02cd993602bf17a2ce2cb2bdfe229d4ccbe80b778f21657c8b73cb1c3a822a",
       "byte_size": 1033383,
       "document_year": "2026",
@@ -498,7 +498,7 @@
     {
       "document_id": "md-0999df788e7090ac8558",
       "source_name": "[매뉴얼-보건소] 2026년 산모신생아 건강관리 지원사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보건소] 2026년 산모신생아 건강관리 지원사업 안내.md",
+      "source_path": "source-md/[매뉴얼-보건소] 2026년 산모신생아 건강관리 지원사업 안내.md",
       "sha256": "778d77e0c2fc2a7524e683992ce1b0ac67f54d7d43daff176abfc129acbb4500",
       "byte_size": 997675,
       "document_year": "2026",
@@ -517,7 +517,7 @@
     {
       "document_id": "md-83f4ac5d8ed3857e291d",
       "source_name": "[매뉴얼-보건소] 2026년 위기임신 및 보호출산 지원 사업 안내-최종.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보건소] 2026년 위기임신 및 보호출산 지원 사업 안내-최종.md",
+      "source_path": "source-md/[매뉴얼-보건소] 2026년 위기임신 및 보호출산 지원 사업 안내-최종.md",
       "sha256": "a7970bce437e7e8ee9dc300e653eac82e8e9435964c94d90ebe47eb3a3bb3996",
       "byte_size": 867765,
       "document_year": "2026",
@@ -536,7 +536,7 @@
     {
       "document_id": "md-c5ef438120f7a9084f68",
       "source_name": "[매뉴얼-보건소] 2026년 자살예방사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보건소] 2026년 자살예방사업 안내.md",
+      "source_path": "source-md/[매뉴얼-보건소] 2026년 자살예방사업 안내.md",
       "sha256": "eb153183d038835a388f300c26a16d17c373ce755a874aa465d3a2061f107692",
       "byte_size": 506068,
       "document_year": "2026",
@@ -555,7 +555,7 @@
     {
       "document_id": "md-8dd63420a44dedbe1fb2",
       "source_name": "[매뉴얼-보건소] 2026년 정신건강 심리상담 바우처사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보건소] 2026년 정신건강 심리상담 바우처사업 안내.md",
+      "source_path": "source-md/[매뉴얼-보건소] 2026년 정신건강 심리상담 바우처사업 안내.md",
       "sha256": "d9d16a1fb56c674d7e92bf30aa4e535840a0bdb74bb6d4e48b2a99399d252a2c",
       "byte_size": 406469,
       "document_year": "2026",
@@ -574,7 +574,7 @@
     {
       "document_id": "md-dcf67038aa6bad5972f0",
       "source_name": "[매뉴얼-보건소] 2026년 정신건강사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보건소] 2026년 정신건강사업 안내.md",
+      "source_path": "source-md/[매뉴얼-보건소] 2026년 정신건강사업 안내.md",
       "sha256": "07128ba01a224dc1b2db534e640db655810cfa8a91ac622ddeb9e947fd6c3282",
       "byte_size": 1087344,
       "document_year": "2026",
@@ -593,7 +593,7 @@
     {
       "document_id": "md-332cc899b01a178a514f",
       "source_name": "[매뉴얼-보건소] 2026년 정신질환자 공공후견 활동지원 사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보건소] 2026년 정신질환자 공공후견 활동지원 사업안내.md",
+      "source_path": "source-md/[매뉴얼-보건소] 2026년 정신질환자 공공후견 활동지원 사업안내.md",
       "sha256": "7f002e9cf11ce1078e73572d96bcc2e6a1e02d472aea11fea075b9a7fa70ac96",
       "byte_size": 327410,
       "document_year": "2026",
@@ -612,7 +612,7 @@
     {
       "document_id": "md-d919485fcd3276e7f468",
       "source_name": "[매뉴얼-보건소] 2026년 치매정책 사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보건소] 2026년 치매정책 사업안내.md",
+      "source_path": "source-md/[매뉴얼-보건소] 2026년 치매정책 사업안내.md",
       "sha256": "d6e14f62c0eee249e3cd31602e28991fbe047b4ccc41c317ff9607f7fb3ca63e",
       "byte_size": 903766,
       "document_year": "2026",
@@ -631,7 +631,7 @@
     {
       "document_id": "md-1861a750fa12ffbf4316",
       "source_name": "[매뉴얼-보건소] 2026년 통합건강증진사업 안내(구강보건).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보건소] 2026년 통합건강증진사업 안내(구강보건).md",
+      "source_path": "source-md/[매뉴얼-보건소] 2026년 통합건강증진사업 안내(구강보건).md",
       "sha256": "937e982deae267fecdc2ff4afad8addd2991e41a0fed2de8c6e9bbf4bacf5524",
       "byte_size": 364551,
       "document_year": "2026",
@@ -650,7 +650,7 @@
     {
       "document_id": "md-6cbbcfb289185a088979",
       "source_name": "[매뉴얼-보건소] 2026년 통합건강증진사업 안내(비만예방관리).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보건소] 2026년 통합건강증진사업 안내(비만예방관리).md",
+      "source_path": "source-md/[매뉴얼-보건소] 2026년 통합건강증진사업 안내(비만예방관리).md",
       "sha256": "185b1147b71103203e58b209744fa5e3ade7ef1a8cd8ce45124ada6a7910d79d",
       "byte_size": 220264,
       "document_year": "2026",
@@ -669,7 +669,7 @@
     {
       "document_id": "md-9451cec12de2e9c6f669",
       "source_name": "[매뉴얼-보건소] 2026년 통합건강증진사업 안내(신체활동).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보건소] 2026년 통합건강증진사업 안내(신체활동).md",
+      "source_path": "source-md/[매뉴얼-보건소] 2026년 통합건강증진사업 안내(신체활동).md",
       "sha256": "2358b23c3668e7beff50bc867c69ebe01d3018cbe581e8abe8dbccc70a921fb8",
       "byte_size": 231856,
       "document_year": "2026",
@@ -688,7 +688,7 @@
     {
       "document_id": "md-2b7bd02836b1c93a4ce2",
       "source_name": "[매뉴얼-보건소] 2026년 통합건강증진사업 안내(영양).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보건소] 2026년 통합건강증진사업 안내(영양).md",
+      "source_path": "source-md/[매뉴얼-보건소] 2026년 통합건강증진사업 안내(영양).md",
       "sha256": "c089d13713c895c9bde94d136f6afccaf63d818f3a196d0258199e12801b7f53",
       "byte_size": 445633,
       "document_year": "2026",
@@ -707,7 +707,7 @@
     {
       "document_id": "md-dd41311bc16299a9e83d",
       "source_name": "[매뉴얼-보건소] 2026년 통합건강증진사업안내(모자보건).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보건소] 2026년 통합건강증진사업안내(모자보건).md",
+      "source_path": "source-md/[매뉴얼-보건소] 2026년 통합건강증진사업안내(모자보건).md",
       "sha256": "cb54c52a1411393ea8b890ded81f1d85e63e56debcb75f122e4cbf6c1187ffdf",
       "byte_size": 86258,
       "document_year": "2026",
@@ -726,7 +726,7 @@
     {
       "document_id": "md-3dd18a949d3b9ec2a0e3",
       "source_name": "[매뉴얼-보조금관리] 2024 공공재정환수법 매뉴얼 최종.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보조금관리] 2024 공공재정환수법 매뉴얼 최종.md",
+      "source_path": "source-md/[매뉴얼-보조금관리] 2024 공공재정환수법 매뉴얼 최종.md",
       "sha256": "89aafe6cf7c61beaf786f0bc3a5a322b9c70e586ee21fccbd42f0945551cf3f2",
       "byte_size": 267089,
       "document_year": "2024",
@@ -745,7 +745,7 @@
     {
       "document_id": "md-64a7680383a31515b6e3",
       "source_name": "[매뉴얼-보조금관리] 2026년 지방보조금 관리 가이드.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보조금관리] 2026년 지방보조금 관리 가이드.md",
+      "source_path": "source-md/[매뉴얼-보조금관리] 2026년 지방보조금 관리 가이드.md",
       "sha256": "89290fa590d000ba8f860ef74ee748e4449d36116c878775b1b3e62833433cd3",
       "byte_size": 1269047,
       "document_year": "2026",
@@ -764,7 +764,7 @@
     {
       "document_id": "md-e1e492234e8032132963",
       "source_name": "[매뉴얼-보조금관리] 국고보조금 통합관리지침(기획예산처공고)(제2026-108호)(20260520).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보조금관리] 국고보조금 통합관리지침(기획예산처공고)(제2026-108호)(20260520).md",
+      "source_path": "source-md/[매뉴얼-보조금관리] 국고보조금 통합관리지침(기획예산처공고)(제2026-108호)(20260520).md",
       "sha256": "a8e6be8e56c818e23e2c8ba40f24932ac310688003a9444ea439cce540454101",
       "byte_size": 73844,
       "document_year": "2026",
@@ -783,7 +783,7 @@
     {
       "document_id": "md-585176ff584d17c428a9",
       "source_name": "[매뉴얼-보조금관리] 제주특별자치도 지방보조금 운영·관리지침(2024.2.5.).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-보조금관리] 제주특별자치도 지방보조금 운영·관리지침(2024.2.5.).md",
+      "source_path": "source-md/[매뉴얼-보조금관리] 제주특별자치도 지방보조금 운영·관리지침(2024.2.5.).md",
       "sha256": "e471520a5a8aa323c48d3db9add099bc6c60a887e54365e373f009e9bd43df69",
       "byte_size": 252927,
       "document_year": "2024",
@@ -802,7 +802,7 @@
     {
       "document_id": "md-85a866ce6ea3f12a5f66",
       "source_name": "[매뉴얼-사회복지관,법인,시설] 2025년 사회서비스 공통업무 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-사회복지관,법인,시설] 2025년 사회서비스 공통업무 안내.md",
+      "source_path": "source-md/[매뉴얼-사회복지관,법인,시설] 2025년 사회서비스 공통업무 안내.md",
       "sha256": "832e917bbb0737d0ecd1463d7201b7f9f4f4c1e01aad26530bf1713342451d34",
       "byte_size": 720125,
       "document_year": "2025",
@@ -821,7 +821,7 @@
     {
       "document_id": "md-9bba259d3c083e2d60c3",
       "source_name": "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지관 운영관련 업무처리 안내-최종.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-사회복지관,법인,시설] 2026년 사회복지관 운영관련 업무처리 안내-최종.md",
+      "source_path": "source-md/[매뉴얼-사회복지관,법인,시설] 2026년 사회복지관 운영관련 업무처리 안내-최종.md",
       "sha256": "b4bb9d5fa7765a3538b39fcd093b9044e11c8a194b0d9ebf721ee5b9cdad830a",
       "byte_size": 261353,
       "document_year": "2026",
@@ -840,7 +840,7 @@
     {
       "document_id": "md-9ba40f77cb4facc29f26",
       "source_name": "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지법인 관리안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-사회복지관,법인,시설] 2026년 사회복지법인 관리안내.md",
+      "source_path": "source-md/[매뉴얼-사회복지관,법인,시설] 2026년 사회복지법인 관리안내.md",
       "sha256": "13a719ddb4143d2ca764fd2572b9778295a45bca4dcdbe0c99bf7396fd88065d",
       "byte_size": 506842,
       "document_year": "2026",
@@ -859,7 +859,7 @@
     {
       "document_id": "md-f3605aa0731b5323ac46",
       "source_name": "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지시설 관리안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-사회복지관,법인,시설] 2026년 사회복지시설 관리안내.md",
+      "source_path": "source-md/[매뉴얼-사회복지관,법인,시설] 2026년 사회복지시설 관리안내.md",
       "sha256": "417a60f47987a5dfcb8441b525c629d31d9c0fa1bc3025ebd09e51cee28a3585",
       "byte_size": 554781,
       "document_year": "2026",
@@ -878,7 +878,7 @@
     {
       "document_id": "md-e66fdfd4d38f8f478aff",
       "source_name": "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지시설 종사자 인건비 가이드라인(최종).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-사회복지관,법인,시설] 2026년 사회복지시설 종사자 인건비 가이드라인(최종).md",
+      "source_path": "source-md/[매뉴얼-사회복지관,법인,시설] 2026년 사회복지시설 종사자 인건비 가이드라인(최종).md",
       "sha256": "7b1212bb94d77697f8c2606d2a256404d3de86ae3fb258693b787bed5352d0e2",
       "byte_size": 42815,
       "document_year": "2026",
@@ -897,7 +897,7 @@
     {
       "document_id": "md-7469905e0e042f9a1146",
       "source_name": "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+      "source_path": "source-md/[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
       "sha256": "c25d985db6fa8318ebd58c3b6535ffc713a2ab5e9be45702f2ebc8c8f2bea62f",
       "byte_size": 706206,
       "document_year": "2026",
@@ -916,7 +916,7 @@
     {
       "document_id": "md-b10a81cb4c91a01fe41e",
       "source_name": "[매뉴얼-아동] 2026년 보육사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-아동] 2026년 보육사업안내.md",
+      "source_path": "source-md/[매뉴얼-아동] 2026년 보육사업안내.md",
       "sha256": "cf7b875983a1e935b3ddcad6ebb3c3cb447ecf9c13e88fa3cda92342120cbca3",
       "byte_size": 1121849,
       "document_year": "2026",
@@ -935,7 +935,7 @@
     {
       "document_id": "md-13f45154c1c1fb931b4e",
       "source_name": "[매뉴얼-아동] 2026년 손주돌봄수당 지원사업 개요(제주특별자치도).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-아동] 2026년 손주돌봄수당 지원사업 개요(제주특별자치도).md",
+      "source_path": "source-md/[매뉴얼-아동] 2026년 손주돌봄수당 지원사업 개요(제주특별자치도).md",
       "sha256": "7f8af7697f0db343e78e8a1716c426b79c62f785358e0456de9af4187089918f",
       "byte_size": 1694,
       "document_year": "2026",
@@ -954,7 +954,7 @@
     {
       "document_id": "md-30473eefb0c697b0ad56",
       "source_name": "[매뉴얼-아동] 2026년 아동보호서비스 업무 매뉴얼.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-아동] 2026년 아동보호서비스 업무 매뉴얼.md",
+      "source_path": "source-md/[매뉴얼-아동] 2026년 아동보호서비스 업무 매뉴얼.md",
       "sha256": "21da921f1bccb1bf3b14a1334f99f00429b5da2292bf15fbfd6198a713d818bd",
       "byte_size": 1011511,
       "document_year": "2026",
@@ -973,7 +973,7 @@
     {
       "document_id": "md-b0e5c6ecabfb79bea707",
       "source_name": "[매뉴얼-아동] 2026년 아동분야 사업안내(1권).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-아동] 2026년 아동분야 사업안내(1권).md",
+      "source_path": "source-md/[매뉴얼-아동] 2026년 아동분야 사업안내(1권).md",
       "sha256": "1cfb54c3b63f80f2f2612abd646dc27953292449b46af76ff29b1c240c1274fb",
       "byte_size": 1043304,
       "document_year": "2026",
@@ -992,7 +992,7 @@
     {
       "document_id": "md-aa87a0b92726c821e54a",
       "source_name": "[매뉴얼-아동] 2026년 아동분야 사업안내(2권).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-아동] 2026년 아동분야 사업안내(2권).md",
+      "source_path": "source-md/[매뉴얼-아동] 2026년 아동분야 사업안내(2권).md",
       "sha256": "e2d04559556be51e60b292e0a4cf377cd23e7dd6091fa7ebb194b02454e223da",
       "byte_size": 935951,
       "document_year": "2026",
@@ -1011,7 +1011,7 @@
     {
       "document_id": "md-f4c58dc8ffcc0a1af827",
       "source_name": "[매뉴얼-아동] 2026년 아동수당 사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-아동] 2026년 아동수당 사업 안내.md",
+      "source_path": "source-md/[매뉴얼-아동] 2026년 아동수당 사업 안내.md",
       "sha256": "8e5835b44fe6afd0d259af4f4217a372d6160f9372eceacaab9a79a9d518c765",
       "byte_size": 638621,
       "document_year": "2026",
@@ -1030,7 +1030,7 @@
     {
       "document_id": "md-3cb455fac194d1f12623",
       "source_name": "[매뉴얼-아동] 2026년 유아학비 지원계획.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-아동] 2026년 유아학비 지원계획.md",
+      "source_path": "source-md/[매뉴얼-아동] 2026년 유아학비 지원계획.md",
       "sha256": "3d932ce2ae788ba1e210ee0de575c5fb7eb42044281ca5995b69731033a66b1d",
       "byte_size": 83873,
       "document_year": "2026",
@@ -1049,7 +1049,7 @@
     {
       "document_id": "md-bdc27d9c7331d0dacc03",
       "source_name": "[매뉴얼-아동] 2026년 지역아동센터 지원 사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-아동] 2026년 지역아동센터 지원 사업안내.md",
+      "source_path": "source-md/[매뉴얼-아동] 2026년 지역아동센터 지원 사업안내.md",
       "sha256": "692c1e27bb9265ace9d35db7685d797fc5041231034ba4488fbac16094dda0dd",
       "byte_size": 712948,
       "document_year": "2026",
@@ -1068,7 +1068,7 @@
     {
       "document_id": "md-0d5cde1744ecb603eec8",
       "source_name": "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+      "source_path": "source-md/[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
       "sha256": "a026b56bfb87fb319952be3ae1fc5ace687534bb01aed24db3547630efb1b992",
       "byte_size": 190314,
       "document_year": "2026",
@@ -1087,7 +1087,7 @@
     {
       "document_id": "md-2f65c119a5fa588d6c51",
       "source_name": "[매뉴얼-아동] 2026년도 결식아동 급식 업무 표준매뉴얼.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-아동] 2026년도 결식아동 급식 업무 표준매뉴얼.md",
+      "source_path": "source-md/[매뉴얼-아동] 2026년도 결식아동 급식 업무 표준매뉴얼.md",
       "sha256": "af69dbe7042977888e0ba071cfaf9053e986968ed15e3fd59acce1f2e09361e9",
       "byte_size": 166153,
       "document_year": "2026",
@@ -1106,7 +1106,7 @@
     {
       "document_id": "md-f7719f5784e1e6fe9b9e",
       "source_name": "[매뉴얼-아동] 2026년도 드림스타트 사업안내(최종).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-아동] 2026년도 드림스타트 사업안내(최종).md",
+      "source_path": "source-md/[매뉴얼-아동] 2026년도 드림스타트 사업안내(최종).md",
       "sha256": "b98cd64518b98c375a9e23e1586545c07cba63e6d475ec2970feb43797ae3496",
       "byte_size": 808207,
       "document_year": "2026",
@@ -1125,7 +1125,7 @@
     {
       "document_id": "md-73a60fc1f8adff28437f",
       "source_name": "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+      "source_path": "source-md/[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
       "sha256": "46e76691542874e36e8be7697d65663257aa354d7b6729a6f69798acf4d9f218",
       "byte_size": 641444,
       "document_year": "2026",
@@ -1144,7 +1144,7 @@
     {
       "document_id": "md-6d856ddf5196d1ed2d87",
       "source_name": "[매뉴얼-업무시스템] (통합돌봄)관내전출처리 사용자매뉴얼.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-업무시스템] (통합돌봄)관내전출처리 사용자매뉴얼.md",
+      "source_path": "source-md/[매뉴얼-업무시스템] (통합돌봄)관내전출처리 사용자매뉴얼.md",
       "sha256": "ea4cc1f2e9ff48a5b0d3041bdb079f004fda451fd8bea703b18235abd9be243c",
       "byte_size": 5961,
       "document_year": null,
@@ -1163,7 +1163,7 @@
     {
       "document_id": "md-7e0b06512cd37128f128",
       "source_name": "[매뉴얼-업무시스템] 2025년 사회보장정보시스템(행복이음) 통합업무 매뉴얼.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-업무시스템] 2025년 사회보장정보시스템(행복이음) 통합업무 매뉴얼.md",
+      "source_path": "source-md/[매뉴얼-업무시스템] 2025년 사회보장정보시스템(행복이음) 통합업무 매뉴얼.md",
       "sha256": "94015ea34da37d34c143919bdb1bcd5f0f0d1226acb22abbdd41157137b95eea",
       "byte_size": 444675,
       "document_year": "2025",
@@ -1182,7 +1182,7 @@
     {
       "document_id": "md-f5ddde9febb8dfa98d42",
       "source_name": "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+      "source_path": "source-md/[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
       "sha256": "ce134f19cb1ec220c16f949dbd51aba791c9a61f8dbf992d1bdf0755e9df2e2d",
       "byte_size": 91072,
       "document_year": null,
@@ -1201,7 +1201,7 @@
     {
       "document_id": "md-e613677beabd2e6d8c1f",
       "source_name": "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md",
+      "source_path": "source-md/[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md",
       "sha256": "f74af35d27fb6854ec4f2240dbb1dd9f3717e1e8569e618ec1ae795bf2f6bce5",
       "byte_size": 280859,
       "document_year": null,
@@ -1220,7 +1220,7 @@
     {
       "document_id": "md-993ec11d0ee794b30720",
       "source_name": "[매뉴얼-위기가구] 2025년 통합사례관리 실천가이드.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-위기가구] 2025년 통합사례관리 실천가이드.md",
+      "source_path": "source-md/[매뉴얼-위기가구] 2025년 통합사례관리 실천가이드.md",
       "sha256": "3167dd3963954c431ddde48923b7d7fd7e6cb877ad1b9d7eef6f19afc82a002a",
       "byte_size": 722389,
       "document_year": "2025",
@@ -1239,7 +1239,7 @@
     {
       "document_id": "md-46034087794aaab2bf6e",
       "source_name": "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md",
+      "source_path": "source-md/[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md",
       "sha256": "3898ec87cc02e698f7667b2926835094ac6bd5f88c0b29b448dfd903f516a0bf",
       "byte_size": 688310,
       "document_year": "2026",
@@ -1258,7 +1258,7 @@
     {
       "document_id": "md-3ce4789538b67cb2124a",
       "source_name": "[매뉴얼-위기가구] 2026년 고독·고립 예방 및 관리 사업 운영 지침.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-위기가구] 2026년 고독·고립 예방 및 관리 사업 운영 지침.md",
+      "source_path": "source-md/[매뉴얼-위기가구] 2026년 고독·고립 예방 및 관리 사업 운영 지침.md",
       "sha256": "65da5762221a375b949ede96c84b3d75269ba8312bab129b26e74f085456e1c3",
       "byte_size": 314803,
       "document_year": "2026",
@@ -1277,7 +1277,7 @@
     {
       "document_id": "md-443a4ed5903d2c75c42f",
       "source_name": "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md",
+      "source_path": "source-md/[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md",
       "sha256": "f4ed5f67f7983aa22d61997df268ba9adb9e113cfb0cf260a5b6389ad8f4e4e8",
       "byte_size": 918279,
       "document_year": "2026",
@@ -1296,7 +1296,7 @@
     {
       "document_id": "md-449fb8be9d2eb2085f22",
       "source_name": "[매뉴얼-위기가구] 2026년 찾아가는 보건복지서비스 업무안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-위기가구] 2026년 찾아가는 보건복지서비스 업무안내.md",
+      "source_path": "source-md/[매뉴얼-위기가구] 2026년 찾아가는 보건복지서비스 업무안내.md",
       "sha256": "18550495a0a719737f68a49d6b392e7b5a083d3a71691d4a3f0c8c9fe4d5f569",
       "byte_size": 774189,
       "document_year": "2026",
@@ -1315,7 +1315,7 @@
     {
       "document_id": "md-019d7fe6559ff889cf0f",
       "source_name": "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md",
+      "source_path": "source-md/[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md",
       "sha256": "01e10ceefd29782680cbb198b80a353cc72d3bb0bf13f724d55a6f0265acf325",
       "byte_size": 271075,
       "document_year": "2026",
@@ -1334,7 +1334,7 @@
     {
       "document_id": "md-268f842135d2d2231f7d",
       "source_name": "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
+      "source_path": "source-md/[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
       "sha256": "0648b1c6c784c51ca48c2f03af68808992afdebb46c0e7c11c4d9d1ef69e7c2c",
       "byte_size": 755063,
       "document_year": "2026",
@@ -1353,7 +1353,7 @@
     {
       "document_id": "md-b825b94f2c0424539648",
       "source_name": "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+      "source_path": "source-md/[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
       "sha256": "c624b6f8048894359c6b24b5e8121a4009bca0094227dc190df3e1ac81dcffbe",
       "byte_size": 902052,
       "document_year": "2026",
@@ -1372,7 +1372,7 @@
     {
       "document_id": "md-f2015216aba908a551f0",
       "source_name": "[매뉴얼-자활사업] 제2권 2026년 자활사업안내(II) 자산형성지원 통장사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-자활사업] 제2권 2026년 자활사업안내(II) 자산형성지원 통장사업 안내.md",
+      "source_path": "source-md/[매뉴얼-자활사업] 제2권 2026년 자활사업안내(II) 자산형성지원 통장사업 안내.md",
       "sha256": "34168d3e89f385aae2eb2b852e954751155227e99d0fbb00443992f154c79f0c",
       "byte_size": 375909,
       "document_year": "2026",
@@ -1391,7 +1391,7 @@
     {
       "document_id": "md-d458d6d49e77fba1a6a4",
       "source_name": "[매뉴얼-자활사업] 제3권 2026 근로능력 판정사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-자활사업] 제3권 2026 근로능력 판정사업 안내.md",
+      "source_path": "source-md/[매뉴얼-자활사업] 제3권 2026 근로능력 판정사업 안내.md",
       "sha256": "a0f47ec81d5067a14df30b552052edca345446789cbeb9749678467d46cf9973",
       "byte_size": 450632,
       "document_year": "2026",
@@ -1408,28 +1408,28 @@
       "section_count": 151
     },
     {
-      "document_id": "md-944fc521a2be9d552621",
-      "source_name": "[매뉴얼-장사·장묘] 2025 장사업무 안내(최종).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-장사·장묘] 2025 장사업무 안내(최종).md",
-      "sha256": "9d83714284f471d0da68bbaf7a545b28eaa66cd997a26a01b963e60e44b6ebe3",
-      "byte_size": 781002,
-      "document_year": "2025",
+      "document_id": "md-ed127b7d682c36ab9b47",
+      "source_name": "[매뉴얼-장사·장묘] 2026년 장사업무 안내 최종.md",
+      "source_path": "source-md/[매뉴얼-장사·장묘] 2026년 장사업무 안내 최종.md",
+      "sha256": "3f4e2072e52985b5efe887baa8f942a05d3af38a645124c86be1e67599afe78d",
+      "byte_size": 712970,
+      "document_year": "2026",
       "category": "매뉴얼-장사·장묘",
       "document_type": "업무매뉴얼",
       "publisher": "미표기",
-      "edition": "2025",
+      "edition": "2026",
       "effective_from": "",
       "effective_to": "",
       "topic": "장사·장묘",
       "authority": "primary",
       "source_role": "operational_manual",
       "jurisdiction": "national",
-      "section_count": 245
+      "section_count": 242
     },
     {
       "document_id": "md-7ed7c63bc700a1aece07",
       "source_name": "[매뉴얼-장애] 2026년 장애아동지원센터 사업안내 최종.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-장애] 2026년 장애아동지원센터 사업안내 최종.md",
+      "source_path": "source-md/[매뉴얼-장애] 2026년 장애아동지원센터 사업안내 최종.md",
       "sha256": "ef4022eaf3d2846f9fcf02badb74b7001dd807114a9536fa4f2a23926f4d9ffc",
       "byte_size": 610607,
       "document_year": "2026",
@@ -1448,7 +1448,7 @@
     {
       "document_id": "md-739a17df8f0ce9982026",
       "source_name": "[매뉴얼-장애] 제10권 2026년 여성장애인지원 사업안내 압축.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-장애] 제10권 2026년 여성장애인지원 사업안내 압축.md",
+      "source_path": "source-md/[매뉴얼-장애] 제10권 2026년 여성장애인지원 사업안내 압축.md",
       "sha256": "a83848f91c00053ce5a3d773e86804a315d8bd8c5d2075d3f41ee3befeca45a8",
       "byte_size": 142834,
       "document_year": "2026",
@@ -1467,7 +1467,7 @@
     {
       "document_id": "md-9ca62bb85c311ab0a29f",
       "source_name": "[매뉴얼-장애] 제11권 2026년 발달장애인활동서비스 사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-장애] 제11권 2026년 발달장애인활동서비스 사업안내.md",
+      "source_path": "source-md/[매뉴얼-장애] 제11권 2026년 발달장애인활동서비스 사업안내.md",
       "sha256": "25ba0cc63d91b4fbbf48e1d109f58a58edeb4af792e4fa25ba71643f1529b578",
       "byte_size": 1374741,
       "document_year": "2026",
@@ -1486,7 +1486,7 @@
     {
       "document_id": "md-cbdabcd83aa0a8418043",
       "source_name": "[매뉴얼-장애] 제12권 2026 발달장애인 긴급돌봄서비스 사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-장애] 제12권 2026 발달장애인 긴급돌봄서비스 사업안내.md",
+      "source_path": "source-md/[매뉴얼-장애] 제12권 2026 발달장애인 긴급돌봄서비스 사업안내.md",
       "sha256": "c195d90cde5205859edad983ffa49cbb1e4920240b56f1ca866c44d58f989338",
       "byte_size": 402228,
       "document_year": "2026",
@@ -1505,7 +1505,7 @@
     {
       "document_id": "md-2d6128612818dfec987b",
       "source_name": "[매뉴얼-장애] 제13권 2026년 최중증 발달장애인 통합돌봄서비스 사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-장애] 제13권 2026년 최중증 발달장애인 통합돌봄서비스 사업 안내.md",
+      "source_path": "source-md/[매뉴얼-장애] 제13권 2026년 최중증 발달장애인 통합돌봄서비스 사업 안내.md",
       "sha256": "a26d9d012331ded39dc507e67ab25457dd81be05e41cf803958a72ad99e3393f",
       "byte_size": 858918,
       "document_year": "2026",
@@ -1524,7 +1524,7 @@
     {
       "document_id": "md-0372c4e105b8663bd90b",
       "source_name": "[매뉴얼-장애] 제14권 2025년 발달장애인 재산관리 지원서비스 사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-장애] 제14권 2025년 발달장애인 재산관리 지원서비스 사업안내.md",
+      "source_path": "source-md/[매뉴얼-장애] 제14권 2025년 발달장애인 재산관리 지원서비스 사업안내.md",
       "sha256": "6b7634d3da32baa8cde7705f66d7bb574cd86f3c25c144b8a5a63be5dad21695",
       "byte_size": 164018,
       "document_year": "2025",
@@ -1543,7 +1543,7 @@
     {
       "document_id": "md-6ac7b8bdc7a7a282b21a",
       "source_name": "[매뉴얼-장애] 제1권 2026년 장애인복지 사업안내1.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-장애] 제1권 2026년 장애인복지 사업안내1.md",
+      "source_path": "source-md/[매뉴얼-장애] 제1권 2026년 장애인복지 사업안내1.md",
       "sha256": "dbfd0cf3d62f259f0b9f959479de75a1ff4083b66bcd325793b1b573b518799b",
       "byte_size": 1057900,
       "document_year": "2026",
@@ -1562,7 +1562,7 @@
     {
       "document_id": "md-62992f8f794db94cfc3f",
       "source_name": "[매뉴얼-장애] 제2권 2026년 장애인복지 사업안내2.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-장애] 제2권 2026년 장애인복지 사업안내2.md",
+      "source_path": "source-md/[매뉴얼-장애] 제2권 2026년 장애인복지 사업안내2.md",
       "sha256": "25bd66fe113296ff427819ea32585001f59ff09f463a0f6aa6c0e06294b6b013",
       "byte_size": 1147125,
       "document_year": "2026",
@@ -1581,7 +1581,7 @@
     {
       "document_id": "md-ada352ce6cc3d27d8b26",
       "source_name": "[매뉴얼-장애] 제3권 2026년 장애인복지시설 사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-장애] 제3권 2026년 장애인복지시설 사업안내.md",
+      "source_path": "source-md/[매뉴얼-장애] 제3권 2026년 장애인복지시설 사업안내.md",
       "sha256": "dabc6f0dc07e6c58aa74b1dead930f8bab300fd0f29eb7998c018e82328893f1",
       "byte_size": 1257584,
       "document_year": "2026",
@@ -1600,7 +1600,7 @@
     {
       "document_id": "md-fbfaabbb1114be69b3ca",
       "source_name": "[매뉴얼-장애] 제4권 2026년 장애아동가족지원 사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-장애] 제4권 2026년 장애아동가족지원 사업안내.md",
+      "source_path": "source-md/[매뉴얼-장애] 제4권 2026년 장애아동가족지원 사업안내.md",
       "sha256": "309043169f3f5ebe89f4b5bb22ae9064097cbdc5becbb592135cd790bec505b0",
       "byte_size": 1111080,
       "document_year": "2026",
@@ -1619,7 +1619,7 @@
     {
       "document_id": "md-ce726a95efaf2ca6c362",
       "source_name": "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+      "source_path": "source-md/[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
       "sha256": "ea0d1cc0058256b971bd99fe7f04c0c2df674bc63f826a9d88fb39ea2fd1dac8",
       "byte_size": 1132100,
       "document_year": "2026",
@@ -1638,7 +1638,7 @@
     {
       "document_id": "md-e2925ac8a6658a510921",
       "source_name": "[매뉴얼-장애] 제6권 2026년 장애인연금 사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-장애] 제6권 2026년 장애인연금 사업안내.md",
+      "source_path": "source-md/[매뉴얼-장애] 제6권 2026년 장애인연금 사업안내.md",
       "sha256": "a5bb17ffe57cb3c67084d3a3cb12dfa7b6ce8c5cd44cbd9b8acaac099619bec2",
       "byte_size": 828619,
       "document_year": "2026",
@@ -1657,7 +1657,7 @@
     {
       "document_id": "md-f643deb47bcf4fe4d8f6",
       "source_name": "[매뉴얼-장애] 제7권 2026년 장애인일자리 사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-장애] 제7권 2026년 장애인일자리 사업안내.md",
+      "source_path": "source-md/[매뉴얼-장애] 제7권 2026년 장애인일자리 사업안내.md",
       "sha256": "76aca2cd4e3def0725d2d4b396ea71c6ae76ab67777f253e9ba1e598dc97db83",
       "byte_size": 732147,
       "document_year": "2026",
@@ -1676,7 +1676,7 @@
     {
       "document_id": "md-a4aa4e06825775f0c224",
       "source_name": "[매뉴얼-장애] 제8권 2026년 발달장애인지원 사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-장애] 제8권 2026년 발달장애인지원 사업안내.md",
+      "source_path": "source-md/[매뉴얼-장애] 제8권 2026년 발달장애인지원 사업안내.md",
       "sha256": "32bd5df7fe0392621918b9cfdff10d1b450869cb2085254f4cfb73eaf87dbe3e",
       "byte_size": 816463,
       "document_year": "2026",
@@ -1695,7 +1695,7 @@
     {
       "document_id": "md-9c67a1e54ea441207f4b",
       "source_name": "[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md",
+      "source_path": "source-md/[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md",
       "sha256": "bab6a16b9f100c86c3a099b4e845daf91140defd222cea662d39473a722d9271",
       "byte_size": 999302,
       "document_year": "2026",
@@ -1714,7 +1714,7 @@
     {
       "document_id": "md-f7fbf11be8d19c0d1576",
       "source_name": "[매뉴얼-제도신설] 2026 사회보장제도 신설변경 협의운용 지침★.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-제도신설] 2026 사회보장제도 신설변경 협의운용 지침★.md",
+      "source_path": "source-md/[매뉴얼-제도신설] 2026 사회보장제도 신설변경 협의운용 지침★.md",
       "sha256": "ca2ddad688266483c44639528d778b1eee812c61ce700209f13ce086276eb15a",
       "byte_size": 612064,
       "document_year": "2026",
@@ -1733,7 +1733,7 @@
     {
       "document_id": "md-a16cf8b0e87d9b787e68",
       "source_name": "[매뉴얼-종합안내] 2026 나에게 힘이 되는 복지서비스★.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-종합안내] 2026 나에게 힘이 되는 복지서비스★.md",
+      "source_path": "source-md/[매뉴얼-종합안내] 2026 나에게 힘이 되는 복지서비스★.md",
       "sha256": "64bcbf070b8faa2068e01f3a459337b127fe50a7af58c5a24c36cb90c7e8e8a1",
       "byte_size": 872925,
       "document_year": "2026",
@@ -1752,7 +1752,7 @@
     {
       "document_id": "md-a0d51eee9de235f51f37",
       "source_name": "[매뉴얼-종합안내] 업무에바로쓰는 시군구복지업무매뉴얼(2025년 기준)★.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-종합안내] 업무에바로쓰는 시군구복지업무매뉴얼(2025년 기준)★.md",
+      "source_path": "source-md/[매뉴얼-종합안내] 업무에바로쓰는 시군구복지업무매뉴얼(2025년 기준)★.md",
       "sha256": "fa9670aa1762ba823305779fd4d058f77d28267541c6303af532a7debde7f7fa",
       "byte_size": 570945,
       "document_year": "2025",
@@ -1771,7 +1771,7 @@
     {
       "document_id": "md-baccb0fd2b3934701ba9",
       "source_name": "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+      "source_path": "source-md/[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
       "sha256": "d6856fe383fc78e28b8b073ea5d9c7d957d0ad3b9dcf476ccb670a6f1dc9c4dc",
       "byte_size": 1155284,
       "document_year": "2026",
@@ -1790,7 +1790,7 @@
     {
       "document_id": "md-cea2fb4ec2df36198e28",
       "source_name": "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
+      "source_path": "source-md/[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
       "sha256": "e767ae97753d0bf141821d29b71ff94b62fa138c95392d9b3989c77e06f7043b",
       "byte_size": 101215,
       "document_year": "2026",
@@ -1809,7 +1809,7 @@
     {
       "document_id": "md-5b391bf0ae1feba0d200",
       "source_name": "[매뉴얼-차상위계층] 2026년 차상위 본인부담경감대상자 지원사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-차상위계층] 2026년 차상위 본인부담경감대상자 지원사업 안내.md",
+      "source_path": "source-md/[매뉴얼-차상위계층] 2026년 차상위 본인부담경감대상자 지원사업 안내.md",
       "sha256": "75c24a85d9308b4633e1ee1143b81ae0a2eca7d69bb41bac9496ad4fbb8bd0a7",
       "byte_size": 288901,
       "document_year": "2026",
@@ -1828,7 +1828,7 @@
     {
       "document_id": "md-c9457d927ce7af02c9c4",
       "source_name": "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+      "source_path": "source-md/[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
       "sha256": "3ac230e02e13637ffbcb9028103af0dd70cf79a639e2822631fa9b96c0c1d62f",
       "byte_size": 230402,
       "document_year": "2026",
@@ -1847,7 +1847,7 @@
     {
       "document_id": "md-cb4de77e936b80244fb9",
       "source_name": "[매뉴얼-협의체] 2026년 읍면동 지역사회보장협의체 구성 및 운영지침(제주특별자치도).md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-협의체] 2026년 읍면동 지역사회보장협의체 구성 및 운영지침(제주특별자치도).md",
+      "source_path": "source-md/[매뉴얼-협의체] 2026년 읍면동 지역사회보장협의체 구성 및 운영지침(제주특별자치도).md",
       "sha256": "d7a4a5efcedf868a963e2ef2532bc9c6b5234401f2a9d43517419588cc6c056e",
       "byte_size": 99610,
       "document_year": "2026",
@@ -1866,7 +1866,7 @@
     {
       "document_id": "md-6e2b03d8c78c7a1cc031",
       "source_name": "[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md",
-      "source_path": "mcp-corpus-20261012/[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md",
+      "source_path": "source-md/[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md",
       "sha256": "a172a214eca7b90f6ec9fa10e41112f29b4ea5a29f8497ee9030e9ba8b5f8376",
       "byte_size": 331795,
       "document_year": "2026",
@@ -1885,7 +1885,7 @@
     {
       "document_id": "md-e133cc4d77f1997e1057",
       "source_name": "[서귀포시업무-돌봄] 2026 의료·요양 통합돌봄 서귀포시 국비 신규사업 세부 내역(5개사업)★.md",
-      "source_path": "mcp-corpus-20261012/[서귀포시업무-돌봄] 2026 의료·요양 통합돌봄 서귀포시 국비 신규사업 세부 내역(5개사업)★.md",
+      "source_path": "source-md/[서귀포시업무-돌봄] 2026 의료·요양 통합돌봄 서귀포시 국비 신규사업 세부 내역(5개사업)★.md",
       "sha256": "3d3bf6d9e95cc402b04239ed918d2ace9b957b2cc595e73943d60a74af4de9ec",
       "byte_size": 17602,
       "document_year": "2026",
@@ -1904,7 +1904,7 @@
     {
       "document_id": "md-d0c28e1f653977061e69",
       "source_name": "[서귀포시업무-돌봄] 2026년 서귀포시 어르신 병원동행 서비스 매뉴얼.md",
-      "source_path": "mcp-corpus-20261012/[서귀포시업무-돌봄] 2026년 서귀포시 어르신 병원동행 서비스 매뉴얼.md",
+      "source_path": "source-md/[서귀포시업무-돌봄] 2026년 서귀포시 어르신 병원동행 서비스 매뉴얼.md",
       "sha256": "923a323fd23a5a7baebf2165ffcb57dcadaeb3e7973ef7cd0b4b868fe168c262",
       "byte_size": 24218,
       "document_year": "2026",
@@ -1923,7 +1923,7 @@
     {
       "document_id": "md-30ded375ead506383cd8",
       "source_name": "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
-      "source_path": "mcp-corpus-20261012/[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+      "source_path": "source-md/[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
       "sha256": "6621cb0ca20c2eb29d795d2ed1de6d1835d95c67e336ab1b7858566ff3ce2987",
       "byte_size": 505009,
       "document_year": "2026",
@@ -1942,7 +1942,7 @@
     {
       "document_id": "md-65e0438473bb270069fd",
       "source_name": "[서귀포시업무-돌봄] 2026년 찾아가는 건강돌봄 서비스 업무처리 안내(최종).md",
-      "source_path": "mcp-corpus-20261012/[서귀포시업무-돌봄] 2026년 찾아가는 건강돌봄 서비스 업무처리 안내(최종).md",
+      "source_path": "source-md/[서귀포시업무-돌봄] 2026년 찾아가는 건강돌봄 서비스 업무처리 안내(최종).md",
       "sha256": "bef3235f49fd5ef6e556f60aa5214a3410865dc0fb06c59b33acaa0575f2ee38",
       "byte_size": 46077,
       "document_year": "2026",
@@ -1961,7 +1961,7 @@
     {
       "document_id": "md-b684b9164959c5fa0d8a",
       "source_name": "[서귀포시업무-사회복지관,법인,시설] 사회복지시설 회계실무 길라잡이(제주도청 복지정책과).md",
-      "source_path": "mcp-corpus-20261012/[서귀포시업무-사회복지관,법인,시설] 사회복지시설 회계실무 길라잡이(제주도청 복지정책과).md",
+      "source_path": "source-md/[서귀포시업무-사회복지관,법인,시설] 사회복지시설 회계실무 길라잡이(제주도청 복지정책과).md",
       "sha256": "8f25af382a22e9c68ce3c2cfe8fe6fbb8434fe7765a184a54d5c9dc780652f3d",
       "byte_size": 411043,
       "document_year": null,
@@ -1980,7 +1980,7 @@
     {
       "document_id": "md-2d339c1055dc061a673c",
       "source_name": "[서귀포시업무-사회복지관,법인,시설] 제주특별자치도 사회복지시설 종사자 인건비 지원 가이드라인(통합 개정안).md",
-      "source_path": "mcp-corpus-20261012/[서귀포시업무-사회복지관,법인,시설] 제주특별자치도 사회복지시설 종사자 인건비 지원 가이드라인(통합 개정안).md",
+      "source_path": "source-md/[서귀포시업무-사회복지관,법인,시설] 제주특별자치도 사회복지시설 종사자 인건비 지원 가이드라인(통합 개정안).md",
       "sha256": "e5f4de6a68f7493cebbd64bb2cb0bc8e7ee32556c23cdb634f33347302818254",
       "byte_size": 41295,
       "document_year": null,
@@ -1999,7 +1999,7 @@
     {
       "document_id": "md-7543c3a03f86b7e64597",
       "source_name": "[서귀포시업무-위기가구] 2026년 도민안전보험 설명자료(최종).md",
-      "source_path": "mcp-corpus-20261012/[서귀포시업무-위기가구] 2026년 도민안전보험 설명자료(최종).md",
+      "source_path": "source-md/[서귀포시업무-위기가구] 2026년 도민안전보험 설명자료(최종).md",
       "sha256": "aa6dba0d69faee98605d5711e00450ac80acb971e83fbf1c14d77364f09490c6",
       "byte_size": 10227,
       "document_year": "2026",
@@ -2018,7 +2018,7 @@
     {
       "document_id": "md-d58c45ae12283ee6d4a5",
       "source_name": "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md",
-      "source_path": "mcp-corpus-20261012/[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md",
+      "source_path": "source-md/[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md",
       "sha256": "80644370e569756eeb824f7e0b70ee947767df91e03014746cdddba0e14f9f5d",
       "byte_size": 19525,
       "document_year": "2026",
@@ -2037,7 +2037,7 @@
     {
       "document_id": "md-4c205fcd9b79dab90b2c",
       "source_name": "[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md",
-      "source_path": "mcp-corpus-20261012/[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md",
+      "source_path": "source-md/[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md",
       "sha256": "09a55b02841f809e9182e60667f454ed73b1f4b2f239762181117fc0a8b1373c",
       "byte_size": 19710,
       "document_year": null,
@@ -2056,7 +2056,7 @@
     {
       "document_id": "md-881eef8e1dcbd2ee790b",
       "source_name": "[서귀포시업무-위기가구] 취약계층 화재 발생 긴급 지원제도 안내.md",
-      "source_path": "mcp-corpus-20261012/[서귀포시업무-위기가구] 취약계층 화재 발생 긴급 지원제도 안내.md",
+      "source_path": "source-md/[서귀포시업무-위기가구] 취약계층 화재 발생 긴급 지원제도 안내.md",
       "sha256": "73c5ce215c97f1ebd80c019cd555d690be031f9ea4888514e33b7a795492a78a",
       "byte_size": 5883,
       "document_year": null,
@@ -2075,7 +2075,7 @@
     {
       "document_id": "md-606732f9665748db61fa",
       "source_name": "[서귀포시업무-자활사업] 2026년 자활기금 운용지침(제주도 복지정책과).md",
-      "source_path": "mcp-corpus-20261012/[서귀포시업무-자활사업] 2026년 자활기금 운용지침(제주도 복지정책과).md",
+      "source_path": "source-md/[서귀포시업무-자활사업] 2026년 자활기금 운용지침(제주도 복지정책과).md",
       "sha256": "178bba17eec78202463a6f7c5fed769dfaaf456454bac5df621a390d13317db3",
       "byte_size": 60658,
       "document_year": "2026",
@@ -2094,7 +2094,7 @@
     {
       "document_id": "md-cbbadf00a4dfeeceed32",
       "source_name": "[서귀포시업무-종합자료] 2026년 서귀포시 노인복지 종합안내서.md",
-      "source_path": "mcp-corpus-20261012/[서귀포시업무-종합자료] 2026년 서귀포시 노인복지 종합안내서.md",
+      "source_path": "source-md/[서귀포시업무-종합자료] 2026년 서귀포시 노인복지 종합안내서.md",
       "sha256": "cf501945481ea7ca8f22b31f1c6e50bd02373bc143ed72dda1e6efe64c211bcc",
       "byte_size": 260827,
       "document_year": "2026",
@@ -2113,7 +2113,7 @@
     {
       "document_id": "md-229e1c3041aaa580996c",
       "source_name": "[서귀포시업무-주거] 2026년 서귀포시 건강안심 주거환경 개선사업(개정).md",
-      "source_path": "mcp-corpus-20261012/[서귀포시업무-주거] 2026년 서귀포시 건강안심 주거환경 개선사업(개정).md",
+      "source_path": "source-md/[서귀포시업무-주거] 2026년 서귀포시 건강안심 주거환경 개선사업(개정).md",
       "sha256": "fa69bd28b07aa6d1fa0e3dfa2865227b14a95dc26f41f35dbb48a325615cf614",
       "byte_size": 34269,
       "document_year": "2026",
@@ -2132,7 +2132,7 @@
     {
       "document_id": "md-4d43f695a41af8caa2c0",
       "source_name": "[서귀포시업무-충혼묘지] 서귀포시 충혼묘지 관련 업무자료 합본.md",
-      "source_path": "mcp-corpus-20261012/[서귀포시업무-충혼묘지] 서귀포시 충혼묘지 관련 업무자료 합본.md",
+      "source_path": "source-md/[서귀포시업무-충혼묘지] 서귀포시 충혼묘지 관련 업무자료 합본.md",
       "sha256": "935aca9d930bc9f8f9919857877ceca786214939d1b258fb24616e234da28a8d",
       "byte_size": 30411,
       "document_year": null,

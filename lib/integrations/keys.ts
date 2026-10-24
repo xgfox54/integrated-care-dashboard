@@ -1,7 +1,6 @@
 import { env } from "cloudflare:workers";
 import { readPressApiKey } from "../press/api-keys";
 import type { KeyAccess } from "./runner";
-import { normalizeIndexKey } from "./index-key";
 
 const INVISIBLE = /[\s\u00a0\u200b-\u200d\u2060\ufeff]/g;
 
@@ -20,5 +19,5 @@ export async function readIntegrationKey(access: KeyAccess): Promise<string | nu
 }
 
 export async function readIndexKey(): Promise<string | null> {
-  return normalizeIndexKey((env as { INDEX_API_KEY?: string }).INDEX_API_KEY ?? "");
+  return (env as { INDEX_API_KEY?: string }).INDEX_API_KEY?.trim() || null;
 }

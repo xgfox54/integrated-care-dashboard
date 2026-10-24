@@ -1,6 +1,7 @@
 // 관리자 「이용자 통계」 집계 조회. 화면과 CSV가 같은 함수를 쓴다(합계·분모·기간이 같다).
 // 개인별 이벤트·임시 ID·원시 요청은 조회하지 않는다(애초에 저장하지 않는다).
 import { getD1 } from "../d1";
+import { buildVisitsReport } from "./visits.ts";
 import {
   ACTION_CODES,
   CLICK_ACTIONS,
@@ -63,7 +64,7 @@ export class ReportQueryError extends Error {}
 export function parseReportQuery(params: URLSearchParams, now = Date.now()): ReportQuery {
   const today = kstDay(now);
   const view = params.get("view") ?? "overview";
-  if (!["overview", "care", "welfare", "search", "tabs", "quality"].includes(view)) throw new ReportQueryError("보기 이름이 올바르지 않습니다.");
+  if (!["overview", "visits", "care", "welfare", "search", "tabs", "quality"].includes(view)) throw new ReportQueryError("보기 이름이 올바르지 않습니다.");
   const to = params.get("to") ?? today;
   const from = params.get("from") ?? shiftDay(to, -29);
   if (!DAY_PATTERN.test(from) || !DAY_PATTERN.test(to)) throw new ReportQueryError("날짜 형식이 올바르지 않습니다.");
@@ -552,6 +553,8 @@ export async function buildUsageReport(query: ReportQuery, now = Date.now(), ent
   switch (query.view) {
     case "overview":
       return overviewReport(query, meta);
+    case "visits":
+      return buildVisitsReport(getD1(), meta);
     case "care":
       return entityReport(query, meta, "care_program", entityPageSize);
     case "welfare":

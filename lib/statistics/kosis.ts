@@ -13,5 +13,5 @@ function point([period, raw, status]: readonly [string, string, ValueStatus]): S
 export const KOSIS_CHECKED_AT = KOSIS_SNAPSHOT.checked_at;
 export const KOSIS_DATASETS: readonly StatisticsDataset[] = KOSIS_SNAPSHOT.datasets.map(dataset => ({
   ...dataset,
-  series: dataset.series.map(({ table, points, ...series }) => ({ ...series, source_label: dataset.kosis.tables[table]?.title ?? dataset.table_title, points: points.map(point) })),
+  series: dataset.series.map(({ table, points, ...series }) => ({ ...series, source_label: dataset.kosis.tables[table]?.title ?? dataset.table_title, source_url: dataset.kosis.tables[table]?.url ?? dataset.source_url, points: points.map(point) })),
 }));

@@ -13,7 +13,7 @@ import type {
   ViewRoute,
 } from "./codes";
 
-export const REPORT_VIEWS = ["overview", "care", "welfare", "search", "tabs", "quality"] as const;
+export const REPORT_VIEWS = ["overview", "visits", "care", "welfare", "search", "tabs", "quality"] as const;
 export type ReportView = (typeof REPORT_VIEWS)[number];
 
 /** before: 수집을 처음 켜기 전, off: 수집을 끈 날, partial: 하루 중 일부만 수집, on: 종일 수집. */
@@ -174,5 +174,18 @@ export interface QualityReport {
   };
 }
 
-export type UsageReport = OverviewReport | EntityReport | SearchReport | TabsReport | QualityReport;
+export interface VisitsReport {
+  readonly view: "visits";
+  readonly meta: ReportMeta;
+  readonly total: number;
+  readonly since: string | null;
+  readonly current: number;
+  readonly previous: number;
+  readonly before: number;
+  readonly throughEnd: number;
+  readonly series: readonly { readonly day: string; readonly visits: number; readonly cumulative: number }[];
+  readonly entries: readonly { readonly tab: TabCode; readonly visits: number }[];
+}
+
+export type UsageReport = OverviewReport | VisitsReport | EntityReport | SearchReport | TabsReport | QualityReport;
 

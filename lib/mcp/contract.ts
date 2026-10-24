@@ -1,18 +1,21 @@
 // 공개 원격 MCP의 공통 계약: 도구 허용목록, 응답 봉투(schema 2.0), 커서, 안전한 오류.
 // 복지 도구는 저장된 공개 자료를 읽고, 법령 도구는 공식 OPEN API만 읽는다. 쓰기·임의 URL/SQL은 실행하지 않는다.
 
-import { CARE_RESOURCES_MCP, CARE_TOOL_NAMES } from "../integrations/care-hold.ts";
+import { CARE_MCP_WITHHELD_MESSAGE, CARE_RESOURCES_MCP, CARE_TOOL_NAMES } from "../integrations/care-hold.ts";
+export { CARE_MCP_WITHHELD_MESSAGE, CARE_RESOURCES_MCP, CARE_TOOL_NAMES };
 
 export const MCP_SCHEMA_VERSION = "2.0";
 // 공식 명칭(운영자 지정 2026-10-04). serverInfo.name과 표시용 title에 같은 이름을 쓴다.
 export const MCP_SERVER_NAME = "Korean Welfare MCP";
-export const MCP_SERVER_VERSION = "1.13.5";
+export const MCP_SERVER_VERSION = "1.14.0";
 export const LAW_MCP_PUBLIC: boolean = false;
 export const LAW_MCP_WITHHELD_MESSAGE = "법령정보 기능은 현재 MCP에서 제공하지 않습니다. 법령 데이터는 관리자 저장소에 보존되어 있습니다.";
-export const LAW_MCP_TOOL_NAMES: ReadonlySet<string> = new Set(["legal_research", "legal_analysis", "search_law", "get_law_text", "get_annexes", "search_decisions", "get_decision_text", "ordinance_radar", "discover_tools", "execute_tool"]);
+export const LAW_MCP_TOOL_NAMES: ReadonlySet<string> = new Set(["legal_research", "legal_analysis", "search_law", "get_law_text", "get_annexes", "search_decisions", "get_decision_text", "ordinance_radar"]);
+export const META_MCP_TOOL_NAMES: ReadonlySet<string> = new Set(["discover_tools", "execute_tool"]);
 
 /** 전체 도구 목록은 보존하고 공개 허용목록에서 법령 제공 중지를 적용한다. */
 export const MCP_TOOL_NAMES = [
+  "welfare_research",
   "search",
   "search_welfare_services",
   "fetch",
@@ -67,8 +70,39 @@ export const FISCAL_MCP_PUBLIC: boolean = true;
 export const FISCAL_TOOL_NAMES: ReadonlySet<string> = new Set(["get_fiscal_catalog", "find_budget_projects", "get_budget_execution", "compare_budget_periods", "search_budget_lines", "get_budget_breakdown"]);
 export const FISCAL_WITHHELD_MESSAGE = "예산·재정 정보는 정확도 검증이 끝날 때까지 이 MCP에서 제공하지 않습니다. 다른 자료로 예산을 추정하지 마세요.";
 
-/** 지금 공개 MCP에 실제로 등록하는 도구. 돌봄자원 보류(lib/integrations/care-hold.ts)와 예산 제외 동안 해당 도구는 빠진다. */
-export const PUBLIC_MCP_TOOL_NAMES: readonly McpToolName[] = MCP_TOOL_NAMES.filter((name) => (LAW_MCP_PUBLIC || !LAW_MCP_TOOL_NAMES.has(name)) && (CARE_RESOURCES_MCP || !CARE_TOOL_NAMES.has(name)) && (FISCAL_MCP_PUBLIC || !FISCAL_TOOL_NAMES.has(name)));
+/**
+ * ListTools로 1-hop 직접 노출하는 핵심 도구(Korean Law MCP의 V3_EXPOSED 패턴).
+ * 나머지 전문 도구는 discover_tools로 탐색하고 execute_tool(또는 이름을 알면 직접 tools/call)로 실행한다.
+ */
+export const EXPOSED_WELFARE_TOOL_NAMES = [
+  "welfare_research",
+  "search",
+  "fetch",
+  "get_welfare_context",
+  "search_welfare_services",
+  "find_programs",
+  "search_manuals",
+  "search_faq",
+  "search_statistics",
+  "get_statistics_data",
+  "find_budget_projects",
+  "get_budget_execution",
+  "search_budget_lines",
+  "get_dataset_status",
+  "discover_tools",
+  "execute_tool",
+] as const satisfies readonly McpToolName[];
+
+const EXPOSED_WELFARE_TOOL_SET: ReadonlySet<string> = new Set(EXPOSED_WELFARE_TOOL_NAMES);
+
+/** 현재 게이트 상태에서 실행 가능한 전체 복지·메타 도구(35개). */
+export const EXECUTABLE_MCP_TOOL_NAMES: readonly McpToolName[] = MCP_TOOL_NAMES.filter((name) => (LAW_MCP_PUBLIC || !LAW_MCP_TOOL_NAMES.has(name)) && (CARE_RESOURCES_MCP || !CARE_TOOL_NAMES.has(name)) && (FISCAL_MCP_PUBLIC || !FISCAL_TOOL_NAMES.has(name)));
+
+/** 지금 공개 MCP의 tools/list에 노출하는 1-hop 핵심 도구(17개). */
+export const PUBLIC_MCP_TOOL_NAMES: readonly McpToolName[] = EXECUTABLE_MCP_TOOL_NAMES.filter((name) => EXPOSED_WELFARE_TOOL_SET.has(name) || (LAW_MCP_PUBLIC && LAW_MCP_TOOL_NAMES.has(name)));
+
+/** tools/list에는 숨기되 discover_tools와 execute_tool(및 직접 tools/call)로 실행 가능한 전문 도구(18개). */
+export const SPECIALIZED_MCP_TOOL_NAMES: readonly McpToolName[] = EXECUTABLE_MCP_TOOL_NAMES.filter((name) => !PUBLIC_MCP_TOOL_NAMES.includes(name));
 
 export const LIMITS = {
   listDefault: 20,

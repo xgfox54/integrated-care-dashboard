@@ -4,7 +4,5 @@
   "private": true,
   "main": "index.cjs",
   "license": "MIT",
-  "dependencies": {
-    "tinyglobby": "^0.2.17"
-  }
+  "dependencies": { "tinyglobby": "^0.2.17" }
 }

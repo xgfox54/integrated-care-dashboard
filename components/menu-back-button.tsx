@@ -24,6 +24,7 @@ const MENU_LABELS: Readonly<Record<string, string>> = {
   budget: "복지예산",
   statistics: "복지통계",
   welfaremcp: "복지정보MCP",
+  info: "시스템 소개",
   sources: "데이터 출처",
   care: "돌봄자원",
   mindmap: "관계성 지도",
@@ -125,7 +126,7 @@ export function MenuBackButton() {
     <Button
       asChild
       variant="outline"
-      className="size-11 rounded-full px-0 text-(length:--jeju-text-sm) font-bold text-primary shadow-(--jeju-shadow) active:translate-y-0! sm:w-auto sm:px-3.5"
+      className="size-11 rounded-full bg-card/95 px-0 text-(length:--jeju-text-sm) font-bold text-primary shadow-(--jeju-shadow) backdrop-blur-xs active:translate-y-0! min-[1520px]:w-auto min-[1520px]:px-3.5"
     >
       <a
         href={target}
@@ -141,7 +142,7 @@ export function MenuBackButton() {
         }}
       >
         <ArrowLeftIcon />
-        <span className="hidden sm:inline">이전 메뉴로</span>
+        <span className="hidden min-[1520px]:inline">이전 메뉴로</span>
       </a>
     </Button>
   );

@@ -11,6 +11,13 @@
 @import "tw-animate-css";
 @import "../vendor/shadcn-tailwind-4.13.0.css";
 @import "../styles/jeju-tokens.css" layer(base);
+@import "../styles/system-theme.css" layer(base);
+
+@custom-variant dark {
+  @media screen and (prefers-color-scheme: dark) {
+    @slot;
+  }
+}
 
 @source "../app";
 @source "../components/*.tsx";
@@ -46,7 +53,7 @@
 }
 
 :root {
-  /* shadcn 테마 변수 → 제주 토큰(@jeju/jeju-theme과 같은 연결). 다크 팔레트는 계약 범위 밖이라 두지 않는다. */
+  /* 공통 테마 변수는 이용환경에 맞춰 바뀌는 제주 역할색을 사용함. */
   --background: var(--jeju-bg);
   --foreground: var(--jeju-text);
   --card: var(--jeju-surface);
@@ -81,21 +88,66 @@
   --sidebar-border: var(--jeju-shell-border);
   --sidebar-ring: var(--jeju-primary);
 
-  /* 대한민국 지도 단계색: 적음 옅은 파랑 → 중간 옅은 초록 → 많음 옅은 주황(사이트 고유 3색 조합). 선택·가리킨 지역은 제주 Blue. */
   --map-region-empty: var(--jeju-surface-inset);
-  --map-region-low: color-mix(in srgb, var(--jeju-blue-light) 50%, var(--jeju-blue-light-strong));
-  --map-region-medium: var(--jeju-green-light-strong);
-  --map-region-high: var(--jeju-orange-light-strong);
+  --map-region-low: color-mix(in srgb, var(--jeju-blue-light) 78%, var(--jeju-blue) 22%);
+  --map-region-medium: color-mix(in srgb, var(--jeju-blue-light) 42%, var(--jeju-blue) 58%);
+  --map-region-high: var(--jeju-blue-dark);
   --map-region-border: var(--jeju-text-faint);
+
+  --map-step-1: color-mix(in srgb, var(--jeju-blue-light) 84%, var(--jeju-blue) 16%);
+  --map-step-2: color-mix(in srgb, var(--jeju-blue-light) 64%, var(--jeju-blue) 36%);
+  --map-step-3: color-mix(in srgb, var(--jeju-blue-light) 42%, var(--jeju-blue) 58%);
+  --map-step-4: color-mix(in srgb, var(--jeju-blue-light) 18%, var(--jeju-blue) 82%);
+  --map-step-5: var(--jeju-blue-dark);
+  --map-active: var(--jeju-blue-deep);
+  --map-focus: var(--jeju-blue-deep);
+  --map-badge-bg: var(--jeju-blue-light);
+  --map-badge-text: var(--jeju-blue-dark);
 
   /* 순위·분류 막대의 3색 계열(파랑·초록·주황). 막대는 원색을 쓰고,
      흰 숫자를 올리는 순위 원은 흰 글자 대비 4.5:1을 넘는 같은 계열의 진한 색을 쓴다. */
   --series-1: var(--jeju-blue);
   --series-2: var(--jeju-green);
   --series-3: var(--jeju-orange);
-  --series-1-strong: var(--jeju-blue);
+  --series-1-strong: var(--jeju-primary);
   --series-2-strong: var(--jeju-green-dark);
   --series-3-strong: var(--jeju-orange-dark);
+}
+
+[data-map-theme="blue"] {
+  --map-step-1: color-mix(in srgb, var(--jeju-blue-light) 84%, var(--jeju-blue) 16%);
+  --map-step-2: color-mix(in srgb, var(--jeju-blue-light) 64%, var(--jeju-blue) 36%);
+  --map-step-3: color-mix(in srgb, var(--jeju-blue-light) 42%, var(--jeju-blue) 58%);
+  --map-step-4: color-mix(in srgb, var(--jeju-blue-light) 18%, var(--jeju-blue) 82%);
+  --map-step-5: var(--jeju-blue-dark);
+  --map-active: var(--jeju-blue-deep);
+  --map-focus: var(--jeju-blue-deep);
+  --map-badge-bg: var(--jeju-blue-light);
+  --map-badge-text: var(--jeju-blue-dark);
+}
+
+[data-map-theme="green"] {
+  --map-step-1: color-mix(in srgb, var(--jeju-green-light) 84%, var(--jeju-green) 16%);
+  --map-step-2: color-mix(in srgb, var(--jeju-green-light) 64%, var(--jeju-green) 36%);
+  --map-step-3: color-mix(in srgb, var(--jeju-green-light) 42%, var(--jeju-green) 58%);
+  --map-step-4: color-mix(in srgb, var(--jeju-green-light) 18%, var(--jeju-green-dark) 82%);
+  --map-step-5: var(--jeju-green-dark);
+  --map-active: var(--jeju-green-deep);
+  --map-focus: var(--jeju-green-deep);
+  --map-badge-bg: var(--jeju-green-light);
+  --map-badge-text: var(--jeju-green-dark);
+}
+
+[data-map-theme="orange"] {
+  --map-step-1: color-mix(in srgb, var(--jeju-orange-light) 84%, var(--jeju-orange) 16%);
+  --map-step-2: color-mix(in srgb, var(--jeju-orange-light) 65%, var(--jeju-orange) 35%);
+  --map-step-3: color-mix(in srgb, var(--jeju-orange-light) 45%, var(--jeju-orange) 55%);
+  --map-step-4: color-mix(in srgb, var(--jeju-orange-light) 25%, var(--jeju-orange) 75%);
+  --map-step-5: color-mix(in srgb, var(--jeju-orange-light) 5%, var(--jeju-orange) 95%);
+  --map-active: var(--jeju-orange-deep);
+  --map-focus: var(--jeju-orange-deep);
+  --map-badge-bg: var(--jeju-orange-light);
+  --map-badge-text: var(--jeju-orange-dark);
 }
 
 @theme inline {

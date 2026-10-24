@@ -7,6 +7,8 @@ import { ExternalLinkIcon } from "@/components/ui/jeju-icons";
 import { statisticsCatalog, statisticsStatus, verifiedStatistics, STATISTICS_SOURCES } from "@/lib/statistics/catalog";
 import { loadCurrentStatisticsSnapshots } from "@/lib/statistics/current";
 import type { StatisticsCatalogItem, StatisticsResult } from "@/lib/statistics/types";
+import { statisticsComparisonGroups } from "@/lib/statistics/comparison";
+import { readStatisticsView } from "@/lib/statistics/explorer-state";
 
 export const metadata: Metadata = { title: "복지통계 | 전국 통합돌봄 사업 총괄 대시보드", description: "지역별 중장년·노년·아동 인구와 복지·보건 통계를 한곳에서 검색하고 수치, 기준 시점, 단위와 공식 원문을 확인합니다. 복지정보MCP와 같은 통계표를 제공합니다.", alternates: { canonical: "/statistics" } };
 export const dynamic = "force-dynamic";
@@ -29,10 +31,13 @@ function groupStatisticsCatalog(catalog: readonly StatisticsCatalogItem[]): Stat
       ?? sources.find(row => row.data_available)
       ?? sources.find(row => row.kind !== "approved") ?? sources[0],
     sources,
-  })).sort((a, b) => Number(b.item.data_available) - Number(a.item.data_available) || a.item.title.localeCompare(b.item.title, "ko"));
+  })).map(group => {
+    const result = group.item.dataset_id ? verifiedStatistics(group.item.dataset_id) : null;
+    return { ...group, comparison_available: Boolean(result && statisticsComparisonGroups(result.dataset).length) };
+  }).sort((a, b) => Number(b.item.data_available) - Number(a.item.data_available) || a.item.title.localeCompare(b.item.title, "ko"));
 }
 
-const POPULATION_IDS: Readonly<Record<PopulationMeasure, string>> = { middle: "population:middle-aged", older: "population:older", children: "population:children" };
+const POPULATION_IDS: Readonly<Record<PopulationMeasure, string>> = { total: "population:total", middle: "population:middle-aged", older: "population:older", children: "population:children" };
 
 function regionalPopulation(current: ReadonlyMap<string, StatisticsResult>): RegionalPopulationData | null {
   const results = Object.fromEntries((Object.keys(POPULATION_IDS) as PopulationMeasure[]).map(measure => [measure, current.get(POPULATION_IDS[measure]) ?? verifiedStatistics(POPULATION_IDS[measure])])) as Record<PopulationMeasure, StatisticsResult | null>;
@@ -46,25 +51,26 @@ function regionalPopulation(current: ReadonlyMap<string, StatisticsResult>): Reg
   const rows: PopulationRegionRow[] = base.series.flatMap(series => {
     const region = series.region;
     if (!region || (region.level !== "national" && region.level !== "sido")) return [];
-    const points = { middle: latest("middle", region.code), older: latest("older", region.code), children: latest("children", region.code) };
+    const points = { total: latest("total", region.code), middle: latest("middle", region.code), older: latest("older", region.code), children: latest("children", region.code) };
     return [{ name: region.name, level: region.level, total: points.middle?.total_population ?? points.older?.total_population ?? null,
-      values: { middle: points.middle?.value ?? null, older: points.older?.value ?? null, children: points.children?.value ?? null } }];
+      values: { total: points.total?.value ?? null, middle: points.middle?.value ?? null, older: points.older?.value ?? null, children: points.children?.value ?? null } }];
   });
   const seogwipo = current.get("city:seogwipo-population") ?? verifiedStatistics("city:seogwipo-population");
   const seogwipoPeriod = seogwipo?.dataset.periods.at(-1);
   const seogwipoValue = seogwipo?.dataset.series[0]?.points.find(point => point.period === seogwipoPeriod)?.value;
   return {
     rows,
-    periods: { middle: results.middle!.dataset.periods.at(-1) ?? "", older: results.older.dataset.periods.at(-1) ?? "", children: results.children.dataset.periods.at(-1) ?? "" },
+    periods: { total: results.total?.dataset.periods.at(-1) ?? "", middle: results.middle!.dataset.periods.at(-1) ?? "", older: results.older.dataset.periods.at(-1) ?? "", children: results.children.dataset.periods.at(-1) ?? "" },
     datasetIds: POPULATION_IDS,
     sourceUrl: base.source_url,
     seogwipo: seogwipoPeriod && typeof seogwipoValue === "number" ? { value: seogwipoValue, period: seogwipoPeriod } : null,
   };
 }
 
-export default async function StatisticsPage({ searchParams }: { searchParams: Promise<{ id?: string; q?: string; cat?: string; page?: string; region?: string; measure?: string; basis?: string }> }) {
+export default async function StatisticsPage({ searchParams }: { searchParams: Promise<Readonly<Record<string, string | undefined>>> }) {
   const params = await searchParams;
-  const snapshots = await loadCurrentStatisticsSnapshots();
+  const initialView = readStatisticsView(new URLSearchParams(Object.entries(params).flatMap(([key, value]) => typeof value === "string" ? [[key, value]] : [])));
+  const snapshots = await loadCurrentStatisticsSnapshots(params.id);
   const currentById = new Map(snapshots.map(result => [result.dataset.id, result]));
   const catalog = statisticsCatalog().map(item => {
     const current = item.dataset_id ? currentById.get(item.dataset_id) : undefined;
@@ -76,16 +82,16 @@ export default async function StatisticsPage({ searchParams }: { searchParams: P
   const aliases = Object.fromEntries(groups.flatMap(group => group.sources.flatMap(source => [[source.id, group.item.id], ...(source.dataset_id ? [[source.dataset_id, group.item.id]] : [])])));
   const defaultId = aliases["population:middle-aged"] ?? aliases["stat:2760"] ?? groups[0]?.item.id ?? "";
   const initialId = params.id && Object.hasOwn(aliases, params.id) ? aliases[params.id] : defaultId;
-  const initialQuery = typeof params.q === "string" ? params.q.slice(0, 80) : "";
+  const initialQuery = typeof params.q === "string" ? params.q.slice(0, 200) : "";
   const initialCategory = typeof params.cat === "string" && groups.some(group => group.item.category === params.cat) ? params.cat : "";
   const requestedPage = Number(params.page);
   const initialPage = Number.isInteger(requestedPage) && requestedPage >= 1 ? Math.min(requestedPage, 1000) : undefined;
   const population = regionalPopulation(currentById);
   const initialRegion = population?.rows.some(row => row.level === "sido" && row.name === params.region) ? params.region ?? "" : "";
-  const initialMeasure: PopulationMeasure = params.measure === "older" || params.measure === "children" ? params.measure : "middle";
-  const initialBasis: PopulationBasis = params.basis === "share" ? "share" : "count";
+  const initialMeasure: PopulationMeasure = params.measure === "total" || params.measure === "older" || params.measure === "children" ? params.measure : "middle";
+  const initialBasis: PopulationBasis = initialMeasure !== "total" && params.basis === "share" ? "share" : "count";
   const initialDatasetId = groups.find(group => group.item.id === initialId)?.item.dataset_id;
-  const initialKosis = initialDatasetId?.startsWith("kosis:") ? verifiedStatistics(initialDatasetId) : null;
+  const initialKosis = initialDatasetId?.startsWith("kosis:") && !currentById.has(initialDatasetId) ? verifiedStatistics(initialDatasetId) : null;
   const connectedCount = new Set(groups.filter(group => group.item.data_available && group.item.dataset_id).map(group => group.item.dataset_id)).size;
   const fieldCount = new Set(groups.map(group => group.item.category)).size;
   const checkedDate = new Intl.DateTimeFormat("ko-KR", { year: "numeric", month: "2-digit", day: "2-digit", timeZone: "Asia/Seoul" }).format(new Date(status.directory_checked_at));
@@ -99,7 +105,7 @@ export default async function StatisticsPage({ searchParams }: { searchParams: P
       </div>
     </section>
     {population ? <RegionalPopulationMap data={population} initialRegion={initialRegion} initialMeasure={initialMeasure} initialBasis={initialBasis} /> : null}
-    <StatisticsExplorer groups={groups} aliases={aliases} snapshots={initialKosis ? [...snapshots, initialKosis] : snapshots} initialId={initialId} initialQuery={initialQuery} initialCategory={initialCategory} initialPage={initialPage} />
+    <StatisticsExplorer groups={groups} aliases={aliases} snapshots={initialKosis ? [...snapshots, initialKosis] : snapshots} initialId={initialId} initialQuery={initialQuery} initialCategory={initialCategory} initialPage={initialPage} initialView={initialView} />
     <section aria-labelledby="statistics-official-sources"><h2 id="statistics-official-sources" className="text-(length:--jeju-h2-size) font-extrabold">자료의 출발점</h2><p className="mt-2 text-(length:--jeju-text-sm) text-muted-foreground">공식 통계 목록, 주민등록인구 자료와 KOSIS 공개 통계표를 바탕으로 구성했습니다. 각 통계의 상세 설명과 최신 공표 내용은 원문에서 확인하세요.</p><div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">{STATISTICS_SOURCES.map(source => <a key={source.id} href={source.url} target="_blank" rel="noopener noreferrer" className="rounded-(--jeju-radius-lg) border border-border bg-card p-5 outline-none hover:border-primary focus-visible:shadow-(--jeju-focus-ring)"><span className="flex items-start justify-between gap-3 font-bold text-primary">{source.title}<ExternalLinkIcon /></span><span className="mt-2 block text-(length:--jeju-text-sm) leading-relaxed text-muted-foreground">{source.scope}</span><span className="sr-only">(새 창)</span></a>)}</div></section>
     <section aria-labelledby="statistics-portals"><div className="flex flex-wrap items-baseline justify-between gap-2"><h2 id="statistics-portals" className="text-(length:--jeju-h2-size) font-extrabold">통계기관·원문 서비스</h2><span className="text-(length:--jeju-text-sm) text-muted-foreground">{portals.length}곳</span></div><p className="mt-2 text-(length:--jeju-text-sm) text-muted-foreground">더 넓은 주제나 지역의 자료는 각 기관에서 찾아보세요. 아래 기관 링크는 위의 통계 항목 수에 포함하지 않습니다.</p><div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{portals.map(portal => <a id={`statistics-source-${portal.id.replace(":", "-")}`} key={portal.id} href={portal.source_url} target="_blank" rel="noopener noreferrer" className={`min-w-0 rounded-(--jeju-radius-lg) border p-4 outline-none hover:border-primary focus-visible:shadow-(--jeju-focus-ring) ${params.id === portal.id ? "border-primary bg-(--jeju-primary-tint)" : "border-border bg-card"}`}><span className="flex items-start justify-between gap-3 font-bold text-(--jeju-text-strong)">{portal.title}<ExternalLinkIcon className="shrink-0 text-primary" /></span><span className="mt-2 block text-(length:--jeju-text-sm) leading-relaxed text-muted-foreground">{portal.description}</span><span className="sr-only">(새 창)</span></a>)}</div></section>
     <p className="text-(length:--jeju-text-sm) text-muted-foreground">레이아웃 참고: <a href="https://github.com/changeroa/StyleGallery" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">StyleGallery의 Dashboard·List-detail 패턴<span className="sr-only">(새 창)</span></a> · 대시보드의 색상과 탐색 방식에 맞게 적용했습니다.</p>

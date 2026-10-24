@@ -602,13 +602,13 @@ export function WelfareMindmap() {
         </nav>
         {mode === "map" && orbitParent && orbitChildren.length > 0 ? (
           <div aria-label="하위 위성 표시 현황" className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-[#dfe6ec] bg-[#f8fafc] px-3 py-2">
-            <div className="min-w-0 text-xs text-slate-600">
-              <p className="flex items-center gap-1.5 font-bold text-slate-800"><span aria-hidden="true" className="size-2 shrink-0 rounded-full" style={{ background: branchColor(index.get(orbitParent.id)?.top ?? orbitParent.id).line }} /><span className="truncate">{orbitParent.label}</span></p>
+            <div className="min-w-0 text-xs text-(--jeju-text-body)">
+              <p className="flex items-center gap-1.5 font-bold text-(--jeju-text-strong)"><span aria-hidden="true" className="size-2 shrink-0 rounded-full" style={{ background: branchColor(index.get(orbitParent.id)?.top ?? orbitParent.id).line }} /><span className="truncate">{orbitParent.label}</span></p>
               <p className="mt-0.5" role="status">하위 위성 {nf.format(orbitChildren.length)}개{orbitChildren.length === orbitParent.children?.length ? " 모두 표시" : " · 선택 경로만 표시"}</p>
             </div>
             <div className="flex flex-wrap items-center gap-2">
-              <p className="text-xs text-slate-500">화면 밖 위성은 끌어서 확인 · 확대 가능</p>
-              <button type="button" onClick={() => focusOn(orbitParent.id, true)} className="inline-flex min-h-10 items-center gap-1.5 rounded-lg border border-border bg-white px-2.5 text-xs font-bold text-slate-700 hover:bg-slate-100"><Maximize2 aria-hidden="true" className="size-3.5" />위성 전체 맞춤</button>
+              <p className="text-xs text-muted-foreground">화면 밖 위성은 끌어서 확인 · 확대 가능</p>
+              <button type="button" onClick={() => focusOn(orbitParent.id, true)} className="inline-flex min-h-10 items-center gap-1.5 rounded-lg border border-border bg-card px-2.5 text-xs font-bold text-(--jeju-text-body) hover:bg-(--jeju-surface-inset)"><Maximize2 aria-hidden="true" className="size-3.5" />위성 전체 맞춤</button>
             </div>
           </div>
         ) : null}
@@ -636,14 +636,14 @@ export function WelfareMindmap() {
               const Icon = ICONS[node.icon];
               return <li key={node.id}>
                 <button type="button" aria-pressed={active} onClick={() => choose(node.id, true)}
-                  className="flex min-h-12 w-full items-center gap-2 rounded-lg border px-2 py-2 text-left outline-none transition-colors hover:border-slate-300 focus-visible:shadow-(--jeju-focus-ring)"
+                  className="flex min-h-12 w-full items-center gap-2 rounded-lg border px-2 py-2 text-left outline-none transition-colors hover:border-(--jeju-border-strong) focus-visible:shadow-(--jeju-focus-ring)"
                   style={{ borderColor: active ? color.line : "#e8edf3", background: active ? color.tint : undefined }}>
                   <span aria-hidden="true" className="grid size-8 shrink-0 place-items-center rounded-full" style={{ background: color.tint, color: color.text }}>{Icon ? <Icon className="size-4" /> : <span className="size-2 rounded-full" style={{ background: color.line }} />}</span>
                   <span className="min-w-0 flex-1">
                     <span className="block text-[13px] font-bold" style={{ color: color.text }}>{node.label}</span>
-                    {node.count !== undefined ? <span className="mt-0.5 block text-[11px] tabular-nums text-muted-foreground">{countText(node)}</span> : null}
+                    {node.count !== undefined ? <span className="mt-0.5 block text-(length:--jeju-text-xs) tabular-nums text-muted-foreground">{countText(node)}</span> : null}
                   </span>
-                  <ChevronRight aria-hidden="true" className="hidden size-3.5 shrink-0 text-slate-400 lg:block" style={active ? { color: color.text } : undefined} />
+                  <ChevronRight aria-hidden="true" className="hidden size-3.5 shrink-0 text-muted-foreground lg:block" style={active ? { color: color.text } : undefined} />
                 </button>
               </li>;
             })}
@@ -652,7 +652,7 @@ export function WelfareMindmap() {
             <p className="flex items-center gap-2"><Sun aria-hidden="true" className="mx-1 size-6 shrink-0 text-[#bd8523]" />태양 · 복지정보 전체 지도</p>
             <p className="flex items-center gap-2"><span aria-hidden="true" className="mx-2 size-4 shrink-0 rounded-full bg-[#0173bc]" />행성 · 대분류</p>
             <p className="flex items-center gap-2"><span aria-hidden="true" className="mx-2.5 size-3 shrink-0 rounded-full border-2 border-[#0173bc] bg-[#e6f2fa]" />위성 · 소분류와 세부 항목</p>
-            <p className="pt-1"><b className="font-bold text-slate-600">실선은 상위·하위 항목을 연결합니다.</b><br />위성은 부모 주위의 궤도에 모두 놓입니다. 이름은 항상 수평·가운데 정렬입니다.</p>
+            <p className="pt-1"><b className="font-bold text-(--jeju-text-body)">실선은 상위·하위 항목을 연결합니다.</b><br />위성은 부모 주위의 궤도에 모두 놓입니다. 이름은 항상 수평·가운데 정렬입니다.</p>
           </div>
           {selectedId !== "root" && panel ? <div className="mt-5 hidden border-t border-border pt-4 lg:block">
             <div className="mb-3 flex items-center justify-between gap-2">
@@ -666,7 +666,7 @@ export function WelfareMindmap() {
           <section aria-label="복지정보 태양계 지도" className="relative min-w-0 overflow-hidden bg-[#f8fafc]" style={{ backgroundImage: "radial-gradient(#d5dde6 0.7px, transparent 0.7px)", backgroundSize: "44px 44px" }}>
             <div className="pointer-events-none absolute top-4 right-4 left-4 z-10 flex items-start justify-between gap-3">
               <span className="flex items-center gap-2 rounded-full border border-[#e9dfc5] bg-[#fffbef] px-3 py-1.5 text-xs font-bold text-[#906016]"><Sun aria-hidden="true" className="size-3.5" />태양 · 행성 · 위성</span>
-              <span className="rounded-md bg-[#f7f9fc]/95 px-2 py-1.5 text-[11px] tabular-nums text-muted-foreground">표시 {nf.format(placed.length)} / 전체 {nf.format(countExplore(root))}</span>
+              <span className="rounded-md bg-(--jeju-surface-inset)/95 px-2 py-1.5 text-(length:--jeju-text-xs) tabular-nums text-muted-foreground">표시 {nf.format(placed.length)} / 전체 {nf.format(countExplore(root))}</span>
             </div>
             <div
               ref={frameRef}
@@ -725,10 +725,10 @@ export function WelfareMindmap() {
               <strong>{highlighted.node.label}</strong><span className="ml-2 text-xs text-muted-foreground">{countText(highlighted.node)}</span>
             </div> : null}
             {selectedId !== "root" && selected ? <div className="absolute right-3 bottom-3 left-3 flex items-center justify-between gap-2 rounded-xl border border-[#dbe3ec] bg-white px-3 py-2 lg:hidden">
-              <div className="min-w-0"><p className="truncate text-sm font-bold text-slate-800">{selected.label}</p><p className="text-[11px] text-muted-foreground">{selected.children?.length ? (expanded.has(selectedId) ? "하위 위성 펼침" : "하위 위성 접힘") : "세부 항목 선택"}{countText(selected) ? " · " + countText(selected) : ""}</p></div>
+              <div className="min-w-0"><p className="truncate text-sm font-bold text-(--jeju-text-strong)">{selected.label}</p><p className="text-(length:--jeju-text-xs) text-muted-foreground">{selected.children?.length ? (expanded.has(selectedId) ? "하위 위성 펼침" : "하위 위성 접힘") : "세부 항목 선택"}{countText(selected) ? " · " + countText(selected) : ""}</p></div>
               <button type="button" onClick={() => setSheetOpen(true)} className="flex min-h-10 shrink-0 items-center gap-1 rounded-lg bg-[#0173bc] px-3 text-xs font-bold text-white">상세정보<ArrowRight aria-hidden="true" className="size-3.5" /></button>
             </div> : null}
-            {selectedId === "root" ? <p className="pointer-events-none absolute right-3 bottom-3 left-3 text-center text-[11px] leading-relaxed text-muted-foreground">행성을 눌러 위성 탐색 · 태양을 눌러 전체 보기 · 끌어서 이동 · 휠 / + −로 확대·축소</p> : null}
+            {selectedId === "root" ? <p className="pointer-events-none absolute right-3 bottom-3 left-3 text-center text-(length:--jeju-text-xs) leading-relaxed text-muted-foreground">행성을 눌러 위성 탐색 · 태양을 눌러 전체 보기 · 끌어서 이동 · 휠 / + −로 확대·축소</p> : null}
             <p role="status" className="sr-only">{selectedId === "root" ? "태양과 분야별 행성 전체 보기" : (selected?.label ?? "") + " 선택됨. 오른쪽에 정렬됩니다." + (selected?.children?.length ? (expanded.has(selectedId) ? " 하위 위성이 펼쳐졌습니다." : " 하위 위성이 접혔습니다.") : "")}</p>
           </section>
         ) : (

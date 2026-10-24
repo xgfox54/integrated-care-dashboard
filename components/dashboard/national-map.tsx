@@ -74,6 +74,7 @@ export function NationalMap({ regionCounts, kpis, selectedSido, disabled, onSele
             selectedSido={selectedSido}
             disabled={disabled}
             onSelect={onSelect}
+            colorTheme="blue"
           />
         </div>
 

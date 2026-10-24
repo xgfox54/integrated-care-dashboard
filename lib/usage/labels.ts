@@ -27,6 +27,7 @@ export const PAGE_LABELS: Record<PageCode, string> = {
   law: "법령정보",
   welfaremcp: "복지정보MCP",
   statistics: "복지통계",
+  info: "시스템 소개",
   sources: "데이터 출처",
   usage_policy: "이용통계 안내",
 };
@@ -42,6 +43,7 @@ export const TAB_LABELS: Record<TabCode, string> = {
   law: "법령정보",
   welfaremcp: "복지정보MCP",
   statistics: "복지통계",
+  info: "시스템 소개",
   sources: "데이터 출처",
   usage_policy: "이용통계 안내",
 };

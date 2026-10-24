@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f7f9fa"/>
+  <path fill="#0173bc" d="M0 0h408v8H0z"/>
+  <path fill="#00a074" d="M408 0h396v8H408z"/>
+  <path fill="#f18101" d="M804 0h396v8H804z"/>
+  <g font-family="Pretendard GOV, Pretendard, Noto Sans KR, Malgun Gothic, sans-serif">
+    <text x="64" y="84" font-size="24" font-weight="700" fill="#0173bc">전국 지자체 복지·돌봄 정보</text>
+    <g font-size="76" font-weight="700" fill="#151b23">
+      <text x="60" y="194">전국 통합돌봄</text>
+      <text x="60" y="290">대시보드</text>
+    </g>
+    <text x="64" y="356" font-size="30" fill="#344354">통합돌봄 사업·복지제도·통계·예산을 한눈에</text>
+    <path d="M64 412h1072" stroke="#cfd8df" stroke-width="2"/>
+    <g font-size="28" font-weight="700">
+      <text x="64" y="468" fill="#0173bc">사업 검색·비교</text>
+      <text x="428" y="468" fill="#008762">복지제도100</text>
+      <text x="792" y="468" fill="#a45500">복지통계·예산</text>
+    </g>
+    <g font-size="22" fill="#4e5f70">
+      <text x="64" y="510">지역별 돌봄 사업 살펴보기</text>
+      <text x="428" y="510">대상·지원 내용·근거 확인</text>
+      <text x="792" y="510">지역 현황과 재정 정보</text>
+      <text x="64" y="588" font-size="20">integrated-care-national-dashboard.xgfox54.chatgpt.site</text>
+    </g>
+  </g>
+</svg>

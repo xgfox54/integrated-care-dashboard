@@ -14,7 +14,7 @@ function integer(value: string | null, name: string): number | undefined {
 export async function GET(request: Request): Promise<Response> {
   try {
     const params = new URL(request.url).searchParams;
-    const allowed = new Set(["id", "view", "query", "kind", "category", "data_only", "offset", "limit", "from_year", "to_year", "series_id", "mode"]);
+    const allowed = new Set(["id", "selected_id", "view", "query", "kind", "category", "data_only", "offset", "limit", "from_year", "to_year", "series_id", "mode"]);
     if ([...params.keys()].some(key => !allowed.has(key))) throw new StatisticsError("INVALID_INPUT", "지원하지 않는 조회 조건입니다.");
     const id = params.get("id");
     if (id) {
@@ -25,12 +25,12 @@ export async function GET(request: Request): Promise<Response> {
       return Response.json({ ok: true, ...result }, { headers: { "cache-control": "no-store" } });
     }
     const view = params.get("view") ?? "catalog";
-    if (view === "current") return Response.json({ ok: true, results: await readCurrentStatisticsSnapshots(getD1()) }, { headers: { "cache-control": "no-store" } });
+    if (view === "current") return Response.json({ ok: true, results: await readCurrentStatisticsSnapshots(getD1(), Date.now(), params.get("selected_id") ?? undefined) }, { headers: { "cache-control": "no-store" } });
     if (view === "status") return Response.json({ ok: true, status: await currentStatisticsStatus(getD1()) }, { headers: { "cache-control": "no-store" } });
     if (view === "sources") return Response.json({ ok: true, sources: STATISTICS_SOURCES, portals: statisticsCatalog().filter(item => item.kind === "portal"), status: await currentStatisticsStatus(getD1()) }, { headers: { "cache-control": "no-store" } });
     if (view !== "catalog") throw new StatisticsError("INVALID_INPUT", "조회 화면이 올바르지 않습니다.");
     const kind = params.get("kind") ?? undefined;
-    if (kind && !["indicator", "approved", "portal", "population"].includes(kind)) throw new StatisticsError("INVALID_INPUT", "자료 구분이 올바르지 않습니다.");
+    if (kind && !["indicator", "approved", "portal", "population", "kosis"].includes(kind)) throw new StatisticsError("INVALID_INPUT", "자료 구분이 올바르지 않습니다.");
     const query = params.get("query") ?? "";
     if (query.length > 200) throw new StatisticsError("INVALID_INPUT", "검색어는 200자 이하로 입력하세요.");
     const limit = integer(params.get("limit"), "건수"); const offset = integer(params.get("offset"), "시작 위치");

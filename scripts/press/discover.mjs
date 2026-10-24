@@ -218,6 +218,7 @@ function escapeRegex(text) {
 /** 목록 페이지에서 상세 링크 묶음(같은 경로·바뀌는 번호 파라미터)을 찾는다. */
 export function detailPattern(html, base) {
   const groups = new Map();
+  const listUrl = new URL(base);
   for (const link of links(html, base)) {
     if (!link.absolute || link.text.length < 6) continue;
     const url = new URL(link.absolute);
@@ -230,18 +231,29 @@ export function detailPattern(html, base) {
   let best = null;
   for (const group of groups.values()) {
     if (group.length < 5) continue;
-    // 게시물 묶음은 링크 바로 뒤(다음 같은 묶음 링크 전, 800자 안)에 게시일이 있다. 메뉴 링크 묶음은 날짜가 없다.
-    const dated = group.filter((item, position) => {
-      const stop = Math.min(group[position + 1]?.index ?? html.length, item.end + 800);
-      // 카드형 목록은 날짜가 링크 안에 있다. 링크 시작부터 다음 같은 묶음 링크 전까지 본다.
-      return /(20\d{2})[-./]\s?(\d{1,2})[-./]\s?(\d{1,2})/.test(html.slice(item.index, stop));
-    }).length;
-    if (dated < 3) continue;
     const params = [...group[0].url.searchParams.keys()];
     const varying = params.filter((param) => new Set(group.map((item) => item.url.searchParams.get(param))).size >= Math.min(group.length, 5));
     const idParam = varying.find((param) => /^(ntt|seq|idx|no|id|num|bid|data|board|article|list|art|bbs|sn|key|repSeq)/i.test(param) && !/page|pg|cpage|offset/i.test(param)) ?? varying.find((param) => !/page|pg|cpage|offset/i.test(param));
     if (!idParam) continue;
-    if (!best || dated > best.dated) best = { idParam, items: group, dated };
+    const boardGroups = new Map();
+    for (const item of group) {
+      const fixed = [...item.url.searchParams].filter(([param]) => param !== idParam).sort(([a], [b]) => a.localeCompare(b));
+      const key = JSON.stringify(fixed);
+      const items = boardGroups.get(key) ?? [];
+      items.push(item);
+      boardGroups.set(key, items);
+    }
+    for (const items of boardGroups.values()) {
+      if (items.length < 5) continue;
+      // 게시판 번호가 다른 메뉴·공지 링크를 보도자료 묶음에 섞지 않는다.
+      const dated = items.filter((item, position) => {
+        const stop = Math.min(items[position + 1]?.index ?? html.length, item.end + 800);
+        return /(20\d{2})[-./]\s?(\d{1,2})[-./]\s?(\d{1,2})/.test(html.slice(item.index, stop));
+      }).length;
+      if (dated < 3) continue;
+      const matchesList = [...items[0].url.searchParams].filter(([param, value]) => param !== idParam && listUrl.searchParams.get(param) === value).length;
+      if (!best || matchesList > best.matchesList || (matchesList === best.matchesList && dated > best.dated)) best = { idParam, items, dated, matchesList };
+    }
   }
   if (!best) return null;
   const sample = best.items[0];
@@ -254,12 +266,16 @@ export function detailPattern(html, base) {
   const inner = html.slice(sample.index, sample.end);
   const structured = /<(strong|b|em|h\d)\b/i.exec(inner);
   const title = structured ? "<" + structured[1].toLowerCase() + "[^>]*>\\s*([^<]+)" : "text";
+  const fixedParams = [...sample.url.searchParams].filter(([param]) => param !== best.idParam).map(([param, value]) => {
+    const encodedValues = [...new Set([value, encodeURIComponent(value), new URLSearchParams([["value", value]]).toString().slice(6)])];
+    return "(?=[^\"']*?[?&](?:amp;)?" + escapeRegex(param) + "=(?:" + encodedValues.map(escapeRegex).join("|") + ")(?:&|[\"']|$))";
+  }).join("");
   return {
     idParam: best.idParam,
     count: best.items.length,
     profile: {
       // 상대 주소("?idx=…")처럼 href에 경로가 없으면 경로 대신 href 시작을 기준으로 맞춘다.
-      link: (sample.href.includes(segment) ? escapeRegex(segment) : "href=[\"']") + "[^\"']*?[?&](?:amp;)?" + escapeRegex(best.idParam) + "=(?<id>[\\w-]+)",
+      link: (sample.href.includes(segment) ? escapeRegex(segment) : "href=[\"']") + fixedParams + "[^\"']*?[?&](?:amp;)?" + escapeRegex(best.idParam) + "=(?<id>[\\w-]+)",
       url: template.toString().replace("__ID__", "{id}"),
       title,
     },
