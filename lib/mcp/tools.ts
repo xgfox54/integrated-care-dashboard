@@ -78,12 +78,16 @@ import { regionalCatalogBrowse, welfareCatalogFor, welfareCatalogText, WELFARE_C
 import {
   DEFAULT_AUTO_DETAIL_ITEMS,
   DEFAULT_WELFARE_CHAIN_DEADLINE_MS,
+  compactChainedCandidates,
+  detailCoverageGaps,
   detectWelfareResearchTask,
   discoverWelfareTools,
   executeAutoDetailChain,
   formatSuggestedToolCalls,
   isBlockedCareTool,
   isBlockedLawTool,
+  isChainRecord,
+  omitCompletedCalls,
   MAX_AUTO_DETAIL_ITEMS,
   raceWelfareDeadline,
   startWelfareChainDeadline,
@@ -387,10 +391,13 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
       limit: options.detailLimit,
     });
     const { items, ...summary } = chained;
+    const pending = omitCompletedCalls(suggested, items);
+    const results = "results" in basePayload && Array.isArray(basePayload.results) ? compactChainedCandidates(basePayload.results, items) : undefined;
     return {
       ...basePayload,
-      suggested_tool_calls: suggested,
-      next_actions_text: nextActionsText,
+      ...(results ? { results } : {}),
+      suggested_tool_calls: pending,
+      next_actions_text: formatSuggestedToolCalls(pending),
       chained_details: items,
       chain_summary: summary,
     };
@@ -662,7 +669,7 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
     // 보류된 도구(돌봄자원·예산)는 등록하지 않는다(lib/integrations/care-hold.ts, contract.ts FISCAL_MCP_PUBLIC).
     if (!EXECUTABLE_MCP_TOOL_NAMES.includes(name) && !(fiscalOn && FISCAL_TOOL_NAMES.has(name))) return;
     const schemaObj = z.object(shape).strict();
-    toolCatalog.set(name, { name, title, description, parameters: Object.keys(shape) });
+    toolCatalog.set(name, { name, title, description, parameters: Object.keys(shape), inputSchema: () => z.toJSONSchema(schemaObj, { io: "input" }) });
     internalHandlers.set(name, async (rawArgs: unknown) => {
       const parsed = schemaObj.parse(rawArgs ?? {});
       const payload = await handler(parsed);
@@ -1903,7 +1910,7 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
   // 0. welfare_research (Korean Law MCP의 legal_research 대응: 다단계 자동 툴체이닝 원스톱 리서치)
   register("welfare_research", "복지 복합 리서치(자동 체이닝)", "자연어 질문을 분석해 통합검색(search) 후 상위 근거의 상세 조회(get_welfare_context·get_manual_section·get_faq·get_statistics_data·get_budget_breakdown 등)와 작업별 보조 자료를 한 번에 연속 조회합니다.", {
     query: questionInput.min(1).describe("자연어 복지 질문 또는 조사할 제도·지역·예산·통계 주제"),
-    task: z.enum(WELFARE_RESEARCH_TASKS).optional().describe("auto(기본: 질문 의도로 자동 선택), full_research(종합), eligibility_check(신청자격·절차), manual_verify(매뉴얼 원문), regional_compare(지역 사업·돌봄자원), budget_track(예산·집행), statistics_trend(통계 시계열)"),
+    task: z.enum(WELFARE_RESEARCH_TASKS).optional().describe("auto(기본: 질문 의도로 자동 선택), full_research(종합), eligibility_check(신청자격·절차), manual_verify(매뉴얼 원문), regional_compare(지역 사업 비교), budget_track(예산·집행), statistics_trend(통계 시계열)"),
     region_id: regionInput.optional(),
     fiscal_year: z.number().int().min(2000).max(2100).optional(),
     detail_limit: z.number().int().min(1).max(MAX_AUTO_DETAIL_ITEMS).optional().describe("자동 상세 조회할 상위 후보 수(기본 2, 최대 3)"),
@@ -1915,187 +1922,107 @@ export function registerWelfareTools(server: McpServer, context: McpToolContext)
       const basePlan = refineWelfareQuery(args.query, { currentYear: Number(kstDate(now()).slice(0, 4)) });
       const effectiveRegion = args.region_id ?? basePlan.region_id;
       if (effectiveRegion && effectiveRegion !== "region:전국") parseRegionId(effectiveRegion);
-      const resolvedTask = (!args.task || args.task === "auto") ? detectWelfareResearchTask(args.query, basePlan) : args.task;
-      const detailLimit = args.detail_limit ?? DEFAULT_AUTO_DETAIL_ITEMS;
-      const stepsExecuted: { step: string; tool: McpToolName; status: "SUCCEEDED" | "TIMED_OUT" | "ERROR"; note?: string }[] = [];
-      const timedOutSections: { section: string; recovery_tool: McpToolName; recovery_params: Record<string, unknown>; message: string }[] = [];
+      const plan = { ...basePlan, region_id: effectiveRegion };
+      const resolvedTask = (!args.task || args.task === "auto") ? detectWelfareResearchTask(args.query, plan) : args.task;
+      const stepsExecuted: { step: string; tool: McpToolName; status: "SUCCEEDED" | "TIMED_OUT" | "ERROR" }[] = [];
+      const failedSections: { section: string; status: "TIMED_OUT" | "ERROR"; recovery_tool: McpToolName; recovery_params: Record<string, unknown>; message: string }[] = [];
+      const sectionCoverage: string[] = [];
+      const sectionWarnings: string[] = [];
+      async function runSection(section: string, tool: McpToolName, params: Record<string, unknown>): Promise<object | null> {
+        const outcome = await raceWelfareDeadline(deadline, () => invokeInternal(tool, params));
+        if (!outcome.ok) {
+          const status = outcome.timedOut ? "TIMED_OUT" : "ERROR";
+          stepsExecuted.push({ step: section, tool, status });
+          failedSections.push({ section, status, recovery_tool: tool, recovery_params: params, message: outcome.error ?? "시간 한도로 조회를 완료하지 못했습니다." });
+          return null;
+        }
+        stepsExecuted.push({ step: section, tool, status: "SUCCEEDED" });
+        if (isChainRecord(outcome.value) && "data" in outcome.value) {
+          sectionCoverage.push(...detailCoverageGaps([{ id: section, entity_type: section, tool, params, status: "SUCCEEDED", context: outcome.value }]));
+          if (Array.isArray(outcome.value.warnings)) sectionWarnings.push(...outcome.value.warnings.filter((item): item is string => typeof item === "string"));
+        }
+        return outcome.value;
+      }
+      const regionParams = effectiveRegion && effectiveRegion !== "region:전국" ? { region_id: effectiveRegion } : {};
+      const fiscalYear = args.fiscal_year ?? basePlan.requested_year ?? basePlan.current_year;
+      let budgetProjects: object | null = null;
+      let budgetExecution: object | null = null;
+      // 예산 필수 조회는 통합 검색과 함께 시작한다. 두 경로는 같은 공개본과 시간 한도를 사용한다.
+      const budgetWork = resolvedTask === "budget_track" && fiscalOn ? (async () => {
+        budgetProjects = await runSection("budget_projects", "find_budget_projects", {
+          fiscal_year: fiscalYear, mode: "integrated_care", ...regionParams,
+          ...(basePlan.search_query ? { query: basePlan.search_query.slice(0, LIMITS.queryMax) } : {}), limit: 5,
+        });
+        const body = isChainRecord(budgetProjects) && isChainRecord(budgetProjects.data) ? budgetProjects.data : null;
+        const ids = body && Array.isArray(body.items) ? body.items.filter(isChainRecord).flatMap(row => typeof row.fiscal_project_id === "string" ? [row.fiscal_project_id] : []).slice(0, 5) : [];
+        if (ids.length) budgetExecution = await runSection("budget_execution", "get_budget_execution", { fiscal_project_ids: ids, fiscal_year: fiscalYear });
+      })() : Promise.resolve();
 
-      // 1단계: 통합 검색 실행
-      const searchOutcome = await raceWelfareDeadline(deadline, () => invokeInternal("search", { query: args.query }));
+      const searchQuery = args.region_id && args.region_id !== basePlan.region_id ? args.query + " " + args.region_id.slice(7).replaceAll("|", " ") : args.query;
+      const searchOutcome = await raceWelfareDeadline(deadline, () => invokeInternal("search", { query: searchQuery }));
       if (!searchOutcome.ok) {
-        throw new McpToolError("CHAIN_SEARCH_FAILED", searchOutcome.error ?? "통합 검색 단계가 시간 한도를 넘겼습니다. search 도구로 다시 조회해 주세요.");
+        await budgetWork;
+        throw new McpToolError("CHAIN_SEARCH_FAILED", searchOutcome.error ?? "통합 검색 단계가 시간 한도를 넘겼습니다.");
       }
       stepsExecuted.push({ step: "primary_search", tool: "search", status: "SUCCEEDED" });
-      const searchData = searchOutcome.value as {
-        results: { id: string; entity_type: string; title?: string }[];
-        query_plan: typeof basePlan;
-        retrieval_status: string;
-        answerability: string;
-        coverage: unknown;
-        reason_codes: string[];
-        warnings?: string[];
-      };
-
-      // task별 후보 우선순위 정렬
-      const candidates = [...(searchData.results ?? [])].sort((a, b) => {
-        const priority = (entityType: string): number => {
-          if (resolvedTask === "manual_verify") return entityType === "manual_section" ? 0 : 1;
-          if (resolvedTask === "eligibility_check") return ["implementation", "gov24_service", "welfare100_service", "official_faq", "manual_section"].indexOf(entityType) >= 0 ? 0 : 1;
-          if (resolvedTask === "statistics_trend") return entityType === "welfare_statistic" ? 0 : 1;
-          if (resolvedTask === "budget_track") return entityType === "budget_line" ? 0 : 1;
-          return 0;
-        };
-        return priority(a.entity_type) - priority(b.entity_type);
-      });
-
-      // 2단계: 상위 후보 자동 상세 체이닝
+      const searchData = isChainRecord(searchOutcome.value) ? searchOutcome.value : {};
+      const candidates = (Array.isArray(searchData.results) ? searchData.results.filter(isChainRecord).filter((row): row is Record<string, unknown> & { id: string; entity_type: string } => typeof row.id === "string" && typeof row.entity_type === "string") : [])
+        .sort((a, b) => {
+          const preferred = resolvedTask === "manual_verify" ? "manual_section" : resolvedTask === "statistics_trend" ? "welfare_statistic" : resolvedTask === "budget_track" ? "budget_line" : null;
+          return Number(b.entity_type === preferred) - Number(a.entity_type === preferred);
+        });
       const chainedDetails = await executeAutoDetailChain(candidates, invokeInternal, {
-        question: args.query,
-        releaseBundleId: current.bundleId,
-        limit: detailLimit,
-        deadline,
+        question: args.query, releaseBundleId: current.bundleId,
+        limit: args.detail_limit ?? DEFAULT_AUTO_DETAIL_ITEMS, deadline,
       });
       for (const item of chainedDetails.items) {
-        stepsExecuted.push({ step: "auto_detail:" + item.id, tool: item.tool, status: item.status, ...(item.recovery_hint ? { note: item.recovery_hint } : {}) });
-        if (item.status === "TIMED_OUT") {
-          timedOutSections.push({ section: "상세 조회(" + item.id + ")", recovery_tool: item.tool, recovery_params: item.params, message: item.recovery_hint ?? "개별 도구로 조회하세요." });
-        }
+        stepsExecuted.push({ step: "auto_detail:" + item.id, tool: item.tool, status: item.status });
+        if (item.status !== "SUCCEEDED") failedSections.push({ section: item.id, status: item.status, recovery_tool: item.tool, recovery_params: item.params, message: item.error ?? item.recovery_hint ?? item.status });
       }
-
-      // 3단계: task별 도메인 확장 체이닝
-      let regionalServices: unknown = null;
-      let careDemand: unknown = null;
-      let budgetProjects: unknown = null;
-      let budgetExecution: unknown = null;
-      let statisticsData: unknown = null;
-
-      if ((resolvedTask === "regional_compare" || (effectiveRegion && effectiveRegion !== "region:전국")) && !deadline.expired()) {
-        const regionId = effectiveRegion && effectiveRegion !== "region:전국" ? effectiveRegion : "region:제주특별자치도|서귀포시";
-        const [catalogLeg, careLeg] = await Promise.all([
-          raceWelfareDeadline(deadline, () => invokeInternal("search_welfare_services", { query: basePlan.search_query || undefined, region_id: regionId, include_ancestor_scope: true, limit: 10 })),
-          CARE_RESOURCES_MCP && resolvedTask === "regional_compare"
-            ? raceWelfareDeadline(deadline, () => invokeInternal("get_care_demand", { region_id: regionId }))
-            : Promise.resolve(null),
-        ]);
-        if (catalogLeg.ok) {
-          regionalServices = catalogLeg.value;
-          stepsExecuted.push({ step: "regional_catalog", tool: "search_welfare_services", status: "SUCCEEDED" });
-        } else if (catalogLeg.timedOut) {
-          timedOutSections.push({ section: "지역 복지제도100 목록", recovery_tool: "search_welfare_services", recovery_params: { region_id: regionId, include_ancestor_scope: true }, message: "시간 한도로 지역 대장 목록 응답이 지연되었습니다." });
-        }
-        if (careLeg) {
-          if (careLeg.ok) {
-            careDemand = (careLeg.value as { data?: unknown }).data ?? careLeg.value;
-            stepsExecuted.push({ step: "regional_care_demand", tool: "get_care_demand", status: "SUCCEEDED" });
-          } else if (careLeg.timedOut) {
-            timedOutSections.push({ section: "지역 돌봄 수요 통계", recovery_tool: "get_care_demand", recovery_params: { region_id: regionId }, message: "시간 한도로 지역 돌봄 수요 응답이 지연되었습니다." });
-          }
-        }
+      await budgetWork;
+      let regionalServices: object | null = null;
+      let statisticsData: object | null = null;
+      if (resolvedTask === "regional_compare" || (resolvedTask === "full_research" && effectiveRegion && effectiveRegion !== "region:전국")) {
+        regionalServices = await runSection("regional_catalog", "search_welfare_services", {
+          ...regionParams, ...(basePlan.search_query ? { query: basePlan.search_query } : {}), include_ancestor_scope: true, limit: 10,
+        });
       }
-
-      if (resolvedTask === "budget_track" && fiscalOn && !deadline.expired()) {
-        const fiscalYear = args.fiscal_year ?? basePlan.requested_year ?? 2026;
-        const projectsLeg = await raceWelfareDeadline(deadline, () =>
-          invokeInternal("find_budget_projects", {
-            fiscal_year: fiscalYear,
-            mode: "integrated_care",
-            ...(effectiveRegion && effectiveRegion !== "region:전국" ? { region_id: effectiveRegion } : {}),
-            ...(basePlan.search_query ? { query: basePlan.search_query.slice(0, LIMITS.queryMax) } : {}),
-            limit: 5,
-          }),
-        );
-        if (projectsLeg.ok) {
-          const projectData = (projectsLeg.value as { data?: { items?: { fiscal_project_id?: string }[] } }).data;
-          budgetProjects = projectData ?? projectsLeg.value;
-          stepsExecuted.push({ step: "budget_projects", tool: "find_budget_projects", status: "SUCCEEDED" });
-          const projectIds = (projectData?.items ?? []).map((row) => row.fiscal_project_id).filter((id): id is string => typeof id === "string").slice(0, 5);
-          if (projectIds.length && !deadline.expired()) {
-            const execLeg = await raceWelfareDeadline(deadline, () =>
-              invokeInternal("get_budget_execution", { fiscal_project_ids: projectIds, fiscal_year: fiscalYear }),
-            );
-            if (execLeg.ok) {
-              budgetExecution = (execLeg.value as { data?: unknown }).data ?? execLeg.value;
-              stepsExecuted.push({ step: "budget_execution", tool: "get_budget_execution", status: "SUCCEEDED" });
-            }
-          }
-        } else if (projectsLeg.timedOut) {
-          timedOutSections.push({ section: "재정사업 조회", recovery_tool: "find_budget_projects", recovery_params: { fiscal_year: fiscalYear, mode: "integrated_care" }, message: "시간 한도로 재정사업 목록 응답이 지연되었습니다." });
-        }
+      if (resolvedTask === "statistics_trend" && !chainedDetails.items.some(item => item.tool === "get_statistics_data" && item.status === "SUCCEEDED")) {
+        const statSearch = await runSection("statistics_search", "search_statistics", { query: basePlan.search_query || args.query.slice(0, 100), data_only: true, limit: 3 });
+        const body = isChainRecord(statSearch) && isChainRecord(statSearch.data) ? statSearch.data : null;
+        const first = body && Array.isArray(body.items) ? body.items.filter(isChainRecord).find(row => row.data_available && typeof row.dataset_id === "string") : undefined;
+        if (first) statisticsData = await runSection("statistics_data", "get_statistics_data", { statistics_id: first.dataset_id });
       }
-
-      if (resolvedTask === "statistics_trend" && !deadline.expired()) {
-        const alreadyFetchedStat = chainedDetails.items.some((item) => item.entity_type === "welfare_statistic" && item.status === "SUCCEEDED");
-        if (!alreadyFetchedStat) {
-          const statSearchLeg = await raceWelfareDeadline(deadline, () =>
-            invokeInternal("search_statistics", { query: basePlan.search_query || args.query.slice(0, 100), data_only: true, limit: 3 }),
-          );
-          if (statSearchLeg.ok) {
-            stepsExecuted.push({ step: "statistics_search", tool: "search_statistics", status: "SUCCEEDED" });
-            const statItems = ((statSearchLeg.value as { data?: { items?: { dataset_id?: string; id?: string; data_available?: boolean }[] } }).data?.items ?? [])
-              .filter((row) => row.data_available && (row.dataset_id || row.id));
-            const firstStatId = statItems[0]?.dataset_id ?? statItems[0]?.id;
-            if (firstStatId && !deadline.expired()) {
-              const statDataLeg = await raceWelfareDeadline(deadline, () =>
-                invokeInternal("get_statistics_data", { statistics_id: firstStatId }),
-              );
-              if (statDataLeg.ok) {
-                statisticsData = (statDataLeg.value as { data?: unknown }).data ?? statDataLeg.value;
-                stepsExecuted.push({ step: "statistics_data", tool: "get_statistics_data", status: "SUCCEEDED" });
-              }
-            }
-          }
-        }
-      }
-
-      const followUpCalls = suggestFollowUpCallsForSearch(candidates, {
-        question: args.query,
-        releaseBundleId: current.bundleId,
-        regionId: effectiveRegion,
-      });
-      if (resolvedTask === "budget_track" && followUpCalls.length < 4) {
-        followUpCalls.push(toSuggestedToolCall(followUpCalls.length + 1, "get_fiscal_catalog", { catalog_type: "available_reference_date", fiscal_year: args.fiscal_year ?? 2026 }, "재정 데이터 가용 기준일·예산서 단계 확인"));
-      }
-
+      const completed = chainedDetails.items;
+      const followUpCalls = omitCompletedCalls(suggestFollowUpCallsForSearch(candidates, { question: args.query, releaseBundleId: current.bundleId, regionId: regionalServices ? null : effectiveRegion }), completed);
+      const gaps = [...new Set([
+        ...failedSections.map(item => item.section + ": " + item.message),
+        ...detailCoverageGaps(completed), ...sectionCoverage,
+        ...(searchData.answerability !== "SUPPORTED" ? ["검색 후보만으로 질문의 전체 근거가 확인되지 않았습니다."] : []),
+      ])];
+      const warnings = [...new Set([
+        ...(Array.isArray(searchData.warnings) ? searchData.warnings.filter((item): item is string => typeof item === "string") : []),
+        ...sectionWarnings,
+        ...completed.flatMap(item => Array.isArray(item.context?.warnings) ? item.context.warnings.filter((warning): warning is string => typeof warning === "string") : []),
+      ])];
       return envelope(current, now(), {
-        task_requested: args.task ?? "auto",
-        task_resolved: resolvedTask,
-        query_plan: searchData.query_plan,
+        task_requested: args.task ?? "auto", task_resolved: resolvedTask, query_plan: { ...(isChainRecord(searchData.query_plan) ? searchData.query_plan : basePlan), region_id: effectiveRegion },
         chain_execution: {
-          header: chainedDetails.header,
-          steps_executed: stepsExecuted,
-          succeeded_details: chainedDetails.succeeded_count,
-          timed_out_sections: timedOutSections,
-          partial_result: timedOutSections.length > 0,
+          header: chainedDetails.header, steps_executed: stepsExecuted, succeeded_details: chainedDetails.succeeded_count,
+          failed_sections: failedSections, timed_out_sections: failedSections.filter(item => item.status === "TIMED_OUT"),
+          partial_result: failedSections.length > 0,
         },
         search: {
-          retrieval_status: searchData.retrieval_status,
-          answerability: searchData.answerability,
-          coverage: searchData.coverage,
-          reason_codes: searchData.reason_codes,
-          results: (searchData.results ?? []).slice(0, 10),
+          retrieval_status: searchData.retrieval_status, answerability: searchData.answerability, coverage: searchData.coverage,
+          reason_codes: searchData.reason_codes, results: compactChainedCandidates(candidates.slice(0, 10), completed),
         },
-        chained_details: chainedDetails.items,
+        chained_details: completed,
         ...(regionalServices ? { regional_welfare_catalog: regionalServices } : {}),
-        ...(careDemand ? { care_demand: careDemand } : {}),
         ...(budgetProjects ? { budget_projects: budgetProjects } : {}),
         ...(budgetExecution ? { budget_execution: budgetExecution } : {}),
         ...(statisticsData ? { statistics_data: statisticsData } : {}),
-        suggested_tool_calls: followUpCalls,
-        next_actions_text: formatSuggestedToolCalls(followUpCalls),
-      }, {
-        coverage: {
-          scope: "welfare_research_chain",
-          complete: timedOutSections.length === 0 && searchData.answerability === "SUPPORTED",
-          gaps: [
-            ...(timedOutSections.map((item) => item.section + ": " + item.message)),
-            ...(searchData.retrieval_status !== "CANDIDATES_FOUND" ? ["검색 결과에서 직접 근거 후보를 찾지 못했습니다."] : []),
-          ],
-        },
-        warnings: [
-          ...(searchData.warnings ?? []),
-          ...(timedOutSections.length ? ["⏱ 체인 시간 한도로 일부 단계만 수집했습니다. 누락된 섹션은 안내된 개별 도구로 이어서 조회하세요."] : []),
-        ],
-      });
+        suggested_tool_calls: followUpCalls, next_actions_text: formatSuggestedToolCalls(followUpCalls),
+      }, { coverage: { scope: "welfare_research_chain", complete: gaps.length === 0, gaps }, warnings });
     } finally {
       deadline.dispose();
     }

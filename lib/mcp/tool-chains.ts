@@ -120,10 +120,7 @@ export function toSuggestedToolCall(step: number, tool: McpToolName, params: Rec
 export function formatSuggestedToolCalls(calls: readonly SuggestedToolCall[]): string {
   if (!calls.length) return "";
   const lines = calls.map((item) => {
-    const invoke = item.call_path === "direct"
-      ? item.tool + "(" + JSON.stringify(item.params) + ")"
-      : "execute_tool(" + JSON.stringify({ tool_name: item.tool, params: item.params }) + ")";
-    return item.step + ". " + invoke + ": " + item.reason;
+    return item.step + ". " + item.tool + " (" + item.call_path + ")";
   });
   return "━━━ 이어서 할 수 있는 조회 ━━━\n" + lines.join("\n");
 }
@@ -320,8 +317,38 @@ export interface ChainedDetailItem {
   readonly params: Record<string, unknown>;
   readonly status: "SUCCEEDED" | "TIMED_OUT" | "ERROR";
   readonly detail?: unknown;
+  readonly context?: Readonly<Record<string, unknown>>;
   readonly error?: string;
   readonly recovery_hint?: string;
+}
+
+export function isChainRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+export function omitCompletedCalls(calls: readonly SuggestedToolCall[], items: readonly ChainedDetailItem[]): SuggestedToolCall[] {
+  return calls.filter(call => !items.some(item => item.status === "SUCCEEDED" && item.tool === call.tool && JSON.stringify(item.params) === JSON.stringify(call.params)))
+    .map((call, index) => ({ ...call, step: index + 1 }));
+}
+
+export function compactChainedCandidates(results: readonly unknown[], items: readonly ChainedDetailItem[]): unknown[] {
+  const completed = new Set(items.filter(item => item.status === "SUCCEEDED").map(item => item.id));
+  return results.map(row => {
+    if (!isChainRecord(row) || typeof row.id !== "string" || !completed.has(row.id)) return row;
+    return { ...Object.fromEntries(Object.entries(row).filter(([key]) => ["id", "title", "name", "entity_type", "source_identity", "url", "score", "rank", "warnings", "scope_flags", "reason_codes", "applicability"].includes(key))), detail_location: "chained_details" };
+  });
+}
+
+export function detailCoverageGaps(items: readonly ChainedDetailItem[]): string[] {
+  return items.flatMap(item => {
+    if (item.status !== "SUCCEEDED") return [item.id + ": " + (item.error ?? item.recovery_hint ?? item.status)];
+    const coverage = item.context?.coverage;
+    if (!isChainRecord(coverage) || coverage.complete !== true || coverage.context_complete === false) {
+      const gaps = isChainRecord(coverage) && Array.isArray(coverage.gaps) ? coverage.gaps.filter((gap): gap is string => typeof gap === "string") : [];
+      return gaps.length ? gaps.map(gap => item.id + ": " + gap) : [item.id + ": 상세 자료의 전체 범위가 확인되지 않았습니다."];
+    }
+    return [];
+  });
 }
 
 export interface AutoDetailChainOutput {
@@ -366,9 +393,9 @@ export async function executeAutoDetailChain(
       routes.map(async (route): Promise<ChainedDetailItem> => {
         const outcome = await raceWelfareDeadline(deadline, () => invoker(route.detail_tool, route.detail_params));
         if (outcome.ok) {
-          const unwrapped = outcome.value && typeof outcome.value === "object" && "data" in (outcome.value as Record<string, unknown>)
-            ? (outcome.value as { data: unknown }).data
-            : outcome.value;
+          const wrapped = isChainRecord(outcome.value) && "data" in outcome.value;
+          const unwrapped = wrapped ? outcome.value.data : outcome.value;
+          const context = wrapped ? Object.fromEntries(Object.entries(outcome.value).filter(([key]) => key !== "data")) : undefined;
           return {
             id: route.id,
             entity_type: route.entity_type,
@@ -376,6 +403,7 @@ export async function executeAutoDetailChain(
             params: route.detail_params,
             status: "SUCCEEDED",
             detail: unwrapped,
+            ...(context ? { context } : {}),
           };
         }
         if (outcome.timedOut) {
@@ -485,6 +513,7 @@ export interface WelfareToolDescriptor {
   readonly title: string;
   readonly description: string;
   readonly parameters: readonly string[];
+  readonly inputSchema: () => Record<string, unknown>;
 }
 
 export function describeWelfareCallPath(listed: ReadonlySet<string>): string {
@@ -496,7 +525,8 @@ export function describeWelfareCallPath(listed: ReadonlySet<string>): string {
     : direct + " 나머지 전문 도구는 execute_tool(tool_name, params)로 실행하세요.";
 }
 
-const MAX_DISCOVERY_SECTIONS = 5;
+const MAX_DISCOVERY_SECTIONS = 2;
+const MAX_DISCOVERY_TOOLS = 4;
 
 export function discoverWelfareTools(
   intent: string,
@@ -516,6 +546,7 @@ export function discoverWelfareTools(
       readonly call_path: "direct" | "execute_tool";
       readonly parameters: readonly string[];
       readonly description: string;
+      readonly inputSchema: Record<string, unknown>;
     }[];
   }[];
   readonly call_guidance: string;
@@ -555,7 +586,8 @@ export function discoverWelfareTools(
     }
     // Tier 3: 도구 제목·설명·파라미터 매칭
     for (const name of available) {
-      const desc = catalog.get(name)!;
+      const desc = catalog.get(name);
+      if (!desc) continue;
       const hay = (desc.name + " " + desc.title + " " + desc.description + " " + desc.parameters.join(" ")).toLowerCase();
       for (const token of tokens) {
         if (hay.includes(token)) {
@@ -579,25 +611,34 @@ export function discoverWelfareTools(
       tools: tools.filter((name) => EXECUTABLE_MCP_TOOL_NAMES.includes(name) && catalog.has(name)),
     }))
     .filter((section) => section.tools.length > 0);
-  const selected = (scored.length ? scored : fallbackSections).slice(0, MAX_DISCOVERY_SECTIONS);
+  const exactNames = new Set([...catalog.keys()].filter(name => lower.includes(name)));
+  const bestTier = scored[0]?.tier;
+  const selected = (scored.length ? scored.filter(section => section.tier === bestTier) : fallbackSections).slice(0, MAX_DISCOVERY_SECTIONS);
 
   const listedTools = new Set<string>();
   const matchedCategories = selected.map((section) => ({
     category: section.category,
     tier: section.tier,
-    tools: section.tools.map((name) => {
+    tools: section.tools.filter(name => exactNames.size === 0 || exactNames.has(name)).map(name => {
+      const info = catalog.get(name);
+      if (!info) return null;
+      const score = tokens.reduce((total, token) => total + (info.title.toLowerCase().includes(token) ? 6 : 0) + (info.description.toLowerCase().includes(token) ? 2 : 0), 0);
+      return { info, score };
+    }).filter(item => item !== null).sort((a, b) => b.score - a.score).flatMap(({ info }) => {
+      const name = info.name;
+      if (listedTools.has(name) || listedTools.size >= MAX_DISCOVERY_TOOLS) return [];
       listedTools.add(name);
-      const info = catalog.get(name)!;
       const isDirect = PUBLIC_MCP_TOOL_NAMES.includes(name);
-      return {
+      return [{
         name,
         title: info.title,
         call_path: isDirect ? ("direct" as const) : ("execute_tool" as const),
         parameters: info.parameters,
         description: info.description,
-      };
+        inputSchema: info.inputSchema(),
+      }];
     }),
-  }));
+  })).filter(section => section.tools.length > 0);
 
   const guidance = describeWelfareCallPath(listedTools);
   const lines: string[] = [];
@@ -610,9 +651,7 @@ export function discoverWelfareTools(
   for (const section of matchedCategories) {
     lines.push("[" + section.category + "]");
     for (const tool of section.tools) {
-      const tag = tool.call_path === "direct" ? "직접 호출(1-hop)" : "execute_tool 경유(2-hop)";
-      const paramsText = tool.parameters.length ? " | 입력: " + tool.parameters.join(", ") : "";
-      lines.push("  - " + tool.name + " (" + tag + "): " + tool.title + ". " + tool.description + paramsText);
+      lines.push(tool.name);
     }
   }
   lines.push(guidance);

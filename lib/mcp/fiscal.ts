@@ -14,6 +14,7 @@ import {
   type ProjectRecord,
   publishedSnapshots,
   snapshotProjects,
+  snapshotProjectRows,
   snapshotMatchCounts,
   snapshotSummary,
   type SnapshotRow,
@@ -294,7 +295,7 @@ export async function findBudgetProjects(db: SqlDatabase, args: Args<"find_budge
     if (!codes) throw new McpToolError("CODE_TABLE_MISSING", "해당 연도 원천 분야코드표에서 이 모드의 분야를 확인하지 못했습니다.");
     filter.fieldCodes = codes;
   }
-  const warnings = [await unitNote(db, snapshotIds)];
+  const warnings: string[] = [];
   if (args.region_id) {
     const { entityIds, candidates, adminUnit } = await entitiesForRegion(db, args.region_id);
     if (filter.entityId && !entityIds.includes(filter.entityId)) throw new McpToolError("INPUT_CONFLICT", "fiscal_entity_id가 region_id의 검증된 재정주체가 아닙니다.");
@@ -312,7 +313,8 @@ export async function findBudgetProjects(db: SqlDatabase, args: Args<"find_budge
   if (!filter.entityId && departmentEntities.length === 1) filter.entityId = departmentEntities[0];
   if (filter.departmentCodes?.length && !filter.entityId) throw new McpToolError("FISCAL_ENTITY_REQUIRED", "숫자 부서코드는 기관 사이에 반복될 수 있습니다. fiscal_entity_id를 함께 지정하거나 카탈로그의 전체 부서 ID를 쓰세요.");
   if (choice.fallback_used) warnings.push("요청 기준일(" + choice.requested_reference_date + ") 자료가 없는 범위는 그 이전 가장 가까운 공개본을 썼습니다.");
-  const { used, matches } = await usedSnapshots(db, choice.snapshots, filter);
+  const [{ used, matches }, amountNote] = await Promise.all([usedSnapshots(db, choice.snapshots, filter), unitNote(db, snapshotIds)]);
+  warnings.unshift(amountNote);
   if (used.length > 1) {
     const dates = [...new Set(used.map((item) => item.requested_reference_date))].sort();
     warnings.push("광역 지역별 전체 세출 범위 " + used.length + "개를 합쳤습니다" + (dates.length > 1 ? "(지역마다 기준일이 다름: " + dates[0] + " ~ " + dates[dates.length - 1] + ")" : "") + ". 범위별 출처·기준일은 coverage.snapshot_set에 있습니다.");
@@ -322,7 +324,9 @@ export async function findBudgetProjects(db: SqlDatabase, args: Args<"find_budge
   const offset = decodeCursor(args.cursor, bound);
   const verifiedIds = args.include_summary ? (await fiscalVerificationStatus(db, snapshotIds)).verified_scopes.map((row) => row.snapshot_id) : [];
   const [{ rows, total }, summary] = await Promise.all([
-    snapshotProjects(db, snapshotIds, filter, offset, size),
+    matches
+      ? snapshotProjectRows(db, used.map(item => item.snapshot_id), filter, offset, size).then(rows => ({ rows, total: [...matches.values()].reduce((sum, count) => sum + count, 0) }))
+      : snapshotProjects(db, snapshotIds, filter, offset, size),
     args.include_summary ? snapshotSummary(db, verifiedIds, { ...filter, verifiedAmountsOnly: true }) : Promise.resolve(null),
   ]);
   const next = offset + rows.length < total ? encodeCursor(offset + rows.length, bound) : null;

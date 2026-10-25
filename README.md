@@ -6,7 +6,7 @@
 
 [운영 사이트](https://integrated-care-national-dashboard.xgfox54.chatgpt.site) · [복지제도100](https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfare100) · [복지정보MCP 안내](https://integrated-care-national-dashboard.xgfox54.chatgpt.site/welfaremcp) · [데이터 출처](https://integrated-care-national-dashboard.xgfox54.chatgpt.site/sources)
 
-**2026-10-24 복지정보MCP 자동 툴체이닝 및 도구·토큰 최적화(MCP 1.14.0)를 반영한 공개본**입니다. 돌봄자원과 법령정보는 이용자 제공 범위에서 제외하고, 복합 리서치 자동 체이닝(`welfare_research`), 검색 도구의 자동 상세 연결(`auto_detail=true`), 후속 호출 추천(`suggested_tool_calls`), 1-hop 기본 노출 도구(16개)와 2-hop 전문 도구(`discover_tools`·`execute_tool`, 전체 32개 실행) 구조를 적용했습니다. 이전 법령·매뉴얼 연결 재점검 기록은 [연결 재점검 기록](docs/welfare100-link-review-20261016.md) 및 [후속 재점검 기록](docs/welfare100-link-review-20261016-round2.md)에 정리했습니다. 자료의 기준일은 출처마다 다르며, 소스 동기화 날짜가 모든 자료의 기준일을 뜻하지는 않습니다.
+**2026-10-25 복지정보MCP 자동 툴체이닝 및 도구·토큰 최적화(MCP 1.14.1)를 반영한 공개본**입니다. 돌봄자원과 법령정보는 이용자 제공 범위에서 제외하고, 복합 리서치 자동 체이닝(`welfare_research`), 검색 도구의 자동 상세 연결(`auto_detail=true`), 후속 호출 추천(`suggested_tool_calls`), 1-hop 기본 노출 도구(16개)와 2-hop 전문 도구(`discover_tools`·`execute_tool`, 전체 32개 실행) 구조를 적용했습니다. 호출 구성과 검증 범위는 [MCP 1.14.1 변경 기록](docs/mcp-optimization-1.14.1.md)에 정리했습니다. 이전 법령·매뉴얼 연결 재점검 기록은 [연결 재점검 기록](docs/welfare100-link-review-20261016.md) 및 [후속 재점검 기록](docs/welfare100-link-review-20261016-round2.md)에 정리했습니다. 자료의 기준일은 출처마다 다르며, 소스 동기화 날짜가 모든 자료의 기준일을 뜻하지는 않습니다.
 
 ## 이용 화면
 
@@ -99,7 +99,7 @@ flowchart TB
   accDescr: AI가 조회 도구를 호출하면 입력을 확인하고 분야별 자료를 자동 체이닝해 출처와 기준 시점을 포함해 반환한다.
   person["이용자의 질문<br/>예: 2026년 기초연금 신청 조건과 구비서류를 알려줘"]
   ai["AI 클라이언트<br/>ChatGPT · Claude · Perplexity · Gemini"]
-  gateway["Korean Welfare MCP (1.14.0)<br/>기본 노출 도구 16개 · 전체 실행 도구 32개"]
+  gateway["Korean Welfare MCP (1.14.1)<br/>기본 노출 도구 16개 · 전체 실행 도구 32개"]
   tools["자동 체이닝 및 분야별 조회 도구<br/>복합리서치(welfare_research) / 통합검색(search)<br/>매뉴얼·129 FAQ / 예산 / 통계 / 보도자료"]
   retrieval["검색 · 조건 확인 · 상세 자동 체이닝<br/>지역 / 연도 / 자료 범위 반영 · 데드라인 보호"]
   stored["공개된 저장 자료<br/>D1 + 정적 JSON + 문서"]
@@ -127,7 +127,7 @@ flowchart TB
 | 뉴스·온톨로지·출처 확인 | `search_news`, `get_entity`, `get_relationships`, `get_sources` | 보도자료 메타데이터, 개체 1홉 관계, 원문 출처 |
 | 전문 도구 탐색·실행 | `discover_tools`, `execute_tool`, `get_dataset_status` | 2-hop 전문 도구 탐색·실행 및 공개본 기준일 확인 |
 
-현재 공개 계약은 **MCP 서버 1.14.0 / 응답 스키마 2.0 / 기본 노출 도구 16개 / 전체 실행 가능 도구 32개**입니다. 돌봄자원(장기요양기관·돌봄 수요)과 법령정보 도구는 현재 MCP에서 제공하지 않습니다. 실제 등록 목록은 [lib/mcp/contract.ts](lib/mcp/contract.ts), 체이닝 로직은 [lib/mcp/tool-chains.ts](lib/mcp/tool-chains.ts), 연결 처리는 [lib/mcp/server.ts](lib/mcp/server.ts)를 기준으로 합니다.
+현재 공개 계약은 **MCP 서버 1.14.1 / 응답 스키마 2.0 / 기본 노출 도구 16개 / 전체 실행 가능 도구 32개**입니다. 돌봄자원(장기요양기관·돌봄 수요)과 법령정보 도구는 현재 MCP에서 제공하지 않습니다. 실제 등록 목록은 [lib/mcp/contract.ts](lib/mcp/contract.ts), 체이닝 로직은 [lib/mcp/tool-chains.ts](lib/mcp/tool-chains.ts), 연결 처리는 [lib/mcp/server.ts](lib/mcp/server.ts)를 기준으로 합니다.
 
 ## 기술 구성과 폴더
 
