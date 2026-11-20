@@ -48,7 +48,7 @@ const step = (y, number, title, detail) => rect(40, y, 960, 72)
   + text(106, y + 56, detail);
 mcp += step(110, "01", "이용자 → AI 클라이언트", "예: 서귀포시 생계지원 자료를 찾아줘  ·  ChatGPT / Claude 등")
   + arrow("M520 182 V201")
-  + step(204, "02", "Korean Welfare MCP 1.14.0 · 기본 노출 16개 · 전체 실행 32개", "입력 형식을 확인하고 지역·연도 등 조회 조건을 반영합니다.")
+  + step(204, "02", "Korean Welfare MCP · 조회 전용 도구", "입력 형식을 확인하고 지역·연도 등 조회 조건을 반영합니다.")
   + arrow("M520 276 V295")
   + step(298, "03", "welfare_research · 자동 상세 조회 · 전문 도구 탐색", "복지제도 / 매뉴얼·FAQ / 예산 / 뉴스 / 통계 · 돌봄자원·법령 도구 제외")
   + arrow("M520 370 V389 H275 V405") + arrow("M520 389 H765 V405")
