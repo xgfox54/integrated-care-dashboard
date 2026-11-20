@@ -86,6 +86,8 @@ flowchart TB
 
 ## MCP 조회 구조
 
+복지 온톨로지는 사업, 지역, 예산 등 자료에 등장하는 대상과 그 사이의 관계를 정의합니다. [개체·관계 목록](ontology/welfare-v2/schema.json)에는 관계의 이름과 대상이 나옵니다. 사업 설명의 근거를 찾을 때는 [사실 정보](ontology/v1/statement.schema.json)와 [원문 근거](ontology/v1/evidence.schema.json)를 `statement_id`로 연결한 뒤 문서 버전과 인용문을 확인합니다.
+
 AI가 질문을 해석해 정해진 조회 도구를 호출하면, 서버가 자료와 근거를 찾아 반환합니다. 복합 질문은 `welfare_research`나 `search(auto_detail=true)`가 검색과 상위 근거 상세를 자동 체이닝하며, 세부 전문 도구는 `discover_tools`와 `execute_tool`로 탐색·실행합니다. 이용자에게 제공되는 도구는 조회 전용이며, AI의 설명은 행정기관의 실제 수급 자격 판정이 아닙니다.
 
 ![이용자 질문이 AI와 MCP 조회 도구를 거쳐 공개 자료를 찾고 출처를 포함한 결과로 돌아오는 흐름](docs/architecture/mcp.svg)
